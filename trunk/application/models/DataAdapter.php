@@ -3,7 +3,8 @@
 class Application_Model_DataAdapter {
 
     private static $instance;
-    private static $driver = "mysql:host=localhost;dbname=istebpe_notas";
+    // private static $driver = "mysql:host=localhost;dbname=istebpe_notas";
+    private static $driver = "pgsql:host=localhost;dbname=istebpe_notas";
     private static $user = "root";
     private static $password = "immc";
     private $connection = null;
