@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <?php
+        echo $this->headMeta() . "\n";
+        echo $this->headTitle() . "\n";
+        ?>
+        <style type="text/css">
+            .printable {
+                border: 1px dotted #CCCCCC ;
+                padding: 10px 10px 10px 10px ;
+            }
+        </style>
+
+        <?php echo $this->util()->getScript("js/common"); ?>
+        <?php echo $this->util()->getScript("js/jqGrid"); ?>
+        <script type="text/javascript">
+            var path="http://<?php echo $this->util()->getPath(); ?>";
+            var imageInit="<?php echo $this->util()->getImage("alumnos0.jpg"); ?>";
+
+            jQuery(document).ready(function () {
+                jQuery.scriptPath = path;
+                jQuery.struts2_jquery.local = "es";
+                jQuery.struts2_jquery.gridLocal = "es";
+                jQuery.struts2_jquery.timeLocal = "en";
+                jQuery.ajaxSettings.traditional = true;
+                jQuery.ajaxSetup({
+                    cache: false
+                });
+            });
+            
+            $(document).ready(function(){
+                $(document).ajaxStart(function(){
+                    $('#jqDialogCargando').dialog('open');
+                });
+                $(document).ajaxStop(function(){
+                    $('#jqDialogCargando').dialog('close');
+                });
+            });
+        </script>
+
+        <?php echo $this->util()->getStyle(); ?>
+        <link href="http://<?php echo $this->util()->getPath(); ?>theme/explora/jquery-ui.css" rel="stylesheet" type="text/css" id="jquery_theme_link" />
+        <link href="<?php echo $this->util()->getImage("refbar.ico"); ?>" rel="shortcut icon" type="image/x-icon" />
+        <link href="<?php echo $this->util()->getImage("refbar.ico"); ?>" rel="icon" type="image/x-icon" />
+    </head>    
+    <body>
+        <table style="width: 100%; height: 100%;" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="background: url('<?php echo $this->util()->getImage("main-bg.gif"); ?>');" rowspan="4">&nbsp;</td>
+                <td style="width: 900px; height: 42px; border-right: 1px solid #000; border-left: 1px solid #000;">
+                    <?php echo $this->render("northView.phtml"); ?>
+                </td>
+                <td style="background: url('<?php echo $this->util()->getImage("main-bg.gif"); ?>');" rowspan="4">&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="height: 25px; border-right: 1px solid #000; border-left: 1px solid #000;">
+                    <?php echo $this->render("menuView.phtml"); ?>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-right: 1px solid #000; border-left: 1px solid #000;">
+                    <div id="west">
+                        <?php echo $this->layout()->content; ?>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td id="south" style="width: 900px; height: 30px;">
+                    <?php echo $this->render("southView.phtml"); ?>
+                </td>
+            </tr>
+        </table>
+        <?php echo $this->render("jqCargando.phtml"); ?>
+    </body>
+</html>
