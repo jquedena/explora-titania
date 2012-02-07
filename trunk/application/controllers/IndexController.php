@@ -11,6 +11,8 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function testAction() {
+    	$query = new Model_DataAdapter();
+    	echo $query->getConnection();
     }
 
 }
