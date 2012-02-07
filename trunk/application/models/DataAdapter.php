@@ -36,7 +36,6 @@ class Model_DataAdapter {
         Logger::configure(APPLICATION_PATH.'/../public/properties/error_daily.properties');
         
         $this->logger = Logger::getLogger(__CLASS__);
-        
         $this->logger->info("Construyendo objeto.");
         $this->initDB();
     }
@@ -80,8 +79,18 @@ class Model_DataAdapter {
         $this->connection = $connection;
     }
 
+    /**
+     *
+     * @param type $query
+     * @param type $type
+     * @return type 
+     */
     public function executeQuery($query, $type = PDO::FETCH_NUM) {
         try {
+            $stm = $this->connection->query($query);
+            $this->logger->info($query);
+            return $stm->fetchAll($type);
+            
         } catch (PDOException $e) {
             $this->logger->error($e->getMessage());
             return null;
@@ -120,14 +129,13 @@ class Model_DataAdapter {
     }
 
     public function executeToJSON($procedure, $parameters) {
-        $rows = $this->execute($procedure, $parameters);
-        $json = "";
-        foreach ($rows as $row) {
-            $json .= json_encode($row, JSON_FORCE_OBJECT | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) . ",";
-        }
-
-        return $json;
+        $rows = $this->execute($procedure, $parameters, PDO::FETCH_ASSOC);
+        return json_encode($rows, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
     }
 
+    public function executeQueryToJSON($query) {
+        $rows = $this->executeQuery($query, PDO::FETCH_ASSOC);
+        return json_encode($rows, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
+    }
 }
 
