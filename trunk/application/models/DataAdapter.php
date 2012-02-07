@@ -1,12 +1,11 @@
 <?php
 
-class Application_Model_DataAdapter {
+class Model_DataAdapter {
 
     private static $instance;
-    // private static $driver = "mysql:host=localhost;dbname=istebpe_notas";
-    private static $driver = "pgsql:host=localhost;dbname=istebpe_notas";
+    private static $driver = "mysql:host=localhost;dbname=istebpe_notas";
     private static $user = "root";
-    private static $password = "immc";
+    private static $password = "admin";
     private $connection = null;
 
     private function initDB() {
