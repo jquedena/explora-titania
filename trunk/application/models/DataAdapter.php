@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__).'/../../library/Log4PHP/Logger.php';
 
 class Model_DataAdapter {
 
@@ -7,7 +8,8 @@ class Model_DataAdapter {
     private static $user = "root";
     private static $password = "admin";
     private $connection = null;
-
+    private $logger = null;
+    
     private function initDB() {
         if ($this->connection == null) {
             # echo "<!-- {ISTEBP}Info: Accediendo a la base de datos -->";
@@ -15,19 +17,27 @@ class Model_DataAdapter {
             # echo "<!-- {ISTEBP}Info: User ".self::$user." -->";
             # echo "<!-- {ISTEBP}Info: Password ".self::$password." -->";
             $this->connection = new PDO(self::$driver, self::$user, self::$password);
+            $this->logger->info("Accediendo a la base de datos...");
+        } else {
+            $this->logger->info("Error al acceder a la base de datos...");
         }
     }
 
     public function __clone() {
-        trigger_error("{ISTEBP}Error: No puedes clonar una instancia de " . get_class($this) . " class.", E_USER_ERROR);
+        trigger_error("Error: No puedes clonar una instancia de " . get_class($this) . " class.", E_USER_ERROR);
     }
 
     public function __wakeup() {
-        trigger_error("{ISTEBP}Error: No puedes deserializar una instancia de " . get_class($this) . " class.", E_USER_ERROR);
+        trigger_error("Error: No puedes deserializar una instancia de " . get_class($this) . " class.", E_USER_ERROR);
     }
 
     public function __construct() {
-        # echo "<!-- {ISTEBP}Info: Construyendo objeto -->";
+        date_default_timezone_set("America/Lima");
+        Logger::configure(APPLICATION_PATH.'/../public/properties/error_daily.properties');
+        
+        $this->logger = Logger::getLogger(__CLASS__);
+        
+        $this->logger->info("Construyendo objeto.");
         $this->initDB();
     }
 
@@ -70,6 +80,14 @@ class Model_DataAdapter {
         $this->connection = $connection;
     }
 
+    public function executeQuery($query, $type = PDO::FETCH_NUM) {
+        try {
+        } catch (PDOException $e) {
+            $this->logger->error($e->getMessage());
+            return null;
+        }
+    }
+    
     /**
      *
      * @param type $procedure
@@ -86,6 +104,7 @@ class Model_DataAdapter {
                 $lparameters = substr(trim($lparameters), 0, -1);
             }
             $stm = $this->connection->prepare("call $procedure($lparameters)");
+            $this->logger->info("call $procedure($lparameters)");
             if ($count) {
                 for ($index = 0; $index < count($parameters); $index++) {
                     $stm->bindValue($index + 1, $parameters[$index]);
@@ -95,7 +114,7 @@ class Model_DataAdapter {
             
             return $stm->fetchAll($type);
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            $this->logger->error($e->getMessage());
             return null;
         }
     }
