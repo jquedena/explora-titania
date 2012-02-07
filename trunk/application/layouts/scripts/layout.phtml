@@ -17,6 +17,9 @@
             var path="http://<?php echo $this->util()->getPath(); ?>";
             var imageInit="<?php echo $this->util()->getImage("alumnos0.jpg"); ?>";
 
+            $.jgrid.no_legacy_api = true; 
+            $.jgrid.useJSON = true; 
+
             jQuery(document).ready(function () {
                 jQuery.scriptPath = path;
                 jQuery.struts2_jquery.local = "es";
