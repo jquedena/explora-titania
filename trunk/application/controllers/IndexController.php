@@ -10,7 +10,12 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function testAction() {
-        echo $this->view->util()->getScriptJSController($this->getRequest());
+        $this->view->util()->registerScriptJSController($this->getRequest());
+        $query = new Model_DataAdapter();
+        #echo "{total: 1000, page: 1, records: 20000, rows: ";
+        echo "<script type='text/javascript'>";
+        echo "var x=".$query->executeQueryToJSON("SELECT * FROM maccess");
+        echo "</script>";
     }
 
     public function testjsonAction() {
@@ -19,9 +24,7 @@ class IndexController extends Zend_Controller_Action {
         $this->getResponse()->setHeader('Content-type', 'application/json');
         
         $query = new Model_DataAdapter();
-        echo "{totalrows: 1000, page: 1, records: 20000, rows: ";
         echo $query->executeQueryToJSON("SELECT * FROM maccess");
-        echo "}";
     }
 
 }

@@ -1,5 +1,5 @@
 function callAjaxPostJSON(url, parameters, fx){
-    $.post(path+"index.php/"+url
+    $.post(path+url
         , parameters
         , fx
         , "json");

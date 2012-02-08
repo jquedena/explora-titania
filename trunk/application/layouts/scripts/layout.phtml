@@ -13,15 +13,16 @@
 
         <?php echo $this->util()->getScript("js/common"); ?>
         <?php echo $this->util()->getScript("js/jqGrid"); ?>
+        <?php echo $this->util()->getScriptJSController("js/jqGrid"); ?>
         <script type="text/javascript">
-            var path="http://<?php echo $this->util()->getPath(); ?>";
+            var path="http://<?php echo $this->util()->getPath(); ?>index.php/";
             var imageInit="<?php echo $this->util()->getImage("alumnos0.jpg"); ?>";
 
             $.jgrid.no_legacy_api = true; 
             $.jgrid.useJSON = true; 
 
             jQuery(document).ready(function () {
-                jQuery.scriptPath = path;
+                jQuery.scriptPath = "http://<?php echo $this->util()->getPath(); ?>";
                 jQuery.struts2_jquery.local = "es";
                 jQuery.struts2_jquery.gridLocal = "es";
                 jQuery.struts2_jquery.timeLocal = "en";
