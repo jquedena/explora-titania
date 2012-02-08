@@ -1,35 +1,23 @@
-//$(function(){
-    callAjaxPostJSON("index/testjson"
-        , {s: "a"}
-        , function(data){
-            console.log(data);
-            //console.log(data.test);
-            //console.log(data.error);
-            //$("#test").html(data.test);
-        });
-        
-    /*jQuery("#jsonmap").jqGrid({        
-            url:path+'index.php/index/testjson',
+function test(){        
+    jQuery("#jsonmap").jqGrid({        
+            url: path+"index/testjson",
             datatype: "json",
+            height: 250,
+            width: 450,
             colNames:['Inv No','Date', 'Client', 'Test'],
             colModel:[
-                    {name:'idrowst',index:'idrowst', width:55},
+                    {name:'idrowst',index:'idrowst', width:55, sorteable: false},
                     {name:'idrol',index:'idrol', width:90},
                     {name:'vnameid',index:'vnameid', width:100},
                     {name:'ctipobj',index:'ctipobj', width:80, align:"right"}		
             ],
-            rowNum:10,
-            rowList:[10,20,30],
+            rowNum:3,
+            rowList:[3,4,5],
             pager: '#pjmap',
-            sortname: 'idrowst',
-        viewrecords: true,
-        sortorder: "desc",
-            jsonReader: {
-                    repeatitems : false,
-                    id: "0"
-            },
-            caption: "JSON Mapping",
-            height: '100%'
+            viewrecords: true
     });
-    jQuery("#jsonmap").jqGrid('navGrid','#pjmap',{edit:false,add:false,del:false});*/
-//});
+    // jQuery("#jsonmap").jqGrid('navGrid','#pjmap',{edit:false,add:false,del:false});
+    
+    /*for(var i=0;i<=x.length;i++)
+	jQuery("#jsonmap").jqGrid('addRowData',i+1,x[i]);*/
+}

@@ -35,10 +35,19 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
         return $script;
     }    
     
-    public function getScriptJSController(Zend_Controller_Request_Abstract $request) {
+    public function registerScriptJSController(Zend_Controller_Request_Abstract $request) {
         $controller = $request->getControllerName();
         $action = $request->getActionName();
         $script = "\t\t<script type='text/javascript' src='http://".$this->getPath()."js/js_".$controller."_".$action.".js'/></script>\n";
+        $session = new Zend_Session_Namespace("script");
+        $session->data = $script;
+        return $script;
+    }
+    
+    public function getScriptJSController() {
+        $session = new Zend_Session_Namespace("script");
+        $script = $session->data;
+        $session->data = "";
         return $script;
     }
     
