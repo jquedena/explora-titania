@@ -8,8 +8,8 @@ class ErrorController extends Zend_Controller_Action {
     public function __construct(Zend_Controller_Request_Abstract $request, Zend_Controller_Response_Abstract $response, array $invokeArgs = array()) {
         parent::__construct($request, $response, $invokeArgs);
         
-        date_default_timezone_set("America/Lima");
-        Logger::configure(APPLICATION_PATH.'/../public/properties/error_daily.properties');
+        date_default_timezone_set(DATE_ZONE);
+        Logger::configure(LOG_ERROR);
         $this->_logger = Logger::getLogger(__CLASS__);
     }
     

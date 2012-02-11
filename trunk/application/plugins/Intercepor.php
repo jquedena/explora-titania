@@ -8,8 +8,8 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
     private $_auth = null;
 
     public function __construct(Zend_Auth $auth, array $blackList) {
-        date_default_timezone_set("America/Lima");
-        Logger::configure(APPLICATION_PATH.'/../public/properties/access_daily.properties');
+        date_default_timezone_set(DATE_ZONE);
+        Logger::configure(LOG_ACCESS);
         
         $this->_logger = Logger::getLogger(__CLASS__);
         $this->_auth = $auth;
