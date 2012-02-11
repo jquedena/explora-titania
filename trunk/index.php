@@ -1,5 +1,9 @@
 <?php
 
+// Define date default timezone
+defined('DATE_ZONE')
+    || define('DATE_ZONE', 'America/Lima');
+
 // Define path to public
 defined('PATH')
     || define('PATH', 'public/');
@@ -11,6 +15,14 @@ defined('APPLICATION_PATH')
 // Define application environment
 defined('APPLICATION_ENV')
     || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'development'));
+
+// Define log access
+defined('LOG_ACCESS')
+    || define('LOG_ACCESS', APPLICATION_PATH.'/../public/properties/access_daily.properties');
+
+// Define log error
+defined('LOG_ERROR')
+    || define('LOG_ERROR', APPLICATION_PATH.'/../public/properties/error_daily.properties');
 
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, array(

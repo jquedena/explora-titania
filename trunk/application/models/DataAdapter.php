@@ -32,8 +32,8 @@ class Model_DataAdapter {
     }
 
     public function __construct() {
-        date_default_timezone_set("America/Lima");
-        Logger::configure(APPLICATION_PATH.'/../public/properties/error_daily.properties');
+        date_default_timezone_set(DATE_ZONE);
+        Logger::configure(LOG_ERROR);
         
         $this->logger = Logger::getLogger(__CLASS__);
         $this->logger->info("Construyendo objeto.");
@@ -128,15 +128,17 @@ class Model_DataAdapter {
         }
     }
 
-    public function executeToJSON($procedure, $parameters) {
+    public function executeRowsToJSON($procedure, $parameters) {
         $rows = $this->execute($procedure, $parameters, PDO::FETCH_ASSOC);
         return json_encode($rows, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
     }
 
-    public function executeQueryToJSON($query) {
+    public function executeQueryRowsToJSON($query) {
         $rows = $this->executeQuery($query, PDO::FETCH_ASSOC);
-        
-        $page = 1; //$_GET['page']; // get the requested page
+        return json_encode($rows, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
+    }
+    
+    /*$page = 1; //$_GET['page']; // get the requested page
         $limit = 5; // $_GET['rows']; // get how many rows we want to have into the grid
         // $sidx = $_GET['sidx']; // get index row - i.e. user click to sort
         // $sord = $_GET['sord']; // get the direction
@@ -157,12 +159,12 @@ class Model_DataAdapter {
         $responce->records = $count;
         $i = 0;
         foreach($rows as $row) {
-            $responce->rows[$i]['id']=$row['idrowst'];
-            $responce->rows[$i]['cell']=array($row['idrowst'], $row['idrol'], $row['vnameid'], $row['ctipobj']);
+            $responce->rows[$i]['id']=$i; // $row['idrowst'];
+            $responce->rows[$i]['cell']=$row; //  array($row['idrowst'], $row['idrol'], $row['vnameid'], $row['ctipobj']);
             $i++;
         }        
 
         return json_encode($responce, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
-    }
+        */
 }
 
