@@ -37,7 +37,9 @@ class Model_DataJQGrid {
         }
         
         if ($page > $total_pages) $page = $total_pages;
+        
         $start = $limit * $page - $limit; // do not put $limit*($page - 1)
+        if ($start < 0) $start = 0;
         
         // $sidx = $_GET['sidx']; // get index row - i.e. user click to sort
         // $sord = $_GET['sord']; // get the direction
