@@ -137,34 +137,5 @@ class Model_DataAdapter {
         $rows = $this->executeQuery($query, PDO::FETCH_ASSOC);
         return json_encode($rows, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
     }
-    
-    /*$page = 1; //$_GET['page']; // get the requested page
-        $limit = 5; // $_GET['rows']; // get how many rows we want to have into the grid
-        // $sidx = $_GET['sidx']; // get index row - i.e. user click to sort
-        // $sord = $_GET['sord']; // get the direction
-        // if(!$sidx) $sidx =1;
-
-        $count = count($rows);
-        if( $count >0 ) {
-                $total_pages = ceil($count/$limit);
-        } else {
-                $total_pages = 0;
-        }
-        
-        if ($page > $total_pages) $page = $total_pages;
-        $start = $limit * $page - $limit; // do not put $limit*($page - 1)
-
-        $responce->page = $page;
-        $responce->total = $total_pages;
-        $responce->records = $count;
-        $i = 0;
-        foreach($rows as $row) {
-            $responce->rows[$i]['id']=$i; // $row['idrowst'];
-            $responce->rows[$i]['cell']=$row; //  array($row['idrowst'], $row['idrol'], $row['vnameid'], $row['ctipobj']);
-            $i++;
-        }        
-
-        return json_encode($responce, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
-        */
 }
 
