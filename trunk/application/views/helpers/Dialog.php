@@ -38,7 +38,7 @@ class Zend_View_Helper_Dialog extends Zend_View_Helper_Abstract{
 	$script .= "\n\toptions_".$id.".buttons = ".$buttons.";";
 	$script .= "\n\toptions_".$id.".height = ".$height.";";
 	$script .= "\n\toptions_".$id.".width = ".$width.";";
-	$script .= "\n\toptions_".$id.".dialogClass = \"".$dialogClass."\";";
+	if(strlen($dialogClass) > 0) $script .= "\n\toptions_".$id.".dialogClass = \"".$dialogClass."\";";
 	$script .= "\n\toptions_".$id.".resizable = ".$resizable.";";
 	$script .= "\n\toptions_".$id.".autoOpen = ".$autoOpen.";";
 	$script .= "\n\toptions_".$id.".closeOnEscape = ".$closeOnEscape.";";

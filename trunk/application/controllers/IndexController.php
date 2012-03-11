@@ -7,6 +7,7 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
+        $this->view->util()->registerScriptJSController($this->getRequest());
     }
 
     public function testAction() {
