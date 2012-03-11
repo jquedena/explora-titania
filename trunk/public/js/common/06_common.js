@@ -9,35 +9,25 @@ function print(){
     $("#divPrincipal").jqprint();
 }
 
-function closeDialog(id) {
+function closeDialog(id) {   
     $('#'+id).dialog('close');
 }
 
-function openDialogConfirm(msg) {
-    var contenido = '<p><span class=\"ui-icon ui-icon-circle-check\" style=\"float:left; margin:0 7px 7px 0;\"></span>';
-    contenido = contenido + msg;
-    contenido = contenido + '</p>';
-    $('#jqDialogCofirmacion').html(contenido);
-    $('#jqDialogCofirmacion').dialog('open');
+function openDialogConfirm1(contenido, width, height) {
+    $('#jqConfirmacion1').html(contenido);
+    if(width != undefined) $('#jqDialogConfirmacion1').dialog('option', 'width', width);
+    if(height != undefined) $('#jqDialogConfirmacion1').dialog('option', 'height', height);
+    $('#jqDialogConfirmacion1').dialog('open');
 }
 
-function openDialogConfirm2(msg) {
-    var contenido = '<p><span class=\"ui-icon ui-icon-circle-check\" style=\"float:left; margin:0 7px 7px 0;\"></span>';
-    contenido = contenido + msg;
-    contenido = contenido + '</p>';
-    $('#jqDialogCofirmacion2').html(contenido);
-    $('#jqDialogCofirmacion2').dialog('open');
+function openDialogConfirm2(contenido) {
+    $('#jqConfirmacion2').html(contenido);
+    if(width != undefined) $('#jqDialogConfirmacion2').dialog('option', 'width', width);
+    if(height != undefined) $('#jqDialogConfirmacion2').dialog('option', 'height', height);
+    $('#jqDialogConfirmacion2').dialog('open');
 }
 
-function openDialogPregunta(msg) {
-    var contenido = '<p><span class=\"ui-icon ui-icon-circle-check\" style=\"float:left; margin:0 7px 7px 0;\"></span>';
-    contenido = contenido + msg;
-    contenido = contenido + '</p>';
-    $('#jqDialogPregunta').html(contenido);
-    $('#jqDialogPregunta').dialog('open');
-}
-
-function openDialogError(msg) {
+function openDialogError(contenido) {
     var contenido = '<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 7px 0;\"></span>';
     contenido = contenido + msg;
     contenido = contenido + '</p>';
@@ -45,7 +35,7 @@ function openDialogError(msg) {
     $('#jqDialogError').dialog('open');
 }
 
-function openDialogWarning(msg) {
+function openDialogWarning(contenido) {
     var contenido = '<p><span class=\"ui-icon ui-icon-info\" style=\"float:left; margin:0 7px 7px 0;\"></span>';
     contenido = contenido + msg;
     contenido = contenido + '</p>';
@@ -53,7 +43,7 @@ function openDialogWarning(msg) {
     $('#jqDialogWarning').dialog('open');
 }
 
-function openDialogInfo(msg) {
+function openDialogInfo(contenido) {
     var contenido = '<p><span class=\"ui-icon ui-icon-comment\" style=\"float:left; margin:0 7px 7px 0;\"></span>';
     contenido = contenido + msg;
     contenido = contenido + '</p>';
