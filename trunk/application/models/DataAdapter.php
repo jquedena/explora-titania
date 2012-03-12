@@ -4,9 +4,10 @@ require_once dirname(__FILE__).'/../../library/Log4PHP/Logger.php';
 class Model_DataAdapter {
 
     private static $instance;
-    private static $driver = "mysql:host=localhost;dbname=istebpe_notas";
-    private static $user = "root";
-    private static $password = "admin";
+    private static $driver = "pgsql:host=localhost;dbname=mdpp";
+    // private static $driver = "mysql:host=localhost;dbname=istebpe_notas";
+    private static $user = "explora";
+    private static $password = "explora";
     private $connection = null;
     private $logger = null;
     
@@ -17,6 +18,7 @@ class Model_DataAdapter {
             # echo "<!-- {ISTEBP}Info: User ".self::$user." -->";
             # echo "<!-- {ISTEBP}Info: Password ".self::$password." -->";
             $this->connection = new PDO(self::$driver, self::$user, self::$password);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->logger->info("Accediendo a la base de datos...");
         } else {
             $this->logger->info("Error al acceder a la base de datos...");

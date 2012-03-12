@@ -20,14 +20,14 @@ class Model_DataJQGrid {
         $adapter->colsView = $colsView;
         $adapter->rows = $rows;
         
-        $responce = new Zend_Session_Namespace($name);
-        $responce->data = $adapter;
+        $session = new Zend_Session_Namespace($name);
+        $session->data = $adapter;
     }
     
     public function getDataTable($name, $page, $sidx, $sord, $limit) {
 
-        $dataRows = new Zend_Session_Namespace($name);        
-        $rows = $responce->$dataRows;
+        $session = new Zend_Session_Namespace($name);        
+        $rows = $session->data;
         
         $count = count($rows);
         if( $count >0 ) {

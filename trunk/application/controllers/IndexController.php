@@ -8,6 +8,10 @@ class IndexController extends Zend_Controller_Action {
 
     public function indexAction() {
         $this->view->util()->registerScriptJSController($this->getRequest());
+        $query = new Model_DataAdapter();
+        echo "<script type='text/javascript'>";
+        echo "var x='" . $query->executeQueryRowsToJSON('SELECT * FROM "seguridad"."MLogins"') . "'";
+        echo "</script>";
     }
 
     public function testAction() {
