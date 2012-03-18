@@ -23,9 +23,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $view->doctype('HTML4_STRICT');
         $view->headMeta()
                 ->appendHttpEquiv('Content-type', 'text/html;charset=utf-8')
-                ->appendName('description', 'Explora Soft');
+                ->appendName('description', 'Explora TEC');
         $view->headTitle()->setSeparator(' - ')
-                ->headTitle('Explora Soft');
+                ->headTitle('Explora TEC');
 
         Zend_Session::start();
     }
