@@ -6,7 +6,7 @@ class Model_DataAdapter {
     private static $instance;
 
     //private static $driver = "mysql:host=localhost;dbname=istebpe_notas";
-    private static $driver = "host=127.0.0.1 port=5432 dbname=postgres user=postgres password=123456";
+    private static $driver = "host=127.0.0.1 port=5432 dbname=titania user=postgres password=postgres";
     private $connection = null;
     private $logger = null;
     
@@ -151,16 +151,22 @@ class Model_DataAdapter {
 					//$caddatos = substr($caddatos,0,strlen($caddatos)-1);
 				}
 
-	     $qry = "BEGIN; select ".$func."(".$caddatos."'ref_cursor'); FETCH ALL IN ref_cursor;";
+	     $qry = "BEGIN; select ".$func."(".$caddatos."'ref_cursor'); FETCH ALL IN ref_cursor; ";
 			//echo '<textarea>'.$qry.'</textarea><br>';
 	     $result = pg_query ($this->connection, $qry) or die(pg_last_error());
 	     
+        	if (!$result) { 
+			    pg_query($this->connection, "ROLLBACK"); 
+			} else { 
+			    pg_query($this->connection, "COMMIT"); 
+			}
+				     
 	     $num = pg_num_rows($result);
 	     $array = array();
 	     for ($i=0; $i < $num; $i++) {
 	       $r = pg_fetch_row($result, $i);
 	       		for ($j=0; $j <count($r); $j++){
-	       			$array[$i][$j] = $r[$j]; // utf8_decode($r[$j]);
+	       			$array[$i][$j] = utf8_decode($r[$j]);
 	       		}
 	    }
 	    return $array;	
