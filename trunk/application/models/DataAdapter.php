@@ -4,10 +4,9 @@ require_once dirname(__FILE__).'/../../library/Log4PHP/Logger.php';
 class Model_DataAdapter {
 
     private static $instance;
-    private static $driver = "pgsql:host=localhost;dbname=mdpp";
-    // private static $driver = "mysql:host=localhost;dbname=istebpe_notas";
-    private static $user = "explora";
-    private static $password = "explora";
+
+    //private static $driver = "mysql:host=localhost;dbname=istebpe_notas";
+    private static $driver = "host=127.0.0.1 port=5432 dbname=postgres user=postgres password=123456";
     private $connection = null;
     private $logger = null;
     
@@ -17,8 +16,8 @@ class Model_DataAdapter {
             # echo "<!-- {ISTEBP}Info: Driver ".self::$driver." -->";
             # echo "<!-- {ISTEBP}Info: User ".self::$user." -->";
             # echo "<!-- {ISTEBP}Info: Password ".self::$password." -->";
-            $this->connection = new PDO(self::$driver, self::$user, self::$password);
-            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            //$this->connection = new PDO(self::$driver, self::$user, self::$password);
+            $this->connection = pg_connect(self::$driver);
             $this->logger->info("Accediendo a la base de datos...");
         } else {
             $this->logger->info("Error al acceder a la base de datos...");
@@ -124,7 +123,8 @@ class Model_DataAdapter {
             $stm->execute();
             
             return $stm->fetchAll($type);
-        } catch (PDOException $e) {
+            
+        } catch (Exception $e) {
             $this->logger->error($e->getMessage());
             return null;
         }
@@ -139,5 +139,38 @@ class Model_DataAdapter {
         $rows = $this->executeQuery($query, PDO::FETCH_ASSOC);
         return json_encode($rows, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
     }
+    
+    public function ejec_store_procedura_sql($func, $parameters = null) {
+    	    	
+        try {        	
+        	$caddatos = '';
+				if(count($parameters)>0){
+					for($i=0;$i<count($parameters);$i++){
+						$caddatos.= "'".$parameters[$i]."',";
+					}
+					//$caddatos = substr($caddatos,0,strlen($caddatos)-1);
+				}
+
+	     $qry = "BEGIN; select ".$func."(".$caddatos."'ref_cursor'); FETCH ALL IN ref_cursor;";
+			//echo '<textarea>'.$qry.'</textarea><br>';
+	     $result = pg_query ($this->connection, $qry) or die(pg_last_error());
+	     
+	     $num = pg_num_rows($result);
+	     $array = array();
+	     for ($i=0; $i < $num; $i++) {
+	       $r = pg_fetch_row($result, $i);
+	       		for ($j=0; $j <count($r); $j++){
+	       			$array[$i][$j] = $r[$j]; // utf8_decode($r[$j]);
+	       		}
+	    }
+	    return $array;	
+        
+            
+        } catch (Exception $e) {
+            $this->logger->error($e->getMessage());
+            return null;
+        }
+    }
+    
 }
 
