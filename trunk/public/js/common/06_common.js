@@ -9,42 +9,55 @@ function print(){
     $("#divPrincipal").jqprint();
 }
 
-function closeDialog(id) {   
+function closeDialog(id) {
     $('#'+id).dialog('close');
 }
 
-function openDialogConfirm1(contenido, width, height) {
-    $('#jqConfirmacion1').html(contenido);
-    if(width != undefined) $('#jqDialogConfirmacion1').dialog('option', 'width', width);
-    if(height != undefined) $('#jqDialogConfirmacion1').dialog('option', 'height', height);
-    $('#jqDialogConfirmacion1').dialog('open');
+function openDialogConfirm(msg) {
+    var contenido = '<p><span class=\"ui-icon ui-icon-circle-check\" style=\"float:left; margin:0 7px 7px 0;\"></span>';
+    contenido = contenido + msg;
+    contenido = contenido + '</p>';
+    $('#jqDialogCofirmacion').html(contenido);
+    $('#jqDialogCofirmacion').dialog('open');
 }
 
-function openDialogConfirm2(contenido, width, height) {
-    $('#jqConfirmacion2').html(contenido);
-    if(width != undefined) $('#jqDialogConfirmacion2').dialog('option', 'width', width);
-    if(height != undefined) $('#jqDialogConfirmacion2').dialog('option', 'height', height);
-    $('#jqDialogConfirmacion2').dialog('open');
+function openDialogConfirm2(msg) {
+    var contenido = '<p><span class=\"ui-icon ui-icon-circle-check\" style=\"float:left; margin:0 7px 7px 0;\"></span>';
+    contenido = contenido + msg;
+    contenido = contenido + '</p>';
+    $('#jqDialogCofirmacion2').html(contenido);
+    $('#jqDialogCofirmacion2').dialog('open');
 }
 
-function openDialogError(contenido, width, height) {
-    $('#jqError').html(contenido);
-    if(width != undefined) $('#jqDialogError').dialog('option', 'width', width);
-    if(height != undefined) $('#jqDialogError').dialog('option', 'height', height);
+function openDialogPregunta(msg) {
+    var contenido = '<p><span class=\"ui-icon ui-icon-circle-check\" style=\"float:left; margin:0 7px 7px 0;\"></span>';
+    contenido = contenido + msg;
+    contenido = contenido + '</p>';
+    $('#jqDialogPregunta').html(contenido);
+    $('#jqDialogPregunta').dialog('open');
+}
+
+function openDialogError(msg) {
+    var contenido = '<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 7px 0;\"></span>';
+    contenido = contenido + msg;
+    contenido = contenido + '</p>';
+    $('#jqDialogError').html(contenido);
     $('#jqDialogError').dialog('open');
 }
 
-function openDialogWarning(contenido, width, height) {
-    $('#jqWarning').html(contenido);
-    if(width != undefined) $('#jqDialogWarning').dialog('option', 'width', width);
-    if(height != undefined) $('#jqDialogWarning').dialog('option', 'height', height);
+function openDialogWarning(msg) {
+    var contenido = '<p><span class=\"ui-icon ui-icon-info\" style=\"float:left; margin:0 7px 7px 0;\"></span>';
+    contenido = contenido + msg;
+    contenido = contenido + '</p>';
+    $('#jqDialogWarning').html(contenido);
     $('#jqDialogWarning').dialog('open');
 }
 
-function openDialogInfo(contenido, width, height) {
-    $('#jqInfo').html(contenido);
-    if(width != undefined) $('#jqDialogInfo').dialog('option', 'width', width);
-    if(height != undefined) $('#jqDialogInfo').dialog('option', 'height', height);
+function openDialogInfo(msg) {
+    var contenido = '<p><span class=\"ui-icon ui-icon-comment\" style=\"float:left; margin:0 7px 7px 0;\"></span>';
+    contenido = contenido + msg;
+    contenido = contenido + '</p>';
+    $('#jqDialogInfo').html(contenido);
     $('#jqDialogInfo').dialog('open');
 }
 

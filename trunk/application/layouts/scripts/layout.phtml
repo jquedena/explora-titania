@@ -14,8 +14,18 @@
         <?php echo $this->util()->getScript("js/common"); ?>
         <?php echo $this->util()->getScript("js/jqGrid"); ?>
         <?php echo $this->util()->getScriptJSController("js/jqGrid"); ?>
+        <!-- Datos enduro del login!! -->
+        <?php 
+        	$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');				
+			$ddatosuserlog->cidpers = '99999';	
+			$ddatosuserlog->nompers = 'miguel villanueva';
+			$ddatosuserlog->userlogin = 'miguelito';	
+			$ddatosuserlog->arealogin = 'Informatica';			
+			$ddatosuserlog->codcajero = '999';	
+        
+        ?>
         <script type="text/javascript">
-            var path="<?php echo $this->util()->getPath(); ?>index.php/";
+            var path="http://<?php echo $this->util()->getPath(); ?>index.php/";
             var imageInit="<?php echo $this->util()->getImage("alumnos0.jpg"); ?>";
 
             $.jgrid.no_legacy_api = true; 
@@ -63,7 +73,7 @@
             </tr>
             <tr>
                 <td style="height: 100%; border-right: 1px solid #000; border-left: 1px solid #000;">
-                    <div id="west">
+                    <div id="west" align="center">
                         <?php echo $this->layout()->content; ?>
                     </div>
                 </td>
@@ -75,6 +85,5 @@
             </tr>
         </table>
         <?php echo $this->render("jqCargando.phtml"); ?>
-        <?php echo $this->render("jqConfirm.phtml"); ?>
     </body>
 </html>

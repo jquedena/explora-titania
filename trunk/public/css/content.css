@@ -40,9 +40,9 @@ background: url(../img/main-bg.gif) 50% 50%;*/
     text-align: center;
 }
 #west {
-    width: 260px;
+    /*width: 260px;
     height: 100%;
-    float: left;
+    float: left;*/
 }
 #east {
     border-left: 1px solid #8c9dc8;
