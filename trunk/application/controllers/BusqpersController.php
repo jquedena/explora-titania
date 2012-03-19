@@ -89,7 +89,7 @@ class BusqpersController extends Zend_Controller_Action {
 			if ($datos == '' || $datos == null) {
 				
 				
-				$func = new Libreria_Pintar();
+				$func = new Libreria_Pintar ();
 				
 				if ($cidpers == null || $cidpers == '' || $cidpers == '0000000000') {
 					$cper = '_________1';

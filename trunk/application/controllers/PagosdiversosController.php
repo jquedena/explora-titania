@@ -435,7 +435,7 @@ class PagosdiversosController extends Zend_Controller_Action {
 					
 					$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');				
 					$cidpers = $ddatosuserlog->cidpers;			
-					$codcajero = $ddatosuserlog->codcajero = '999';	
+					$codcajero = $ddatosuserlog->codcajero;	
 					
 					$ddatacontri = new Zend_Session_Namespace('contribuyente');
 					$cidcontri = $ddatacontri->cidcontri;
@@ -466,41 +466,41 @@ class PagosdiversosController extends Zend_Controller_Action {
 					}
 					$cad = substr($cad,0,strlen($cad)-1);
 	
-					echo $cad;
+					//echo $cad;
 					
-//					$nombrestore = 'tesoreria.realizar_pago';
-//					$arraydatos[0]= array('@ccajero',$codcajero);
-//					$arraydatos[1]= array('@crecibo',$cad);
-//					
-//					
-//					$cn = new Model_DataAdapter();
-//					$datos = $cn->ejec_store_procedura_sql($nombrestore,$arraydatos);
-//					
-//					$nrorecibo = str_pad($datos[0][0], 12, "0", STR_PAD_LEFT);
-//					
-//					echo ' Se genero el recibo nro. <b>'.$nrorecibo.'</b><br />';
-//					
-//					$func = new Libreria_Pintar();
-//					if($nrorecibo != '000000000000'){
-//						$hab[0] = array("cobrar",false);						
-//					}else{
-//						$hab[0] = array("cobrar",true);
-//					}
-//					
-//					$func->HabilitarComponente($hab);
-//					
-//					echo ' <script language=\'javascript\'>
-//								window.open(\''.$url.'index.php/pagosdiversos/imprimirreciboconceptopagodiverso/?nrorecibo='.$nrorecibo.'\',"recibo","width=570, height=500, scrollbars=no, menubar=no, location=no, resizable=no,status =no,directories=no") 
-//								
-//							    function ventanaSecundaria(){ 
-//									ventana=window.open(\''.$url.'index.php/pagosdiversos/imprimirreciboconceptopagodiverso/?nrorecibo='.$nrorecibo.'\',"recibo","width=570, height=500, scrollbars=no, menubar=no, location=no, resizable=no,status =no,directories=no") 
-//									ventana.focus()
-//								} 
-//						    </script>					    
-//						   
-//						 <input type="button" name="imprimir" id="imprimir" value="Imprimir recibo" onclick="ventanaSecundaria()" />
-//						 <br />
-//						 <br />';
+					$nombrestore = 'tesoreria.cobrar_pagosdiversos';
+					$arraydatos[0]= $cad;
+					$arraydatos[1]= '~';
+					$arraydatos[2]= '^';					
+					
+					$cn = new Model_DataAdapter();
+					$datos = $cn->ejec_store_procedura_sql($nombrestore,$arraydatos);
+					
+					$nrorecibo = str_pad($datos[0][0], 12, "0", STR_PAD_LEFT);
+					
+					echo ' Se genero el recibo nro. <b>'.$nrorecibo.'</b><br />';
+					
+					$func = new Libreria_Pintar();
+					if($nrorecibo != '000000000000'){
+						$hab[0] = array("cobrar",false);						
+					}else{
+						$hab[0] = array("cobrar",true);
+					}
+					
+					$func->HabilitarComponente($hab);
+					
+					echo ' <script language=\'javascript\'>
+								window.open(\''.$url.'index.php/pagosdiversos/imprimirreciboconceptopagodiverso/?nrorecibo='.$nrorecibo.'\',"recibo","width=570, height=500, scrollbars=no, menubar=no, location=no, resizable=no,status =no,directories=no") 
+								
+							    function ventanaSecundaria(){ 
+									ventana=window.open(\''.$url.'index.php/pagosdiversos/imprimirreciboconceptopagodiverso/?nrorecibo='.$nrorecibo.'\',"recibo","width=570, height=500, scrollbars=no, menubar=no, location=no, resizable=no,status =no,directories=no") 
+									ventana.focus()
+								} 
+						    </script>					    
+						   
+						 <input type="button" name="imprimir" id="imprimir" value="Imprimir recibo" onclick="ventanaSecundaria()" />
+						 <br />
+						 <br />';
 				}				
 			}
 	}
@@ -509,41 +509,46 @@ class PagosdiversosController extends Zend_Controller_Action {
 	{   
 			//$this->_helper->viewRenderer->setNoRender(); 
 			$this->_helper->layout->disableLayout(); 
+			echo $this->view->util()->getScript("js/common"); 
 				
 			$nrorecibo = $this->_request->getParam('nrorecibo','');
 			$txtduplicado = $this->_request->getParam('duplicado','');
 
 				if(strlen($nrorecibo) == 12 ){
-					$nombrestore = 'tesoreria.rpt_recibo_pagosdiversos';
-					$arraydatos[0]= array('@nrecibo',$nrorecibo);
+					$nombrestore = 'tesoreria.imprimir_recibo_pagodiverso';
+					$arraydatos[0]= $nrorecibo;
 					
 					$cn = new Model_DataAdapter();
 					$datos = $cn->ejec_store_procedura_sql($nombrestore,$arraydatos);
-					
-					//print_r($datos);
-					$detalle ='<table width="100%" border="0" cellspacing="0" cellpadding="0">';
-					for($i=0;$i<count($datos);$i++){
-						$detalle .='<tr>';
-						$detalle .='<td colspan="2"  width="170" class="Estilo8">'.$datos[$i][4].'</td>';
-						$detalle .='<td width="45" align="right" class="Estilo6">'.number_format($datos[$i][7],'2','.','').'</td>';
-						$detalle .='</tr>';
-						$detalle .=' <tr>';
-						$detalle .=' <td colspan="3" class="Estilo6">'.$datos[$i][8].'</td>';
-						$detalle .=' </tr>';
-					}
-					$detalle .='</table>';
 					$func = new Libreria_Pintar();
-					$func->PintarLibrerias();
-					$val[0] = array("duplicado",$txtduplicado,"html");
-					$val[1] = array("datos0",$datos[0][0],"html");
-					$val[2] = array("datos1",$datos[0][1],"html");
-					$val[3] = array("datos2",$datos[0][2],"html");
-					$val[4] = array("datos9",number_format($datos[0][9],'2','.',''),"html");
-					$val[5] = array("datos10","Fecha: ".$datos[0][10],"html");
-					$val[6] = array("datos11","Cajero: ".$datos[0][11],"html");
-					$val[7] = array("detalle",$detalle,"html");
-					
-					$func->PintarValor($val);				
+					if(count($datos)> 0){
+						//print_r($datos);
+						$detalle ='<table width="100%" border="0" cellspacing="0" cellpadding="0">';
+						for($i=0;$i<count($datos);$i++){
+							$detalle .='<tr>';
+							$detalle .='<td colspan="2"  width="170" class="Estilo8">'.$datos[$i][4].'</td>';
+							$detalle .='<td width="45" align="right" class="Estilo6">'.number_format($datos[$i][6],'2','.','').'</td>';
+							$detalle .='</tr>';
+							$detalle .=' <tr>';
+							$detalle .=' <td colspan="3" class="Estilo6">'.$datos[$i][8].'</td>';
+							$detalle .=' </tr>';
+						}
+						$detalle .='</table>';
+						
+						$func->PintarLibrerias();
+						$val[0] = array("duplicado",$txtduplicado,"html");
+						$val[1] = array("datos0",$datos[0][0],"html");
+						$val[2] = array("datos1",$datos[0][1],"html");
+						$val[3] = array("datos2",$datos[0][2],"html");
+						$val[4] = array("datos9",number_format($datos[0][7],'2','.',''),"html");
+						$val[5] = array("datos10","Fecha: ".$datos[0][10],"html");
+						$val[6] = array("datos11","Cajero: ".$datos[0][11],"html");
+						$val[7] = array("detalle",$detalle,"html");												
+					}else{					
+						$val[] = array("detalle",'<div align="center">NO EXISTEN DATOS...</div>',"html");
+					}
+					$func->PintarValor($val);
+									
 					
 				}else{
 					echo 'Ingresar número de recibo valido';
