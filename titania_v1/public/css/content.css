@@ -1,0 +1,105 @@
+* {
+    font-size: 100%;
+    font-family: Verdana,sans-serif;
+    letter-spacing: .03em;
+}
+
+body {
+    font-size: 0.7em;
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+}
+
+/*background-color: #fff;
+background: url(../img/main-bg.gif) 50% 50%;*/
+
+#layout, #north, #south, #west, #east {
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+#layout {
+    width: 950px;
+    height: 100%;
+    background: #91BE3F;
+}
+#north {
+    height: 42px;
+    text-align: center;
+}
+#south {
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    text-align: right;
+    color: #ffffff;  
+    font-weight: bold;
+    font-size: 11px; 
+    text-align: center;
+}
+#west {
+    /*width: 260px;
+    height: 100%;
+    float: left;*/
+}
+#east {
+    border-left: 1px solid #8c9dc8;
+    height: 100%;
+    margin-left: 260px;
+    overflow: auto;
+}
+#south a, #south a:link, #south a:active, #south a:visited {
+    text-decoration: none;
+    font-weight: bold;
+}
+#south span {
+    padding-right: 10px;
+}
+#toggler {
+    display: inline;
+    position: absolute;
+    top: 40px;
+    margin-left: 0px;
+    width: 17px;
+    height: 22px;
+    background: #EBEFF9 url("../img/toggler_hide.png") no-repeat left center;
+}
+#toggler.off {
+    background: #EBEFF9 url("../img/toggler_show.png") no-repeat left center;
+    margin-left: 0;
+}
+
+/* Barra Titulo */
+#barTitle {
+    width: 100%;
+    height: 42px;
+}
+#barTitle tr td{
+    height: 42px;
+    background: #fff url("../img/tab_b.png") repeat-x;
+}
+#barTitle tr td.left{
+    height: 42px;
+    width: 30px;
+    background: #fff url("../img/tab_l.png") repeat-x;
+}
+#barTitle tr td.right{
+    height: 42px;
+    width: 30px;
+    background: #fff url("../img/tab_r.png") repeat-x;
+}
+#barTitle tr td.center{
+    height: 42px;
+    background: #fff url("../img/tab_m.png") repeat-x;
+    color: #fff;
+}
+#barTitle tr td.center a,
+#barTitle tr td.center a:active,
+#barTitle tr td.center a:hover,
+#barTitle tr td.center a:visited{
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
