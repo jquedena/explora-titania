@@ -18,8 +18,8 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
 
     public function preDispatch(Zend_Controller_Request_Abstract $request) {
         $controller = $request->getControllerName();
-	$action = $request->getActionName();
-	$resource = $controller.':'.$action;
+		$action = $request->getActionName();
+		$resource = $controller.':'.$action;
 
         $this->_logger->info($resource);
     }
