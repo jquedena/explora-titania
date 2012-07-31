@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="partediarioxcajero" language="groovy" pageWidth="595" pageHeight="600" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="P_NROCAJA" class="java.lang.String"/>
+	<parameter name="P_FECHAREPORT" class="java.lang.String"/>
+	<parameter name="P_FECHADESDE" class="java.lang.String"/>
+	<parameter name="P_FECHAHASTA" class="java.lang.String"/>
+	<parameter name="P_HORASERVER" class="java.lang.String"/>
+	<parameter name="P_USERIMPR" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["http://intranet.municomas.gob.pe/report/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_TIPOPAGO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select cidpers
+			, nombre
+			, cnumcom
+			, sum(nmontot) as totdeuda
+			, nestado
+			, vusernm
+			, descripcion
+			, dfecpag
+			, scajero
+			, vnombre
+			, ctippag
+			, vtippag
+			, '(' || siglatippag || ')' as siglatippag
+		from tesoreria.vw_recibos
+		where (substring(cnumcom from 1 for 2) like '%' || substring($P{P_NROCAJA} from '..$') || '%')
+			and (dfecpag between cast( $P{P_FECHADESDE} as date) and cast( $P{P_FECHAHASTA} as date))
+			and ctippag like '%'  ||  $P{P_TIPOPAGO} ||  '%'
+		group by cidpers
+			, nombre
+			, cnumcom
+			, nestado
+			, vusernm
+			, descripcion
+			, dfecpag
+			, scajero
+			, vnombre
+			, ctippag
+			, vtippag
+			, siglatippag
+		order by cnumcom;]]>
+	</queryString>
+	<field name="cidpers" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cnumcom" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totdeuda" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nestado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vusernm" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dfecpag" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="scajero" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vnombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ctippag" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vtippag" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="siglatippag" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="estado" class="java.lang.String">
+		<variableExpression><![CDATA[$F{nestado}==new java.lang.Integer(1)?"Cancelado" : "Anulado"]]></variableExpression>
+	</variable>
+	<variable name="totdeuda_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{nestado}==new java.lang.Integer(1)?$F{totdeuda} : 0]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="119" splitType="Stretch">
+			<staticText>
+				<reportElement x="62" y="9" width="269" height="36"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Municipalidad Distrital de Puente Piedra
+Sub Gerencia de Tesorería]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="54" width="549" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PARTE DIARIO - CAJA " + $P{P_NROCAJA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="99" width="549" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Desde el "+$P{P_FECHADESDE}+" al "+$P{P_FECHAHASTA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="73" width="549" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vusernm}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="39">
+			<printWhenExpression><![CDATA[Boolean.valueOf(!$V{PAGE_NUMBER}.equals(new Integer(1) ))]]></printWhenExpression>
+			<staticText>
+				<reportElement x="28" y="3" width="165" height="22"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Municipalidad Distrital de Puente Piedra
+Sub Gerencia de Tesorería]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="313" y="3" width="238" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PARTE DIARIO"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="67" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="10" width="187" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos y Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="254" y="10" width="100" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nro. Recibo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="10" width="71" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="425" y="10" width="100" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="28" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="2" y="7" width="553" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="525" y="10" width="30" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FP]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="67" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cidpers}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="0" width="187" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="254" y="0" width="100" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cnumcom}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00">
+				<reportElement x="359" y="0" width="66" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{totdeuda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="0" width="91" height="15"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="525" y="0" width="31" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{siglatippag}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="44">
+			<textField evaluationTime="Report">
+				<reportElement x="492" y="22" width="60" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="22" width="102" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="89" y="22" width="242" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{P_HORASERVER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="89" y="3" width="242" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{P_USERIMPR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="3" width="88" height="20"/>
+				<textElement/>
+				<text><![CDATA[Usuario Impresión:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="22" width="88" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fecha Impresión:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="27" splitType="Stretch">
+			<textField pattern="#,##0.00">
+				<reportElement x="354" y="7" width="81" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totdeuda_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="254" y="7" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="3" width="550" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

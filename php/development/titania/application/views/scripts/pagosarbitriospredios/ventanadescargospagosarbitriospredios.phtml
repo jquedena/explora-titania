@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+</head>
+<body>
+<form id="formpagos" name="formpagos">
+<div align="center" id="div_p">
+<input type="hidden" id="fechrecibo" name="fechrecibo" />
+<table width="352" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td align="right"><strong>Total:</strong>&nbsp;&nbsp;</td>
+		<td id="datos1"></td>
+	</tr>
+	<tr>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+		<tr>
+		<td align="right">Efectivo:</td>
+        <td><input type="text" id="txtefectivo" name="txtefectivo" value="" size="20"   /></td>
+	</tr>
+	<tr>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td align="right"><strong>Tipo Descargo:</strong>&nbsp;&nbsp;</td>
+		<td><select id="tpdescargo" name="tpdescargo" style="width: 180px">
+			
+		</select></td>
+	</tr>
+	<tr>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td align="right"><strong>Nro. Doc. :</strong>&nbsp;&nbsp;</td>
+		<td><input type="text" id="txtnrodoc" name="txtnrodoc" value=""
+			size="26" /></td>
+	</tr>
+	<tr>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td align="right" valign="top"><strong>observaci&oacute;n:</strong>&nbsp;&nbsp;</td>
+		<td><textarea name="txaobs" cols="20" rows="5" id="txaobs"></textarea></td>
+	</tr>
+	<tr>
+		<td colspan="2" id=nocdescargan>'</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+
+		<div id="div_rptacobroarbitrospredios" align="center"></div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><input type="hidden" id="hddata" name="hddata" /></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
+		<input type="button" name="btndescargos"	id="btndescargos" value="Generar Descargo"  />
+		<input type="button" id="btncancelarcobro" name="btncancelarcobro" value="Regresar"/>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+</table>
+
+</div>
+
+
+</form>
+</body>
+</html>

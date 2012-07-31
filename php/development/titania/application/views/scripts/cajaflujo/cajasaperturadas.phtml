@@ -1,0 +1,41 @@
+<div class="ui-widget ui-widget-content ui-corner-all" style="width: 99%;margin: 3px;">
+	<div class="ui-widget ui-state-default ui-corner-top ui-title">
+		<label>Cajas Aperturadas</label>
+	</div>
+	<div style="height: 510px;overflow-y: auto">
+	<br/>
+	<div id="result2" align="center" style="color: red;"></div>
+	<table cellspacing="0" cellpadding="0">
+		<tr>
+			<td align="center">Fecha: &nbsp;&nbsp;</td>
+			<td><input type="text" id="txtdia" name="txtdia" style="width: 90px;"/></td>
+			<td>&nbsp;<button id="btnbuscar">Buscar</button></td>
+			<td>&nbsp;<button id="btnhabilitar" name="btnhabilitar">Habilitar</button></td>
+			<td>&nbsp;<button id="btncerrarcaja" name="btncerrarcaja">Cerrar</button></td>
+			<td>&nbsp;<button id="btnreaperturar" name="btnreaperturar">Reaperturar</button></td>
+		</tr>
+	</table>
+	<input type="hidden" id="fechaorg" name="fechaorg" />
+	<br/>
+	<div style="width: 782px; padding: 1px;" class="ui-widget-content ui-widget ui-corner-all">
+	<table align='center' style="width: 782px" id="tbl_capert" cellpadding='0' cellspacing='0'>
+		<thead class="ui-widget ui-widget-header ui-title2">
+		<tr>
+			<th style="width: 190px">Nro. Caja</th>
+			<th style="width: 100px">Nro.Inicial</th>
+			<th style="width: 100px">Nro.Final</th>
+			<th style="width: 130px">Monto Canc.</th>
+			<th style="width: 130px">Monto Anul.</th>
+			<th style="width: 100px">Estado</th>
+			<th style="width: 16px">&nbsp;</th>
+		</tr>
+		</thead>
+	</table>
+	</div>
+	<br />
+	<div id="chartdivbarras" align="center"></div>
+	<br /><hr /><br />
+	<div id="chartdivpie" align="center"></div>
+	<br/>
+	</div>
+</div>

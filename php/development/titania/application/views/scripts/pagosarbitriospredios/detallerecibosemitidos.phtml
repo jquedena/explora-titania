@@ -1,0 +1,88 @@
+<!-- 
+<input type="button" name="btnduplicado" id="btnduplicado"
+	value="&nbsp;&nbsp;Generar Duplicado&nbsp;&nbsp;" />
+
+<input type="button" name="btnreimpresion" id="btnreimpresion"
+	value="&nbsp;&nbsp;Reimpresi&oacute;n&nbsp;&nbsp;" />
+<br>
+-->
+<table width="293" border="1" cellspacing="0" cellpadding="0"
+	height="300">
+	<tr>
+		<td>
+		<table width="100%" border="0" cellspacing="3" cellpadding="0"
+			height="100%" class="reportes">
+			<tr>
+				<td colspan="3" height="10"></td>
+			</tr>
+			<tr>
+				<td colspan="3" align="center" id="datosp8"></td>
+			</tr>
+			<tr>
+				<td colspan="3" height="10"></td>
+			</tr>
+			<tr>
+				<td width="6%">&nbsp;</td>
+				<td width="33%"><b>Nro. Recibo:</b></td>
+				<td width="61%"><input type="text" id="txtnrorecibo" name="txtnrorecibo" size="24" /></td>
+			</tr>
+			<tr>
+				<td width="6%">&nbsp;</td>
+				<td width="33%"><b>Usuario:</b></td>
+				<td width="61%"><input type="text" id="txtusuario" name="txtusuario"size="24" /></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><b>Fecha Pago:</b></td>
+				<td><input type="text" id="txtfechapago" name="txtfechapago" size="24" /></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><b>Cod. Predio:</b></td>
+				<td><input type="text" id="txtcodpredio" name="txtcodpredio" size="24" /></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td valign="top"><b>Observaci&oacute;n:</b></td>
+				<td><textarea name="txtobservacion" id="txtobservacion" cols="25" rows="2" ></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="3" height="10"></td>
+			</tr>
+			<tr>
+				<td colspan="3" align="center" valign="middle" id="datosp"><b> </b></td>
+			</tr>
+			<tr>
+				<td colspan="3" height="10"></td>
+			</tr>
+			<tr>
+				<td colspan="3"><!--detalle del recibo-->
+				<table width="100%" border="1" cellspacing="0" cellpadding="0"
+					class="reportes">
+					<tr>
+						<th width="35" class="reportes">Tip.</th>
+						<th width="165" class="reportes">Descripci&oacute;n</th>
+						<th width="60" class="reportes">Monto</th>
+						<th width="20" class="reportes">-</th>
+					</tr>
+					<tr> 
+						<td colspan="4">
+							<div style="overflow-y: scroll; height: 160px; width: 100%;" id="div_detalle">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="right">Total:&nbsp;</td>
+						<td align="right" id="numberformat"></td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" height="10"></td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,16 @@
+<?php 
+	$url = $this->util()->getPath();
+	$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+	$nompers = $ddatosuserlog->nompers;
+?>
+<table id="barTitle" style="padding: 0px; margin: 0px;" cellspacing="0" cellpadding="0">
+	<tr>
+		<td><div class="ui-titleBar" id="div_titulo"></div></td>
+		<td class="left">&nbsp;</td>
+		<td class="center" style="width: 400px; text-align: center; vertical-align: middle;">
+			<?php if($nompers != '' && $nompers != null) {?>
+			Bienvenido: <b><?php echo $nompers;?></b> <br/> Fecha: <b><?php echo date("d-m-Y"); ?></b> | <a title="Cerrar Sesi&oacute;n" href="<?php echo $this->util()->getLink('logeo/logout'); ?>" onclick="window.close();">Cerrar Sesi&oacute;n</a>
+			<?php }?>
+		</td>
+	</tr>
+</table>

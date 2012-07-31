@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<?php
+		echo $this->headMeta() . "\n";
+		echo $this->headTitle() . "\n";
+		?>
+		<style type="text/css">
+			.printable {
+				border: 1px dotted #CCCCCC ;
+				padding: 10px 10px 10px 10px ;
+			}
+		</style>
+
+		
+		<?php echo $this->util()->getStyle(); ?>
+		<link href="<?php echo $this->util()->getPath(); ?>theme/blue_explora/jquery-ui.css" rel="stylesheet" type="text/css" id="jquery_theme_link" />
+		<link href="<?php echo $this->util()->getImage("refbar.ico"); ?>" rel="shortcut icon" type="image/x-icon" />
+		<link href="<?php echo $this->util()->getImage("refbar.ico"); ?>" rel="icon" type="image/x-icon" />
+		
+		<?php
+			echo $this->util()->getScript("js/common");
+			echo $this->util()->getScript("js/jqGrid");
+			echo $this->util()->getScript("js/tree");
+			echo $this->util()->getScript("js/graf");
+			
+			$controller = $this->util()->getScriptJSController();
+			$controllerAction = $this->util()->getScriptJSControllerAction();
+			$leave = $this->util()->getScriptLeave();
+			
+			if(strlen($controller) > 0) {
+				echo $controller;
+			}
+			
+			if(strlen($controllerAction) > 0) {
+				echo $controllerAction;
+			}
+			
+			if(strlen($leave) > 0) {
+				echo $leave;
+			}
+		?>
+		
+		<script type="text/javascript">
+			var path="<?php echo $this->util()->getPath(); ?>index.php/";
+			var imageInit="<?php echo $this->util()->getImage("alumnos0.jpg"); ?>";
+
+			$.jgrid.no_legacy_api = true; 
+			$.jgrid.useJSON = true; 
+
+			jQuery(document).ready(function () {
+				jQuery.scriptPath = "<?php echo $this->util()->getPath(); ?>";
+				jQuery.struts2_jquery.local = "es";
+				jQuery.struts2_jquery.gridLocal = "es";
+				jQuery.struts2_jquery.timeLocal = "en";
+				jQuery.ajaxSettings.traditional = true;
+				jQuery.ajaxSetup({
+					cache: false
+				});
+			});
+			
+			$(document).ready(function(){
+				$(document).ajaxStart(function(){
+					$('#jqDialogCargando').dialog('open');
+				});
+				
+				$(document).ajaxStop(function(){
+					$('#jqDialogCargando').dialog('close');
+				});
+			});
+
+			$(function(){
+				$("input:submit, input:button, input:reset, button").button();
+			});
+		</script>
+	</head>    
+	<body>
+		<table style="width: 100%; height: 100%; padding: 0px; margin: 0px;" cellspacing="0" cellpadding="0">
+			<tr>
+				<td style="background: url('<?php echo $this->util()->getImage("main-bg.gif"); ?>');" rowspan="4">&nbsp;</td>
+				<td style="width: <?php echo $this->util()->getWidthLayout();?>; height: 42px; border-right: 1px solid #000; border-left: 1px solid #000;">
+					<?php echo $this->render("northView.phtml"); ?>
+				</td>
+				<td style="background: url('<?php echo $this->util()->getImage("main-bg.gif"); ?>');" rowspan="4">&nbsp;</td>
+			</tr>
+			<tr>
+				<td style="height: 30px; border-right: 1px solid #000; border-left: 1px solid #000;vertical-align: middle;">
+					<?php echo $this->render("menuView.phtml"); ?>
+				</td>
+			</tr>
+			<tr>
+				<td style="height: 100%; border-right: 1px solid #000; border-left: 1px solid #000; vertical-align: top;">
+					<div id="west" align="center">
+						<?php echo $this->layout()->content; ?>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td id="south" class="ui-state-default" style="width: <?php echo $this->util()->getWidthLayout();?>; height: 30px;">
+					<?php echo $this->render("southView.phtml"); ?>
+				</td>
+			</tr>
+		</table>
+		<?php echo $this->render("jqCargando.phtml"); ?>
+		<?php echo $this->render("jqConfirm.phtml"); ?>
+	</body>
+</html>

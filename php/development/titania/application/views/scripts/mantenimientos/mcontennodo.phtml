@@ -1,0 +1,78 @@
+<style>
+	table.mconten tr td {
+		padding-top: 2px;
+		padding-bottom: 2px;
+	} 
+</style>
+<div style="width:568px;">
+<div id="div_mensaje"></div>
+<table class="mconten" align="center" style="width: 550px" border="0" cellspacing="0" cellpadding="0" style="padding-top: 5px;">
+  <tr>
+    <td style="width: 150px">C&oacute;digo Nodo:</td>
+    <td style="width: 400px" id="c_codigo"></td>
+  </tr>
+  <tr>
+    <td>Descripci&oacute;n:</td>
+    <td><input id="txt_descripcion" type="text" value="" style="width:100%" maxlength="250" /></td>
+  </tr>
+  <tr>
+    <td>Padre:</td>
+    <td><select id="cb_padre" style="width:100%"></select></td>
+  </tr>
+  <tr>
+    <td valign="top">Observaci&oacute;n:</td>
+    <td><textarea rows="3" id="txa_observ" style="width:100%"></textarea></td>
+  </tr>
+  <!--
+  <tr>
+    <td>Longitud de variable:</td>
+    <td><input id="txt_long" type="text" value="" style="width:100%" maxlength="250" /></td>
+  </tr>
+  <tr>
+    <td>Digitos decimales:</td>
+    <td><input id="txt_decimal" type="text" value="" style="width:100%" maxlength="250" /></td>
+  </tr>
+  <tr>
+    <td>Valor por Defecto:</td>
+    <td><input id="txt_defecto" type="text" value="" style="width:100%" maxlength="250" /></td>
+  </tr>
+  -->
+  <tr>
+    <td>Estado:</td>
+    <td><select id="cb_estado" style="width:100%"></select></td>
+  </tr>
+  <tr>
+    <td valign="top">Nodos Hijos:</td>
+    <td>
+    <div class="ui-widget ui-widget-content ui-corner-all" style="width: 99%;margin: 3px;">
+    	<table style="width: 394px; padding: 2px;" cellspacing="0" cellpadding="0">
+    	<thead class="ui-widget ui-widget-header ui-title2">
+          <tr>
+            <th style="width: 90px">C&oacute;digo</th>
+            <th style="width: 246px">Descripci&oacute;n</th>
+            <th style="width: 42px">Ver</th>
+            <th style="width: 16px">&nbsp;</th>
+          </tr>
+        </thead>
+          <tr>
+            <td colspan="4">
+            	<div style="overflow-y:scroll;height: 150px"  id="c_nodohijos">
+                	<table width="372px" border="0" cellspacing="0" cellpadding="0">
+                	<tbody class="ui-table-body">
+                      <tr>
+			            <th style="width: 90px">&nbsp;</th>
+			            <th style="width: 246px">&nbsp;</th>
+			            <th style="width: 42px">&nbsp;</th>
+			            <th style="width: 16px">&nbsp;</th>
+                      </tr>
+                    </tbody>
+                    </table>
+                </div>            
+            </td>
+          </tr>
+        </table>
+    </div>
+    </td>
+  </tr>
+</table>
+</div>

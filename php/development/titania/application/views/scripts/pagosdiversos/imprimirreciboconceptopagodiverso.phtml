@@ -1,0 +1,146 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<head>
+<title></title>
+<style type="text/css">
+<!--
+@media print {
+	BODY {
+		font-size: 14pt;
+		font-family: Arial;
+	}
+}
+
+@media screen {
+	BODY {
+		font-size: 12pt;
+		font-family: Arial;
+	}
+}
+
+@media screen , print {
+	BODY {
+		color: #000000;
+	}
+}
+
+body {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.Estilo2 {
+	font-size: 2px;
+	font-weight: bold;
+}
+
+.Estilo4 {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.Estilo6 {
+	font-size: 12px
+}
+
+.Estilo7 {
+	font-size: 10px;
+	font-weº ight: bold;
+}
+
+.Estilo8 {
+	font-size: 10px
+}
+
+.MasGrande {
+	font-size: 14px
+}
+
+body,td,th {
+	font-family: Arial;
+}
+-->
+</style>
+<script language="javascript">
+	window.print();
+	window.close();
+</script>
+</head>
+<body>
+<table width="95%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td height="24" colspan="6" class="Estilo6"><b>
+		<?php 
+			echo $this->util()->getEntidad()."<br>";
+			echo $this->util()->getAreaCobranza()."<br>";
+			echo "RUC: ".$this->util()->getRUC();
+		?>
+		<hr align="left" width="100%">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" height="10"></td>
+	</tr>
+	<tr>
+		<td colspan="3" class="Estilo6" align="center" id="duplicado"></td>
+	</tr>
+	<tr>
+		<td colspan="3" height="10"></td>
+	</tr>
+
+
+	<tr>
+
+		<td class="Estilo8" height="15">Recibo:</td>
+		<td colspan="2" class="Estilo8" id="datos0"></td>
+	</tr>
+	<tr>
+		<td class="Estilo8" height="15">Codigo:</td>
+		<td colspan="2" class="Estilo8" id="datos1"></td>
+	</tr>
+	<tr>
+		<td width="45" class="Estilo8" height="15">Nombre:</td>
+		<td colspan="2" class="Estilo8" id="datos2"></td>
+	</tr>
+	<tr>
+		<td height="23" width="170" colspan="2" class="Estilo8">Descrip.</td>
+		<td width="45" align="right" class="Estilo8">Total</td>
+	</tr>
+
+	<tr>
+		<td height="23" width="170" colspan="3" class="Estilo8" id="detalle"></td>
+	</tr>
+
+	<!-- for($i=0;$i<count($datos);$i++){
+					$cont .='<tr>
+							 <td colspan="2"  width="170" class="Estilo8">'.$datos[$i][4].'</td>
+							 <td width="45" align="right" class="Estilo6">'.number_format($datos[$i][7],'2','.','').'</td>
+							 </tr>
+							 <tr>
+							 <td colspan="3" class="Estilo6">/'.$datos[$i][8].'</td>
+							 </tr>';
+				}	 -->
+
+
+	<tr>
+		<td class="Estilo6">&nbsp;</td>
+		<td class="Estilo6" align="right">TOTAL</td>
+		<td class="Estilo4" align="right" id="datos9"></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td width="136"></td>
+		<td align="right" height="10"></td>
+	</tr>
+	<tr>
+		<td colspan="3" class="Estilo8" id="datos10"></td>
+	</tr>
+	<tr>
+		<td colspan="3" class="Estilo8" align="left" id="datos11"></td>
+	</tr>
+	<tr>
+		<td colspan="3" height="30">.</td>
+	</tr>
+</table>
+</body>
+</html>
