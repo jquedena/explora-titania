@@ -1,0 +1,159 @@
+* {
+    font-size: 100%;
+    font-family: Tahoma, Lucida Grande, Lucida Sans, Arial, sans-serif;
+    letter-spacing: .03em;
+}
+
+body {
+    font-size: 0.7em;
+    overflow: auto;
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+}
+
+#layout, #north, #south, #west, #east {
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+#layout {
+    width: 950px;
+    height: 100%;
+    background: #91BE3F;
+}
+#north {
+    height: 42px;
+    text-align: center;
+}
+#south {
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    text-align: right;
+    color: #ffffff;  
+    font-weight: bold;
+    font-size: 11px; 
+    text-align: center;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
+#west {
+}
+#east {
+    border-left: 1px solid #8c9dc8;
+    height: 100%;
+    margin-left: 260px;
+    overflow: auto;
+}
+#south a, #south a:link, #south a:active, #south a:visited {
+    text-decoration: none;
+    font-weight: bold;
+}
+#south span {
+    padding-right: 10px;
+}
+#toggler {
+    display: inline;
+    position: absolute;
+    top: 40px;
+    margin-left: 0px;
+    width: 17px;
+    height: 22px;
+    background: #EBEFF9 url("../img/toggler_hide.png") no-repeat left center;
+}
+#toggler.off {
+    background: #EBEFF9 url("../img/toggler_show.png") no-repeat left center;
+    margin-left: 0;
+}
+
+/* Barra Titulo */
+#barTitle {
+    width: 100%;
+    height: 42px;
+}
+#barTitle tr td{
+    height: 42px;
+    background: #fff url("../img/tab_b.png") repeat-x;
+}
+#barTitle tr td.left{
+    height: 42px;
+    width: 30px;
+    background: #fff url("../img/tab_l.png") repeat-x;
+}
+#barTitle tr td.right{
+    height: 42px;
+    width: 30px;
+    background: #fff url("../img/tab_r.png") repeat-x;
+}
+#barTitle tr td.center{
+    height: 42px;
+    background: #fff url("../img/tab_m.png") repeat-x;
+    color: #fff;
+}
+#barTitle tr td.center a,
+#barTitle tr td.center a:active,
+#barTitle tr td.center a:hover,
+#barTitle tr td.center a:visited{
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+#jqDialogCargando table{
+	padding: 5px;
+}
+#Searchresult {
+	padding: 2px;
+}
+.ui-title {
+	height: 25px;
+	line-height: 25px;
+	vertical-align: middle;
+	font-size: 120%;
+	font-weight: bold;
+}
+thead.ui-title2 tr th{
+	border-left: 1px solid #fff;
+	height: 24px;
+	line-height: 24px;
+	vertical-align: middle;
+	font-weight: bold;
+	text-align: center;
+}
+.ui-titleBar{
+	font-size: 16px; 
+	padding-right: 5px;
+	padding-top: 5px;
+	color: #1c5dab;
+	font-weight: bold;
+	text-align: right;
+	vertical-align: bottom;	
+}
+.ui-titleBar2{
+	font-size: 100%; 
+	padding: 3px;
+	color: #1c5dab;
+	font-weight: bold;
+	vertical-align: middle;	
+}
+tbody.ui-table-body tr td{
+	height: 20px;
+	font-size: 90%;
+	/* border-right: 1px solid #d8d8d8; */
+	border-bottom: 1px solid #f4f4f4; /* #1c5dab */
+}
+.ui-editar{
+	background: url(../img/pencil.png) no-repeat center center;
+}
+.ui-eliminar{
+	background: url(../img/b_drop.png) no-repeat center center;
+}
+.ui-ver{
+	background: url(../img/find.png) no-repeat center center;
+}
+.ui-disabled-text{
+	background-color: #fffbc3; 
+}
+table.ui-tablecontent tr td {
+	padding: 5px;
+}

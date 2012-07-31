@@ -1,0 +1,110 @@
+<div align="center" id="arbol" class="ui-widget ui-widget-content ui-corner-all" style="width: 99%;margin: 3px;">
+	<div class="ui-widget ui-state-default ui-corner-top ui-title">
+		<label>Pagos de Arbitrios y Predios</label>
+	</div>
+	<table style="width: 100%;" cellspacing="0" cellpadding="0">
+		<tr>
+			<td>
+				<table style="width: 100%; padding-left: 6px;" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 130px;">C&oacute;digo de Persona:</td>
+						<td><div id="cidpers" class="ui-titleBar2"></div></td>
+					</tr>
+					<tr>
+						<td>Apellido y Nombres:</td>
+						<td><div id="nompers" class="ui-titleBar2"></div></td>
+					</tr>
+					<tr>
+						<td>Direcci&oacute;n fiscal:</td>
+						<td><div id="dirpers" class="ui-titleBar2"></div></td>
+					</tr>
+				</table> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%; padding: 4px;" cellspacing="0" cellpadding="0">
+				<tr>
+					<td style="width: 40%;">
+						<div id="btnord"></div>
+						
+					</td>
+					<td style="width: 60%; text-align: right;">
+						<input type="text" id="txt_fechaproyeccion" name="txt_fechaproyeccion" style="width:90px">
+						<input type="button" id="btn_recalculardeuda" name="btn_recalculardeuda" value="Recalcular Deuda">
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+	<table border='1'>
+	<tr>
+		<td width="220" height="330" valign="top"  id="btord">
+		</td>
+		<td width="460" rowspan="2" valign="top" align="center">
+			<div id="isordenanza"></div>
+			<table border="1" cellspacing="0" cellpadding="0" style="font-size:9px">
+				<tr align="center">
+					<td width="85" style="border:thin;background-color:#ffffff" >Pendiente</td>
+					<td width="2">&nbsp;</td>
+					<td width="85" style="border:thin;background-color:#6bc5c5" >Fraccionado</td>
+					<td width="2">&nbsp;</td>
+					<td width="85" style="border:thin;background-color:#ffc270" >V. Tributario</td>
+					<td width="2">&nbsp;</td>
+					<td width="85" style="border:thin;background-color:#e67053" >Coactivo</td>
+					<td width="2">&nbsp;</td>
+					<td width="85" style="border:thin;background-color:#b0cff6" >V. Recibido</td>
+					<td width="2">&nbsp;</td>
+					<td width="90"style="border:thin;background-color:#6bc5c5"  >Perdida Fracc.</td>
+				</tr>
+			</table>
+			<div id="div_detalle_recibo">
+				<table  border="1" cellpadding="0" cellspacing="0" style="font-size:12px">
+						<tr style="background-color:#A9C82D">
+								<th width="50" align="center">Trib.</th>
+								<th width="48">A&ntilde;o</th>
+								<th width="49">Perid.</th>
+								<th width="63">Imp. Ins.</th>
+								<th width="65">Imp. Rea.</th>
+								<th width="55">Mora</th>
+								<th width="61">Cst Emis.</th>
+								<th width="61">Total</th>
+						</tr>   
+						<tr>
+							  <td colspan="8" bordercolor="#000000">
+								 <div style="overflow:auto; height:235px;width:100%;border:1px solid #c3daf9;"></div>
+							  </td>
+						</tr>
+						<tr>
+								<td colspan="7" align="right">Total:&nbsp;&nbsp;</td>
+								<td align="center"><font size="+2"><B>0.00</B></font></td>
+						</tr>
+				</table>
+			</div>
+		</td>
+	</tr>
+	</table>
+			<td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%; padding: 4px;" cellspacing="0" cellpadding="0">
+				<tr>
+					<td style="width: 70%;">
+						<div id="div_btnconsulta">
+							<input type="button" id="btnrecibos" name="btnrecibos" value="Recibos Emitidos"/>
+							<input style="display: none;" type="button" id="btnestcta" name="btnestcta" value="Estado Cuenta"/>
+							<input style="display: none;" type="button" id="btnconvenios" name="btnconvenios" value="Convenios Emitidos"/>
+						</div>
+					</td>
+					<td style="width: 30%; text-align: right;">
+						<div id="div_rptapagoarbitriospredios"></div>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>

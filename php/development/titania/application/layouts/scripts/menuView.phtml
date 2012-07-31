@@ -1,0 +1,61 @@
+<div class="ui-widget-header" style="width: 100%; border: 0px;">
+<table>
+	<tr>
+		<td>
+		<?php 
+			$url = $this->util()->getPath();
+			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+			$coduser = $ddatosuserlog->cidpers;
+				if($coduser != '' || $coduser != null){
+					$cn = new Model_DataAdapter();
+					$ns = 'seguridad.obt_menu';
+					$ps[] =  $coduser;
+					$datosmenus = $cn->ejec_store_procedura_sql($ns,$ps);
+					
+					echo "<!-- ";
+					print_r($datosmenus); 
+					echo " -->";
+					
+					$cont = '';
+					$cmenu = 1;
+					if(count($datosmenus)>0){
+						for ($i = 0; $i < count($datosmenus) ; $i++) {
+							$codnod = $datosmenus[$i][0];
+							$nombrenod = $datosmenus[$i][1];
+							$codnodpadre = $datosmenus[$i][2];
+							
+							if($codnodpadre == "0000000001"){
+								if($cmenu == 2) $cont.='</td>';
+								$cont.='<td><a href="#" id="itemMenu'.$cmenu.'" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all">'.$nombrenod.'</a>';	
+								$existehijo = 0;
+								for($j = 0;$j<count($datosmenus);$j++){
+									$nombrehijo = $datosmenus[$j][1];
+									$urlhijo = $datosmenus[$j][4];
+									if($datosmenus[$j][2] == $codnod && $datosmenus[$j][2] != "0000000001"){
+										if($existehijo == 0){
+											$existehijo = 1;
+											$cont.='<div class="hidden"><ul>';
+											$cont.='<li><a href="'.$url.$urlhijo.'">'.$nombrehijo.'</a></li>';
+										}else{
+											$cont.='<li><a href="'.$url.$urlhijo.'">'.$nombrehijo.'</a></li>';
+										}
+									
+									}
+								}
+								if($existehijo == 1){
+									$existehijo = 0;
+									$cont.='</ul></div>';
+								}
+							 $cmenu++;
+							 }
+						}
+						echo "<table>".$cont."</table>";
+					}else{
+						$cont.='<div><span>Sin Opciones de Men&uacute;</span></div>';
+					}
+				}
+			?>
+		</td>
+	</tr>
+</table>
+</div>

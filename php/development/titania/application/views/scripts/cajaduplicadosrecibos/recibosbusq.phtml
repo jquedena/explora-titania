@@ -1,0 +1,53 @@
+<style>
+#btnbuscar, #btnlimpiar {
+	padding: 1px 10px;
+	font-family: "Century Gothic", Helvetica, sans-serif;
+	font-size: 12px;
+}
+</style>
+<div align="center">
+<h1 style="margin: 10;font-size: 14px;">Recibos..</h1>
+<br>
+<table border="0" cellspacing="15">
+	<tr>
+		<td><input type="radio" name="tipo" id="rdnrecibo" value="0" checked="checked"> <span style="font-size: 14px;font-weight: bold">Nro Recibo &nbsp;&nbsp;&nbsp; </span><input type="radio"
+			name="tipo" id="rdfiltro" value="1"> <span style="font-size: 14px;font-weight: bold">Filtro &nbsp;&nbsp;&nbsp; </span><input
+			type="radio" name="tipo" id="rdccontri" value="2"><span style="font-size: 14px;font-weight: bold"> Cod.Contriyente</span></td>
+	</tr>
+	<tr>
+		<td>
+		<div id="tipos">
+		<table>
+			<tr>
+				<td>Nro Recibo</td>
+				<td><input type="text" name="txtnrecibo" id="txtnrecibo"
+					maxlength="12" style="text-align: right;"></input></td>
+			</tr>
+		</table>
+		</div>
+		</td>
+	</tr>
+	<tr>
+		<td><input type="button" id="btnbuscar" name="btnbuscar" value="Buscar">
+		<input type="button" id="btnlimpiar" name="btnlimpiar" value="Nueva Busqueda"></td>
+	</tr>
+</table>
+<div id="result" align="center" class="reportes">
+<table width="90%" >
+	<tr>
+		<th width="14%">Nro Recibo</th>
+		<th width="29%">Nombre Cont.</th>
+		<th width="12%">Fecha</th>
+		<th width="8%">Monto</th>
+		<th width="10%">Ver</th>
+	</tr>
+	<tr>
+		<td  colspan="6">
+		<div style="overflow:auto; overflow-x:hidden; height:400;width:100%;border:1px solid #c3daf9" id="details">
+		</div>	
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+

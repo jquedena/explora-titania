@@ -1,0 +1,12 @@
+
+<div id="jqDialogCargando" style="display:none;text-align:center;">
+    <table padding: 5px;">
+        <tr>
+            <td align="right" valign="middle"><img src="<?php echo $this->util()->getImage("loading.gif"); ?>"></td>
+            <td align="left" valign="middle" style="font-weight: bold;">&nbsp;Procesando ...</td>
+        </tr>
+    </table>
+</div>
+<?php 
+    echo $this->dialog()->scriptConfig("jqDialogCargando", "", "{}", "100", "250", "hide-title-bar", "false", "false", "false", "true", "#");
+?>

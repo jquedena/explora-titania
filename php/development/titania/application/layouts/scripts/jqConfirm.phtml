@@ -1,0 +1,142 @@
+
+<div id="jqDialogConfirmacion1" style="display:none;vertical-align: middle;">
+    <table style="width: 100%;height: 100%;">
+        <tr>
+            <td style="width: 26px;text-align: center;"><span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 7px 0;"></span></td>
+            <td><span id="jqConfirmacion1" style="text-align: justify;"></span></td>
+        </tr>
+    </table>
+</div>
+<div id="jqDialogConfirmacion2" style="display:none;vertical-align: middle;">
+    <table style="width: 100%;height: 100%;">
+        <tr>
+            <td style="width: 26px;text-align: center;"><span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 7px 0;"></span></td>
+            <td><span id="jqConfirmacion2" style="text-align: justify;"></span></td>
+        </tr>
+    </table>
+</div>
+<div id="jqDialogInfo" style="display:none;vertical-align: middle;">
+    <table style="width: 100%;height: 100%;">
+        <tr>
+            <td style="width: 26px;text-align: center;"><span class="ui-icon ui-icon-comment" style="float:left; margin:0 7px 7px 0;"></span></td>
+            <td><span id="jqInfo" style="text-align: justify;"></span></td>
+        </tr>
+    </table>
+</div>
+<div id="jqDialogWarning" style="display:none;vertical-align: middle;">
+    <table style="width: 100%;height: 100%;">
+        <tr>
+            <td style="width: 26px;text-align: center;"><span class="ui-icon ui-icon-info" style="float:left; margin:0 7px 7px 0;"></span></td>
+            <td><span id="jqWarning" style="text-align: justify;"></span></td>
+        </tr>
+    </table>
+</div>
+<div id="jqDialogError" style="display:none;vertical-align: middle;">
+    <table style="width: 100%;height: 100%;">
+        <tr>
+            <td style="width: 26px;text-align: center;"><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 7px 0;"></span></td>
+            <td><span id="jqError" style="text-align: justify;"></span></td>
+        </tr>
+    </table>
+</div>
+<div id="jqDialog1" style="display:none;vertical-align: middle;"></div>
+<div id="jqDialog2" style="display:none;vertical-align: middle;"></div>
+<?php 
+    echo $this->dialog()->scriptConfig(
+        "jqDialogConfirmacion1" /* @param type $id */
+        , $this->util()->getTitle() /* @param type $title */
+        , "{'Aceptar':function(){okConfirmacion1();}, 'Cancelar':function(){cancelConfirmacion1();} }" /* @param type $buttons */
+        , "172" /* @param type $height */
+        , "370" /* @param type $width */
+        , "" /* @param type $dialogClass */
+        , "false" /* @param type $resizable */
+        , "false" /* @param type $autoOpen */
+        , "true" /* @param type $closeOnEscape */
+        , "true" /* @param type $modal */
+        , "#" /* @param type $href */
+    );
+
+    echo $this->dialog()->scriptConfig(
+        "jqDialogConfirmacion2" /* @param type $id */
+        , $this->util()->getTitle() /* @param type $title */
+        , "{'Aceptar':function(){okConfirmacion2();}, 'Cancelar':function(){cancelConfirmacion1();} }" /* @param type $buttons */
+        , "172" /* @param type $height */
+        , "370" /* @param type $width */
+        , "" /* @param type $dialogClass */
+        , "false" /* @param type $resizable */
+        , "false" /* @param type $autoOpen */
+        , "true" /* @param type $closeOnEscape */
+        , "true" /* @param type $modal */
+        , "#" /* @param type $href */
+    );    
+
+    echo $this->dialog()->scriptConfig(
+        "jqDialogInfo" /* @param type $id */
+        , $this->util()->getTitle() /* @param type $title */
+        , "{'Aceptar':function(){closeDialog('jqDialogInfo');} }" /* @param type $buttons */
+        , "172" /* @param type $height */
+        , "370" /* @param type $width */
+        , "" /* @param type $dialogClass */
+        , "false" /* @param type $resizable */
+        , "false" /* @param type $autoOpen */
+        , "true" /* @param type $closeOnEscape */
+        , "true" /* @param type $modal */
+        , "#" /* @param type $href */
+    );      
+
+    echo $this->dialog()->scriptConfig(
+        "jqDialogWarning" /* @param type $id */
+        , $this->util()->getTitle() /* @param type $title */
+        , "{'Aceptar':function(){closeDialog('jqDialogWarning');} }" /* @param type $buttons */
+        , "172" /* @param type $height */
+        , "370" /* @param type $width */
+        , "" /* @param type $dialogClass */
+        , "false" /* @param type $resizable */
+        , "false" /* @param type $autoOpen */
+        , "true" /* @param type $closeOnEscape */
+        , "true" /* @param type $modal */
+        , "#" /* @param type $href */
+    );
+
+    echo $this->dialog()->scriptConfig(
+        "jqDialogError" /* @param type $id */
+        , $this->util()->getTitle() /* @param type $title */
+        , "{'Aceptar':function(){closeDialog('jqDialogError');} }" /* @param type $buttons */
+        , "172" /* @param type $height */
+        , "370" /* @param type $width */
+        , "" /* @param type $dialogClass */
+        , "false" /* @param type $resizable */
+        , "false" /* @param type $autoOpen */
+        , "true" /* @param type $closeOnEscape */
+        , "true" /* @param type $modal */
+        , "#" /* @param type $href */
+    ); 
+
+    echo $this->dialog()->scriptConfig(
+    		"jqDialog1" /* @param type $id */
+    		, $this->util()->getTitle() /* @param type $title */
+    		, "{}" /* @param type $buttons */
+    		, "172" /* @param type $height */
+    		, "370" /* @param type $width */
+    		, "" /* @param type $dialogClass */
+    		, "false" /* @param type $resizable */
+    		, "false" /* @param type $autoOpen */
+    		, "true" /* @param type $closeOnEscape */
+    		, "true" /* @param type $modal */
+    		, "#" /* @param type $href */
+    );
+
+    echo $this->dialog()->scriptConfig(
+    		"jqDialog2" /* @param type $id */
+    		, $this->util()->getTitle() /* @param type $title */
+    		, "{}" /* @param type $buttons */
+    		, "172" /* @param type $height */
+    		, "370" /* @param type $width */
+    		, "" /* @param type $dialogClass */
+    		, "false" /* @param type $resizable */
+    		, "false" /* @param type $autoOpen */
+    		, "true" /* @param type $closeOnEscape */
+    		, "true" /* @param type $modal */
+    		, "#" /* @param type $href */
+    );
+?>
