@@ -369,7 +369,7 @@
 				                <td width="10">&nbsp;</td>
 				                <td width="114"><fieldset><legend>&Aacute;rea Com&uacute;n:</legend><input id="txt_areacomun" style="width:100%" value="" /></fieldset></td>
 				                <td width="10">&nbsp;</td>
-				                <td width="114"><fieldset><legend>Porcentaje Com&uacute;n:</legend><input id="txt_procentajecomun" style="width:100%" value="" />
+				                <td width="114"><fieldset><legend>Porcentaje Com&uacute;n:</legend><input id="txt_porcentajecomun" style="width:100%" value="" />
 				                </fieldset></td>
 				                <td width="10">&nbsp;</td>
 				                <td width="114"><fieldset><legend>Total Com&uacute;n:</legend><input id="txt_totalcomun" style="width:100%" value="" /></fieldset></td>
@@ -425,17 +425,17 @@
 				                <td colspan="11">&nbsp;</td>
 				              </tr>
 				              <tr>
-				                <td width="114"><fieldset><legend>% IP:</legend><input id="txt_areaterreno" style="width:100%" value="" /></fieldset></td>
+				                <td width="114"><fieldset><legend>% IP:</legend><input id="txt_inafectoip" style="width:100%" value="" /></fieldset></td>
 				                <td width="10">&nbsp;</td>
-				                <td width="114"><fieldset><legend>% LC:</legend><input id="txt_procentajeterreno" style="width:100%" value="" /></fieldset></td>
+				                <td width="114"><fieldset><legend>% LC:</legend><input id="txt_inafectolc" style="width:100%" value="" /></fieldset></td>
 				                <td width="10">&nbsp;</td>
-				                <td width="114"><fieldset><legend>% RB:</legend><input id="txt_totalarea" style="width:100%" value="" /></fieldset></td>
+				                <td width="114"><fieldset><legend>% RB:</legend><input id="txt_inafectorb" style="width:100%" value="" /></fieldset></td>
 				                <td width="10">&nbsp;</td>
-				                <td width="114"><fieldset><legend>% LP:</legend><input id="txt_areacomun" style="width:100%" value="" /></fieldset></td>
+				                <td width="114"><fieldset><legend>% LP:</legend><input id="txt_inafectolp" style="width:100%" value="" /></fieldset></td>
 				                <td width="10">&nbsp;</td>
-				                <td width="114"><fieldset><legend>% PJ:</legend><input id="txt_procentajecomun" style="width:100%" value="" /></fieldset></td>
+				                <td width="114"><fieldset><legend>% PJ:</legend><input id="txt_inafectopj" style="width:100%" value="" /></fieldset></td>
 				                <td width="10">&nbsp;</td>
-				                <td width="114"><fieldset><legend>% SG:</legend><input id="txt_totalcomun" style="width:100%" value="" /></fieldset></td>
+				                <td width="114"><fieldset><legend>% SG:</legend><input id="txt_inafectosg" style="width:100%" value="" /></fieldset></td>
 				              </tr>
 				              <tr>
 				                <td colspan="11" height="8px"></td>
@@ -496,7 +496,7 @@
 				                        <th width="80" >valor final</th>
 				                  </tr>
 				                      <tr>
-				                        <td colspan="21" height="100px" valign="top">
+				                        <td colspan="21" height="100px" valign="top" id="c_tablapisos">
 				                            
 				                                <table border="1" cellspacing="0" cellpadding="0">
 				                                    <tr>
@@ -550,9 +550,9 @@
 				                      </tr>
 				                      <tr>
 				                        <td colspan="11">&nbsp;</td>
-				                        <td align="right">total</td>
+				                        <td align="right" id="c_total_area_cons">total</td>
 				                        <td colspan="5">&nbsp;</td>
-				                        <td align="right">total</td>
+				                        <td align="right" id="c_valor_area_cons">total</td>
 				                        <td colspan="3">&nbsp;</td>
 				                      </tr>
 				                    </table>
@@ -696,19 +696,16 @@
 				    <td colspan="6">
 				    
 				    	<div style="border:1px solid;overflow-x:scroll;width:760px">
-				                <table width="1220" border="1" cellspacing="0" cellpadding="0">
+				                <table width="1310" border="1" cellspacing="0" cellpadding="0">
 				                      <tr>				                        
 				                        <th width="41" >Antig.</th>
 				                        <th width="80" >Material</th>
 				                        <th width="60" >Estado</th>
 				                        <th width="150" >Descripcion</th>
-				                        <th width="20" >Mu</th>
-				                        <th width="20" >Te</th>
-				                        <th width="20" >Pi</th>
-				                        <th width="20" >Pv</th>
-				                        <th width="20" >Rv</th>
-				                        <th width="20" >Ba</th>
-				                        <th width="20" >In</th>
+				                        <th width="50" >Altura</th>
+				                        <th width="50" >Ancho</th>
+				                        <th width="50" >Largo</th>
+				                        <th width="80" >Unid. Medida.</th>
 				                        <th width="70" >Area. Contr.</th>
 				                        <th width="85" >Val. Unit. m2</th>
 				                        <th width="50" >% depr</th>
@@ -720,21 +717,18 @@
 				                        <th width="80" >valor final</th>
 				                  </tr>
 				                      <tr>
-				                        <td colspan="21" height="100px" valign="top">
+				                        <td colspan="17" height="100px" valign="top" id="c_tablainstalacion">
 				                            
 				                                <table border="1" cellspacing="0" cellpadding="0">
 				                                    <tr>
 				                                      <td width="40" align="center">x</td>
-				                                      <td width="78">x</td>
-				                                      <td width="59">x</td>
+				                                      <td width="79">x</td>
+				                                      <td width="60">x</td>
 				                                      <td width="150">x</td>
-				                                      <td width="20" align="center">x</td>
-				                                      <td width="20" align="center">x</td>
-				                                      <td width="20" align="center">x</td>
-				                                      <td width="20" align="center">x</td>
-				                                      <td width="20" align="center">x</td>
-				                                      <td width="20" align="center">x</td>
-				                                      <td width="20" align="center">x</td>
+				                                      <td width="50" align="center">x</td>
+				                                      <td width="50" align="center">x</td>
+				                                      <td width="50" align="center">x</td>
+				                                      <td width="80" align="center">x</td>
 				                                      <td width="70" align="right">x</td>
 				                                      <td width="85" align="right">x</td>
 				                                      <td width="50" align="right">x</td>
@@ -747,16 +741,13 @@
 				                                  </tr>
 				                                  <tr>
 				                                      <td width="40" align="center">x</td>
-				                                      <td width="78">x</td>
-				                                      <td width="59">x</td>
+				                                      <td width="79">x</td>
+				                                      <td width="60">x</td>
 				                                      <td width="150">x</td>
-				                                      <td width="20" align="center">x</td>
-				                                      <td width="20" align="center">x</td>
-				                                      <td width="20" align="center">x</td>
-				                                      <td width="20" align="center">x</td>
-				                                      <td width="20" align="center">x</td>
-				                                      <td width="20" align="center">x</td>
-				                                      <td width="20" align="center">x</td>
+				                                      <td width="50" align="center">x</td>
+				                                      <td width="50" align="center">x</td>
+				                                      <td width="50" align="center">x</td>
+				                                      <td width="80" align="center">x</td>
 				                                      <td width="70" align="right">x</td>
 				                                      <td width="85" align="right">x</td>
 				                                      <td width="50" align="right">x</td>
@@ -771,10 +762,10 @@
 				                        </td>
 				                      </tr>
 				                      <tr>
-				                        <td colspan="11">&nbsp;</td>
-				                        <td align="right">total</td>
-				                        <td colspan="5">&nbsp;</td>
-				                        <td align="right">total</td>
+				                        <td colspan="8">&nbsp;</td>
+				                        <td align="right" id="c_total_area_cons_inst">total</td>
+				                        <td colspan="4">&nbsp;</td>
+				                        <td align="right" id="c_valor_area_cons_inst">total</td>
 				                        <td colspan="3">&nbsp;</td>
 				                      </tr>
 				                    </table>
@@ -814,6 +805,31 @@
 				  <tr>
 				    <td colspan="8" height="8px"></td>
 				    </tr>
+				    
+				    <tr>
+					    <td>&nbsp;</td>
+					    <td colspan="6">
+					    	<fieldset  style="padding:5px"><legend>Datos Dimensionales</legend>
+					        <table width="740" border="0" cellspacing="0" cellpadding="0">
+								  <tr>
+								    <td width="100"><fieldset><legend>Alto</legend><input id="txt_instalacionalto" style="width:100%" value="" /></fieldset></td>
+								    <td width="10">&nbsp;</td>
+								    <td width="100"><fieldset><legend>Ancho</legend><input id="txt_instalacionancho" style="width:100%" value="" /></fieldset></td>
+								    <td width="10">&nbsp;</td>
+								    <td width="100"><fieldset><legend>Largo</legend><input id="txt_instalacionlargo" style="width:100%" value="" /></fieldset></td>
+								    <td width="10">&nbsp;</td>
+								    <td width="150"><fieldset><legend>Unid. Medida</legend><select id="cb_instalacionunidmedida" style="width:100%;padding:2px"></select></fieldset></td>
+								    <td width="10">&nbsp;</td>
+								    <td width="250"></td>
+								  </tr>
+								</table>
+					        </fieldset>    </td>
+					    <td>&nbsp;</td>
+					  </tr>
+				    
+				     <tr>
+				    <td colspan="8" height="8px"></td>
+				    </tr>
 				   <tr>
 				    <td>&nbsp;</td>
 				    <td colspan="6">
@@ -835,18 +851,18 @@
 				    <td colspan="6">
 				    	<fieldset  style="padding:5px"><legend>Datos de Igreso</legend>
 				        <table width="740" border="0" cellspacing="0" cellpadding="0">
-				  <tr>
-				    <td width="100"><fieldset><legend>Ultimo Recalculo</legend><input id="txt_instalacionultimorecalculo" style="width:100%" value="" /></fieldset></td>
-				    <td width="15">&nbsp;</td>
-				    <td width="140"><fieldset><legend>Tipo Documento</legend><select id="cb_instalaciontipodoc" style="width:100%;padding:2px"></select></fieldset></td>
-				    <td width="10">&nbsp;</td>
-				    <td width="180"><fieldset><legend>Nro Documento</legend><input id="txt_instalacionnrodoc" style="width:100%" value="" /></fieldset></td>
-				    <td width="10">&nbsp;</td>
-				    <td width="175"><fieldset><legend>Motivo</legend><select id="cb_instalacionmotivo" style="width:100%;padding:2px"></select></fieldset></td>
-				    <td width="10">&nbsp;</td>
-				    <td width="100"><fieldset><legend>Fecha de Doc.</legend><input id="txt_instalacionfechadoc" style="width:100%" value="" /></fieldset></td>
-				  </tr>
-				</table>
+							  <tr>
+							    <td width="100"><fieldset><legend>Ultimo Recalculo</legend><input id="txt_instalacionultimorecalculo" style="width:100%" value="" /></fieldset></td>
+							    <td width="15">&nbsp;</td>
+							    <td width="140"><fieldset><legend>Tipo Documento</legend><select id="cb_instalaciontipodoc" style="width:100%;padding:2px"></select></fieldset></td>
+							    <td width="10">&nbsp;</td>
+							    <td width="180"><fieldset><legend>Nro Documento</legend><input id="txt_instalacionnrodoc" style="width:100%" value="" /></fieldset></td>
+							    <td width="10">&nbsp;</td>
+							    <td width="175"><fieldset><legend>Motivo</legend><select id="cb_instalacionmotivo" style="width:100%;padding:2px"></select></fieldset></td>
+							    <td width="10">&nbsp;</td>
+							    <td width="100"><fieldset><legend>Fecha de Doc.</legend><input id="txt_instalacionfechadoc" style="width:100%" value="" /></fieldset></td>
+							  </tr>
+							</table>
 				        </fieldset>    </td>
 				    <td>&nbsp;</td>
 				  </tr>
