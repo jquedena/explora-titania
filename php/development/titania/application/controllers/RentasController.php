@@ -1,7 +1,18 @@
 <?php
+
+/**
+ * RentasController
+ * 
+ * @author
+ * @version 
+ */
+
 require_once 'Zend/Controller/Action.php';
 
 class RentasController extends Zend_Controller_Action {
+	/**
+	 * The default action - show the home page
+	 */
 	
 	public function init() {
 		$this->view->util()->registerScriptJSController($this->getRequest());
@@ -21,7 +32,9 @@ class RentasController extends Zend_Controller_Action {
 				header ( 'location:' . $url . 'index.php/busqpers/?tit=Datos Contribuyente&url=' . $url . 'index.php/rentas/datos/?datospers=', true );
 			} else {				
 				list ( $cidpers, $nompers, $dir , $fechaproyeccion ) = explode ( '|', $datospers );
-				echo $this->view->inlineScript()->appendScript('pintardatoscontribuyente("'.$cidpers .'","'. $nompers .'","'. $dir .'")');		
+				echo $this->view->inlineScript()->appendScript('pintardatoscontribuyente("'.$cidpers .'","'. $nompers .'","'. $dir .'")');
+				echo $this->view->inlineScript()->appendScript('detalleprediollenarcomponentes()');
+				echo $this->view->inlineScript()->appendScript('limpiarformulariodetallepredio()');				
 			}
 	}
 	
@@ -41,14 +54,241 @@ class RentasController extends Zend_Controller_Action {
 		echo json_encode($array);
 	}
 	
-	public function detallepredioAction(){
+	public function detalleprediollenarcomponentesAction(){
 		$this->_helper->viewRenderer->setNoRender ();
 		$this->_helper->layout->disableLayout ();
 		
 		$array['mensaje'] = "OK";
+//		$array['result']['usopredio'] = array(array('codigo'=>'00001','descripcion'=>'casa habitacion'),array('codigo'=>'00002','descripcion'=>'comercio'));		
+		
+		$array['result']['condpropiedad'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		$array['result']['estadopredio'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		$array['result']['tipopredio'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		$array['result']['clasifpredio'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		$array['result']['usopredio'] = array(array('00001','casa habitacion'),array('00002','comercio'));
+		$array['result']['usoespecifico'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		$array['result']['ubicparque'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		$array['result']['tipoinafec'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		
+		$array['result']['piso_material'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		$array['result']['piso_estado'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		$array['result']['piso_documento'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		$array['result']['piso_motivo'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		
+		$array['result']['instalacion_material'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		$array['result']['instalacion_estado'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		$array['result']['instalacion_documento'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		$array['result']['instalacion_motivo'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		
+		$array['result']['caract_piso'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		
+		$array['result']['instal_unid_medida'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
 		
 		echo json_encode($array);
 	}
+	
+	public function detallepredioAction(){
+		$this->_helper->viewRenderer->setNoRender ();
+		$this->_helper->layout->disableLayout ();
+		
+		$codpred = $this->_request->getParam ( 'codpred', '' );
+		
+		$array['mensaje'] = "OK";
+		$array['result']['codpredio'] = $codpred;
+		$array['result']['dirpred'] = 'mi casita 01';
+		$array['result']['fechaadq'] = '21/03/1990';
+		$array['result']['fechabaj'] = '';
+		$array['result']['fecharecalculo'] = '27/03/2012';
+		$array['result']['codcondpropiedad'] = '00001';
+		$array['result']['codestadopredio'] = '00003';
+		$array['result']['codtipopredio'] = '00002';
+		$array['result']['codclasifpredio'] = '00003';
+		$array['result']['codusopredio'] = '00002';
+		$array['result']['codusoespecifico'] = '00003';
+		
+		$array['result']['areaterreno'] = '3000';
+		$array['result']['porcterreno'] = '100';
+		$array['result']['totalarea'] = '3000';
+		$array['result']['areacomun'] = '0';
+		$array['result']['porccomun'] = '100';
+		$array['result']['totalcomun'] = '0';
+		$array['result']['frente'] = '9.00';
+		$array['result']['arancel'] = '213454';
+		$array['result']['porccond'] = '100';		
+		$array['result']['codubicparque'] = '00001';
+		
+		$array['result']['codtipoinafec'] = '00002';
+		$array['result']['inafec_exped'] = '123456-2012';
+		$array['result']['inafec_resol'] = '123-dfd-dtgfsd-2012';
+		$array['result']['inafec_fecharesol'] = '01/07/2012';
+		$array['result']['inafec_baselegal'] = '001';
+		$array['result']['inafec_observ'] = '-';
+		$array['result']['inafec_fechaini'] = '01/07/2012';
+		$array['result']['inafec_fechafin'] = '31/12/2012';
+		$array['result']['inafec_ip'] = '100';
+		$array['result']['inafec_lc'] = '0';
+		$array['result']['inafec_rb'] = '0';
+		$array['result']['inafec_lp'] = '0';
+		$array['result']['inafec_pj'] = '0';
+		$array['result']['inafec_sg'] = '0';
+		
+		$array['result']['pisos'][0]['nivel'] = '2';
+		$array['result']['pisos'][0]['anio_const'] = '2010';
+		$array['result']['pisos'][0]['antiguedad'] = '';
+		$array['result']['pisos'][0]['codmaterial'] = '00001';
+		$array['result']['pisos'][0]['material'] = '';
+		$array['result']['pisos'][0]['codestado'] = '00001';
+		$array['result']['pisos'][0]['estado'] = '';
+		$array['result']['pisos'][0]['cod_mu'] = '00001';
+		$array['result']['pisos'][0]['mu'] = 'A';
+		$array['result']['pisos'][0]['cod_te'] = '00002';
+		$array['result']['pisos'][0]['te'] = 'B';
+		$array['result']['pisos'][0]['cod_pi'] = '00003';
+		$array['result']['pisos'][0]['pi'] = 'C';
+		$array['result']['pisos'][0]['cod_pv'] = '00003';
+		$array['result']['pisos'][0]['pv'] = 'D';
+		$array['result']['pisos'][0]['cod_rv'] = '00002';
+		$array['result']['pisos'][0]['rv'] = 'E';
+		$array['result']['pisos'][0]['cod_ba'] = '00001';
+		$array['result']['pisos'][0]['ba'] = 'F';
+		$array['result']['pisos'][0]['cod_in'] = '00003';
+		$array['result']['pisos'][0]['in'] = 'G';
+		$array['result']['pisos'][0]['area_const'] = '1';
+		$array['result']['pisos'][0]['val_unit_m2'] = '';
+		$array['result']['pisos'][0]['inc_5'] = '';
+		$array['result']['pisos'][0]['porc_deprec'] = '';
+		$array['result']['pisos'][0]['deprec'] = '';
+		$array['result']['pisos'][0]['val_unit_deprec'] = '';
+		$array['result']['pisos'][0]['val_area_const'] = '2';
+		$array['result']['pisos'][0]['porc_area_comun'] = '';
+		$array['result']['pisos'][0]['val_area_comun'] = '';
+		$array['result']['pisos'][0]['valor_final'] = '0';
+		$array['result']['pisos'][0]['ult_recalculo'] = '24/07/2012';
+		$array['result']['pisos'][0]['codtipodoc'] = '00001';
+		$array['result']['pisos'][0]['tipodoc'] = '001-123456';
+		$array['result']['pisos'][0]['codmotivo'] = '00001';
+		$array['result']['pisos'][0]['fechadoc'] = '24/07/2012';
 
+		$array['result']['pisos'][1]['nivel'] = '5';
+		$array['result']['pisos'][1]['anio_const'] = '2010';
+		$array['result']['pisos'][1]['antiguedad'] = '';
+		$array['result']['pisos'][1]['codmaterial'] = '00001';
+		$array['result']['pisos'][1]['material'] = '';
+		$array['result']['pisos'][1]['codestado'] = '00001';
+		$array['result']['pisos'][1]['estado'] = '';
+		$array['result']['pisos'][1]['cod_mu'] = '00001';
+		$array['result']['pisos'][1]['mu'] = 'A';
+		$array['result']['pisos'][1]['cod_te'] = '00002';
+		$array['result']['pisos'][1]['te'] = 'B';
+		$array['result']['pisos'][1]['cod_pi'] = '00003';
+		$array['result']['pisos'][1]['pi'] = 'C';
+		$array['result']['pisos'][1]['cod_pv'] = '00003';
+		$array['result']['pisos'][1]['pv'] = 'D';
+		$array['result']['pisos'][1]['cod_rv'] = '00002';
+		$array['result']['pisos'][1]['rv'] = 'E';
+		$array['result']['pisos'][1]['cod_ba'] = '00001';
+		$array['result']['pisos'][1]['ba'] = 'F';
+		$array['result']['pisos'][1]['cod_in'] = '00003';
+		$array['result']['pisos'][1]['in'] = 'G';
+		$array['result']['pisos'][1]['area_const'] = '1';
+		$array['result']['pisos'][1]['val_unit_m2'] = '';
+		$array['result']['pisos'][1]['inc_5'] = '';
+		$array['result']['pisos'][1]['porc_deprec'] = '';
+		$array['result']['pisos'][1]['deprec'] = '';
+		$array['result']['pisos'][1]['val_unit_deprec'] = '';
+		$array['result']['pisos'][1]['val_area_const'] = '2';
+		$array['result']['pisos'][1]['porc_area_comun'] = '';
+		$array['result']['pisos'][1]['val_area_comun'] = '';
+		$array['result']['pisos'][1]['valor_final'] = '0';
+		$array['result']['pisos'][1]['ult_recalculo'] = '24/07/2012';
+		$array['result']['pisos'][1]['codtipodoc'] = '00001';
+		$array['result']['pisos'][1]['tipodoc'] = '001-123456';
+		$array['result']['pisos'][1]['codmotivo'] = '00001';
+		$array['result']['pisos'][1]['fechado'] = '24/07/2012';
+		
+		$array['result']['instalacion'][0]['anio_const'] = '2010';
+		$array['result']['instalacion'][0]['antiguedad'] = '5';
+		$array['result']['instalacion'][0]['codmaterial'] = '00001';
+		$array['result']['instalacion'][0]['material'] = '';
+		$array['result']['instalacion'][0]['codestado'] = '00001';
+		$array['result']['instalacion'][0]['estado'] = '';
+		$array['result']['instalacion'][0]['descripcion'] = 'xxx';
+		$array['result']['instalacion'][0]['altura'] = '123';
+		$array['result']['instalacion'][0]['ancho'] = '654';
+		$array['result']['instalacion'][0]['largo'] = '987';
+		$array['result']['instalacion'][0]['cod_unid_medida'] = '00001';
+		$array['result']['instalacion'][0]['unid_medida'] = 'metros cuadr.';		
+		$array['result']['instalacion'][0]['area_const'] = '1';
+		$array['result']['instalacion'][0]['val_unit_m2'] = '';
+		$array['result']['instalacion'][0]['porc_deprec'] = '';
+		$array['result']['instalacion'][0]['deprec'] = '';
+		$array['result']['instalacion'][0]['val_unit_deprec'] = '';
+		$array['result']['instalacion'][0]['val_area_const'] = '2';
+		$array['result']['instalacion'][0]['porc_area_comun'] = '';
+		$array['result']['instalacion'][0]['val_area_comun'] = '';
+		$array['result']['instalacion'][0]['valor_final'] = '0';
+		$array['result']['instalacion'][0]['ult_recalculo'] = '24/07/2012';
+		$array['result']['instalacion'][0]['codtipodoc'] = '00001';
+		$array['result']['instalacion'][0]['tipodoc'] = '001-123456';
+		$array['result']['instalacion'][0]['codmotivo'] = '00001';
+		$array['result']['instalacion'][0]['fechadoc'] = '24/07/2012';
+		
+		$array['result']['instalacion'][1]['anio_const'] = '2011';
+		$array['result']['instalacion'][1]['antiguedad'] = '8';
+		$array['result']['instalacion'][1]['codmaterial'] = '00001';
+		$array['result']['instalacion'][1]['material'] = '';
+		$array['result']['instalacion'][1]['codestado'] = '00001';
+		$array['result']['instalacion'][1]['estado'] = '';
+		$array['result']['instalacion'][1]['descripcion'] = 'xxx';
+		$array['result']['instalacion'][1]['altura'] = '123';
+		$array['result']['instalacion'][1]['ancho'] = '654';
+		$array['result']['instalacion'][1]['largo'] = '987';
+		$array['result']['instalacion'][1]['cod_unid_medida'] = '00001';
+		$array['result']['instalacion'][1]['unid_medida'] = 'metros cuadr.';		
+		$array['result']['instalacion'][1]['area_const'] = '1';
+		$array['result']['instalacion'][1]['val_unit_m2'] = '';
+		$array['result']['instalacion'][1]['porc_deprec'] = '';
+		$array['result']['instalacion'][1]['deprec'] = '';
+		$array['result']['instalacion'][1]['val_unit_deprec'] = '';
+		$array['result']['instalacion'][1]['val_area_const'] = '2';
+		$array['result']['instalacion'][1]['porc_area_comun'] = '';
+		$array['result']['instalacion'][1]['val_area_comun'] = '';
+		$array['result']['instalacion'][1]['valor_final'] = '0';
+		$array['result']['instalacion'][1]['ult_recalculo'] = '24/07/2012';
+		$array['result']['instalacion'][1]['codtipodoc'] = '00001';
+		$array['result']['instalacion'][1]['tipodoc'] = '001-123456';
+		$array['result']['instalacion'][1]['codmotivo'] = '00001';
+		$array['result']['instalacion'][1]['fechadoc'] = '24/07/2012';
+		
+		$array['result']['instalacion'][2]['anio_const'] = '2012';
+		$array['result']['instalacion'][2]['antiguedad'] = '15';
+		$array['result']['instalacion'][2]['codmaterial'] = '00001';
+		$array['result']['instalacion'][2]['material'] = '';
+		$array['result']['instalacion'][2]['codestado'] = '00001';
+		$array['result']['instalacion'][2]['estado'] = '';
+		$array['result']['instalacion'][2]['descripcion'] = 'xxx';
+		$array['result']['instalacion'][2]['altura'] = '123';
+		$array['result']['instalacion'][2]['ancho'] = '654';
+		$array['result']['instalacion'][2]['largo'] = '987';
+		$array['result']['instalacion'][2]['cod_unid_medida'] = '00001';
+		$array['result']['instalacion'][2]['unid_medida'] = 'metros cuadr.';		
+		$array['result']['instalacion'][2]['area_const'] = '1';
+		$array['result']['instalacion'][2]['val_unit_m2'] = '';
+		$array['result']['instalacion'][2]['porc_deprec'] = '';
+		$array['result']['instalacion'][2]['deprec'] = '';
+		$array['result']['instalacion'][2]['val_unit_deprec'] = '';
+		$array['result']['instalacion'][2]['val_area_const'] = '2';
+		$array['result']['instalacion'][2]['porc_area_comun'] = '';
+		$array['result']['instalacion'][2]['val_area_comun'] = '';
+		$array['result']['instalacion'][2]['valor_final'] = '0';
+		$array['result']['instalacion'][2]['ult_recalculo'] = '24/07/2012';
+		$array['result']['instalacion'][2]['codtipodoc'] = '00001';
+		$array['result']['instalacion'][2]['tipodoc'] = '001-123456';
+		$array['result']['instalacion'][2]['codmotivo'] = '00001';
+		$array['result']['instalacion'][2]['fechadoc'] = '24/07/2012';
+		
+		echo json_encode($array);
+	}
+	
 }
 
