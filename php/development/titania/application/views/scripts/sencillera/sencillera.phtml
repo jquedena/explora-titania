@@ -1,0 +1,259 @@
+<style>
+<!--
+/** Class Tabla **/
+.tabla
+{
+	font-family: Helvetica;
+	border-collapse:collapse;
+}
+
+.tabla td, .tabla th 
+{
+	font-size:11px;
+	border:1px solid #bdbdbd;
+	padding:3px 7px 2px 7px;
+}
+
+.tabla th 
+{
+	font-size:12px;
+	text-align:center;
+	padding : 5px 5px 4px 5px;
+	background:#1c5da5;
+}
+
+.tabla tr{	
+	font-size:12px; 
+	text-align:left; 
+	font-weight: normal;
+}
+
+.tabla tr:hover{
+	background-color:#EBEFF9;
+	cursor : pointer;
+}
+
+/** End Class Tabla **/
+-->
+</style>
+
+
+<div id="sencilleraprincipal">
+	<div style="width:900px;height:450px;border-style:groove;margin-top:10px;margin-left:5px;border-radius:5px 5px 5px 5px ">
+		<div class="ui-widget ui-state-default ui-corner-top ui-title">
+			<label>Hablitacion de Sencillera</label>
+		</div>
+		<div style="width:100%;height:15%;margin-left:5px" > 
+			<button id="btnNrocaja_sencillera" style=" float:left;margin-top:10px;margin-left:5px">Nro. Caja</button>
+	        <button id="btnFecha_sencillera" style=" float:left;margin-top:10px;margin-left:5px"> F. Ingreso </button>
+	        <button id="btnTodo_sencillera" style=" float:left;margin-top:10px;margin-left:5px"> Todos </button>
+			<div style="float:left;margin-left:4%;margin-top:15px">
+				<div align="left">
+	            	<label id='lblNombre_sencillera'><b>Rango Fechas  </b></label> 
+	            </div>
+	            <div>
+					<input type="text" id="txtFecha1_sencillera"/>
+	                <input type="text" id="txtFecha2_sencillera"/>
+	                <input type="text" id="txtNrocaja_sencillera"/>
+	            </div>
+	            
+	        </div>
+			<button id="btnConsultar_sencillera" style="margin-top:10px"> Consultar </button>
+	    </div>
+	   	
+	   	<div style="width:99%;height:60% ; margin-left:5px">
+	    	<div id="tabla" style="width:100%">
+	        	<table border="1" width="100%" class="tabla"> 
+	            	<tr>
+	                	<th style="color:#FFF;width:9%;"><B>CAJA</B></th>
+	                    <th style="color:#FFF;width:14%"><B>FECHA</B></th>
+	                    <th style="color:#FFF;width:50%"><B>USUARIO</B></th>
+	                    <th style="color:#FFF;width:14%"><B>TOTAL</B></th>
+	                    <th width="1.6%"><BR></th>                    
+	                </tr>
+	            </table>
+	        </div>
+	      
+	      
+	        <div id="detalle" style="height:90%;overflow-y:scroll;width:100%">
+	             <table width="100%" height="100%" border="1" class="tabla"> 
+	                    <tr>
+	                        <td style="width:9%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                        <td style="width:50%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                    </tr>
+	                    <tr>
+	                        <td style="width:9%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                        <td style="width:50%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                    </tr>
+	                    <tr>
+	                        <td style="width:9%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                        <td style="width:50%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                    </tr>
+	                    <tr>
+	                        <td style="width:9%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                        <td style="width:50%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                    </tr>
+	                    <tr>
+	                        <td style="width:9%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                        <td style="width:50%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                    </tr>
+	                    <tr>
+	                        <td style="width:9%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                        <td style="width:50%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                    </tr>
+	                    <tr>
+	                        <td style="width:9%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                        <td style="width:50%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                    </tr>
+	                    <tr>
+	                        <td style="width:9%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                        <td style="width:50%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                    </tr>
+	                    <tr>
+	                        <td style="width:9%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                        <td style="width:50%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                    </tr>
+	                    <tr>
+	                        <td style="width:9%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                        <td style="width:50%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                    </tr>
+	                    <tr>
+	                        <td style="width:9%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                        <td style="width:50%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                    </tr>
+	                    <tr>
+	                        <td style="width:9%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                        <td style="width:50%"><BR></td>
+	                        <td style="width:14%"><BR></td>
+	                    </tr>
+	             </table>
+	        </div>
+	    </div>
+	    <div style="width:100%;height:15%;margin-top:15px;margin-left:-5px"> 
+	    	<button id="btnAperturarsencillera"  > Aperturar </button>
+	        <button id="btnDetallesencillera"  > Detalle </button>
+	        <button id="btnReportesencillera"  > Reporte </button>
+	        <button id="btnSalirsencillera" style=" margin-left:15%"> Salir </button>
+	    </div>
+	</div>
+</div>
+
+<!-- ---------------------------------------------------------------------------------------------------------------------------------  -->
+
+
+<div id="sencilleraapertura">
+<center>
+	<div style="width:100%;height:100%;border-radius:5px 5px 5px 5px ">
+	<div class="ui-widget ui-state-default ui-corner-top ui-title">
+			<label>Aperturar Sencillera</label>
+		</div>
+		<div style="margin:10px 10px 10px 10px">
+	    <br>
+		    <div>
+	    		<label style="margin-left:3%;margin-top:10px"><b>Fecha Apertura&nbsp;:</b></label>
+	    		<input id='txtFechaapertura_sencillera'type="text" style="margin-left:10px;width:85px;"/>
+	    	</div>
+		    <div style="margin-top:15px">
+	    		<label style="margin-left:3%;margin-top:10px"><b>Nro de Caja &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</b></label>
+	    		<input type="text" style="margin-left:10px;width:85px;" id="txtNrocaja_aperturasencillera"/>
+		    </div>
+	        <br><br>
+	     </div>
+	     <div  style="margin:0% 0% 0% 3%" align="center">
+	    	<button><b>Aperturar</b></button>
+	        <button><b>Cancelar</b></button>
+		</div>
+	</div>
+	</center>
+</div>
+<!-- ---------------------------------------------------------------------------------------------------------------------------------  -->
+
+<div id="sencilleradetalle">
+  <center>
+	<div style="width:550px;height:420px;margin: 5px 5px 5px 15px;margin-left:5px;border-radius:5px 5px 5px 5px " id="Sencillera_Detalle">
+		<div class="ui-widget ui-state-default ui-corner-top ui-title">
+			<label>Detalle De Sencillera</label>
+		</div>
+		<!-- <div style="width:100%;height:15%;margin-left:5px" >  --> 
+		
+	   	<div style="width:98%;height:65%;">
+	   	<br>
+	    	<div id="tabla" style="width:100%" >
+	        	<table  width="100%"  class="tabla"> 
+	            	<tr>
+	                	<th style="color:#FFF;width:60%;"><B>Valor</B></th>
+	                    <th style="color:#FFF;width:15%;"><B>Cantidad</B></th>
+	                    <th style="color:#FFF;width:25%;"><B>Sub Total</B></th>
+	                    <th >&nbsp;</th>
+	                </tr>
+	            </table>
+	        </div>
+	        <div id="detalle" style="height:80%;overflow-y:scroll;width:100%;">
+	             <table width="100%" border="1" class="tabla" id="detalle_sencillera">
+					 <script type="text/javascript">
+	               		var  cadcontentrow='';
+	          			for(var i=0; i<11 ; i++){
+	          			cadcontentrow += '<tr>';
+	          			cadcontentrow += '<td style="color:#FFF;width:60%;"><BR></td>';
+	          			cadcontentrow += '<td style="color:#FFF;width:15%; cursor:text" id="celda"'+i+'" valign="middle"><input type="text" id="text'+i+'" align="right" style="width:100%;height:100%;border-style:solid;border-width:0px ;text-align: right"/>  </td>';
+	          			cadcontentrow += '<td style="color:#FFF;width:25%;"><BR></td>';
+	          			cadcontentrow += '</tr>';
+	          			}
+	          			$("#detalle_sencillera").html(cadcontentrow);
+	    		   </script> 
+	            </table>
+	        </div>
+	    </div>
+	    <div style="margin-left:70%" >
+	    	<label ><b>Total</b></label>
+	        <input id='txtTotal_Sencillera' type="text" readonly="readonly"/>
+	    </div>
+	    <br>
+	    <div style="width:100%;height:17.5%; margin : 5px 5px 5px 15px ;"> 
+	    	<button id="btnPredeterminado" style="width:25%;height:60%"> Predeterminado </button>
+	        <button id="btnAceptar" style="width:15%;height:60%;margin-left:35%"> Aceptar </button>
+	        <button id="btnSalir" style="width:15%;height:60%;margin-left:2%"> Salir </button>
+	    </div>
+	</div>
+  </center>
+</div>
+<!-- ---------------------------------------------------------------------------------------------------------------------------------  -->
+
+<div id ="AlertaSencillera">
+	<div style="width: 500 px;height: 150px">
+	
+	<label> </label>
+	
+	</div>
+</div>
+
+
+
+
+
+
+
+
