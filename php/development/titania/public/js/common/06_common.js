@@ -143,4 +143,9 @@ $(function(){
        showSpeed: 1,
        flyOut: true
    });
+   $("#itemMenu3").menu({
+       content: $("#itemMenu3").next().html(),
+       showSpeed: 1,
+       flyOut: true
+   });
 });
