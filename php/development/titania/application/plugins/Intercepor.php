@@ -7,8 +7,9 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
     private $_blackList = null;
     private $_auth = null;
     private $_execute = null;
+    private $_view = null;
 
-    public function __construct(Zend_Auth $auth, array $blackList, array $execute) {
+    public function __construct(Zend_Auth $auth, array $blackList, array $execute, array $view) {
         date_default_timezone_set(DATE_ZONE);
         Logger::configure(LOG_ACCESS);
         
@@ -16,6 +17,7 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
         $this->_auth = $auth;
         $this->_blackList = $blackList;
         $this->_execute = $execute;
+        $this->_view = $view;
     }
 
     public function preDispatch(Zend_Controller_Request_Abstract $request) {
@@ -40,7 +42,7 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
         	$auth = " [Acceso no autorizado.]";
         }
         
-        if(strlen($login->codcajero)!=0 && in_array($controller, $this->_execute)) {
+        if(strlen($login->codcajero)!=0 && in_array($controller, $this->_execute) && !in_array($action, $this->_view)) {
         	$nombrestore = 'tesoreria.verif_est_caja';
         	$arraydatos[]= $login->codcajero;
         	

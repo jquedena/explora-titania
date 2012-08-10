@@ -274,4 +274,475 @@ class MantenimientosController extends Zend_Controller_Action {
 		}
 	}
 	
+	public function ipmAction(){
+		$pintar=new Libreria_Pintar();
+		
+		$fechAct=date("Y");
+    	
+    	for($i = 1990; $i <= $fechAct; ++$i){
+		$cboanos[$i] = array($i,$i);
+	   	}
+	   	
+	   	$cbomes[]=array('1','Enero');
+		$cbomes[]=array('2','Febrero');
+		$cbomes[]=array('3','Marzo');
+		$cbomes[]=array('4','Abril');
+		$cbomes[]=array('5','Mayo');
+		$cbomes[]=array('6','Junio');
+		$cbomes[]=array('7','Julio');
+		$cbomes[]=array('8','Agosto');
+		$cbomes[]=array('9','Septiembre');
+		$cbomes[]=array('10','Octubre');
+		$cbomes[]=array('11','Noviembre');
+		$cbomes[]=array('12','Diciembre');
+			   	
+	   	
+	   	
+	   	$val[]=array('cboanios',$pintar->ContenidoCombo($cboanos,'9999999999'),'html');
+	   	
+	   	$val[]=array('cbomes',$pintar->ContenidoCombo($cbomes,'9999999999'),'html');
+	   	
+	   	$evt[]=array('btningresar','click','$("#divmanttipm" ).dialog( "open" );');
+
+		$fn[] = array('$(function() {
+						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
+						$( "#divmanttipm" ).dialog({
+							resizable: false,
+							height:300,
+							width:350,
+							modal: true,
+							autoOpen:false,
+							draggable:false,								
+							buttons: {						
+							   Guardar: function(){$( this ).dialog( "close" );}
+							   ,Cerrar: function(){$( this ).dialog( "close" );}							
+							}					
+						});
+					});');
+		
+	   	
+	   	
+	   	$pintar->PintarValor($val);
+	   	$pintar->PintarEvento($evt);
+  		$pintar->EjecutarFuncion($fn);	
+	   	
+	   	
+		
+		
+	}
+	
+
+	
+
+	public function uitAction(){
+		$pintar=new Libreria_Pintar();
+		
+		$fechAct=date("Y");
+    	
+    	for($i = 1990; $i <= $fechAct; ++$i){
+		$cboanos[$i] = array($i,$i);
+	   	}
+	   	   	
+	   	$val[]=array('cboanios',$pintar->ContenidoCombo($cboanos,'9999999999'),'html');
+	 	
+		$evt[]=array('btningresar','click','$("#divmanttuit" ).dialog( "open" );');
+
+		$fn[] = array('$(function() {
+						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
+						$( "#divmanttuit" ).dialog({
+							resizable: false,
+							height:180,
+							width:300,
+							modal: true,
+							autoOpen:false,
+							draggable:false,								
+							buttons: {						
+							   Guardar: function(){$( this ).dialog( "close" );}
+							   ,Cerrar: function(){$( this ).dialog( "close" );}							
+							}					
+						});
+					});');
+		
+		$pintar->PintarValor($val);
+		$pintar->PintarEvento($evt);
+		$pintar->EjecutarFuncion($fn);		
+	}
+	
+	
+	public function depreciacionAction(){
+		$pintar=new Libreria_Pintar();
+		
+		$fechAct=date("Y");
+    	
+    	for($i = 1990; $i <= $fechAct; ++$i){
+		$cboanos[$i] = array($i,$i);
+	   	}
+	   	
+	   	   	
+	   	$val[]=array('cboanios',$pintar->ContenidoCombo($cboanos,'9999999999'),'html');
+	   	
+	   		
+	   	$cboclasificacion[]=array('1','Casas Habitacion y Departamentos para Vivienda.');
+		$cboclasificacion[]=array('2','Tiendas,Depositos, Centros de Recreacion o Esparcimiento,Clubes Sociales o Instituciones.');
+		$cboclasificacion[]=array('3','Edificios -Oficinas.');
+	    $cboclasificacion[]=array('4','Clinicas,Hospitales,Cines,Industrias,Colegios,Talleres.');
+ 
+	   	
+	   	
+	   	$val[]=array('cboclasificacion',$pintar->ContenidoCombo($cboclasificacion,'9999999999'),'html');
+	   	
+	   	$cbomateria[]=array('1','Croncreto');
+	   	$cbomateria[]=array('2','Ladrillo');
+	   	$cbomateria[]=array('3','Adobe');
+	   	
+	   	$val[]=array('cbomaterial',$pintar->ContenidoCombo($cbomateria ,'9999999999'),'html');
+	   	
+	   	
+	   	$cboantiguedad[]=array('5','5');
+		$cboantiguedad[]=array('10','10');
+		$cboantiguedad[]=array('15','15');
+        $cboantiguedad[]=array('20','20');
+		$cboantiguedad[]=array('25','25');
+		$cboantiguedad[]=array('30','30');
+		$cboantiguedad[]=array('35','35');
+		$cboantiguedad[]=array('40','40');
+		$cboantiguedad[]=array('45','45');
+		$cboantiguedad[]=array('50','50');
+		$cboantiguedad[]=array('55','55');
+		$cboantiguedad[]=array('65','65');
+	   	
+		$val[]=array('cboantiguedad',$pintar->ContenidoCombo($cboantiguedad ,'9999999999'),'html');
+		
+	   	
+		for($i = 0; $i <= 100; ++$i){
+		$cboporcen[$i] = array($i,$i);
+	   	}
+	   	
+	   	$val[]=array('cbomuybueno',$pintar->ContenidoCombo($cboporcen,'9999999999'),'html');
+   	
+	   	$val[]=array('cbobueno',$pintar->ContenidoCombo($cboporcen,'9999999999'),'html');
+	   	
+	 	$val[]=array('cbomalo',$pintar->ContenidoCombo($cboporcen,'9999999999'),'html');
+
+	 	$val[]=array('cbomuymalo',$pintar->ContenidoCombo($cboporcen,'9999999999'),'html');
+		   	
+	 	$evt[]=array('btningresar','click','$("#manttdepreciacion" ).dialog( "open" );');
+
+		$fn[] = array('$(function() {
+						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
+						$( "#manttdepreciacion" ).dialog({
+							resizable: false,
+							height:500,
+							width:650,
+							modal: true,
+							autoOpen:false,
+							draggable:false,								
+							buttons: {						
+							   Guardar: function(){$( this ).dialog( "close" );}
+							   ,Cerrar: function(){$( this ).dialog( "close" );}							
+							}					
+						});
+					});');
+		
+		$pintar->PintarValor($val);
+		$pintar->PintarEvento($evt);
+		$pintar->EjecutarFuncion($fn);
+		
+	}
+	
+	public function timAction(){		
+		$pintar=new Libreria_Pintar();
+		
+		$fechAct=date("Y");
+    	
+    	for($i = 1990; $i <= $fechAct; ++$i){
+		$cboanos[$i] = array($i,$i);
+	   	}
+	   	
+	   	$cbomes[]=array('1','Enero');
+		$cbomes[]=array('2','Febrero');
+		$cbomes[]=array('3','Marzo');
+		$cbomes[]=array('4','Abril');
+		$cbomes[]=array('5','Mayo');
+		$cbomes[]=array('6','Junio');
+		$cbomes[]=array('7','Julio');
+		$cbomes[]=array('8','Agosto');
+		$cbomes[]=array('9','Septiembre');
+		$cbomes[]=array('10','Octubre');
+		$cbomes[]=array('11','Noviembre');
+		$cbomes[]=array('12','Diciembre');
+			   	
+	   	
+	   	
+	   	$val[]=array('cboanios',$pintar->ContenidoCombo($cboanos,'9999999999'),'html');
+	   	
+	   	$val[]=array('cbomes',$pintar->ContenidoCombo($cbomes,'9999999999'),'html');
+			   	
+	 	$evt[]=array('btningresar','click','$("#mantttim" ).dialog( "open" );');
+		
+		$fn[] = array('$(function() {
+						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
+						$( "#mantttim" ).dialog({
+							resizable: false,
+							height:300,
+							width:350,
+							modal: true,
+							autoOpen:false,
+							draggable:false,								
+							buttons: {						
+							   Guardar: function(){$( this ).dialog( "close" );}
+							   ,Cerrar: function(){$( this ).dialog( "close" );}							
+							}					
+						});
+					});');
+		
+		$fn[] = array('$("#txtfechven").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
+    	$fn[] = array('$("#txtfechven").datepicker("option", "dateFormat", "dd-mm-yy");');
+		
+		$pintar->PintarValor($val);
+		$pintar->PintarEvento($evt);
+		$pintar->EjecutarFuncion($fn);
+	}
+	
+    public function arancelAction(){
+    	$pintar=new Libreria_Pintar();
+		
+		$fechAct=date("Y");
+    	
+    	for($i = 1990; $i <= $fechAct; ++$i){
+		$cboanos[$i] = array($i,$i);
+	   	}	   	  	
+	   	
+	   	$val[]=array('cboanios',$pintar->ContenidoCombo($cboanos,'9999999999'),'html');
+	   		   	
+	 	$evt[]=array('btningresar','click','$("#manttarancel" ).dialog( "open" );');
+		
+		$fn[] = array('$(function() {
+						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
+						$( "#manttarancel" ).dialog({
+							resizable: false,
+							height:500,
+							width:500,
+							modal: true,
+							autoOpen:false,
+							draggable:false,								
+							buttons: {						
+							   Guardar: function(){$( this ).dialog( "close" );}
+							   ,Cerrar: function(){$( this ).dialog( "close" );}							
+							}					
+						});
+					});');
+		$evt[]=array('btnbuscarvia','click','$("#busqvias" ).dialog( "open" );');
+		
+		$fn[] = array('$(function() {
+						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
+						$( "#busqvias" ).dialog({
+							resizable: false,
+							height:500,
+							width:600,
+							modal: true,
+							autoOpen:false,
+							draggable:false,								
+							buttons: {							  
+							   Cerrar: function(){$( this ).dialog( "close" );}							
+							}					
+						});
+					});');
+		
+		$evt[]=array('btnbuscarcentrpoblado','click','$("#busqcentrpobl" ).dialog( "open" );');
+		
+		$fn[] = array('$(function() {
+						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
+						$( "#busqcentrpobl" ).dialog({
+							resizable: false,
+							height:500,
+							width:600,
+							modal: true,
+							autoOpen:false,
+							draggable:false,								
+							buttons: {							  
+							   Cerrar: function(){$( this ).dialog( "close" );}							
+							}					
+						});
+		              });');		
+		
+		$pintar->PintarValor($val);
+		$pintar->PintarEvento($evt);
+		$pintar->EjecutarFuncion($fn);
+    
+    }
+    
+    public function viasAction(){
+    	$pintar=new Libreria_Pintar();
+		
+		$fechAct=date("Y");
+		
+		$cbotipo[]=array('01','AVENIDA');
+		$cbotipo[]=array('02','CALLE');
+		$cbotipo[]=array('03','JIRON');
+		$cbotipo[]=array('04','AVENIDA');
+		$cbotipo[]=array('05','PASAJE');
+		$cbotipo[]=array('06','MALECON');
+		$cbotipo[]=array('07','ALAMEDA');
+		$cbotipo[]=array('08','PROLONGACION');
+		$cbotipo[]=array('10','CARRETERA');
+		$cbotipo[]=array('11','PASEO');
+		$cbotipo[]=array('12','CAMINO');
+	   	
+	 	$val[]=array('cbotipo',$pintar->ContenidoCombo($cbotipo,'9999999999'),'html');	
+	   	
+	   	$evt[]=array('btningresar','click','$("#manttvias" ).dialog( "open" );');	   	
+	   	
+	   	$evt[]=array('btnbuscarcentrpoblado','click','$("#manttvias" ).dialog( "open" );');
+		
+		$fn[] = array('$(function() {
+						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
+						$( "#manttvias" ).dialog({
+							resizable: false,
+							height:500,
+							width:600,
+							modal: true,
+							autoOpen:false,
+							draggable:false,								
+							buttons: {		
+							   	Guardar: function(){$( this ).dialog( "close" );}				  
+							   ,Cerrar: function(){$( this ).dialog( "close" );}							
+							}					
+						});
+		              });');		
+	       	
+	   	$evt[]=array('btnbuscarvia','click','$("#busqvias" ).dialog( "open" );');
+		
+		$fn[] = array('$(function() {
+						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
+						$( "#busqvias" ).dialog({
+							resizable: false,
+							height:500,
+							width:600,
+							modal: true,
+							autoOpen:false,
+							draggable:false,								
+							buttons: {							   			  
+							    Cerrar: function(){$( this ).dialog( "close" );}							
+							}					
+						});
+		              });');
+		
+		$evt[]=array('btnbuscarcentpobl','click','$("#busqcentrpobl" ).dialog( "open" );');
+		
+		$fn[] = array('$(function() {
+						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
+						$( "#busqcentrpobl" ).dialog({
+							resizable: false,
+							height:500,
+							width:600,
+							modal: true,
+							autoOpen:false,
+							draggable:false,								
+							buttons: {							   			  
+							    Cerrar: function(){$( this ).dialog( "close" );}							
+							}					
+						});
+		              });');
+		
+		
+		
+		
+		$pintar->PintarValor($val);
+		$pintar->PintarEvento($evt);
+		$pintar->EjecutarFuncion($fn);    	
+    }
+    
+    public function centropobladoAction(){
+    	
+    	$pintar=new Libreria_Pintar();
+		
+		$fechAct=date("Y");
+				
+		$cbotipo[]=array('01','URB.');
+		$cbotipo[]=array('02','P.V');
+		$cbotipo[]=array('03','BARRIO');
+		$cbotipo[]=array('04','C.H.');
+		$cbotipo[]=array('05','A.P.V.');
+		$cbotipo[]=array('06','P.V.');
+		$cbotipo[]=array('07','PROG.V.');
+		$cbotipo[]=array('08','AA.HH.');
+		$cbotipo[]=array('09','ASOC.');
+		$cbotipo[]=array('10','ASOC. COM.');
+		$cbotipo[]=array('11','ASOC.RES');
+		$cbotipo[]=array('12','ASOC. VIV.');		
+		$cbotipo[]=array('13','B.M');
+		$cbotipo[]=array('14','FDO.');
+		$cbotipo[]=array('15','A.P.');
+		$cbotipo[]=array('16','COOP.');
+		$cbotipo[]=array('17','MDO.');
+		$cbotipo[]=array('18','U.V.');			
+	   			
+	 	$val[]=array('cbotipo',$pintar->ContenidoCombo($cbotipo,'9999999999'),'html');	
+	   	
+	   	$evt[]=array('btningresar','click','$("#manttcentropoblad" ).dialog( "open" );');	   	
+	   		
+		$fn[] = array('$(function() {
+						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
+						$( "#manttcentropoblad" ).dialog({
+							resizable: false,
+							height:500,
+							width:600,
+							modal: true,
+							autoOpen:false,
+							draggable:false,								
+							buttons: {		
+							   	Guardar: function(){$( this ).dialog( "close" );}				  
+							   ,Cerrar: function(){$( this ).dialog( "close" );}							
+							}					
+						});
+		              });');		
+		
+		$pintar->PintarValor($val);
+		$pintar->PintarEvento($evt);
+		$pintar->EjecutarFuncion($fn);
+    }
+    
+    public function valoresunitariosAction(){
+    	
+    	$pintar=new Libreria_Pintar();
+    		
+	   	$evt[]=array('btningresar','click','$("#manttvaloresunitarios" ).dialog( "open" );');	   	
+	   		
+		$fn[] = array('$(function() {
+						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
+						$( "#manttvaloresunitarios" ).dialog({
+							resizable: false,
+							height:500,
+							width:600,
+							modal: true,
+							autoOpen:false,
+							draggable:false,								
+							buttons: {		
+							   	Guardar: function(){$( this ).dialog( "close" );}				  
+							   ,Cerrar: function(){$( this ).dialog( "close" );}							
+							}					
+						});
+		              });');		
+		
+		$pintar->PintarEvento($evt);
+		$pintar->EjecutarFuncion($fn);
+    	
+    }
+    
+    public function personasAction(){
+    	
+    	
+    	
+    }
+    
+    public function contenedorAction(){
+    	
+    }
+    
+    
+
+    
+    
+    
 }

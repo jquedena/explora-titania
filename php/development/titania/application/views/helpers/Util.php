@@ -17,7 +17,7 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
     }
     
     public function getRUC() {
-    	return "10425526176";
+    	return "20131366702";
     }
     
     public function getAreaCobranza() {
@@ -28,18 +28,22 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
         return "http://";
     }
     
+	public function getHost() {
+		return str_replace(":".$_SERVER["SERVER_PORT"], "", $_SERVER["HTTP_HOST"]);
+	}
+	
     public function getPath() {
         $path = explode("/index.php", $_SERVER["PHP_SELF"]);
-        return $this->getProtocol() . $_SERVER["HTTP_HOST"] . $path[0] . "/" . PATH;
+        return $this->getProtocol() . $this->getHost() . $path[0] . "/" . PATH;
     }
 
     public function getPath2() {
         $path = explode("/index.php", $_SERVER["PHP_SELF"]);
-        return $this->getProtocol() . $_SERVER["HTTP_HOST"] . $path[0] . "/";
+        return $this->getProtocol() . $this->getHost() . $path[0] . "/";
     }
     
 	public function getPathReport() {
-		return $this->getProtocol() . $_SERVER["HTTP_HOST"] . ':8084/titania/index.jsp?';
+		return $this->getProtocol() . $this->getHost() . '/titania_report/index.jsp?';
 	}
     
     public function getLink($url) {

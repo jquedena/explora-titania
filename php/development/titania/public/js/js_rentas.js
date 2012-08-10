@@ -1,6 +1,73 @@
 
+$(function(){
+		$( "#tabs_detallepredio" ).tabs();
+		
+		$("#c_codigocontrib").numeric({ decimal: false, negative: false }, function() { alert("Solo Numeros Enteros Positivos..."); this.value = ""; this.focus(); });
+		$('#c_codigocontrib').keyup(function(event) {
+			if(event.keyCode == 13){ 
+				$('#c_codigocontrib').val(LPad($('#c_codigocontrib').val(),6,'0'));				
+				buscardatoscontribuyente($('#c_codigocontrib').val());
+			}   
+		});	
+		$('#c_nombrecontrib').keyup(function(event) {
+			if(event.keyCode == 13){
+				var nombre = $('#c_nombrecontrib').val();
+				
+				var jqxhr = $.getJSON(path+"rentas/buscarcontribuyentexnombre/?nombre="+nombre);	
+				jqxhr.success(function(data){
+					if (data.result != undefined && data.result == 'error'){console.log(data.mensaje);} 
+					else {
+						var cad = '<table id="tbl_buscarpersonanombre" width="640" border="1" cellspacing="0" cellpadding="0"><tbody class="ui-table-body">';
+						$.each(data.result.contribuyentes, function(i , colum){
+							cad += '<tr onclick="buscardatoscontribuyente(\''+colum.codpers+'\');$(\'#ventanabuscarpersonanombre\').dialog(\'close\');"><td width="79">'+colum.codpers+'</td><td width="239">'+colum.nombre+'</td><td width="320">'+colum.dirfiscal+'</td></tr>';
+						});
+						cad += '</tbody></table>';
+						
+						$('#div_rptabuscarpersonanombre').html(cad)
+						mouseHover("tbl_buscarpersonanombre");
+						$("#ventanabuscarpersonanombre" ).dialog( "open" );
+					}
+				});
+				
+			}   
+		});		
+		$('#c_direccontri').keyup(function(event) {
+			if(event.keyCode == 13){
+				var dir = $('#c_direccontri').val();
+				
+				var jqxhr = $.getJSON(path+"rentas/buscarcontribuyentexdir/?dir="+dir);	
+				jqxhr.success(function(data){
+					if (data.result != undefined && data.result == 'error'){console.log(data.mensaje);} 
+					else {
+						var cad = '<table id="tbl_buscarpersonadir" width="805" border="1" cellspacing="0" cellpadding="0"><tbody class="ui-table-body">';
+						$.each(data.result.direccion, function(i , colum){
+							cad +=  '<tr onclick="buscardatoscontribuyente(\''+colum.codpers+'\');$(\'#ventanabuscarpersonadireccion\').dialog(\'close\');">'+
+									'	<td width="54" >'+colum.codpred+'</td>'+
+									'	<td width="237" >'+colum.nombrevia+'</td>'+
+									'	<td width="24" >'+colum.nro+'</td>'+
+									'   <td width="41" >'+colum.depart+'</td>'+
+									'   <td width="24" >'+colum.interior+'</td>'+
+									'   <td width="29" >'+colum.letra+'</td>'+
+									'   <td width="34" >'+colum.estac+'</td>'+
+									'   <td width="39" >'+colum.depos+'</td>'+
+									'   <td width="24" >'+colum.mz+'</td>'+
+									'   <td width="25" >'+colum.lote+'</td>'+
+									'   <td width="248" >'+colum.codpers +' - '+ colum.nompers +'</td>'+
+									'</tr>';
+						});
+						cad += '</tbody></table>';
+						
+						$('#div_rptabuscarpersonadir').html(cad)
+						mouseHover("tbl_buscarpersonadir");
+						$("#ventanabuscarpersonadireccion" ).dialog( "open" );
+					}
+				});
+				
+			}   
+		});		
+		
+});
 
-$(function(){$( "#tabs_detallepredio" ).tabs();});
 
 $(function() {
 	$( "#dialog:ui-dialog" ).dialog( "destroy" );					
@@ -17,17 +84,46 @@ $(function() {
 		   ,Cerrar: function(){$( this ).dialog( "close" );}
 		}
 	});
+	$( "#ventanabuscarpersonanombre" ).dialog({
+		resizable: false,
+		height:300,
+		width:750,
+		modal: true,
+		autoOpen:false,
+		draggable:false,
+		title:"Busqueda de Contribuyente",
+		buttons: {
+			Cerrar: function(){$( this ).dialog( "close" );}
+		}
+	});
+	$( "#ventanabuscarpersonadireccion" ).dialog({
+		resizable: false,
+		height:300,
+		width:880,
+		modal: true,
+		autoOpen:false,
+		draggable:false,
+		title:"Busqueda de Contribuyente",
+		buttons: {
+			Cerrar: function(){$( this ).dialog( "close" );}
+		}
+	});
 });
 
-function pintardatoscontribuyente(cod,nombre,dirfis){
-	$( "#c_codigocontrib" ).html( cod );	
-	$( "#c_nombrecontrib" ).html( nombre );	
-	$( "#c_dirfiscal" ).html( dirfis );	
+
+
+
+function buscardatoscontribuyente(codpers){
+	//$( "#c_codigocontrib" ).html( cod );	
 	
-	var jqxhr = $.getJSON(path+"rentas/datoscontribuyente/");	
+	var jqxhr = $.getJSON(path+"rentas/datoscontribuyente/?codpers="+codpers);	
 	jqxhr.success(function(data){
 		if (data.result != undefined && data.result == 'error'){console.log(data.mensaje);} 
 		else {
+			$( "#c_codigocontrib" ).val( data.result.contribuyente.codigo );
+			$( "#c_nombrecontrib" ).val( data.result.contribuyente.ape_paterno + ' '+ data.result.contribuyente.ape_materno + ' '+ data.result.contribuyente.nombre );	
+			$( "#c_direccontri" ).val( data.result.contribuyente.dirfiscal );				
+			
 			var predios = data.result.predios;
 			var cadpredio = '';
 			  $.each(predios, function(i , colum){	   
@@ -40,7 +136,7 @@ function pintardatoscontribuyente(cod,nombre,dirfis){
 						    '		    <td width="62">C&oacute;digo:</td>'+
 						    '		    <td width="165">'+colum.codigo+'</td>'+
 						    '		    <td colspan="4" align="right">'+
-						    '		    	<button id="btndetpredio'+colum.codigo+'" onclick="detallepredio(\''+cod+'\',\''+nombre+'\',\''+dirfis+'\',\''+colum.codigo+'\');"><span class="ui-button-text">Detalle Predio</span></button>'+
+						    '		    	<button id="btndetpredio'+colum.codigo+'" onclick="detallepredio(\''+data.result.contribuyente.codigo+'\',\''+data.result.contribuyente.ape_paterno + ' '+ data.result.contribuyente.ape_materno + ' '+ data.result.contribuyente.nombre+'\',\''+data.result.contribuyente.dirfiscal+'\',\''+colum.codigo+'\');"><span class="ui-button-text">Detalle Predio</span></button>'+
 						    '		    </td>'+
 						    '		    <td width="20">&nbsp;</td>'+
 						    '		  </tr>'+
@@ -274,6 +370,8 @@ function detallepredio(cod, nombre, dirfis, codpredio){
 			$('#c_total_area_cons').html(total_area_cons);
 			$('#c_valor_area_cons').html(valor_area_cons);
 			
+			mouseHover("tbl_pisos");
+			
 			//tablita instalacion
 			var cadtablainstalacion = '<table id="tbl_instalacion" border="1" cellspacing="0" cellpadding="0"><tbody class="ui-table-body">';
 			total_area_cons = 0;
@@ -309,6 +407,7 @@ function detallepredio(cod, nombre, dirfis, codpredio){
 			$('#c_total_area_cons_inst').html(total_area_cons);
 			$('#c_valor_area_cons_inst').html(valor_area_cons);
 			
+			mouseHover("tbl_instalacion");
 		}
 	});
 	

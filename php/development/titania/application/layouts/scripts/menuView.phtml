@@ -14,6 +14,7 @@
 					
 					echo "<!-- ";
 					print_r($datosmenus); 
+					echo json_encode($datosmenus);
 					echo " -->";
 					
 					$cont = '';
@@ -35,9 +36,9 @@
 										if($existehijo == 0){
 											$existehijo = 1;
 											$cont.='<div class="hidden"><ul>';
-											$cont.='<li><a href="'.$url.$urlhijo.'">'.$nombrehijo.'</a></li>';
+											$cont.='<li><a id="'.$codnod.'" href="'.$url.$urlhijo.'">'.$nombrehijo.'</a></li>';
 										}else{
-											$cont.='<li><a href="'.$url.$urlhijo.'">'.$nombrehijo.'</a></li>';
+											$cont.='<li><a id="'.$codnod.'" href="'.$url.$urlhijo.'">'.$nombrehijo.'</a></li>';
 										}
 									
 									}
