@@ -1,6 +1,6 @@
 function aperturarcaja(vaccion){
 	var vnrocaja='';
-	var vfecha ='';
+	var vfecha='';
 	var obs ='';
 	if (vaccion=='1'){
 		vnrocaja = $('#txtnrocaja').val();
@@ -141,18 +141,17 @@ function lstcajasapert(){
 	});
 }
 
-var arcajascerrada ='';
-var arcajasapert='';
-var habilitar='';
+var listaCerrada = '';
+var listaAperturada = '';
+var listaInhabilitada = '';
 
-function guardarcaja(numcaja,estado,obj){
-	var fechaorg = $('#fechaorg').val();
-	if( estado == '1' || estado== '3') { // Aperturar caja
-		toogleVar(arcajasapert, numcaja);
-	} else if( estado == '2' ){ // Cerrar caja
-		toogleVar(arcajascerrada, numcaja);
-	} else if( estado == '0' ){ // Habilitada
-		toogleVar(arcajascerrada, numcaja);
+function seleccionar(nroCaja, estado){
+	if(estado == '1' || estado== '3') { // Para Cerrar
+		listaAperturada = toogleVar(listaAperturada, nroCaja);
+	} else if(estado == '0' || estado == '2'){ // Para Aperturar
+		listaCerrada = toogleVar(listaCerrada, nroCaja);
+	} else if(estado == '-'){ // Para Habilitar
+		listaInhabilitada = toogleVar(listaInhabilitada, nroCaja);
 	}
 }
 
@@ -162,4 +161,41 @@ function toogleVar(_string, _value) {
 	}else{
 		_string += "," + _value;
 	}
+	
+	return _string;
+}
+
+function cerrarTodasCajas(){
+	var vfecha, vcajas, msg, _post;
+
+	if (listaAperturada == '' || listaAperturada == null) {
+		msg = 'Seleccione las cajas ha cerrar';
+		
+		if(listaInhabilitada != '') {
+			msg = 'Ud. ha seleccionado las cajas para su habilitaci\u00F3n.';
+		}
+		
+		if(listaCerrada != '') {
+			msg = 'Ud. ha seleccionado las cajas para su reapertura.';
+		}
+		
+		openDialogWarning(msg);
+		return false;
+	}
+	
+	vfecha = $('#txtfecha').val();
+	vcajas = listaAperturada.substr(1, listaAperturada.length);
+	_post = $.post(path + "cajaflujo/actcerrarcaja/", {"obs": "Cerrado por el tesorero.", "fecha": vfecha, "nrocaja": vcajas});
+	
+	_post.success(function(requestData){
+		openDialogInfo(requestData, 400, 150);
+	});
+	
+	_post.error(function(requestData, errMessage, errNumber){
+		if(errNumber == '') {
+			openDialogError("No se puede determinar el error.");
+		} else {
+			openDialogError(errNumber +': ' + errMessage);
+		}
+	});
 }

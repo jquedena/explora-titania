@@ -19,13 +19,20 @@ class RentasController extends Zend_Controller_Action {
 	}
 	
 	public function indexAction() {
-		// TODO Auto-generated RentasController::indexAction() default action
+		
+		$nombrestore = 'seguridad.login';
+		$arraydatos[]= 'MALOIS';
+		$arraydatos[]= '123456';
+		
+		$cn = new Model_DataAdapter();
+		$datos = $cn->ejec_store_procedura_sql_array($nombrestore,$arraydatos);		
+		
+		print_r($datos);
+		
 	}
 	
 	public function datosAction(){
 		//$evt[] = array('btndetpredio000001','click','$("#ventanadetallepredio" ).dialog( "open" );');
-
-		$this->view->util()->registerScriptJSController($this->getRequest());
 		$url = $this->view->util()->getPath();
 		$datospers = $this->_request->getParam ( 'datospers', '' );
 			if ($datospers == '') {
@@ -38,12 +45,31 @@ class RentasController extends Zend_Controller_Action {
 			}
 	}
 	
+	public function datos1Action(){
+//		$this->view->util()->registerScriptJSController($this->getRequest());
+//		$url = $this->view->util()->getPath();
+//		$datospers = $this->_request->getParam ( 'datospers', '' );
+//			if ($datospers == '') {
+//				header ( 'location:' . $url . 'index.php/busqpers/?tit=Datos Contribuyente&url=' . $url . 'index.php/rentas/datos/?datospers=', true );
+//			} else {				
+//				list ( $cidpers, $nompers, $dir , $fechaproyeccion ) = explode ( '|', $datospers );
+//				echo $this->view->inlineScript()->appendScript('pintardatoscontribuyente("'.$cidpers .'","'. $nompers .'","'. $dir .'")');
+//				echo $this->view->inlineScript()->appendScript('detalleprediollenarcomponentes()');
+//				echo $this->view->inlineScript()->appendScript('limpiarformulariodetallepredio()');				
+//			}
+	}
+	
 	public function datoscontribuyenteAction(){
 		$this->_helper->viewRenderer->setNoRender ();
 		$this->_helper->layout->disableLayout ();
+
+		$codpers   = $this->_request->getParam ( 'codpers', '' );
+		$nombre    = $this->_request->getParam ( 'nombre', '' );
+		$codpred   = $this->_request->getParam ( 'codpred', '' );
+		$direccion = $this->_request->getParam ( 'direccion', '' );
 		
 		$array['mensaje'] = "OK";
-		$array['result']['contribuyente'] = array("codigo"=> ""	, "nombre"=> "Miguelito", "apaterno"=> "", "amaterno"=> "", "tipoDocumento"=> "", "nroDocumento"=> "", "domicilio"=> "");
+		$array['result']['contribuyente'] = array("codigo"=> $codpers, "nombre"=> "Miguel", "ape_paterno"=> "Villanueva", "ape_materno"=> "Gonzalez", "tipoDocumento"=> "", "nroDocumento"=> "", "dirfiscal"=> "Asoc Juan Linares Rojas D-15");
 		
 		$predios[] = array("codigo"=> "000001", "tipo"=> "X", "direccion"=> "mi casita 01", "uso"=> "CASA"    ,"porcentaje" => '100', "fechaadq"=>"21/03/1990" , "fechabaj"=>"" ,"valorepredio"=> "100.00", "valorafecto"=> "100.00", "impuestoanual"=> "10.00" , "valuo"=>"876.00" );
 		$predios[] = array("codigo"=> "000002", "tipo"=> "Y", "direccion"=> "mi casita 02", "uso"=> "COMERCIO","porcentaje" => '100', "fechaadq"=>"26/12/2010" , "fechabaj"=>"26/01/2012" ,"valorepredio"=> "200.00", "valorafecto"=> "200.00", "impuestoanual"=> "10.00" , "valuo"=>"123.00" );
@@ -51,6 +77,64 @@ class RentasController extends Zend_Controller_Action {
 		
 		$array['result']['predios']	= $predios;	
 
+		echo json_encode($array);
+	}
+	
+	public function buscarcontribuyentexnombreAction(){
+		$this->_helper->viewRenderer->setNoRender ();
+		$this->_helper->layout->disableLayout ();
+		$array['mensaje'] = "OK";
+		
+		$nombre = $this->_request->getParam ( 'nombre', '' );
+		
+		$array['result']['contribuyentes'][0]['codpers'] = '125589';
+		$array['result']['contribuyentes'][0]['nombre'] = 'BARZOLA ROJAS DIANA';
+		$array['result']['contribuyentes'][0]['dirfiscal'] = 'MZ.: N LT.: 13 - COOP. DE VIV. COVITI';
+		
+		$array['result']['contribuyentes'][1]['codpers'] = '456132';
+		$array['result']['contribuyentes'][1]['nombre'] = 'ARENAS GONZALES GABRIEL G';
+		$array['result']['contribuyentes'][1]['dirfiscal'] = ' AV 12 DE OCTUBRE MZ N LT 13 COOP. DE VIV ';
+		
+		$array['result']['contribuyentes'][2]['codpers'] = '008080';
+		$array['result']['contribuyentes'][2]['nombre'] = 'VILLANUEVA GONZALEZ MIGUEL';
+		$array['result']['contribuyentes'][2]['dirfiscal'] = ' CABO GRP. JUAN LINARES ROJAS D-15 ';
+		
+		echo json_encode($array);
+	}
+	
+	public function buscarcontribuyentexdirAction(){
+		$this->_helper->viewRenderer->setNoRender ();
+		$this->_helper->layout->disableLayout ();
+				
+		$dir = $this->_request->getParam ( 'dir', '' );
+		
+		$array['mensaje'] = "OK";
+		$array['result']['direccion'][0]['codpred'] = '000001';
+		$array['result']['direccion'][0]['nombrevia'] = 'Via 1';
+		$array['result']['direccion'][0]['nro'] = '1';
+		$array['result']['direccion'][0]['depart'] = '';
+		$array['result']['direccion'][0]['interior'] = '';
+		$array['result']['direccion'][0]['letra'] = '';
+		$array['result']['direccion'][0]['estac'] = '';
+		$array['result']['direccion'][0]['depos'] = '';
+		$array['result']['direccion'][0]['mz'] = '';
+		$array['result']['direccion'][0]['lote'] = '';
+		$array['result']['direccion'][0]['codpers'] = '008080';
+		$array['result']['direccion'][0]['nompers'] = 'VILLANUEVA GONZALEZ MIGUEL';
+		
+		$array['result']['direccion'][1]['codpred'] = '000001';
+		$array['result']['direccion'][1]['nombrevia'] = 'Via 2';
+		$array['result']['direccion'][1]['nro'] = '2';
+		$array['result']['direccion'][1]['depart'] = '';
+		$array['result']['direccion'][1]['interior'] = '';
+		$array['result']['direccion'][1]['letra'] = '';
+		$array['result']['direccion'][1]['estac'] = '';
+		$array['result']['direccion'][1]['depos'] = '';
+		$array['result']['direccion'][1]['mz'] = '';
+		$array['result']['direccion'][1]['lote'] = '';
+		$array['result']['direccion'][1]['codpers'] = '008081';
+		$array['result']['direccion'][1]['nompers'] = 'ARENAS GONZALES GABRIEL G';
+		
 		echo json_encode($array);
 	}
 	

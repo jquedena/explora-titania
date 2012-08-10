@@ -1,0 +1,92 @@
+<div class="ui-widget ui-widget-content ui-corner-all" style="width: 99%;margin: 3px;">
+	<div class="ui-widget ui-state-default ui-corner-top ui-title">
+		<label>PERSONAS</label>
+	</div>
+	<br/>
+	<table border="0" class="ui-tablecontent">
+	<tr>
+	<td >Tipo Ingreso&nbsp;<select id="cbotipingreso"><option>Administrado</option><option>Contribuyente</option></select></td>
+	<td>Codigo&nbsp;<input ReadOnly id="txtcodigo"/></td>
+	</tr>
+	<tr>
+	<td colspan="2" >
+	<fieldset> <legend>Identificacion del Contribuyente</legend> 
+	<table>
+	<tr><td>Tipo Documento</td><td>Nro. Documento</td><td>Tipo de Persona</td>
+	</tr>
+	<tr>
+	<td><select id="cbotipdoc" ><option>DNI</option></select></td><td><input/></td><td><select id="cbotipper"><option>PERSONA NATURAL</option></select></td>
+	</tr>
+	<tr>
+	<td colspan="2">Apellido Paterno</td><td>Apellido Materno</td>
+	</tr>
+	<tr>
+	<td colspan="2"><input style="width:250"/></td><td><input style="width:250"/></td>
+	</tr>
+	<tr>
+	<td colspan="2" >Nombres</td><td>F.Nacimiento</td>
+	</tr>
+	<tr>
+	<td  colspan="2"><input style="width:250" /></td><td><input></td>
+	</tr>
+	<tr>
+	<td>Nro.Telefono</td><td>Nro.Fax</td><td>Correo Electronico</td>
+	</tr>
+	<tr>
+	<td><input></td><td><input></td><td><input></td>
+	</tr>
+	</table>	
+	</fieldset>	
+	</td>
+	</tr>
+	<tr>
+	<td colspan="2">
+		<fieldset> <legend>Direcci&oacute;n Fiscal</legend> 
+	<table border="0">
+	<tr>
+	<td>Codigo Postal </td><td>Cod.Via</td><td colspan="2">Av., Jr. , Psje., Calle, etc.</td>
+	</tr>
+	<tr>
+	<td><select id="cbocodpostal" ><option>Puente Piedra</option></select></td><td><input style="width:50;"/></td><td colspan="2"><input style="width:50;"/>&nbsp;<input></td>
+	</tr>
+	<tr>
+	<td colspan="5"><div>
+	    <table>
+	       <tr>	
+	        <td >Urbanizacion, Asentamiento Humano, etc.</td><td>Nro.</td><td>Dpto.</td><td >Interior</td>
+	       </tr>
+			<tr>
+			<td><input style="width:50;">&nbsp;<input></td><td><input style="width:50;"></td><td><input style="width:50;"></td><td><input style="width:50;">&nbsp;<input style="width:50;" ></td>
+			</tr>
+		 </table></div>
+		 </td>
+	</tr>
+
+	<tr>
+	<td colspan="5">
+	<div>
+	    <table>
+	       <tr>	<td>Block.</td><td>Mz.</td><td>Lote</td><td>Referencia</td>
+			</tr>
+			<tr>
+			<td><input style="width:50;"></td><td><input style="width:50;"></td><td><input style="width:50;"></td><td><input style="width:250;"></td>
+			</tr>
+	</table>
+	</div>
+	</td>
+	</tr>
+	
+	</table>
+	</fieldset>
+	</td>
+	</tr>
+	<tr>
+	 <td  align="center"">
+	    <button id="btnbuscar" name="btnbuscar">Buscar</button> &nbsp;	
+        <button id="btnnuevo" name="btnnuevo">Nuevo</button> &nbsp;
+        <button id="btneditar" name="btneditar">Editar</button>
+      </td>
+        
+	</tr>
+	</table>
+</div>

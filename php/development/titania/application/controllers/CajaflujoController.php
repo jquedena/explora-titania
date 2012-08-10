@@ -43,6 +43,7 @@ class CajaflujoController extends Zend_Controller_Action {
 		if ($this->getRequest()->isXmlHttpRequest()) {
 			$this->_helper->viewRenderer->setNoRender();
 			$this->_helper->layout->disableLayout();
+			
 			$vnrocaja = $this->_request->getPost('vnrocaja');
 			$vfecha = $this->_request->getPost ('vfecha');
 			$vaccion = $this->_request->getPost('vaccion');
@@ -56,8 +57,8 @@ class CajaflujoController extends Zend_Controller_Action {
 			$cn = new Model_DataAdapter();
 			$store="tesoreria.aperturarcaja";
 			if ($vaccion=='1'){
-				$arstore [0] = $vnrocaja;
-				$arstore [1]=$vfecha;// la fecha se ingresa?
+				$arstore [0]=$vnrocaja;
+				$arstore [1]=$vfecha; // La fecha se ingresa?
 				$arstore [2]=$ciduser;
 				$arstore [3]=$nomuser;
 				$arstore [4]="";
@@ -70,7 +71,7 @@ class CajaflujoController extends Zend_Controller_Action {
 			 		$dtlle = '';
 				 for($i=0;$i<count($Arcajas);$i++){
 				 	$arstore [0]=$Arcajas[$i];
-					$arstore [1]=$vfecha;// la fecha se ingresa?
+					$arstore [1]=$vfecha; // La fecha se ingresa?
 					$arstore [2]=$ciduser;
 					$arstore [3]=$nomuser;
 					$arstore [4]="";
@@ -88,10 +89,6 @@ class CajaflujoController extends Zend_Controller_Action {
 				$f []= array("lstcajasapert();");
 				$func->EjecutarFuncion($f);
 			}
-			//result2
-			
-			// $hab[]=array("btnaperturar",false);
-			// $func->HabilitarComponente($hab);
 		}
 	}
 
@@ -142,7 +139,7 @@ class CajaflujoController extends Zend_Controller_Action {
 				}
 				$hab[] = array("cerrarcaja",true);
 			}elseif($datos[0][0]=='1'){
-				$f []=array("openDialogWarning('".$datos[0][1]."', 350, 130);");
+				$f [] =array("openDialogWarning('".$datos[0][1]."', 350, 130);");
 				
 				$hab[] = array("cerrarcaja",false);
 
@@ -206,9 +203,9 @@ class CajaflujoController extends Zend_Controller_Action {
 		$dfecha = explode ( " ", $datosfecha[0][0]);
 		$date = $dfecha[0];	
 		
-		$evt [] = array("btnreaperturar","click","ventanareapertura();");
 		$evt [] = array("btnbuscar","click","lstcajasapert();");
-		$evt [] = array("btncerrarcaja","click","cerrarcaja();");
+		$evt [] = array("btnreaperturar","click","ventanareapertura();");
+		$evt [] = array("btncerrarcaja","click","cerrarTodasCajas();");
 
 		$val[] = array('txtdia', $date, 'val');
     	
@@ -254,7 +251,7 @@ class CajaflujoController extends Zend_Controller_Action {
 					$dts .='<td align="right">'.$datos[$i][5].'</td>';
 					$dts .='<td style="padding-left:10px;">'.$datos[$i][7].'</td>'; // 6 Es el estado numerico 7 Es el nombre del estado
 					$dts .='<td align="center">';
-					$dts .='<input type="checkbox" id="Chkcaja_'.$i.'" onchange="guardarcaja(\''.$datos[$i][0].'\',\''.$datos[$i][6].'\',this);";/>';
+					$dts .='<input type="checkbox" id="Chkcaja_'.$i.'" onchange="seleccionar(\''.$datos[$i][0].'\',\''.$datos[$i][6].'\');"/>';
 					$dts .='<input type="hidden" id="ids_'.$i.'" value="'.$datos[$i][10].'" />';
 					$dts .='</td>';
 					$dts .='</tr>';
@@ -266,44 +263,47 @@ class CajaflujoController extends Zend_Controller_Action {
 							<td align="right" style="font-size:15px;font-weight: bold;">'.number_format($totalanulado,2).'</td>
 							<td colspan="2">&nbsp;</td>
 						</tr>';
-			}else
+			} else
 				$dts='<tr><td colspan="9" align="center">No ahi registros</td></tr>';
 			echo "<tbody class='ui-table-body'>" . $dts . "</tbody>";
 					
-		// Graficas	
-    	$store = 'tesoreria.obtener_montoxcajero';
-		$pgraf[] =  $vfecha ;
-		$pgraf[] =  $vfecha ;
-		$cn = new Model_DataAdapter ();
-		$datosgraf = $cn->ejec_store_procedura_sql ( $store, $pgraf );
-    	$cadgrafcategorias = '';
-    	$cadgrafcancelado = '';
-    	$cadgrafanulado = '';
-    	$cadgrafdatospie = '';
-    	for($i = 0; $i<count($datosgraf) ; $i++ ){
-    		$cadgrafcategorias .="<category label='".$datosgraf[$i][1]."'/>";
-    		$cadgrafcancelado .="<set value='".$datosgraf[$i][2]."' />";
-    		$cadgrafanulado .="<set value='".$datosgraf[$i][3]."' />";
-    		$cadgrafdatospie .="<set label='".$datosgraf[$i][1]."' value='".$datosgraf[$i][2]."'/>";
-    	}
-    	    	
-    	$cadgrafbarras  = "<script >     	
-		    			   var chart = new FusionCharts('".$url."graf/MSColumn3D.swf', 'ChartbarrasId', '690', '500', '0', '0');
-				   		   chart.setDataXML(\"<chart palette='1' caption='Monto por cajeros' xAxisName='Cajero' yAxisName='Monto' numberPrefix='S/.' decimals='2'   formatNumberScale='0'    showValues='0'  rotateNames='1'  slantLabels='1' rotateValues='1' placeValuesInside='1' forceYAxisValueDecimals='1'  yAxisValueDecimals='2'>";
-    	$cadgrafbarras .= "<categories>".$cadgrafcategorias."</categories>";
-		$cadgrafbarras .= "<dataset seriesname='Monto Cancelado' color='00CC33' showValues='1'>".$cadgrafcancelado." </dataset>";
-		$cadgrafbarras .= "<dataset seriesname='Monto Anulado' color='F1C7D2'  showValues='1'> ".$cadgrafanulado." </dataset>";		
-		$cadgrafbarras .= "</chart>\");
-				   	       chart.render(\"chartdivbarras\");				   	       
-					      </script> ";
-		
-		$cadgrafpie  ="<script>
-				       var chartpie = new FusionCharts('".$url."graf/Pie3D.swf', 'ChartpieId', '690', '300', '0', '0');
-		   			   chartpie.setDataXML(\"<chart palette='1' caption='Monto por cajeros' numberPrefix='S/.' decimals='2' formatNumberScale='0'  enableSmartLabels='1' enableRotation='1' bgColor='99CCFF,FFFFFF' bgAlpha='40,100' bgRatio='0,100' bgAngle='360' showBorder='1' startingAngle='70'>".$cadgrafdatospie."</chart>\");
-		   			   chartpie.render(\"chartdivpie\");
-		   			   </script>";
-					
-		echo $cadgrafbarras.$cadgrafpie;
+			// Graficas	
+	    	$store = 'tesoreria.obtener_montoxcajero';
+			$pgraf[] =  $vfecha ;
+			$pgraf[] =  $vfecha ;
+			$cn = new Model_DataAdapter ();
+			$datosgraf = $cn->ejec_store_procedura_sql ( $store, $pgraf );
+	    	$cadgrafcategorias = '';
+	    	$cadgrafcancelado = '';
+	    	$cadgrafanulado = '';
+	    	$cadgrafdatospie = '';
+	    	for($i = 0; $i<count($datosgraf) ; $i++ ){
+	    		$cadgrafcategorias .="<category label='".$datosgraf[$i][1]."'/>";
+	    		$cadgrafcancelado .="<set value='".$datosgraf[$i][2]."' />";
+	    		$cadgrafanulado .="<set value='".$datosgraf[$i][3]."' />";
+	    		$cadgrafdatospie .="<set label='".$datosgraf[$i][1]."' value='".$datosgraf[$i][2]."'/>";
+	    	}
+    	
+	    	if(count($datosgraf) > 0) {
+		    	$cadgrafbarras  = "<script >     	
+				    			   var chart = new FusionCharts('".$url."graf/MSColumn3D.swf', 'ChartbarrasId', '690', '500', '0', '0');
+						   		   chart.setDataXML(\"<chart palette='1' caption='Monto por cajeros' xAxisName='Cajero' yAxisName='Monto' numberPrefix='S/.' decimals='2'   formatNumberScale='0'    showValues='0'  rotateNames='1'  slantLabels='1' rotateValues='1' placeValuesInside='1' forceYAxisValueDecimals='1'  yAxisValueDecimals='2'>";
+		    	$cadgrafbarras .= "<categories>".$cadgrafcategorias."</categories>";
+				$cadgrafbarras .= "<dataset seriesname='Monto Cancelado' color='00CC33' showValues='1'>".$cadgrafcancelado." </dataset>";
+				$cadgrafbarras .= "<dataset seriesname='Monto Anulado' color='F1C7D2'  showValues='1'> ".$cadgrafanulado." </dataset>";		
+				$cadgrafbarras .= "</chart>\");
+						   	       chart.render(\"chartdivbarras\");				   	       
+							      </script> ";
+	
+				$cadgrafpie  ="<script>
+						       var chartpie = new FusionCharts('".$url."graf/Pie3D.swf', 'ChartpieId', '690', '300', '0', '0');
+				   			   chartpie.setDataXML(\"<chart palette='1' caption='Monto por cajeros' numberPrefix='S/.' decimals='2' formatNumberScale='0'  enableSmartLabels='1' enableRotation='1' bgColor='99CCFF,FFFFFF' bgAlpha='40,100' bgRatio='0,100' bgAngle='360' showBorder='1' startingAngle='70'>".$cadgrafdatospie."</chart>\");
+				   			   chartpie.render(\"chartdivpie\");
+				   			   </script>";
+							
+				echo $cadgrafbarras.$cadgrafpie;
+	    	}
+    	
 		}
 	}
 	
@@ -320,4 +320,3 @@ class CajaflujoController extends Zend_Controller_Action {
 		echo "<b style='font-size: 115%;'>".$this->_request->getParam('mensaje')."</b>";
 	}
 }
-
