@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: Framework.jar 
+ iilc_pe_ejbClient.jar
+

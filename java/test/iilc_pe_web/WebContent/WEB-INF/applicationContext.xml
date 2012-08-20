@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+        
+        
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"  >
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:ORADEV"/>
+        <property name="username" value="iilc"/>
+        <property name="password" value="iilc"/>
+    </bean>
+
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation">
+		    <value> classpath:/com/grupobbva/bc/per/tel/iilc/config/sql-map-config-iilc.xml</value>
+		</property>
+		<property name="dataSource"><ref local="dataSource"/></property>     
+	</bean>
+
+ 	<context:annotation-config/>
+  
+    <context:component-scan base-package="com.grupobbva.bc.per.tel.iilc" > 
+    </context:component-scan>      
+</beans>

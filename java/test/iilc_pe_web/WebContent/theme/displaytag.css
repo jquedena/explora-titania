@@ -1,0 +1,99 @@
+.displayTable table {
+	font-size: 9pt;
+	border: 1px solid #666;
+	width: 80%;
+	margin: 20px 0 20px 0 !important;
+}
+
+.displayTable  th, .displayTable  td {
+	padding: 2px 4px 2px 4px !important;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 9pt;
+}
+
+<!--para la cabecera de la tabla -->
+.displayTable  thead tr {
+	background-color: #2d4492; font-weight: bold; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 9pt
+}
+
+<!--para resaltar la columna a sortear -->
+.displayTable  th.sorted {
+	<!--background-color: #57A5D2;-->
+	background-color: #57A5D2;
+	font-size: 9pt;
+}
+
+.displayTable  th a,.displayTable  th a:visited {
+	color: black;
+	font-size: 9pt;
+}
+
+.displayTable th a:hover {
+	text-decoration: underline;
+	color: black;
+	font-size: 9pt;
+}
+
+
+.displayTable  th.sorted a,.displayTable  th.sortable a {
+	background-position: right;
+	display: block;
+	width: 100%;
+	background-color: #9AC7DE;
+	font-size: 9pt;
+}
+
+
+<!--para el intercalado, celeste claro -->
+.displayTable  tr.odd {
+	background-color: #efefef;
+	font-size: 9pt;
+}
+
+<!--para el intercalado, celeste mas oscuro -->
+.displayTable  tr.tableRowEven,.displayTable tr.even {
+	background-color: #d9e9f4;
+	font-size: 9pt;
+}
+
+.displayTable  div.exportlinks {
+	background-color: #eee;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	margin: 2px 0 10px 0;
+	width: 79%;
+	font-size: 9pt;
+}
+
+.displayTable  span.export {
+	padding: 0 4px 1px 20px;
+	display: inline;
+	display: inline-block;
+	cursor: pointer;
+	font-size: 9pt;
+}
+
+
+
+.displayTable span.pagebanner {
+	background-color: #eee;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	width: 79%;
+	margin-top: 10px;
+	display: block;
+	border-bottom: none;
+	font-size: 9pt;
+}
+
+.displayTable span.pagelinks {
+	background-color: #eee;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	width: 79%;
+	display: block;
+	border-top: none;
+	margin-bottom: -5px;
+	font-size: 9pt;
+}
