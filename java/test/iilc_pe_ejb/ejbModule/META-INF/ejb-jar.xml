@@ -1,0 +1,1763 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar id="ejb-jar_ID" version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+	<display-name>
+	iilc_pe_ejb</display-name>
+	<enterprise-beans>
+		<session id="SessionCarga">
+			<ejb-name>SessionCarga</ejb-name>
+			<home>com.grupobbva.bc.per.tel.iilc.session.SessionCargaHome</home>
+			<remote>com.grupobbva.bc.per.tel.iilc.session.SessionCarga</remote>
+			<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionCargaLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.session.SessionCargaLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.session.SessionCargaBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1207849167261">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_cliente</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_clienteLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_clienteLocal</local>
+				<ejb-link>Tiilc_cliente</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207849185643">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_total</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_totalLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_totalLocal</local>
+				<ejb-link>Tiilc_total</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207849196824">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_multitabla</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_multitablaLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_multitablaLocal</local>
+				<ejb-link>Tiilc_multitabla</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207849211926">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_area</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_areaLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_areaLocal</local>
+				<ejb-link>Tiilc_area</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207849229308">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_territorio</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_territorioLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_territorioLocal</local>
+				<ejb-link>Tiilc_territorio</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207849241005">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_oficina</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_oficinaLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_oficinaLocal</local>
+				<ejb-link>Tiilc_oficina</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207849250781">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_gestor</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_gestorLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_gestorLocal</local>
+				<ejb-link>Tiilc_gestor</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207849262603">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_perfil</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_perfilLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_perfilLocal</local>
+				<ejb-link>Tiilc_perfil</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207849270927">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_permiso_perfil</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_permiso_perfilLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_permiso_perfilLocal</local>
+				<ejb-link>Tiilc_permiso_perfil</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1208355809306">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_empresa</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_empresaLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_empresaLocal</local>
+				<ejb-link>Tiilc_empresa</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SessionCliente">
+			<ejb-name>SessionCliente</ejb-name>
+			<home>com.grupobbva.bc.per.tel.iilc.session.SessionClienteHome</home>
+			<remote>com.grupobbva.bc.per.tel.iilc.session.SessionCliente</remote>
+			<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionClienteLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.session.SessionClienteLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.session.SessionClienteBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1207850136000">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_cliente</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_clienteLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_clienteLocal</local>
+				<ejb-link>Tiilc_cliente</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SessionGestor">
+			<ejb-name>SessionGestor</ejb-name>
+			<home>com.grupobbva.bc.per.tel.iilc.session.SessionGestorHome</home>
+			<remote>com.grupobbva.bc.per.tel.iilc.session.SessionGestor</remote>
+			<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionGestorLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.session.SessionGestorLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.session.SessionGestorBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1207850352123">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_gestor</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_gestorLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_gestorLocal</local>
+				<ejb-link>Tiilc_gestor</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SessionMultitabla">
+			<ejb-name>SessionMultitabla</ejb-name>
+			<home>com.grupobbva.bc.per.tel.iilc.session.SessionMultitablaHome</home>
+			<remote>com.grupobbva.bc.per.tel.iilc.session.SessionMultitabla</remote>
+			<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionMultitablaLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.session.SessionMultitablaLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.session.SessionMultitablaBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1207850425617">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_multitabla</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_multitablaLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_multitablaLocal</local>
+				<ejb-link>Tiilc_multitabla</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SessionOficina">
+			<ejb-name>SessionOficina</ejb-name>
+			<home>com.grupobbva.bc.per.tel.iilc.session.SessionOficinaHome</home>
+			<remote>com.grupobbva.bc.per.tel.iilc.session.SessionOficina</remote>
+			<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionOficinaLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.session.SessionOficinaLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.session.SessionOficinaBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1207850425618">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_oficina</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_oficinaLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_oficinaLocal</local>
+				<ejb-link>Tiilc_oficina</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SessionPermisoPerfil">
+			<ejb-name>SessionPermisoPerfil</ejb-name>
+			<home>com.grupobbva.bc.per.tel.iilc.session.SessionPermisoPerfilHome</home>
+			<remote>com.grupobbva.bc.per.tel.iilc.session.SessionPermisoPerfil</remote>
+			<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionPermisoPerfilLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.session.SessionPermisoPerfilLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.session.SessionPermisoPerfilBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1207850476435">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_perfil</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_perfilLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_perfilLocal</local>
+				<ejb-link>Tiilc_perfil</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207850476450">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_permiso_perfil</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_permiso_perfilLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_permiso_perfilLocal</local>
+				<ejb-link>Tiilc_permiso_perfil</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SessionTerritorio">
+			<ejb-name>SessionTerritorio</ejb-name>
+			<home>com.grupobbva.bc.per.tel.iilc.session.SessionTerritorioHome</home>
+			<remote>com.grupobbva.bc.per.tel.iilc.session.SessionTerritorio</remote>
+			<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionTerritorioLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.session.SessionTerritorioLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.session.SessionTerritorioBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1207850509621">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_territorio</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_territorioLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_territorioLocal</local>
+				<ejb-link>Tiilc_territorio</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SessionTotal">
+			<ejb-name>SessionTotal</ejb-name>
+			<home>com.grupobbva.bc.per.tel.iilc.session.SessionTotalHome</home>
+			<remote>com.grupobbva.bc.per.tel.iilc.session.SessionTotal</remote>
+			<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionTotalLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.session.SessionTotalLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.session.SessionTotalBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1207850546414">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_total</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_totalLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_totalLocal</local>
+				<ejb-link>Tiilc_total</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SessionService">
+			<ejb-name>SessionService</ejb-name>
+			<home>com.grupobbva.bc.per.tel.iilc.session.SessionServiceHome</home>
+			<remote>com.grupobbva.bc.per.tel.iilc.session.SessionService</remote>
+			<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionServiceLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.session.SessionServiceLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.session.SessionServiceBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1207850679627">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SessionCarga</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionCargaLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.session.SessionCargaLocal</local>
+				<ejb-link>SessionCarga</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207850679628">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SessionCliente</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionClienteLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.session.SessionClienteLocal</local>
+				<ejb-link>SessionCliente</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207850679643">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SessionGestor</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionGestorLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.session.SessionGestorLocal</local>
+				<ejb-link>SessionGestor</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207850679644">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SessionMultitabla</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionMultitablaLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.session.SessionMultitablaLocal</local>
+				<ejb-link>SessionMultitabla</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207850679659">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SessionOficina</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionOficinaLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.session.SessionOficinaLocal</local>
+				<ejb-link>SessionOficina</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207850679660">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SessionPermisoPerfil</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionPermisoPerfilLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.session.SessionPermisoPerfilLocal</local>
+				<ejb-link>SessionPermisoPerfil</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207850679674">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SessionTerritorio</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionTerritorioLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.session.SessionTerritorioLocal</local>
+				<ejb-link>SessionTerritorio</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207850679675">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SessionTotal</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionTotalLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.session.SessionTotalLocal</local>
+				<ejb-link>SessionTotal</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1207926981952">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SessionEmpresa</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionEmpresaLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.session.SessionEmpresaLocal</local>
+				<ejb-link>SessionEmpresa</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SessionEmpresa">
+			<ejb-name>SessionEmpresa</ejb-name>
+			<home>com.grupobbva.bc.per.tel.iilc.session.SessionEmpresaHome</home>
+			<remote>com.grupobbva.bc.per.tel.iilc.session.SessionEmpresa</remote>
+			<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionEmpresaLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.session.SessionEmpresaLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.session.SessionEmpresaBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1207925862545">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_empresa</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_empresaLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_empresaLocal</local>
+				<ejb-link>Tiilc_empresa</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SessionSQL">
+			<ejb-name>SessionSQL</ejb-name>
+			<home>com.grupobbva.bc.per.tel.iilc.session.SessionSQLHome</home>
+			<remote>com.grupobbva.bc.per.tel.iilc.session.SessionSQL</remote>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.session.SessionSQLBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1286893075671">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SessionMultitabla</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionMultitablaLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.session.SessionMultitablaLocal</local>
+				<ejb-link>SessionMultitabla</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1286893577593">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiilc_multitabla</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_multitablaLocalHome</local-home>
+				<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_multitablaLocal</local>
+				<ejb-link>Tiilc_multitabla</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<entity id="ContainerManagedEntity_1294325634794">
+			<ejb-name>Tiilc_area</ejb-name>
+			<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_areaLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_areaLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_areaBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_areaKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiilc_area</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1294325634872">
+				<field-name>cod_area</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634873">
+				<field-name>des_area</field-name>
+			</cmp-field>
+		</entity>
+		<entity id="ContainerManagedEntity_1294325634809">
+			<ejb-name>Tiilc_cliente</ejb-name>
+			<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_clienteLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_clienteLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_clienteBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_clienteKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiilc_cliente</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1294325634874">
+				<field-name>cod_cliente</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634888">
+				<field-name>codigo</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634889">
+				<field-name>cod_oficina</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634903">
+				<field-name>cod_gestor</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634904">
+				<field-name>nombre</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634905">
+				<field-name>cod_territorio</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634919">
+				<field-name>segment1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634920">
+				<field-name>edad</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634921">
+				<field-name>estcivil</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634934">
+				<field-name>calle</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634935">
+				<field-name>nro</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634950">
+				<field-name>perfil</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634951">
+				<field-name>direc1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634952">
+				<field-name>distrito</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634966">
+				<field-name>provincia</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634967">
+				<field-name>departamento</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634968">
+				<field-name>tipo_persona</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634981">
+				<field-name>clasificacion</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634982">
+				<field-name>telefono</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634983">
+				<field-name>vinculacion</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634997">
+				<field-name>pper</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325634998">
+				<field-name>pcom</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635013">
+				<field-name>vnac</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635014">
+				<field-name>ccte</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635015">
+				<field-name>colb</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635028">
+				<field-name>cnet</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635029">
+				<field-name>paut</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635030">
+				<field-name>dsct</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635044">
+				<field-name>varc</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635045">
+				<field-name>cemp</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635059">
+				<field-name>sdep</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635060">
+				<field-name>cext</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635061">
+				<field-name>phip</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635075">
+				<field-name>leas</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635076">
+				<field-name>vcla</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635077">
+				<field-name>cvip</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635091">
+				<field-name>svid</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635092">
+				<field-name>linco</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635093">
+				<field-name>pmiv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635106">
+				<field-name>cloc</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635107">
+				<field-name>vrep</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635122">
+				<field-name>ahsd</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635123">
+				<field-name>sonc</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635124">
+				<field-name>tco</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635138">
+				<field-name>b24</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635139">
+				<field-name>cpte</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635140">
+				<field-name>pref</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635153">
+				<field-name>voro</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635154">
+				<field-name>ahor</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635169">
+				<field-name>spro</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635170">
+				<field-name>pos</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635171">
+				<field-name>t_act2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635184">
+				<field-name>pmas</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635185">
+				<field-name>t_act3</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635186">
+				<field-name>lcta</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635200">
+				<field-name>t_act4</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635201">
+				<field-name>vpla</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635202">
+				<field-name>t_act5</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635216">
+				<field-name>plzo</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635217">
+				<field-name>t_act6</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635218">
+				<field-name>pserv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635231">
+				<field-name>tpr</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635232">
+				<field-name>prom</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635233">
+				<field-name>t_act_ct2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635247">
+				<field-name>vemp</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635248">
+				<field-name>t_act_ct3</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635249">
+				<field-name>ph</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635263">
+				<field-name>t_act_ct4</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635264">
+				<field-name>fcex</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635265">
+				<field-name>t_act_ct5</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635278">
+				<field-name>vctr</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635279">
+				<field-name>t_act_ct6</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635280">
+				<field-name>fmut</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635294">
+				<field-name>margeno</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635295">
+				<field-name>nro_documento</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635296">
+				<field-name>bcorie</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635309">
+				<field-name>emph</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635310">
+				<field-name>bcorid</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635325">
+				<field-name>aval</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635326">
+				<field-name>bcorii</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635327">
+				<field-name>mcla</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635341">
+				<field-name>bcopas</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635342">
+				<field-name>cts</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635343">
+				<field-name>bcovol</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635356">
+				<field-name>tdeb</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635357">
+				<field-name>porcrie</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635358">
+				<field-name>moro</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635372">
+				<field-name>porcrid</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635373">
+				<field-name>ctsd</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635374">
+				<field-name>porcrii</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635388">
+				<field-name>tvip</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635389">
+				<field-name>sbsrie</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635390">
+				<field-name>sbsrid</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635403">
+				<field-name>sbsrii</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635404">
+				<field-name>sbsjud</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635405">
+				<field-name>cod_empresa</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635544">
+				<field-name>des_empresa</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635545">
+				<field-name>intervpas</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635546">
+				<field-name>mofactv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635559">
+				<field-name>cs000lineamaxtc</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635560">
+				<field-name>mofpasv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635561">
+				<field-name>mofserv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635575">
+				<field-name>mofcanal</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635576">
+				<field-name>mphpasv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635577">
+				<field-name>cs000mtoprestamo</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635591">
+				<field-name>montovehicular</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635592">
+				<field-name>montohipotecario</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635593">
+				<field-name>ctacteoferta</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635606">
+				<field-name>ctaahoferta</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635607">
+				<field-name>ctapoferta</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635608">
+				<field-name>fmutuoofert</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635609">
+				<field-name>ctactsofert</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635622">
+				<field-name>tconsactv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635623">
+				<field-name>montosubrogados</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635624">
+				<field-name>tsubactv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635638">
+				<field-name>thipotactv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635639">
+				<field-name>tvehicactv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635640">
+				<field-name>cs000montocta36</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635653">
+				<field-name>tcuot36act</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635654">
+				<field-name>cs000montocta48</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635655">
+				<field-name>tcuot48act</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635669">
+				<field-name>cs000montocta60</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635670">
+				<field-name>tcuot60act</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635671">
+				<field-name>css000presmena5000</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635684">
+				<field-name>cs000comisdesemen5000</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635685">
+				<field-name>cs000pres5000a15000</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635686">
+				<field-name>c5000comdes15000act</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635700">
+				<field-name>cs000presmaya15000</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635701">
+				<field-name>comdes15000ac</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635702">
+				<field-name>cs000linminadqtc</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635716">
+				<field-name>cs000tipodecredito</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635717">
+				<field-name>cs000mixmonprest</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635718">
+				<field-name>cs000mixlinasistc</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635719">
+				<field-name>cs000mixtipotc</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635731">
+				<field-name>cs000prestcmena5000</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635732">
+				<field-name>cs000prestc500015000</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635733">
+				<field-name>cs000prestcmaya15000</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635747">
+				<field-name>atribctactepasv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635748">
+				<field-name>atribctaahpasv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635749">
+				<field-name>atribctaplazpasv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635763">
+				<field-name>atribctspasv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635764">
+				<field-name>atribfmutuopasv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635765">
+				<field-name>cobofserv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635766">
+				<field-name>svidofserv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635778">
+				<field-name>soncofserv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635779">
+				<field-name>svincofserv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635780">
+				<field-name>phofserv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635794">
+				<field-name>debofserv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635795">
+				<field-name>vipofserv</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635796">
+				<field-name>ofcnetcan</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635809">
+				<field-name>ofcempcan</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635810">
+				<field-name>oflincocan</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635811">
+				<field-name>ofb24can</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635825">
+				<field-name>ofposcan</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1302741129618">
+				<field-name>prefijo</field-name>
+			</cmp-field>
+		</entity>
+		<entity id="ContainerManagedEntity_1294325634810">
+			<ejb-name>Tiilc_empresa</ejb-name>
+			<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_empresaLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_empresaLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_empresaBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_empresaKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiilc_empresa</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1294325635826">
+				<field-name>cod_empresa</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635827">
+				<field-name>des_empresa</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllEmpresa</method-name>
+					<method-params>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_empresa o ORDER BY o.des_empresa</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findEmpresaxCodigo</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_empresa o where  o.cod_empresa = ?1</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1294325634825">
+			<ejb-name>Tiilc_linea_comercial</ejb-name>
+			<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_linea_comercialLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_linea_comercialLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_linea_comercialBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_linea_comercialKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiilc_linea_comercial</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1294325635828">
+				<field-name>cod_grupo</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635841">
+				<field-name>cod_lincom</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635842">
+				<field-name>des_lincom</field-name>
+			</cmp-field>
+		</entity>
+		<entity id="ContainerManagedEntity_1294325634826">
+			<ejb-name>Tiilc_multitabla</ejb-name>
+			<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_multitablaLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_multitablaLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_multitablaBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_multitablaKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiilc_multitabla</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1294325635843">
+				<field-name>cod_mult</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635856">
+				<field-name>cod_ele</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635857">
+				<field-name>valor1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635858">
+				<field-name>valor2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635872">
+				<field-name>valor3</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635873">
+				<field-name>valor4</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllRecord</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_multitabla o where  o.cod_mult = ?1 ORDER BY o.cod_ele</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findRecord</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_multitabla o where  o.cod_mult = SUBSTRING(?1, 1,3) and  o.cod_ele = SUBSTRING(?1, 4, LENGTH(?1))</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findMultitablaxValor2</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_multitabla o where  o.valor2 = ?1</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllMultitabla</method-name>
+					<method-params>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_multitabla o ORDER BY o.cod_mult ASC, o.cod_ele ASC</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findMultitabla</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_multitabla o where  o.cod_mult = ?1 and  o.cod_ele = ?2</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1294325634827">
+			<ejb-name>Tiilc_perfil</ejb-name>
+			<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_perfilLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_perfilLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_perfilBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_perfilKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiilc_perfil</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1294325635874">
+				<field-name>cod_perfil</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635875">
+				<field-name>des_perfil</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635888">
+				<field-name>componente</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllPerfil</method-name>
+					<method-params>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_perfil o ORDER BY o.cod_perfil ASC</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findPerfil</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_perfil o where  o.cod_perfil = ?1</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1294325634841">
+			<ejb-name>Tiilc_permiso_perfil</ejb-name>
+			<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_permiso_perfilLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_permiso_perfilLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_permiso_perfilBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_permiso_perfilKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiilc_permiso_perfil</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1294325635889">
+				<field-name>cod_perfil</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635890">
+				<field-name>tipo_acceso</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635903">
+				<field-name>valor_rcp</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findPermisoPerfilxTipAccxValorRCP</method-name>
+					<method-params>
+						<method-param>int</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_permiso_perfil o where o.tipo_acceso = ?1 and o.valor_rcp=?2</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllPermisoPerfil</method-name>
+					<method-params>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_permiso_perfil o ORDER BY o.cod_perfil ASC, o.tipo_acceso ASC, o.valor_rcp ASC</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findPermisoPerfil</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>int</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_permiso_perfil o where  o.cod_perfil = ?1 and  o.tipo_acceso = ?2 and  o.valor_rcp = ?3</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1294325634842">
+			<ejb-name>Tiilc_total</ejb-name>
+			<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_totalLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_totalLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_totalBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_totalKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiilc_total</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1294325635904">
+				<field-name>cod_total</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635905">
+				<field-name>cod_territorio</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635919">
+				<field-name>ind_registro</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635920">
+				<field-name>cod_oficina</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635921">
+				<field-name>cod_gestor</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635934">
+				<field-name>clixgest</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635935">
+				<field-name>seg_10100</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635936">
+				<field-name>seg_10200</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635937">
+				<field-name>seg_20100</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635950">
+				<field-name>seg_20200</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635951">
+				<field-name>seg_20300</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635952">
+				<field-name>seg_20400</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635966">
+				<field-name>seg_20500</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635967">
+				<field-name>seg_20600</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635968">
+				<field-name>seg_30100</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635981">
+				<field-name>seg_30200</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635982">
+				<field-name>seg_30300</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635983">
+				<field-name>seg_30400</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635997">
+				<field-name>seg_40100</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635998">
+				<field-name>seg_40200</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325635999">
+				<field-name>seg_40300</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636000">
+				<field-name>seg_40400</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636013">
+				<field-name>seg_50100</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636014">
+				<field-name>seg_50200</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636015">
+				<field-name>seg_50300</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636028">
+				<field-name>seg_50400</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636029">
+				<field-name>seg_60100</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636030">
+				<field-name>seg_60200</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636044">
+				<field-name>seg_60300</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636045">
+				<field-name>seg_60400</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636046">
+				<field-name>seg_80100</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636059">
+				<field-name>seg_80200</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636060">
+				<field-name>seg_80300</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636061">
+				<field-name>seg_80400</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636062">
+				<field-name>seg_80500</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636075">
+				<field-name>seg_80600</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636076">
+				<field-name>seg_80700</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636077">
+				<field-name>seg_90200</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636091">
+				<field-name>seg_99900</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636092">
+				<field-name>desvin</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636093">
+				<field-name>pocovin</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636106">
+				<field-name>vin</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636107">
+				<field-name>muyvin</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636108">
+				<field-name>natdesvin</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636122">
+				<field-name>natvin</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636123">
+				<field-name>jurvin</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636124">
+				<field-name>ahor_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636125">
+				<field-name>ahsd_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636138">
+				<field-name>aval_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636139">
+				<field-name>b24_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636140">
+				<field-name>ccte_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636153">
+				<field-name>cext_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636154">
+				<field-name>cloc_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636155">
+				<field-name>colb_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636169">
+				<field-name>cpte_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636170">
+				<field-name>cts_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636171">
+				<field-name>ctsd_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636172">
+				<field-name>vip_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636184">
+				<field-name>dsct_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636185">
+				<field-name>fcex_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636186">
+				<field-name>fmut_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636200">
+				<field-name>lcta_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636201">
+				<field-name>leas_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636202">
+				<field-name>mcla_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636203">
+				<field-name>moro_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636216">
+				<field-name>mp_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636217">
+				<field-name>paut_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636218">
+				<field-name>pcom_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636231">
+				<field-name>per_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636232">
+				<field-name>ph_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636233">
+				<field-name>phip_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636234">
+				<field-name>plzo_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636247">
+				<field-name>pmas_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636248">
+				<field-name>pmiv_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636249">
+				<field-name>pper_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636263">
+				<field-name>ppper_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636264">
+				<field-name>pref_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636265">
+				<field-name>prom_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636266">
+				<field-name>pser_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636278">
+				<field-name>pserv_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636279">
+				<field-name>dep_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636280">
+				<field-name>sdep_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636281">
+				<field-name>sext_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636294">
+				<field-name>sonc_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636295">
+				<field-name>spro_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636296">
+				<field-name>vid_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636309">
+				<field-name>svid_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636310">
+				<field-name>tde_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636311">
+				<field-name>svip_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636312">
+				<field-name>tvip_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636325">
+				<field-name>varc_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636326">
+				<field-name>vcla_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636327">
+				<field-name>vctr_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636341">
+				<field-name>vemp_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636342">
+				<field-name>vnac_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636343">
+				<field-name>voro_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636344">
+				<field-name>vpla_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636356">
+				<field-name>vpola_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636357">
+				<field-name>vrep_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636358">
+				<field-name>tdeb_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636359">
+				<field-name>cnet_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636372">
+				<field-name>linco_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636373">
+				<field-name>pos_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636374">
+				<field-name>emph_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636375">
+				<field-name>riesgo_d_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636388">
+				<field-name>riesgo_i_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636389">
+				<field-name>riesgo_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636390">
+				<field-name>pasivo_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636403">
+				<field-name>volumen_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636404">
+				<field-name>sum_t_act</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636405">
+				<field-name>sum_t_act1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636406">
+				<field-name>sum_t_act2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636419">
+				<field-name>sum_t_act3</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636420">
+				<field-name>sum_t_act4</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636421">
+				<field-name>sum_t_act5</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636422">
+				<field-name>sum_t_act6</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636434">
+				<field-name>sum_act_cto</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636435">
+				<field-name>sum_act_ct1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636436">
+				<field-name>sum_act_ct2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636437">
+				<field-name>sum_act_ct3</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636450">
+				<field-name>sum_act_ct4</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636451">
+				<field-name>sum_act_ct5</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636452">
+				<field-name>sum_act_ct6</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636453">
+				<field-name>cemp_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636466">
+				<field-name>cvip_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636467">
+				<field-name>icalicte00</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636468">
+				<field-name>icalicte10</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636481">
+				<field-name>icalicte20</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636482">
+				<field-name>icalicte30</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636483">
+				<field-name>icalicte40</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636484">
+				<field-name>mofactv_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636497">
+				<field-name>cs000lineamaxtc_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636498">
+				<field-name>cs000mtoprestamo_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636499">
+				<field-name>montovehicular_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636500">
+				<field-name>montohipotecario_t</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636513">
+				<field-name>montosubrogados_t</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findTotalxGexOfxTe</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_total o where  o.ind_registro like ?1 AND o.cod_territorio like ?2 AND o.cod_oficina like ?3 AND o.cod_gestor like ?4</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1294325634843">
+			<ejb-name>Tiilc_territorio</ejb-name>
+			<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_territorioLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_territorioLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_territorioBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_territorioKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiilc_territorio</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1294325636514">
+				<field-name>cod_territorio</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636515">
+				<field-name>des_territorio</field-name>
+			</cmp-field>
+			<cmp-field>
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiilc_area_fk_cod_area</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllTerritorioxAr</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_territorio o where  o.tiilc_area_fk.cod_area = ?1</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllTerritorio</method-name>
+					<method-params>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_territorio o order by o.des_territorio</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1294325634856">
+			<ejb-name>Tiilc_oficina</ejb-name>
+			<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_oficinaLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_oficinaLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_oficinaBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_oficinaKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiilc_oficina</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1294325636528">
+				<field-name>cod_oficina</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636529">
+				<field-name>des_oficina</field-name>
+			</cmp-field>
+			<cmp-field>
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiilc_territorio_fk_tiilc_area_fk_cod_area</field-name>
+			</cmp-field>
+			<cmp-field>
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiilc_territorio_fk_cod_territorio</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllOficinaxCod_oficina</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_oficina o where  o.cod_oficina = ?1</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllOficinaxTer</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_oficina o where o.tiilc_territorio_fk.cod_territorio = ?1 ORDER BY o.des_oficina</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1294325634857">
+			<ejb-name>Tiilc_gestor</ejb-name>
+			<local-home>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_gestorLocalHome</local-home>
+			<local>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_gestorLocal</local>
+			<ejb-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_gestorBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>com.grupobbva.bc.per.tel.iilc.entity.Tiilc_gestorKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiilc_gestor</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1294325636544">
+				<field-name>cod_gestor</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636545">
+				<field-name>nom_gestor</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636546">
+				<field-name>reg_gestor</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1294325636559">
+				<field-name>perfil_gestor</field-name>
+			</cmp-field>
+			<cmp-field>
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiilc_oficina_fk_tiilc_territorio_fk_tiilc_area_fk_cod_area</field-name>
+			</cmp-field>
+			<cmp-field>
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiilc_oficina_fk_tiilc_territorio_fk_cod_territorio</field-name>
+			</cmp-field>
+			<cmp-field>
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiilc_oficina_fk_cod_oficina</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllGestorxOfxTexAr</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_gestor o where  o.tiilc_oficina_fk.tiilc_territorio_fk.cod_territorio = ?2 and  o.tiilc_oficina_fk.cod_oficina = ?1 ORDER BY o.nom_gestor</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findGestorxRegGestor</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_gestor o where o.reg_gestor = ?1</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllGestor</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiilc_gestor o where o.tiilc_oficina_fk.tiilc_territorio_fk.tiilc_area_fk.cod_area = ?1</ejb-ql>
+			</query>
+		</entity>
+	</enterprise-beans>
+	<relationships>
+		<ejb-relation>
+			<ejb-relation-name>Tiilc_territorio_To_Tiilc_area</ejb-relation-name>
+			<ejb-relationship-role id="EJBRelationshipRole_1294325636513">
+				<ejb-relationship-role-name>tiilc_area_fk</ejb-relationship-role-name>
+				<multiplicity>Many</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiilc_territorio</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiilc_area_fk</cmr-field-name>
+				</cmr-field>
+			</ejb-relationship-role>
+			<ejb-relationship-role id="EJBRelationshipRole_1294325636528">
+				<ejb-relationship-role-name>tiilc_territorio</ejb-relationship-role-name>
+				<multiplicity>One</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiilc_area</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiilc_territorio</cmr-field-name>
+					<cmr-field-type>java.util.Collection</cmr-field-type>
+				</cmr-field>
+			</ejb-relationship-role>
+		</ejb-relation>
+		<ejb-relation>
+			<ejb-relation-name>Tiilc_oficina_To_Tiilc_territorio</ejb-relation-name>
+			<ejb-relationship-role id="EJBRelationshipRole_1294325636529">
+				<ejb-relationship-role-name>tiilc_territorio_fk</ejb-relationship-role-name>
+				<multiplicity>Many</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiilc_oficina</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiilc_territorio_fk</cmr-field-name>
+				</cmr-field>
+			</ejb-relationship-role>
+			<ejb-relationship-role id="EJBRelationshipRole_1294325636544">
+				<ejb-relationship-role-name>tiilc_oficina</ejb-relationship-role-name>
+				<multiplicity>One</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiilc_territorio</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiilc_oficina</cmr-field-name>
+					<cmr-field-type>java.util.Collection</cmr-field-type>
+				</cmr-field>
+			</ejb-relationship-role>
+		</ejb-relation>
+		<ejb-relation>
+			<ejb-relation-name>Tiilc_gestor_To_Tiilc_oficina</ejb-relation-name>
+			<ejb-relationship-role id="EJBRelationshipRole_1294325636559">
+				<ejb-relationship-role-name>tiilc_oficina_fk</ejb-relationship-role-name>
+				<multiplicity>Many</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiilc_gestor</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiilc_oficina_fk</cmr-field-name>
+				</cmr-field>
+			</ejb-relationship-role>
+			<ejb-relationship-role id="EJBRelationshipRole_1294325636560">
+				<ejb-relationship-role-name>tiilc_gestor</ejb-relationship-role-name>
+				<multiplicity>One</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiilc_oficina</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiilc_gestor</cmr-field-name>
+					<cmr-field-type>java.util.Collection</cmr-field-type>
+				</cmr-field>
+			</ejb-relationship-role>
+		</ejb-relation>
+	</relationships>
+	<ejb-client-jar>iilc_pe_ejbClient.jar</ejb-client-jar>
+</ejb-jar>

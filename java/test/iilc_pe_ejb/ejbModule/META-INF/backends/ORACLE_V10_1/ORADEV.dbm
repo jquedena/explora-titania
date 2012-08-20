@@ -1,0 +1,1297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:OracleModel="http:///com/ibm/db/models/oracle/oracle.ecore" xmlns:SQLConstraints="http:///org/eclipse/wst/rdb/models/sql/constraints.ecore" xmlns:SQLDataTypes="http:///org/eclipse/wst/rdb/models/sql/datatypes.ecore" xmlns:SQLExpressions="http:///org/eclipse/wst/rdb/models/sql/expressions.ecore" xmlns:SQLSchema="http:///org/eclipse/wst/rdb/models/sql/schema.ecore" xmlns:SQLStatements="http:///org/eclipse/wst/rdb/models/sql/statements.ecore" xmlns:SQLTables="http:///org/eclipse/wst/rdb/models/sql/tables.ecore">
+  <OracleModel:OracleDatabase xmi:id="_boEh4L-PEeCTeOqiKPUfRA" name="ORADEV" vendor="Oracle" version="10" schemas="_bohN0L-PEeCTeOqiKPUfRA"/>
+  <SQLSchema:Schema xmi:id="_bohN0L-PEeCTeOqiKPUfRA" name="IILC" triggers="_b8CmwL-PEeCTeOqiKPUfRA" indices="_b8Cn27-PEeCTeOqiKPUfRA _b8Cn77-PEeCTeOqiKPUfRA _b8Cpg7-PEeCTeOqiKPUfRA _b8Cplr-PEeCTeOqiKPUfRA _b8Cpa7-PEeCTeOqiKPUfRA _b8CpaL-PEeCTeOqiKPUfRA _b8Cp97-PEeCTeOqiKPUfRA _b8CpgL-PEeCTeOqiKPUfRA _b8CpZb-PEeCTeOqiKPUfRA _b8Cpfb-PEeCTeOqiKPUfRA _b8CqDr-PEeCTeOqiKPUfRA _b8CqHL-PEeCTeOqiKPUfRA _b8CqKL-PEeCTeOqiKPUfRA _b8Cper-PEeCTeOqiKPUfRA _b8Cpd7-PEeCTeOqiKPUfRA _b8Cn2L-PEeCTeOqiKPUfRA _b8CpdL-PEeCTeOqiKPUfRA _b8Cpcb-PEeCTeOqiKPUfRA _b8Cp9L-PEeCTeOqiKPUfRA _b8Cp57-PEeCTeOqiKPUfRA _b8Cpbr-PEeCTeOqiKPUfRA" tables="_b8Cmw7-PEeCTeOqiKPUfRA _b8Cn8r-PEeCTeOqiKPUfRA _b8Cp07-PEeCTeOqiKPUfRA _b8Cn4L-PEeCTeOqiKPUfRA _b8CqEb-PEeCTeOqiKPUfRA _b8Cpm7-PEeCTeOqiKPUfRA _b8Cp-7-PEeCTeOqiKPUfRA _b8Cph7-PEeCTeOqiKPUfRA _b8Cps7-PEeCTeOqiKPUfRA _b8CqH7-PEeCTeOqiKPUfRA _b8Cp67-PEeCTeOqiKPUfRA" database="_boEh4L-PEeCTeOqiKPUfRA"/>
+  <SQLTables:Trigger xmi:id="_b8CmwL-PEeCTeOqiKPUfRA" name="INSERT_TOTAL" schema="_bohN0L-PEeCTeOqiKPUfRA" subjectTable="_b8Cmw7-PEeCTeOqiKPUfRA" actionGranularity="ROW" actionTime="BEFORE" insertType="true" oldRow="OLD" newRow="NEW">
+    <dependencies xmi:id="_b8Cmwb-PEeCTeOqiKPUfRA" targetEnd="_b8Cmw7-PEeCTeOqiKPUfRA"/>
+    <actionStatement xsi:type="SQLStatements:SQLStatementDefault" xmi:id="_b8Cmwr-PEeCTeOqiKPUfRA" SQL="DECLARE last_cod INTEGER := 0;&#xA;count_row INTEGER := 0;&#xA;BEGIN&#xA;SELECT COUNT(*)&#xA;  INTO count_row&#xA;  FROM tiilc_total;&#xA;&#xA;  IF count_row = 0 THEN&#xA;    :NEW.cod_total := 1;&#xA;  ELSE&#xA;    SELECT MAX(cod_total)&#xA;    INTO last_cod&#xA;    FROM tiilc_total;&#xA;&#xA;    :NEW.cod_total := last_cod + 1;&#xA;  END IF;&#xA;  END;&#xA;"/>
+  </SQLTables:Trigger>
+  <OracleModel:OracleTable xmi:id="_b8Cmw7-PEeCTeOqiKPUfRA" name="TIILC_TOTAL" schema="_bohN0L-PEeCTeOqiKPUfRA" triggers="_b8CmwL-PEeCTeOqiKPUfRA" index="_b8Cn2L-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="1" maxTrans="255">
+    <columns xmi:id="_b8CmxL-PEeCTeOqiKPUfRA" name="COD_TOTAL" nullable="false">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cmxb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cmxr-PEeCTeOqiKPUfRA" name="COD_TERRITORIO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cmx7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8CmyL-PEeCTeOqiKPUfRA" name="IND_REGISTRO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cmyb-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_b8Cmyr-PEeCTeOqiKPUfRA" name="COD_OFICINA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cmy7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8CmzL-PEeCTeOqiKPUfRA" name="COD_GESTOR">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cmzb-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="6"/>
+    </columns>
+    <columns xmi:id="_b8Cmzr-PEeCTeOqiKPUfRA" name="CLIXGEST">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cmz7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm0L-PEeCTeOqiKPUfRA" name="SEG_10100">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm0b-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm0r-PEeCTeOqiKPUfRA" name="SEG_10200">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm07-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm1L-PEeCTeOqiKPUfRA" name="SEG_20100">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm1b-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm1r-PEeCTeOqiKPUfRA" name="SEG_20200">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm17-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm2L-PEeCTeOqiKPUfRA" name="SEG_20300">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm2b-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm2r-PEeCTeOqiKPUfRA" name="SEG_20400">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm27-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm3L-PEeCTeOqiKPUfRA" name="SEG_20500">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm3b-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm3r-PEeCTeOqiKPUfRA" name="SEG_20600">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm37-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm4L-PEeCTeOqiKPUfRA" name="SEG_30100">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm4b-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm4r-PEeCTeOqiKPUfRA" name="SEG_30200">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm47-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm5L-PEeCTeOqiKPUfRA" name="SEG_30300">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm5b-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm5r-PEeCTeOqiKPUfRA" name="SEG_30400">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm57-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm6L-PEeCTeOqiKPUfRA" name="SEG_40100">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm6b-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm6r-PEeCTeOqiKPUfRA" name="SEG_40200">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm67-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm7L-PEeCTeOqiKPUfRA" name="SEG_40300">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm7b-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm7r-PEeCTeOqiKPUfRA" name="SEG_40400">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm77-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm8L-PEeCTeOqiKPUfRA" name="SEG_50100">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm8b-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm8r-PEeCTeOqiKPUfRA" name="SEG_50200">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm87-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm9L-PEeCTeOqiKPUfRA" name="SEG_50300">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm9b-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm9r-PEeCTeOqiKPUfRA" name="SEG_50400">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm97-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm-L-PEeCTeOqiKPUfRA" name="SEG_60100">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm-b-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm-r-PEeCTeOqiKPUfRA" name="SEG_60200">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm-7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm_L-PEeCTeOqiKPUfRA" name="SEG_60300">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm_b-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cm_r-PEeCTeOqiKPUfRA" name="SEG_60400">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cm_7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnAL-PEeCTeOqiKPUfRA" name="SEG_80100">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnAb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnAr-PEeCTeOqiKPUfRA" name="SEG_80200">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnA7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnBL-PEeCTeOqiKPUfRA" name="SEG_80300">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnBb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnBr-PEeCTeOqiKPUfRA" name="SEG_80400">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnB7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnCL-PEeCTeOqiKPUfRA" name="SEG_80500">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnCb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnCr-PEeCTeOqiKPUfRA" name="SEG_80600">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnC7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnDL-PEeCTeOqiKPUfRA" name="SEG_80700">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnDb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnDr-PEeCTeOqiKPUfRA" name="SEG_90200">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnD7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnEL-PEeCTeOqiKPUfRA" name="SEG_99900">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnEb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnEr-PEeCTeOqiKPUfRA" name="DESVIN">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnE7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnFL-PEeCTeOqiKPUfRA" name="POCOVIN">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnFb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnFr-PEeCTeOqiKPUfRA" name="VIN">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnF7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnGL-PEeCTeOqiKPUfRA" name="MUYVIN">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnGb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnGr-PEeCTeOqiKPUfRA" name="NATDESVIN">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnG7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnHL-PEeCTeOqiKPUfRA" name="NATVIN">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnHb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnHr-PEeCTeOqiKPUfRA" name="JURVIN">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnH7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnIL-PEeCTeOqiKPUfRA" name="AHOR_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnIb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnIr-PEeCTeOqiKPUfRA" name="AHSD_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnI7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnJL-PEeCTeOqiKPUfRA" name="AVAL_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnJb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnJr-PEeCTeOqiKPUfRA" name="B24_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnJ7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnKL-PEeCTeOqiKPUfRA" name="CCTE_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnKb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnKr-PEeCTeOqiKPUfRA" name="CEXT_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnK7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnLL-PEeCTeOqiKPUfRA" name="CLOC_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnLb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnLr-PEeCTeOqiKPUfRA" name="COLB_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnL7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnML-PEeCTeOqiKPUfRA" name="CPTE_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnMb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnMr-PEeCTeOqiKPUfRA" name="CTS_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnM7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnNL-PEeCTeOqiKPUfRA" name="CTSD_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnNb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnNr-PEeCTeOqiKPUfRA" name="VIP_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnN7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnOL-PEeCTeOqiKPUfRA" name="DSCT_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnOb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnOr-PEeCTeOqiKPUfRA" name="FCEX_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnO7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnPL-PEeCTeOqiKPUfRA" name="FMUT_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnPb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnPr-PEeCTeOqiKPUfRA" name="LCTA_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnP7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnQL-PEeCTeOqiKPUfRA" name="LEAS_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnQb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnQr-PEeCTeOqiKPUfRA" name="MCLA_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnQ7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnRL-PEeCTeOqiKPUfRA" name="MORO_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnRb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnRr-PEeCTeOqiKPUfRA" name="MP_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnR7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnSL-PEeCTeOqiKPUfRA" name="PAUT_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnSb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnSr-PEeCTeOqiKPUfRA" name="PCOM_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnS7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnTL-PEeCTeOqiKPUfRA" name="PER_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnTb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnTr-PEeCTeOqiKPUfRA" name="PH_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnT7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnUL-PEeCTeOqiKPUfRA" name="PHIP_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnUb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnUr-PEeCTeOqiKPUfRA" name="PLZO_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnU7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnVL-PEeCTeOqiKPUfRA" name="PMAS_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnVb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnVr-PEeCTeOqiKPUfRA" name="PMIV_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnV7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnWL-PEeCTeOqiKPUfRA" name="PPER_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnWb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnWr-PEeCTeOqiKPUfRA" name="PPPER_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnW7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnXL-PEeCTeOqiKPUfRA" name="PREF_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnXb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnXr-PEeCTeOqiKPUfRA" name="PROM_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnX7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnYL-PEeCTeOqiKPUfRA" name="PSER_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnYb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnYr-PEeCTeOqiKPUfRA" name="PSERV_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnY7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnZL-PEeCTeOqiKPUfRA" name="DEP_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnZb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnZr-PEeCTeOqiKPUfRA" name="SDEP_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CnZ7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnaL-PEeCTeOqiKPUfRA" name="SEXT_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnab-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnar-PEeCTeOqiKPUfRA" name="SONC_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cna7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnbL-PEeCTeOqiKPUfRA" name="SPRO_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnbb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnbr-PEeCTeOqiKPUfRA" name="VID_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnb7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CncL-PEeCTeOqiKPUfRA" name="SVID_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cncb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cncr-PEeCTeOqiKPUfRA" name="TDE_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnc7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CndL-PEeCTeOqiKPUfRA" name="SVIP_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cndb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cndr-PEeCTeOqiKPUfRA" name="TVIP_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnd7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CneL-PEeCTeOqiKPUfRA" name="VARC_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cneb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cner-PEeCTeOqiKPUfRA" name="VCLA_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cne7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnfL-PEeCTeOqiKPUfRA" name="VCTR_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnfb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnfr-PEeCTeOqiKPUfRA" name="VEMP_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnf7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CngL-PEeCTeOqiKPUfRA" name="VNAC_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cngb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cngr-PEeCTeOqiKPUfRA" name="VORO_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cng7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnhL-PEeCTeOqiKPUfRA" name="VPLA_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnhb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnhr-PEeCTeOqiKPUfRA" name="VPOLA_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnh7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CniL-PEeCTeOqiKPUfRA" name="VREP_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnib-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnir-PEeCTeOqiKPUfRA" name="TDEB_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cni7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnjL-PEeCTeOqiKPUfRA" name="CNET_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnjb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnjr-PEeCTeOqiKPUfRA" name="LINCO_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnj7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnkL-PEeCTeOqiKPUfRA" name="POS_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnkb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnkr-PEeCTeOqiKPUfRA" name="EMPH_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnk7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnlL-PEeCTeOqiKPUfRA" name="RIESGO_D_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnlb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnlr-PEeCTeOqiKPUfRA" name="RIESGO_I_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnl7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnmL-PEeCTeOqiKPUfRA" name="RIESGO_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnmb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnmr-PEeCTeOqiKPUfRA" name="PASIVO_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnm7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnnL-PEeCTeOqiKPUfRA" name="VOLUMEN_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnnb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnnr-PEeCTeOqiKPUfRA" name="SUM_T_ACT">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnn7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnoL-PEeCTeOqiKPUfRA" name="SUM_T_ACT1">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnob-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnor-PEeCTeOqiKPUfRA" name="SUM_T_ACT2">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cno7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnpL-PEeCTeOqiKPUfRA" name="SUM_T_ACT3">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnpb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnpr-PEeCTeOqiKPUfRA" name="SUM_T_ACT4">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnp7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnqL-PEeCTeOqiKPUfRA" name="SUM_T_ACT5">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnqb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnqr-PEeCTeOqiKPUfRA" name="SUM_T_ACT6">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnq7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnrL-PEeCTeOqiKPUfRA" name="SUM_ACT_CTO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnrb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnrr-PEeCTeOqiKPUfRA" name="SUM_ACT_CT1">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnr7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnsL-PEeCTeOqiKPUfRA" name="SUM_ACT_CT2">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnsb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnsr-PEeCTeOqiKPUfRA" name="SUM_ACT_CT3">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cns7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CntL-PEeCTeOqiKPUfRA" name="SUM_ACT_CT4">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cntb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cntr-PEeCTeOqiKPUfRA" name="SUM_ACT_CT5">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnt7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnuL-PEeCTeOqiKPUfRA" name="SUM_ACT_CT6">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnub-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnur-PEeCTeOqiKPUfRA" name="CEMP_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnu7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnvL-PEeCTeOqiKPUfRA" name="CVIP_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnvb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnvr-PEeCTeOqiKPUfRA" name="ICALICTE00">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnv7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnwL-PEeCTeOqiKPUfRA" name="ICALICTE10">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnwb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnwr-PEeCTeOqiKPUfRA" name="ICALICTE20">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnw7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnxL-PEeCTeOqiKPUfRA" name="ICALICTE30">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnxb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cnxr-PEeCTeOqiKPUfRA" name="ICALICTE40">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnx7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CnyL-PEeCTeOqiKPUfRA" name="MOFACTV_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnyb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="12"/>
+    </columns>
+    <columns xmi:id="_b8Cnyr-PEeCTeOqiKPUfRA" name="CS000LINEAMAXTC_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cny7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="12"/>
+    </columns>
+    <columns xmi:id="_b8CnzL-PEeCTeOqiKPUfRA" name="CS000MTOPRESTAMO_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnzb-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="12"/>
+    </columns>
+    <columns xmi:id="_b8Cnzr-PEeCTeOqiKPUfRA" name="MONTOVEHICULAR_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cnz7-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="12"/>
+    </columns>
+    <columns xmi:id="_b8Cn0L-PEeCTeOqiKPUfRA" name="MONTOHIPOTECARIO_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cn0b-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="12"/>
+    </columns>
+    <columns xmi:id="_b8Cn0r-PEeCTeOqiKPUfRA" name="MONTOSUBROGADOS_T">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cn07-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="12"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_b8Cn1L-PEeCTeOqiKPUfRA" name="TIILC_TOTAL_PK" members="_b8CmxL-PEeCTeOqiKPUfRA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cn1b-PEeCTeOqiKPUfRA" name="SYS_C0012746">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cn1r-PEeCTeOqiKPUfRA" SQL="&quot;COD_TOTAL&quot; IS NOT NULL"/>
+    </constraints>
+    <properties xmi:id="_b8Cn17-PEeCTeOqiKPUfRA" initialExtent="458752" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleTable>
+  <OracleModel:OracleIndex xmi:id="_b8Cn2L-PEeCTeOqiKPUfRA" name="TIILC_TOTAL_PK" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" unique="true" table="_b8Cmw7-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cn2b-PEeCTeOqiKPUfRA" column="_b8CmxL-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cn2r-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleIndex xmi:id="_b8Cn27-PEeCTeOqiKPUfRA" name="TIILC_PERMISO_PERFIL_PK" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" unique="true" table="_b8Cn4L-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cn3L-PEeCTeOqiKPUfRA" column="_b8Cn4b-PEeCTeOqiKPUfRA"/>
+    <members xmi:id="_b8Cn3b-PEeCTeOqiKPUfRA" column="_b8Cn47-PEeCTeOqiKPUfRA"/>
+    <members xmi:id="_b8Cn3r-PEeCTeOqiKPUfRA" column="_b8Cn5b-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cn37-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleTable xmi:id="_b8Cn4L-PEeCTeOqiKPUfRA" name="TIILC_PERMISO_PERFIL" schema="_bohN0L-PEeCTeOqiKPUfRA" index="_b8Cn27-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="1" maxTrans="255">
+    <columns xmi:id="_b8Cn4b-PEeCTeOqiKPUfRA" name="COD_PERFIL" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cn4r-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8Cn47-PEeCTeOqiKPUfRA" name="TIPO_ACCESO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cn5L-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cn5b-PEeCTeOqiKPUfRA" name="VALOR_RCP" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cn5r-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="50"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_b8Cn57-PEeCTeOqiKPUfRA" name="TIILC_PERMISO_PERFIL_PK" members="_b8Cn4b-PEeCTeOqiKPUfRA _b8Cn47-PEeCTeOqiKPUfRA _b8Cn5b-PEeCTeOqiKPUfRA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cn6L-PEeCTeOqiKPUfRA" name="SYS_C0012741">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cn6b-PEeCTeOqiKPUfRA" SQL="&quot;COD_PERFIL&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cn6r-PEeCTeOqiKPUfRA" name="SYS_C0012742">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cn67-PEeCTeOqiKPUfRA" SQL="&quot;TIPO_ACCESO&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cn7L-PEeCTeOqiKPUfRA" name="SYS_C0012743">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cn7b-PEeCTeOqiKPUfRA" SQL="&quot;VALOR_RCP&quot; IS NOT NULL"/>
+    </constraints>
+    <properties xmi:id="_b8Cn7r-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleTable>
+  <OracleModel:OracleIndex xmi:id="_b8Cn77-PEeCTeOqiKPUfRA" name="XPKTIILC_CLIENTE_03" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" table="_b8Cn8r-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cn8L-PEeCTeOqiKPUfRA" column="_b8Cn-b-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cn8b-PEeCTeOqiKPUfRA" initialExtent="34603008" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleTable xmi:id="_b8Cn8r-PEeCTeOqiKPUfRA" name="TIILC_CLIENTE" schema="_bohN0L-PEeCTeOqiKPUfRA" index="_b8CpZb-PEeCTeOqiKPUfRA _b8CpaL-PEeCTeOqiKPUfRA _b8Cpa7-PEeCTeOqiKPUfRA _b8Cn77-PEeCTeOqiKPUfRA _b8Cpbr-PEeCTeOqiKPUfRA _b8Cpcb-PEeCTeOqiKPUfRA _b8CpdL-PEeCTeOqiKPUfRA _b8Cpd7-PEeCTeOqiKPUfRA _b8Cper-PEeCTeOqiKPUfRA _b8Cpfb-PEeCTeOqiKPUfRA _b8CpgL-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="1" maxTrans="255">
+    <columns xmi:id="_b8Cn87-PEeCTeOqiKPUfRA" name="COD_CLIENTE" nullable="false">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cn9L-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cn9b-PEeCTeOqiKPUfRA" name="CODIGO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cn9r-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="8"/>
+    </columns>
+    <columns xmi:id="_b8Cn97-PEeCTeOqiKPUfRA" name="COD_OFICINA" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cn-L-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8Cn-b-PEeCTeOqiKPUfRA" name="COD_GESTOR" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cn-r-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="6"/>
+    </columns>
+    <columns xmi:id="_b8Cn-7-PEeCTeOqiKPUfRA" name="NOMBRE">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cn_L-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="50"/>
+    </columns>
+    <columns xmi:id="_b8Cn_b-PEeCTeOqiKPUfRA" name="COD_TERRITORIO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cn_r-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8Cn_7-PEeCTeOqiKPUfRA" name="SEGMENT1">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoAL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="6"/>
+    </columns>
+    <columns xmi:id="_b8CoAb-PEeCTeOqiKPUfRA" name="EDAD">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoAr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoA7-PEeCTeOqiKPUfRA" name="ESTCIVIL">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoBL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_b8CoBb-PEeCTeOqiKPUfRA" name="CALLE">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoBr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="30"/>
+    </columns>
+    <columns xmi:id="_b8CoB7-PEeCTeOqiKPUfRA" name="NRO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoCL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="10"/>
+    </columns>
+    <columns xmi:id="_b8CoCb-PEeCTeOqiKPUfRA" name="PERFIL">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoCr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="8"/>
+    </columns>
+    <columns xmi:id="_b8CoC7-PEeCTeOqiKPUfRA" name="DIREC1">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoDL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="60"/>
+    </columns>
+    <columns xmi:id="_b8CoDb-PEeCTeOqiKPUfRA" name="DISTRITO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoDr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="30"/>
+    </columns>
+    <columns xmi:id="_b8CoD7-PEeCTeOqiKPUfRA" name="PROVINCIA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoEL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="30"/>
+    </columns>
+    <columns xmi:id="_b8CoEb-PEeCTeOqiKPUfRA" name="DEPARTAMENTO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoEr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="30"/>
+    </columns>
+    <columns xmi:id="_b8CoE7-PEeCTeOqiKPUfRA" name="TIPO_PERSONA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoFL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="5"/>
+    </columns>
+    <columns xmi:id="_b8CoFb-PEeCTeOqiKPUfRA" name="CLASIFICACION">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoFr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="10"/>
+    </columns>
+    <columns xmi:id="_b8CoF7-PEeCTeOqiKPUfRA" name="TELEFONO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoGL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="12"/>
+    </columns>
+    <columns xmi:id="_b8CoGb-PEeCTeOqiKPUfRA" name="VINCULACION">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoGr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="5"/>
+    </columns>
+    <columns xmi:id="_b8CoG7-PEeCTeOqiKPUfRA" name="PPER">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoHL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoHb-PEeCTeOqiKPUfRA" name="PCOM">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoHr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoH7-PEeCTeOqiKPUfRA" name="VNAC">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoIL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoIb-PEeCTeOqiKPUfRA" name="CCTE">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoIr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoI7-PEeCTeOqiKPUfRA" name="COLB">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoJL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoJb-PEeCTeOqiKPUfRA" name="CNET">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoJr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoJ7-PEeCTeOqiKPUfRA" name="PAUT">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoKL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoKb-PEeCTeOqiKPUfRA" name="DSCT">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoKr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoK7-PEeCTeOqiKPUfRA" name="VARC">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoLL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoLb-PEeCTeOqiKPUfRA" name="CEMP">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoLr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoL7-PEeCTeOqiKPUfRA" name="SDEP">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoML-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoMb-PEeCTeOqiKPUfRA" name="CEXT">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoMr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoM7-PEeCTeOqiKPUfRA" name="PHIP">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoNL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoNb-PEeCTeOqiKPUfRA" name="LEAS">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoNr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoN7-PEeCTeOqiKPUfRA" name="VCLA">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoOL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoOb-PEeCTeOqiKPUfRA" name="CVIP">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoOr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoO7-PEeCTeOqiKPUfRA" name="SVID">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoPL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoPb-PEeCTeOqiKPUfRA" name="LINCO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoPr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoP7-PEeCTeOqiKPUfRA" name="PMIV">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoQL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoQb-PEeCTeOqiKPUfRA" name="CLOC">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoQr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoQ7-PEeCTeOqiKPUfRA" name="VREP">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoRL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoRb-PEeCTeOqiKPUfRA" name="AHSD">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoRr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoR7-PEeCTeOqiKPUfRA" name="SONC">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoSL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoSb-PEeCTeOqiKPUfRA" name="TCO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoSr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoS7-PEeCTeOqiKPUfRA" name="B24">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoTL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoTb-PEeCTeOqiKPUfRA" name="CPTE">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoTr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoT7-PEeCTeOqiKPUfRA" name="PREF">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoUL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoUb-PEeCTeOqiKPUfRA" name="VORO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoUr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoU7-PEeCTeOqiKPUfRA" name="AHOR">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoVL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoVb-PEeCTeOqiKPUfRA" name="SPRO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoVr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoV7-PEeCTeOqiKPUfRA" name="POS">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoWL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoWb-PEeCTeOqiKPUfRA" name="T_ACT2">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoWr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoW7-PEeCTeOqiKPUfRA" name="PMAS">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoXL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoXb-PEeCTeOqiKPUfRA" name="T_ACT3">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoXr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoX7-PEeCTeOqiKPUfRA" name="LCTA">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoYL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoYb-PEeCTeOqiKPUfRA" name="T_ACT4">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoYr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoY7-PEeCTeOqiKPUfRA" name="VPLA">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoZL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoZb-PEeCTeOqiKPUfRA" name="T_ACT5">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoZr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8CoZ7-PEeCTeOqiKPUfRA" name="PLZO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoaL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Coab-PEeCTeOqiKPUfRA" name="T_ACT6">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Coar-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Coa7-PEeCTeOqiKPUfRA" name="PSERV">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CobL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cobb-PEeCTeOqiKPUfRA" name="TPR">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cobr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cob7-PEeCTeOqiKPUfRA" name="PROM">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CocL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cocb-PEeCTeOqiKPUfRA" name="T_ACT_CT2">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cocr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Coc7-PEeCTeOqiKPUfRA" name="VEMP">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CodL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Codb-PEeCTeOqiKPUfRA" name="T_ACT_CT3">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Codr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cod7-PEeCTeOqiKPUfRA" name="PH">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoeL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Coeb-PEeCTeOqiKPUfRA" name="T_ACT_CT4">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Coer-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Coe7-PEeCTeOqiKPUfRA" name="FCEX">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CofL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cofb-PEeCTeOqiKPUfRA" name="T_ACT_CT5">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cofr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cof7-PEeCTeOqiKPUfRA" name="VCTR">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CogL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cogb-PEeCTeOqiKPUfRA" name="T_ACT_CT6">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cogr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cog7-PEeCTeOqiKPUfRA" name="FMUT">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CohL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cohb-PEeCTeOqiKPUfRA" name="MARGENO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cohr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Coh7-PEeCTeOqiKPUfRA" name="NRO_DOCUMENTO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoiL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="12"/>
+    </columns>
+    <columns xmi:id="_b8Coib-PEeCTeOqiKPUfRA" name="BCORIE">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Coir-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Coi7-PEeCTeOqiKPUfRA" name="EMPH">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CojL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cojb-PEeCTeOqiKPUfRA" name="BCORID">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cojr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Coj7-PEeCTeOqiKPUfRA" name="AVAL">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CokL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cokb-PEeCTeOqiKPUfRA" name="BCORII">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cokr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cok7-PEeCTeOqiKPUfRA" name="MCLA">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8ColL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Colb-PEeCTeOqiKPUfRA" name="BCOPAS">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Colr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Col7-PEeCTeOqiKPUfRA" name="CTS">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8ComL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Comb-PEeCTeOqiKPUfRA" name="BCOVOL">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Comr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Com7-PEeCTeOqiKPUfRA" name="TDEB">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8ConL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Conb-PEeCTeOqiKPUfRA" name="PORCRIE">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Conr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Con7-PEeCTeOqiKPUfRA" name="MORO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CooL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Coob-PEeCTeOqiKPUfRA" name="PORCRID">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Coor-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Coo7-PEeCTeOqiKPUfRA" name="CTSD">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CopL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Copb-PEeCTeOqiKPUfRA" name="PORCRII">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Copr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cop7-PEeCTeOqiKPUfRA" name="TVIP">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoqL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Coqb-PEeCTeOqiKPUfRA" name="SBSRIE">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Coqr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Coq7-PEeCTeOqiKPUfRA" name="SBSRID">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CorL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Corb-PEeCTeOqiKPUfRA" name="SBSRII">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Corr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cor7-PEeCTeOqiKPUfRA" name="SBSJUD">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CosL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_b8Cosb-PEeCTeOqiKPUfRA" name="COD_EMPRESA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cosr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="8"/>
+    </columns>
+    <columns xmi:id="_b8Cos7-PEeCTeOqiKPUfRA" name="DES_EMPRESA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CotL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="40"/>
+    </columns>
+    <columns xmi:id="_b8Cotb-PEeCTeOqiKPUfRA" name="INTERVPAS">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cotr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8Cot7-PEeCTeOqiKPUfRA" name="MOFACTV" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CouL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="7"/>
+    </columns>
+    <columns xmi:id="_b8Coub-PEeCTeOqiKPUfRA" name="CS000LINEAMAXTC" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Cour-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="7"/>
+    </columns>
+    <columns xmi:id="_b8Cou7-PEeCTeOqiKPUfRA" name="MOFPASV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CovL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8Covb-PEeCTeOqiKPUfRA" name="MOFSERV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Covr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8Cov7-PEeCTeOqiKPUfRA" name="MOFCANAL">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CowL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8Cowb-PEeCTeOqiKPUfRA" name="MPHPASV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cowr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="16"/>
+    </columns>
+    <columns xmi:id="_b8Cow7-PEeCTeOqiKPUfRA" name="CS000MTOPRESTAMO" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CoxL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="7"/>
+    </columns>
+    <columns xmi:id="_b8Coxb-PEeCTeOqiKPUfRA" name="MONTOVEHICULAR" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Coxr-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="7"/>
+    </columns>
+    <columns xmi:id="_b8Cox7-PEeCTeOqiKPUfRA" name="CTACTEOFERTA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CoyL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8Coyb-PEeCTeOqiKPUfRA" name="CTAAHOFERTA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Coyr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8Coy7-PEeCTeOqiKPUfRA" name="CTAPOFERTA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CozL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8Cozb-PEeCTeOqiKPUfRA" name="FMUTUOOFERT">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cozr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8Coz7-PEeCTeOqiKPUfRA" name="CTACTSOFERT">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Co0L-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8Co0b-PEeCTeOqiKPUfRA" name="TCONSACTV" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co0r-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="4" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co07-PEeCTeOqiKPUfRA" name="MONTOSUBROGADOS" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co1L-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="7"/>
+    </columns>
+    <columns xmi:id="_b8Co1b-PEeCTeOqiKPUfRA" name="TSUBACTV" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co1r-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="4" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co17-PEeCTeOqiKPUfRA" name="THIPOTACTV" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co2L-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="4" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co2b-PEeCTeOqiKPUfRA" name="TVEHICACTV" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co2r-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="4" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co27-PEeCTeOqiKPUfRA" name="TCUOT36ACT" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co3L-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="4" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co3b-PEeCTeOqiKPUfRA" name="TCUOT48ACT" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co3r-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="4" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co37-PEeCTeOqiKPUfRA" name="CS000MONTOCTA60" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co4L-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="6" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co4b-PEeCTeOqiKPUfRA" name="TCUOT60ACT" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co4r-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="4" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co47-PEeCTeOqiKPUfRA" name="CSS000PRESMENA5000" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co5L-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="9" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co5b-PEeCTeOqiKPUfRA" name="CS000COMISDESEMEN5000" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co5r-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="6" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co57-PEeCTeOqiKPUfRA" name="CS000PRES5000A15000" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co6L-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="9" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co6b-PEeCTeOqiKPUfRA" name="C5000COMDES15000ACT" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co6r-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="6" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co67-PEeCTeOqiKPUfRA" name="CS000PRESMAYA15000" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co7L-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="9" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co7b-PEeCTeOqiKPUfRA" name="COMDES15000AC" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co7r-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="6" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co77-PEeCTeOqiKPUfRA" name="CS000LINMINADQTC" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co8L-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="7"/>
+    </columns>
+    <columns xmi:id="_b8Co8b-PEeCTeOqiKPUfRA" name="CS000TIPODECREDITO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Co8r-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="30"/>
+    </columns>
+    <columns xmi:id="_b8Co87-PEeCTeOqiKPUfRA" name="CS000MIXMONPREST" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co9L-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="7"/>
+    </columns>
+    <columns xmi:id="_b8Co9b-PEeCTeOqiKPUfRA" name="CS000MIXLINASISTC" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co9r-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="7"/>
+    </columns>
+    <columns xmi:id="_b8Co97-PEeCTeOqiKPUfRA" name="CS000MIXTIPOTC">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Co-L-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="30"/>
+    </columns>
+    <columns xmi:id="_b8Co-b-PEeCTeOqiKPUfRA" name="CS000PRESTCMENA5000" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co-r-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="9" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co-7-PEeCTeOqiKPUfRA" name="CS000PRESTC500015000" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co_L-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="9" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co_b-PEeCTeOqiKPUfRA" name="CS000PRESTCMAYA15000" nullable="false" defaultValue="0 ">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8Co_r-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="9" scale="2"/>
+    </columns>
+    <columns xmi:id="_b8Co_7-PEeCTeOqiKPUfRA" name="ATRIBCTACTEPASV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpAL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpAb-PEeCTeOqiKPUfRA" name="ATRIBCTAAHPASV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpAr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpA7-PEeCTeOqiKPUfRA" name="ATRIBCTAPLAZPASV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpBL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpBb-PEeCTeOqiKPUfRA" name="ATRIBCTSPASV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpBr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpB7-PEeCTeOqiKPUfRA" name="ATRIBFMUTUOPASV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpCL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpCb-PEeCTeOqiKPUfRA" name="COBOFSERV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpCr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpC7-PEeCTeOqiKPUfRA" name="SVIDOFSERV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpDL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpDb-PEeCTeOqiKPUfRA" name="SONCOFSERV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpDr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpD7-PEeCTeOqiKPUfRA" name="SVINCOFSERV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpEL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpEb-PEeCTeOqiKPUfRA" name="PHOFSERV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpEr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpE7-PEeCTeOqiKPUfRA" name="DEBOFSERV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpFL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpFb-PEeCTeOqiKPUfRA" name="VIPOFSERV">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpFr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpF7-PEeCTeOqiKPUfRA" name="OFCNETCAN">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpGL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpGb-PEeCTeOqiKPUfRA" name="OFCEMPCAN">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpGr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpG7-PEeCTeOqiKPUfRA" name="OFLINCOCAN">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpHL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpHb-PEeCTeOqiKPUfRA" name="OFB24CAN">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpHr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpH7-PEeCTeOqiKPUfRA" name="OFPOSCAN">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpIL-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20"/>
+    </columns>
+    <columns xmi:id="_b8CpIb-PEeCTeOqiKPUfRA" name="PREFIJO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpIr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="3"/>
+    </columns>
+    <columns xmi:id="_b8CpI7-PEeCTeOqiKPUfRA" name="MONTOHIPOTECARIO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CpJL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="7"/>
+    </columns>
+    <columns xmi:id="_b8CpJb-PEeCTeOqiKPUfRA" name="CS000MONTOCTA36">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CpJr-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="7"/>
+    </columns>
+    <columns xmi:id="_b8CpJ7-PEeCTeOqiKPUfRA" name="CS000MONTOCTA48">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_b8CpKL-PEeCTeOqiKPUfRA" name="NUMBER" primitiveType="NUMERIC" precision="7"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_b8CpKb-PEeCTeOqiKPUfRA" name="TIILC_CLIENTE_PK" members="_b8Cn87-PEeCTeOqiKPUfRA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpKr-PEeCTeOqiKPUfRA" name="SYS_C0012695">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpK7-PEeCTeOqiKPUfRA" SQL="&quot;COD_CLIENTE&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpLL-PEeCTeOqiKPUfRA" name="SYS_C0012696">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpLb-PEeCTeOqiKPUfRA" SQL="&quot;COD_OFICINA&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpLr-PEeCTeOqiKPUfRA" name="SYS_C0012697">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpL7-PEeCTeOqiKPUfRA" SQL="&quot;COD_GESTOR&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpML-PEeCTeOqiKPUfRA" name="SYS_C0012698">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpMb-PEeCTeOqiKPUfRA" SQL="&quot;COD_TERRITORIO&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpMr-PEeCTeOqiKPUfRA" name="SYS_C0012699">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpM7-PEeCTeOqiKPUfRA" SQL="&quot;MOFACTV&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpNL-PEeCTeOqiKPUfRA" name="SYS_C0012700">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpNb-PEeCTeOqiKPUfRA" SQL="&quot;CS000LINEAMAXTC&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpNr-PEeCTeOqiKPUfRA" name="SYS_C0012701">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpN7-PEeCTeOqiKPUfRA" SQL="&quot;CS000MTOPRESTAMO&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpOL-PEeCTeOqiKPUfRA" name="SYS_C0012702">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpOb-PEeCTeOqiKPUfRA" SQL="&quot;MONTOVEHICULAR&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpOr-PEeCTeOqiKPUfRA" name="SYS_C0012704">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpO7-PEeCTeOqiKPUfRA" SQL="&quot;TCONSACTV&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpPL-PEeCTeOqiKPUfRA" name="SYS_C0012705">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpPb-PEeCTeOqiKPUfRA" SQL="&quot;MONTOSUBROGADOS&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpPr-PEeCTeOqiKPUfRA" name="SYS_C0012706">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpP7-PEeCTeOqiKPUfRA" SQL="&quot;TSUBACTV&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpQL-PEeCTeOqiKPUfRA" name="SYS_C0012707">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpQb-PEeCTeOqiKPUfRA" SQL="&quot;THIPOTACTV&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpQr-PEeCTeOqiKPUfRA" name="SYS_C0012708">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpQ7-PEeCTeOqiKPUfRA" SQL="&quot;TVEHICACTV&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpRL-PEeCTeOqiKPUfRA" name="SYS_C0012710">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpRb-PEeCTeOqiKPUfRA" SQL="&quot;TCUOT36ACT&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpRr-PEeCTeOqiKPUfRA" name="SYS_C0012712">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpR7-PEeCTeOqiKPUfRA" SQL="&quot;TCUOT48ACT&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpSL-PEeCTeOqiKPUfRA" name="SYS_C0012713">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpSb-PEeCTeOqiKPUfRA" SQL="&quot;CS000MONTOCTA60&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpSr-PEeCTeOqiKPUfRA" name="SYS_C0012714">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpS7-PEeCTeOqiKPUfRA" SQL="&quot;TCUOT60ACT&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpTL-PEeCTeOqiKPUfRA" name="SYS_C0012715">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpTb-PEeCTeOqiKPUfRA" SQL="&quot;CSS000PRESMENA5000&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpTr-PEeCTeOqiKPUfRA" name="SYS_C0012716">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpT7-PEeCTeOqiKPUfRA" SQL="&quot;CS000COMISDESEMEN5000&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpUL-PEeCTeOqiKPUfRA" name="SYS_C0012717">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpUb-PEeCTeOqiKPUfRA" SQL="&quot;CS000PRES5000A15000&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpUr-PEeCTeOqiKPUfRA" name="SYS_C0012718">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpU7-PEeCTeOqiKPUfRA" SQL="&quot;C5000COMDES15000ACT&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpVL-PEeCTeOqiKPUfRA" name="SYS_C0012719">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpVb-PEeCTeOqiKPUfRA" SQL="&quot;CS000PRESMAYA15000&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpVr-PEeCTeOqiKPUfRA" name="SYS_C0012720">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpV7-PEeCTeOqiKPUfRA" SQL="&quot;COMDES15000AC&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpWL-PEeCTeOqiKPUfRA" name="SYS_C0012721">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpWb-PEeCTeOqiKPUfRA" SQL="&quot;CS000LINMINADQTC&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpWr-PEeCTeOqiKPUfRA" name="SYS_C0012722">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpW7-PEeCTeOqiKPUfRA" SQL="&quot;CS000MIXMONPREST&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpXL-PEeCTeOqiKPUfRA" name="SYS_C0012723">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpXb-PEeCTeOqiKPUfRA" SQL="&quot;CS000MIXLINASISTC&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpXr-PEeCTeOqiKPUfRA" name="SYS_C0012724">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpX7-PEeCTeOqiKPUfRA" SQL="&quot;CS000PRESTCMENA5000&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpYL-PEeCTeOqiKPUfRA" name="SYS_C0012725">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpYb-PEeCTeOqiKPUfRA" SQL="&quot;CS000PRESTC500015000&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpYr-PEeCTeOqiKPUfRA" name="SYS_C0012726">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpY7-PEeCTeOqiKPUfRA" SQL="&quot;CS000PRESTCMAYA15000&quot; IS NOT NULL"/>
+    </constraints>
+    <properties xmi:id="_b8CpZL-PEeCTeOqiKPUfRA" initialExtent="687865856" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleTable>
+  <OracleModel:OracleIndex xmi:id="_b8CpZb-PEeCTeOqiKPUfRA" name="TIILC_CLIENTE_PK" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" unique="true" table="_b8Cn8r-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8CpZr-PEeCTeOqiKPUfRA" column="_b8Cn87-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8CpZ7-PEeCTeOqiKPUfRA" initialExtent="29360128" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleIndex xmi:id="_b8CpaL-PEeCTeOqiKPUfRA" name="XPKTIILC_CLIENTE_01" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" table="_b8Cn8r-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cpab-PEeCTeOqiKPUfRA" column="_b8Cn97-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cpar-PEeCTeOqiKPUfRA" initialExtent="30408704" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleIndex xmi:id="_b8Cpa7-PEeCTeOqiKPUfRA" name="XPKTIILC_CLIENTE_02" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" table="_b8Cn8r-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8CpbL-PEeCTeOqiKPUfRA" column="_b8Cn_b-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cpbb-PEeCTeOqiKPUfRA" initialExtent="30408704" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleIndex xmi:id="_b8Cpbr-PEeCTeOqiKPUfRA" name="XPKTIILC_CLIENTE_04" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" table="_b8Cn8r-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cpb7-PEeCTeOqiKPUfRA" column="_b8CoGb-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8CpcL-PEeCTeOqiKPUfRA" initialExtent="32505856" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleIndex xmi:id="_b8Cpcb-PEeCTeOqiKPUfRA" name="XPKTIILC_CLIENTE_05" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" table="_b8Cn8r-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cpcr-PEeCTeOqiKPUfRA" column="_b8CoFb-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cpc7-PEeCTeOqiKPUfRA" initialExtent="26214400" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleIndex xmi:id="_b8CpdL-PEeCTeOqiKPUfRA" name="XPKTIILC_CLIENTE_06" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" table="_b8Cn8r-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cpdb-PEeCTeOqiKPUfRA" column="_b8Cohb-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cpdr-PEeCTeOqiKPUfRA" initialExtent="26214400" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleIndex xmi:id="_b8Cpd7-PEeCTeOqiKPUfRA" name="XPKTIILC_CLIENTE_07" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" table="_b8Cn8r-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8CpeL-PEeCTeOqiKPUfRA" column="_b8Cn_7-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cpeb-PEeCTeOqiKPUfRA" initialExtent="32505856" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleIndex xmi:id="_b8Cper-PEeCTeOqiKPUfRA" name="XPKTIILC_CLIENTE_08" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" table="_b8Cn8r-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cpe7-PEeCTeOqiKPUfRA" column="_b8CoAb-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8CpfL-PEeCTeOqiKPUfRA" initialExtent="26214400" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleIndex xmi:id="_b8Cpfb-PEeCTeOqiKPUfRA" name="XPKTIILC_CLIENTE_09" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" table="_b8Cn8r-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cpfr-PEeCTeOqiKPUfRA" column="_b8Conb-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cpf7-PEeCTeOqiKPUfRA" initialExtent="25165824" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleIndex xmi:id="_b8CpgL-PEeCTeOqiKPUfRA" name="XPKTIILC_CLIENTE_10" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" table="_b8Cn8r-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cpgb-PEeCTeOqiKPUfRA" column="_b8Cosb-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cpgr-PEeCTeOqiKPUfRA" initialExtent="37748736" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleIndex xmi:id="_b8Cpg7-PEeCTeOqiKPUfRA" name="TIILC_LINEA_COMERCIAL_PK" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" unique="true" table="_b8Cph7-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8CphL-PEeCTeOqiKPUfRA" column="_b8CpiL-PEeCTeOqiKPUfRA"/>
+    <members xmi:id="_b8Cphb-PEeCTeOqiKPUfRA" column="_b8Cpir-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cphr-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleTable xmi:id="_b8Cph7-PEeCTeOqiKPUfRA" name="TIILC_LINEA_COMERCIAL" schema="_bohN0L-PEeCTeOqiKPUfRA" index="_b8Cpg7-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="1" maxTrans="255">
+    <columns xmi:id="_b8CpiL-PEeCTeOqiKPUfRA" name="COD_GRUPO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cpib-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="6"/>
+    </columns>
+    <columns xmi:id="_b8Cpir-PEeCTeOqiKPUfRA" name="COD_LINCOM" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cpi7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="6"/>
+    </columns>
+    <columns xmi:id="_b8CpjL-PEeCTeOqiKPUfRA" name="DES_LINCOM" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cpjb-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="50"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_b8Cpjr-PEeCTeOqiKPUfRA" name="TIILC_LINEA_COMERCIAL_PK" members="_b8CpiL-PEeCTeOqiKPUfRA _b8Cpir-PEeCTeOqiKPUfRA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cpj7-PEeCTeOqiKPUfRA" name="SYS_C0012732">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CpkL-PEeCTeOqiKPUfRA" SQL="&quot;COD_GRUPO&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cpkb-PEeCTeOqiKPUfRA" name="SYS_C0012733">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cpkr-PEeCTeOqiKPUfRA" SQL="&quot;COD_LINCOM&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cpk7-PEeCTeOqiKPUfRA" name="SYS_C0012734">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CplL-PEeCTeOqiKPUfRA" SQL="&quot;DES_LINCOM&quot; IS NOT NULL"/>
+    </constraints>
+    <properties xmi:id="_b8Cplb-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleTable>
+  <OracleModel:OracleIndex xmi:id="_b8Cplr-PEeCTeOqiKPUfRA" name="TIILC_OFICINA_PK" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" unique="true" table="_b8Cpm7-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cpl7-PEeCTeOqiKPUfRA" column="_b8CpoL-PEeCTeOqiKPUfRA"/>
+    <members xmi:id="_b8CpmL-PEeCTeOqiKPUfRA" column="_b8Cpnr-PEeCTeOqiKPUfRA"/>
+    <members xmi:id="_b8Cpmb-PEeCTeOqiKPUfRA" column="_b8CpnL-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cpmr-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleTable xmi:id="_b8Cpm7-PEeCTeOqiKPUfRA" name="TIILC_OFICINA" schema="_bohN0L-PEeCTeOqiKPUfRA" index="_b8Cplr-PEeCTeOqiKPUfRA" referencingForeignKeys="_b8Cpw7-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="1" maxTrans="255">
+    <columns xmi:id="_b8CpnL-PEeCTeOqiKPUfRA" name="COD_OFICINA" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cpnb-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8Cpnr-PEeCTeOqiKPUfRA" name="COD_TERRITORIO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cpn7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8CpoL-PEeCTeOqiKPUfRA" name="COD_AREA" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cpob-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8Cpor-PEeCTeOqiKPUfRA" name="DES_OFICINA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cpo7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="100"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_b8CppL-PEeCTeOqiKPUfRA" name="TIILC_OFICINA_PK" members="_b8CpoL-PEeCTeOqiKPUfRA _b8Cpnr-PEeCTeOqiKPUfRA _b8CpnL-PEeCTeOqiKPUfRA" ForeignKey="_b8Cpw7-PEeCTeOqiKPUfRA"/>
+    <constraints xsi:type="SQLConstraints:ForeignKey" xmi:id="_b8Cppb-PEeCTeOqiKPUfRA" name="TIILC_TERRITORIO_FK" members="_b8CpoL-PEeCTeOqiKPUfRA _b8Cpnr-PEeCTeOqiKPUfRA" uniqueConstraint="_b8Cp2r-PEeCTeOqiKPUfRA" referencedTable="_b8Cp07-PEeCTeOqiKPUfRA">
+      <eAnnotations xmi:id="_b8Cppr-PEeCTeOqiKPUfRA" source="FK_MODELING_RELATIONSHIP">
+        <details xmi:id="_b8Cpp7-PEeCTeOqiKPUfRA" key="FK_IS_IDENTIFYING_RELATIONSHIP" value="true"/>
+        <details xmi:id="_b8CpqL-PEeCTeOqiKPUfRA" key="FK_CHILD_MULTIPLICITY" value="*"/>
+        <details xmi:id="_b8Cpqb-PEeCTeOqiKPUfRA" key="FK_CHILD_ROLE_NAME" value=""/>
+        <details xmi:id="_b8Cpqr-PEeCTeOqiKPUfRA" key="FK_PARENT_MULTIPLICITY" value="0..1"/>
+        <details xmi:id="_b8Cpq7-PEeCTeOqiKPUfRA" key="FK_PARENT_ROLE_NAME" value=""/>
+      </eAnnotations>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CprL-PEeCTeOqiKPUfRA" name="SYS_C0012737">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cprb-PEeCTeOqiKPUfRA" SQL="&quot;COD_OFICINA&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cprr-PEeCTeOqiKPUfRA" name="SYS_C0012738">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cpr7-PEeCTeOqiKPUfRA" SQL="&quot;COD_TERRITORIO&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpsL-PEeCTeOqiKPUfRA" name="SYS_C0012739">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cpsb-PEeCTeOqiKPUfRA" SQL="&quot;COD_AREA&quot; IS NOT NULL"/>
+    </constraints>
+    <properties xmi:id="_b8Cpsr-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleTable>
+  <OracleModel:OracleTable xmi:id="_b8Cps7-PEeCTeOqiKPUfRA" name="TIILC_GESTOR" schema="_bohN0L-PEeCTeOqiKPUfRA" index="_b8CqKL-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="1" maxTrans="255">
+    <columns xmi:id="_b8CptL-PEeCTeOqiKPUfRA" name="COD_AREA" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cptb-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8Cptr-PEeCTeOqiKPUfRA" name="COD_TERRITORIO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cpt7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8CpuL-PEeCTeOqiKPUfRA" name="COD_OFICINA" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cpub-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8Cpur-PEeCTeOqiKPUfRA" name="COD_GESTOR" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cpu7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="7"/>
+    </columns>
+    <columns xmi:id="_b8CpvL-PEeCTeOqiKPUfRA" name="NOM_GESTOR">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cpvb-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="100"/>
+    </columns>
+    <columns xmi:id="_b8Cpvr-PEeCTeOqiKPUfRA" name="REG_GESTOR">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cpv7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="8"/>
+    </columns>
+    <columns xmi:id="_b8CpwL-PEeCTeOqiKPUfRA" name="PERFIL_GESTOR">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cpwb-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="5"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_b8Cpwr-PEeCTeOqiKPUfRA" name="TIILC_GESTOR_PK" members="_b8CptL-PEeCTeOqiKPUfRA _b8Cptr-PEeCTeOqiKPUfRA _b8CpuL-PEeCTeOqiKPUfRA _b8Cpur-PEeCTeOqiKPUfRA"/>
+    <constraints xsi:type="SQLConstraints:ForeignKey" xmi:id="_b8Cpw7-PEeCTeOqiKPUfRA" name="TIILC_OFICINA_FK" members="_b8CptL-PEeCTeOqiKPUfRA _b8Cptr-PEeCTeOqiKPUfRA _b8CpuL-PEeCTeOqiKPUfRA" uniqueConstraint="_b8CppL-PEeCTeOqiKPUfRA" referencedTable="_b8Cpm7-PEeCTeOqiKPUfRA">
+      <eAnnotations xmi:id="_b8CpxL-PEeCTeOqiKPUfRA" source="FK_MODELING_RELATIONSHIP">
+        <details xmi:id="_b8Cpxb-PEeCTeOqiKPUfRA" key="FK_IS_IDENTIFYING_RELATIONSHIP" value="true"/>
+        <details xmi:id="_b8Cpxr-PEeCTeOqiKPUfRA" key="FK_CHILD_MULTIPLICITY" value="*"/>
+        <details xmi:id="_b8Cpx7-PEeCTeOqiKPUfRA" key="FK_CHILD_ROLE_NAME" value=""/>
+        <details xmi:id="_b8CpyL-PEeCTeOqiKPUfRA" key="FK_PARENT_MULTIPLICITY" value="0..1"/>
+        <details xmi:id="_b8Cpyb-PEeCTeOqiKPUfRA" key="FK_PARENT_ROLE_NAME" value=""/>
+      </eAnnotations>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cpyr-PEeCTeOqiKPUfRA" name="SYS_C0012728">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cpy7-PEeCTeOqiKPUfRA" SQL="&quot;COD_AREA&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CpzL-PEeCTeOqiKPUfRA" name="SYS_C0012729">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cpzb-PEeCTeOqiKPUfRA" SQL="&quot;COD_TERRITORIO&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cpzr-PEeCTeOqiKPUfRA" name="SYS_C0012730">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cpz7-PEeCTeOqiKPUfRA" SQL="&quot;COD_OFICINA&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cp0L-PEeCTeOqiKPUfRA" name="SYS_C0012731">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cp0b-PEeCTeOqiKPUfRA" SQL="&quot;COD_GESTOR&quot; IS NOT NULL"/>
+    </constraints>
+    <properties xmi:id="_b8Cp0r-PEeCTeOqiKPUfRA" initialExtent="196608" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleTable>
+  <OracleModel:OracleTable xmi:id="_b8Cp07-PEeCTeOqiKPUfRA" name="TIILC_TERRITORIO" schema="_bohN0L-PEeCTeOqiKPUfRA" index="_b8Cp57-PEeCTeOqiKPUfRA" referencingForeignKeys="_b8Cppb-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="1" maxTrans="255">
+    <columns xmi:id="_b8Cp1L-PEeCTeOqiKPUfRA" name="COD_TERRITORIO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cp1b-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8Cp1r-PEeCTeOqiKPUfRA" name="COD_AREA" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cp17-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8Cp2L-PEeCTeOqiKPUfRA" name="DES_TERRITORIO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cp2b-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="100"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_b8Cp2r-PEeCTeOqiKPUfRA" name="TIILC_TERRITORIO_PK" members="_b8Cp1r-PEeCTeOqiKPUfRA _b8Cp1L-PEeCTeOqiKPUfRA" ForeignKey="_b8Cppb-PEeCTeOqiKPUfRA"/>
+    <constraints xsi:type="SQLConstraints:ForeignKey" xmi:id="_b8Cp27-PEeCTeOqiKPUfRA" name="TIILC_AREA_FK" members="_b8Cp1r-PEeCTeOqiKPUfRA" uniqueConstraint="_b8Cp8L-PEeCTeOqiKPUfRA" referencedTable="_b8Cp67-PEeCTeOqiKPUfRA">
+      <eAnnotations xmi:id="_b8Cp3L-PEeCTeOqiKPUfRA" source="FK_MODELING_RELATIONSHIP">
+        <details xmi:id="_b8Cp3b-PEeCTeOqiKPUfRA" key="FK_IS_IDENTIFYING_RELATIONSHIP" value="true"/>
+        <details xmi:id="_b8Cp3r-PEeCTeOqiKPUfRA" key="FK_CHILD_MULTIPLICITY" value="*"/>
+        <details xmi:id="_b8Cp37-PEeCTeOqiKPUfRA" key="FK_CHILD_ROLE_NAME" value=""/>
+        <details xmi:id="_b8Cp4L-PEeCTeOqiKPUfRA" key="FK_PARENT_MULTIPLICITY" value="0..1"/>
+        <details xmi:id="_b8Cp4b-PEeCTeOqiKPUfRA" key="FK_PARENT_ROLE_NAME" value=""/>
+      </eAnnotations>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cp4r-PEeCTeOqiKPUfRA" name="SYS_C0012744">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cp47-PEeCTeOqiKPUfRA" SQL="&quot;COD_TERRITORIO&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cp5L-PEeCTeOqiKPUfRA" name="SYS_C0012745">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cp5b-PEeCTeOqiKPUfRA" SQL="&quot;COD_AREA&quot; IS NOT NULL"/>
+    </constraints>
+    <properties xmi:id="_b8Cp5r-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleTable>
+  <OracleModel:OracleIndex xmi:id="_b8Cp57-PEeCTeOqiKPUfRA" name="TIILC_TERRITORIO_PK" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" unique="true" table="_b8Cp07-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cp6L-PEeCTeOqiKPUfRA" column="_b8Cp1r-PEeCTeOqiKPUfRA"/>
+    <members xmi:id="_b8Cp6b-PEeCTeOqiKPUfRA" column="_b8Cp1L-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cp6r-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleTable xmi:id="_b8Cp67-PEeCTeOqiKPUfRA" name="TIILC_AREA" schema="_bohN0L-PEeCTeOqiKPUfRA" index="_b8Cp9L-PEeCTeOqiKPUfRA" referencingForeignKeys="_b8Cp27-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="1" maxTrans="255">
+    <columns xmi:id="_b8Cp7L-PEeCTeOqiKPUfRA" name="COD_AREA" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cp7b-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8Cp7r-PEeCTeOqiKPUfRA" name="DES_AREA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cp77-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="100"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_b8Cp8L-PEeCTeOqiKPUfRA" name="TIILC_AREA_PK" members="_b8Cp7L-PEeCTeOqiKPUfRA" ForeignKey="_b8Cp27-PEeCTeOqiKPUfRA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8Cp8b-PEeCTeOqiKPUfRA" name="SYS_C0012694">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8Cp8r-PEeCTeOqiKPUfRA" SQL="&quot;COD_AREA&quot; IS NOT NULL"/>
+    </constraints>
+    <properties xmi:id="_b8Cp87-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleTable>
+  <OracleModel:OracleIndex xmi:id="_b8Cp9L-PEeCTeOqiKPUfRA" name="TIILC_AREA_PK" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" unique="true" table="_b8Cp67-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cp9b-PEeCTeOqiKPUfRA" column="_b8Cp7L-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cp9r-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleIndex xmi:id="_b8Cp97-PEeCTeOqiKPUfRA" name="TIILC_MULTITABLA_PK" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" unique="true" table="_b8Cp-7-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8Cp-L-PEeCTeOqiKPUfRA" column="_b8Cp_L-PEeCTeOqiKPUfRA"/>
+    <members xmi:id="_b8Cp-b-PEeCTeOqiKPUfRA" column="_b8Cp_r-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8Cp-r-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleTable xmi:id="_b8Cp-7-PEeCTeOqiKPUfRA" name="TIILC_MULTITABLA" schema="_bohN0L-PEeCTeOqiKPUfRA" index="_b8Cp97-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="1" maxTrans="255">
+    <columns xmi:id="_b8Cp_L-PEeCTeOqiKPUfRA" name="COD_MULT" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cp_b-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="3"/>
+    </columns>
+    <columns xmi:id="_b8Cp_r-PEeCTeOqiKPUfRA" name="COD_ELE" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8Cp_7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="10"/>
+    </columns>
+    <columns xmi:id="_b8CqAL-PEeCTeOqiKPUfRA" name="VALOR1">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CqAb-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="80"/>
+    </columns>
+    <columns xmi:id="_b8CqAr-PEeCTeOqiKPUfRA" name="VALOR2">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CqA7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="80"/>
+    </columns>
+    <columns xmi:id="_b8CqBL-PEeCTeOqiKPUfRA" name="VALOR3">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CqBb-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="80"/>
+    </columns>
+    <columns xmi:id="_b8CqBr-PEeCTeOqiKPUfRA" name="VALOR4">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CqB7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="80"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_b8CqCL-PEeCTeOqiKPUfRA" name="TIILC_MULTITABLA_PK" members="_b8Cp_L-PEeCTeOqiKPUfRA _b8Cp_r-PEeCTeOqiKPUfRA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CqCb-PEeCTeOqiKPUfRA" name="SYS_C0012735">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CqCr-PEeCTeOqiKPUfRA" SQL="&quot;COD_MULT&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CqC7-PEeCTeOqiKPUfRA" name="SYS_C0012736">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CqDL-PEeCTeOqiKPUfRA" SQL="&quot;COD_ELE&quot; IS NOT NULL"/>
+    </constraints>
+    <properties xmi:id="_b8CqDb-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleTable>
+  <OracleModel:OracleIndex xmi:id="_b8CqDr-PEeCTeOqiKPUfRA" name="TIILC_PERFIL_PK" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" unique="true" table="_b8CqEb-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8CqD7-PEeCTeOqiKPUfRA" column="_b8CqEr-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8CqEL-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleTable xmi:id="_b8CqEb-PEeCTeOqiKPUfRA" name="TIILC_PERFIL" schema="_bohN0L-PEeCTeOqiKPUfRA" index="_b8CqDr-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="1" maxTrans="255">
+    <columns xmi:id="_b8CqEr-PEeCTeOqiKPUfRA" name="COD_PERFIL" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CqE7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4"/>
+    </columns>
+    <columns xmi:id="_b8CqFL-PEeCTeOqiKPUfRA" name="DES_PERFIL">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CqFb-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="30"/>
+    </columns>
+    <columns xmi:id="_b8CqFr-PEeCTeOqiKPUfRA" name="COMPONENTE">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CqF7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="50"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_b8CqGL-PEeCTeOqiKPUfRA" name="TIILC_PERFIL_PK" members="_b8CqEr-PEeCTeOqiKPUfRA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CqGb-PEeCTeOqiKPUfRA" name="SYS_C0012740">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CqGr-PEeCTeOqiKPUfRA" SQL="&quot;COD_PERFIL&quot; IS NOT NULL"/>
+    </constraints>
+    <properties xmi:id="_b8CqG7-PEeCTeOqiKPUfRA" initialExtent="65536" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleTable>
+  <OracleModel:OracleIndex xmi:id="_b8CqHL-PEeCTeOqiKPUfRA" name="TIILC_EMPRESA_PK" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" unique="true" table="_b8CqH7-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8CqHb-PEeCTeOqiKPUfRA" column="_b8CqIL-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8CqHr-PEeCTeOqiKPUfRA" initialExtent="786432" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+  <OracleModel:OracleTable xmi:id="_b8CqH7-PEeCTeOqiKPUfRA" name="TIILC_EMPRESA" schema="_bohN0L-PEeCTeOqiKPUfRA" index="_b8CqHL-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="1" maxTrans="255">
+    <columns xmi:id="_b8CqIL-PEeCTeOqiKPUfRA" name="COD_EMPRESA" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CqIb-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="8"/>
+    </columns>
+    <columns xmi:id="_b8CqIr-PEeCTeOqiKPUfRA" name="DES_EMPRESA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_b8CqI7-PEeCTeOqiKPUfRA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="40"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_b8CqJL-PEeCTeOqiKPUfRA" name="TIILC_EMPRESA_PK" members="_b8CqIL-PEeCTeOqiKPUfRA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_b8CqJb-PEeCTeOqiKPUfRA" name="SYS_C0012727">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_b8CqJr-PEeCTeOqiKPUfRA" SQL="&quot;COD_EMPRESA&quot; IS NOT NULL"/>
+    </constraints>
+    <properties xmi:id="_b8CqJ7-PEeCTeOqiKPUfRA" initialExtent="2097152" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleTable>
+  <OracleModel:OracleIndex xmi:id="_b8CqKL-PEeCTeOqiKPUfRA" name="TIILC_GESTOR_PK" Schema="_bohN0L-PEeCTeOqiKPUfRA" fillFactor="10" unique="true" table="_b8Cps7-PEeCTeOqiKPUfRA" PCTFree="10" initTrans="2" maxTrans="255">
+    <members xmi:id="_b8CqKb-PEeCTeOqiKPUfRA" column="_b8CptL-PEeCTeOqiKPUfRA"/>
+    <members xmi:id="_b8CqKr-PEeCTeOqiKPUfRA" column="_b8Cptr-PEeCTeOqiKPUfRA"/>
+    <members xmi:id="_b8CqK7-PEeCTeOqiKPUfRA" column="_b8CpuL-PEeCTeOqiKPUfRA"/>
+    <members xmi:id="_b8CqLL-PEeCTeOqiKPUfRA" column="_b8Cpur-PEeCTeOqiKPUfRA"/>
+    <properties xmi:id="_b8CqLb-PEeCTeOqiKPUfRA" initialExtent="131072" nextExtent="1048576" minimumExtents="1" maximumExtents="2147483645" bufferpool="DEFAULT"/>
+  </OracleModel:OracleIndex>
+</xmi:XMI>

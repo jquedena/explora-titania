@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:accessbean="http:///accessbean.ecore" xmlns:ejb="ejb.xmi">
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887781" name="SessionCarga">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionCarga"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887782" name="SessionCliente">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionCliente"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887783" name="SessionEmpresa">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionEmpresa"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887784" name="SessionGestor">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionGestor"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887785" name="SessionMultitabla">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionMultitabla"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887786" name="SessionOficina">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionOficina"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887787" name="SessionPermisoPerfil">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionPermisoPerfil"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887788" name="SessionSQL">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionSQL"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887789" name="SessionService" factoryPackageName="com.grupobbva.bc.per.tel.iilc.session">
+    <accessBeans xmi:type="accessbean:Type1AccessBean" xmi:id="Type1AccessBean_1308073887781" name="SessionServiceAccessBean" package="com.grupobbva.bc.per.tel.iilc.session" version="WSAD-1.0">
+      <nullConstructor xmi:id="MethodElement_1308073887781" name="create" parms="" type="Home">
+        <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionService"/>
+      </nullConstructor>
+    </accessBeans>
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionService"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887790" name="SessionTerritorio">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionTerritorio"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887791" name="SessionTotal">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionTotal"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887792" name="Tiilc_area">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1294325634794"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887793" name="Tiilc_cliente">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1294325634809"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887794" name="Tiilc_empresa">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1294325634810"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887795" name="Tiilc_gestor">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1294325634857"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887796" name="Tiilc_linea_comercial">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1294325634825"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887797" name="Tiilc_multitabla">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1294325634826"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887798" name="Tiilc_oficina">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1294325634856"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887799" name="Tiilc_perfil">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1294325634827"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887800" name="Tiilc_permiso_perfil">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1294325634841"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887801" name="Tiilc_territorio">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1294325634843"/>
+  </accessbean:EJBShadow>
+  <accessbean:EJBShadow xmi:id="EJBShadow_1308073887802" name="Tiilc_total">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1294325634842"/>
+  </accessbean:EJBShadow>
+</xmi:XMI>
