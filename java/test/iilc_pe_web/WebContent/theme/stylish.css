@@ -1,0 +1,207 @@
+td.error{
+	color: red;
+	font: bold;
+	font-size: 9pt
+}
+table.login{
+	background: url("../images/tecnologia.jpg");
+}
+table.Grid {
+	border: 1px Solid #42724a;
+	margin-bottom: 8px;
+}
+input.textBox {
+	width:50px;
+	font-size: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;;
+}
+
+button.miniBot {
+	border: 1px outset #42724a;
+	background: #2d4492;
+	height: 25px;
+	padding-right: 2px;
+	padding-left: 2px;
+	font-size: 11px;
+	margin: 0px;
+	margin-top: 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;;
+	color: #efefef
+}
+input.MiniBot {
+	border: 1px outset #42724a;
+	background: #2d4492;
+	color: #efefef;
+	height: 25px;
+	padding-right: 2px;
+	padding-left: 2px;
+	font-size: 11px;
+	margin: 0px;
+	margin-top: 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+input.dateButton {
+	background-image: url(../images/icos/cal.gif);
+	width: 16px;
+	height: 16px;
+	margin: 0px;
+	border: 0px outset #42724a;
+}
+input.timeButton {
+	background-image: url(../images/icos/clock.png);
+	width: 15px;
+	height: 15px;
+	margin: 0px;
+	border: 0px outset #42724a;
+}
+#data {
+	padding-top: 10px;
+	padding-left: 10px;
+	font-size: 11px;
+	background: #FFFFFF;
+}
+
+/* Esta clase identifica a los datos dentro de un dataGrid */
+#cabeza {
+	padding-top: 10px;
+	padding-left: 10px;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	background: #2d4492;
+	color: #FFFFFF
+}
+#Titulo2 {  font-family: Arial, Swiss, sans-serif; font-size: 13px; font-style: normal; color: #2d4492; font-weight: bold}
+
+/***********************************************************************
+LAS CLASES SIGUIENTES SE REFIEREN A LA PARTE SUPERIOR DE LA PAGINA 
+(ES DECIR TODO LO QUE ESTA ARRIBA DEL IFRAME)
+Y A LA BOTONERA IZQUIERDA 
+************************************************************************/
+#cabecera {
+	background-image: url(../images/header.png);
+	height: 60px;
+	width: 100%;  
+}
+td.titulo{
+	text-align: right;
+	font-family: Arial, Swiss, sans-serif;
+	font-size: 17px;
+	font-style: normal;
+	color: #2d4492;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+td.logo{
+	background-image: url(../images/logo_bbva.png);
+	background-repeat: no-repeat;
+}
+#piepagina{
+	font-size: 10px;
+	width: 100%;
+	color: #2d4492;
+	text-align: center;
+	margin-top: 10px;
+	border-top: 1px solid #FFFFFF;
+	padding-top: 5px;
+}
+
+/* Esta clase identifica a la barra superior, su fondo en degrade y altura.
+Además el padding sirve para dar espacio a los botones */
+#barraSuperior a {
+	float: right;
+	text-align: right;
+	margin-right: 20px;
+}
+
+/* Esta clase identifica a la botoneria izquierda, su fondo, ancho, color de letra, que esten justificados
+hay una altura establecida, ya q IE no entiende min-height */
+#user {
+	height: 35px;
+	border-bottom: 1px solid #137b4a;
+	color: #2d4492;
+	text-align: center;
+}
+
+/* Esta clase identifica a la seccion de la botoneria en que se muestra el nombre del usuario
+conectado.  Actualmente es igual a un boton comun y corriente. */
+#boton {
+	border-bottom: 1px solid #FFFFFF;
+	height: 26px; 
+	padding-top: 5px;
+	width: 140px;
+	color: #2d4492;
+}
+
+/* Esta clase identifica a cada boton -sin texto- que haya en el area de botoneria
+*/
+#boton a {
+	color: #2d4492;
+	font-size: 10.5px;
+	text-decoration: none;
+
+}
+#bot{
+	color: #2d4492;
+	font-size: 11px; 
+}
+
+/* Esta clase identifica a cada vinculo que hay dentro del boton
+*/
+/***********************************************************************
+LAS CLASES SIGUIENTES SE REFIEREN A CARACTERISTICAS GENERALES DEL AREA DE CONTENIDO
+DE LAS PAGINAS (QUE NO SEAN ELEMENTOS DE FORM)
+************************************************************************/
+#cont {
+	float: right;
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+/* Esta clase identifica el espacio dejado para el iframe
+*/
+iframe {
+	width: 100%;
+	height: 400px;
+
+}
+
+select.popupMultiple {
+	border: 1px solid #c5d3bb; width: 100%;
+}
+
+#botFile{
+	background-image: url(../images/icos/folder_add.png);
+	font-size: 0px;
+}
+
+
+tr.FondoBody{
+	background-color: #f3f9fa;	
+}
+input.arriba{
+	width: 10px;
+	height: 9px;
+	border: 0;
+	background-color:#F0F7FB;
+	background-image: url(../images/arriba.png);
+}
+input.abajo{
+	width: 10px;
+	height: 5px;
+	border: 0;
+	background-color:#F0F7FB;	
+	background-image: url(../images/abajo.png);
+}
+
+div.VNmarco{
+	border: 1px;
+	border-color: #000000;
+}
+div.VNcont{
+	border: 1px;
+	border-color: #000000;
+	height: 50px;
+}

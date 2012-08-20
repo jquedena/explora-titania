@@ -1,0 +1,34 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+
+<tiles-definitions>
+
+	<!-- =======================================================  -->
+	<!-- Master definitions  									-->
+	<!-- =======================================================  -->
+	<definition name="iild.index" path="/pages/iilc_main_layout.jsp">
+		<put name="filtro" value="/pages/iilc_filtro.jsp" />
+		<put name="body" value="/pages/iilc_body.jsp" />
+	</definition>
+	
+	<!-- =======================================================  -->
+	<!-- Definitions    		  								  -->
+	<!-- =======================================================  -->
+
+	<!-- This definition inherits from the main definition.
+		It overload the page title, and the body used.
+		Use the same mechanism to define new pages sharing common 
+		properties (here header, menu, footer, layout)
+	-->
+
+	<!-- =======================================================  -->
+	<!-- Menus definitions  									-->
+	<!-- =======================================================  -->
+
+	<!-- Menu bar definition 
+		This definition describe a "bar" of menu stacked verticaly.
+		Each menu is describe elsewhere.
+		Add new entry in the list to add new menu.
+	-->
+</tiles-definitions>

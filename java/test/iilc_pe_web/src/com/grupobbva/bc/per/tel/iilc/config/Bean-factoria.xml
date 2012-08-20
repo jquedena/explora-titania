@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/ORA_BIILC" /> 
+		<property name="lookupOnStartup" value="false" /> 
+		<property name="cache" value="true" /> 
+		<property name="proxyInterface" value="javax.sql.DataSource" /> 
+	</bean>
+   
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation">
+		    <value> classpath:/com/grupobbva/bc/per/tel/iilc/config/sql-map-config-iilc.xml </value>
+		</property>
+		<property name="dataSource"><ref local="dataSource"/></property>     
+	</bean>
+
+ 	<context:annotation-config/>
+  
+    <context:component-scan base-package="com.grupobbva.bc.per.tel.iilc" > 
+    </context:component-scan>      	
+    
+    
+    <bean id="cargaClienteService" class="com.grupobbva.bc.per.tel.iilc.task.CargaClienteService"> </bean>
+    <bean id="cargaCentrosService" class="com.grupobbva.bc.per.tel.iilc.task.CargaCentrosService"> </bean>
+    <bean id="cargaColectivoService" class="com.grupobbva.bc.per.tel.iilc.task.CargaColectivoPHService"> </bean>
+    <bean id="cargaVarioferService" class="com.grupobbva.bc.per.tel.iilc.task.CargaVarioferService"> </bean>   
+    <bean id="cargaAlmacccService" class="com.grupobbva.bc.per.tel.iilc.task.CargaAlmacccService"> </bean>
+    <bean id="cargaEstmService" class="com.grupobbva.bc.per.tel.iilc.task.CargaEstmService"></bean>
+    <bean id="borradoHistoricoService" class="com.grupobbva.bc.per.tel.iilc.task.BorradoHistoricoService"></bean>
+
+	<task:scheduler id="scheduler"/><!-- pool-size="10" -->
+	
+    <task:scheduled-tasks scheduler="scheduler">
+        <task:scheduled ref="cargaClienteService" method="ejecutarCarga" fixed-delay="60000"/>      
+        <task:scheduled ref="cargaCentrosService" method="ejecutarCarga" fixed-delay="60000"/>
+        <task:scheduled ref="cargaVarioferService" method="ejecutarCarga" fixed-delay="60000"/>        
+        <task:scheduled ref="cargaAlmacccService" method="ejecutarCarga" fixed-delay="60000"/>
+        <task:scheduled ref="cargaEstmService" method="ejecutarCarga" fixed-delay="60000"/>
+		<task:scheduled ref="cargaColectivoService" method="ejecutarCarga" fixed-delay="60000"/>
+        
+        <!-- task:scheduled ref="borradoHistoricoService" method="limpiarArchivos" cron ="0 0 22 * * ?"/ -->
+        <task:scheduled ref="borradoHistoricoService" method="ejecutarCarga" cron = "0 1 1 1 2 ?"/>
+    </task:scheduled-tasks>
+
+</beans>

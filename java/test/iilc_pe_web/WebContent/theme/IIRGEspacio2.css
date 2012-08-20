@@ -1,0 +1,415 @@
+a { font-family: Arial, Swiss, sans-serif; font-size: 10px; color: #2d4492; text-decoration: underline}
+a:link {  color: #2d4492; font-family: Arial, Swiss, sans-serif; font-size: 10pt; text-decoration: underline}
+a:visited {  color: #2d4492; font-family: Arial, Swiss, sans-serif; font-size: 10pt; text-decoration: underline}
+a:hover { color: #2d4492; font-family: Arial, Swiss, sans-serif; font-size: 10pt; text-decoration: underline}
+
+body {  font-family: Arial, Swiss, sans-serif; font-size: 10pt; background-color: #dceaf4; text-align: justify;
+	margin:0px 0px 0px 0px;}
+
+<!-- <#f3f9fa -->
+
+table.container{
+	background-color:#dceaf4;
+	width:100%;
+}
+
+TD.gridMenu1 a:link { font-size:10px; font-weight:bold; }
+TD.gridMenu1 a:visited { font-size:10px; font-weight:bold; }
+TD.gridMenu1 a:hover { font-size:10px; font-weight:bold; text-decoration:none; }
+TD.gridMenu1H a:link { font-size:10px; font-weight:bold; color:white; text-decoration:none; }
+TD.gridMenu1H a:visited { font-size:10px; font-weight:bold; color:white; text-decoration:none; }
+TD.gridMenu1H a:hover { font-size:10px; font-weight:bold; color:white; text-decoration:none; }
+
+TD.gridMenu1 {
+	border:1px solid #bebebe;
+	border-left:0px;
+	border-top:0px;
+	background:url('../images/tabs.png');
+	width:7%;
+	vertical-align:middle;
+	text-align:center;
+	font-size:10px;
+}
+TD.gridMenu1H {
+	border:1px solid #bebebe;
+	border-left:0px;
+	border-top:0px;
+	background:url('../images/tabsh.png');
+	width:7%;
+	vertical-align:middle;
+	text-align:center;
+	font-size:10px;
+}
+TD.gridMenu2 {
+	border:1px solid #bebebe;
+	border-left:0px;
+	border-top:0px;
+	background:url('../images/tabs.png');
+	width:30%;
+	vertical-align:middle;
+	text-align:center;
+	font-size:10px;
+}
+TD.gridMenu3 {
+	border:1px solid #bebebe;
+	border-left:0px;
+	border-top:0px;
+	background:url('../images/tabs.png');
+	width:21%;
+	vertical-align:middle;
+	text-align:center;
+	font-size:10px;
+}
+
+.botonFiltro{
+	border-top:2px solid #f0f7f9;
+	border-left:2px solid #eaf3f6;
+	border-bottom:2px solid #787f81;
+	border-right:2px solid #a9b2b5;
+	background-color:#e3f0f4;
+	height:100%;
+	width:165px;
+	font-size: 11;
+	text-transform: uppercase;
+	color: #2d4492;
+}
+
+.botonFiltroLleno{
+	border-top:2px solid #cae2ec;
+	border-left:2px solid #b5d7e4;
+	border-bottom:2px solid #526a74;
+	border-right:2px solid #7496a3;
+	background-color:#9ccadc;
+	height:100%;
+	width:165px;
+	font-size: 11;
+	text-transform: uppercase;
+	color: #2d4492;
+}
+
+input.cajaPagina{
+	width:50px;
+	text-align:center;
+	vertical-align:middle;
+	font-size:12px;
+	background-color:#f3f9fa;
+	border:1px solid #7f9db9;
+}
+
+table.container td{
+	padding:0px;
+}
+
+DIV.detalle{
+	background-color:#ffffcc;
+	padding:5px 5px 5px 5px;
+	margin:10px 10px 10px 10px;
+}
+
+TR.detalle{
+	color:#404040;
+}
+
+TR.detallehover{
+	background-color:#d9e9f4;
+	color:#000000;
+}
+
+TD.detalle1{
+	font-family: Arial, Swiss, sans-serif;
+	font-size:10px;
+	border-bottom: 1px solid #a0a0a0;
+	padding-bottom: 2px;
+	color:#9e3621;
+}
+
+TD.detalle2{
+	font-family: Arial, Swiss, sans-serif;
+	font-size:10px;
+	border-bottom: 1px solid #a0a0a0;
+	padding-bottom: 2px;
+	color:#2d669e;
+}
+
+.header {
+	background:#2d4492 url('../images/headerMain.jpg') top repeat-x;
+	font-size:16px;
+	color:white;
+	text-align:center;
+	vertical-align:middle;
+	font-weight:bold;
+	height:48px;
+}
+
+.headerVersion{
+	position:absolute;
+	font-family:Verdana;
+	width:100%;
+	margin-top:35px;
+	font-size:10px;
+	text-align:right;
+	color:#374f99;
+}
+
+.fondoClaro{
+	background-color:#f3f9fa;
+}
+
+#MF1Titulo{ background-color: #2d4492; font-weight: bold; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 10pt}
+#MF1Descipcion{ font-family: Arial, Swiss, sans-serif; font-size: xx-small}
+
+body.menu { background-color: #d9e9f4 }
+.Boton { font-family: Arial, Swiss, sans-serif; font-size: 8pt;}
+.FondoAzul8 { background-color: #2d4492; font-weight: bold; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 8pt}
+.TituloPagServGen {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase; text-decoration: underline; text-align: center; background-color: #d9e9f4}
+
+.Etiqueta {border:0px solid; BACKGROUND-COLOR: transparent;}
+td {font-family: Arial, Swiss, sans-serif; font-size: 10pt}
+
+
+
+.enlace2 a { font-weight: normal; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 08pt; text-decoration: underline}
+.enlace2 a:link {  font-weight: normal; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 08pt; text-decoration: underline}
+.enlace2 a:visited {  font-weight: normal; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 08pt; text-decoration: underline}
+.enlace2 a:hover { font-weight: normal; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 08pt; text-decoration: underline}
+
+.TituloPag {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase; text-decoration: underline; text-align: center; background-color: #d9e9f4}
+.TituloPagAzul {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase; text-decoration: underline; text-align: center}
+.TituloPaginaAmari {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase; text-decoration: underline; text-align: center}
+.TituloPaginaAnaranjado {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase; text-decoration: underline; text-align: center}
+.TituloPaginaDorado {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase; text-decoration: underline; text-align: center}
+.TituloPaginaHuevo {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase; text-decoration: underline; text-align: center}
+.Titulo1 {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase}
+.Titulo1Azul {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase}
+.Titulo1Anaranjado {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase}
+.Titulo1Amari {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase}
+.Titulo1Dorado {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase}
+.Titulo1Huevo {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase}
+.Titulo2 {  font-family: Arial, Swiss, sans-serif; font-size: 14px; font-style: normal; color: #2d4492; font-weight: bold}
+.Titulo2Azul {  font-family: Arial, Swiss, sans-serif; font-size: 14px; font-style: normal; color: #2d4492; font-weight: bold}
+.TituloArbol { font-family: Arial, Swiss, sans-serif; font-size: 9pt; color: #2d4492; font-weight: bold; text-decoration: underline}
+.PieFoto {  font-family: Arial, Swiss, sans-serif; font-size: 8pt}
+.TextoNormal {  font-family: Arial, Swiss, sans-serif; font-size: 10pt; text-align: justify; color: #000000}
+.TextoNormalResaltado { font-family: Arial, Swiss, sans-serif; font-size: 10pt; text-align: justify; color: #000000 ; font-weight: bold}
+.NormalAzul {  font-family: Arial, Swiss, sans-serif; font-size: 10pt; color: #3399cc; text-align: justify}
+.NormalAzulResaltado { font-family: Arial, Swiss, sans-serif; font-size: 10pt; color: #3399cc; text-align: justify ; font-weight: bold}
+.FondoAzul { background-color: #2d4492; font-weight: bold; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 10pt}
+.FondoAzul A{ background-color: #2d4492; font-weight: bold; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 10pt}
+.FondoAzul A:link{ background-color: #2d4492; font-weight: bold; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 10pt}
+.FondoAzul A:visited { background-color: #2d4492; font-weight: bold; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 10pt}
+.FondoAzul A:active { background-color: #2d4492; font-weight: bold; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 10pt}
+.FondoAzul a:hover{ background-color: #2d4492; font-weight: bold; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 10pt}
+
+
+.FondoAzul2 {height:30px; background-color: #c6d6ff; font-weight: bold; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 10pt}
+
+.FondoAzulPeq { background-color: #2d4492; font-weight: normal; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 08pt; vertical-align:middle;}
+
+
+.FondoAzulPeqHighlight { background-color: #0080ff; font-weight: normal; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 08pt; vertical-align:middle;}
+.FondoGris38 { background-color: #9AC7DE; font-weight: bold; color: #2d4492; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 08pt}
+
+.FondoGris1 {  background-color: #efefef }
+.FondoGris2 {  background-color: #d9e9f4 }
+.FondoGris3 { background-color: #9AC7DE }
+
+.FondoCrema1 { background-color: #efefef}
+.FondoCrema2 { background-color: #d9e9f4 }
+.FondoDorado { background-color: #d9e9f4}
+.FondoHuevo { background-color: #d9e9f4}
+.FondoGranate { background-color: #a9767e; font-weight: bold; color: #FFFFFF; text-align: center; font-family: Arial, Swiss, sans-serif; font-size: 10pt }
+.FondoRosa { background-color: #efe7e7; text-align: left}
+
+.FondoAmarillo { background-color: #ffffaa }
+
+
+
+.TextoTabla {  font-family: Arial, Swiss, sans-serif; font-size: 10pt; font-style: normal; text-align: justify}
+.TextoTablaDer { font-family: Arial, Swiss, sans-serif; font-size: 10pt; font-style: normal; text-align: right}
+.TextoTablaIzq { font-family: Arial, Swiss, sans-serif; font-size: 10pt; font-style: normal; text-align: left}
+.TextoTablaCen { font-family: Arial, Swiss, sans-serif; font-size: 10pt; font-style: normal; text-align: center}
+.TextoTabla8 {  font-family: Arial, Swiss, sans-serif; font-size: 8pt; font-style: normal; text-align: justify}
+.TextoTabla8Cen { font-family: Arial, Swiss, sans-serif; font-size: 8pt; font-style: normal ; text-align: center}
+.TextoTabla8Der { font-family: Arial, Swiss, sans-serif; font-size: 8pt; font-style: normal ; text-align: right}
+.TextoTabla8Izq { font-family: Arial, Swiss, sans-serif; font-size: 8pt; font-style: normal ; text-align: left}
+.TextoTablaSinJustificar { font-family: Arial, Swiss, sans-serif; font-size: 10pt; font-style: normal}
+.TextoTabla8SinJustificar { font-family: Arial, Swiss, sans-serif; font-size: 8pt; font-style: normal}
+.TextoNormal12 { font-family: Arial, Swiss, sans-serif; font-size: 12pt; text-align: justify; color: #000000 }
+.TextoMinusculo { font-family: Arial, Swiss, sans-serif; font-size: xx-small}
+
+.ListaNivel3 { list-style-type: disc; text-align: justify }
+.ListaOrdenada1 { list-style-type: decimal; text-align: justify }
+
+ul.ListaULTabla {  margin-right: 5px; margin-left: 20px}
+ol.ListaOLTabla {  margin-right: 5px; margin-left: 30px}
+p.ParrafoTabla {  margin-right: 5px; margin-left: 5px}
+.EnlaceSolapa {  font-style: normal; font-weight: bold; color: #000000; text-decoration: none; vertical-align: middle}
+
+
+p {  text-align: justify; margin-right: 5%; margin-left: 5%; font-family: Arial, Swiss, sans-serif; font-size: 10pt; line-height: 150%; color: #000000}
+ul {  text-align: justify; list-style-type: square; line-height: 115%; font-family: Arial, Swiss, sans-serif; font-size: 10pt; margin-right: 5%; margin-left: 10%}
+.ListaNivel1 {  list-style-type: square; text-align: justify}
+.ListaNivel2 {  list-style-type: disc; text-align: justify}
+ol {  line-height: 115%; font-family: Arial, Swiss, sans-serif; font-size: 10pt; margin-right: 5%; margin-left: 10%}
+td {  vertical-align: top}
+
+.TituloPaginaContenido {  font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold; text-transform: uppercase; text-decoration: underline; text-align: center}
+.Titulo3 {  font-family: Arial, Swiss, sans-serif; font-size: 12pt; text-decoration: underline; text-transform: lowercase}
+.Titulo1B { font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #2d4492; font-weight: bold }
+.Titulo1BGranate { font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #a9767e; font-weight: bold }
+.Titulo1BAzulClaro { font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #3399cc; font-weight: bold }
+.Titulo1Granate { font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #a9767e; font-weight: bold; text-transform: uppercase }
+.Titulo1AzulClaro { font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #3399cc; font-weight: bold; text-transform: uppercase }
+.TituloPagGranateFondo { font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #a9767e; font-weight: bold; text-transform: uppercase; text-decoration: underline; text-align: center; background-color: #efe7e7}
+.TituloPagAzulClaroFondo { font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #3399cc; font-weight: bold; text-transform: uppercase; text-decoration: underline; text-align: center; background-color: #d9e9f4 }
+.TituloPagAzulClaro { font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #3399cc; font-weight: bold; text-transform: uppercase; text-decoration: underline; text-align: center}
+.TituloPagGranate { font-family: Arial, Swiss, sans-serif; font-size: 16px; font-style: normal; color: #a9767e; font-weight: bold; text-transform: uppercase; text-decoration: underline; text-align: center}
+.Titulo2Granate { font-family: Arial, Swiss, sans-serif; font-size: 14px; font-style: normal; color: #a9767e; font-weight: bold }
+.Titulo2AzulClaro { font-family: Arial, Swiss, sans-serif; font-size: 14px; font-style: normal; color: #3399cc; font-weight: bold }
+.Titulo3AzulClaro { font-family: Arial, Swiss, sans-serif; font-size: 12pt; text-decoration: underline; text-transform: lowercase ; color: 3399cc}
+
+.TituloPagPortal {  font-family: Arial, Helvetica, sans-serif; font-size: 17px; color: #3399cc; font-weight: bold; text-align: center}
+.TextoPortal {  font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #666666; text-decoration: none}
+a:hover.TextoPortal { text-decoration: underline}
+.noEditable
+{
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;
+	background-color: transparent;
+	border-bottom-style: none;
+}
+.Editable
+{
+	border-top-style: groove;
+	border-right-style: groove;
+	border-left-style: groove;
+	background-color: white;
+	border-bottom-style: groove;
+}
+
+#VNmarco{background-color : #2d4492; color : #FFFFFF; font-family : Verdana, Arial, Helvetica; font-size : 8pt; text-align : center}
+select.filtro {
+	width: 100%;
+	height: 20px;
+	font-size: 11px;
+	color: rgb(92,92,92);
+	margin-right: 10px;
+}
+select.filtro2 {
+	
+	height: 20px;
+	font-size: 11px;
+	color: rgb(92,92,92);
+	margin-right: 10px;
+}
+input.empresa {
+	width: 130px;
+	height: 20px;
+	font-size: 11px;
+	color: rgb(92,92,92);
+	margin-right: 10px;
+}
+
+input.texto {
+	width: 100px;
+	height: 20px;
+	font-size: 11px;
+}
+
+input.boton{
+	height: 20px;
+	text-transform: uppercase;
+}
+input.boton{
+	height: 23px;
+	width: 77px;
+	font-size: 11;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #2d4492;
+}
+iframe {
+	width: 100%;
+	height: 518px;
+}
+#cont {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+td.LCtd {
+	font-size: 11px;
+}
+
+TEXTAREA {
+	width: 100%;
+}
+td.FondoAzulSubTitulo {background-color: #2d4492; font-weight: bold; color: #FFFFFF; text-align: left; font-family: Arial, Swiss, sans-serif; font-size: 10pt; text-transform: uppercase }
+
+.mensajeInformacion{
+	color: 	red;
+	font-weight:bold;     
+
+}
+
+
+#caja_scroll {
+overflow: scroll;
+background-color: #ffffff;
+}
+ 
+.cabecera{
+	font-size: 9px;
+	
+		color: black;
+		border-color:#D3D3D3;
+	background-color: white;
+}
+.grilla th  {
+	font-size: 11px;
+	color: white;
+	padding-right:10px; 
+	padding-left:5px; 
+	background-color: #2d4492; 
+}
+ 
+.grilla .cabecera_celeste {
+	font-size: 11px;
+	color: white;
+	padding-right:10px; 
+	padding-left:5px; 
+	background-color: #37C4DA; 
+}
+
+.grilla .cabecera_verde {
+	font-size: 11px;
+	color: white;
+	padding-right:10px; 
+	padding-left:5px; 
+	background-color: #6B8E23; 
+}
+
+
+.grilla .cabecera_naranja{
+	font-size: 11px;
+	color: white;
+	padding-right:10px; 
+	padding-left:5px; 
+	background-color:orange; 
+}
+
+.grilla td{
+ 	 
+	padding-right:10px; 
+	padding-left:5px; 
+	
+}
+.grilla{
+	font-size: 11px;
+	color: white; 
+	background-color: #D3D3D3;
+	
+}
