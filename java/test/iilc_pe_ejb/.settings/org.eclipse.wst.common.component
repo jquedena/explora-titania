@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="iilc_pe_ejb">
+        <wb-resource deploy-path="/" source-path="/ejbModule"/>
+        <dependent-module deploy-path="/" handle="module:/resource/iilc_pe_ejbClient/iilc_pe_ejbClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="ejbModule"/>
+        <property name="ClientProject" value="iilc_pe_ejbClient"/>
+        <property name="ClientJARURI" value="iilc_pe_ejbClient.jar"/>
+    </wb-module>
+</project-modules>
