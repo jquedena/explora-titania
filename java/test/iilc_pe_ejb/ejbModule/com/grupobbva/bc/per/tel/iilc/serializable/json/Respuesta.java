@@ -16,6 +16,7 @@ public class Respuesta implements Serializable {
 	protected String datosDetalleFiltros[][];
 	protected long pagActual;
 	protected long numPags;
+	protected long numRegistros;
 	protected long tipoDetalle;
 	protected Multitabla cabeceras[];
 	protected String datos[][];
@@ -69,5 +70,11 @@ public class Respuesta implements Serializable {
 	}
 	public void setCodigoOficina(String codigoOficina) {
 		this.codigoOficina = codigoOficina;
+	}
+	public long getNumRegistros() {
+		return numRegistros;
+	}
+	public void setNumRegistros(long numRegistros) {
+		this.numRegistros = numRegistros;
 	}
 }
