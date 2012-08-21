@@ -3,9 +3,11 @@
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
 <%@ taglib prefix="c" uri="/WEB-INF/c.tld"%>
-<html:html>
+
+<%@page import="com.grupobbva.bc.per.tel.iilc.logic.FormateaListado"%><html:html>
 <head>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page import="com.grupobbva.bc.per.tel.iilc.common.Constantes" %>
 <title>CARPETAS COMERCIALES</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="Content-Style-Type" content="text/css">
@@ -423,9 +425,27 @@ function updateBotonesFiltro(){
 		document.getElementById("btnCodEmpresa").className = "botonFiltroLleno";
 	}
 }
-	
+
+<%
+	FormateaListado format = (FormateaListado) session.getAttribute("formato");
+%>
+
+var _numeroRegistros = 0;
+<% if(format != null){ %>
+	_numeroRegistros = <%=format.getNum_registros()%>;
+<% } %>
+
 function openFile(tipo){
 	if(hayResultados){
+		flag = true;
+		if(_numeroRegistros > <%=Constantes.TOT_REGEXCEL%>) {
+			flag = confirm("Resultado excede el l\u00E1mite de registros permitidos del Excel.\u00BFDesea igual realizar la descarga\u003F");
+		}
+		
+		if(!flag){
+			return;
+		}
+		
 		idAlert = 2;
 		clearInterval(idVerificar);
 		$("#xthreads").html('<center><img width="60px" src="${pageContext.request.contextPath}/images/btn_espera.gif"/></center>');
@@ -449,19 +469,17 @@ function openFile(tipo){
 		alert("No hay resultados para exportar.");
 	}
 }
-
 function popup(){
-window.open("cargaDatos.do?method=cargaEtiquetaSegmento","popup" , "width=800,height=400,scrollbars=YES,left=220,top=200,screenX=0,screenY=100'")
+	window.open("cargaDatos.do?method=cargaEtiquetaSegmento", "popup", "width=800,height=400,scrollbars=YES,left=220,top=200,screenX=0,screenY=100'");
 }
 function popup2(){
-window.open("pages/iilc_nivel_vinculacion.jsp","popup" , "width=600,height=400,scrollbars=YES,left=220,top=200,screenX=0,screenY=100'")
+	window.open("pages/iilc_nivel_vinculacion.jsp", "popup", "width=600,height=400,scrollbars=YES,left=220,top=200,screenX=0,screenY=100'");
 }
 
 /*function mostrarTabla(param,codigo){
-    territorio = document.getElementById("territorio").value;
-    oficina = document.getElementById("oficina").value;
-    gestor = document.getElementById("gestor").value;
-
+	territorio = document.getElementById("territorio").value;
+	oficina = document.getElementById("oficina").value;
+	gestor = document.getElementById("gestor").value;
 	document.forms[0].target="_self";
 	document.forms[0].action="cargaDatos.do?method=cargaNVyET&parametro="+param+"&codigo="+codigo+"&codTerritorio="+territorio+"&codOficina="+oficina+"&codGestor="+gestor;
 	document.forms[0].submit();
@@ -775,9 +793,6 @@ function validarRespuesta(rpta){
 }
 
 function procesarResultado(req){
-	// console.log(req.responseText);
-	// console.log(eval(req.responseText));
-
 	var paso = 10;
 	var rspText = limpiarDatosAjax(req.responseText);
 	if (rspText == "exp"){
@@ -792,8 +807,7 @@ function procesarResultado(req){
 		if(validarRespuesta(rspText)){
 			try{
 				var partes = eval(rspText)[0];
-
-				// console.log(partes);
+				_numeroRegistros = partes["numRegistros"];
 				
 				if(partes["datos"].length==0){
 					if(perfilOficina.length!=0) {

@@ -398,6 +398,7 @@ public class Consulta2Action extends DispatchAction {
 			// El parametro es true porque siempre se ejecuta este metodo con el boton buscar y siempre muestra la pestana todos
 			listaConduccion = formato.obtenerListado(formBeanConsulta.getPagina(),(tipoDetalle==0) ? true : false);
 			con.setNumPags(formato.getNum_paginas());
+			con.setNumRegistros(formato.getNum_registros());
 
 			request.getSession().setAttribute("listaConduccion", listaConduccion);
 			request.getSession().setAttribute("formato", formato);
@@ -980,6 +981,7 @@ public class Consulta2Action extends DispatchAction {
 			// Paginacion
 			resp.setPagActual(con.getPagActual());
 			resp.setNumPags(con.getNumPags());
+			resp.setNumRegistros(con.getNumRegistros());
 			
 			if(listaConduccion.size()==0 && !formato_general.getCod_cliente().equalsIgnoreCase("-1")) {
 				ConexionEJB ejb = new ConexionEJB();

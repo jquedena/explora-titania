@@ -23,8 +23,15 @@ public class Consulta implements Serializable {
 	protected String tipoCliente;
 	protected long pagActual;
 	protected long numPags;
+	protected long numRegistros;
 	protected long tipoDetalle;
 	
+	public long getNumRegistros() {
+		return numRegistros;
+	}
+	public void setNumRegistros(long numRegistros) {
+		this.numRegistros = numRegistros;
+	}
 	public String getClasificacion() {
 		return clasificacion;
 	}

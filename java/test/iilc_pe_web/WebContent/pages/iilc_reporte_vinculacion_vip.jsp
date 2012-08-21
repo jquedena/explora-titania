@@ -4,10 +4,10 @@
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/WEB-INF/displaytag-11.tld" prefix="display"%>
 <%@ taglib prefix="c" uri="/WEB-INF/c.tld"%>
-<%@ page import="com.grupobbva.bc.per.tel.iilc.beans.Tiilc_conf_cabeceras_rep" session="true"    %>
-<%@ page import="java.util.List" session="true"    %>
+<%@ page import="com.grupobbva.bc.per.tel.iilc.beans.Tiilc_conf_cabeceras_rep" session="true" %>
+<%@ page import="java.util.List" session="true" %>
+<%@ page import="com.grupobbva.bc.per.tel.iilc.common.Constantes" %>
 
-<%@page import="com.grupobbva.bc.per.tel.iilc.common.Constantes"%>
 <html:html>
 <head>
 <title>Carpetas Comerciales</title>
