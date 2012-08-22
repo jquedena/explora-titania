@@ -1,6 +1,5 @@
 package com.grupobbva.bc.per.tel.iilc.session;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,8 +8,6 @@ import java.util.Collection;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
-import oracle.jdbc.OracleTypes;
 
 import com.grupobbva.bc.per.tel.iilc.common.Constantes;
 import com.grupobbva.bc.per.tel.iilc.entity.Tiilc_areaLocal;

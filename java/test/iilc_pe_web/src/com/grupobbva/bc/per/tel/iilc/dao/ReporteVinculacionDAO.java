@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +16,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import oracle.jdbc.driver.OracleTypes;
-import oracle.jdbc.oracore.OracleType;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -31,7 +29,6 @@ import com.grupobbva.bc.per.tel.iilc.common.Constantes;
 import com.grupobbva.bc.per.tel.iilc.common.Utilitario;
 import com.grupobbva.bc.per.tel.iilc.conexionEJB.ConexionDAO;
 import com.grupobbva.bc.per.tel.iilc.serializable.Multitabla;
-import com.grupobbva.bc.per.tel.iilc.servlet.ApplicationInitServlet;
 import com.grupobbva.bc.per.tele.ldap.directorio.IILDPeUsuario;
 
 @SuppressWarnings( { "unused", "unchecked" })

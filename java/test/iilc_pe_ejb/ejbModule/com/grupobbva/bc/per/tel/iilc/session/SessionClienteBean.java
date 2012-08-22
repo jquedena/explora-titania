@@ -13,7 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import oracle.jdbc.OracleTypes;
+import oracle.jdbc.driver.OracleTypes;
 
 import com.grupobbva.bc.per.tel.iilc.common.Constantes;
 import com.grupobbva.bc.per.tel.iilc.entity.Tiilc_clienteKey;
