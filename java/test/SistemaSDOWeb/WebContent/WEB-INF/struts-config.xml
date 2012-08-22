@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+
+	<!-- Data Sources -->
+	<data-sources></data-sources>
+
+
+	<!-- Form Beans -->
+	<form-beans>
+		<form-bean name="menuForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.MenuForm">
+		</form-bean>
+		<form-bean name="logueoForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.LogueoForm">
+		</form-bean>
+		<form-bean name="planeacionForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.PlaneacionForm">
+		</form-bean>
+		<form-bean name="objetivosForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.ObjetivosForm">
+		</form-bean>
+		<form-bean name="reportePGOForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.ReportePGOForm">
+		</form-bean>
+		<form-bean name="reportePPGForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.ReportePPGForm">
+		</form-bean>
+		<form-bean name="perfilForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.PerfilForm">
+		</form-bean>
+		<form-bean name="permisoPerfilForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.PermisoPerfilForm">
+		</form-bean>		
+		<form-bean name="territorioForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.TerritorioForm">
+		</form-bean>
+		<form-bean name="oficinaForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.OficinaForm">
+		</form-bean>
+		<form-bean name="cargaDatosForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.CargaDatosForm">
+		</form-bean>
+		<form-bean name="listaReportePGOForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.ListaReportePGOForm">
+		</form-bean>
+		<form-bean name="porcentajeEpigrafeForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.PorcentajeEpigrafeForm">
+		</form-bean>
+		<form-bean name="progSeguimientoForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.ProgSeguimientoForm">
+		</form-bean>
+		<form-bean name="bienvenidaForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.BienvenidaForm">
+		</form-bean>
+		<form-bean name="refPresupuestalForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.RefPresupuestalForm">
+		</form-bean>
+		<form-bean name="sesionForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.SesionForm">
+		</form-bean>
+		<form-bean name="oficinaHijaForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.OficinaHijaForm">
+		</form-bean>
+		<form-bean name="exportacionTablaForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.ExportacionTablaForm">
+		</form-bean>
+		<form-bean name="simpleLoadForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.SimpleLoadForm">
+		</form-bean>
+		<form-bean name="equivalForm"
+			type="igrupobbva.pe.sistemasdoweb.forms.EquivalenciaForm">
+		</form-bean>
+	</form-beans>
+
+	<!-- Global Exceptions -->
+	<global-exceptions></global-exceptions>
+
+	<!-- Global Forwards -->
+	<global-forwards></global-forwards>
+	<action-mappings>
+		<action path="/menuAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.MenuAction"
+			parameter="method" name="menuForm">
+			<forward name="ok" path="/pages/menu/inicio.jsp"></forward>
+			<forward name="nuevo" path="/pages/menu/nuevo.jsp">
+			</forward>
+			<forward name="editar" path="/pages/menu/editar.jsp">
+			</forward>
+		</action>
+
+		<action path="/logueoAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.LogueoAction"
+			name="logueoForm" parameter="method">
+			<forward name="ok" path="/pages/index.jsp"></forward>
+			<forward name="error" path="logueo.jsp"></forward>
+			<forward name="login" path="logueo.jsp"></forward>
+		</action>
+		<action path="/accesoAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.AccesoAction"
+			parameter="method" name="logueoForm">
+			<forward name="login" path="logueo.jsp"></forward>
+			<forward name="ok" path="/pages/index.jsp"></forward>
+			<forward name="error" path="error.jsp"></forward>
+		</action>
+		<action path="/planificacionAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.PlaneacionAction"
+			parameter="method" name="planeacionForm" scope="request">
+			<forward name="ok"
+				path="/pages/planificacion/planificacionListar.jsp">
+			</forward>
+			<forward name="gestor"
+				path="/pages/planificacion/planificacionSelGestor.jsp">
+			</forward>
+			<forward name="error" path="/pages/index.jsp"></forward>
+			<forward name="imprimir"
+				path="/pages/planificacion/planificacionImprimir.jsp">
+			</forward>
+			<forward name="resumen"
+				path="/pages/planificacion/planificacionResumen.jsp">
+			</forward>
+			<forward name="historial"
+				path="/pages/planificacion/planificacionAnual.jsp">
+			</forward>
+			<forward name="carga"
+				path="pages/mantenimiento/cargaInformacion/cargaPlanes.jsp">
+			</forward>
+			<forward name="descarga"
+				path="pages/mantenimiento/cargaInformacion/cargaPlanes.jsp">
+			</forward>
+			<forward name="cargaEpigrafe"
+				path="pages/mantenimiento/cargaInformacion/cargaEpigrafe.jsp">
+			</forward>
+			<forward name="cargaMaestro"
+				path="pages/mantenimiento/cargaInformacion/cargaMaestro.jsp">
+			</forward>
+			<forward name="terminado"
+				path="pages/mantenimiento/cargaInformacion/finPlanes.jsp">
+			</forward>
+		</action>
+		<action path="/objetivosAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.ObjetivosAction"
+			name="objetivosForm" parameter="method" scope="request">
+			<forward name="ok"
+				path="/pages/objetivos/objetivosDistribucion.jsp">
+			</forward>
+		</action>
+		<action path="/reportePGOAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.ReportePGOAction"
+			name="listaReportePGOForm" parameter="method" scope="request">
+			<forward name="conDato"
+				path="/pages/reportePGO/reportePGO_JOSE.jsp">
+			</forward>
+			<forward name="resumen"
+				path="/pages/reportePGO/ResumenReportePGO.jsp">
+			</forward>
+			<forward name="reportePGO"
+				path="/pages/reportePGO/reportePGO.jsp">
+			</forward>
+		</action>
+		<action path="/reportePPGAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.ReportePPGAction"
+			name="reportePPGForm" parameter="method" unknown="false" scope="request">
+			<forward name="reporteAvance"
+				path="/pages/reportePPG/reporteAvance.jsp">
+			</forward>
+			<forward name="conDato"
+				path="/pages/reportePPG/reportePPG.jsp">
+			</forward>
+			<forward name="acciones1"
+				path="/pages/reportePPG/accionesPPG1.jsp">
+			</forward>
+			<forward name="acciones2"
+				path="/pages/reportePPG/accionesPPG2.jsp">
+			</forward>
+			<forward name="mostrarNuevaCampania"
+				path="/pages/reportePPG/campaniaNueva.jsp">
+			</forward>
+			<forward name="editarCampania"
+				path="/pages/reportePPG/campaniaMostrarEditar.jsp">
+			</forward>
+			<forward name="acciones3"
+				path="/pages/reportePPG/accionesPPG3.jsp">
+			</forward>
+			<forward name="acciones3nuevo"
+				path="/pages/reportePPG/accionesPPG3nuevo.jsp">
+			</forward>
+			<forward name="acciones3edicion"
+				path="/pages/reportePPG/accionesPPG3edicion.jsp">
+			</forward>
+			<forward name="imp"
+				path="/pages/reportePPG/reportePPG_P.jsp">
+			</forward>
+
+			<forward name="mostrarEdicionCampaniaDetalle"
+				path="/pages/reportePPG/campaniaDetallesPPG.jsp">
+			</forward>
+			<forward name="mostrarNuevoCampaniaDetalle"
+				path="/pages/reportePPG/campaniaDetallesNuevo.jsp">
+			</forward>
+			<forward name="mostrarEditCampaniaDetalle"
+				path="/pages/reportePPG/campaniaDetallesEdicion.jsp">
+			</forward>
+		</action>
+		<action path="/cargaDatosAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.CargaDatosAction">
+			<forward name="ok"
+				path="pages/mantenimiento/cargaInformacion/cargaPlanes.jsp">
+			</forward>
+			<forward name="descarga"
+				path="pages/mantenimiento/cargaInformacion/cargaPlanes.jsp">
+			</forward>
+		</action>
+		<action path="/perfilAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.PerfilAction"
+			parameter="method" name="perfilForm">
+			<forward name="perfilLista"
+				path="/pages/mantenimiento/perfil/listaDePerfil.jsp">
+			</forward>
+			<forward name="mostrarPerfilSel"
+				path="/pages/mantenimiento/perfil/editarPerfil.jsp">
+			</forward>
+			<forward name="nuevoPerfil"
+				path="/pages/mantenimiento/perfil/nuevoPerfil.jsp">
+			</forward>
+			<forward name="error" path="/pages/index.jsp"></forward>
+		</action>
+		<action path="/permisoPerfilAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.PermisoPerfilAction"
+			parameter="method" name="permisoPerfilForm">
+			<forward name="listar"
+				path="/pages/mantenimiento/permisoPerfil/listaDePermisoPerfil.jsp">
+			</forward>
+			<forward name="nuevo"
+				path="/pages/mantenimiento/permisoPerfil/nuevoPermisoPerfil.jsp">
+			</forward>
+			<forward name="editar"
+				path="/pages/mantenimiento/permisoPerfil/editarPermisoPerfil.jsp">
+			</forward>
+			<forward name="ok"
+				path="/pages/mantenimiento/permisoPerfil/ok.jsp">
+			</forward>
+			<forward name="error" path="/pages/index.jsp"></forward>
+		</action>		
+		<action path="/mantenimientoTerritorioAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.MantenimientoTerritorioAction"
+			name="territorioForm" parameter="method">
+			<forward name="ok"
+				path="/pages/mantenimiento/territorio/listaDeTerritorios.jsp">
+			</forward>
+			<forward name="nuevo"
+				path="/pages/mantenimiento/territorio/nuevoTerritorio.jsp">
+			</forward>
+			<forward name="mostrarEditar"
+				path="/pages/mantenimiento/territorio/editarTerritorio.jsp">
+			</forward>
+			<forward name="eliminar"
+				path="/pages/mantenimiento/territorio/listaDeTerritorios.jsp">
+			</forward>
+			<forward name="principal"
+				path="/pages/common/iido_index.jsp">
+			</forward>
+			<forward name="error" path="IIVP-Res.jsp"></forward>
+			<forward name="exp" path="IIVP-Res.jsp"></forward>
+			<forward name="mostrarMensajeTerritorio" path="/pages/mantenimiento/territorio/mensajeTerritorio.jsp">
+			</forward>
+			<forward name="popupSelectorColor" path="/util/colorpicker/color_picker_files/color_picker_interface.jsp">
+			</forward>
+		</action>
+		<action path="/actionBienvenida"
+			type="igrupobbva.pe.sistemasdoweb.actions.ActionBienvenidaAction"
+			name="bienvenidaForm">
+			<forward name="ok_mostrar"
+				path="pages/modTexto/modTexto.jsp">
+			</forward>
+			<forward name="ok_preview"
+				path="pages/common/iido_index.jsp">
+			</forward>
+		</action>
+		<action path="/actionReportesMant"
+			type="igrupobbva.pe.sistemasdoweb.actions.ActionReportesMantAction">
+			<forward name="res" path="pages/exp/exportacion1.jsp">
+			</forward>
+			<forward name="descarga" path="pages/exp/descarga.jsp">
+			</forward>
+		</action>
+		<action path="/actionReportesUsuario"
+			type="igrupobbva.pe.sistemasdoweb.actions.ActionReportesUsuarioAction">
+			<forward name="res" path="pages/exp/exportacion2.jsp">
+			</forward>
+			<forward name="descarga" path="pages/exp/descarga.jsp">
+			</forward>
+		</action>
+		<action path="/mantenimientoOficinaAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.MantenimientoOficinaAction"
+			name="oficinaForm" parameter="method">
+			<forward name="mostrar"
+				path="/pages/mantenimiento/oficina/listaOficinas.jsp">
+			</forward>
+			<forward name="editar"
+				path="/pages/mantenimiento/oficina/editarOficina.jsp">
+			</forward>
+			<forward name="nuevo"
+				path="/pages/mantenimiento/oficina/nuevaOficina.jsp">
+			</forward>
+			<forward name="error" path="IIVP-Res.jsp"></forward>
+			<forward name="exp" path="IIVP-Res.jsp"></forward>
+		</action>
+		<action path="/seguimientoAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.SeguimientosAction"
+			name="accionForm" parameter="method" scope="request">
+			<forward name="seguimiento1"
+				path="/pages/reportePPG/seguimiento1.jsp">
+			</forward>
+			<forward name="seguimiento2"
+				path="/pages/reportePPG/seguimiento2.jsp">
+			</forward>
+		</action>
+		<action path="/porcentajeEpigrafeAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.PorcentajeEpigrafeAction"
+			name="porcentajeEpigrafeForm" parameter="method">
+			<forward name="mostrar"
+				path="/pages/mantenimiento/porcentaje/listaEpigrafePorcentaje.jsp">
+			</forward>
+			<forward name="consultarEpigrafe"
+				path="/pages/mantenimiento/porcentaje/consultaEpigrafePorcentaje.jsp">
+			</forward>
+		</action>
+		<action path="/migracionDatosAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.MigrarDatosAction"
+			parameter="method" name="oficinaForm">
+			<forward name="ok" path="migracion.jsp"></forward>
+		</action>
+		<action path="/progSeguimientoAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.ProgSeguimientoAction"
+			parameter="method" name="progSeguimientoForm" scope="request">
+			<forward name="listarProgSeguimiento"
+				path="/pages/mantenimiento/progSeguimiento/listaProgSeguimiento.jsp">
+			</forward>
+			<forward name="nuevoEditarProgSeguimiento"
+				path="/pages/mantenimiento/progSeguimiento/nuevoEdicionProgSeguimiento.jsp">
+			</forward>
+			<forward name="verProgSeguimiento"
+				path="/pages/mantenimiento/progSeguimiento/verProgSeguimiento.jsp">
+			</forward>
+		</action>
+		<action path="/refPresupuestalAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.RefPresupuestalAction"
+			parameter="method" name="refPresupuestalForm">
+			<forward name="referencia" path="/pages/mantenimiento/refPresupuestal/mesReferencial.jsp">
+			</forward>
+			<forward name="inicio" path="/pages/mantenimiento/refPresupuestal/mesReferencial.jsp">
+			</forward>
+			<forward name="listaMeses" path="/pages/mantenimiento/refPresupuestal/mesReferencial.jsp">
+			</forward>
+		</action>
+		<action path="/logOffAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.LogOffAction" name="sesionForm">			
+			<forward name="inicio" path="logueo.jsp">
+			</forward>
+		</action>
+		<action path="/oficinaHijaAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.OficinaHijaAction"
+			parameter="method" name="oficinaHijaForm" scope="request">
+			<forward name="listarOficinaHija"
+				path="/pages/mantenimiento/oficinaHija/listaOficinaHija.jsp">
+			</forward>
+			<forward name="nuevoEditarOficinaHija"
+				path="/pages/mantenimiento/oficinaHija/nuevoEdicionOficinaHija.jsp">
+			</forward>
+		</action>
+		<action path="/exportacionTablaAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.ExportacionTablaAction"
+			parameter="method" name="exportacionTablaForm" scope="request">
+			<forward name="inicioExportacionTabla"
+				path="/pages/mantenimiento/exportacionTabla/exportacionTabla.jsp">
+			</forward>
+		</action>
+		<action path="/cargaPermisosAction" type="igrupobbva.pe.sistemasdoweb.actions.CargaDataPermisosAction" name="simpleLoadForm" parameter="method">
+			<forward name="inicioCarga" path="/pages/mantenimiento/cargaInformacion/cargaPermisoPerfil.jsp" />	
+		</action>
+		<action path="/equivalAction"
+			type="igrupobbva.pe.sistemasdoweb.actions.EquivalenciaAction"
+			parameter="method" name="equivalForm">
+			<forward name="equivalenciaLista"
+				path="/pages/mantenimiento/equivalencia/listaDeEquivalencia.jsp">
+			</forward>
+			<forward name="mostrarEquivalenciaSel"
+				path="/pages/mantenimiento/equivalencia/editarEquivalencia.jsp">
+			</forward>
+			<forward name="nuevaEquivalencia"
+				path="/pages/mantenimiento/equivalencia/nuevaEquivalencia.jsp">
+			</forward>
+			<forward name="error" path="/pages/index.jsp"></forward>
+		</action>
+	</action-mappings>
+
+	<!-- Action Mappings -->
+
+	<!-- Message Resources -->
+	<message-resources
+		parameter="igrupobbva.pe.sistemasdoweb.resources.ApplicationResources" />
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+		<!-- Path to XML definition file -->
+		<set-property property="definitions-config"
+			value="/WEB-INF/tiles-defs.xml" />
+		<set-property property="definitions-parser-validate"
+			value="false" />
+	</plug-in>
+</struts-config>

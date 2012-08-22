@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.etools.model2.diagram.web.WebDiagramEditorSignature" version="7.0.0"><feature description="" name="Editor de diagramas Web" url="" version="7.1.0"/></signature>?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DiagramModel="http://www.ibm.com/etools/7.0/DiagramModel" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation">
+  <notation:Diagram xmi:id="_ibN2ALXqEeG63ve0_RzilQ" type="wde.element" element="_ibN2A7XqEeG63ve0_RzilQ" name="WebDiagram.gph" measurementUnit="Himetric">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_ibN2AbXqEeG63ve0_RzilQ"/>
+  </notation:Diagram>
+  <DiagramModel:Model xmi:id="_ibN2ArXqEeG63ve0_RzilQ" id="com.ibm.etools.model2.diagram.web.WebDiagram">
+    <diagram xmi:id="_ibN2A7XqEeG63ve0_RzilQ" titleProperty="_ibOdELXqEeG63ve0_RzilQ" type="com.ibm.etools.model2.diagram.web.WebDiagram" version="7.0">
+      <persistedProperties xmi:id="_ibOdELXqEeG63ve0_RzilQ" name="Name" value="Diagrama Web"/>
+      <nodes xmi:id="_ibN2BLXqEeG63ve0_RzilQ" titleProperty="_ibN2BbXqEeG63ve0_RzilQ" type="com.ibm.etools.model2.diagram.web.WelcomeNode"/>
+    </diagram>
+  </DiagramModel:Model>
+</xmi:XMI>
