@@ -1,0 +1,1823 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<xmi:XMI xmlns:datamodelversion="http://www.ibm.com/com.ibm.datatools.core/model/7.5.1.1" xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SQLConstraints="http:///org/eclipse/datatools/modelbase/sql/constraints.ecore" xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore" xmlns:SQLExpressions="http:///org/eclipse/datatools/modelbase/sql/expressions.ecore" xmlns:SQLSchema="http:///org/eclipse/datatools/modelbase/sql/schema.ecore" xmlns:SQLTables="http:///org/eclipse/datatools/modelbase/sql/tables.ecore">
+  <SQLSchema:Database xmi:id="_-NLvkYVWEeCcVPk9lhfXoA" name="xe" vendor="Oracle" version="10" schemas="_-NLvkoVWEeCcVPk9lhfXoA"/>
+  <SQLSchema:Schema xmi:id="_-NLvkoVWEeCcVPk9lhfXoA" name="IIDO" label="IIDO" tables="_-NLvk4VWEeCcVPk9lhfXoA _-NLv04VWEeCcVPk9lhfXoA _-NLwrIVWEeCcVPk9lhfXoA _-NLxJoVWEeCcVPk9lhfXoA _-NLw24VWEeCcVPk9lhfXoA _-NLyWoVWEeCcVPk9lhfXoA _-NLxS4VWEeCcVPk9lhfXoA _-NLxgIVWEeCcVPk9lhfXoA _-NLwRYVWEeCcVPk9lhfXoA _-NLxrYVWEeCcVPk9lhfXoA _-NLy5oVWEeCcVPk9lhfXoA _-NLzBoVWEeCcVPk9lhfXoA _-NLzI4VWEeCcVPk9lhfXoA _-NLzR4VWEeCcVPk9lhfXoA _-NLzgYVWEeCcVPk9lhfXoA _-NLzoYVWEeCcVPk9lhfXoA _-NLzz4VWEeCcVPk9lhfXoA" database="_-NLvkYVWEeCcVPk9lhfXoA"/>
+  <SQLTables:PersistentTable xmi:id="_-NLvk4VWEeCcVPk9lhfXoA" name="TIIDO_EPIGRAFE" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLvlIVWEeCcVPk9lhfXoA" name="COD_EPIGRAFE" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLvlYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="8" characterSet="_-NLvyYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLvloVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLvl4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLvmIVWEeCcVPk9lhfXoA" name="ANHO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLvmYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLvyoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLvmoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLvm4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLvnIVWEeCcVPk9lhfXoA" name="NOM_EPIGRAFE">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLvnYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="50" characterSet="_-NLvy4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLvnoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLvn4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLvoIVWEeCcVPk9lhfXoA" name="IND_CLASE">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLvoYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLvzIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLvooVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLvo4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLvpIVWEeCcVPk9lhfXoA" name="IND_SUB_CLASE">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLvpYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLvzYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLvpoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLvp4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLvqIVWEeCcVPk9lhfXoA" name="ORDEN">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLvqYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLvzoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLvqoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLvq4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLvrIVWEeCcVPk9lhfXoA" name="IND_GRUPO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLvrYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLvz4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLvroVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLvr4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLvsIVWEeCcVPk9lhfXoA" name="ABREVIATURA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLvsYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="10" characterSet="_-NLv0IVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLvsoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLvs4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLvtIVWEeCcVPk9lhfXoA" name="IND_HIJO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLvtYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="10" characterSet="_-NLv0YVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLvtoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLvt4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLvuIVWEeCcVPk9lhfXoA" name="IND_AFECTA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLvuYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" characterSet="_-NLv0oVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLvuoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLvu4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLvvIVWEeCcVPk9lhfXoA" name="PORCENTAJE_MAX" nullable="false">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLvvYVWEeCcVPk9lhfXoA" name="NUMBER" primitiveType="NUMERIC" precision="5">
+        <eAnnotations xmi:id="_-NLvvoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLvv4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="2"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLvwIVWEeCcVPk9lhfXoA" name="PORCENTAJE_MIN" nullable="false">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLvwYVWEeCcVPk9lhfXoA" name="NUMBER" primitiveType="NUMERIC" precision="5">
+        <eAnnotations xmi:id="_-NLvwoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLvw4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="2"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLvxIVWEeCcVPk9lhfXoA" name="TIIDO_EPIGRAFE_PK" members="_-NLvlIVWEeCcVPk9lhfXoA _-NLvmIVWEeCcVPk9lhfXoA" ForeignKey="_-NLwNYVWEeCcVPk9lhfXoA _-NLwlYVWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLvxYVWEeCcVPk9lhfXoA" name="SYS_C007162">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLvxoVWEeCcVPk9lhfXoA" SQL="&quot;COD_EPIGRAFE&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLvx4VWEeCcVPk9lhfXoA" name="SYS_C007163">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLvyIVWEeCcVPk9lhfXoA" SQL="&quot;ANHO&quot; IS NOT NULL"/>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLvyYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLvyoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLvy4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLvzIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLvzYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLvzoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLvz4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLv0IVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLv0YVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLv0oVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLv04VWEeCcVPk9lhfXoA" name="TIIDO_ACCIONES" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLv1IVWEeCcVPk9lhfXoA" name="COD_ACCI" nullable="false">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLv1YVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL">
+        <eAnnotations xmi:id="_-NLv1oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLv14VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLv2IVWEeCcVPk9lhfXoA" name="COD_EPIGRAFE" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLv2YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="8" characterSet="_-NLwQ4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLv2oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLv24VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLv3IVWEeCcVPk9lhfXoA" name="ANHO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLv3YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLwRIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLv3oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLv34VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLv4IVWEeCcVPk9lhfXoA" name="COD_TERR" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLv4YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLwpYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLv4oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLv44VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLv5IVWEeCcVPk9lhfXoA" name="COD_OFIC" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLv5YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLwpoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLv5oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLv54VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLv6IVWEeCcVPk9lhfXoA" name="NOM_ACCI">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLv6YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="80" characterSet="_-NLwp4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLv6oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLv64VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLv7IVWEeCcVPk9lhfXoA" name="COD_GEST">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLv7YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="7" characterSet="_-NLwqIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLv7oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLv74VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLv8IVWEeCcVPk9lhfXoA" name="MES_ACCI">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLv8YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLwqYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLv8oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLv84VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLv9IVWEeCcVPk9lhfXoA" name="NRO_CLIE">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLv9YVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="5">
+        <eAnnotations xmi:id="_-NLv9oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLv94VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLv-IVWEeCcVPk9lhfXoA" name="COMP_GEST">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLv-YVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLv-oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLv-4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLv_IVWEeCcVPk9lhfXoA" name="NRO_GEST_SEGU_1">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLv_YVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="4">
+        <eAnnotations xmi:id="_-NLv_oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLv_4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwAIVWEeCcVPk9lhfXoA" name="NRO_CONC_SEGU_1">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLwAYVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="4">
+        <eAnnotations xmi:id="_-NLwAoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwA4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwBIVWEeCcVPk9lhfXoA" name="MON_SEGU_1">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLwBYVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLwBoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwB4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwCIVWEeCcVPk9lhfXoA" name="NRO_GEST_SEGU_2">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLwCYVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="4">
+        <eAnnotations xmi:id="_-NLwCoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwC4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwDIVWEeCcVPk9lhfXoA" name="NRO_CONC_SEGU_2">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLwDYVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="4">
+        <eAnnotations xmi:id="_-NLwDoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwD4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwEIVWEeCcVPk9lhfXoA" name="MON_SEGU_2">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLwEYVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLwEoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwE4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwFIVWEeCcVPk9lhfXoA" name="FEC_SEGU_1">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLwFYVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLwFoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwF4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwGIVWEeCcVPk9lhfXoA" name="FEC_SEGU_2">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLwGYVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLwGoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwG4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwHIVWEeCcVPk9lhfXoA" name="USU_REGI">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwHYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLwqoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwHoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwH4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwIIVWEeCcVPk9lhfXoA" name="USU_ACTU">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwIYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLwq4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwIoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwI4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwJIVWEeCcVPk9lhfXoA" name="FEC_REGI">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLwJYVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLwJoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwJ4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwKIVWEeCcVPk9lhfXoA" name="FEC_ACTU">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLwKYVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLwKoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwK4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLwLIVWEeCcVPk9lhfXoA" name="TIIDO_ACCIONES_PK" members="_-NLv1IVWEeCcVPk9lhfXoA _-NLv2IVWEeCcVPk9lhfXoA _-NLv3IVWEeCcVPk9lhfXoA _-NLv4IVWEeCcVPk9lhfXoA _-NLv5IVWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLwLYVWEeCcVPk9lhfXoA" name="SYS_C007196">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLwLoVWEeCcVPk9lhfXoA" SQL="&quot;COD_EPIGRAFE&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLwL4VWEeCcVPk9lhfXoA" name="SYS_C007197">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLwMIVWEeCcVPk9lhfXoA" SQL="&quot;ANHO&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLwMYVWEeCcVPk9lhfXoA" name="SYS_C007198">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLwMoVWEeCcVPk9lhfXoA" SQL="&quot;COD_TERR&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLwM4VWEeCcVPk9lhfXoA" name="SYS_C007199">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLwNIVWEeCcVPk9lhfXoA" SQL="&quot;COD_OFIC&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:ForeignKey" xmi:id="_-NLwNYVWEeCcVPk9lhfXoA" name="TIIDO_ACC_EPIGRAFE_FK" members="_-NLv2IVWEeCcVPk9lhfXoA _-NLv3IVWEeCcVPk9lhfXoA" uniqueConstraint="_-NLvxIVWEeCcVPk9lhfXoA" referencedMembers="_-NLvlIVWEeCcVPk9lhfXoA _-NLvmIVWEeCcVPk9lhfXoA">
+      <eAnnotations xmi:id="_-NLwNoVWEeCcVPk9lhfXoA" source="FK_MODELING_RELATIONSHIP" references="_-NLvk4VWEeCcVPk9lhfXoA">
+        <details xmi:id="_-NLwN4VWEeCcVPk9lhfXoA" key="FK_IS_IDENTIFYING_RELATIONSHIP" value="false"/>
+        <details xmi:id="_-NLwOIVWEeCcVPk9lhfXoA" key="FK_CHILD_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLwOYVWEeCcVPk9lhfXoA" key="FK_CHILD_ROLE_NAME" value=""/>
+        <details xmi:id="_-NLwOoVWEeCcVPk9lhfXoA" key="FK_PARENT_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLwO4VWEeCcVPk9lhfXoA" key="FK_PARENT_ROLE_NAME" value=""/>
+      </eAnnotations>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:ForeignKey" xmi:id="_-NLwPIVWEeCcVPk9lhfXoA" name="TIIDO_ACC_OFICINA_FK" members="_-NLv4IVWEeCcVPk9lhfXoA _-NLv5IVWEeCcVPk9lhfXoA" uniqueConstraint="_-NLwzYVWEeCcVPk9lhfXoA" referencedMembers="_-NLwsYVWEeCcVPk9lhfXoA _-NLwrYVWEeCcVPk9lhfXoA">
+      <eAnnotations xmi:id="_-NLwPYVWEeCcVPk9lhfXoA" source="FK_MODELING_RELATIONSHIP" references="_-NLwrIVWEeCcVPk9lhfXoA">
+        <details xmi:id="_-NLwPoVWEeCcVPk9lhfXoA" key="FK_IS_IDENTIFYING_RELATIONSHIP" value="false"/>
+        <details xmi:id="_-NLwP4VWEeCcVPk9lhfXoA" key="FK_CHILD_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLwQIVWEeCcVPk9lhfXoA" key="FK_CHILD_ROLE_NAME" value=""/>
+        <details xmi:id="_-NLwQYVWEeCcVPk9lhfXoA" key="FK_PARENT_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLwQoVWEeCcVPk9lhfXoA" key="FK_PARENT_ROLE_NAME" value=""/>
+      </eAnnotations>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLwQ4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLwRIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLwRYVWEeCcVPk9lhfXoA" name="TIIDO_METAS_GESTOR" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLwRoVWEeCcVPk9lhfXoA" name="COD_META_GESTOR" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwR4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="8" characterSet="_-NLy04VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwSIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwSYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwSoVWEeCcVPk9lhfXoA" name="COD_TERR" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwS4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLxq4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwTIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwTYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwToVWEeCcVPk9lhfXoA" name="COD_OFIC" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwT4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLxrIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwUIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwUYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwUoVWEeCcVPk9lhfXoA" name="COD_EPIGRAFE" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwU4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="8" characterSet="_-NLwo4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwVIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwVYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwVoVWEeCcVPk9lhfXoA" name="ANHO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwV4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLwpIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwWIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwWYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwWoVWEeCcVPk9lhfXoA" name="COD_GESTOR">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwW4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="7" characterSet="_-NLy1IVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwXIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwXYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwXoVWEeCcVPk9lhfXoA" name="MES">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwX4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLy1YVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwYIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwYYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwYoVWEeCcVPk9lhfXoA" name="ORDEN">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwY4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLy1oVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwZIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwZYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwZoVWEeCcVPk9lhfXoA" name="FEC_REGI">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLwZ4VWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLwaIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwaYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwaoVWEeCcVPk9lhfXoA" name="PORC_ASIG">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLwa4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLwbIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwbYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwboVWEeCcVPk9lhfXoA" name="NOM_EPIGRAFE">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwb4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="50" characterSet="_-NLy14VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwcIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwcYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwcoVWEeCcVPk9lhfXoA" name="NOM_GESTOR">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwc4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="50" characterSet="_-NLy2IVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwdIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwdYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwdoVWEeCcVPk9lhfXoA" name="COD_PERFIL" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwd4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="5" characterSet="_-NLy2YVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLweIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLweYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLweoVWEeCcVPk9lhfXoA" name="ESTADO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwe4VWEeCcVPk9lhfXoA" name="CHAR" characterSet="_-NLy2oVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwfIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwfYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="1"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwfoVWEeCcVPk9lhfXoA" name="FEC_ACTU" nullable="false">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLwf4VWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP">
+        <eAnnotations xmi:id="_-NLwgIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwgYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="93"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwgoVWEeCcVPk9lhfXoA" name="USU_REGI" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwg4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLy24VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwhIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwhYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwhoVWEeCcVPk9lhfXoA" name="USU_ACTU" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwh4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLy3IVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwiIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwiYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLwioVWEeCcVPk9lhfXoA" name="TIIDO_METAS_GESTOR_PK" members="_-NLwRoVWEeCcVPk9lhfXoA _-NLwSoVWEeCcVPk9lhfXoA _-NLwToVWEeCcVPk9lhfXoA _-NLwUoVWEeCcVPk9lhfXoA _-NLwVoVWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLwi4VWEeCcVPk9lhfXoA" name="SYS_C007214">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLwjIVWEeCcVPk9lhfXoA" SQL="&quot;COD_META_GESTOR&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLwjYVWEeCcVPk9lhfXoA" name="SYS_C007215">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLwjoVWEeCcVPk9lhfXoA" SQL="&quot;COD_TERR&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLwj4VWEeCcVPk9lhfXoA" name="SYS_C007216">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLwkIVWEeCcVPk9lhfXoA" SQL="&quot;COD_OFIC&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLwkYVWEeCcVPk9lhfXoA" name="SYS_C007217">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLwkoVWEeCcVPk9lhfXoA" SQL="&quot;COD_EPIGRAFE&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLwk4VWEeCcVPk9lhfXoA" name="SYS_C007218">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLwlIVWEeCcVPk9lhfXoA" SQL="&quot;ANHO&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:ForeignKey" xmi:id="_-NLwlYVWEeCcVPk9lhfXoA" name="TIIDO_METGES_EPIGRAFE_FK" members="_-NLwUoVWEeCcVPk9lhfXoA _-NLwVoVWEeCcVPk9lhfXoA" uniqueConstraint="_-NLvxIVWEeCcVPk9lhfXoA" referencedMembers="_-NLvlIVWEeCcVPk9lhfXoA _-NLvmIVWEeCcVPk9lhfXoA">
+      <eAnnotations xmi:id="_-NLwloVWEeCcVPk9lhfXoA" source="FK_MODELING_RELATIONSHIP" references="_-NLvk4VWEeCcVPk9lhfXoA">
+        <details xmi:id="_-NLwl4VWEeCcVPk9lhfXoA" key="FK_IS_IDENTIFYING_RELATIONSHIP" value="false"/>
+        <details xmi:id="_-NLwmIVWEeCcVPk9lhfXoA" key="FK_CHILD_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLwmYVWEeCcVPk9lhfXoA" key="FK_CHILD_ROLE_NAME" value=""/>
+        <details xmi:id="_-NLwmoVWEeCcVPk9lhfXoA" key="FK_PARENT_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLwm4VWEeCcVPk9lhfXoA" key="FK_PARENT_ROLE_NAME" value=""/>
+      </eAnnotations>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:ForeignKey" xmi:id="_-NLwnIVWEeCcVPk9lhfXoA" name="TIIDO_METGES_OFICINA_FK" members="_-NLwSoVWEeCcVPk9lhfXoA _-NLwToVWEeCcVPk9lhfXoA" uniqueConstraint="_-NLwzYVWEeCcVPk9lhfXoA" referencedMembers="_-NLwsYVWEeCcVPk9lhfXoA _-NLwrYVWEeCcVPk9lhfXoA">
+      <eAnnotations xmi:id="_-NLwnYVWEeCcVPk9lhfXoA" source="FK_MODELING_RELATIONSHIP" references="_-NLwrIVWEeCcVPk9lhfXoA">
+        <details xmi:id="_-NLwnoVWEeCcVPk9lhfXoA" key="FK_IS_IDENTIFYING_RELATIONSHIP" value="false"/>
+        <details xmi:id="_-NLwn4VWEeCcVPk9lhfXoA" key="FK_CHILD_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLwoIVWEeCcVPk9lhfXoA" key="FK_CHILD_ROLE_NAME" value=""/>
+        <details xmi:id="_-NLwoYVWEeCcVPk9lhfXoA" key="FK_PARENT_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLwooVWEeCcVPk9lhfXoA" key="FK_PARENT_ROLE_NAME" value=""/>
+      </eAnnotations>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLwo4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLwpIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLwpYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLwpoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLwp4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLwqIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLwqYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLwqoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLwq4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLwrIVWEeCcVPk9lhfXoA" name="TIIDO_OFICINA" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLwrYVWEeCcVPk9lhfXoA" name="COD_OFIC" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwroVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLw2oVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwr4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwsIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwsYVWEeCcVPk9lhfXoA" name="COD_TERR" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwsoVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLw2YVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLws4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwtIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwtYVWEeCcVPk9lhfXoA" name="NOM_OFIC">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwtoVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="100" characterSet="_-NLxIoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwt4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwuIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwuYVWEeCcVPk9lhfXoA" name="USU_REGI">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwuoVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLxI4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwu4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwvIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwvYVWEeCcVPk9lhfXoA" name="FEC_REGI">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLwvoVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLwv4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwwIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwwYVWEeCcVPk9lhfXoA" name="USU_ACTU">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwwoVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLxJIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLww4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwxIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwxYVWEeCcVPk9lhfXoA" name="FEC_ACTU">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLwxoVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLwx4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwyIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLwyYVWEeCcVPk9lhfXoA" name="ESTADO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLwyoVWEeCcVPk9lhfXoA" name="CHAR" characterSet="_-NLxJYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLwy4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLwzIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="1"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLwzYVWEeCcVPk9lhfXoA" name="TIIDO_OFICINA_PK" members="_-NLwsYVWEeCcVPk9lhfXoA _-NLwrYVWEeCcVPk9lhfXoA" ForeignKey="_-NLwPIVWEeCcVPk9lhfXoA _-NLxGYVWEeCcVPk9lhfXoA _-NLxd4VWEeCcVPk9lhfXoA _-NLxooVWEeCcVPk9lhfXoA _-NLwnIVWEeCcVPk9lhfXoA _-NLySYVWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLwzoVWEeCcVPk9lhfXoA" name="SYS_C007158">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLwz4VWEeCcVPk9lhfXoA" SQL="&quot;COD_OFIC&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLw0IVWEeCcVPk9lhfXoA" name="SYS_C007159">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLw0YVWEeCcVPk9lhfXoA" SQL="&quot;COD_TERR&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:ForeignKey" xmi:id="_-NLw0oVWEeCcVPk9lhfXoA" name="TIIDO_TERRITORIO_FK" members="_-NLwsYVWEeCcVPk9lhfXoA" uniqueConstraint="_-NLxQ4VWEeCcVPk9lhfXoA" referencedMembers="_-NLxJ4VWEeCcVPk9lhfXoA">
+      <eAnnotations xmi:id="_-NLw04VWEeCcVPk9lhfXoA" source="FK_MODELING_RELATIONSHIP" references="_-NLxJoVWEeCcVPk9lhfXoA">
+        <details xmi:id="_-NLw1IVWEeCcVPk9lhfXoA" key="FK_IS_IDENTIFYING_RELATIONSHIP" value="false"/>
+        <details xmi:id="_-NLw1YVWEeCcVPk9lhfXoA" key="FK_CHILD_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLw1oVWEeCcVPk9lhfXoA" key="FK_CHILD_ROLE_NAME" value=""/>
+        <details xmi:id="_-NLw14VWEeCcVPk9lhfXoA" key="FK_PARENT_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLw2IVWEeCcVPk9lhfXoA" key="FK_PARENT_ROLE_NAME" value=""/>
+      </eAnnotations>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLw2YVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLw2oVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLw24VWEeCcVPk9lhfXoA" name="TIIDO_CAMPANIAS" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLw3IVWEeCcVPk9lhfXoA" name="COD_CAMP" nullable="false">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLw3YVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL">
+        <eAnnotations xmi:id="_-NLw3oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLw34VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLw4IVWEeCcVPk9lhfXoA" name="COD_OFIC" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLw4YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLxIYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLw4oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLw44VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLw5IVWEeCcVPk9lhfXoA" name="COD_TERR" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLw5YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLxIIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLw5oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLw54VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLw6IVWEeCcVPk9lhfXoA" name="ANHO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLw6YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLyUoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLw6oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLw64VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLw7IVWEeCcVPk9lhfXoA" name="MES" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLw7YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLyU4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLw7oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLw74VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLw8IVWEeCcVPk9lhfXoA" name="NOM_CAMP">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLw8YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLyVIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLw8oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLw84VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLw9IVWEeCcVPk9lhfXoA" name="COD_GEST">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLw9YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLyVYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLw9oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLw94VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLw-IVWEeCcVPk9lhfXoA" name="ORDEN">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLw-YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLyVoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLw-oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLw-4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLw_IVWEeCcVPk9lhfXoA" name="GTE">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLw_YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLyV4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLw_oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLw_4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxAIVWEeCcVPk9lhfXoA" name="FEC_REGI">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLxAYVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLxAoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxA4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxBIVWEeCcVPk9lhfXoA" name="USU_REGI">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxBYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLyWIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxBoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxB4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxCIVWEeCcVPk9lhfXoA" name="FEC_ACTU">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLxCYVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLxCoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxC4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxDIVWEeCcVPk9lhfXoA" name="USU_ACTU">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxDYVWEeCcVPk9lhfXoA" name="CHAR" length="18" characterSet="_-NLyWYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxDoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxD4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="1"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLxEIVWEeCcVPk9lhfXoA" name="TIIDO_CAMPANIAS_PK" members="_-NLw3IVWEeCcVPk9lhfXoA _-NLw6IVWEeCcVPk9lhfXoA _-NLw7IVWEeCcVPk9lhfXoA _-NLw4IVWEeCcVPk9lhfXoA _-NLw5IVWEeCcVPk9lhfXoA" ForeignKey="_-NLyvIVWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLxEYVWEeCcVPk9lhfXoA" name="SYS_C007181">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLxEoVWEeCcVPk9lhfXoA" SQL="&quot;COD_OFIC&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLxE4VWEeCcVPk9lhfXoA" name="SYS_C007182">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLxFIVWEeCcVPk9lhfXoA" SQL="&quot;COD_TERR&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLxFYVWEeCcVPk9lhfXoA" name="SYS_C007183">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLxFoVWEeCcVPk9lhfXoA" SQL="&quot;ANHO&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLxF4VWEeCcVPk9lhfXoA" name="SYS_C007184">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLxGIVWEeCcVPk9lhfXoA" SQL="&quot;MES&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:ForeignKey" xmi:id="_-NLxGYVWEeCcVPk9lhfXoA" name="TIIDO_CAM_OFICINA_FK" members="_-NLw5IVWEeCcVPk9lhfXoA _-NLw4IVWEeCcVPk9lhfXoA" uniqueConstraint="_-NLwzYVWEeCcVPk9lhfXoA" referencedMembers="_-NLwsYVWEeCcVPk9lhfXoA _-NLwrYVWEeCcVPk9lhfXoA">
+      <eAnnotations xmi:id="_-NLxGoVWEeCcVPk9lhfXoA" source="FK_MODELING_RELATIONSHIP" references="_-NLwrIVWEeCcVPk9lhfXoA">
+        <details xmi:id="_-NLxG4VWEeCcVPk9lhfXoA" key="FK_IS_IDENTIFYING_RELATIONSHIP" value="false"/>
+        <details xmi:id="_-NLxHIVWEeCcVPk9lhfXoA" key="FK_CHILD_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLxHYVWEeCcVPk9lhfXoA" key="FK_CHILD_ROLE_NAME" value=""/>
+        <details xmi:id="_-NLxHoVWEeCcVPk9lhfXoA" key="FK_PARENT_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLxH4VWEeCcVPk9lhfXoA" key="FK_PARENT_ROLE_NAME" value=""/>
+      </eAnnotations>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxIIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxIYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxIoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxI4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxJIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxJYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLxJoVWEeCcVPk9lhfXoA" name="TIIDO_TERRITORIO" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLxJ4VWEeCcVPk9lhfXoA" name="COD_TERR" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxKIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLxRoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxKYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxKoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxK4VWEeCcVPk9lhfXoA" name="NOM_TERR">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxLIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="100" characterSet="_-NLxR4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxLYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxLoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxL4VWEeCcVPk9lhfXoA" name="USU_REGI">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxMIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLxSIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxMYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxMoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxM4VWEeCcVPk9lhfXoA" name="FEC_REGI">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLxNIVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLxNYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxNoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxN4VWEeCcVPk9lhfXoA" name="USU_ACTU">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxOIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLxSYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxOYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxOoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxO4VWEeCcVPk9lhfXoA" name="FEC_ACTU">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLxPIVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLxPYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxPoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxP4VWEeCcVPk9lhfXoA" name="ESTADO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxQIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLxSoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxQYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxQoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLxQ4VWEeCcVPk9lhfXoA" name="TIIDO_TERRITORIO_PK" members="_-NLxJ4VWEeCcVPk9lhfXoA" ForeignKey="_-NLw0oVWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLxRIVWEeCcVPk9lhfXoA" name="SYS_C007156">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLxRYVWEeCcVPk9lhfXoA" SQL="&quot;COD_TERR&quot; IS NOT NULL"/>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxRoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxR4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxSIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxSYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxSoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLxS4VWEeCcVPk9lhfXoA" name="TIIDO_FIRMAS" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLxTIVWEeCcVPk9lhfXoA" name="COD_FIRMA" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxTYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLyy4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxToVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxT4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxUIVWEeCcVPk9lhfXoA" name="COD_TERR" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxUYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLxfoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxUoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxU4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxVIVWEeCcVPk9lhfXoA" name="COD_OFIC" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxVYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLxf4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxVoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxV4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxWIVWEeCcVPk9lhfXoA" name="ANHO_FIRM">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxWYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLyzIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxWoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxW4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxXIVWEeCcVPk9lhfXoA" name="MES_FIRM">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxXYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLyzYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxXoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxX4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxYIVWEeCcVPk9lhfXoA" name="ITEM_FIRM">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxYYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="8" characterSet="_-NLyzoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxYoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxY4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxZIVWEeCcVPk9lhfXoA" name="COD_GESTOR">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxZYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="7" characterSet="_-NLyz4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxZoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxZ4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxaIVWEeCcVPk9lhfXoA" name="DESCRIPCION">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxaYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="50" characterSet="_-NLy0IVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxaoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxa4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxbIVWEeCcVPk9lhfXoA" name="FEC_FIRM">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLxbYVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLxboVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxb4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLxcIVWEeCcVPk9lhfXoA" name="TIIDO_FIRMAS_PK" members="_-NLxTIVWEeCcVPk9lhfXoA _-NLxVIVWEeCcVPk9lhfXoA _-NLxUIVWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLxcYVWEeCcVPk9lhfXoA" name="SYS_C007203">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLxcoVWEeCcVPk9lhfXoA" SQL="&quot;COD_FIRMA&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLxc4VWEeCcVPk9lhfXoA" name="SYS_C007204">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLxdIVWEeCcVPk9lhfXoA" SQL="&quot;COD_TERR&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLxdYVWEeCcVPk9lhfXoA" name="SYS_C007205">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLxdoVWEeCcVPk9lhfXoA" SQL="&quot;COD_OFIC&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:ForeignKey" xmi:id="_-NLxd4VWEeCcVPk9lhfXoA" name="TIIDO_FIR_OFICINA_FK" members="_-NLxUIVWEeCcVPk9lhfXoA _-NLxVIVWEeCcVPk9lhfXoA" uniqueConstraint="_-NLwzYVWEeCcVPk9lhfXoA" referencedMembers="_-NLwsYVWEeCcVPk9lhfXoA _-NLwrYVWEeCcVPk9lhfXoA">
+      <eAnnotations xmi:id="_-NLxeIVWEeCcVPk9lhfXoA" source="FK_MODELING_RELATIONSHIP" references="_-NLwrIVWEeCcVPk9lhfXoA">
+        <details xmi:id="_-NLxeYVWEeCcVPk9lhfXoA" key="FK_IS_IDENTIFYING_RELATIONSHIP" value="false"/>
+        <details xmi:id="_-NLxeoVWEeCcVPk9lhfXoA" key="FK_CHILD_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLxe4VWEeCcVPk9lhfXoA" key="FK_CHILD_ROLE_NAME" value=""/>
+        <details xmi:id="_-NLxfIVWEeCcVPk9lhfXoA" key="FK_PARENT_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLxfYVWEeCcVPk9lhfXoA" key="FK_PARENT_ROLE_NAME" value=""/>
+      </eAnnotations>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxfoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxf4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLxgIVWEeCcVPk9lhfXoA" name="TIIDO_MAESTRO_PLANES" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLxgYVWEeCcVPk9lhfXoA" name="MES" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxgoVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLy0YVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxg4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxhIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxhYVWEeCcVPk9lhfXoA" name="ANHO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxhoVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLy0oVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxh4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxiIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxiYVWEeCcVPk9lhfXoA" name="COD_TERR" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxioVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLxqYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxi4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxjIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxjYVWEeCcVPk9lhfXoA" name="COD_OFIC" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxjoVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLxqoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxj4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxkIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxkYVWEeCcVPk9lhfXoA" name="PRIORIDAD">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLxkoVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="2">
+        <eAnnotations xmi:id="_-NLxk4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxlIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxlYVWEeCcVPk9lhfXoA" name="FEC_GRAB">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLxloVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLxl4VWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxmIVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLxmYVWEeCcVPk9lhfXoA" name="TIIDO_MAESTRO_PLANES_PK" members="_-NLxgYVWEeCcVPk9lhfXoA _-NLxhYVWEeCcVPk9lhfXoA _-NLxjYVWEeCcVPk9lhfXoA _-NLxiYVWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLxmoVWEeCcVPk9lhfXoA" name="SYS_C007208">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLxm4VWEeCcVPk9lhfXoA" SQL="&quot;MES&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLxnIVWEeCcVPk9lhfXoA" name="SYS_C007209">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLxnYVWEeCcVPk9lhfXoA" SQL="&quot;ANHO&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLxnoVWEeCcVPk9lhfXoA" name="SYS_C007210">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLxn4VWEeCcVPk9lhfXoA" SQL="&quot;COD_TERR&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLxoIVWEeCcVPk9lhfXoA" name="SYS_C007211">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLxoYVWEeCcVPk9lhfXoA" SQL="&quot;COD_OFIC&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:ForeignKey" xmi:id="_-NLxooVWEeCcVPk9lhfXoA" name="TIIDO_MAEPLA_OFICINA_FK" members="_-NLxiYVWEeCcVPk9lhfXoA _-NLxjYVWEeCcVPk9lhfXoA" uniqueConstraint="_-NLwzYVWEeCcVPk9lhfXoA" referencedMembers="_-NLwsYVWEeCcVPk9lhfXoA _-NLwrYVWEeCcVPk9lhfXoA">
+      <eAnnotations xmi:id="_-NLxo4VWEeCcVPk9lhfXoA" source="FK_MODELING_RELATIONSHIP" references="_-NLwrIVWEeCcVPk9lhfXoA">
+        <details xmi:id="_-NLxpIVWEeCcVPk9lhfXoA" key="FK_IS_IDENTIFYING_RELATIONSHIP" value="false"/>
+        <details xmi:id="_-NLxpYVWEeCcVPk9lhfXoA" key="FK_CHILD_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLxpoVWEeCcVPk9lhfXoA" key="FK_CHILD_ROLE_NAME" value=""/>
+        <details xmi:id="_-NLxp4VWEeCcVPk9lhfXoA" key="FK_PARENT_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLxqIVWEeCcVPk9lhfXoA" key="FK_PARENT_ROLE_NAME" value=""/>
+      </eAnnotations>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxqYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxqoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxq4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLxrIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLxrYVWEeCcVPk9lhfXoA" name="TIIDO_PLANES" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLxroVWEeCcVPk9lhfXoA" name="COD_OFIC" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxr4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLyUYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxsIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxsYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxsoVWEeCcVPk9lhfXoA" name="COD_TERR" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxs4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLyUIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxtIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxtYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxtoVWEeCcVPk9lhfXoA" name="MES_PLAN" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxt4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLy3YVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxuIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxuYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxuoVWEeCcVPk9lhfXoA" name="ANHO_PLAN" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxu4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLy3oVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxvIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxvYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxvoVWEeCcVPk9lhfXoA" name="COD_EPIGRAFE" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxv4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="7" characterSet="_-NLy34VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxwIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxwYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxwoVWEeCcVPk9lhfXoA" name="NOM_EPIGRAFE">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLxw4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="30" characterSet="_-NLy4IVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLxxIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxxYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxxoVWEeCcVPk9lhfXoA" name="PESO_DOR">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLxx4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="2">
+        <eAnnotations xmi:id="_-NLxyIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxyYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxyoVWEeCcVPk9lhfXoA" name="MONTO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLxy4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLxzIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLxzYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLxzoVWEeCcVPk9lhfXoA" name="PORC_ALCANZADO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLxz4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLx0IVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLx0YVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLx0oVWEeCcVPk9lhfXoA" name="DESV_PPTO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLx04VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLx1IVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLx1YVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLx1oVWEeCcVPk9lhfXoA" name="NRO_MESES_FALT">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLx14VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="2">
+        <eAnnotations xmi:id="_-NLx2IVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLx2YVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLx2oVWEeCcVPk9lhfXoA" name="PROY_CREC_MEN">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLx24VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLx3IVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLx3YVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLx3oVWEeCcVPk9lhfXoA" name="AJUSTE_ESTIMADO_TERR">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLx34VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLx4IVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLx4YVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLx4oVWEeCcVPk9lhfXoA" name="PROY_AJUSTE_MEN">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLx44VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLx5IVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLx5YVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLx5oVWEeCcVPk9lhfXoA" name="SALDMEDI_JUNIO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLx54VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLx6IVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLx6YVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLx6oVWEeCcVPk9lhfXoA" name="PORC_SALDMEDI_JUNIO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLx64VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLx7IVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLx7YVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLx7oVWEeCcVPk9lhfXoA" name="SALD_DIC_ANTE">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLx74VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLx8IVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLx8YVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLx8oVWEeCcVPk9lhfXoA" name="SALDMEDI_DIC">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLx84VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLx9IVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLx9YVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLx9oVWEeCcVPk9lhfXoA" name="COD_TERRI">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLx94VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLy4YVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLx-IVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLx-YVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLx-oVWEeCcVPk9lhfXoA" name="PORC_SALDMEDI_DIC">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLx-4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLx_IVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLx_YVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLx_oVWEeCcVPk9lhfXoA" name="FAC_AJU_SAL_PUN">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLx_4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="8">
+        <eAnnotations xmi:id="_-NLyAIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyAYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyAoVWEeCcVPk9lhfXoA" name="HIST_BAJAS">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyA4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLyBIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyBYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyBoVWEeCcVPk9lhfXoA" name="MET_MESSALD_PUNT">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyB4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLyCIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyCYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyCoVWEeCcVPk9lhfXoA" name="MET_GER_OFI">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyC4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLyDIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyDYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyDoVWEeCcVPk9lhfXoA" name="PRIORIDAD">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyD4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="2">
+        <eAnnotations xmi:id="_-NLyEIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyEYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyEoVWEeCcVPk9lhfXoA" name="MES_EVAL">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLyE4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLy4oVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLyFIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyFYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyFoVWEeCcVPk9lhfXoA" name="IND_DOR">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLyF4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLy44VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLyGIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyGYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyGoVWEeCcVPk9lhfXoA" name="VAR_MES">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyG4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLyHIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyHYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyHoVWEeCcVPk9lhfXoA" name="AJUS_PPTO">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyH4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLyIIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyIYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyIoVWEeCcVPk9lhfXoA" name="DESV_PPTO_AJUS">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyI4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLyJIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyJYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyJoVWEeCcVPk9lhfXoA" name="FACT_AJUS_TERRI">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyJ4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLyKIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyKYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyKoVWEeCcVPk9lhfXoA" name="FACT_ASIG_GTE_OF">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyK4VWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLyLIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyLYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyLoVWEeCcVPk9lhfXoA" name="FEC_ACTU" nullable="false">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLyL4VWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP">
+        <eAnnotations xmi:id="_-NLyMIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyMYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="93"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyMoVWEeCcVPk9lhfXoA" name="USU_REGI" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLyM4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLy5IVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLyNIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyNYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyNoVWEeCcVPk9lhfXoA" name="USU_ACTU" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLyN4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLy5YVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLyOIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyOYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyOoVWEeCcVPk9lhfXoA" name="FEC_REGI" nullable="false">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLyO4VWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP">
+        <eAnnotations xmi:id="_-NLyPIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyPYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="93"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLyPoVWEeCcVPk9lhfXoA" name="TIIDO_PLANES_PK" members="_-NLxroVWEeCcVPk9lhfXoA _-NLxsoVWEeCcVPk9lhfXoA _-NLxtoVWEeCcVPk9lhfXoA _-NLxuoVWEeCcVPk9lhfXoA _-NLxvoVWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLyP4VWEeCcVPk9lhfXoA" name="SYS_C007222">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLyQIVWEeCcVPk9lhfXoA" SQL="&quot;COD_OFIC&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLyQYVWEeCcVPk9lhfXoA" name="SYS_C007223">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLyQoVWEeCcVPk9lhfXoA" SQL="&quot;COD_TERR&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLyQ4VWEeCcVPk9lhfXoA" name="SYS_C007224">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLyRIVWEeCcVPk9lhfXoA" SQL="&quot;MES_PLAN&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLyRYVWEeCcVPk9lhfXoA" name="SYS_C007225">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLyRoVWEeCcVPk9lhfXoA" SQL="&quot;ANHO_PLAN&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLyR4VWEeCcVPk9lhfXoA" name="SYS_C007226">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLySIVWEeCcVPk9lhfXoA" SQL="&quot;COD_EPIGRAFE&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:ForeignKey" xmi:id="_-NLySYVWEeCcVPk9lhfXoA" name="TIIDO_PLA_OFICINA_FK" members="_-NLxsoVWEeCcVPk9lhfXoA _-NLxroVWEeCcVPk9lhfXoA" uniqueConstraint="_-NLwzYVWEeCcVPk9lhfXoA" referencedMembers="_-NLwsYVWEeCcVPk9lhfXoA _-NLwrYVWEeCcVPk9lhfXoA">
+      <eAnnotations xmi:id="_-NLySoVWEeCcVPk9lhfXoA" source="FK_MODELING_RELATIONSHIP" references="_-NLwrIVWEeCcVPk9lhfXoA">
+        <details xmi:id="_-NLyS4VWEeCcVPk9lhfXoA" key="FK_IS_IDENTIFYING_RELATIONSHIP" value="false"/>
+        <details xmi:id="_-NLyTIVWEeCcVPk9lhfXoA" key="FK_CHILD_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLyTYVWEeCcVPk9lhfXoA" key="FK_CHILD_ROLE_NAME" value=""/>
+        <details xmi:id="_-NLyToVWEeCcVPk9lhfXoA" key="FK_PARENT_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLyT4VWEeCcVPk9lhfXoA" key="FK_PARENT_ROLE_NAME" value=""/>
+      </eAnnotations>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyUIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyUYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyUoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyU4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyVIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyVYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyVoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyV4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyWIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyWYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLyWoVWEeCcVPk9lhfXoA" name="TIIDO_CAMPANIAS_DETALLE" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLyW4VWEeCcVPk9lhfXoA" name="COD_CAMP_DETA" nullable="false">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyXIVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL">
+        <eAnnotations xmi:id="_-NLyXYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyXoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyX4VWEeCcVPk9lhfXoA" name="COD_TERR" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLyYIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLyxoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLyYYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyYoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyY4VWEeCcVPk9lhfXoA" name="COD_OFIC" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLyZIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLyxYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLyZYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyZoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyZ4VWEeCcVPk9lhfXoA" name="COD_CAMP" nullable="false">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyaIVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL">
+        <eAnnotations xmi:id="_-NLyaYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyaoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLya4VWEeCcVPk9lhfXoA" name="MES" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLybIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLyxIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLybYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyboVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyb4VWEeCcVPk9lhfXoA" name="ANHO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLycIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLyw4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLycYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLycoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyc4VWEeCcVPk9lhfXoA" name="NOM_CAMP">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLydIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="80" characterSet="_-NLyx4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLydYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLydoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyd4VWEeCcVPk9lhfXoA" name="COD_GEST">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLyeIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="7" characterSet="_-NLyyIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLyeYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyeoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLye4VWEeCcVPk9lhfXoA" name="NRO_CLIE">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyfIVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="5">
+        <eAnnotations xmi:id="_-NLyfYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyfoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyf4VWEeCcVPk9lhfXoA" name="COMP_GEST">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLygIVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLygYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLygoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyg4VWEeCcVPk9lhfXoA" name="NRO_GEST_SEGU_1">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyhIVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="4">
+        <eAnnotations xmi:id="_-NLyhYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyhoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyh4VWEeCcVPk9lhfXoA" name="NRO_CONC_SEGU_1">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyiIVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="4">
+        <eAnnotations xmi:id="_-NLyiYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyioVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyi4VWEeCcVPk9lhfXoA" name="MONT_SEGU_1">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLyjIVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLyjYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyjoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyj4VWEeCcVPk9lhfXoA" name="NRO_GEST_SEGU_2">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLykIVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="4">
+        <eAnnotations xmi:id="_-NLykYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLykoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyk4VWEeCcVPk9lhfXoA" name="NRO_CONC_SEGU_2">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLylIVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="4">
+        <eAnnotations xmi:id="_-NLylYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyloVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyl4VWEeCcVPk9lhfXoA" name="MONT_SEGU_2">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLymIVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="15" scale="2">
+        <eAnnotations xmi:id="_-NLymYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLymoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLym4VWEeCcVPk9lhfXoA" name="FEC_REGI">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLynIVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLynYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLynoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyn4VWEeCcVPk9lhfXoA" name="FEC_SEGU_1">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLyoIVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLyoYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyooVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyo4VWEeCcVPk9lhfXoA" name="FEC_SEGU_2">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLypIVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLypYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLypoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyp4VWEeCcVPk9lhfXoA" name="USU_REGI">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLyqIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLyyYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLyqYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyqoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyq4VWEeCcVPk9lhfXoA" name="FEC_ACTU">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLyrIVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLyrYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLyroVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLyr4VWEeCcVPk9lhfXoA" name="USU_ACTU">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLysIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLyyoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLysYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLysoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLys4VWEeCcVPk9lhfXoA" name="TIIDO_CAMPANIAS_DETALLE_PK" members="_-NLyW4VWEeCcVPk9lhfXoA _-NLyX4VWEeCcVPk9lhfXoA _-NLyY4VWEeCcVPk9lhfXoA _-NLyZ4VWEeCcVPk9lhfXoA _-NLya4VWEeCcVPk9lhfXoA _-NLyb4VWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLytIVWEeCcVPk9lhfXoA" name="SYS_C007188">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLytYVWEeCcVPk9lhfXoA" SQL="&quot;COD_TERR&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLytoVWEeCcVPk9lhfXoA" name="SYS_C007189">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLyt4VWEeCcVPk9lhfXoA" SQL="&quot;COD_OFIC&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLyuIVWEeCcVPk9lhfXoA" name="SYS_C007191">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLyuYVWEeCcVPk9lhfXoA" SQL="&quot;MES&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLyuoVWEeCcVPk9lhfXoA" name="SYS_C007192">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLyu4VWEeCcVPk9lhfXoA" SQL="&quot;ANHO&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:ForeignKey" xmi:id="_-NLyvIVWEeCcVPk9lhfXoA" name="TIIDO_CAMDET_CAMPANIAS_FK" members="_-NLyZ4VWEeCcVPk9lhfXoA _-NLyb4VWEeCcVPk9lhfXoA _-NLya4VWEeCcVPk9lhfXoA _-NLyY4VWEeCcVPk9lhfXoA _-NLyX4VWEeCcVPk9lhfXoA" uniqueConstraint="_-NLxEIVWEeCcVPk9lhfXoA" referencedMembers="_-NLw3IVWEeCcVPk9lhfXoA _-NLw6IVWEeCcVPk9lhfXoA _-NLw7IVWEeCcVPk9lhfXoA _-NLw4IVWEeCcVPk9lhfXoA _-NLw5IVWEeCcVPk9lhfXoA">
+      <eAnnotations xmi:id="_-NLyvYVWEeCcVPk9lhfXoA" source="FK_MODELING_RELATIONSHIP" references="_-NLw24VWEeCcVPk9lhfXoA">
+        <details xmi:id="_-NLyvoVWEeCcVPk9lhfXoA" key="FK_IS_IDENTIFYING_RELATIONSHIP" value="false"/>
+        <details xmi:id="_-NLyv4VWEeCcVPk9lhfXoA" key="FK_CHILD_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLywIVWEeCcVPk9lhfXoA" key="FK_CHILD_ROLE_NAME" value=""/>
+        <details xmi:id="_-NLywYVWEeCcVPk9lhfXoA" key="FK_PARENT_MULTIPLICITY" value=""/>
+        <details xmi:id="_-NLywoVWEeCcVPk9lhfXoA" key="FK_PARENT_ROLE_NAME" value=""/>
+      </eAnnotations>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyw4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyxIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyxYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyxoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyx4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyyIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyyYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyyoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyy4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyzIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyzYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyzoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLyz4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy0IVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy0YVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy0oVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy04VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy1IVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy1YVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy1oVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy14VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy2IVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy2YVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy2oVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy24VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy3IVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy3YVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy3oVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy34VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy4IVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy4YVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy4oVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy44VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy5IVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLy5YVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLy5oVWEeCcVPk9lhfXoA" name="TIIDO_EQUIVALENCIAS" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLy54VWEeCcVPk9lhfXoA" name="COD_CAR" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLy6IVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLzAoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLy6YVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLy6oVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLy64VWEeCcVPk9lhfXoA" name="COD_PER">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLy7IVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLzA4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLy7YVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLy7oVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLy74VWEeCcVPk9lhfXoA" name="USU_REGI">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLy8IVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLzBIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLy8YVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLy8oVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLy84VWEeCcVPk9lhfXoA" name="FEC_REGI">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLy9IVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLy9YVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLy9oVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLy94VWEeCcVPk9lhfXoA" name="USU_ACTU">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLy-IVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLzBYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLy-YVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLy-oVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLy-4VWEeCcVPk9lhfXoA" name="FEC_ACTU">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLy_IVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLy_YVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLy_oVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLy_4VWEeCcVPk9lhfXoA" name="TIIDO_EQUIVALENCIA_PK" members="_-NLy54VWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLzAIVWEeCcVPk9lhfXoA" name="SYS_C007178">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLzAYVWEeCcVPk9lhfXoA" SQL="&quot;COD_CAR&quot; IS NOT NULL"/>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzAoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzA4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzBIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzBYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLzBoVWEeCcVPk9lhfXoA" name="TIIDO_MENU" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLzB4VWEeCcVPk9lhfXoA" name="PADRE" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzCIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLzHoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzCYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzCoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzC4VWEeCcVPk9lhfXoA" name="LINK">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzDIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="50" characterSet="_-NLzH4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzDYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzDoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzD4VWEeCcVPk9lhfXoA" name="HIJO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzEIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLzIIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzEYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzEoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzE4VWEeCcVPk9lhfXoA" name="DESCRIPCION">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzFIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLzIYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzFYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzFoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzF4VWEeCcVPk9lhfXoA" name="COD_PERFIL">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzGIVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="10" characterSet="_-NLzIoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzGYVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzGoVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLzG4VWEeCcVPk9lhfXoA" name="TIIDO_MENU_PK" members="_-NLzB4VWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLzHIVWEeCcVPk9lhfXoA" name="SYS_C007172">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLzHYVWEeCcVPk9lhfXoA" SQL="&quot;PADRE&quot; IS NOT NULL"/>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzHoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzH4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzIIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzIYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzIoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLzI4VWEeCcVPk9lhfXoA" name="TIIDO_MULTITABLA" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLzJIVWEeCcVPk9lhfXoA" name="COD_MULT" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzJYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="3" characterSet="_-NLzQYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzJoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzJ4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzKIVWEeCcVPk9lhfXoA" name="COD_ELEM" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzKYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLzQoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzKoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzK4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzLIVWEeCcVPk9lhfXoA" name="VALOR1">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzLYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="100" characterSet="_-NLzQ4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzLoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzL4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzMIVWEeCcVPk9lhfXoA" name="VALOR2">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzMYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="100" characterSet="_-NLzRIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzMoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzM4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzNIVWEeCcVPk9lhfXoA" name="VALOR3">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzNYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="100" characterSet="_-NLzRYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzNoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzN4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzOIVWEeCcVPk9lhfXoA" name="VALOR4">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzOYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="100" characterSet="_-NLzRoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzOoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzO4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLzPIVWEeCcVPk9lhfXoA" name="TIIDO_MULTITABLA_PK" members="_-NLzJIVWEeCcVPk9lhfXoA _-NLzKIVWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLzPYVWEeCcVPk9lhfXoA" name="SYS_C007165">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLzPoVWEeCcVPk9lhfXoA" SQL="&quot;COD_MULT&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLzP4VWEeCcVPk9lhfXoA" name="SYS_C007166">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLzQIVWEeCcVPk9lhfXoA" SQL="&quot;COD_ELEM&quot; IS NOT NULL"/>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzQYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzQoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzQ4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzRIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzRYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzRoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLzR4VWEeCcVPk9lhfXoA" name="TIIDO_PARAMETROS" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLzSIVWEeCcVPk9lhfXoA" name="COD_PARAMETRO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzSYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLze4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzSoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzS4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzTIVWEeCcVPk9lhfXoA" name="FEC_ACCI">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLzTYVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLzToVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzT4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzUIVWEeCcVPk9lhfXoA" name="FEC_SEGU_1">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLzUYVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLzUoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzU4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzVIVWEeCcVPk9lhfXoA" name="FEC_SEGU_2">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLzVYVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLzVoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzV4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzWIVWEeCcVPk9lhfXoA" name="AFEC_ACCI">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzWYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" characterSet="_-NLzfIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzWoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzW4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzXIVWEeCcVPk9lhfXoA" name="AFEC_SEGU">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzXYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" characterSet="_-NLzfYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzXoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzX4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzYIVWEeCcVPk9lhfXoA" name="AFEC_PLAN">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzYYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" characterSet="_-NLzfoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzYoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzY4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzZIVWEeCcVPk9lhfXoA" name="FEC_PLAN">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLzZYVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLzZoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzZ4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzaIVWEeCcVPk9lhfXoA" name="TAP_USU_REGI">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzaYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLzf4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzaoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLza4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzbIVWEeCcVPk9lhfXoA" name="FEC_REGI">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLzbYVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLzboVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzb4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzcIVWEeCcVPk9lhfXoA" name="USU_ACTU">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzcYVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLzgIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzcoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzc4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzdIVWEeCcVPk9lhfXoA" name="FEC_ACTU">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLzdYVWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLzdoVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzd4VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLzeIVWEeCcVPk9lhfXoA" name="TIIDO_PARAMETROS_PK" members="_-NLzSIVWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLzeYVWEeCcVPk9lhfXoA" name="SYS_C007168">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLzeoVWEeCcVPk9lhfXoA" SQL="&quot;COD_PARAMETRO&quot; IS NOT NULL"/>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLze4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzfIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzfYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzfoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzf4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzgIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLzgYVWEeCcVPk9lhfXoA" name="TIIDO_PERFILES" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLzgoVWEeCcVPk9lhfXoA" name="COD_PERFIL" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzg4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="4" characterSet="_-NLznYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzhIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzhYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzhoVWEeCcVPk9lhfXoA" name="NOM_PERFIL">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzh4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="30" characterSet="_-NLznoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLziIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLziYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzioVWEeCcVPk9lhfXoA" name="USU_REGI">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzi4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLzn4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzjIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzjYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzjoVWEeCcVPk9lhfXoA" name="FEC_REGI">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLzj4VWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLzkIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzkYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzkoVWEeCcVPk9lhfXoA" name="USU_ACTU">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzk4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLzoIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzlIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzlYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzloVWEeCcVPk9lhfXoA" name="FEC_ACTU">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLzl4VWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP" fractionalSecondsPrecision="7">
+        <eAnnotations xmi:id="_-NLzmIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzmYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="91"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_qfGh0cbeEeG4i-md2o2WJg" name="PERFIL" label="PERFIL" defaultValue="">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_vim38MbeEeG4i-md2o2WJg" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="3"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLzmoVWEeCcVPk9lhfXoA" name="TIIDO_PERFILES_PK" members="_-NLzgoVWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLzm4VWEeCcVPk9lhfXoA" name="SYS_C007170">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLznIVWEeCcVPk9lhfXoA" SQL="&quot;COD_PERFIL&quot; IS NOT NULL"/>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLznYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLznoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzn4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzoIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLzoYVWEeCcVPk9lhfXoA" name="TIIDO_PERMISO_PERFIL" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLzooVWEeCcVPk9lhfXoA" name="COD_PERFIL" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzo4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="20" characterSet="_-NLzyYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzpIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzpYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzpoVWEeCcVPk9lhfXoA" name="TIP_ACCESO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzp4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="50" characterSet="_-NLzyoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzqIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzqYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzqoVWEeCcVPk9lhfXoA" name="VALOR_RCP" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzq4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="2" characterSet="_-NLzy4VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzrIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzrYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzroVWEeCcVPk9lhfXoA" name="USUARIO" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzr4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="100" characterSet="_-NLzzIVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzsIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzsYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzsoVWEeCcVPk9lhfXoA" name="USU_REGI" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzs4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="50" characterSet="_-NLzzYVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLztIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLztYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLztoVWEeCcVPk9lhfXoA" name="FEC_REGI" nullable="false">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLzt4VWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP">
+        <eAnnotations xmi:id="_-NLzuIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzuYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="93"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzuoVWEeCcVPk9lhfXoA" name="USU_ACTU" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLzu4VWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" length="50" characterSet="_-NLzzoVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLzvIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzvYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLzvoVWEeCcVPk9lhfXoA" name="FEC_ACTU" nullable="false">
+      <containedType xsi:type="SQLDataTypes:TimeDataType" xmi:id="_-NLzv4VWEeCcVPk9lhfXoA" name="TIMESTAMP" primitiveType="TIMESTAMP">
+        <eAnnotations xmi:id="_-NLzwIVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLzwYVWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="93"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLzwoVWEeCcVPk9lhfXoA" name="TIIDO_PERMISO_PERFIL_PK" members="_-NLzooVWEeCcVPk9lhfXoA _-NLzpoVWEeCcVPk9lhfXoA _-NLzqoVWEeCcVPk9lhfXoA"/>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLzw4VWEeCcVPk9lhfXoA" name="SYS_C007174">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLzxIVWEeCcVPk9lhfXoA" SQL="&quot;COD_PERFIL&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLzxYVWEeCcVPk9lhfXoA" name="SYS_C007175">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLzxoVWEeCcVPk9lhfXoA" SQL="&quot;TIP_ACCESO&quot; IS NOT NULL"/>
+    </constraints>
+    <constraints xsi:type="SQLConstraints:CheckConstraint" xmi:id="_-NLzx4VWEeCcVPk9lhfXoA" name="SYS_C007176">
+      <searchCondition xsi:type="SQLExpressions:SearchConditionDefault" xmi:id="_-NLzyIVWEeCcVPk9lhfXoA" SQL="&quot;VALOR_RCP&quot; IS NOT NULL"/>
+    </constraints>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzyYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzyoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzy4VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzzIVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzzYVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLzzoVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLTables:PersistentTable xmi:id="_-NLzz4VWEeCcVPk9lhfXoA" name="TIIDO_INGRESOS" schema="_-NLvkoVWEeCcVPk9lhfXoA">
+    <columns xmi:id="_-NLz0IVWEeCcVPk9lhfXoA" name="ID_INGRESOS" nullable="false">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_-NLz0YVWEeCcVPk9lhfXoA" name="DECIMAL" primitiveType="DECIMAL" precision="5">
+        <eAnnotations xmi:id="_-NLz0oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLz04VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="3"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLz1IVWEeCcVPk9lhfXoA" name="VECES">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLz1YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" characterSet="_-NLz8YVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLz1oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLz14VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLz2IVWEeCcVPk9lhfXoA" name="VALIDO_VECES">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLz2YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" characterSet="_-NLz8oVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLz2oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLz24VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLz3IVWEeCcVPk9lhfXoA" name="COD_USUARIO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLz3YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" characterSet="_-NLz84VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLz3oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLz34VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLz4IVWEeCcVPk9lhfXoA" name="CARGO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLz4YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" characterSet="_-NLz9IVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLz4oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLz44VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLz5IVWEeCcVPk9lhfXoA" name="NOM_TERRITORIO">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLz5YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" characterSet="_-NLz9YVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLz5oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLz54VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLz6IVWEeCcVPk9lhfXoA" name="COD_OFICINA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLz6YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" characterSet="_-NLz9oVWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLz6oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLz64VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <columns xmi:id="_-NLz7IVWEeCcVPk9lhfXoA" name="FECHA">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_-NLz7YVWEeCcVPk9lhfXoA" name="VARCHAR2" primitiveType="CHARACTER_VARYING" characterSet="_-NLz94VWEeCcVPk9lhfXoA">
+        <eAnnotations xmi:id="_-NLz7oVWEeCcVPk9lhfXoA" source="JDBC_ENUM">
+          <details xmi:id="_-NLz74VWEeCcVPk9lhfXoA" key="JDBC_ENUM_KEY" value="12"/>
+        </eAnnotations>
+      </containedType>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-NLz8IVWEeCcVPk9lhfXoA" name="C2788612" members="_-NLz0IVWEeCcVPk9lhfXoA"/>
+  </SQLTables:PersistentTable>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLz8YVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLz8oVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLz84VWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLz9IVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLz9YVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLz9oVWEeCcVPk9lhfXoA" name="800"/>
+  <SQLDataTypes:CharacterSet xmi:id="_-NLz94VWEeCcVPk9lhfXoA" name="800"/>
+</xmi:XMI>

@@ -1,0 +1,2055 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar id="ejb-jar_ID" version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+	<display-name>
+	SistemaSDOEJB</display-name>
+	<enterprise-beans>
+		<entity id="ContainerManagedEntity_1231773700879">
+			<ejb-name>Tiido_epigrafe</ejb-name>
+			<local-home>entities.Tiido_epigrafeLocalHome</local-home>
+			<local>entities.Tiido_epigrafeLocal</local>
+			<ejb-class>entities.Tiido_epigrafeBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_epigrafeKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_epigrafe</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773701067">
+				<field-name>cod_epigrafe</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701068">
+				<field-name>anho</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701083">
+				<field-name>nom_epigrafe</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701084">
+				<field-name>ind_clase</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701098">
+				<field-name>ind_sub_clase</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701099">
+				<field-name>orden</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701114">
+				<field-name>ind_grupo</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701115">
+				<field-name>abreviatura</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701129">
+				<field-name>ind_hijo</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701130">
+				<field-name>ind_afecta</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1253311511296">
+				<field-name>porcentaje_max</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1253311514796">
+				<field-name>porcentaje_min</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findEpiByAnho</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_epigrafe o where o.anho = ?1</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findByCodEpigAnho</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_epigrafe o where  o.cod_epigrafe = ?1 and  o.anho = ?2</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findByCodEpig</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_epigrafe o where  o.cod_epigrafe = ?1</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773700895">
+			<ejb-name>Tiido_territorio</ejb-name>
+			<local-home>entities.Tiido_territorioLocalHome</local-home>
+			<local>entities.Tiido_territorioLocal</local>
+			<ejb-class>entities.Tiido_territorioBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_territorioKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_territorio</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773701145">
+				<field-name>cod_terr</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701146">
+				<field-name>nom_terr</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701161">
+				<field-name>usu_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701162">
+				<field-name>fec_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701176">
+				<field-name>usu_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701177">
+				<field-name>fec_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1255871405562">
+				<field-name>estado</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllTerritorio</method-name>
+					<method-params>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_territorio o</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findByCodTerritorio</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_territorio o where  o.cod_terr = ?1</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773700942">
+			<ejb-name>Tiido_equivalencias</ejb-name>
+			<local-home>entities.Tiido_equivalenciasLocalHome</local-home>
+			<local>entities.Tiido_equivalenciasLocal</local>
+			<ejb-class>entities.Tiido_equivalenciasBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_equivalenciasKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_equivalencias</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773701178">
+				<field-name>cod_car</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701192">
+				<field-name>cod_per</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701193">
+				<field-name>usu_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701208">
+				<field-name>fec_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701209">
+				<field-name>usu_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701223">
+				<field-name>fec_actu</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findEquivalenciaByCodCargo</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_equivalencias o where  o.cod_car = ?1</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllEquivalencias</method-name>
+					<method-params>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_equivalencias o</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773700958">
+			<ejb-name>Tiido_menu</ejb-name>
+			<local-home>entities.Tiido_menuLocalHome</local-home>
+			<local>entities.Tiido_menuLocal</local>
+			<ejb-class>entities.Tiido_menuBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_menuKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_menu</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773701224">
+				<field-name>padre</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701239">
+				<field-name>link</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701240">
+				<field-name>hijo</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701254">
+				<field-name>descripcion</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701255">
+				<field-name>cod_perfil</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findxCodPerfil</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_menu o where  o.cod_perfil like ?1 
+order by o.padre</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllMenu</method-name>
+					<method-params>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_menu o order by   o.padre asc, o.hijo asc</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773700959">
+			<ejb-name>Tiido_multitabla</ejb-name>
+			<local-home>entities.Tiido_multitablaLocalHome</local-home>
+			<local>entities.Tiido_multitablaLocal</local>
+			<ejb-class>entities.Tiido_multitablaBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_multitablaKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_multitabla</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773701270">
+				<field-name>cod_mult</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701271">
+				<field-name>cod_elem</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701286">
+				<field-name>valor1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701287">
+				<field-name>valor2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701301">
+				<field-name>valor3</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701302">
+				<field-name>valor4</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findByCodMulti</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_multitabla o where  o.cod_mult = ?1  ORDER BY o.cod_elem</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findByID</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_multitabla o where  o.cod_mult = SUBSTRING(?1, 1,3) and  o.cod_elem = SUBSTRING(?1, 4, LENGTH(?1))</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findMultiByPrimaryKey</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_multitabla o where  o.cod_mult = ?1 and  o.cod_elem = ?2</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findByMultiForPresup</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_multitabla o where  o.cod_mult = ?1 and  o.valor2 like ?2</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773700973">
+			<ejb-name>Tiido_parametros</ejb-name>
+			<local-home>entities.Tiido_parametrosLocalHome</local-home>
+			<local>entities.Tiido_parametrosLocal</local>
+			<ejb-class>entities.Tiido_parametrosBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_parametrosKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_parametros</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773701317">
+				<field-name>cod_parametro</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701318">
+				<field-name>fec_acci</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701333">
+				<field-name>fec_segu_1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701334">
+				<field-name>fec_segu_2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701442">
+				<field-name>afec_acci</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701458">
+				<field-name>afec_segu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701459">
+				<field-name>afec_plan</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701460">
+				<field-name>fec_plan</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701473">
+				<field-name>tap_usu_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701474">
+				<field-name>fec_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701489">
+				<field-name>usu_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701490">
+				<field-name>fec_actu</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllParametros</method-name>
+					<method-params>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_parametros o</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findParametroAll</method-name>
+					<method-params>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_parametros o</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773700974">
+			<ejb-name>Tiido_perfiles</ejb-name>
+			<local-home>entities.Tiido_perfilesLocalHome</local-home>
+			<local>entities.Tiido_perfilesLocal</local>
+			<ejb-class>entities.Tiido_perfilesBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_perfilesKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_perfiles</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773701504">
+				<field-name>cod_perfil</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701505">
+				<field-name>nom_perfil</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701520">
+				<field-name>usu_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701521">
+				<field-name>fec_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701522">
+				<field-name>usu_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701536">
+				<field-name>fec_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1341519628491">
+				<field-name>perfil</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllPerfil</method-name>
+					<method-params>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_perfiles o order by o.cod_perfil asc</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773700989">
+			<ejb-name>Tiido_permiso_perfil</ejb-name>
+			<local-home>entities.Tiido_permiso_perfilLocalHome</local-home>
+			<local>entities.Tiido_permiso_perfilLocal</local>
+			<ejb-class>entities.Tiido_permiso_perfilBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_permiso_perfilKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_permiso_perfil</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773701537">
+				<field-name>cod_perfil</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701551">
+				<field-name>tip_acceso</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701552">
+				<field-name>valor_rcp</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1256555199140">
+				<field-name>usuario</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1256555202078">
+				<field-name>usu_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1256555204453">
+				<field-name>fec_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1256555207187">
+				<field-name>usu_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1256555209671">
+				<field-name>fec_actu</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findPermisoPerfilxTipAccxValorRCP</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_permiso_perfil o where o.tip_acceso = ?1 and o.valor_rcp = ?2 order by o.cod_perfil asc</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllPermisoPerfil</method-name>
+					<method-params>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_permiso_perfil o order by o.cod_perfil asc, o.tip_acceso asc, o.valor_rcp asc</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773701004">
+			<ejb-name>Tiido_oficina</ejb-name>
+			<local-home>entities.Tiido_oficinaLocalHome</local-home>
+			<local>entities.Tiido_oficinaLocal</local>
+			<ejb-class>entities.Tiido_oficinaBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_oficinaKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_oficina</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773701567">
+				<field-name>cod_ofic</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701568">
+				<field-name>nom_ofic</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701583">
+				<field-name>usu_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701584">
+				<field-name>fec_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701585">
+				<field-name>usu_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701598">
+				<field-name>fec_actu</field-name>
+			</cmp-field>
+			<cmp-field>
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_territorio_fk_cod_terr</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1284420255691">
+				<field-name>estado</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findAllOficinaByCodTerri</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_oficina o where  o.tiido_territorio_fk.cod_terr = ?1 and o.tiido_territorio_fk.estado = '0'</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findByCodOficina</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_oficina o where  o.cod_ofic = ?1 and o.tiido_territorio_fk.estado = '0'</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findListaByCodOficina</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_oficina o where  o.cod_ofic = ?1 and o.tiido_territorio_fk.estado = '0'</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773701005">
+			<ejb-name>Tiido_acciones</ejb-name>
+			<local-home>entities.Tiido_accionesLocalHome</local-home>
+			<local>entities.Tiido_accionesLocal</local>
+			<ejb-class>entities.Tiido_accionesBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_accionesKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_acciones</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773701614">
+				<field-name>cod_acci</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701629">
+				<field-name>nom_acci</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701630">
+				<field-name>cod_gest</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701645">
+				<field-name>mes_acci</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701646">
+				<field-name>nro_clie</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701647">
+				<field-name>comp_gest</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701661">
+				<field-name>nro_gest_segu_1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701662">
+				<field-name>nro_conc_segu_1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701676">
+				<field-name>mon_segu_1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701677">
+				<field-name>nro_gest_segu_2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701692">
+				<field-name>nro_conc_segu_2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701693">
+				<field-name>mon_segu_2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701708">
+				<field-name>fec_segu_1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701709">
+				<field-name>fec_segu_2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701710">
+				<field-name>usu_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701723">
+				<field-name>usu_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701724">
+				<field-name>fec_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701739">
+				<field-name>fec_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708776703">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_acc_epigrafe_fk_cod_epigrafe</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708776719">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_acc_epigrafe_fk_anho</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708776781">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_acc_oficina_fk_tiido_territorio_fk_cod_terr</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708776750">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_acc_oficina_fk_cod_ofic</field-name>
+			</cmp-field>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773701020">
+			<ejb-name>Tiido_campanias</ejb-name>
+			<local-home>entities.Tiido_campaniasLocalHome</local-home>
+			<local>entities.Tiido_campaniasLocal</local>
+			<ejb-class>entities.Tiido_campaniasBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_campaniasKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_campanias</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773701770">
+				<field-name>cod_camp</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701771">
+				<field-name>anho</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701786">
+				<field-name>mes</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701787">
+				<field-name>nom_camp</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701788">
+				<field-name>cod_gest</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701801">
+				<field-name>orden</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701802">
+				<field-name>gte</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701817">
+				<field-name>fec_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701818">
+				<field-name>usu_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701833">
+				<field-name>fec_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701834">
+				<field-name>usu_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708778910">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_cam_oficina_fk_tiido_territorio_fk_cod_terr</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708778895">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_cam_oficina_fk_cod_ofic</field-name>
+			</cmp-field>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773701021">
+			<ejb-name>Tiido_campanias_detalle</ejb-name>
+			<local-home>entities.Tiido_campanias_detalleLocalHome</local-home>
+			<local>entities.Tiido_campanias_detalleLocal</local>
+			<ejb-class>entities.Tiido_campanias_detalleBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_campanias_detalleKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_campanias_detalle</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773701848">
+				<field-name>cod_camp_deta</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701864">
+				<field-name>nom_camp</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701865">
+				<field-name>cod_gest</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701866">
+				<field-name>nro_clie</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701879">
+				<field-name>comp_gest</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701880">
+				<field-name>nro_gest_segu_1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701895">
+				<field-name>nro_conc_segu_1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701896">
+				<field-name>mont_segu_1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701911">
+				<field-name>nro_gest_segu_2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701912">
+				<field-name>nro_conc_segu_2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701926">
+				<field-name>mont_segu_2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701927">
+				<field-name>fec_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701928">
+				<field-name>fec_segu_1</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701942">
+				<field-name>fec_segu_2</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701943">
+				<field-name>usu_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701958">
+				<field-name>fec_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701959">
+				<field-name>usu_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708780210">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_camdet_campanias_fk_tiido_cam_oficina_fk_tiido_territorio_fk_cod_terr</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708780194">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_camdet_campanias_fk_tiido_cam_oficina_fk_cod_ofic</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708780131">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_camdet_campanias_fk_cod_camp</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708780147">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_camdet_campanias_fk_anho</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708780178">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_camdet_campanias_fk_mes</field-name>
+			</cmp-field>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773701036">
+			<ejb-name>Tiido_firmas</ejb-name>
+			<local-home>entities.Tiido_firmasLocalHome</local-home>
+			<local>entities.Tiido_firmasLocal</local>
+			<ejb-class>entities.Tiido_firmasBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_firmasKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_firmas</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773701973">
+				<field-name>cod_firma</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701989">
+				<field-name>anho_firm</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701990">
+				<field-name>mes_firm</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773701991">
+				<field-name>item_firm</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702004">
+				<field-name>cod_gestor</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702005">
+				<field-name>descripcion</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702020">
+				<field-name>fec_firm</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708774730">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_fir_oficina_fk_tiido_territorio_fk_cod_terr</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708774683">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_fir_oficina_fk_cod_ofic</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findFirmByAnoMesCgesItem</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_firmas o where o.anho_firm = ?1 and o.mes_firm = ?2 and o.cod_gestor = ?3 and o.item_firm = ?4</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773701037">
+			<ejb-name>Tiido_maestro_planes</ejb-name>
+			<local-home>entities.Tiido_maestro_planesLocalHome</local-home>
+			<local>entities.Tiido_maestro_planesLocal</local>
+			<ejb-class>entities.Tiido_maestro_planesBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_maestro_planesKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_maestro_planes</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773702036">
+				<field-name>mes</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702037">
+				<field-name>anho</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702051">
+				<field-name>prioridad</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702052">
+				<field-name>fec_grab</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708776092">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_maepla_oficina_fk_tiido_territorio_fk_cod_terr</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708775889">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_maepla_oficina_fk_cod_ofic</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findUbicar</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_maestro_planes o where  o.mes = ?1 and  o.anho = ?2 and  o.tiido_maepla_oficina_fk.cod_ofic = ?3</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773701051">
+			<icon>
+			</icon>
+			<ejb-name>Tiido_metas_gestor</ejb-name>
+			<local-home>entities.Tiido_metas_gestorLocalHome</local-home>
+			<local>entities.Tiido_metas_gestorLocal</local>
+			<ejb-class>entities.Tiido_metas_gestorBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_metas_gestorKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_metas_gestor</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773702067">
+				<field-name>cod_meta_gestor</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702083">
+				<field-name>cod_gestor</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702084">
+				<field-name>mes</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702098">
+				<field-name>orden</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702099">
+				<field-name>fec_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702100">
+				<field-name>porc_asig</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702114">
+				<field-name>nom_epigrafe</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702115">
+				<field-name>nom_gestor</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708784531">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_metges_epigrafe_fk_cod_epigrafe</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708784546">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_metges_epigrafe_fk_anho</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708784578">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_metges_oficina_fk_tiido_territorio_fk_cod_terr</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708784562">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_metges_oficina_fk_cod_ofic</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1279648808334">
+				<field-name>cod_perfil_gestor</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1280951397880">
+				<field-name>estado</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1286814151415">
+				<field-name>fec_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1286814153524">
+				<field-name>usu_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1286814156180">
+				<field-name>usu_actu</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findMetGestorByPrimaryKey</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_metas_gestor o where  o.tiido_metges_epigrafe_fk.cod_epigrafe = ?1 and  o.tiido_metges_epigrafe_fk.anho = ?2 and  o.tiido_metges_oficina_fk.cod_ofic = ?3 and o.mes = ?4 and o.cod_gestor = ?5</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findGestorByCodigo</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_metas_gestor o where o.cod_gestor = ?1</ejb-ql>
+			</query>
+		</entity>
+		<entity id="ContainerManagedEntity_1231773701052">
+			<ejb-name>Tiido_planes</ejb-name>
+			<local-home>entities.Tiido_planesLocalHome</local-home>
+			<local>entities.Tiido_planesLocal</local>
+			<ejb-class>entities.Tiido_planesBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_planesKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_planes</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1231773702145">
+				<field-name>mes_plan</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702146">
+				<field-name>anho_plan</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702161">
+				<field-name>cod_epigrafe</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702162">
+				<field-name>nom_epigrafe</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702176">
+				<field-name>peso_dor</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702177">
+				<field-name>monto</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702192">
+				<field-name>porc_alcanzado</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702193">
+				<field-name>desv_ppto</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702194">
+				<field-name>nro_meses_falt</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702208">
+				<field-name>proy_crec_men</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702209">
+				<field-name>ajuste_estimado_terr</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702223">
+				<field-name>proy_ajuste_men</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702224">
+				<field-name>saldmedi_junio</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702225">
+				<field-name>porc_saldmedi_junio</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702239">
+				<field-name>sald_dic_ante</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702240">
+				<field-name>saldmedi_dic</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702254">
+				<field-name>cod_terri</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702255">
+				<field-name>porc_saldmedi_dic</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702256">
+				<field-name>fac_aju_sal_pun</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702270">
+				<field-name>hist_bajas</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702271">
+				<field-name>met_messald_punt</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702286">
+				<field-name>met_ger_ofi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702287">
+				<field-name>prioridad</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702288">
+				<field-name>mes_eval</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702301">
+				<field-name>ind_dor</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702302">
+				<field-name>var_mes</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702317">
+				<field-name>ajus_ppto</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702318">
+				<field-name>desv_ppto_ajus</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702319">
+				<field-name>fact_ajus_terri</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1231773702333">
+				<field-name>fact_asig_gte_of</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708781525">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_pla_oficina_fk_tiido_territorio_fk_cod_terr</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1234708781509">
+				<description>Generated to support relationships.  Do NOT delete.</description>
+				<field-name>tiido_pla_oficina_fk_cod_ofic</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1286813046672">
+				<field-name>fec_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1286813052032">
+				<field-name>usu_regi</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1286813055970">
+				<field-name>usu_actu</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1286904673623">
+				<field-name>fec_regi</field-name>
+			</cmp-field>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findConsultaPlanes</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_planes o where o.tiido_pla_oficina_fk.cod_ofic like ?1 and o.anho_plan = ?2 and o.mes_plan = ?3</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findConsultarPlanesxMes</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_planes o where  o.tiido_pla_oficina_fk.cod_ofic = ?1 and  o.anho_plan = ?2</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findPlanByObject</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_planes o where  o.mes_plan = ?1 and  o.anho_plan = ?2 and  o.cod_epigrafe = ?3 and o.tiido_pla_oficina_fk.cod_ofic = ?4</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findConsultaPlanesResumen</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_planes o where  o.mes_plan = ?1 and  o.anho_plan = ?2 and  o.cod_epigrafe = ?3 and  o.tiido_pla_oficina_fk.cod_ofic = ?4</ejb-ql>
+			</query>
+			<query>
+				<description></description>
+				<query-method>
+					<method-name>findConsultaPlanesPrioridad</method-name>
+					<method-params>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+						<method-param>java.lang.String</method-param>
+					</method-params>
+				</query-method>
+				<ejb-ql>select object(o) from Tiido_planes o where  o.mes_plan = ?1 and  o.anho_plan = ?2 and  o.cod_epigrafe = ?3 and  o.tiido_pla_oficina_fk.cod_ofic = ?4</ejb-ql>
+			</query>
+		</entity>
+		<session id="SesionWS">
+			<ejb-name>SesionWS</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesionws.SesionWSHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesionws.SesionWS</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesionws.SesionWSBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-ref id="EjbRef_1231778123142">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionAcciones</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionAccionesHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionAcciones</remote>
+				<ejb-link>SesionAcciones</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123158">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionCampanias</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionCampaniasHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionCampanias</remote>
+				<ejb-link>SesionCampanias</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123173">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionCampaniasDetalle</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionCampaniasDetalleHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionCampaniasDetalle</remote>
+				<ejb-link>SesionCampaniasDetalle</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123174">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionEpigrafe</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionEpigrafeHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionEpigrafe</remote>
+				<ejb-link>SesionEpigrafe</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123189">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionEquivalencias</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionEquivalenciasHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionEquivalencias</remote>
+				<ejb-link>SesionEquivalencias</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123205">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionFirmas</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionFirmasHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionFirmas</remote>
+				<ejb-link>SesionFirmas</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123206">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionMaestroPlanes</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionMaestroPlanesHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionMaestroPlanes</remote>
+				<ejb-link>SesionMaestroPlanes</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123220">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionMenu</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionMenuHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionMenu</remote>
+				<ejb-link>SesionMenu</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123236">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionMetasGestor</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionMetasGestorHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionMetasGestor</remote>
+				<ejb-link>SesionMetasGestor</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123237">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionMultitabla</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionMultitablaHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionMultitabla</remote>
+				<ejb-link>SesionMultitabla</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123251">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionOficina</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionOficinaHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionOficina</remote>
+				<ejb-link>SesionOficina</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123267">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionParametros</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionParametrosHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionParametros</remote>
+				<ejb-link>SesionParametros</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123268">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionPerfiles</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionPerfilesHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionPerfiles</remote>
+				<ejb-link>SesionPerfiles</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123283">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionPermisoPerfil</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionPermisoPerfilHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionPermisoPerfil</remote>
+				<ejb-link>SesionPermisoPerfil</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123298">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionPlanes</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionPlanesHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionPlanes</remote>
+				<ejb-link>SesionPlanes</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1231778123299">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionTerritorio</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionTerritorioHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionTerritorio</remote>
+				<ejb-link>SesionTerritorio</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1235485251733">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SessionUtil</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SessionUtilHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SessionUtil</remote>
+				<ejb-link>SessionUtil</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1242310589390">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionIngresos</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionIngresosHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionIngresos</remote>
+				<ejb-link>SesionIngresos</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1272302415312">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionProgSeguimiento</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionProgSeguimientoHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionProgSeguimiento</remote>
+				<ejb-link>SesionProgSeguimiento</ejb-link>
+			</ejb-ref>
+		</session>
+		<session id="SesionAcciones">
+			<ejb-name>SesionAcciones</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionAccionesHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionAcciones</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionAccionesBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1231778123314">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_acciones</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_accionesLocalHome</local-home>
+				<local>entities.Tiido_accionesLocal</local>
+				<ejb-link>Tiido_acciones</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionCampanias">
+			<ejb-name>SesionCampanias</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionCampaniasHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionCampanias</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionCampaniasBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1231778123330">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_campanias</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_campaniasLocalHome</local-home>
+				<local>entities.Tiido_campaniasLocal</local>
+				<ejb-link>Tiido_campanias</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionCampaniasDetalle">
+			<ejb-name>SesionCampaniasDetalle</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionCampaniasDetalleHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionCampaniasDetalle</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionCampaniasDetalleBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1231778123331">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_campanias_detalle</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_campanias_detalleLocalHome</local-home>
+				<local>entities.Tiido_campanias_detalleLocal</local>
+				<ejb-link>Tiido_campanias_detalle</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionEpigrafe">
+			<ejb-name>SesionEpigrafe</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionEpigrafeHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionEpigrafe</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionEpigrafeBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1231778123345">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_epigrafe</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_epigrafeLocalHome</local-home>
+				<local>entities.Tiido_epigrafeLocal</local>
+				<ejb-link>Tiido_epigrafe</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionEquivalencias">
+			<ejb-name>SesionEquivalencias</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionEquivalenciasHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionEquivalencias</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionEquivalenciasBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1231778123361">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_equivalencias</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_equivalenciasLocalHome</local-home>
+				<local>entities.Tiido_equivalenciasLocal</local>
+				<ejb-link>Tiido_equivalencias</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionFirmas">
+			<ejb-name>SesionFirmas</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionFirmasHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionFirmas</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionFirmasBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1231778123362">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_firmas</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_firmasLocalHome</local-home>
+				<local>entities.Tiido_firmasLocal</local>
+				<ejb-link>Tiido_firmas</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionMaestroPlanes">
+			<ejb-name>SesionMaestroPlanes</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionMaestroPlanesHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionMaestroPlanes</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionMaestroPlanesBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1231778123376">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_maestro_planes</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_maestro_planesLocalHome</local-home>
+				<local>entities.Tiido_maestro_planesLocal</local>
+				<ejb-link>Tiido_maestro_planes</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionMenu">
+			<ejb-name>SesionMenu</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionMenuHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionMenu</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionMenuBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1231778123392">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_menu</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_menuLocalHome</local-home>
+				<local>entities.Tiido_menuLocal</local>
+				<ejb-link>Tiido_menu</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionMetasGestor">
+			<ejb-name>SesionMetasGestor</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionMetasGestorHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionMetasGestor</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionMetasGestorBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-ref id="EjbRef_1235591364226">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionOficina</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionOficinaHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionOficina</remote>
+				<ejb-link>SesionOficina</ejb-link>
+			</ejb-ref>
+			<ejb-local-ref id="EJBLocalRef_1231778123393">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_metas_gestor</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_metas_gestorLocalHome</local-home>
+				<local>entities.Tiido_metas_gestorLocal</local>
+				<ejb-link>Tiido_metas_gestor</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1235431024719">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_epigrafe</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_epigrafeLocalHome</local-home>
+				<local>entities.Tiido_epigrafeLocal</local>
+				<ejb-link>Tiido_epigrafe</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1235431024766">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_oficina</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_oficinaLocalHome</local-home>
+				<local>entities.Tiido_oficinaLocal</local>
+				<ejb-link>Tiido_oficina</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionMultitabla">
+			<ejb-name>SesionMultitabla</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionMultitablaHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionMultitabla</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionMultitablaBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-ref id="EjbRef_1273005864886">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionMultitabla</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionMultitablaHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionMultitabla</remote>
+				<ejb-link>SesionMultitabla</ejb-link>
+			</ejb-ref>
+			<ejb-local-ref id="EJBLocalRef_1231778123408">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_multitabla</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_multitablaLocalHome</local-home>
+				<local>entities.Tiido_multitablaLocal</local>
+				<ejb-link>Tiido_multitabla</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionOficina">
+			<ejb-name>SesionOficina</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionOficinaHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionOficina</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionOficinaBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1231778123423">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_oficina</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_oficinaLocalHome</local-home>
+				<local>entities.Tiido_oficinaLocal</local>
+				<ejb-link>Tiido_oficina</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionParametros">
+			<ejb-name>SesionParametros</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionParametrosHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionParametros</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionParametrosBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1231778123424">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_parametros</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_parametrosLocalHome</local-home>
+				<local>entities.Tiido_parametrosLocal</local>
+				<ejb-link>Tiido_parametros</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionPerfiles">
+			<ejb-name>SesionPerfiles</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionPerfilesHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionPerfiles</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionPerfilesBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1231778123439">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_perfiles</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_perfilesLocalHome</local-home>
+				<local>entities.Tiido_perfilesLocal</local>
+				<ejb-link>Tiido_perfiles</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionPermisoPerfil">
+			<ejb-name>SesionPermisoPerfil</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionPermisoPerfilHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionPermisoPerfil</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionPermisoPerfilBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1231778123455">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_permiso_perfil</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_permiso_perfilLocalHome</local-home>
+				<local>entities.Tiido_permiso_perfilLocal</local>
+				<ejb-link>Tiido_permiso_perfil</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref id="EJBLocalRef_1231778208252">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_perfiles</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_perfilesLocalHome</local-home>
+				<local>entities.Tiido_perfilesLocal</local>
+				<ejb-link>Tiido_perfiles</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionPlanes">
+			<ejb-name>SesionPlanes</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionPlanesHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionPlanes</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionPlanesBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-ref id="EjbRef_1232821122457">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionEpigrafe</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionEpigrafeHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionEpigrafe</remote>
+				<ejb-link>SesionEpigrafe</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1267819697243">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionMultitabla</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionMultitablaHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionMultitabla</remote>
+				<ejb-link>SesionMultitabla</ejb-link>
+			</ejb-ref>
+			<ejb-ref id="EjbRef_1267819739899">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionMultitabla_1</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionMultitablaHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionMultitabla</remote>
+				<ejb-link>SesionMultitabla</ejb-link>
+			</ejb-ref>
+			<ejb-local-ref id="EJBLocalRef_1231778123456">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_planes</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_planesLocalHome</local-home>
+				<local>entities.Tiido_planesLocal</local>
+				<ejb-link>Tiido_planes</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SesionTerritorio">
+			<ejb-name>SesionTerritorio</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionTerritorioHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionTerritorio</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionTerritorioBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-local-ref id="EJBLocalRef_1231778123470">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/Tiido_territorio</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>entities.Tiido_territorioLocalHome</local-home>
+				<local>entities.Tiido_territorioLocal</local>
+				<ejb-link>Tiido_territorio</ejb-link>
+			</ejb-local-ref>
+		</session>
+		<session id="SessionUtil">
+			<ejb-name>SessionUtil</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SessionUtilHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SessionUtil</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SessionUtilBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+		</session>
+		<session id="SessionGestores">
+			<ejb-name>SessionGestores</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SessionGestoresHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SessionGestores</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SessionGestoresBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+		</session>
+		<session id="SesionIngresos">
+			<ejb-name>SesionIngresos</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionIngresosHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionIngresos</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionIngresosBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+		</session>
+		<entity id="ContainerManagedEntity_1253306675484">
+			<ejb-name>Tiido_ingresos</ejb-name>
+			<local-home>entities.Tiido_ingresosLocalHome</local-home>
+			<local>entities.Tiido_ingresosLocal</local>
+			<ejb-class>entities.Tiido_ingresosBean</ejb-class>
+			<persistence-type>Container</persistence-type>
+			<prim-key-class>entities.Tiido_ingresosKey</prim-key-class>
+			<reentrant>false</reentrant>
+			<cmp-version>2.x</cmp-version>
+			<abstract-schema-name>Tiido_ingresos</abstract-schema-name>
+			<cmp-field id="CMPAttribute_1253306674078">
+				<field-name>id_ingresos</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1253306674593">
+				<field-name>veces</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1253306674765">
+				<field-name>valido_veces</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1253306674921">
+				<field-name>cod_usuario</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1253306675046">
+				<field-name>cargo</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1253306675171">
+				<field-name>nom_territorio</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1253306675265">
+				<field-name>cod_oficina</field-name>
+			</cmp-field>
+			<cmp-field id="CMPAttribute_1253306675375">
+				<field-name>fecha</field-name>
+			</cmp-field>
+		</entity>
+		<session id="SesionProgSeguimiento">
+			<ejb-name>SesionProgSeguimiento</ejb-name>
+			<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionProgSeguimientoHome</home>
+			<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionProgSeguimiento</remote>
+			<ejb-class>com.grupobbva.bc.per.tele.sdo.sesion.SesionProgSeguimientoBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<ejb-ref id="EjbRef_1273005973995">
+				<description>
+				</description>
+				<ejb-ref-name>ejb/SesionMultitabla</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<home>com.grupobbva.bc.per.tele.sdo.sesion.SesionMultitablaHome</home>
+				<remote>com.grupobbva.bc.per.tele.sdo.sesion.SesionMultitabla</remote>
+				<ejb-link>SesionMultitabla</ejb-link>
+			</ejb-ref>
+		</session>
+	</enterprise-beans>
+	<relationships>
+		<ejb-relation>
+			<ejb-relation-name>Tiido_acciones_To_Tiido_epigrafe</ejb-relation-name>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773701739">
+				<ejb-relationship-role-name>tiido_acc_epigrafe_fk</ejb-relationship-role-name>
+				<multiplicity>Many</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_acciones</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_acc_epigrafe_fk</cmr-field-name>
+				</cmr-field>
+			</ejb-relationship-role>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773701754">
+				<ejb-relationship-role-name>tiido_acciones</ejb-relationship-role-name>
+				<multiplicity>One</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_epigrafe</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_acciones</cmr-field-name>
+					<cmr-field-type>java.util.Collection</cmr-field-type>
+				</cmr-field>
+			</ejb-relationship-role>
+		</ejb-relation>
+		<ejb-relation>
+			<ejb-relation-name>Tiido_metas_gestor_To_Tiido_epigrafe</ejb-relation-name>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773702129">
+				<ejb-relationship-role-name>tiido_metges_epigrafe_fk</ejb-relationship-role-name>
+				<multiplicity>Many</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_metas_gestor</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_metges_epigrafe_fk</cmr-field-name>
+				</cmr-field>
+			</ejb-relationship-role>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773702130">
+				<ejb-relationship-role-name>tiido_metas_gestor</ejb-relationship-role-name>
+				<multiplicity>One</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_epigrafe</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_metas_gestor</cmr-field-name>
+					<cmr-field-type>java.util.Collection</cmr-field-type>
+				</cmr-field>
+			</ejb-relationship-role>
+		</ejb-relation>
+		<ejb-relation>
+			<ejb-relation-name>Tiido_oficina_To_Tiido_territorio</ejb-relation-name>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773701598">
+				<ejb-relationship-role-name>tiido_territorio_fk</ejb-relationship-role-name>
+				<multiplicity>Many</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_oficina</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_territorio_fk</cmr-field-name>
+				</cmr-field>
+			</ejb-relationship-role>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773701614">
+				<ejb-relationship-role-name>tiido_oficina</ejb-relationship-role-name>
+				<multiplicity>One</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_territorio</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_oficina</cmr-field-name>
+					<cmr-field-type>java.util.Collection</cmr-field-type>
+				</cmr-field>
+			</ejb-relationship-role>
+		</ejb-relation>
+		<ejb-relation>
+			<ejb-relation-name>Tiido_acciones_To_Tiido_oficina</ejb-relation-name>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773701755">
+				<ejb-relationship-role-name>tiido_acc_oficina_fk</ejb-relationship-role-name>
+				<multiplicity>Many</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_acciones</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_acc_oficina_fk</cmr-field-name>
+				</cmr-field>
+			</ejb-relationship-role>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773701756">
+				<ejb-relationship-role-name>tiido_acciones</ejb-relationship-role-name>
+				<multiplicity>One</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_oficina</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_acciones</cmr-field-name>
+					<cmr-field-type>java.util.Collection</cmr-field-type>
+				</cmr-field>
+			</ejb-relationship-role>
+		</ejb-relation>
+		<ejb-relation>
+			<ejb-relation-name>Tiido_campanias_To_Tiido_oficina</ejb-relation-name>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773701833">
+				<ejb-relationship-role-name>tiido_cam_oficina_fk</ejb-relationship-role-name>
+				<multiplicity>Many</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_campanias</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_cam_oficina_fk</cmr-field-name>
+				</cmr-field>
+			</ejb-relationship-role>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773701848">
+				<ejb-relationship-role-name>tiido_campanias</ejb-relationship-role-name>
+				<multiplicity>One</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_oficina</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_campanias</cmr-field-name>
+					<cmr-field-type>java.util.Collection</cmr-field-type>
+				</cmr-field>
+			</ejb-relationship-role>
+		</ejb-relation>
+		<ejb-relation>
+			<ejb-relation-name>Tiido_firmas_To_Tiido_oficina</ejb-relation-name>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773702020">
+				<ejb-relationship-role-name>tiido_fir_oficina_fk</ejb-relationship-role-name>
+				<multiplicity>Many</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_firmas</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_fir_oficina_fk</cmr-field-name>
+				</cmr-field>
+			</ejb-relationship-role>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773702021">
+				<ejb-relationship-role-name>tiido_firmas</ejb-relationship-role-name>
+				<multiplicity>One</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_oficina</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_firmas</cmr-field-name>
+					<cmr-field-type>java.util.Collection</cmr-field-type>
+				</cmr-field>
+			</ejb-relationship-role>
+		</ejb-relation>
+		<ejb-relation>
+			<ejb-relation-name>Tiido_maestro_planes_To_Tiido_oficina</ejb-relation-name>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773702067">
+				<ejb-relationship-role-name>tiido_maepla_oficina_fk</ejb-relationship-role-name>
+				<multiplicity>Many</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_maestro_planes</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_maepla_oficina_fk</cmr-field-name>
+				</cmr-field>
+			</ejb-relationship-role>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773702068">
+				<ejb-relationship-role-name>tiido_maestro_planes</ejb-relationship-role-name>
+				<multiplicity>One</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_oficina</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_maestro_planes</cmr-field-name>
+					<cmr-field-type>java.util.Collection</cmr-field-type>
+				</cmr-field>
+			</ejb-relationship-role>
+		</ejb-relation>
+		<ejb-relation>
+			<ejb-relation-name>Tiido_metas_gestor_To_Tiido_oficina</ejb-relation-name>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773702131">
+				<ejb-relationship-role-name>tiido_metges_oficina_fk</ejb-relationship-role-name>
+				<multiplicity>Many</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_metas_gestor</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_metges_oficina_fk</cmr-field-name>
+				</cmr-field>
+			</ejb-relationship-role>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773702145">
+				<ejb-relationship-role-name>tiido_metas_gestor</ejb-relationship-role-name>
+				<multiplicity>One</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_oficina</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_metas_gestor</cmr-field-name>
+					<cmr-field-type>java.util.Collection</cmr-field-type>
+				</cmr-field>
+			</ejb-relationship-role>
+		</ejb-relation>
+		<ejb-relation>
+			<ejb-relation-name>Tiido_planes_To_Tiido_oficina</ejb-relation-name>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773702333">
+				<ejb-relationship-role-name>tiido_pla_oficina_fk</ejb-relationship-role-name>
+				<multiplicity>Many</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_planes</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_pla_oficina_fk</cmr-field-name>
+				</cmr-field>
+			</ejb-relationship-role>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773702348">
+				<ejb-relationship-role-name>tiido_planes</ejb-relationship-role-name>
+				<multiplicity>One</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_oficina</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_planes</cmr-field-name>
+					<cmr-field-type>java.util.Collection</cmr-field-type>
+				</cmr-field>
+			</ejb-relationship-role>
+		</ejb-relation>
+		<ejb-relation>
+			<ejb-relation-name>Tiido_campanias_detalle_To_Tiido_campanias</ejb-relation-name>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773701958">
+				<ejb-relationship-role-name>tiido_camdet_campanias_fk</ejb-relationship-role-name>
+				<multiplicity>Many</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_campanias_detalle</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_camdet_campanias_fk</cmr-field-name>
+				</cmr-field>
+			</ejb-relationship-role>
+			<ejb-relationship-role id="EJBRelationshipRole_1231773701973">
+				<ejb-relationship-role-name>tiido_campanias_detalle</ejb-relationship-role-name>
+				<multiplicity>One</multiplicity>
+				<relationship-role-source>
+					<ejb-name>Tiido_campanias</ejb-name>
+				</relationship-role-source>
+				<cmr-field>
+					<cmr-field-name>tiido_campanias_detalle</cmr-field-name>
+					<cmr-field-type>java.util.Collection</cmr-field-type>
+				</cmr-field>
+			</ejb-relationship-role>
+		</ejb-relation>
+	</relationships>
+	<assembly-descriptor id="AssemblyDescriptor_1272297958680">
+		<container-transaction>
+			<method>
+				<ejb-name>SessionUtil</ejb-name>
+				<method-intf>Remote</method-intf>
+				<method-name>xBusAllTablaAccionesAntiguo</method-name>
+				<method-params>
+					<method-param>java.lang.String</method-param>
+				</method-params>
+			</method>
+			<method>
+				<ejb-name>SessionUtil</ejb-name>
+				<method-intf>Remote</method-intf>
+				<method-name>xBusAllTablaCampanhasAntiguo</method-name>
+				<method-params>
+				</method-params>
+			</method>
+			<method>
+				<ejb-name>SessionUtil</ejb-name>
+				<method-intf>Remote</method-intf>
+				<method-name>xBusAllTablaCampanhasDetalleAntiguo</method-name>
+				<method-params>
+				</method-params>
+			</method>
+			<method>
+				<ejb-name>SessionUtil</ejb-name>
+				<method-intf>Remote</method-intf>
+				<method-name>xBusAllTablaEpigrafesAntiguo</method-name>
+				<method-params>
+				</method-params>
+			</method>
+			<method>
+				<ejb-name>SessionUtil</ejb-name>
+				<method-intf>Remote</method-intf>
+				<method-name>xBusAllTablaEquivalencias</method-name>
+				<method-params>
+				</method-params>
+			</method>
+			<method>
+				<ejb-name>SessionUtil</ejb-name>
+				<method-intf>Remote</method-intf>
+				<method-name>xBusAllTablaFirmas</method-name>
+				<method-params>
+				</method-params>
+			</method>
+			<method>
+				<ejb-name>SessionUtil</ejb-name>
+				<method-intf>Remote</method-intf>
+				<method-name>xBusAllTablaMaestroPlanes</method-name>
+				<method-params>
+					<method-param>java.lang.String</method-param>
+				</method-params>
+			</method>
+			<method>
+				<ejb-name>SessionUtil</ejb-name>
+				<method-intf>Remote</method-intf>
+				<method-name>xBusAllTablaMetasGestor</method-name>
+				<method-params>
+					<method-param>java.lang.String</method-param>
+				</method-params>
+			</method>
+			<method>
+				<ejb-name>SessionUtil</ejb-name>
+				<method-intf>Remote</method-intf>
+				<method-name>xBusAllTablaOficinaAntiguo</method-name>
+				<method-params>
+				</method-params>
+			</method>
+			<method>
+				<ejb-name>SessionUtil</ejb-name>
+				<method-intf>Remote</method-intf>
+				<method-name>xBusAllTablaParametros</method-name>
+				<method-params>
+				</method-params>
+			</method>
+			<method>
+				<ejb-name>SessionUtil</ejb-name>
+				<method-intf>Remote</method-intf>
+				<method-name>xBusAllTablaPerfiles</method-name>
+				<method-params>
+				</method-params>
+			</method>
+			<method>
+				<ejb-name>SessionUtil</ejb-name>
+				<method-intf>Remote</method-intf>
+				<method-name>xBusAllTablaPlanes</method-name>
+				<method-params>
+					<method-param>java.lang.String</method-param>
+				</method-params>
+			</method>
+			<method>
+				<ejb-name>SessionUtil</ejb-name>
+				<method-intf>Remote</method-intf>
+				<method-name>xBusAllTablaTerritorioAntiguo</method-name>
+				<method-params>
+				</method-params>
+			</method>
+			<trans-attribute>NotSupported</trans-attribute>
+		</container-transaction>
+	</assembly-descriptor>
+</ejb-jar>
