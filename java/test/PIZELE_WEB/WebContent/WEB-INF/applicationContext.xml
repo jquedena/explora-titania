@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+
+    <!-- transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourcePIZELE" />
+    </bean>
+
+    <!-- enable component scanning (beware that this does not enable mapper scanning!) -->
+    <context:component-scan base-package="indra.bbva.pizele" />      
+	
+    <!-- enable autowire -->
+    <context:annotation-config />
+
+    <!-- enable transaction demarcation with annotations -->
+    <tx:annotation-driven />
+	
+	<!-- Filtro de Seguridad -->
+	<bean id="seguridadFilter" class="indra.bbva.pizele.filter.SeguridadFilter">
+	</bean>
+	
+    <!-- define the SqlSessionFactory, notice that configLocation is not needed when you use MapperFactoryBean -->
+    <bean id="sqlSessionFactoryPIZELE" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourcePIZELE" />
+        <property name="configLocation" value="classpath:mybatis-config-pizele.xml" />
+    </bean>
+
+	<bean id="sqlSessionFactoryIIWX" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceIIWX" />
+        <property name="configLocation" value="classpath:mybatis-config-iiwx.xml" />
+    </bean>
+				
+	<bean id="dataSourcePIZELE" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/IIDO" />
+		<property name="lookupOnStartup" value="false" />
+		<property name="cache" value="true" />
+		<property name="proxyInterface" value="javax.sql.DataSource" />
+	</bean>
+	
+	<bean id="dataSourceIIWX" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/ORA_Biiwx001" />
+		<property name="lookupOnStartup" value="false" />
+		<property name="cache" value="true" />
+		<property name="proxyInterface" value="javax.sql.DataSource" />
+	</bean>
+	
+	<bean id="procesoCargaAutomaticaTask" class="indra.bbva.pizele.task.ProcesoCargaAutomaticaTask">
+    </bean>
+    
+    <bean id="schedulerTask" 
+		  class="org.springframework.scheduling.timer.MethodInvokingTimerTaskFactoryBean">
+			<property name="targetObject" ref="procesoCargaAutomaticaTask" />
+			<property name="targetMethod" value="ejecutarCargasAutomaticas" />
+	</bean>
+    
+	<bean id="timerTask"
+			class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<property name="timerTask" ref="schedulerTask" />
+		<property name="delay" value="20000" />
+		<property name="period" value="60000" />
+	</bean>
+	
+	<bean class="org.springframework.scheduling.timer.TimerFactoryBean">
+		<property name="scheduledTimerTasks">
+			<list>
+				<ref local="timerTask" />
+			</list>
+		</property>
+	</bean>
+	
+    <!-- scan for mappers and let them be autowired -->
+    
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="indra.bbva.pizele.persistence" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryPIZELE" />
+    </bean>
+   
+    <!--
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="indra.bbva.iiwx.persistence" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryIIWX" />
+    </bean>
+    -->
+    
+</beans>

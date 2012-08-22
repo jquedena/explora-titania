@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 2.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	
+	<mappers>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/ParametroMapper.xml"/>  	   
+ 	   <mapper resource="indra/bbva/pizele/persistence/mapper/SemaforoMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/EquivalenciaMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/OpcionMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/BackupMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/RubroMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/AsigRubroMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/TerritorioMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/OficinaMapper.xml"/>    	   
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/ConfBasicaMetaMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/ConfEpigrafeAsignadosMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/MetaMensualMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/ProcesoAutomaticoMapper.xml"/> 
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/MetaMensualMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/ConsultaLogroMapper.xml"/> 
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/InformeUsoMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/VerificacionLogroMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/ResumenCumplimientoMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/ResumenEstadisticoMapper.xml"/>
+  	   <mapper resource="indra/bbva/pizele/persistence/mapper/RubroLogroMapper.xml"/>              	       	   
+    </mappers>
+    
+</configuration>
+

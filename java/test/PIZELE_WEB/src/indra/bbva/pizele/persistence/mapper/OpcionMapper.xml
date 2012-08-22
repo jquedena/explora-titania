@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.OpcionPersistence">
+	          
+	<resultMap id="result_listarOpciones" type="indra.bbva.pizele.domain.base.OpcionMenu">
+		<result column="ID" property="codigo" jdbcType="NUMERIC" />
+		<result column="NOM_OPC" property="nombre" jdbcType="VARCHAR" />
+		<result column="ACC_OPC" property="url" jdbcType="VARCHAR" />
+	    <result column="ID_PADRE" property="codigoPadre" jdbcType="NUMERIC" />
+	    <result column="MODO" property="modo" jdbcType="VARCHAR" />
+    </resultMap>
+	    
+	<parameterMap id="param_listarOpciones" type="java.util.HashMap">
+		<parameter property="PI_COD_PER" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>	
+   		<parameter property="OPCIONES_CUR_REF" javaType="java.sql.ResultSet"
+	             jdbcType="CURSOR" mode="OUT" resultMap="result_listarOpciones"/>             
+    </parameterMap>
+        
+	<select id="listarOpciones" statementType="CALLABLE" parameterMap="param_listarOpciones">
+    	{  call IIDO.PK_OPCION_MENU.PROC_LIST_OPCIONES(?, ?) }
+	</select>
+	
+</mapper>

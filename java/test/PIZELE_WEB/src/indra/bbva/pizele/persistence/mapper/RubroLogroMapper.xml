@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.RubroLogroPersistence">
+	          
+    <resultMap id="result_listarRubroLogro" type="indra.bbva.pizele.domain.base.RubroLogro">
+		<result column="ID" property="id" jdbcType="NUMERIC" />
+		<result column="ID_RUBRO" property="id_rubro" jdbcType="NUMERIC" />
+		<result column="COD_TERR" property="codigoTerritorio" jdbcType="VARCHAR" />
+		<result column="COD_OFIC" property="codigoOficina" jdbcType="VARCHAR" />
+		<result column="DIA" property="dia" jdbcType="NUMERIC" />
+		<result column="SEMANA" property="semana" jdbcType="NUMERIC" />
+		<result column="MES" property="mes" jdbcType="NUMERIC" />
+		<result column="ANIO" property="anio" jdbcType="NUMERIC" />
+		<result column="COD_GESTOR" property="cod_gestor" jdbcType="VARCHAR" />
+		<result column="NOM_GES_SUP" property="nom_ges_sup" jdbcType="VARCHAR" />
+		<result column="APELL_PAT_GES_SUP" property="apell_pat_ges_sup" jdbcType="VARCHAR" />
+		<result column="APELL_MAT_GES_SUP" property="apell_mat_ges_sup" jdbcType="VARCHAR" />
+		<result column="COD_CARGO" property="cod_cargo" jdbcType="VARCHAR" />
+		<result column="LOGRO" property="logro" jdbcType="NUMERIC" />
+    </resultMap>
+	 	 
+	<parameterMap id="param_listarRubroLogro" type="java.util.HashMap">
+		<parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_COD_OFIC" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_DIA" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="RUBRO_LOGRO_CUR_REF" javaType="java.sql.ResultSet" 
+                   jdbcType="CURSOR" mode="OUT" resultMap="result_listarRubroLogro"/>
+    </parameterMap>
+	    
+    <parameterMap id="param_insertarRubroLogro" type="indra.bbva.pizele.domain.base.RubroLogro">
+		<parameter property="id_rubro" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="codigoTerritorio" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="codigoOficina" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="dia" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="semana" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="mes" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="anio" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="cod_gestor" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="nom_ges_sup" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="apell_pat_ges_sup" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="apell_mat_ges_sup" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="cod_cargo" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="logro" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+    	<parameter property="usuarioCreacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="OUT"/>	    	
+    </parameterMap>
+    
+    <parameterMap id="param_eliminarRubroLogro" type="indra.bbva.pizele.domain.base.RubroLogro">
+    	<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="usuarioModificacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>    		    	
+    </parameterMap>
+                 
+	<select id="listarRubroLogro" statementType="CALLABLE" parameterMap="param_listarRubroLogro">
+    	{call IIDO.PK_RUBRO_LOGRO.PROC_LIST_RUBRO_LOGRO(?, ?, ?, ?, ?, ?) }
+	</select>
+	
+    <insert id="insertarRubroLogro" statementType="CALLABLE" parameterMap="param_insertarRubroLogro" >
+		{call IIDO.PK_RUBRO_LOGRO.PROC_INSERT_RUBRO_LOGRO(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }
+	</insert>
+	
+	<delete id="eliminarRubroLogro" statementType="CALLABLE" parameterMap="param_eliminarRubroLogro" >
+		{call IIDO.PK_RUBRO_LOGRO.PROC_DELETE_RUBRO_LOGRO(?,?) }
+	</delete>
+		
+</mapper>

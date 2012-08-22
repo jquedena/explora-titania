@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.MetaMensualPersistence">
+
+	<resultMap id="result_listarConfMeta" type="indra.bbva.pizele.domain.extend.MetaMensualDetalle">
+		<result column="ID" property="id" jdbcType="NUMERIC" />
+		<result column="ID_RUBRO" property="id_rubro" jdbcType="NUMERIC" />
+		<result column="COD_GESTOR" property="cod_gestor" jdbcType="VARCHAR" />
+		<result column="NOM_GESTOR" property="nom_gestor" jdbcType="VARCHAR" />
+		<result column="APELL_PAT_GESTOR" property="apell_pat_gestor" jdbcType="VARCHAR" />
+		<result column="APELL_MAT_GESTOR" property="apell_mat_gestor" jdbcType="VARCHAR" />
+		<result column="COD_TERR" property="cod_terr" jdbcType="VARCHAR" />
+		<result column="COD_OFIC" property="cod_ofi" jdbcType="VARCHAR" />
+		<result column="ANIO" property="anio" jdbcType="NUMERIC" />
+		<result column="MES" property="mes" jdbcType="NUMERIC" />
+		<result column="META_MENSUAL" property="meta_mensual" jdbcType="NUMERIC" />
+		<result column="META_SDO" property="meta_sdo" jdbcType="NUMERIC" />
+		<result column="COD_PERFIL" property="cod_perfil" jdbcType="VARCHAR" />
+		<result column="CONT_EPIG_SDO" property="cont_epigrafe_sdo" jdbcType="NUMERIC" />
+		<result column="AUSENTE1" property="ausente1" jdbcType="VARCHAR" />
+		<result column="AUSENTE2" property="ausente2" jdbcType="VARCHAR" />
+		<result column="AUSENTE3" property="ausente3" jdbcType="VARCHAR" />
+		<result column="AUSENTE4" property="ausente4" jdbcType="VARCHAR" />
+		<result column="AUSENTE5" property="ausente5" jdbcType="VARCHAR" />
+		<result column="SEMANA1" property="semana1" jdbcType="NUMERIC" />
+		<result column="SEMANA2" property="semana2" jdbcType="NUMERIC" />
+		<result column="SEMANA3" property="semana3" jdbcType="NUMERIC" />
+		<result column="SEMANA4" property="semana4" jdbcType="NUMERIC" />
+		<result column="SEMANA5" property="semana5" jdbcType="NUMERIC" />
+	</resultMap>
+
+	<parameterMap id="param_listarConfMeta" type="java.util.HashMap">
+		<parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="PI_COD_OFI" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="PI_ID_RUBRO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="CONF_META_MENS_CUR_REF" javaType="java.sql.ResultSet"
+			jdbcType="CURSOR" mode="OUT" resultMap="result_listarConfMeta" />
+	</parameterMap>
+
+	<parameterMap id="param_insertarMetaMensual" type="indra.bbva.pizele.domain.base.MetaMensual">
+		<parameter property="id_rubro" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="cod_gestor" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="nom_gestor" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="apell_pat_gestor" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="apell_mat_gestor" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="cod_terr" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="cod_ofi" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="anio" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="mes" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="semana1" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="semana2" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="semana3" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="semana4" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="semana5" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="meta_mensual" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="ausente1" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="ausente2" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="ausente3" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="ausente4" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="ausente5" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="meta_sdo" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="usuarioCreacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="cod_perfil" jdbcType="VARCHAR"	javaType="java.lang.String" mode="IN" />
+		<parameter property="flag_epigrafe_sdo" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="OUT" />
+	</parameterMap>
+	
+	<parameterMap id="param_actualizarMetaMensual" type="indra.bbva.pizele.domain.base.MetaMensual">
+		<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="id_rubro" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="cod_gestor" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="nom_gestor" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="apell_pat_gestor" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="apell_mat_gestor" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="cod_terr" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="cod_ofi" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="anio" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="mes" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="semana1" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="semana2" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="semana3" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="semana4" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="semana5" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="meta_mensual" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="ausente1" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="ausente2" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="ausente3" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="ausente4" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="ausente5" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="meta_sdo" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="usuarioModificacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="cod_perfil" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="flag_epigrafe_sdo" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+	</parameterMap>
+	
+	<parameterMap id="param_copiarMetaMensual" type="java.util.HashMap">
+		<parameter property="P_ID_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="P_ID_OFIC" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="P_ID_RUBRO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="P_ID_USER" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="P_ANIO_ORIGEN" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="P_MES_ORIGEN" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="P_ANIO_DESTINO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="P_MES_DESTINO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" /> 
+	</parameterMap>
+	
+	<select id="listarConfMetas" statementType="CALLABLE" parameterMap="param_listarConfMeta">
+		{call IIDO.PK_REGISTRO_METAS.PROC_LISTAR_CONF_META(?,?,?,?,?,?)}
+	</select>
+
+	<insert id="insertarConfMetaMensual" statementType="CALLABLE" parameterMap="param_insertarMetaMensual">
+		{call IIDO.PK_REGISTRO_METAS.PROC_INSERT_CONF_META(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}
+	</insert>
+	
+	<update id="actualizarConfMetaMensual" statementType="CALLABLE" parameterMap="param_actualizarMetaMensual">
+		{call IIDO.PK_REGISTRO_METAS.PROC_UPDATE_CONF_META(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}
+	</update>
+	
+	<update id="copiarConfMetaMensual" statementType="CALLABLE" parameterMap="param_copiarMetaMensual">
+		{call IIDO.PK_REGISTRO_METAS.PROC_COPIAR_CONF_META(?, ?, ?, ?, ?, ?, ?, ?)}
+	</update>
+</mapper>

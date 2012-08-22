@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.ParametroPersistence">
+	          
+	<resultMap id="result_listarParametroFiltro" type="indra.bbva.pizele.domain.base.Parametro">
+		<result column="ID_PAR" property="id" jdbcType="NUMERIC" />
+		<result column="TIP_PAR" property="idTipoParametro" jdbcType="NUMERIC" />
+		<result column="COD_PAR" property="codigo" jdbcType="VARCHAR" />
+		<result column="NOM_PAR" property="nombre" jdbcType="VARCHAR" />
+		<result column="PADRE_PAR" property="idParametroPadre" jdbcType="NUMERIC" />
+		<result column="VAL_ENT_PAR" property="valorEntero" jdbcType="NUMERIC" />
+		<result column="VAL_DEC_PAR" property="valorDecimal" jdbcType="NUMERIC" />
+		<result column="VAL_TEX_PAR" property="valorTexto" jdbcType="VARCHAR" />
+		<result column="EST_REG" property="estadoRegistro" jdbcType="CHAR" />
+		<result column="PADRE_NOM_PAR" property="nombreParametroPadre" jdbcType="VARCHAR" />
+		<result column="NOM_TIP_PAR" property="nombreTipoParametro" jdbcType="VARCHAR" />
+		<result column="PADRE_EST_REG" property="estadoParametroPadre" jdbcType="VARCHAR" />
+		<result column="DES_PAR" property="descripcion" jdbcType="VARCHAR" />
+    </resultMap>
+	 
+	 <resultMap id="result_listarParametro" type="indra.bbva.pizele.domain.base.Parametro">
+		<result column="ID_PAR" property="id" jdbcType="NUMERIC" />
+		<result column="TIP_PAR" property="idTipoParametro" jdbcType="NUMERIC" />
+		<result column="COD_PAR" property="codigo" jdbcType="VARCHAR" />
+		<result column="NOM_PAR" property="nombre" jdbcType="VARCHAR" />
+		<result column="PADRE_PAR" property="idParametroPadre" jdbcType="NUMERIC" />
+		<result column="VAL_ENT_PAR" property="valorEntero" jdbcType="NUMERIC" />
+		<result column="VAL_DEC_PAR" property="valorDecimal" jdbcType="NUMERIC" />
+		<result column="VAL_TEX_PAR" property="valorTexto" jdbcType="VARCHAR" />
+		<result column="EST_REG" property="estadoRegistro" jdbcType="CHAR" />		
+    </resultMap>
+
+	 <resultMap id="result_listarSemana" type="indra.bbva.pizele.domain.base.Semana">
+		<result column="SEMANA" property="semana" jdbcType="NUMERIC" />
+		<result column="HABILES" property="habiles" jdbcType="NUMERIC" />
+    </resultMap>
+    
+	<parameterMap id="param_listarParametroFiltro" type="java.util.HashMap">
+		<parameter property="PI_ID_PAR" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_TIP_PAR" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_PADRE_PAR" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_COD_PAR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_NOM_PAR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_EST_REG" jdbcType="CHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_VAL_ENT_PAR" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>		
+   		<parameter property="PARAM_CUR_REF" javaType="java.sql.ResultSet"
+	             jdbcType="CURSOR" mode="OUT" resultMap="result_listarParametroFiltro"/>             
+    </parameterMap>
+    
+    <parameterMap id="param_listarParametro" type="java.util.HashMap">
+    	<parameter property="PI_PADRE_PAR" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="PI_TIP_PAR_DIF" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="PI_COD_PAR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_NOM_PAR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_ID_PAR_DIF" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>		
+   		<parameter property="PARAM_CUR_REF" javaType="java.sql.ResultSet"
+	             jdbcType="CURSOR" mode="OUT" resultMap="result_listarParametro"/>             
+    </parameterMap>
+             
+    <parameterMap id="param_insertarParametro" type="indra.bbva.pizele.domain.base.Parametro">
+    	<parameter property="idTipoParametro" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="codigo" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="nombre" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="idParametroPadre" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="valorEntero" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="valorDecimal" jdbcType="NUMERIC" javaType="java.lang.Double" mode="IN"/>
+    	<parameter property="valorTexto" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="usuarioCreacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="descripcion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="OUT"/>	            
+    </parameterMap>
+	
+	<parameterMap id="param_actualizarParametro" type="indra.bbva.pizele.domain.base.Parametro">
+		<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>		
+    	<parameter property="codigo" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="nombre" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>    	
+    	<parameter property="valorEntero" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="valorDecimal" jdbcType="NUMERIC" javaType="java.lang.Double" mode="IN"/>
+    	<parameter property="valorTexto" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="usuarioModificacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="descripcion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="estadoRegistro" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    </parameterMap>
+               
+    <parameterMap id="param_listarSemana" type="java.util.HashMap">
+    	<parameter property="MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+   		<parameter property="SEMANAS" javaType="java.sql.ResultSet"
+	             jdbcType="CURSOR" mode="OUT" resultMap="result_listarSemana"/>             
+    </parameterMap>
+    
+	<select id="listarParametroFiltro" statementType="CALLABLE" parameterMap="param_listarParametroFiltro">
+    	{  call IIDO.PK_PARAMETRO.PROC_LIST_PARAMETRO_FILTRO(?, ?, ?, ?, ?, ?, ?, ?) }
+	</select>
+	
+	<select id="listarParametro" statementType="CALLABLE" parameterMap="param_listarParametro">
+    	{  call IIDO.PK_PARAMETRO.PROC_LIST_PARAMETRO(?, ?, ?, ?, ?, ?) }
+	</select>
+	
+	<insert id="insertarParametro" statementType="CALLABLE" parameterMap="param_insertarParametro">
+		{  call IIDO.PK_PARAMETRO.PROC_INSERT_PARAMETRO(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }
+	</insert>
+	
+	<update id="actualizarParametro" statementType="CALLABLE" parameterMap="param_actualizarParametro" >
+		{  call IIDO.PK_PARAMETRO.PROC_UPDATE_PARAMETRO(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+	</update>
+	
+	<select id="diasHabiles" statementType="CALLABLE" parameterMap="param_listarSemana" >
+		{  call IIDO.PK_UTIL.PROC_DIAS_HABILES(?, ?, ?) }
+	</select>
+	
+</mapper>
+

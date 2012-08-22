@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.VerificacionLogroPersistence">
+	          
+	<resultMap id="result_listarVerificacionLogro" type="indra.bbva.pizele.domain.extend.VerificacionLogroDetalle">
+		<result column="ID_RUBRO" property="idRubro" jdbcType="NUMERIC" />
+		<result column="DESC_RUB" property="descRubro" jdbcType="VARCHAR" />
+		<result column="LOGRO_CONCRETADO" property="logroConcretado" jdbcType="NUMERIC" />
+		<result column="LOGRO_REPORTADO" property="logroReportado" jdbcType="NUMERIC" />		
+    </resultMap>
+
+   <parameterMap id="param_listarVerificacionLogro" type="java.util.HashMap">
+	 <parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>	
+	 <parameter property="PI_COD_OFI" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+	 <parameter property="PI_COD_GEST" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+	 <parameter property="PI_FECHA_DESDE" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+	 <parameter property="PI_FECHA_HASTA" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+	 <parameter property="LISTA_VERIF_LOGRO_CUR_REF" javaType="java.sql.ResultSet" 
+	            jdbcType="CURSOR" mode="OUT" resultMap="result_listarVerificacionLogro"/>           
+    </parameterMap>
+
+	<select id="listarVerificacionLogro" statementType="CALLABLE" parameterMap="param_listarVerificacionLogro">
+    	{  call IIDO.PK_VERIFICACION_LOGRO.PROC_LISTA_VERIF_LOGRO(?, ?, ?, ?, ?, ?) }
+	</select>
+
+</mapper>

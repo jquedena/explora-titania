@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.ConfEpigrafeAsigPersistence">
+
+	<resultMap id="result_listarRubros" type="indra.bbva.pizele.domain.base.Rubro">
+		<result column="ID" property="id" jdbcType="NUMERIC" />
+		<result column="DESC_RUB" property="descrubro" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="result_listarEpigrafeMIS" type="indra.bbva.pizele.domain.base.Epigrafe">
+		<result column="NUM_EPI_MIS" property="codigo" jdbcType="VARCHAR" />
+		<result column="NOM_EPI_MIS" property="nombre" jdbcType="VARCHAR" />
+		<result column="TIPO" property="tipo" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="result_listarEpigrafeSDO" type="indra.bbva.pizele.domain.base.Epigrafe">
+		<result column="COD_EPIGRAFE" property="codigo" jdbcType="VARCHAR" />
+		<result column="NOM_EPIGRAFE" property="nombre" jdbcType="VARCHAR" />
+		<result column="TIPO" property="tipo" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="result_listarEpigrafeAsig" type="indra.bbva.pizele.domain.base.Epigrafe">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ID_EPIGRAFE" property="codigo" jdbcType="VARCHAR" />
+		<result column="NOM_EPIGRAFE" property="nombre" jdbcType="VARCHAR" />
+		<result column="TIP_EPIG" property="tipo" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<parameterMap id="param_listarConfEpigrafeAsig" type="java.util.HashMap">
+		<parameter property="PI_ID_RUBRO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long"	mode="IN" />
+		<parameter property="CONFIG_EPIG_ASIG_CUR_REF" javaType="java.sql.ResultSet"
+			jdbcType="CURSOR" mode="OUT" resultMap="result_listarEpigrafeAsig" />
+	</parameterMap>
+
+	<parameterMap id="param_listarRubros" type="java.util.HashMap">
+		<parameter property="PI_ID_RUBRO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="PI_COD_OFIC" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="LIST_RUBROS_CUR_REF" javaType="java.sql.ResultSet"
+			jdbcType="CURSOR" mode="OUT" resultMap="result_listarRubros" />
+	</parameterMap>
+
+	<parameterMap id="param_insertarConfEpigrafeAsig" type="indra.bbva.pizele.domain.base.ConfEpigrafeAsignados">
+		<parameter property="id_rubro" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="id_epigrafe" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="tip_epig" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="anio" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="mes" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="usuarioCreacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="OUT" />
+	</parameterMap>
+
+	<parameterMap id="param_eliminarConfEpigrafeAsig" type="indra.bbva.pizele.domain.base.ConfEpigrafeAsignados">
+		<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="usuarioCreacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+	</parameterMap>
+		
+	<parameterMap id="param_listarEpigrafeMIS" type="java.util.HashMap">
+		<parameter property="PI_ID_RUBRO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="PI_COD_EPI" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+  		<parameter property="PI_NOM_EPI" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="EPIGRAFE_MIS_CUR_REF" javaType="java.sql.ResultSet"
+			jdbcType="CURSOR" mode="OUT" resultMap="result_listarEpigrafeMIS" />
+	</parameterMap>
+	
+	<parameterMap id="param_listarEpigrafeSDO" type="java.util.HashMap">
+		<parameter property="PI_ID_RUBRO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+		<parameter property="EPIGRAFE_SDO_CUR_REF" javaType="java.sql.ResultSet"
+			jdbcType="CURSOR" mode="OUT" resultMap="result_listarEpigrafeSDO" />
+	</parameterMap>
+
+	<parameterMap id="param_copiarConfEpigrafeAsig" type="java.util.HashMap">
+		<parameter property="PI_ID_RUBRO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+    	<parameter property="PI_ANIO_ORIGEN" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+    	<parameter property="PI_MES_ORIGEN" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+    	<parameter property="PI_ANIO_DESTINO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+    	<parameter property="PI_MES_DESTINO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN" />
+    	<parameter property="PI_COD_USU" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+	</parameterMap>
+
+	<select id="listarEpigrafesAsignados" statementType="CALLABLE" parameterMap="param_listarConfEpigrafeAsig">
+		{call IIDO.PK_CONFIG_EPIGRAFES_ASIGNADOS.PROC_LIST_CONFIG_EPIG_ASIG(?,?,?,?)}
+	</select>
+
+	<select id="listarRubros" statementType="CALLABLE" parameterMap="param_listarRubros">
+		{call IIDO.PK_CONFIG_EPIGRAFES_ASIGNADOS.PROC_LIST_RUBROS(?,?,?,?,?,?)}
+	</select>
+
+	<select id="listarEpigrafeMIS" statementType="CALLABLE" parameterMap="param_listarEpigrafeMIS">
+		{call IIDO.PK_CONFIG_EPIGRAFES_ASIGNADOS.PROC_LIST_EPIGRAFE_MIS(?,?,?,?,?,?)}
+	</select>
+
+	<select id="listarEpigrafeSDO" statementType="CALLABLE" parameterMap="param_listarEpigrafeSDO">
+		{call IIDO.PK_CONFIG_EPIGRAFES_ASIGNADOS.PROC_LIST_EPIGRAFE_SDO(?,?,?,?)}
+	</select>
+
+	<insert id="insertarRubroEpigrafe" statementType="CALLABLE" parameterMap="param_insertarConfEpigrafeAsig">
+		{call IIDO.PK_CONFIG_EPIGRAFES_ASIGNADOS.PROC_INSERT_CONFIG_EPIG_ASIG(?,?,?,?,?,?,?)}
+	</insert>
+
+	<delete id="eliminarRubroEpigrafe" statementType="CALLABLE" parameterMap="param_eliminarConfEpigrafeAsig">
+		{call IIDO.PK_CONFIG_EPIGRAFES_ASIGNADOS.PROC_DELETE_CONFIG_EPIG_ASIG(?,?)}
+	</delete>
+
+	<insert id="copiarRubroEpigrafe" statementType="CALLABLE" parameterMap="param_copiarConfEpigrafeAsig">
+		{call IIDO.PK_CONFIG_EPIGRAFES_ASIGNADOS.PROC_COPIAR_CONFIGURACION(?,?,?,?,?,?)}
+	</insert>
+
+</mapper>

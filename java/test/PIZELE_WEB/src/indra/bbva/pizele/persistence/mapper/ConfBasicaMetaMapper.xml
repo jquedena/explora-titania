@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.ConfBasicaMetaPersistence">
+	          
+	<resultMap id="result_obtenerConfBasicaMeta" type="indra.bbva.pizele.domain.base.ConfBasicaMeta">
+    	<result column="ID" property="id" jdbcType="NUMERIC"/>
+		<result column="COD_TERR" property="cod_terr" jdbcType="VARCHAR" />
+		<result column="COD_OFIC" property="cod_ofi" jdbcType="VARCHAR" />
+		<result column="ANIO" property="anio" jdbcType="NUMERIC" />
+		<result column="MES" property="mes" jdbcType="NUMERIC" />
+		<result column="SEMANA1" property="semana1" jdbcType="NUMERIC" />
+		<result column="SEMANA2" property="semana2" jdbcType="NUMERIC" />
+		<result column="SEMANA3" property="semana3" jdbcType="NUMERIC" />
+		<result column="SEMANA4" property="semana4" jdbcType="NUMERIC" />
+		<result column="SEMANA5" property="semana5" jdbcType="NUMERIC" />
+		<result column="MIN_CON_DIA_PERSO" property="min_con_dia_perso" jdbcType="NUMERIC" />
+		<result column="MIN_CON_DIA_NO_PERSO" property="min_con_dia_no_perso" jdbcType="NUMERIC"/>
+		<result column="MIN_VIS_DIA_PERSO" property="min_vis_dia_perso" jdbcType="NUMERIC"/>
+		<result column="MIN_VIS_DIA_NO_PERSO" property="min_vis_dia_no_perso" jdbcType="NUMERIC"/>
+    </resultMap>
+    
+	<parameterMap id="param_obtenerConfBasicaMeta" type="java.util.HashMap">
+		<parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_COD_OFI" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+        <parameter property="CONF_BASICA_META_CUR_REF" javaType="java.sql.ResultSet" jdbcType="CURSOR" mode="OUT" resultMap="result_obtenerConfBasicaMeta"/>             
+    </parameterMap>
+    
+
+    <parameterMap id="param_insertarConfBasicaMeta" type="indra.bbva.pizele.domain.base.ConfBasicaMeta">
+		<parameter property="cod_terr" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="cod_ofi" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>  	
+    	<parameter property="anio" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="mes" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="semana1" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="semana2" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="semana3" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="semana4" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="semana5" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="min_con_dia_perso" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="min_con_dia_no_perso" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="min_vis_dia_perso" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="min_vis_dia_no_perso" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="usuarioCreacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="OUT"/>
+    </parameterMap>
+    
+    
+        
+
+    <parameterMap id="param_actualizarConfBasicaMeta" type="indra.bbva.pizele.domain.base.ConfBasicaMeta">
+    	<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="cod_terr" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="cod_ofi" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>  	
+    	<parameter property="anio" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="mes" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="semana1" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="semana2" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="semana3" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="semana4" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="semana5" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="min_con_dia_perso" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="min_con_dia_no_perso" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="min_vis_dia_perso" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="min_vis_dia_no_perso" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="usuarioModificacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    </parameterMap>
+    
+    
+    
+    <parameterMap id="param_eliminarConfBasicaMeta" type="indra.bbva.pizele.domain.base.ConfBasicaMeta">
+		<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="usuarioModificacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    </parameterMap>
+                 
+	<select id="obtenerConfBasicaMeta" statementType="CALLABLE" parameterMap="param_obtenerConfBasicaMeta">
+    	{call IIDO.PK_CONFIG_BASICA_META.PROC_GET_CONF_BASICA_META(?,?,?,?,?)}
+	</select>
+	
+	<select id="obtenerConfBasicaMeta_x_CAB" statementType="CALLABLE" parameterMap="param_obtenerConfBasicaMeta">
+    	{call IIDO.PK_CONFIG_BASICA_META.PROC_GET_CONF_BASICA_X_CAB(?,?,?,?,?)}
+	</select>
+	
+	<insert id="insertarConfBasicaMeta" statementType="CALLABLE" parameterMap="param_insertarConfBasicaMeta">
+    	{call IIDO.PK_CONFIG_BASICA_META.PROC_INSERT_CONF_BASICA_META(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}
+	</insert>
+	
+	<update id="actualizarConfBasicaMeta" statementType="CALLABLE" parameterMap="param_actualizarConfBasicaMeta">
+    	{call IIDO.PK_CONFIG_BASICA_META.PROC_UPDATE_CONF_BASICA_META(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}
+	</update>
+	
+    <delete id="eliminarConfBasicaMeta" statementType="CALLABLE" parameterMap="param_eliminarConfBasicaMeta" >
+		{call IIDO.PK_CONFIG_BASICA_META.PROC_DELETE_CONF_BASICA_META(?,?) }
+	</delete>
+	
+</mapper>

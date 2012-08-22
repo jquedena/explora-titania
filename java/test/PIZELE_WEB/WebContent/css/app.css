@@ -1,0 +1,246 @@
+.ui-print-text {
+	display: none;
+}
+
+body 
+{	
+	font-size: 10px;
+	font-family: Arial; 
+	margin:0; 
+	padding:0;	
+	TEXT-ALIGN: justify; 
+	LINE-HEIGHT: 16px; 	
+	BACKGROUND: url(/PIZELE_WEB/images/fondos/main-bg.gif) #e4eff4; 
+	HEIGHT: 100%; 
+	COLOR: #666666;
+	
+	scrollbar-face-color: #094FA4; 
+	scrollbar-shadow-color: #DEEBF5; 
+	scrollbar-highlight-color: #DEEBF5; 
+	scrollbar-3dlight-color: #5F8ABD; 
+	scrollbar-darkshadow-color: #5F8ABD; 
+	scrollbar-track-color: #F5F5F5; 
+	scrollbar-arrow-color: #FFFFFF;
+	
+}
+
+#tituloSistema{
+	font-size: 26px;
+	font-family: "Tahoma", Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+}
+
+#infoUser{
+	font-size: 8px;
+	font-family: "Tahoma", Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+}
+
+#divFlotante
+{
+	position: absolute;	display:none; border:1px solid #808080;	background-color:#f1f1f1;
+}
+
+/* Panel Tab/button */
+.tab {
+  	background: url(/PIZELE_WEB/images/fondos/tab_v.png) repeat-x 0 0;
+	height: 42px;
+	position: relative;
+    top: 0;
+    z-index: 9999;
+    font-size: 12px;
+}
+
+.tab ul.login
+{
+	display: block;
+	position: relative;
+	float: right;
+	clear: right;
+	height: 42px;
+	width: auto;
+	font-weight: bold;
+	line-height: 42px;
+	margin: 0;
+	right: 150px;
+	color: white;
+	text-align: center;
+	font-size: 13px;
+}
+
+.tab ul.login li.left {
+  	background: url(/PIZELE_WEB/images/fondos/tab_l.png) no-repeat left 0;
+  	height: 42px;
+	width: 30px;
+	padding: 0;
+	margin: 0;
+  	display: block;
+	float: left;
+	font-size: 10px;
+}
+
+.tab ul.login li.right {
+  	background: url(/PIZELE_WEB/images/fondos/tab_r.png) no-repeat left 0;
+  	height: 42px;
+	width: 30px;
+	padding: 0;
+	margin: 0;
+  	display: block;
+	float: left;
+	font-size: 10px;
+}
+
+.tab ul.login li {
+ 	text-align: left;
+  	padding: 0 6px;
+	display: block;
+	float: left;
+	height: 42px;
+  	background: url(/PIZELE_WEB/images/fondos/tab_m.png) repeat-x 0 0;
+}
+
+.tab ul.login img {
+ 	height: 42px;
+	width: 30px;
+	padding: 0;
+	margin: 0;
+  	display: block;
+	float: left;
+	font-size: 10px;
+}
+
+
+
+
+.clear {clear: both;height: 0;line-height: 0;}
+.clearfix:after
+{
+	content: ".";
+	display: inline;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.clearfix {display: inline;}
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+.clearfix {height: 1%;}
+.clearfix {display: block;}
+
+#toppanel
+{
+	position: absolute; /*Panel will overlap  content */ /*position: relative;*/ /*Panel will "push" the content down */
+	top: 0px;
+	width: 100%;
+	text-align: center;
+	right: 0px;
+	left: 0px;
+}
+
+
+.content{
+	margin: 0 auto;
+}
+
+a.open
+{
+	color:#00CCFF;
+	text-decoration: none;
+}
+
+a.open:link
+{
+	color:#00CCFF;
+	text-decoration: none;
+}
+
+a.open:hover
+{
+	color:white;
+	text-decoration: none;
+}
+
+a.open:active {color:#00CCFF;text-decoration: none}
+
+a.open:visited {color:#00CCFF; text-decoration: none;}
+
+.fondo_div
+{ 
+	background: url(/PIZELE_WEB/images/fondos/header_grad.png) 50% 50% repeat-x;
+	height: 18px;
+	color: #ffffff; 
+	padding-left: 4px;
+	padding-right: 2px;  
+	text-align:  left;
+	font-weight: bold;
+	font-size: 11px; 
+}
+
+.fondo_div_principal
+{ 
+	background: url(/PIZELE_WEB/images/fondos/header_grad.png) 50% 50% repeat-x;
+	height: 18px;
+	color: #ffffff; 
+	padding-left: 4px;
+	padding-right: 2px;  
+	text-align:  center;
+	font-weight: bold;
+	font-size: 13px; 
+}
+
+.fondo_div_footer
+{ 
+	background: url(/PIZELE_WEB/images/fondos/footer_grad.png) 50% 50% repeat-x;
+	height: 15px;
+	color: #ffffff;  
+	font-weight: bold;
+	font-size: 11px; 
+	text-align: center;
+}
+
+.titulo
+{
+font-size:26px; 
+padding-bottom: 15px; 
+padding-right: 5px;
+color: #00a4e2;
+padding-top: 5px;
+font-weight: bold;
+color: #7fc520;
+vertical-align: bottom;
+}
+
+.hide-title-bar .ui-dialog-titlebar { display: none; }
+
+.ui-autocomplete-input  
+{      
+	width: 90%;  
+}
+
+.numericupdown{}
+
+.val
+{
+    height: 18px;
+	margin:0px;
+	padding-top:0px;
+	padding-bottom:0px;
+	float:left;
+}
+
+.up
+{
+	border: 0px none white;
+	width:15px;
+	height:10px;
+	overflow:hidden;
+}
+
+.down
+{
+	border: 0px none white;
+	width:15px;
+	height:10px;
+	overflow:hidden;
+}           				
+

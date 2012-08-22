@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="indra.bbva.pizele.persistence.InformeUsoPersistence">
+	          
+	<resultMap id="result_listarInformeUso" type="indra.bbva.pizele.domain.extend.InformeUsoDetalle">
+		<result column="NOM_TERR" property="nombreTerr" jdbcType="VARCHAR" />
+		<result column="COD_OFIC" property="codigoOficina" jdbcType="VARCHAR" />
+		<result column="NOM_OFIC" property="nombreOficina" jdbcType="VARCHAR" />
+		<result column="PORC_META" property="porcentajeMeta" jdbcType="NUMERIC" />
+		<result column="PORC_LOGRO" property="porcentajeLogro" jdbcType="NUMERIC" />		
+    </resultMap>
+
+     <parameterMap id="param_listarInformeUso" type="java.util.HashMap">
+	 <parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>	
+	 <parameter property="PI_COD_OFIC" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+	 <parameter property="PI_FECHA_DESDE" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+	 <parameter property="PI_FECHA_HASTA" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+	 <parameter property="LISTA_INFORME_CUR_REF" javaType="java.sql.ResultSet" 
+	            jdbcType="CURSOR" mode="OUT" resultMap="result_listarInformeUso"/>           
+    </parameterMap>
+
+	<select id="listarInformeUso" statementType="CALLABLE" parameterMap="param_listarInformeUso">
+    	{  call IIDO.PK_INFORME_USO.PROC_LISTA_INFORME_USO(?,?,?,?,?) }
+	</select>
+
+</mapper>

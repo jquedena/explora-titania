@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>Pizarra Electrónica</display-name>
+	<description>Pizarra Electrónica - BBVA</description>
+	
+		<context-param>
+		<param-name>tilesDefinitions</param-name>
+		<param-value>/WEB-INF/tiles.xml</param-value>
+	</context-param>
+	
+	<!-- Filtro de Seguridad -->
+	
+	<filter>
+    	<filter-name>seguridadFilter</filter-name>
+    	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  	</filter>
+
+  	<filter-mapping>
+    	<filter-name>seguridadFilter</filter-name>
+    	<url-pattern>*.do</url-pattern>
+  	</filter-mapping>
+	
+	
+	<!-- Para el plugin jquery Inicio -->
+	
+	<servlet>
+	        <servlet-name>struts2servlet</servlet-name>
+	        <servlet-class>org.apache.struts2.dispatcher.ng.servlet.StrutsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	        <servlet-name>struts2servlet</servlet-name>
+	        <url-pattern>*.action</url-pattern>
+	</servlet-mapping> 
+	<servlet>
+	        <servlet-name>struts2Resources</servlet-name>
+	        <servlet-class>org.apache.struts2.dispatcher.ng.servlet.StrutsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	        <servlet-name>struts2Resources</servlet-name>
+	        <url-pattern>/struts/*</url-pattern>
+	</servlet-mapping> 
+	
+	<servlet>
+		<servlet-name>Log4JInitServlet</servlet-name>
+		<servlet-class>indra.bbva.pizele.servlet.Log4JInitServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<!--Para el plugin jquery Fin-->
+				
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>
+			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
+	</listener>
+	
+	<!-- Servlet Configuration, not used directly -->
+	<servlet>
+		<servlet-name>JspSupportServlet</servlet-name>
+		<servlet-class>org.apache.struts2.views.JspSupportServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>	
+	
+	<!-- Servlet Mapping, not called directly -->
+	<servlet-mapping>
+		<servlet-name>JspSupportServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>	
+	<welcome-file-list>
+		<welcome-file>/common/login-ldap.jsp</welcome-file>
+	</welcome-file-list>
+	
+
+</web-app>

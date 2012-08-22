@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.EquivalenciaPersistence">
+	          
+	<resultMap id="result_listarEquivalencia" type="indra.bbva.pizele.domain.base.Equivalencia">
+		<result column="COD_CAR" property="codigoCargo" jdbcType="VARCHAR" />
+		<result column="COD_PER" property="codigoPerfil" jdbcType="VARCHAR" />
+    </resultMap>
+	  
+	<parameterMap id="param_listarEquivalencia" type="java.util.HashMap">
+		<parameter property="PI_COD_CAR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="EQUIV_CUR_REF" javaType="java.sql.ResultSet"
+	               jdbcType="CURSOR" mode="OUT" resultMap="result_listarEquivalencia"/>           
+    </parameterMap>
+                  
+	<select id="listarEquivalencia" statementType="CALLABLE" parameterMap="param_listarEquivalencia">
+    	{  call IIDO.PK_EQUIVALENCIAS.PROC_LIST_EQUIVALENCIA(?, ?) }
+	</select>
+	
+</mapper>

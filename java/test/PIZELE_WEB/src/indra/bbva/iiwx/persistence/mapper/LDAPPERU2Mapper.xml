@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.iiwx.persistence.LDAPPERU2Persistence">
+
+	<resultMap id="result_DatosUsuario" type="indra.bbva.iiwx.domain.base.LDAPPERU2">
+		<result column="CODUSU" property="codusu" jdbcType="VARCHAR" />
+		<result column="NOMBRE" property="nombre" jdbcType="VARCHAR" />
+		<result column="APEPAT" property="apepat" jdbcType="VARCHAR" />
+		<result column="APEMAT" property="apemat" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="result_DatosGerente" type="indra.bbva.iiwx.domain.base.LDAPPERU2">
+		<result column="CODUSU" property="codusu" jdbcType="VARCHAR" />
+		<result column="NOMBRE" property="nombre" jdbcType="VARCHAR" />
+		<result column="APEPAT" property="apepat" jdbcType="VARCHAR" />
+		<result column="APEMAT" property="apemat" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="result_DatosUsuarioSinSubGerente" type="indra.bbva.iiwx.domain.base.LDAPPERU2">
+		<result column="CODUSU" property="codusu" jdbcType="VARCHAR" />
+		<result column="NOMBRE" property="nombre" jdbcType="VARCHAR" />
+		<result column="APEPAT" property="apepat" jdbcType="VARCHAR" />
+		<result column="APEMAT" property="apemat" jdbcType="VARCHAR" />
+		<result column="CODCARGO" property="cargo" jdbcType="VARCHAR" />
+		<result column="CODPERFIL" property="perfil" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="obtenerDatosUsuario" parameterType="indra.bbva.iiwx.domain.base.ParametroLDAP" resultMap="result_DatosUsuario">
+		select CODUSU, NOMBRE, APEPAT, APEMAT
+		from IIWX.LDAPPERU2
+		where CODOFI = #{PI_COD_OFI}
+		and CODCARGO in (${PI_COD_CAR})
+	</select>
+	<!-- and CODCARGO in ('B41','B67','B23','B25','B52') -->
+	
+	<select id="obtenerDatosGerente" parameterType="java.lang.String" resultMap="result_DatosGerente">
+		SELECT CODUSU, NOMBRE, APEPAT, APEMAT
+		from IIWX.LDAPPERU2
+		where CODOFI = #{codofi}
+		and CODCARGO in ('B21','CE0','CN1')
+	</select>
+		
+	<select id="obtenerDatosUsuarioSinSubGerente" parameterType="java.lang.String" resultMap="result_DatosUsuarioSinSubGerente">
+		select CODUSU, NOMBRE, APEPAT, APEMAT,
+			   CODCARGO, 
+			   (CASE UPPER(CODCARGO) 
+                  WHEN 'B67' THEN 'EEM'
+                  WHEN 'B25' THEN 'GCO'
+                  WHEN 'B52' THEN 'GPE'
+                  WHEN 'B23' THEN 'EBP'
+                  ELSE 'XXX'
+                END) CODPERFIL
+		from IIWX.LDAPPERU2
+		where CODOFI = #{codofi}
+		and CODCARGO in ('B67','B23','B25','B52')
+	</select>
+</mapper>

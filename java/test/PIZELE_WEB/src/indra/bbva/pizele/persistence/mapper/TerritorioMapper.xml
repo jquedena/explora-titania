@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.TerritorioPersistence">
+	          
+	<resultMap id="result_listarTerritorios" type="indra.bbva.pizele.domain.base.Territorio">
+		<result column="COD_TERR" property="codigo" jdbcType="VARCHAR" />
+		<result column="NOM_TERR" property="descripcion" jdbcType="VARCHAR" />
+    </resultMap>
+	    
+	<parameterMap id="param_listarTerritorios" type="java.util.HashMap">
+		<parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>	
+   		<parameter property="TERRITORIOS_CUR_REF" javaType="java.sql.ResultSet"
+	             jdbcType="CURSOR" mode="OUT" resultMap="result_listarTerritorios"/>             
+    </parameterMap>
+        
+	<select id="listarTerritorios" statementType="CALLABLE" parameterMap="param_listarTerritorios">
+    	{  call IIDO.PK_TERRITORIO.PROC_LIST_TERRITORIO(?, ?) }
+	</select>
+	
+</mapper>

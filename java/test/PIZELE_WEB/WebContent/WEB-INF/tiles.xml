@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="base" template="/templates/default.jsp">
+	    <put-attribute name="title"  value="Pizarra Electrónica"/>
+	    <put-attribute name="header" value="/templates/header.jsp"/>
+	    <put-attribute name="menu"   value="/templates/menu.jsp"/>
+	    <put-attribute name="body"   value=""/>
+	    <put-attribute name="footer"   value="/templates/footer.jsp"/>
+	</definition>
+	
+	<definition name="panel" extends="base">
+		<put-attribute name="title"  value="Pizarra Electrónica - Inicio"/>
+	    <put-attribute name="body"   value="/app/panel.jsp"/>      
+	</definition>
+	
+	<!--  Configuración -->
+	
+	<definition name="configBasicaMeta" extends="base">
+		<put-attribute name="title"  value="Pizarra Electrónica - Configuración Básica de Metas"/>
+	    <put-attribute name="body"   value="/app/configuracion/configBasicaMeta.jsp"/>      
+	</definition>
+
+	<definition name="configBackup" extends="base">
+		<put-attribute name="title"  value="Pizarra Electrónica - Configuración de Backup o Suplente"/>
+	    <put-attribute name="body"   value="/app/configuracion/configBackup.jsp"/>      
+	</definition>
+	
+	<definition name="configSemaforo" extends="base">
+		<put-attribute name="title"  value="Pizarra Electrónica - Configuración de Semáforo"/>
+	    <put-attribute name="body"   value="/app/configuracion/configSemaforo.jsp"/>      
+	</definition>
+	
+	<definition name="configRubro" extends="base">
+		<put-attribute name="title"  value="Pizarra Electrónica - Configuración de Rubros"/>
+	    <put-attribute name="body"   value="/app/configuracion/configRubro.jsp"/>      
+	</definition>
+	
+	<definition name="configRelacionRubroEpigrafe" extends="base">
+		<put-attribute name="title"  value="Pizarra Electrónica - Configuración de Relación Epígrafes por Rubro"/>
+	    <put-attribute name="body"   value="/app/configuracion/configRelacionEpigrafeRubro.jsp"/>      
+	</definition>
+	
+	<!--  Metas -->
+	
+	<definition name="metaDistribSemanal" extends="base">
+		<put-attribute name="title"  value="Pizarra Electrónica - Registro de Metas - Distribución Semanal"/>
+	    <put-attribute name="body"   value="/app/metas/registroDistribucionSemanal.jsp"/>      
+	</definition>
+	
+	<!--  Logros -->
+	
+	<definition name="registroLogro" extends="base">
+		<put-attribute name="title"  value="Pizarra Electrónica - Registro de Logros"/>
+	    <put-attribute name="body"   value="/app/logros/registroLogro.jsp"/>      
+	</definition>
+	
+	<definition name="consultaLogro" extends="base">
+		<put-attribute name="title"  value="Pizarra Electrónica - Consulta de Logros"/>
+	    <put-attribute name="body"   value="/app/logros/consultaLogro.jsp"/>      
+	</definition>
+	
+	<!--  Informes -->
+	
+	<definition name="informeUso" extends="base">
+		<put-attribute name="title"  value="Pizarra Electrónica - Informe de Uso"/>
+	    <put-attribute name="body"   value="/app/informes/informeUso.jsp"/>      
+	</definition>
+	
+	<definition name="informeResumCump" extends="base">
+		<put-attribute name="title"  value="Pizarra Electrónica - Informe de Resumen de Cumplimiento"/>
+	    <put-attribute name="body"   value="/app/informes/informeResumenCumplimiento.jsp"/>      
+	</definition>
+	
+	<definition name="informeResumEstadis" extends="base">
+		<put-attribute name="title"  value="Pizarra Electrónica - Informe de Resumen Estadístico"/>
+	    <put-attribute name="body"   value="/app/informes/informeResumenEstadistico.jsp"/>      
+	</definition>
+	
+	<definition name="informeVerifLogro" extends="base">
+		<put-attribute name="title"  value="Pizarra Electrónica - Informe de Verificación de Logros"/>
+	    <put-attribute name="body"   value="/app/informes/informeVerificacionLogros.jsp"/>      
+	</definition>
+			
+</tiles-definitions>

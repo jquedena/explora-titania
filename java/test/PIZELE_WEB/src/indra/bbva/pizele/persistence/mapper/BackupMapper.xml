@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.BackupPersistence">
+	          
+	<resultMap id="result_listarBackupVigente" type="indra.bbva.pizele.domain.base.Backup">
+		<result column="ID" property="id" jdbcType="NUMERIC" />
+		<result column="COD_GOF" property="codigoGOF" jdbcType="VARCHAR" />
+		<result column="COD_GES_SUP" property="codigoGestorSuplente" jdbcType="VARCHAR" />
+    </resultMap>
+	 
+	<resultMap id="result_listarBackupVigenteDetalle" type="indra.bbva.pizele.domain.extend.BackupDetalle">
+		<result column="ID" property="id" jdbcType="NUMERIC" />
+		<result column="COD_GOF" property="codigoGOF" jdbcType="VARCHAR" />
+		<result column="COD_GES_SUP" property="codigoGestorSuplente" jdbcType="VARCHAR" />
+		<result column="NOMBRE" property="nombre" jdbcType="VARCHAR" />
+		<result column="APEPAT" property="apellidoPaterno" jdbcType="VARCHAR" />
+		<result column="APEMAT" property="apellidoMaterno" jdbcType="VARCHAR" />
+		<result column="FEC_VIG" property="fechaVigente" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <resultMap id="result_listarBackupVigenteDetalleTraslape" type="indra.bbva.pizele.domain.extend.BackupDetalle">
+		<result column="ID" property="id" jdbcType="NUMERIC" />
+		<result column="COD_GOF" property="codigoGOF" jdbcType="VARCHAR" />
+		<result column="COD_GES_SUP" property="codigoGestorSuplente" jdbcType="VARCHAR" />
+		<result column="NOMBRE" property="nombre" jdbcType="VARCHAR" />
+		<result column="APEPAT" property="apellidoPaterno" jdbcType="VARCHAR" />
+		<result column="APEMAT" property="apellidoMaterno" jdbcType="VARCHAR" /> 
+		<result column="FEC_VIG" property="fechaVigente" jdbcType="VARCHAR" />
+    </resultMap>
+     
+	<resultMap id="result_listarBackup" type="indra.bbva.pizele.domain.base.Backup">
+		<result column="ID" property="id" jdbcType="NUMERIC" />
+		<result column="COD_GOF" property="codigoGOF" jdbcType="VARCHAR" />
+    </resultMap>
+    
+	<parameterMap id="param_listarBackupVigente" type="java.util.HashMap">
+		<parameter property="PI_COD_GOF" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_COD_GES_SUP" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="BACKUP_CUR_REF" javaType="java.sql.ResultSet"
+	               jdbcType="CURSOR" mode="OUT" resultMap="result_listarBackupVigente"/>           
+    </parameterMap>
+    
+    <parameterMap id="param_listarBackupVigenteDetalle" type="java.util.HashMap">
+		<parameter property="PI_COD_GOF" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>		
+		<parameter property="BACKUP_CUR_REF" javaType="java.sql.ResultSet"
+	               jdbcType="CURSOR" mode="OUT" resultMap="result_listarBackupVigenteDetalle"/>           
+    </parameterMap>
+    
+    <parameterMap id="param_listarBackupVigenteDetalleTraslape" type="java.util.HashMap">
+		<parameter property="PI_COD_GES_SUP" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_FEC_VIG" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>		
+		<parameter property="BACKUP_CUR_REF" javaType="java.sql.ResultSet"
+	               jdbcType="CURSOR" mode="OUT" resultMap="result_listarBackupVigenteDetalle"/>           
+    </parameterMap>
+          
+	<parameterMap id="param_listarBackup" type="java.util.HashMap">
+	    <parameter property="PI_ID_BACKUP" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_COD_GOF"   jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="BACKUP_CUR_REF" javaType="java.sql.ResultSet"
+	               jdbcType="CURSOR" mode="OUT" resultMap="result_listarBackup"/>           
+    </parameterMap>      
+             
+     <parameterMap id="param_insertarBackup" type="indra.bbva.pizele.domain.base.Backup">
+		<parameter property="codigoGOF" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="codigoGestorSuplente" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="nombreGestorSuplente" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="apellidoPatergestorSuplente" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="apellidoMaternogestorSuplente" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="fechaVigente" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>  	
+        <parameter property="usuarioCreacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>   
+    	<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="OUT"/>	
+    </parameterMap>
+    
+     <parameterMap id="param_actualizarBackupVigente" type="indra.bbva.pizele.domain.base.Backup">
+    	<parameter property="codigoGestorSuplente" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="fechaVigente" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>  	
+        <parameter property="usuarioModificacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>       		
+     </parameterMap>
+    
+    <parameterMap id="param_eliminarBackup" type="indra.bbva.pizele.domain.base.Backup">
+    	<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>    	  
+        <parameter property="usuarioModificacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>       		
+     </parameterMap>
+               
+	<select id="listarBackupVigente" statementType="CALLABLE" parameterMap="param_listarBackupVigente">
+    	{  call IIDO.PK_BACKUP.PROC_LIST_BACKUP_VIGENTE(?, ?, ?) }
+	</select>
+	
+	<select id="listarBackupVigenteDetalle" statementType="CALLABLE" parameterMap="param_listarBackupVigenteDetalle">
+    	{  call IIDO.PK_BACKUP.PROC_LIST_BACKUP_VIG_DET(?, ?) }
+	</select>
+	
+	<select id="listarBackupVigenteDetalleTraslape" statementType="CALLABLE" parameterMap="param_listarBackupVigenteDetalleTraslape">
+    	{  call IIDO.PK_BACKUP.PROC_LIST_BACKUP_VIG_TRASLAP(?, ?, ?) }
+	</select>
+	
+    <select id="listarBackup" statementType="CALLABLE" parameterMap="param_listarBackup">
+    	{  call IIDO.PK_BACKUP.PROC_LIST_BACKUP(?, ?, ?)}
+	</select>
+	
+    <insert id="insertarBackup" statementType="CALLABLE" parameterMap="param_insertarBackup">
+    	{call IIDO.PK_BACKUP.PROC_INSERT_BACKUP(?,?,?,?,?,?,?,?)}
+	</insert>
+	
+	<update id="actualizarBackupVigente" statementType="CALLABLE" parameterMap="param_actualizarBackupVigente">
+    	{call IIDO.PK_BACKUP.PROC_UPDATE_BACKUP_VIG(?,?,?)}
+	</update>
+	
+    <delete id="eliminarBackup" statementType="CALLABLE" parameterMap="param_eliminarBackup" >
+		{call IIDO.PK_BACKUP.PROC_DELETE_BACKUP(?, ?) }
+	</delete>
+	
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.ResumenCumplimientoPersistence">
+	          
+	<resultMap id="result_listarRankingRubro" type="indra.bbva.pizele.domain.extend.RankingDetalle">
+		<result column="DESC_RUB" property="descRubro" jdbcType="VARCHAR" />
+		<result column="PORC_CUMP" property="porcentajeCumplimiento" jdbcType="NUMERIC" />
+		<result column="COLOR" property="color" jdbcType="VARCHAR" />	
+    </resultMap>
+
+	<resultMap id="result_listarRankingGestor" type="indra.bbva.pizele.domain.extend.RankingDetalle">
+		<result column="CODIGO_REGISTRO" property="codGestor" jdbcType="VARCHAR" />			
+		<result column="PORC_CUMP" property="porcentajeCumplimiento" jdbcType="NUMERIC" />
+		<result column="COLOR" property="color" jdbcType="VARCHAR" />	
+    </resultMap>
+     
+    <parameterMap id="param_listarRankingRubro" type="java.util.HashMap">
+		 <parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>	
+		 <parameter property="PI_COD_OFI" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		 <parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		 <parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		 <parameter property="PI_SEMANA" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		 <parameter property="RUBROS_PORC_CUMP_CUR_REF" javaType="java.sql.ResultSet" 
+		            jdbcType="CURSOR" mode="OUT" resultMap="result_listarRankingRubro"/>           
+    </parameterMap>
+
+	<parameterMap id="param_listarRankingGestor" type="java.util.HashMap">
+		 <parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>	
+		 <parameter property="PI_COD_OFI" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		 <parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		 <parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		 <parameter property="PI_SEMANA" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		 <parameter property="GESTORES_PORC_CUMP_CUR_REF" javaType="java.sql.ResultSet" 
+		            jdbcType="CURSOR" mode="OUT" resultMap="result_listarRankingGestor"/>           
+    </parameterMap>
+    
+	<select id="listarRankingRubro" statementType="CALLABLE" parameterMap="param_listarRankingRubro">
+    	{  call IIDO.PK_RESUMEN_CUMPLIMIENTO.PROC_LIST_RANK_RUBRO(?, ?, ?, ?, ?, ?) }
+	</select>
+
+	<select id="listarRankingGestor" statementType="CALLABLE" parameterMap="param_listarRankingGestor">
+    	{  call IIDO.PK_RESUMEN_CUMPLIMIENTO.PROC_LIST_RANK_GESTOR(?, ?, ?, ?, ?, ?) }
+	</select>
+	
+</mapper>

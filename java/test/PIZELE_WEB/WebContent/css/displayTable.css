@@ -1,0 +1,114 @@
+
+span.pagelinks 
+{		
+	padding: 2px 4px 2px 4px;
+	display: block;
+	border-top: none;
+	font-weight: bold; 
+}
+
+span.pagelinks  a
+{
+	color:#094fa4;
+	text-decoration: none;
+}
+
+span.pagelinks  a
+{
+	color:#094fa4;
+	text-decoration: none;
+	cursor: hand;
+}
+
+span.pagelinks  a:link
+{
+	color:#094fa4;
+	text-decoration: none;
+	cursor: hand;
+}
+
+span.pagelinks  a:hover
+{
+	color:#0078c0;
+	text-decoration: underline;
+	cursor: hand;	
+	
+}
+
+span.pagelinks  a:active {color:#094fa4; text-decoration: none; cursor: point; }
+
+span.pagelinks  a:visited {color:#094fa4; text-decoration: none; cursor: point; }
+  
+    
+.dataTable
+{
+	text-decoration: none;    
+	border: 1px solid #2b91e6;   
+	background-color: white;  
+}
+
+
+	
+.dataTable th
+{ 
+height: 18px;
+font-size: 11px;
+background: url(/PIZELE_WEB/images/fondos/header_grad.png) 50% 50% repeat-x; 
+color: #ffffff; 
+padding-left: 5px;
+padding-right: 5px;
+text-align: center;
+font-weight: lighter;
+}
+
+.dataTable td {    
+padding: 1px 2px 1px 2px !important;    
+}
+
+
+.dataTable a:link
+{
+	color:#094fa4;
+	text-decoration: none;
+}
+
+.dataTable a:hover
+{
+	color:#0078c0;
+	text-decoration: underline;
+}
+
+.dataTable a:active {text-decoration: none}
+
+.dataTable a:visited {color:#094fa4; text-decoration: none}
+
+  
+.dataTable tbody tr.odd {    
+background-color: white;  
+cursor: hand;
+}    
+   
+.dataTable tfoot tr.avarage { 
+background:#21759B url(/PIZELE_WEB/images/fondos/header_grad.png) repeat-x scroll left top;     
+color: white;
+font-weight: bold; 
+} 
+    
+.dataTable tbody tr.tableRowEven,tr.even {    
+background:#ddecf7;   
+cursor: hand;
+}    
+  
+.dataTable tbody tr.seleccionado {    
+background:url(/PIZELE_WEB/images/bg_topmenu_h.gif);
+cursor: hand;
+}    
+    
+.dataTable tr.hover
+{
+	background-color:#FEE7D0;
+}    
+    
+ 
+
+
