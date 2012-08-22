@@ -1,11 +1,13 @@
 package com.grupobbva.bc.per.tel.iilc.beans;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class Descarga {
 
+	private static SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aa");
 	private int id;
-	private Date fecha;
+	private Timestamp fecha;
 	private String registro;
 	private String archivo;
 	private String descripcion;
@@ -19,11 +21,11 @@ public class Descarga {
 		this.id = id;
 	}
 
-	public Date getFecha() {
+	public Timestamp getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(Timestamp fecha) {
 		this.fecha = fecha;
 	}
 
@@ -57,5 +59,9 @@ public class Descarga {
 
 	public void setEstado(int estado) {
 		this.estado = estado;
+	}
+	
+	public String getHora() {
+		return formatter.format(this.fecha);
 	}
 }

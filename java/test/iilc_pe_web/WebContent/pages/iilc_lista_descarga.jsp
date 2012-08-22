@@ -8,11 +8,6 @@
 	language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <html>
-<head>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/theme/Master.css" type="text/css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/theme/IIRGEspacio2.css" type="text/css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/includes/js/bbva/jquery-ui.css" type="text/css">
-</head>
 <body>
 <logic:notEmpty name="detalles">
 	<table border="0" align="center" style="width: 100%">
@@ -30,10 +25,28 @@
 				</table>
 			</c:if>
 			<c:if test="${descarga.estado == 2}">
-				<a target="blank" href="${pageContext.request.contextPath}/pages/iilc_descarga_file.jsp?archivo=<bean:write name="descarga" property="archivo"/>"><bean:write name="descarga" property="archivo"/></a>
+				<table border=0 cellpadding="0" cellspacing="0" style="width: 100%">
+				<tr>
+					<td>
+						<a target="blank" href="${pageContext.request.contextPath}/pages/iilc_descarga_file.jsp?archivo=<bean:write name="descarga" property="archivo"/>"><bean:write name="descarga" property="archivo"/></a>
+					</td>
+					<td align="right">
+						<bean:write name="descarga" property="hora"/>
+					</td>
+				</tr>
+				</table>
 			</c:if>
 			<c:if test="${descarga.estado == 3}">
-				<a target="blank" href="${pageContext.request.contextPath}/pages/iilc_descarga_file.jsp?archivo=<bean:write name="descarga" property="archivo"/>"><bean:write name="descarga" property="archivo"/> - Archivo con error. </a>
+				<table border=0 cellpadding="0" cellspacing="0" style="width: 100%">
+				<tr>
+					<td>
+						<a target="blank" href="${pageContext.request.contextPath}/pages/iilc_descarga_file.jsp?archivo=<bean:write name="descarga" property="archivo"/>"><bean:write name="descarga" property="archivo"/> - Archivo con error. </a>
+					</td>
+					<td align="right">
+						<bean:write name="descarga" property="hora"/>
+					</td>
+				</tr>
+				</table>
 			</c:if>
 		</td>
 	</tr>
