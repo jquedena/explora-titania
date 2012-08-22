@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejbbnd:EJBJarBinding xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:common="common.xmi" xmlns:ejb="ejb.xmi" xmlns:ejbbnd="ejbbnd.xmi" xmi:id="EJBJarBinding_1231773700879" currentBackendId="ORACLE_V10_1">
+  <ejbJar href="META-INF/ejb-jar.xml#ejb-jar_ID"/>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773700879" jndiName="ejb/entities/Tiido_epigrafeLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773700879"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773700895" jndiName="ejb/entities/Tiido_territorioLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773700895"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773700942" jndiName="ejb/entities/Tiido_equivalenciasLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773700942"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773700958" jndiName="ejb/entities/Tiido_menuLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773700958"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773700959" jndiName="ejb/entities/Tiido_multitablaLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773700959"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773700973" jndiName="ejb/entities/Tiido_parametrosLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773700973"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773700974" jndiName="ejb/entities/Tiido_perfilesLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773700974"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773700989" jndiName="ejb/entities/Tiido_permiso_perfilLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773700989"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773701004" jndiName="ejb/entities/Tiido_oficinaLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773701004"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773701005" jndiName="ejb/entities/Tiido_accionesLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773701005"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773701020" jndiName="ejb/entities/Tiido_campaniasLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773701020"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773701021" jndiName="ejb/entities/Tiido_campanias_detalleLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773701021"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773701036" jndiName="ejb/entities/Tiido_firmasLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773701036"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773701037" jndiName="ejb/entities/Tiido_maestro_planesLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773701037"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773701051" jndiName="ejb/entities/Tiido_metas_gestorLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773701051"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231773701052" jndiName="ejb/entities/Tiido_planesLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1231773701052"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123142" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesionws/SesionWSHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionWS"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123142" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionAccionesHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123142"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123158" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionCampaniasHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123158"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123173" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionCampaniasDetalleHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123173"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123174" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionEpigrafeHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123174"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123189" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionEquivalenciasHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123189"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123205" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionFirmasHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123205"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123206" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionMaestroPlanesHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123206"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123220" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionMenuHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123220"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123236" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionMetasGestorHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123236"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123237" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionMultitablaHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123237"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123251" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionOficinaHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123251"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123267" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionParametrosHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123267"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123268" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionPerfilesHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123268"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123283" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionPermisoPerfilHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123283"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123298" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionPlanesHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123298"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123299" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionTerritorioHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1231778123299"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1235485251733" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SessionUtilHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1235485251733"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1242310589390" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionIngresosHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1242310589390"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1272302415312" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionProgSeguimientoHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1272302415312"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123314" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionAccionesHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionAcciones"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123314" jndiName="ejb/entities/Tiido_accionesLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123314"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123330" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionCampaniasHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionCampanias"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123330" jndiName="ejb/entities/Tiido_campaniasLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123330"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123331" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionCampaniasDetalleHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionCampaniasDetalle"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123331" jndiName="ejb/entities/Tiido_campanias_detalleLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123331"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123345" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionEpigrafeHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionEpigrafe"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123345" jndiName="ejb/entities/Tiido_epigrafeLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123345"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123361" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionEquivalenciasHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionEquivalencias"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123361" jndiName="ejb/entities/Tiido_equivalenciasLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123361"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123362" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionFirmasHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionFirmas"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123362" jndiName="ejb/entities/Tiido_firmasLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123362"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123376" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionMaestroPlanesHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionMaestroPlanes"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123376" jndiName="ejb/entities/Tiido_maestro_planesLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123376"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123392" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionMenuHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionMenu"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123392" jndiName="ejb/entities/Tiido_menuLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123392"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123393" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionMetasGestorHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionMetasGestor"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123393" jndiName="ejb/entities/Tiido_metas_gestorLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123393"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1235431024719" jndiName="ejb/entities/Tiido_epigrafeLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1235431024719"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1235431024766" jndiName="ejb/entities/Tiido_oficinaLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1235431024766"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1235591364226" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionOficinaHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1235591364226"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123408" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionMultitablaHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionMultitabla"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123408" jndiName="ejb/entities/Tiido_multitablaLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123408"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1273005864886" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionMultitablaHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1273005864886"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123423" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionOficinaHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionOficina"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123423" jndiName="ejb/entities/Tiido_oficinaLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123423"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123424" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionParametrosHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionParametros"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123424" jndiName="ejb/entities/Tiido_parametrosLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123424"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123439" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionPerfilesHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionPerfiles"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123439" jndiName="ejb/entities/Tiido_perfilesLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123439"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123455" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionPermisoPerfilHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionPermisoPerfil"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123455" jndiName="ejb/entities/Tiido_permiso_perfilLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123455"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778208252" jndiName="ejb/entities/Tiido_perfilesLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778208252"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123456" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionPlanesHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionPlanes"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123456" jndiName="ejb/entities/Tiido_planesLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123456"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1232821122457" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionEpigrafeHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1232821122457"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1267819697243" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionMultitablaHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1267819697243"/>
+    </ejbRefBindings>
+    <ejbRefBindings xmi:id="EjbRefBinding_1267819739899" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionMultitablaHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1267819739899"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1231778123470" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionTerritorioHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionTerritorio"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1231778123470" jndiName="ejb/entities/Tiido_territorioLocalHome">
+      <bindingEjbRef xmi:type="common:EJBLocalRef" href="META-INF/ejb-jar.xml#EJBLocalRef_1231778123470"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1234545662974" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SessionUtilHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionUtil"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1234708794863" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SessionGestoresHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SessionGestores"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1242250853718" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionIngresosHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionIngresos"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1253306679171" jndiName="ejb/entities/Tiido_ingresosLocalHome">
+    <enterpriseBean xmi:type="ejb:ContainerManagedEntity" href="META-INF/ejb-jar.xml#ContainerManagedEntity_1253306675484"/>
+  </ejbBindings>
+  <ejbBindings xmi:id="EnterpriseBeanBinding_1272297960321" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionProgSeguimientoHome">
+    <enterpriseBean xmi:type="ejb:Session" href="META-INF/ejb-jar.xml#SesionProgSeguimiento"/>
+    <ejbRefBindings xmi:id="EjbRefBinding_1273005973995" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesion/SesionMultitablaHome">
+      <bindingEjbRef href="META-INF/ejb-jar.xml#EjbRef_1273005973995"/>
+    </ejbRefBindings>
+  </ejbBindings>
+  <defaultCMPConnectionFactory xmi:id="CMPConnectionFactoryBinding_1231773701067" jndiName="jdbc/IIDO" resAuth="Per_Connection_Factory"/>
+</ejbbnd:EJBJarBinding>
