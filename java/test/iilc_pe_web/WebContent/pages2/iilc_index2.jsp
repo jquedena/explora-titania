@@ -439,7 +439,7 @@ function openFile(tipo){
 	if(hayResultados){
 		flag = true;
 		if(_numeroRegistros > <%=Constantes.TOT_REGEXCEL%>) {
-			flag = confirm("Resultado excede el l\u00E1mite de registros permitidos del Excel.\u00BFDesea igual realizar la descarga\u003F");
+			flag = confirm("Resultado excede el l\u00EDmite de registros permitidos del Excel. \u00BFDesea igual realizar la descarga\u003F");
 		}
 		
 		if(!flag){
@@ -801,7 +801,7 @@ function procesarResultado(req){
 		}
 	}
 	else if (rspText == ""){
-		alert("No se encontraron resultados.");
+		alert("No se obtuvo una respuesta validad del servidor.");
 	}
 	else {
 		if(validarRespuesta(rspText)){
@@ -895,6 +895,7 @@ var idAlert = 1;
 
 function verificarCargas() {
 
+	// ,'onTimeout':function(req){ alert("Tiempo de espera agotado al obtener la lista de archivos."); }
 	AjaxRequest.post({
 		 'url':'consultaListadoConduccionAction.do'
 		,'parameters':{'method':'listarDescargas'}
@@ -910,8 +911,7 @@ function verificarCargas() {
 				}
 			}   
 		}
-		,'onTimeout':function(req){ alert("Tiempo de espera agotado al verificar las cargas."); }
-		,'onError':function(req){ alert("Error de comunicaci\u00F3n al verificar las cargas."); }
+		,'onError':function(req){ alert("Error de comunicaci\u00F3n al obtener la lista de archivos."); }
 	});	
 }
 

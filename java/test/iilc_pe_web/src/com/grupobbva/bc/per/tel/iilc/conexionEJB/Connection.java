@@ -11,7 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import oracle.jdbc.OracleTypes;
+import oracle.jdbc.driver.OracleTypes;
 
 import org.apache.log4j.Logger;
 

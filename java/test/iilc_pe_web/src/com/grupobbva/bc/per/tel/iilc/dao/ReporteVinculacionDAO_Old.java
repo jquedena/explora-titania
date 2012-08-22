@@ -17,7 +17,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import oracle.jdbc.driver.OracleTypes;
-import oracle.jdbc.oracore.OracleType;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -138,7 +137,7 @@ public class ReporteVinculacionDAO_Old {
 			conn.close();
 
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error("obtenerCabeceras", e);
 		}
 
 		return listado;
