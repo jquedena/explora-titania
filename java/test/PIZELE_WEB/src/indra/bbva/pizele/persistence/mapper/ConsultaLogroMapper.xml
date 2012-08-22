@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.ConsultaLogroPersistence">
+	          
+	<resultMap id="result_listarRubrosLogros" type="indra.bbva.pizele.domain.base.Rubro">
+		<result column="ID_RUBRO" property="id" jdbcType="NUMERIC" />
+		<result column="DESC_RUB" property="descrubro" jdbcType="VARCHAR" />
+    </resultMap>
+	 
+	<resultMap id="result_listarGestorOficinaLogros" type="indra.bbva.pizele.domain.extend.OficinaGestor">
+		<result column="CODIGO" property="codigo" jdbcType="VARCHAR" />
+		<result column="NOMBRE" property="descripcion" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <resultMap id="result_listarDatosLogros" type="indra.bbva.pizele.domain.extend.LogroMeta">
+		<result column="CODIGO" property="codigo" jdbcType="VARCHAR" />
+		<result column="ID_RUBRO" property="idRubro" jdbcType="NUMERIC" />
+		<result column="LOGRO" property="monto" jdbcType="NUMERIC" />
+    </resultMap>
+    
+    <resultMap id="result_listarDatosMetas" type="indra.bbva.pizele.domain.extend.LogroMeta">
+		<result column="CODIGO" property="codigo" jdbcType="VARCHAR" />
+		<result column="ID_RUBRO" property="idRubro" jdbcType="NUMERIC" />
+		<result column="META" property="monto" jdbcType="NUMERIC" />
+    </resultMap>
+    
+	<parameterMap id="param_listarConsultaLogros" type="java.util.HashMap">
+		<parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_COD_OFI" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_SEMANA" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>	
+		<parameter property="RUBROS_CUR_REF" javaType="java.sql.ResultSet"
+	               jdbcType="CURSOR" mode="OUT" resultMap="result_listarRubrosLogros"/>
+		<parameter property="GESTOR_OFICINA_CUR_REF" javaType="java.sql.ResultSet"
+	               jdbcType="CURSOR" mode="OUT" resultMap="result_listarGestorOficinaLogros"/>
+	    <parameter property="LOGROS_CUR_REF" javaType="java.sql.ResultSet"
+	               jdbcType="CURSOR" mode="OUT" resultMap="result_listarDatosLogros"/>  
+		<parameter property="METAS_CUR_REF" javaType="java.sql.ResultSet"
+	               jdbcType="CURSOR" mode="OUT" resultMap="result_listarDatosMetas"/>	               	                         
+    </parameterMap>
+                
+	<select id="listarConsultaLogros" statementType="CALLABLE" parameterMap="param_listarConsultaLogros">
+    	{  call IIDO.PK_CONSULTA_LOGROS.PROC_LIST_LOGROS(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+	</select>
+	
+</mapper>

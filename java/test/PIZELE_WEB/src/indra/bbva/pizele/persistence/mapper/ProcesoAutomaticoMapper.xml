@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.ProcesoAutomaticoPersistence">
+	          
+	<resultMap id="result_listarProcesoAutomatico" type="indra.bbva.pizele.domain.base.ProcesoAutomatico">
+		<result column="ID" property="id" jdbcType="NUMERIC" />
+		<result column="ID_TIPO" property="idTipo" jdbcType="NUMERIC" />
+		<result column="FECHA" property="fecha" jdbcType="VARCHAR" />
+		<result column="HORA" property="hora" jdbcType="VARCHAR" />
+		<result column="ESTADO" property="idEstado" jdbcType="NUMERIC" />
+    </resultMap>
+    
+	<parameterMap id="param_listarProcesoAutomatico" type="java.util.HashMap">
+		<parameter property="PI_ID_TIPO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_FECHA" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_HORA" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PROC_AUTOMATIC_CUR_REF" javaType="java.sql.ResultSet"
+	               jdbcType="CURSOR" mode="OUT" resultMap="result_listarProcesoAutomatico"/>           
+    </parameterMap>
+                           
+     <parameterMap id="param_insertarProcesoAutomatico" type="indra.bbva.pizele.domain.base.ProcesoAutomatico">
+		<parameter property="idTipo" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>		
+		<parameter property="hora" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="idEstado" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/> 
+    	<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="OUT"/>	
+    </parameterMap>
+    
+     <parameterMap id="param_actualizarProcesoAutomatico" type="indra.bbva.pizele.domain.base.ProcesoAutomatico">
+     	<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+     	<parameter property="idEstado" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+     	<parameter property="observacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>        		
+     </parameterMap>
+     
+     <parameterMap id="param_cargarArchivoMISIndependienteSDO" type="java.util.HashMap">
+     	<parameter property="EXITCODE" jdbcType="NUMERIC" javaType="java.lang.Long" mode="OUT"/>
+     	<parameter property="ERRMSG" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>        		
+     </parameterMap>              
+                   
+	<select id="listarProcesoAutomatico" statementType="CALLABLE" parameterMap="param_listarProcesoAutomatico">
+    	{call IIDO.PK_PROCESO_AUTOMATICO.PROC_LIST_PROC_AUTOMATIC(?, ?, ?, ?)}
+	</select>
+		
+    <insert id="insertarProcesoAutomatico" statementType="CALLABLE" parameterMap="param_insertarProcesoAutomatico">
+    	{call IIDO.PK_PROCESO_AUTOMATICO.PROC_INSERT_PROC_AUTOMATIC(?, ?, ?, ?)}
+	</insert>
+	
+	<update id="actualizarProcesoAutomatico" statementType="CALLABLE" parameterMap="param_actualizarProcesoAutomatico">
+    	{call IIDO.PK_PROCESO_AUTOMATICO.PROC_UPDATE_PROC_AUTOMATIC(?, ?, ?)}
+	</update>
+
+	<update id="validaCargarArchivoMISIndependienteSDO" statementType="CALLABLE" parameterMap="param_cargarArchivoMISIndependienteSDO">
+    	{call IIDO.PK_CARGA_ARCHIVO_MIS.SP_VALIDA_CARGA(?, ?)}
+	</update>
+	
+	<update id="cargarArchivoMISIndependienteSDO" statementType="CALLABLE" parameterMap="param_cargarArchivoMISIndependienteSDO">
+    	{call IIDO.PK_CARGA_ARCHIVO_MIS.SP_CARGA_DATOS_MIS(?, ?)}
+	</update>
+
+	<update id="cambiaEstadoCargarArchivoMISIndependienteSDO" statementType="CALLABLE" parameterMap="param_cargarArchivoMISIndependienteSDO">
+    	{call IIDO.PK_CARGA_ARCHIVO_MIS.SP_CAMBIA_ESTADO(?, ?)}
+	</update>
+
+	<select id="obtenerRutaDirectorioExterno" resultType="java.util.HashMap">
+		SELECT VALOR1 FROM IIDO.TIIDO_MULTITABLA WHERE COD_MULT='T19'
+	</select>		
+</mapper>

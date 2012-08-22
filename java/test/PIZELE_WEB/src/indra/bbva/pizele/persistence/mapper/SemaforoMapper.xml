@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="indra.bbva.pizele.persistence.SemaforoPersistence">
+	          
+   <resultMap id="result_listarSemaforo" type="indra.bbva.pizele.domain.base.Semaforo">
+				<result column="ID" property="id" jdbcType="NUMERIC" />
+				<result column="RANGO1" property="rango1" jdbcType="NUMERIC" />
+				<result column="RANGO2" property="rango2" jdbcType="NUMERIC" />
+				<result column="COLOR" property="color" jdbcType="VARCHAR" />
+    </resultMap>
+	 
+	<parameterMap id="param_listarSemaforo" type="java.util.HashMap">
+		<parameter property="PI_ID" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>			
+   		<parameter property="SEMA_CUR_REF" javaType="java.sql.ResultSet" jdbcType="CURSOR" mode="OUT" resultMap="result_listarSemaforo"/>             
+    </parameterMap>
+    
+	<parameterMap id="param_actualizarSemaforo" type="indra.bbva.pizele.domain.base.Semaforo">
+		<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="rango1" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="rango2" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>		    	
+    	<parameter property="usuarioModificacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+ 	
+    </parameterMap>
+                 
+	<select id="listarSemaforo" statementType="CALLABLE" parameterMap="param_listarSemaforo">
+    	{  call IIDO.PK_SEMAFORO.PROC_LIST_SEMAFORO(?, ?) }
+	</select>
+	
+	
+	<update id="actualizarSemaforo" statementType="CALLABLE" parameterMap="param_actualizarSemaforo" >
+		{  call IIDO.PK_SEMAFORO.PROC_UPDATE_SEMAFORO(?, ?, ?, ?) }
+	</update>
+		
+</mapper>

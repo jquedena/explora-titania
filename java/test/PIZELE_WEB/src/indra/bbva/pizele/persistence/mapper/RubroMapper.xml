@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.RubroPersistence">
+	          
+    <resultMap id="result_listarRubro" type="indra.bbva.pizele.domain.extend.RubroDetalle">
+				<result column="ID" property="id" jdbcType="NUMERIC" />
+				<result column="DESC_RUB" property="descrubro" jdbcType="VARCHAR" />
+				<result column="TIP_RUB" property="tiprubro" jdbcType="CHAR" />
+				<result column="COMP_NEGA" property="comp_nega" jdbcType="CHAR" />			
+    </resultMap>
+	 
+	<parameterMap id="param_listarRubro" type="java.util.HashMap">
+		<parameter property="PI_ID" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_ID_DIFF" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_DES_RUB_FILTR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_DES_RUB_COMP" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_TIP_RUB" jdbcType="CHAR" javaType="java.lang.String" mode="IN"/>			
+   		<parameter property="RUBRO_CUR_REF" javaType="java.sql.ResultSet" 
+   		           jdbcType="CURSOR" mode="OUT" resultMap="result_listarRubro"/>             
+    </parameterMap>
+    
+	<parameterMap id="param_actualizarRubro" type="indra.bbva.pizele.domain.base.Rubro">
+		<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>		
+		<parameter property="descrubro" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="tiprubro" jdbcType="CHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="comp_nega" jdbcType="CHAR" javaType="java.lang.String" mode="IN"/>  	
+    	<parameter property="usuarioModificacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    </parameterMap>
+    
+    <parameterMap id="param_insertarRubro" type="indra.bbva.pizele.domain.base.Rubro">
+		<parameter property="descrubro" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="tiprubro" jdbcType="CHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="usuarioCreacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="comp_nega" jdbcType="CHAR" javaType="java.lang.String" mode="IN"/>	    	
+    	<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="OUT"/>	
+    </parameterMap>
+  
+	<select id="listarRubro" statementType="CALLABLE" parameterMap="param_listarRubro">
+    	{call IIDO.PK_RUBRO.PROC_LIST_RUBRO(?,?,?,?,?,?)}
+	</select>
+	
+	<update id="actualizarRubro" statementType="CALLABLE" parameterMap="param_actualizarRubro" >
+		{  call IIDO.PK_RUBRO.PROC_UPDATE_RUBRO(?,?,?,?,?) }
+	</update>
+	
+    <insert id="insertarRubro" statementType="CALLABLE" parameterMap="param_insertarRubro" >
+		{  call IIDO.PK_RUBRO.PROC_INSERT_RUBRO(?,?,?,?,?) }
+	</insert>
+	
+</mapper>

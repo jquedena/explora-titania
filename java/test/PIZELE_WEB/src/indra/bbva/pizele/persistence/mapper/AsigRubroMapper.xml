@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.AsignacionRubroPersistence">
+	          
+    <resultMap id="result_listarRubrosAsignados" type="indra.bbva.pizele.domain.extend.AsignacionRubroDetalle">
+    	<result column="ID" property="id" jdbcType="NUMERIC" />    	
+		<result column="ID_RUBRO" property="idrubro" jdbcType="NUMERIC" />
+		<result column="COD_TERR" property="codterr" jdbcType="VARCHAR" />
+		<result column="COD_OFIC" property="codofic" jdbcType="VARCHAR" />
+		<result column="ANIO" property="anio" jdbcType="NUMERIC" />
+		<result column="MES" property="mes" jdbcType="NUMERIC" />
+		<result column="DESC_RUB" property="nombreRubro" jdbcType="VARCHAR" />
+		<result column="TIP_RUB" property="tipoRubro" jdbcType="VARCHAR" />
+		<result column="COMP_NEGA" property="comportamientoNegativo" jdbcType="VARCHAR" />					
+    </resultMap>
+    	 
+   	<resultMap id="result_listarRubrosAsign_Short" type="indra.bbva.pizele.domain.base.Rubro">
+		<result column="ID" property="id" jdbcType="NUMERIC" />
+		<result column="DESC_RUB" property="descrubro" jdbcType="VARCHAR" />
+		<result column="TIP_RUB" property="tiprubro" jdbcType="VARCHAR" />
+		<result column="COMP_NEGA" property="comp_nega" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="result_Valor" type="java.lang.Integer">
+		<result column="VALOR" property="valur" jdbcType="NUMERIC" />		
+	</resultMap>
+	 	 
+	<parameterMap id="param_listarRubrosAsignados" type="java.util.HashMap">
+	    <parameter property="PI_ID" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_COD_OFI" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		<parameter property="PI_TIP_RUB" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+        <parameter property="ASIG_RUBRO_CUR_REF" javaType="java.sql.ResultSet" 
+                   jdbcType="CURSOR" mode="OUT" resultMap="result_listarRubrosAsignados"/>             
+    </parameterMap>
+       
+    <parameterMap id="param_listarRubrosAsign_Short" type="java.util.HashMap">
+		<parameter property="PI_COD_TERR" jdbcType="VARCHAR"
+			javaType="java.lang.String" mode="IN" />
+		<parameter property="PI_COD_OFIC" jdbcType="VARCHAR"
+			javaType="java.lang.String" mode="IN" />
+		<parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long"
+			mode="IN" />
+		<parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long"
+			mode="IN" />
+		<parameter property="LIST_RUBROS_CUR_REF" javaType="java.sql.ResultSet"
+			jdbcType="CURSOR" mode="OUT" resultMap="result_listarRubrosAsign_Short" />
+	</parameterMap>
+	    
+    <parameterMap id="param_insertarAsignacionRubro" type="indra.bbva.pizele.domain.base.AsignacionRubro">
+        <parameter property="idrubro" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>	
+		<parameter property="codterr" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="codofic" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>  	
+    	<parameter property="anio" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="mes" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="usuarioCreacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    	<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="OUT"/>	    	
+    </parameterMap>
+    
+    <parameterMap id="param_eliminarAsignacionRubro" type="indra.bbva.pizele.domain.base.AsignacionRubro">
+    	<parameter property="id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="usuarioModificacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>    		    	
+    </parameterMap>
+      
+    <parameterMap id="param_existeRelacion" type="java.util.HashMap">
+    	<parameter property="PI_ID" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+    	<parameter property="VALUE_CUR_REF" javaType="java.sql.ResultSet"
+				   jdbcType="CURSOR" mode="OUT" resultMap="result_Valor" />  		    	
+    </parameterMap>
+                 
+	<select id="listarRubrosAsignados" statementType="CALLABLE" parameterMap="param_listarRubrosAsignados">
+    	{call IIDO.PK_ASIGNACION_RUBRO.PROC_LIST_RUB_ASIG(?,?,?,?,?,?,?)}
+	</select>
+	
+	<select id="listarRubrosAsignShort" statementType="CALLABLE" parameterMap="param_listarRubrosAsign_Short">
+		{call IIDO.PK_ASIGNACION_RUBRO.PROC_LIST_RUB_ASIG_SHORT(?,?,?,?,?)}
+	</select>
+	
+    <insert id="insertarAsignacionRubro" statementType="CALLABLE" parameterMap="param_insertarAsignacionRubro" >
+		{call IIDO.PK_ASIGNACION_RUBRO.PROC_INSERT_RUB_ASIG(?,?,?,?,?,?,?) }
+	</insert>
+	
+	<delete id="eliminarAsignacionRubro" statementType="CALLABLE" parameterMap="param_eliminarAsignacionRubro" >
+		{call IIDO.PK_ASIGNACION_RUBRO.PROC_DELETE_RUB_ASIG(?,?) }
+	</delete>
+	
+	<select id="existeRelacionEpigrafe" statementType="CALLABLE" parameterMap="param_existeRelacion">
+		{call IIDO.PK_ASIGNACION_RUBRO.PROC_EXIST_REL_EPIGRAFE(?,?)}
+	</select>
+	
+	<select id="existeRelacionRubroLogro" statementType="CALLABLE" parameterMap="param_existeRelacion">
+		{call IIDO.PK_ASIGNACION_RUBRO.PROC_EXIST_REL_RUBRO_LOGRO(?,?)}
+	</select>
+		
+</mapper>

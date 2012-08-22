@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.OficinaPersistence">
+	          
+	<resultMap id="result_listarOficinas" type="indra.bbva.pizele.domain.base.Oficina">
+		<result column="COD_OFIC" property="codigo" jdbcType="VARCHAR" />
+		<result column="COD_TERR" property="codigoTerritorio" jdbcType="VARCHAR" />
+		<result column="NOM_OFIC" property="descripcion" jdbcType="VARCHAR" />
+    </resultMap>
+	    
+	<parameterMap id="param_listarOficinas" type="java.util.HashMap">
+		<parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="PI_COD_OFIC" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>	
+   		<parameter property="OFICINAS_CUR_REF" javaType="java.sql.ResultSet"
+	             jdbcType="CURSOR" mode="OUT" resultMap="result_listarOficinas"/>             
+    </parameterMap>
+    
+    <parameterMap id="param_listarOficinasHijas" type="java.util.HashMap">
+		<parameter property="PI_COD_OFIC" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>	
+   		<parameter property="OFICINAS_CUR_REF" javaType="java.sql.ResultSet"
+	             jdbcType="CURSOR" mode="OUT" resultMap="result_listarOficinas"/>             
+    </parameterMap>
+        
+	<select id="listarOficinas" statementType="CALLABLE" parameterMap="param_listarOficinas">
+    	{  call IIDO.PK_OFICINA.PROC_LIST_OFICINAS(?, ?, ?) }
+	</select>
+	
+	<select id="listarOficinasHijas" statementType="CALLABLE" parameterMap="param_listarOficinasHijas">
+    	{  call IIDO.PK_OFICINA.PROC_LIST_OFICINAS_HIJAS(?, ?) }
+	</select>
+	
+</mapper>

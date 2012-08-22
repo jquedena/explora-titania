@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indra.bbva.pizele.persistence.ResumenEstadisticoPersistence">
+	          
+	<resultMap id="result_listarPorcentajeCumplimiento" type="indra.bbva.pizele.domain.extend.RubroLogroMeta">
+		<result column="ID_RUBRO" property="idRubro" jdbcType="NUMERIC" />
+		<result column="DESC_RUB" property="descRubro" jdbcType="VARCHAR" />
+		<result column="PORC_CUMP" property="porcentajeCumplimiento" jdbcType="NUMERIC" />
+		<result column="META" property="meta" jdbcType="NUMERIC" />
+		<result column="COLOR" property="color" jdbcType="VARCHAR" />	
+    </resultMap>
+    
+    <resultMap id="result_listarLogro" type="indra.bbva.pizele.domain.extend.RubroLogroMeta">
+		<result column="ID_RUBRO" property="idRubro" jdbcType="NUMERIC" />
+		<result column="DESC_RUB" property="descRubro" jdbcType="VARCHAR" />
+		<result column="LOGRO" property="logro" jdbcType="NUMERIC" />			
+    </resultMap>
+    
+    <resultMap id="result_listarPromedioLogroHistorico" type="indra.bbva.pizele.domain.extend.RubroLogroMeta">
+		<result column="ID_RUBRO" property="idRubro" jdbcType="NUMERIC" />
+		<result column="DESC_RUB" property="descRubro" jdbcType="VARCHAR" />
+		<result column="PROMEDIO" property="promedioHistorico" jdbcType="VARCHAR" />	
+    </resultMap>
+                
+    <parameterMap id="param_listarPorcentajeCumplimiento" type="java.util.HashMap">
+		 <parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>	
+		 <parameter property="PI_COD_OFI" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		 <parameter property="PI_COD_GEST" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		 <parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		 <parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>		 
+		 <parameter property="PORC_PORC_CUMP_CUR_REF" javaType="java.sql.ResultSet" 
+		            jdbcType="CURSOR" mode="OUT" resultMap="result_listarPorcentajeCumplimiento"/>           
+    </parameterMap>
+    
+    <parameterMap id="param_listarLogro" type="java.util.HashMap">
+		 <parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>	
+		 <parameter property="PI_COD_OFI" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		 <parameter property="PI_COD_GEST" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		 <parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		 <parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>		 
+		 <parameter property="PORC_LOGRO_CUR_REF" javaType="java.sql.ResultSet" 
+		            jdbcType="CURSOR" mode="OUT" resultMap="result_listarLogro"/>           
+    </parameterMap>
+    
+    <parameterMap id="param_listarPromedioLogroHistorico" type="java.util.HashMap">
+		 <parameter property="PI_COD_TERR" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>	
+		 <parameter property="PI_COD_OFI" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		 <parameter property="PI_COD_GEST" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		 <parameter property="PI_ANIO" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>
+		 <parameter property="PI_MES" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"/>		 
+		 <parameter property="PROM_LOGRO_HIST_CUR_REF" javaType="java.sql.ResultSet" 
+		            jdbcType="CURSOR" mode="OUT" resultMap="result_listarPromedioLogroHistorico"/>           
+    </parameterMap>
+    
+	<select id="listarPorcentajeCumplimiento" statementType="CALLABLE" parameterMap="param_listarPorcentajeCumplimiento">
+    	{  call IIDO.PK_RESUMEN_ESTADISTICO.PROC_LIST_PORC_CUMP(?, ?, ?, ?, ?, ?) }
+	</select>
+
+	<select id="listarLogro" statementType="CALLABLE" parameterMap="param_listarLogro">
+    	{  call IIDO.PK_RESUMEN_ESTADISTICO.PROC_LIST_LOGRO(?, ?, ?, ?, ?, ?) }
+	</select>
+	
+	<select id="listarPromedioLogroHistorico" statementType="CALLABLE" parameterMap="param_listarPromedioLogroHistorico">
+    	{  call IIDO.PK_RESUMEN_ESTADISTICO.PROC_LIST_PROM_LOGRO_HIST(?, ?, ?, ?, ?, ?) }
+	</select>
+	
+</mapper>
