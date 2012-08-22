@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="  
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd  
+         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd  
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd  
+         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd  
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+            <property name="jndiName" value="jdbc/IIDO" />
+            <property name="lookupOnStartup" value="false" />
+            <property name="cache" value="true" />
+            <property name="proxyInterface" value="javax.sql.DataSource" />
+    </bean>
+    
+    <bean id="multitablaDAO" class="pe.com.bbva.model.dao.MultitablaDAO">
+    	<property name="dataSource" ref="dataSource" />
+    </bean>
+    
+    <bean id="logDAO" class="pe.com.bbva.model.dao.LogDAO">
+    	<property name="dataSource" ref="dataSource" />
+    </bean>
+    	
+	<bean id="multitablaService" class="pe.com.bbva.service.MultitablaService">
+    	<property name="multitablaDAO" ref="multitablaDAO" />
+    </bean>
+	
+	<bean id="logService" class="pe.com.bbva.service.LogService">
+    	<property name="logDAO" ref="logDAO" />
+    	<property name="multitablaDAO" ref="multitablaDAO" />
+    </bean>
+	    
+    <bean id="cargaMIS" class="pe.com.bbva.load.CargaMIS">
+        <property name="dataSource" ref="dataSource" />
+        <property name="logService" ref="logService" />
+    </bean>
+ 
+    <bean id="cargaMISTask" class="pe.com.bbva.task.Task">
+        <property name="execute" ref="cargaMIS" />
+    </bean>
+
+    <bean name="executeJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="pe.com.bbva.job.ExecuteJob" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="runTask" value-ref="cargaMISTask" />
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="executeJob" />
+        <property name="repeatInterval" value="60000" />
+        <property name="startDelay" value="10000" />
+    </bean>
+ 	
+    <!-- bean id="cargaMISCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="executeJob" />
+        <property name="cronExpression" value="0 0 22 * * ?" />
+    </bean -->
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+                <ref bean="executeJob" />
+            </list>
+        </property>
+        <property name="triggers">
+            <list>
+                <ref bean="simpleTrigger" />
+                <!-- ref bean="cargaMISCronTrigger" / -->
+            </list>
+        </property>
+    </bean>
+
+</beans>
