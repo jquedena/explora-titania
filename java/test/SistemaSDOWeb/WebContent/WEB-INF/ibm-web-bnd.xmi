@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webappbnd:WebAppBinding xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:webappbnd="webappbnd.xmi" xmi:id="WebAppBinding_1231773589785" virtualHostName="default_host">
+  <webapp href="WEB-INF/web.xml#WebApp_ID"/>
+  <ejbRefBindings xmi:id="EjbRefBinding_1232210462090" jndiName="ejb/com/grupobbva/bc/per/tele/sdo/sesionws/SesionWSHome">
+    <bindingEjbRef href="WEB-INF/web.xml#EjbRef_1232210462090"/>
+  </ejbRefBindings>
+</webappbnd:WebAppBinding>

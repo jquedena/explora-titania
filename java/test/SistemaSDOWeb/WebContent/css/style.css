@@ -1,0 +1,420 @@
+/* CSS Document */
+@CHARSET "ISO-8859-1";
+* {
+	font-size: 100%;
+	font-family: Verdana,sans-serif;
+	letter-spacing: .03em;
+}
+html {
+	margin: 0pt auto;
+}
+body {
+	font-weight: normal;
+	font-size: 0.7em;
+	line-height: 18px;
+	color: #264971;
+	background-color: #f3f9fa;
+	margin: 0px;
+}
+.titulo {
+	font-weight: bold; 
+	color: #264971; 
+	text-decoration: none;
+}
+table.tabladatos {
+	background-color: #FFFFCC, align:center;
+}
+td.titulocablateral {
+	font-weight: regular; 
+	color: #264971; 
+	text-decoration: none; 
+	text-align: left;
+}
+td.textocelda {
+	font-weight: normal; 
+	color: #264971; 
+	text-decoration: none;
+}
+.cajatexto {
+	color: #264971; 
+	text-decoration: none;
+	border: 1px outset #264971; 
+	padding-left:3px;
+	padding-right:3px;
+}
+td.celda1cabecera {
+	font-weight: bold; 
+	background-color: #EFEFEF; 
+	text-align: center; 
+	border-left: 1px solid #ffffff;
+	color:"#264971"; 
+	padding: 2px;
+}
+td.mensaje {
+	font-weight: bold; 
+	text-align: left; 
+	border-left: 1px solid #ffffff;
+	color:"#336699"; 
+	padding:20px;
+}
+td.colorfila1 { 
+	background-color: #F0F3F4; 
+	color:"#264971"; 
+	border-left: 1px solid #ffffff;
+	padding:1px; }
+
+td.colorfila2 { 
+	background-color: #FBFBFB; 
+	color:"#264971"; 
+	border-left: 1px solid #ffffff;
+	padding:1px;
+}
+td.celda4cabecera {
+	background-color: #FBFBFB; 
+	color:"#990000"; 
+	padding:2px;
+}
+td.textocentradoblanco {
+	font-weight: bold; 
+	background-color: #264971; 
+	text-align: center; 
+	color:#ffffff;
+}
+.combo {
+	color: #264971;
+}
+.combo2 {
+	color: #264971;
+}
+td.celdacabecera {
+	font-weight: bold; 
+	background-color: #EFEFEF; 
+	text-align: center; 
+	color:"#264971"; 
+	padding:10px;
+}
+a.enlace:link { 
+	text-decoration: none; 
+	color: "#3582BF";
+}
+a.enlace:visited { 
+	text-decoration: none; 
+	color: "#3582BF"; 
+}
+a.enlace:hover { 
+	text-decoration: underline; 
+	color: "#283584";
+}
+.botonnew {
+	/*cursor: pointer;
+	border: 1px outset #999;
+	background-color: #010E45;
+	color: #ffffff;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	font-weight: bold;*/
+}
+.text1 { 
+	background-color: #F0F3F4; 
+	color:"#264971"; 
+	padding:2px;
+}
+.text2 { 
+	background-color: #FBFBFB; 
+	color:"#264971"; 
+	padding:2px;
+}
+
+/* Estilos paginacion administracion*/
+/*
+table.paginacion tr.evenover{
+  background-color:#628AC6;
+}
+table.paginacion tr.oddover{
+  background-color: #628AC6;
+}
+table.paginacion{
+	border: 0px solid #666;
+	width: 100%;
+	margin: 0 0 0 0;
+}
+table.paginacion thead tr th {
+	font-weight: bold; 
+	background-color: #EFEFEF; 
+	text-align: center; 
+	border-left: 1px solid #ffffff;
+	color:"#264971"; 
+	padding:10px;
+}
+table.paginacion tr.even {
+	background-color: #F0F3F4; 
+	color:"#264971"; 
+	border-left: 1px solid #ffffff;
+	padding:0px; 
+}
+table.paginacion tr.odd {
+	background-color: #FBFBFB; 
+	color:"#264971"; 
+	border-left: 1px solid #ffffff;
+	padding:0px;		
+}
+table.paginacion td {
+	padding: 0px;
+	border: #fff 1px solid; 
+}
+.mensaje_error{
+	color:#950000;	
+	font-weight:bold;	
+}
+.mensaje_exito{
+	color:blue;	
+	font-weight:bold;		
+}
+.msgError{
+	padding: 5px;
+	text-align:center;
+	background-color:#ffffcc;
+	width:55%;
+	font-size:10px;
+	font-weight:bold;
+}
+*/
+
+/* Begin: Modificado por Juan Quedena */
+select {
+	border: 1px inset #fff;
+	border-right: 1px solid #e8e8e8;
+	border-bottom: 1px solid #e8e8e8;
+	z-index: 1;
+}
+table.DataGrid td {
+	border-right: 1px solid #9dbee7;
+	border-bottom: 1px solid #9dbee7;
+	background-color: #fff;
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+	margin-bottom: 2px;
+	margin-top: 2px;
+	font-size: 90%;
+}
+table.DataGrid td input {
+	border: 0px solid #fff;
+	text-align: right;
+	margin: 0px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding: 0px;
+}
+table.DataGrid td input.Text {
+	border: 1px inset #fff;
+	border-right: 1px solid #e8e8e8;
+	border-bottom: 1px solid #e8e8e8;
+	text-align: right;
+}
+table.DataGrid th.ReportePPG {
+	background-color: #3a5f8d;
+}
+table.DataGrid .Epigrafe .Node ,
+table.DataGrid tr.Subtotal td,
+table.DataGrid tr td.Title{
+	background-color: #dbe5f1;
+	color: #000;
+	font-weight: bold;
+}
+table.DataGrid .Epigrafe .Node input{
+	background-color: #dbe5f1;
+	color: #000;
+	font-weight: bold;
+}
+table.DataGrid .Epigrafe .Node input.Text{
+	background-color: #fff;
+	color: #000;
+	font-weight: bold;
+}
+table.DataGrid .SubEpigrafe .Node {
+	padding-left: 25px;font-size: 90%;
+}
+table.DataGrid .SubEpigrafe .Node {
+	padding-left: 25px;
+}
+table.DataGrid tr.GestorNode td {
+	background-color: #dbe5f1;
+}
+table.DataGrid th{
+	font-weight:bold;
+	color: white;
+	background-color: #538ed5;
+	border-right: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	font-size: 90%;
+	padding-top: 3px;
+	padding-bottom: 2px;
+	text-align: center;
+	word-wrap: break-word;
+}
+table.Busqueda th,
+table.Busqueda td{
+	padding-left: 4px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+table.Busqueda th {
+	font-weight:bold;
+}
+  table.DataGrid td.textVerde
+, table.DataGrid td.textAmbar
+, table.DataGrid td.textRojo
+, table.DataGrid td.Title .textVerde
+, table.DataGrid td.Title .textAmbar
+, table.DataGrid td.Title .textRojo
+, table.DataGrid td.textCeleste
+, table.DataGrid td.textAzul
+, table.DataGrid td.textNegro
+, table.DataGrid td.textBlanco
+, table.DataGrid tr.Subtotal td.textVerde
+, table.DataGrid tr.Subtotal td.textAmbar
+, table.DataGrid tr.Subtotal td.textRojo
+, .textVerde
+, .textAmbar
+, .textRojo
+, .textCeleste
+, .textAzul
+, .textNegro
+, .textBlanco {
+	background-color: #FFB1B1; 
+	color:"#264971"; 
+	text-align: right;
+}
+  table.DataGrid td.textVerde
+, table.DataGrid tr.Subtotal td.textVerde
+, table.DataGrid td.Title .textVerde
+, .textVerde {
+	background-color: #D6FED9; 
+	color:"#264971"; 
+}
+  table.DataGrid td.textCeleste
+, .textCeleste {
+	background-color: #D9E9F4; 
+	color:"#264971"; 
+}
+  table.DataGrid td.textAzul
+, .textAzul {
+	background-color: #9AC7DE; 
+	color:"#264971"; 
+}
+  table.DataGrid td.textNegro
+, .textNegro {
+	background-color: #000000; 
+	color:"#264971"; 
+}
+  table.DataGrid td.textBlanco
+, .textBlanco {
+	background-color: #FFFFFF; 
+	color:"#264971"; 
+}
+  table.DataGrid td.textAmbar
+, table.DataGrid tr.Subtotal td.textAmbar
+, table.DataGrid td.Title .textAmbar
+, .textAmbar {
+	background-color: #FEFECC; 
+	color:"#264971"; 
+}
+ul.topnav {
+	list-style: none;
+	padding: 0 20px;
+	margin: 0;
+	float: left;
+	width: 100%;
+	background: #0f2d7d; /* #222; */
+	font-weight: bold;
+	background: url(../images/menu/bbva_topnav_bg.gif) repeat-x;
+}
+ul.topnav li {
+	float: left;
+	margin: 0;
+	padding: 0 15px 0 0;
+	position: relative;
+	z-index: 1000;
+}
+ul.topnav li a {
+	padding: 10px 5px;
+	color: #fff;
+	display: block;
+	text-decoration: none;
+	float: left;
+	/*z-index: 1001;*/
+}
+/*ul.topnav li a.subhover {
+	padding: 5px 3px;
+}
+ul.topnav li a.subhover b {
+	padding: 10px 5px;
+}*/
+ul.topnav li a:hover {
+	background: url(../images/menu/bbva_topnav_hover.gif) no-repeat center top;
+}
+ul.topnav li span {
+	width: 17px;
+	height: 35px;
+	float: left;
+	background: url(../images/menu/bbva_subnav_btn.gif) no-repeat center top;
+}
+ul.topnav li span.subhover {
+	background-position: center bottom;
+	cursor: pointer;
+}
+ul.topnav li ul.subnav {
+	list-style: none;
+	position: absolute;
+	left: 0;
+	top: 35px;
+	background: #FFF; /* #333; */
+	margin: 0;
+	padding: 0;
+	display: none;
+	float: left;
+	width: 170px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	border: 1px solid #111;
+	/*z-index: 1002;*/
+}
+ul.topnav li ul.subnav li {
+	margin: 0; padding: 0;
+	/*border-top: 1px solid #252525;
+	border-bottom: 1px solid #444;*/
+	clear: both;
+	width: 170px;
+}
+ul.topnav li ul.subnav li a {
+	float: left;
+	/*width: 145px;*/
+	font-weight: bold;
+	color: #000;
+	display: inline;
+	background: #fff; /* #333 url(../images/menu/bbva_dropdown_linkbg.gif) no-repeat 10px center;*/
+	padding-left: 20px;
+}
+ul.topnav li ul.subnav li a:hover {
+	font-weight: bold;
+	color: #fff; /* #222 url(../images/menu/bbva_dropdown_linkbg.gif) no-repeat 10px center; */
+	background: #0f2d7d;
+	width: 100%;
+}
+td.bls {
+	background: #264971 url('../images/esq_izq.jpg') no-repeat;
+	width: 22px;
+	height: 25px; 
+}
+td.brs {
+	background: #264971 url('../images/esq_der.jpg') no-repeat;
+	width: 32px;
+	height: 25px; 
+}
+/* End: Modificado por Juan Quedena */

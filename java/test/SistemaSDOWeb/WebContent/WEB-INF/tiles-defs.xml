@@ -1,0 +1,36 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+
+<tiles-definitions>
+
+	<!-- =======================================================  -->
+	<!-- Master definitions  									-->
+	<!-- =======================================================  -->
+	<definition name="iido" path="/pages/common/iido_main_layout.jsp" >
+		<put name="header" value="/pages/common/iido_header.jsp" />
+		<put name="menu" value="/pages/menu.jsp" />
+		<put name="body" value="/pages/common/iido_body.jsp"/>
+		<put name="foot" value="/pages/common/iido_footer.jsp"/>		
+		<put name="title" value="Sistema de Dirección de Oficinas" />		
+	</definition>
+	<!-- =======================================================  -->
+	<!-- Definitions    		  								  -->
+	<!-- =======================================================  -->
+
+	<!-- This definition inherits from the main definition.
+		It overload the page title, and the body used.
+		Use the same mechanism to define new pages sharing common 
+		properties (here header, menu, footer, layout)
+	-->
+
+	<!-- =======================================================  -->
+	<!-- Menus definitions  									-->
+	<!-- =======================================================  -->
+
+	<!-- Menu bar definition 
+		This definition describe a "bar" of menu stacked verticaly.
+		Each menu is describe elsewhere.
+		Add new entry in the list to add new menu.
+	-->
+</tiles-definitions>
