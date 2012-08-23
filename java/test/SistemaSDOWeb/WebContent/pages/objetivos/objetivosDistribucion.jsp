@@ -348,7 +348,7 @@
 					<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textCeleste" name=<c:out value="${objBean.codigoGestor}"/> size="10"  size="10" 
 						codigo ="<c:out value='${objBean.codigoGestor}'/>"
 						nombre="<c:out value='${objBean.nombreGestor}'/>"
-						codperfil="<c:out value='${objBean.codigoPerfil}'/>"
+						codperfil="<c:out value='${objBean.perfilMostrar}'/>"
 						valueOld="${requestScope.planes.factAjusGereOfic}"
 						value="0" onblur="setearCero();" onkeypress="return validKey(INT_PATTERN_NEGATIVO);"/>
 				</c:if>
@@ -357,7 +357,7 @@
 					<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textCeleste" name=<c:out value="${objBean.codigoGestor}"/> size="10"  size="10"
 						codigo ="<c:out value='${objBean.codigoGestor}'/>"
 						nombre="<c:out value='${objBean.nombreGestor}'/>"
-						codperfil="<c:out value='${objBean.codigoPerfil}'/>"
+						codperfil="<c:out value='${objBean.perfilMostrar}'/>"
 						valueOld="${requestScope.planes.factAjusGereOfic}"
 						value="${requestScope.planes.factAjusGereOfic}" onblur="setearCero();" onkeypress="return validKey(INT_PATTERN_NEGATIVO);"/>
 				</c:if>
@@ -367,7 +367,7 @@
 					<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textAzul" name=<c:out value="${objBean.codigoGestor}"/> size="10"  size="10"
 						codigo ="<c:out value='${objBean.codigoGestor}'/>"
 						nombre="<c:out value='${objBean.nombreGestor}'/>"
-						codperfil="<c:out value='${objBean.codigoPerfil}'/>"
+						codperfil="<c:out value='${objBean.perfilMostrar}'/>"
 						valueOld="${objBean.porcAsignado}"
 						value="${objBean.porcAsignado}" onblur="setearCero();" onkeypress="return validKey(INT_PATTERN_NEGATIVO);"/>
 			</c:if>
@@ -378,7 +378,7 @@
 				<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textAzul" name=<c:out value="${objBean.codigoGestor}"/> size="10"
 					codigo ="<c:out value='${objBean.codigoGestor}'/>"
 					nombre="<c:out value='${objBean.nombreGestor}'/>"
-					codperfil="<c:out value='${objBean.codigoPerfil}'/>"
+					codperfil="<c:out value='${objBean.perfilMostrar}'/>"
 					valueOld="${objBean.porcAsignado}"
 					value=<c:out value="${objBean.metaGestor.porcAsignado}"/> onblur="setearCero();" onkeypress="return validKey(IINT_PATTERN_NEGATIVO);"/>
 			</c:if>
@@ -386,7 +386,7 @@
 				<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textCeleste" name=<c:out value="${objBean.codigoGestor}"/> size="10"
 					codigo ="<c:out value='${objBean.codigoGestor}'/>"
 					nombre="<c:out value='${objBean.nombreGestor}'/>"
-					codperfil="<c:out value='${objBean.codigoPerfil}'/>"
+					codperfil="<c:out value='${objBean.perfilMostrar}'/>"
 					valueOld="${objBean.porcAsignado}"
 					value=0 onblur="setearCero();" onkeypress="return validKey(INT_PATTERN_NEGATIVO);"/>
 			</c:if>	

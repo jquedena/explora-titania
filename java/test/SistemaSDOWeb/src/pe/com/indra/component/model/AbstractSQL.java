@@ -105,7 +105,7 @@ public class AbstractSQL {
 					o = parameters[i - 1];
 					if (o instanceof String) {
 						stm.setString(i, (String) o);
-						log.info("STRING :: " + 1 + " - " + o);
+						log.info("STRING :: " + i + " - " + o);
 					} else if (o instanceof BigDecimal) {
 						stm.setBigDecimal(i, (BigDecimal) o);
 						log.info("BIGDECIMAL :: " + i + " - "  + o);
@@ -228,12 +228,13 @@ public class AbstractSQL {
 			}
 			
 			stm.execute();
-			this.close();
 			result = 1;
 		} catch (Exception ex) {
 			log.error("INDRA:AbstractSQL:executeProcedure", ex);
 			result = -1;
-		} 
+		} finally {
+			this.close();
+		}
 		
 		return result;
 	}

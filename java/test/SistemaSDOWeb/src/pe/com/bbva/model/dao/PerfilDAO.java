@@ -46,14 +46,16 @@ public class PerfilDAO extends AbstractSQL {
 					result.setCodCargo(rst.getString("COD_CAR")); 
 					result.setCodPerfil(rst.getString("COD_PER"));
 					result.setPerfil(rst.getString("PERFIL"));
+					result.setNombrePerfil(rst.getString("NOM_PERFIL"));
 					result.setUsuActualizo(rst.getString("USU_ACTU"));
 					result.setUsuRegistro(rst.getString("USU_REGI"));
 				}
+				rst.close();
 			}
-			
-			this.close();
 		} catch(Exception e) {
 			log.error("findEquivalenciaByCodCargo", e);
+		} finally {
+			this.close();
 		}
 		
 		return result;
