@@ -1039,6 +1039,7 @@ public class Connection {
 	public boolean createMetasGestor(MetasGestor metasGestor) {
 		ObjetivoDAO dao = new ObjetivoDAO();
 		String[] result = dao.registrar(metasGestor);
+		if(result[1].length() > 0 && result[1].equalsIgnoreCase("-")) logger.error(result[0] + "-" + result[1]);
 		return (result[0] != null && result[0].length() > 0);
 		
 		/*SesionWS aSesionWS = createSesionWS();

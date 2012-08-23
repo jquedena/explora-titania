@@ -154,7 +154,12 @@ public class ActionReportesUsuarioAction extends Action {
 		    	excelIngreso.generarReporte(path + fileName, sheetName, result, cols, title);
         	}		
         	
-	    	codTerritorio = gestor.getCodigoTerritorio(); // Para la busqueda del acceso diario
+        	// Para la busqueda del acceso diario
+        	if(gestor != null && (gestor.getCodigoPerfil().equals("CON") || gestor.getCodigoPerfil().equals("ADM") || gestor.getCodigoPerfil().equals("SUP"))) {
+        		codTerritorio = null;
+        	} else { 
+	    		codTerritorio = gestor.getCodigoTerritorio();
+        	}
 	    	
 			log.info("[ActionReportesUsuarioAction :: execute] Fin");
         } catch (Exception e) {

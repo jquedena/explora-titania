@@ -335,10 +335,20 @@ public class ObjetivosAction extends DispatchAction{
 			log.info("[ObjetivosAction :: actualizarObjetivo] Objetivo  Nro. de gestores:");
 			log.info("[ObjetivosAction :: actualizarObjetivo] " + listaPorcentajes != null ? String.valueOf(listaPorcentajes.length) : "0");
 			
+			MetasGestor metasGestor  = null;
 			for(int i = 0; i < listaPorcentajes.length; i++){
 				
-				MetasGestor metasGestor  = null;
-				metasGestor = conexion.findMetGestorByPrimaryKey (codEpigrafe, anho, codOficina, mes, listaGestores[i].toString());
+				// MetasGestor metasGestor  = null;
+				// metasGestor = conexion.findMetGestorByPrimaryKey (codEpigrafe, anho, codOficina, mes, listaGestores[i].toString());
+				
+				metasGestor  = new MetasGestor();
+				metasGestor.setMes(mes);
+				metasGestor.setAnho(anho);
+				metasGestor.setCodEpigrafe(codEpigrafe);
+				metasGestor.setOficina(oficina);
+				metasGestor.setCodGestor(listaGestores[i].toString());
+				metasGestor.setUsuario(gestor.getCodigoGestor());
+				metasGestor.setEstado("A");
 				
 				metasGestor.setNomEpigrafe(epigrafe.getNomEpigrafe());
 				metasGestor.setNomGestor(listaNomGestores[i].toString());
@@ -362,13 +372,6 @@ public class ObjetivosAction extends DispatchAction{
 						"Actualizaci" + (char) 243 + "n Objetivo Gestor " + (i + 1)  + ":" + listaGestores[i].toString() + "-" + listaNomGestores[i].toString());
 				}else{
 					metasGestor.setCodMetaGestor(conexion.getCorrelativo("TIIDO_METAS_GESTOR","COD_META_GESTOR","8"));
-					metasGestor.setMes(mes);
-					metasGestor.setAnho(anho);
-					metasGestor.setCodEpigrafe(codEpigrafe);
-					metasGestor.setOficina(oficina);
-					metasGestor.setCodGestor(listaGestores[i].toString());
-					metasGestor.setUsuario(gestor.getCodigoGestor());
-					metasGestor.setEstado("A");
 					
 					conexion.createMetasGestor(metasGestor);
 					log.info("[ObjetivosAction :: actualizarObjetivo] "  +
