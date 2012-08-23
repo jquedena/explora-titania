@@ -41,14 +41,14 @@ public class BorradoHistoricoService {
 	}
 
 	private boolean deleteWithChildren(String path) {  
-	    File file = new File(path);  
-	    if (!file.exists()) {  
-	        return true;  
-	    }  
-	    if (!file.isDirectory()) {  
-	        return file.delete();  
-	    }  
-	    return this.deleteChildren(file) && file.delete();  
+	    File file = new File(path);
+	    if (!file.exists()) {
+	        return true;
+	    }
+	    if (!file.isDirectory()) {
+	        return file.delete();
+	    }
+	    return this.deleteChildren(file);
 	}  
 	  
 	private boolean deleteChildren(File dir) {  
@@ -59,8 +59,9 @@ public class BorradoHistoricoService {
 	        if (child.isDirectory()) {  
 	            childrenDeleted = this.deleteChildren(child) && childrenDeleted;  
 	        }  
-	        if (child.exists()) {  
-	            childrenDeleted = child.delete() && childrenDeleted;  
+	        if (child.exists() && child.getName().toLowerCase().indexOf("xls") > -1) {  
+	            logger.error(child.getAbsolutePath());
+	            childrenDeleted = child.delete() && childrenDeleted;
 	        }  
 	    }  
 	    return childrenDeleted;  
