@@ -1,4 +1,44 @@
+ejecutarMetodoAdicional_Territorio = true;
+ejecutarMetodoAdicional_Oficina = true;
 
+function onChangeTerritorio(){
+	seleccioneChangeTextOficina();
+}
+
+function onChangeOficina(){
+	if($('#idTerritorioFiltro').val() != "-1"){
+		if($('#idOficinaFiltro').val() != "-1"){
+			recargarGOF();
+		}
+	}
+}
+function recargarGOF() {
+	var jqxhr = $.post("recargarGOF.do", {'codOficina': $('#idOficinaFiltro').val(), 'codigoGOF': $("#txtCodigoRegistro").val()});
+
+	jqxhr.success(function(data) {
+		if(data.resultado != undefined && data.resultado == "ERROR") {
+			openDialogError(data.mensaje);
+		}		    		
+		else if(data.resultado != undefined && data.resultado == "EXITO") {
+			_html = "";
+			_html = "<option value='-1'>---Seleccione---</option>";
+			$.each(data.listaObjetos[0].gestores, function(i, item){
+				_html += "<option value='" + item.codigoRegistro + "'>" + item.nombreCompleto + "</option>";
+			});
+			$("#idNuevoGestorBackup").html(_html);
+			$("#idNuevoGestorBackup").val('-1');
+			
+			$("#txtCodigoRegistro").val(data.listaObjetos[0].GOF.codusu);
+			$("#txtNombreRegistro").val(data.listaObjetos[0].GOF.nombreCompleto);
+			
+			recargaLista(data.listaObjetos[0].backup);
+		}
+		else {
+			document.getElementById('currentForm').action = 'logout.do';
+			document.getElementById('currentForm').submit();
+		}
+	});
+}
 
 function validarFecha()
 {
@@ -63,7 +103,7 @@ function okButton2()
 	
 	var jqxhr = $.post("eliminarBackupSuplente.do", 
 		   		   {
-		   		   	'codigosBackup': ids
+		   		   	'codigosBackup': ids, 'codOficina': $('#idOficinaFiltro').val(), 'codigoGOF': $("#txtCodigoRegistro").val()
 		   		   });
 	
     jqxhr.success(function(data) 
@@ -93,7 +133,10 @@ function okButton()
 		var jqxhr = $.post("guardarBackupSuplenteValidacion.do", 
 			   		   {
 			   		   	'backupEdicion.fechaVigente': $('#idVigencia').val(),
-			   		   	'backupEdicion.codigoGestorSuplente': $('#idNuevoGestorBackup').val()
+			   		   	'backupEdicion.codigoGestorSuplente': $('#idNuevoGestorBackup').val(),
+			   		   	'backupEdicion.codigoGOF': $('#txtCodigoRegistro').val(),
+			   		   	'codOficina': $('#idOficinaFiltro').val(),
+			   		   	'codigoGOF': $("#txtCodigoRegistro").val()
 			   		   });
     	
 	    jqxhr.success(function(data) 
@@ -127,7 +170,9 @@ function okEjecutar()
 	var jqxhr = $.post("actualizarBackupSuplente.do", 
 		   		   {
 		   		   	'backupEdicion.fechaVigente': $('#idVigencia').val(),
-		   		   	'backupEdicion.codigoGestorSuplente': $('#idNuevoGestorBackup').val()
+		   		   	'backupEdicion.codigoGestorSuplente': $('#idNuevoGestorBackup').val(),
+		   		   	'codOficina': $('#idOficinaFiltro').val(),
+		   		   	'codigoGOF': $("#txtCodigoRegistro").val()
 		   		   });
 	
     jqxhr.success(function(data) 
@@ -151,15 +196,18 @@ function okEjecutar()
 
 function regargarListaBackupVigente(data)
 {
-	
 	openDialogInfo(data.mensaje);
 	
 	$('#idVigencia').val('');
 	$('#idNuevoGestorBackup').val('0');
 	
+	recargaLista(data.listaObjetos);
+}
+
+function recargaLista(listaBackup) {
 	$("#tbBackupVigente > tbody").empty(); 
 	
-	$.each(data.listaObjetos, function(i,objeto)
+	$.each(listaBackup, function(i,objeto)
 	{  
 		var newRow = '';	
 		var cssClase = (i%2 == 0 ? 'odd' : 'even');
@@ -177,13 +225,19 @@ function regargarListaBackupVigente(data)
 	});
 	
 	gridMultiSelect('tbBackupVigente');	
-	
 }
 
 function exportarExcelBackupSuplente()
 {
 	$('#nombreNuevoBackup_Excel').val($('#idNuevoGestorBackup').children('option:selected').text());
 	$('#fechaVigencia_Excel').val($('#idVigencia').val());
+	$('#codOficina_Excel').val($('#idOficinaFiltro').val());
+	$('#codigoGOF_Excel').val($("#txtCodigoRegistro").val());
+	
+	$('#nombreGOF_Excel').val($("#txtNombreRegistro").val());
+	$('#oficinaGOF_Excel').val($('#idOficinaFiltro option:selected').text() == '' ? $('#descOficinaFiltro').val() : $('#idOficinaFiltro option:selected').text());
+	$('#territorioGOF_Excel').val($('#idTerritorioFiltro option:selected').text() == '' ? $('#descTerritorioFiltro').val() : $('#idTerritorioFiltro option:selected').text());
+	
 	document.getElementById('currentForm').action = 'exportarExcelBackupSuplente.do';
 	document.getElementById('currentForm').submit();
 }
