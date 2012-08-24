@@ -76,4 +76,7 @@ public class LDAPPERU2Service {
 		return listaLDAP;
 	}
 	
+	public LDAPPERU2 obtenerGOF(String codofi) {
+		return ldapPeru2PersistenceImpl.obtenerGOF(codofi);
+	}
 }

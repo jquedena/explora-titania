@@ -1,5 +1,6 @@
 package indra.bbva.pizele.action;
 
+import indra.bbva.iiwx.domain.base.LDAPPERU2;
 import indra.bbva.pizele.common.CurrentUser;
 import indra.bbva.pizele.domain.base.Backup;
 import indra.bbva.pizele.domain.base.Gestor;
@@ -11,7 +12,9 @@ import indra.core.FechaUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -43,16 +46,22 @@ public class ConfBackupAction extends ComunAction
 	
 	// ---- FIELD'S ----
 	
-	private List<BackupDetalle> listaBackupVigente;	
+	private List<BackupDetalle> listaBackupVigente;
 	private List<Gestor> listaGestorBackup;
 	private Backup backupEdicion;
 	
+	private String codOficina;
 	private String codigoGOF;
 	private String codigosBackup;
 	
 	private String nombreNuevoBackup_Excel;
 	private String fechaVigencia_Excel;
-	
+	private String codOficina_Excel;
+	private String codigoGOF_Excel;
+	private String nombreGOF_Excel;
+	private String oficinaGOF_Excel;
+	private String territorioGOF_Excel;
+		
 	// ---- ACTION'S ----
 	
 	@Actions( {
@@ -65,10 +74,16 @@ public class ConfBackupAction extends ComunAction
 	{		
 		try
 		{	
-			if(CurrentUser.Instance().getTerritorio() != null)
+			if(CurrentUser.Instance().getTerritorio() != null) {
 				this.setCodigoTerritorioFiltro(CurrentUser.Instance().getTerritorio().getCodigo());
-			if( CurrentUser.Instance().getOficina() != null)
+				this.setCodOficina(null);
+				this.setCodigoGOF(null);
+			}
+			if(CurrentUser.Instance().getOficina() != null) {
 				this.setCodigoOficinaFiltro(CurrentUser.Instance().getOficina().getCodigo());
+				this.setCodOficina(CurrentUser.Instance().getOficina().getCodigo());
+				this.setCodigoGOF(CurrentUser.Instance().getCodigoRegistro());
+			}
 	
 			super.cargarTerritorios();
 			super.cargarOficinas();
@@ -87,6 +102,32 @@ public class ConfBackupAction extends ComunAction
 	}
 	
 	@Actions( {
+		@Action(value="/recargarGOF")
+	})
+	public void recargarGOF() throws Exception
+	{		
+		try
+		{	
+			this.cargarListaGestoresBackup();
+			this.cargarListaBackupVigente();
+			
+			LDAPPERU2 gof = this.getLdapPeru2Service().obtenerGOF(this.getCodOficina());
+			
+			Map<String, Object> result = new HashMap<String, Object>(); 
+			result.put("GOF", gof);
+			result.put("gestores", this.getListaGestorBackup());
+			result.put("backup", this.getListaBackupVigente());
+			
+			super.renderJsonEXITO_LISTA("Recargando al GOF", result);
+		}
+		catch(Exception ex)
+		{	
+			this.logger.error("guardarBackupSuplenteValidacion", ex);
+			super.renderJsonERROR(ex.getMessage());
+		}
+	}
+	
+	@Actions( {
 		@Action(value="/guardarBackupSuplenteValidacion")
 	})
 	public void guardarBackupSuplenteValidacion() throws Exception
@@ -97,7 +138,7 @@ public class ConfBackupAction extends ComunAction
 			
 			Date fechaVigencia = FechaUtil.formatoFechaDate(this.getBackupEdicion().getFechaVigente());
 			
-			if(FechaUtil.compareDate(fechaVigencia, new Date()) > 0)			
+			if(FechaUtil.compareDate(fechaVigencia, new Date()) > 0)
 				throw new Exception(super.getMensaje("Backup.error.fecha_vigencia"));
 			
 			Backup objBackupVal = new Backup();
@@ -118,34 +159,28 @@ public class ConfBackupAction extends ComunAction
 					String msg = "El Gestor " + listaBackup.get(0).getNombreCompleto() + " ya fue registrado como Backup hasta la fecha " +
 					listaBackup.get(0).getFechaVigente() + ". &#191;Desea reemplazar la vigencia?";
 					
-					super.renderJsonPREGUNTA(msg);					
-				}			
+					super.renderJsonPREGUNTA(msg);
+				}
 			}
 			else
 			{
-				this.getBackupEdicion().setCodigoGOF(CurrentUser.Instance().getCodigoRegistro());
-				this.getBackupEdicion().setUsuarioCreacion(CurrentUser.Instance().getCodigoRegistro());
-				
-			
+				// this.getBackupEdicion().setCodigoGOF(this.getCodigoGOF());
 				Gestor gestor = gestorService.obtenerGestor(objBackupVal.getCodigoGestorSuplente(), this.getListaGestorBackup());
-				
-				
+				this.getBackupEdicion().setUsuarioCreacion(CurrentUser.Instance().getCodigoRegistro());
 				this.getBackupEdicion().setNombreGestorSuplente(gestor.getNombre());
 				this.getBackupEdicion().setApellidoPatergestorSuplente(gestor.getApellidoPaterno());
 				this.getBackupEdicion().setApellidoMaternogestorSuplente(gestor.getApellidoMaterno());
-				
-
 				this.getBackupEdicion().setFechaVigente(FechaUtil.format_yyyyMMdd(this.getBackupEdicion().getFechaVigente()));
 				this.getBackupService().insertarBackup(this.getBackupEdicion());
 				
-				this.cargarListaBackupVigente();				
+				this.cargarListaBackupVigente();
 				super.renderJsonEXITO_LISTA(super.getMensaje("Backup.exito.insert"), this.getListaBackupVigente());
 			}
 			
 		}
 		catch(Exception ex)
 		{	
-			this.logger.error(ex.getMessage());
+			this.logger.error("guardarBackupSuplenteValidacion", ex);
 			super.renderJsonERROR(ex.getMessage());
 		}
 	}
@@ -156,19 +191,19 @@ public class ConfBackupAction extends ComunAction
 	public void actualizarBackupSuplente() throws Exception
 	{
 		try
-		{		
+		{
 			this.cargarListaGestoresBackup();
 			this.getBackupEdicion().setUsuarioModificacion(CurrentUser.Instance().getCodigoRegistro());
 			this.getBackupEdicion().setFechaVigente(FechaUtil.format_yyyyMMdd(this.getBackupEdicion().getFechaVigente()));
 			this.getBackupService().actualizarBackupVigente(this.getBackupEdicion());
 			
-			this.cargarListaBackupVigente();				
+			this.cargarListaBackupVigente();
 			super.renderJsonEXITO_LISTA(super.getMensaje("Backup.exito.update"), this.getListaBackupVigente());
-						
+			
 		}
 		catch(Exception ex)
 		{	
-			this.logger.error(ex.getMessage());
+			this.logger.error("actualizarBackupSuplente", ex);
 			super.renderJsonERROR(ex.getMessage());
 		}
 	}
@@ -180,17 +215,19 @@ public class ConfBackupAction extends ComunAction
 										 "inputName", "excelStream",
 										 "contentDisposition", "attachment;filename=\"formBackupSuplente.xls\"",
 										 "bufferSize", "1024"}),
-						 @Result(name="error",type="tiles",location="panel")})				
+						 @Result(name="error",type="tiles",location="panel")})
 	})
 	public String exportarExcelBackupSuplente() throws Exception
 	{
 		try
 		{	
+			this.setCodigoGOF(this.getCodigoGOF_Excel());
+			this.setCodOficina(this.getCodOficina_Excel());
 			this.cargarListaGestoresBackup();
 			DocumentoExcel doc = new DocumentoExcel(super.getServletContext().getRealPath("/rpt/template/formBackupSuplente.xls"));
-			doc.setContentValue(6, 1, CurrentUser.Instance().getTerritorio().getDescripcion());
-			doc.setContentValue(6, 4, CurrentUser.Instance().getOficina().getDescripcion());
-			doc.setContentValue(7, 2, CurrentUser.Instance().getNombreCompleto());
+			doc.setContentValue(6, 1, this.getTerritorioGOF_Excel());
+			doc.setContentValue(6, 4, this.getOficinaGOF_Excel());
+			doc.setContentValue(7, 2, this.getNombreGOF_Excel());
 			this.cargarListaBackupVigente();
 			
 			int rowIndex = 9;
@@ -211,11 +248,11 @@ public class ConfBackupAction extends ComunAction
 			doc.setLabelValue(rowIndex, 0, "Será Backup hasta el día : ");
 			doc.setContentValue(rowIndex, 2, this.getFechaVigencia_Excel());
 			
-			this.setExcelStream(doc.getExcelStream());			
+			this.setExcelStream(doc.getExcelStream());
 		}
 		catch(Exception ex)
 		{	
-			this.logger.error(ex.getMessage());
+			this.logger.error("exportarExcelBackupSuplente", ex);
 			return ERROR;
 		}
 		
@@ -229,7 +266,7 @@ public class ConfBackupAction extends ComunAction
 	public void eliminarBackupSuplente() throws Exception
 	{
 		try
-		{		
+		{
 			this.cargarListaGestoresBackup();
 			String[] idsArray = this.getCodigosBackup().split("\\|");
 			List<Backup> listaBackup = new ArrayList<Backup>();
@@ -244,9 +281,9 @@ public class ConfBackupAction extends ComunAction
 			}
 			
 			this.getBackupService().eliminarBackup(listaBackup);
-			this.cargarListaBackupVigente();				
+			this.cargarListaBackupVigente();
 			super.renderJsonEXITO_LISTA(super.getMensaje("Backup.exito.delete"), this.getListaBackupVigente());
-						
+			
 		}
 		catch(Exception ex)
 		{	
@@ -259,15 +296,23 @@ public class ConfBackupAction extends ComunAction
 	
 	public void cargarListaBackupVigente()
 	{   
-		
 		Backup objBackup = new Backup();
-		objBackup.setCodigoGOF(CurrentUser.Instance().getCodigoRegistro());
-		this.setListaBackupVigente(this.getBackupService().listarBackupVigenteDetalle(objBackup, this.getListaGestorBackup()));
+		objBackup.setCodigoGOF(this.getCodigoGOF());
+		
+		if(this.getCodigoGOF() != null) {
+			this.setListaBackupVigente(this.getBackupService().listarBackupVigenteDetalle(objBackup, this.getListaGestorBackup()));
+		} else {
+			this.setListaBackupVigente(new ArrayList<BackupDetalle>());
+		}
 	}
 	
 	private void cargarListaGestoresBackup()
 	{
-		this.setListaGestorBackup(this.getGestorService().listarGestorOficina(CurrentUser.Instance().getCodigoOficina()));
+		if(this.getCodOficina() != null) {
+			this.setListaGestorBackup(this.getGestorService().listarGestorOficina(this.getCodOficina()));
+		} else {
+			this.setListaGestorBackup(new ArrayList<Gestor>());
+		}
 	}
 	
 	// ---- GETTER'S AND SETTER'S ----
@@ -335,5 +380,60 @@ public class ConfBackupAction extends ComunAction
 	public void setFechaVigencia_Excel(String fechaVigencia_Excel) {
 		this.fechaVigencia_Excel = fechaVigencia_Excel;
 	}
-		
+
+	public String getCodOficina() {
+		return codOficina;
+	}
+
+	public void setCodOficina(String codOficina) {
+		this.codOficina = codOficina;
+	}
+
+	public String getCodigoGOF() {
+		return codigoGOF;
+	}
+
+	public void setCodigoGOF(String codigoGOF) {
+		this.codigoGOF = codigoGOF;
+	}
+
+	public String getCodOficina_Excel() {
+		return codOficina_Excel;
+	}
+
+	public void setCodOficina_Excel(String codOficina_Excel) {
+		this.codOficina_Excel = codOficina_Excel;
+	}
+
+	public String getCodigoGOF_Excel() {
+		return codigoGOF_Excel;
+	}
+
+	public void setCodigoGOF_Excel(String codigoGOF_Excel) {
+		this.codigoGOF_Excel = codigoGOF_Excel;
+	}
+
+	public String getNombreGOF_Excel() {
+		return nombreGOF_Excel;
+	}
+
+	public void setNombreGOF_Excel(String nombreGOF_Excel) {
+		this.nombreGOF_Excel = nombreGOF_Excel;
+	}
+
+	public String getOficinaGOF_Excel() {
+		return oficinaGOF_Excel;
+	}
+
+	public void setOficinaGOF_Excel(String oficinaGOF_Excel) {
+		this.oficinaGOF_Excel = oficinaGOF_Excel;
+	}
+
+	public String getTerritorioGOF_Excel() {
+		return territorioGOF_Excel;
+	}
+
+	public void setTerritorioGOF_Excel(String territorioGOF_Excel) {
+		this.territorioGOF_Excel = territorioGOF_Excel;
+	}
 }

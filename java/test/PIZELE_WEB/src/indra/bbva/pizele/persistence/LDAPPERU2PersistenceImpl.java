@@ -26,6 +26,7 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 	private static final Long CARGOS_GERENTES = 45L;
 	private static final Long CARGOS_SIN_SUBGERENTES = 46L;
 	private static final Long CARGOS_USUARIOS = 47L;
+	private static final Long CARGOS_GOF = 48L;
 	
 	private Logger log = Logger.getLogger(this.getClass());
 	private Connection cnn = null;
@@ -34,6 +35,10 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 	@Autowired
 	@Qualifier("dataSourceIIWX")
 	private DataSource datasource;
+	
+	@Autowired
+	@Qualifier("dataSourcePIZELE")
+	private DataSource datasourceIIDO;
 	
 	@Autowired
 	private ParametroService parametro;
@@ -120,17 +125,74 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 
 		Parametro item = parametro.obtenerParametro(LDAPPERU2PersistenceImpl.CARGOS_SIN_SUBGERENTES);
 		String listaCargos = item != null ? item.getValorTexto() : "''";
-		String query = "SELECT CODUSU, NOMBRE, APEPAT, APEMAT, CODCARGO, CODCARGO, " +
-			   "(CASE UPPER(CODCARGO) " +
-                  "WHEN 'B67' THEN 'EEM' " +
-                  "WHEN 'B25' THEN 'GCO' " +
-                  "WHEN 'B52' THEN 'GPE' " +
-                  "WHEN 'B23' THEN 'EBP' " +
-                  "ELSE 'XXX' " +
-                "END) CODPERFIL FROM IIWX.LDAPPERU2 WHERE CODOFI = '" + codofi + "' AND CODCARGO IN (" + listaCargos + ")";
+		String query = "SELECT CODUSU, NOMBRE, APEPAT, APEMAT, CODCARGO, " + obtenerPerfiles() + " CODPERFIL FROM IIWX.LDAPPERU2 WHERE CODOFI = '" + codofi + "' AND CODCARGO IN (" + listaCargos + ")";
 		result = read(query);
 		
 		return result;
 	}
 
+	public LDAPPERU2 obtenerGOF(String codofi) {
+		List<LDAPPERU2> listaLDAP = new ArrayList<LDAPPERU2>();
+		LDAPPERU2 result = new LDAPPERU2();
+		
+		Parametro item = parametro.obtenerParametro(LDAPPERU2PersistenceImpl.CARGOS_GOF);
+		String listaCargos = item != null ? item.getValorTexto() : "''";
+		String query = "SELECT CODUSU, NOMBRE, APEPAT, APEMAT, CODCARGO, NULL CODPERFIL FROM IIWX.LDAPPERU2 WHERE CODOFI = '" + codofi + "' AND CODCARGO IN (" + listaCargos + ")";
+		listaLDAP = read(query);
+		
+		if(listaLDAP != null && listaLDAP.size() > 0) {
+			result = listaLDAP.get(0);
+		}
+		
+		return result;
+	}
+	
+	private String obtenerPerfiles() {
+		String result = "'---'";
+		Connection cnn = null;
+		Statement stm = null;
+		
+		try {
+			cnn = datasourceIIDO.getConnection();
+			stm = cnn.createStatement();
+		} catch (SQLException ex) {
+			log.error("INDRA:LDAPPERU2PersistenceImpl:obtenerPerfiles", ex);
+			stm = null;
+		}
+		
+		try {
+			String query = "SELECT 'WHEN ''' || COD_CAR || ''' THEN ''' || COD_PER || ''' ' COD_PERFIL FROM IIDO.TIIDO_EQUIVALENCIAS";
+			ResultSet rst = null;
+			if(stm != null) {
+				result = "";
+				rst = stm.executeQuery(query);
+				if(rst != null) {
+					while(rst.next()) {
+						result += rst.getString("COD_PERFIL");
+					}
+					result = "(CASE UPPER(CODCARGO) " + result + " ELSE '---' END) ";
+					rst.close();
+				}
+			}
+		} catch (SQLException ex) {
+			log.error("INDRA:LDAPPERU2PersistenceImpl:obtenerPerfiles", ex);
+		}
+		
+		try {
+			if (stm != null) {
+				stm.close();
+			}
+		} catch (SQLException ex) {
+			log.error("INDRA:LDAPPERU2PersistenceImpl:obtenerPerfiles", ex);
+		}
+		try {
+			if (cnn != null) {
+				cnn.close();
+			}
+		} catch (SQLException ex) {
+			log.error("INDRA:LDAPPERU2PersistenceImpl:obtenerPerfiles", ex);
+		}
+		
+		return result;
+	}
 }

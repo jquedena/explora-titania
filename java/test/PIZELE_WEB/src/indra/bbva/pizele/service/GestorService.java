@@ -91,4 +91,8 @@ public class GestorService
 		}
 		return gestor;
 	}
+
+	public LDAPPERU2 obtenerGOF(String codofi) {
+		return ldapperu2service.obtenerGOF(codofi);
+	}
 }
