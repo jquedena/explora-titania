@@ -161,7 +161,7 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 		}
 		
 		try {
-			String query = "SELECT 'WHEN ''' || COD_CAR || ''' THEN ''' || COD_PER || ''' ' COD_PERFIL FROM IIDO.TIIDO_EQUIVALENCIAS";
+			String query = "SELECT 'WHEN ''' || A.COD_CAR || ''' THEN ''' || B.PERFIL || ''' ' COD_PERFIL FROM IIDO.TIIDO_EQUIVALENCIAS A INNER JOIN IIDO.TIIDO_PERFILES B ON A.COD_PER=B.COD_PERFIL";
 			ResultSet rst = null;
 			if(stm != null) {
 				result = "";
