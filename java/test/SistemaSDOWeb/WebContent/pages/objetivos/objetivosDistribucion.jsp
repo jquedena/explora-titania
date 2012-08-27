@@ -330,7 +330,7 @@
 <c:forEach items="${requestScope.listaGestores}" var="objBean">
 <tr class="Row">
 	<td><c:out value="${objBean.codigoGestor}"/> - <c:out value="${objBean.nombreGestor}"/></td>
-	<td><c:out value="${objBean.perfilMostrar}"/><input type="hidden" name = "codPerfilInterno" value = "${objBean.codigoPerfil}"/></td>
+	<td><c:out value="${objBean.perfilMostrar}"/><input type="hidden" name = "codPerfilInterno" value = "${objBean.perfilMostrar}"/></td>
 	<td pattern="#,###.00" type="NUMBER" align="right"><fmt:formatNumber value="${objBean.promedio6m}" pattern="#,###.00"  maxFractionDigits="0" minFractionDigits="0"/></td>
 	<td pattern="#,###.00" type="NUMBER" align="center">
 		<c:if test="${objBean.codigoPerfil == 'GOF'}">

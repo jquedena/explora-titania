@@ -186,7 +186,7 @@
 	<th colspan=2>GOF</th>
 	<th colspan=2>GCO</th>
 	<th colspan=2>GPE</th>
-	<th colspan=2>GPT</th>
+	<th colspan=2>EBP</th>
 	<th style="width: 75px;" rowspan=3>Total<br/>Asignado</th>
 </tr>
 <tr class="Header">
