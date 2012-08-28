@@ -51,19 +51,19 @@
 				<tr class="cuerpoTabla">
 					<td width="40%" align="center"><span class="Estilo2">C&oacute;digo</span></td>
 					<td width="60&">
-						<input type="text" name="txtcodPerfil" maxlength="3" value="<c:out value="${codigoPerfil}"/>" />
+						<input type="text" name="txtcodPerfil" maxlength="3" value="" />
 					</td>
 				</tr>
 				<tr class="cuerpoTabla">
 					<td align="center"><span class="Estilo2">C&oacute;digo a mostrar</span></td>
 					<td>
-						<input type="text" name="txtperfil" maxlength="3" value="<c:out value="${perfil}"/>"/>
+						<input type="text" name="txtperfil" maxlength="3" value=""/>
 					</td>
 				</tr>
 				<tr class="cuerpoTabla">
 					<td align="center"><span class="Estilo2">Nombre</span></td>
 					<td>
-						<input type="text" name="txtnomPerfil" value="<c:out value="${nombrePerfil}"/>"/>
+						<input type="text" name="txtnomPerfil" value=""/>
 					</td>
 				</tr>
 				</table>
