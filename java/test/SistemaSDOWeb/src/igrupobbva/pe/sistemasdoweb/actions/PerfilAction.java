@@ -183,6 +183,11 @@ public class PerfilAction extends DispatchAction{
 		perfilFrm.setNomPerfil("");
 		perfilFrm.setPerfil("");
 		
+		HttpSession sesion = request.getSession(false);
+		sesion.setAttribute("codigoPerfil", perfilFrm.getCodPerfil());
+		sesion.setAttribute("nombrePerfil", perfilFrm.getNomPerfil());
+		sesion.setAttribute("perfil", perfilFrm.getPerfil());
+		
 		return mapping.findForward("nuevoPerfil");
 	}
 	
