@@ -93,7 +93,6 @@ public class PerfilAction extends DispatchAction{
 			perfilFrm.setNomPerfil(_hidValor[1]);
 			perfilFrm.setPerfil(_hidValor[2]);
 			
-			
 			sesion.setAttribute("codigoPerfil", perfilFrm.getCodPerfil());
 			sesion.setAttribute("nombrePerfil", perfilFrm.getNomPerfil());
 			sesion.setAttribute("perfil", perfilFrm.getPerfil());
@@ -179,6 +178,11 @@ public class PerfilAction extends DispatchAction{
 	}
 
 	public ActionForward nuevoPerfil(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		PerfilForm perfilFrm = (PerfilForm) form;
+		perfilFrm.setCodPerfil("");
+		perfilFrm.setNomPerfil("");
+		perfilFrm.setPerfil("");
+		
 		return mapping.findForward("nuevoPerfil");
 	}
 	

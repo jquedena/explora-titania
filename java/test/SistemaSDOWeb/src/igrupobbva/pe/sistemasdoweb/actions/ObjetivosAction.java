@@ -200,9 +200,9 @@ public class ObjetivosAction extends DispatchAction{
 					}
 					
 					// TODO: Actualizar el cargo de los gestors LDAP 
-					conexion.actualizarCargoGestoresLDAP(listaGestores, codEpigrafe, anho, codOficina, mes, gestor.getCodigoGestor());
+					conexion.actualizarCargoGestoresLDAP(listaGestores, codEpigrafe, anho, codOficina, mes, gestor.getPerfilMostrar());
 					
-					// Actualizar de estado gestores eliminados del LDAP
+					// TODO: Actualizar de estado gestores eliminados del LDAP
 					conexion.actualizarGestoresEliminadosLDAP(listaGestores, codEpigrafe, anho, codOficina, mes, gestor.getCodigoGestor());
 					
 					// Distribuir meta al GOF si se han eliminados gestores del LDAP
@@ -364,8 +364,7 @@ public class ObjetivosAction extends DispatchAction{
 					metasGestor.setUsuario(gestor.getCodigoGestor());
 					conexion.updateMetasGestor(metasGestor);
 					
-					// Actualizar de estado gestores eliminados y distribuidos del LDAP
-					
+					// TODO: Actualizar de estado gestores eliminados y distribuidos del LDAP
 					conexion.actualizarGestoresDistribuidosLDAP(codEpigrafe, anho, codOficina, mes, gestor.getCodigoGestor());
 					
 					log.info("[ObjetivosAction :: actualizarObjetivo] "  + 

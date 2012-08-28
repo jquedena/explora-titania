@@ -73,6 +73,7 @@ public class ActionReportesUsuarioAction extends Action {
         
         Calendar calendar = Calendar.getInstance();
         // calendar.setTimeInMillis((new java.util.Date()).getTime());
+        formatter = new SimpleDateFormat(ActionReportesUsuarioAction.FORMATO_DDMMYYYY);
         hoy = formatter.format(calendar.getTime());
         
         try { 
@@ -153,13 +154,6 @@ public class ActionReportesUsuarioAction extends Action {
 		    	}
 		    	excelIngreso.generarReporte(path + fileName, sheetName, result, cols, title);
         	}		
-        	
-        	// Para la busqueda del acceso diario
-        	if(gestor != null && (gestor.getCodigoPerfil().equals("CON") || gestor.getCodigoPerfil().equals("ADM") || gestor.getCodigoPerfil().equals("SUP"))) {
-        		codTerritorio = null;
-        	} else { 
-	    		codTerritorio = gestor.getCodigoTerritorio();
-        	}
 	    	
 			log.info("[ActionReportesUsuarioAction :: execute] Fin");
         } catch (Exception e) {
@@ -176,8 +170,6 @@ public class ActionReportesUsuarioAction extends Action {
 		request.setAttribute("lMesSeleccionado", String.valueOf(mes));
 		request.setAttribute("lAnioSeleccionado", String.valueOf(anio));
 		
-		formatter = new SimpleDateFormat(ActionReportesUsuarioAction.FORMATO_DDMMYYYY);
-		
 		if(modo.equals("2")) {
 			request.setAttribute("file", fileName);
 		}
@@ -186,7 +178,14 @@ public class ActionReportesUsuarioAction extends Action {
 			request.setAttribute("fileDia", fileName);
 		}
 		
-		calendar = Calendar.getInstance();
+    	
+    	// Para la busqueda del acceso diario
+    	if(gestor != null && (gestor.getCodigoPerfil().equals("CON") || gestor.getCodigoPerfil().equals("ADM") || gestor.getCodigoPerfil().equals("SUP"))) {
+    		codTerritorio = null;
+    	} else { 
+    		codTerritorio = gestor.getCodigoTerritorio();
+    	}
+
 		request.setAttribute("fechaHoy", hoy);
 		int dias = cnx.listadoIngresoxDia(hoy, codTerritorio); 
 		request.setAttribute("contadorDia", String.valueOf(dias));
