@@ -7748,7 +7748,7 @@ public class SesionIngresosBean implements javax.ejb.SessionBean {
 			where = "WHERE TO_CHAR(fecha, 'dd/MM/yyyy') = '" + diaActual + "' ";  
 			
 			s = con.createStatement();
-			sql = 	"SELECT COUNT(*) " +
+			sql = 	"SELECT COUNT(1) " +
 					"FROM tiido_ingresos " +
 					where + condTerritorio;
 				

@@ -32,25 +32,26 @@ function nuevo(){
 	form.submit();
 }
 
-function editar(cod,nom){
+function editar(cod,nom,perfil){
 	var form = document.forms[0];
 	var valorCodSel=cod;
 	var valorNomSel=nom;
-	form.codPerfil.value=valorCodSel+'|'+valorNomSel;
+	var valorPerfil=perfil;
+	form.codPerfil.value=valorCodSel+'|'+valorNomSel+'|'+valorPerfil;
 	form.action="perfilAction.do?method=mostrarPerfil";
 	form.submit();
 }
 
-function eliminar()	{
+function eliminar() {
 	cadena="";
 	m = 1;
 	
-	if(document.forms[0].caja)	{
-		if(document.forms[0].caja.length)	{
+	if(document.forms[0].caja) {
+		if(document.forms[0].caja.length) {
 			for (i=0; i<document.forms[0].caja.length; i++) {
-				if(document.forms[0].caja[i].checked){	
-					if(m==1)	cadena = cadena + document.forms[0].caja[i].value;
-					else		cadena = cadena + "|" + document.forms[0].caja[i].value;
+				if(document.forms[0].caja[i].checked){
+					if(m==1) cadena = cadena + document.forms[0].caja[i].value;
+					else	 cadena = cadena + "|" + document.forms[0].caja[i].value;
 					m++;
 				}
 			}
@@ -109,9 +110,9 @@ window.onload=function(){
 					<td><img src="<%=request.getContextPath()%>/images/esq_izq.jpg"></td>
 					<td width="200" class="textocentradoblanco">MANTEMIMIENTO</td>
 					<td><img src="<%=request.getContextPath()%>/images/esq_der.jpg"></td>
-				</tr>						
+				</tr>
 			</table>
-		</td>	
+		</td>
 	</tr>
 	<tr>
 		<td style="border: 2px solid #264971;padding:20px;" valign="top" height="%" align="center">
@@ -138,10 +139,12 @@ window.onload=function(){
 
 			  <tr>
 			    <td width="57" align="center" class="celda1cabecera"><span class="Estilo2">C&oacute;digo</span></td>
+				<td width="57" align="center" class="celda1cabecera"><span class="Estilo2">Perfil</span></td>
 			    <td width="219" align="center" class="celda1cabecera"><span class="Estilo2">Nombre</span></td>
 			    <td width="173" align="center" class="celda1cabecera"><span class="Estilo2">Editar</span></td>
 			    <td width="79" align="center" class="celda1cabecera"><span class="Estilo2">
-			      <input type="checkbox" name="todos" onClick="seleccionar_todos();"></span>				</td>
+			      <input type="checkbox" name="todos" onClick="seleccionar_todos();"></span>
+				</td>
 		      </tr>
 			
 			  <logic:present name ="listaAllPerfil">
@@ -155,12 +158,15 @@ window.onload=function(){
 				<tr class="cuerpoTabla">
 				<td class="<%=colorfila %>">
 					<c:out value="${objBean.codPerfil}"/>
+				</td>
+				<td class="<%=colorfila %>">
 					<c:out value="${objBean.perfil}"/>
 				</td>
+				
 				<td class="<%=colorfila %>"><c:out value="${objBean.nomPerfil}"/></td>
 				<td align="center" class="<%=colorfila %>">
 					<a href="javascript:editar('<c:out value="${objBean.codPerfil}"/>', '<c:out value="${objBean.nomPerfil}"/>', '<c:out value="${objBean.perfil}"/>')">
-						<IMG border="0" src="<%=request.getContextPath()%>/images/editar.png" width="18"	height="18">
+						<IMG border="0" src="<%=request.getContextPath()%>/images/editar.png" width="18" height="18">
 					</a>
 				</td>
 				<td align="center" class="<%=colorfila %>">
@@ -168,7 +174,7 @@ window.onload=function(){
 				</td>
 				</tr>
 				</c:forEach>
-			  </logic:present>	
+			  </logic:present>
 			</table>
 <%if(perfil.equals("ADM")){ %>
 			<table width="938">

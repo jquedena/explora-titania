@@ -1745,6 +1745,7 @@ public class SesionMetasGestorBean implements javax.ejb.SessionBean {
 		return listaGestoresLDAP;
 	}
 	
+	// TODO: Actualizar de estado gestores eliminados del LDAP
 	public void actualizarGestoresEliminadosLDAP(Vector listaGestoresLDAP, String codEpigrafe, String anho,
 			String codOficina, String mes, String usuario) {
 		Vector listaGestoresBD = null;
@@ -1859,7 +1860,7 @@ public class SesionMetasGestorBean implements javax.ejb.SessionBean {
 					Gestor gestorLDAP = (Gestor)iterListaGestoresLDAP.next();
 					String codGestorLDAP = gestorLDAP.getCodigoGestor() != null ? gestorLDAP.getCodigoGestor() : "";
 					String codGestorBD = gestorBD.getCodigoGestor() != null ? gestorBD.getCodigoGestor() : "";
-					String codPerfilLDAP = gestorLDAP.getCodigoPerfil() != null ? gestorLDAP.getCodigoPerfil() : "";
+					String codPerfilLDAP = gestorLDAP.getPerfilMostrar() != null ? gestorLDAP.getPerfilMostrar() : "";
 					String codPerfilBD = gestorBD.getCodigoPerfil() != null ? gestorBD.getCodigoPerfil() : "";
 					
 					
@@ -1879,6 +1880,7 @@ public class SesionMetasGestorBean implements javax.ejb.SessionBean {
 		return;
 	}
 	
+	// TODO: Actualizar de estado gestores eliminados y distribuidos del LDAP
 	public void actualizarGestoresDistribuidosLDAP(String codEpigrafe, String anho,
 			String codOficina, String mes, String usuario) {
 		Vector listaGestoresBD = null;
