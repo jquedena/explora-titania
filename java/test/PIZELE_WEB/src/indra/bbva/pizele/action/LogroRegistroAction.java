@@ -202,6 +202,10 @@ public class LogroRegistroAction extends ComunAction {
 						codgestor = tmp[1];
 					}
 					
+					if(perfil == null || perfil.length() == 0) {
+						perfil = "---";
+					}
+					
 					for(j = 4; j < cols.length; j++) {
 						tmp = cols[j].split("\\_");
 						
@@ -229,8 +233,7 @@ public class LogroRegistroAction extends ComunAction {
 			
 			this.renderJsonEXITO("Logros actualizados correctamente");
 		} catch(Exception e) {
-			this.logger.error(e.getMessage());
-			e.printStackTrace();
+			this.logger.error("grabarLogroRubro", e);
 			this.renderJsonERROR(e.getMessage());
 		}
 	}

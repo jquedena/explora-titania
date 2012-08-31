@@ -125,7 +125,9 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 
 		Parametro item = parametro.obtenerParametro(LDAPPERU2PersistenceImpl.CARGOS_SIN_SUBGERENTES);
 		String listaCargos = item != null ? item.getValorTexto() : "''";
-		String query = "SELECT CODUSU, NOMBRE, APEPAT, APEMAT, CODCARGO, " + obtenerPerfiles() + " CODPERFIL FROM IIWX.LDAPPERU2 WHERE CODOFI = '" + codofi + "' AND CODCARGO IN (" + listaCargos + ")";
+		String query = "SELECT * FROM (SELECT CODUSU, NOMBRE, APEPAT, APEMAT, CODCARGO, " + obtenerPerfiles() 
+			+ " FROM IIWX.LDAPPERU2 WHERE CODOFI = '" + codofi + "' AND CODCARGO IN (" + listaCargos + ")"
+			+ ") AX ORDER BY ORDEN, CODPERFIL, CODUSU";
 		result = read(query);
 		
 		return result;
@@ -149,6 +151,8 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 	
 	private String obtenerPerfiles() {
 		String result = "'---'";
+		String temp1 = "'---'";
+		String temp2 = "'---'";
 		Connection cnn = null;
 		Statement stm = null;
 		
@@ -161,16 +165,23 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 		}
 		
 		try {
-			String query = "SELECT 'WHEN ''' || A.COD_CAR || ''' THEN ''' || B.PERFIL || ''' ' COD_PERFIL FROM IIDO.TIIDO_EQUIVALENCIAS A INNER JOIN IIDO.TIIDO_PERFILES B ON A.COD_PER=B.COD_PERFIL";
+			String query = "SELECT "
+				+ "'WHEN ''' || A.COD_CAR || ''' THEN ''' || B.PERFIL || ''' ' COD_PERFIL, "
+				+ "'WHEN ''' || A.COD_CAR || ''' THEN ''' || B.PRIORIDAD || ''' ' ORDEN "
+				+ "FROM IIDO.TIIDO_EQUIVALENCIAS A INNER JOIN IIDO.TIIDO_PERFILES B ON A.COD_PER=B.COD_PERFIL";
 			ResultSet rst = null;
 			if(stm != null) {
-				result = "";
+				temp1 = "";
+				temp2 = "";
 				rst = stm.executeQuery(query);
 				if(rst != null) {
 					while(rst.next()) {
-						result += rst.getString("COD_PERFIL");
+						temp1 += rst.getString("COD_PERFIL");
+						temp2 += rst.getString("ORDEN");
 					}
-					result = "(CASE UPPER(CODCARGO) " + result + " ELSE '---' END) ";
+					temp1 = "(CASE UPPER(CODCARGO) " + temp1 + " ELSE '---' END) CODPERFIL";
+					temp2 = "(CASE UPPER(CODCARGO) " + temp2 + " ELSE '9' END) ORDEN";
+					result = temp1 + "," + temp2; 
 					rst.close();
 				}
 			}
