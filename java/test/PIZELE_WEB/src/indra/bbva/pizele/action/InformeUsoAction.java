@@ -222,7 +222,7 @@ public class InformeUsoAction extends ComunAction
 		}
 		catch(Exception ex)
 		{	
-			this.logger.error(ex.getMessage());
+			this.logger.error("exportarExcelInfomeUso", ex);
 			return ERROR;
 		}
 		

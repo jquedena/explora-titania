@@ -12,6 +12,7 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
 import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFPalette;
 import org.apache.poi.hssf.usermodel.HSSFPatriarch;
 import org.apache.poi.hssf.usermodel.HSSFPicture;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -22,8 +23,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.CellRangeAddress;
 
-public class DocumentoExcel 
-{
+public class DocumentoExcel {
 
 	private HSSFSheet sheet = null;
 	private HSSFWorkbook wb = null;
@@ -39,12 +39,13 @@ public class DocumentoExcel
 	private HSSFCellStyle styleContentNO = null;
 	private HSSFCellStyle styleContentSI = null;
 
-	public DocumentoExcel(String filePath) throws InvalidFormatException, FileNotFoundException, IOException
-	{
-		
+	public DocumentoExcel(String filePath) throws InvalidFormatException,
+			FileNotFoundException, IOException {
+
 		File file = new File(filePath);
-		this.setWb((HSSFWorkbook) WorkbookFactory.create(new FileInputStream(file)));      
-		this.setSheet((HSSFSheet) this.getWb().getSheetAt(0)); 
+		this.setWb((HSSFWorkbook) WorkbookFactory.create(new FileInputStream(
+				file)));
+		this.setSheet((HSSFSheet) this.getWb().getSheetAt(0));
 		this.crearContentStaticStyle();
 		this.crearLabelStaticStyle();
 		this.crearContentStaticStyleCenter();
@@ -57,58 +58,66 @@ public class DocumentoExcel
 		this.crearContentStaticStyleVerde();
 		this.crearContentStaticStyleAmarillo();
 	}
-	
-	public void setLabelValue(int indexRow, int indexCell, String valor)
-	{
-		if(this.getSheet().getRow(indexRow) == null)
+
+	public void setLabelValue(int indexRow, int indexCell, String valor) {
+		if (this.getSheet().getRow(indexRow) == null)
 			this.getSheet().createRow(indexRow);
-		if(this.getSheet().getRow(indexRow).getCell(indexCell) == null)
+		if (this.getSheet().getRow(indexRow).getCell(indexCell) == null)
 			this.getSheet().getRow(indexRow).createCell(indexCell);
-		
-		this.getSheet().getRow(indexRow).getCell(indexCell).setCellStyle(this.getStyleLabel());
-		this.getSheet().getRow(indexRow).getCell(indexCell).setCellValue(valor);		
+
+		this.getSheet().getRow(indexRow).getCell(indexCell).setCellStyle(
+				this.getStyleLabel());
+		this.getSheet().getRow(indexRow).getCell(indexCell).setCellValue(valor);
 	}
-	
-	public void setContentValue(int indexRow, int indexCell, String valor)
-	{
-		
-		if(this.getSheet().getRow(indexRow) == null)
+
+	public void setContentValue(int indexRow, int indexCell, String valor) {
+		if (this.getSheet().getRow(indexRow) == null)
 			this.getSheet().createRow(indexRow);
-		if(this.getSheet().getRow(indexRow).getCell(indexCell) == null)
+		if (this.getSheet().getRow(indexRow).getCell(indexCell) == null)
 			this.getSheet().getRow(indexRow).createCell(indexCell);
-		
+
 		this.getSheet().getRow(indexRow).getCell(indexCell).setCellStyle(this.getStyleContent());
 		this.getSheet().getRow(indexRow).getCell(indexCell).setCellValue(valor);
-			
 	}
-	
-	public void setContentValueNO(int indexRow, int indexCell, String valor)
-	{
-		
-		if(this.getSheet().getRow(indexRow) == null)
+
+	public void setContentValue(int indexRow, int indexCell, String valor, HSSFCellStyle style) {
+
+		if (this.getSheet().getRow(indexRow) == null)
 			this.getSheet().createRow(indexRow);
-		if(this.getSheet().getRow(indexRow).getCell(indexCell) == null)
+		if (this.getSheet().getRow(indexRow).getCell(indexCell) == null)
 			this.getSheet().getRow(indexRow).createCell(indexCell);
-		
+
+		this.getSheet().getRow(indexRow).getCell(indexCell).setCellStyle(style);
+		this.getSheet().getRow(indexRow).getCell(indexCell).setCellValue(valor);
+
+	}
+
+	public void setContentValueNO(int indexRow, int indexCell, String valor) {
+
+		if (this.getSheet().getRow(indexRow) == null)
+			this.getSheet().createRow(indexRow);
+		if (this.getSheet().getRow(indexRow).getCell(indexCell) == null)
+			this.getSheet().getRow(indexRow).createCell(indexCell);
+
 		this.getSheet().getRow(indexRow).getCell(indexCell).setCellStyle(this.getStyleContentNO());
 		this.getSheet().getRow(indexRow).getCell(indexCell).setCellValue(valor);
-			
+
 	}
-	
-	public void setContentValueSI(int indexRow, int indexCell, String valor)
-	{
-		
-		if(this.getSheet().getRow(indexRow) == null)
+
+	public void setContentValueSI(int indexRow, int indexCell, String valor) {
+
+		if (this.getSheet().getRow(indexRow) == null)
 			this.getSheet().createRow(indexRow);
-		if(this.getSheet().getRow(indexRow).getCell(indexCell) == null)
+		if (this.getSheet().getRow(indexRow).getCell(indexCell) == null)
 			this.getSheet().getRow(indexRow).createCell(indexCell);
-		
+
 		this.getSheet().getRow(indexRow).getCell(indexCell).setCellStyle(this.getStyleContentSI());
 		this.getSheet().getRow(indexRow).getCell(indexCell).setCellValue(valor);
-			
+
 	}
-	
-	public void setContentValue(int indexRow, int indexCellFrom, int indexCellTo, String titulo) {
+
+	public void setContentValue(int indexRow, int indexCellFrom,
+			int indexCellTo, String titulo) {
 		if (this.getSheet().getRow(indexRow) == null)
 			this.getSheet().createRow(indexRow);
 
@@ -117,25 +126,46 @@ public class DocumentoExcel
 				this.getSheet().getRow(indexRow).createCell(index);
 		}
 
-		this.getSheet().addMergedRegion(new CellRangeAddress(indexRow, indexRow, indexCellFrom, indexCellTo));
+		this.getSheet().addMergedRegion(
+				new CellRangeAddress(indexRow, indexRow, indexCellFrom,
+						indexCellTo));
 
-		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(this.getStyleContent());
+		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(
+				this.getStyleContent());
+		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellValue(
+				titulo);
+	}
+
+	public void setContentValue(int indexRow, int indexCellFrom,
+			int indexCellTo, String titulo, HSSFCellStyle style) {
+		if (this.getSheet().getRow(indexRow) == null)
+			this.getSheet().createRow(indexRow);
+
+		for (int index = indexCellFrom; index <= indexCellTo; index++) {
+			if (this.getSheet().getRow(indexRow).getCell(index) == null)
+				this.getSheet().getRow(indexRow).createCell(index);
+		}
+
+		this.getSheet().addMergedRegion(
+				new CellRangeAddress(indexRow, indexRow, indexCellFrom, indexCellTo));
+
+		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(style);
 		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellValue(titulo);
 	}
 	
-	public void setContentValueCenter(int indexRow, int indexCell, String valor)
-	{
-		
-		if(this.getSheet().getRow(indexRow) == null)
+	public void setContentValueCenter(int indexRow, int indexCell, String valor) {
+
+		if (this.getSheet().getRow(indexRow) == null)
 			this.getSheet().createRow(indexRow);
-		if(this.getSheet().getRow(indexRow).getCell(indexCell) == null)
+		if (this.getSheet().getRow(indexRow).getCell(indexCell) == null)
 			this.getSheet().getRow(indexRow).createCell(indexCell);
-		
-		this.getSheet().getRow(indexRow).getCell(indexCell).setCellStyle(this.getStyleContentCenter());
+
+		this.getSheet().getRow(indexRow).getCell(indexCell).setCellStyle(
+				this.getStyleContentCenter());
 		this.getSheet().getRow(indexRow).getCell(indexCell).setCellValue(valor);
-			
+
 	}
-	
+
 	public void setFooter(int indexRow, int indexCell, String valor) {
 
 		if (this.getSheet().getRow(indexRow) == null)
@@ -143,11 +173,12 @@ public class DocumentoExcel
 		if (this.getSheet().getRow(indexRow).getCell(indexCell) == null)
 			this.getSheet().getRow(indexRow).createCell(indexCell);
 
-		this.getSheet().getRow(indexRow).getCell(indexCell).setCellStyle(this.getStyleFooter());
+		this.getSheet().getRow(indexRow).getCell(indexCell).setCellStyle(
+				this.getStyleFooter());
 		this.getSheet().getRow(indexRow).getCell(indexCell).setCellValue(valor);
 
 	}
-	
+
 	public void setBarraTitulo(int indexRow, int indexCell, String valor) {
 
 		if (this.getSheet().getRow(indexRow) == null)
@@ -160,304 +191,341 @@ public class DocumentoExcel
 
 	}
 	
-	public void setFooter(int indexRow, int indexCellFrom, int indexCellTo, String titulo)
-	{
-		if(this.getSheet().getRow(indexRow) == null)
+	public void setBarraTitulo(int indexRow, int indexCell, String valor, short color) {
+
+		if (this.getSheet().getRow(indexRow) == null)
 			this.getSheet().createRow(indexRow);
-		
-		for(int index = indexCellFrom; index <= indexCellTo; index++)
-		{
-			if(this.getSheet().getRow(indexRow).getCell(index) == null)
-				this.getSheet().getRow(indexRow).createCell(index);
-		}
-		
-		this.getSheet().addMergedRegion(new CellRangeAddress(indexRow, indexRow, indexCellFrom, indexCellTo));
-		
-		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(this.getStyleFooter());
-		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellValue(titulo);
+		if (this.getSheet().getRow(indexRow).getCell(indexCell) == null)
+			this.getSheet().getRow(indexRow).createCell(indexCell);
+
+		this.getSheet().getRow(indexRow).getCell(indexCell).setCellStyle(this.getStyleBarraTitulo());
+		this.getSheet().getRow(indexRow).getCell(indexCell).setCellValue(valor);
+
 	}
-	
-	public void setFooterRight(int indexRow, int indexCellFrom, int indexCellTo, String titulo)
-	{
-		if(this.getSheet().getRow(indexRow) == null)
+
+	public void setFooter(int indexRow, int indexCellFrom, int indexCellTo,
+			String titulo) {
+		if (this.getSheet().getRow(indexRow) == null)
 			this.getSheet().createRow(indexRow);
-		
-		for(int index = indexCellFrom; index <= indexCellTo; index++)
-		{
-			if(this.getSheet().getRow(indexRow).getCell(index) == null)
+
+		for (int index = indexCellFrom; index <= indexCellTo; index++) {
+			if (this.getSheet().getRow(indexRow).getCell(index) == null)
 				this.getSheet().getRow(indexRow).createCell(index);
 		}
-		
-		this.getSheet().addMergedRegion(new CellRangeAddress(indexRow, indexRow, indexCellFrom, indexCellTo));
-		
+
+		this.getSheet().addMergedRegion(
+				new CellRangeAddress(indexRow, indexRow, indexCellFrom,
+						indexCellTo));
+
+		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(
+				this.getStyleFooter());
+		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellValue(
+				titulo);
+	}
+
+	public void setFooterRight(int indexRow, int indexCellFrom,
+			int indexCellTo, String titulo) {
+		if (this.getSheet().getRow(indexRow) == null)
+			this.getSheet().createRow(indexRow);
+
+		for (int index = indexCellFrom; index <= indexCellTo; index++) {
+			if (this.getSheet().getRow(indexRow).getCell(index) == null)
+				this.getSheet().getRow(indexRow).createCell(index);
+		}
+
+		this.getSheet().addMergedRegion(
+				new CellRangeAddress(indexRow, indexRow, indexCellFrom,
+						indexCellTo));
+
 		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(this.getStyleFooterRight());
 		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellValue(titulo);
 	}
-	
-	public void setBarraTitulo(int indexRow, int indexCellFrom, int indexCellTo, String titulo)
-	{
-		if(this.getSheet().getRow(indexRow) == null)
+
+	public void setBarraTitulo(int indexRow, int indexCellFrom, int indexCellTo, String titulo) {
+		if (this.getSheet().getRow(indexRow) == null)
 			this.getSheet().createRow(indexRow);
-		
-		for(int index = indexCellFrom; index <= indexCellTo; index++)
-		{
-			if(this.getSheet().getRow(indexRow).getCell(index) == null)
+
+		for (int index = indexCellFrom; index <= indexCellTo; index++) {
+			if (this.getSheet().getRow(indexRow).getCell(index) == null)
 				this.getSheet().getRow(indexRow).createCell(index);
 		}
-		
-		this.getSheet().addMergedRegion(new CellRangeAddress(indexRow, indexRow, indexCellFrom, indexCellTo));
-		
-		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(this.getStyleBarraTitulo());
-		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellValue(titulo);
+
+		this.getSheet().addMergedRegion(
+				new CellRangeAddress(indexRow, indexRow, indexCellFrom,
+						indexCellTo));
+
+		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(
+				this.getStyleBarraTitulo());
+		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellValue(
+				titulo);
 	}
-	
-	public void setImagen(int indexRow, int indexCell, String pathImg) throws IOException 
-	{
+
+	public void setImagen(int indexRow, int indexCell, String pathImg)
+			throws IOException {
 
 		FileInputStream fis = new FileInputStream(pathImg);
 
-		ByteArrayOutputStream img_bytes=new ByteArrayOutputStream();
+		ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
 		int b;
-		while((b=fis.read())!=-1)
-		img_bytes.write(b);
-		
+		while ((b = fis.read()) != -1)
+			img_bytes.write(b);
+
 		fis.close();
 		HSSFClientAnchor anchor = new HSSFClientAnchor();
 		anchor.setCol1(indexCell);
 		anchor.setRow1(indexRow);
-		int index = this.getWb().addPicture(img_bytes.toByteArray(),HSSFWorkbook.PICTURE_TYPE_JPEG);
-		 
-		HSSFPatriarch patriarch= null;
-		
-		if(this.getSheet().getDrawingPatriarch() == null)
+		int index = this.getWb().addPicture(img_bytes.toByteArray(), HSSFWorkbook.PICTURE_TYPE_JPEG);
+
+		HSSFPatriarch patriarch = null;
+
+		if (this.getSheet().getDrawingPatriarch() == null)
 			patriarch = this.getSheet().createDrawingPatriarch();
 		else
 			patriarch = this.getSheet().getDrawingPatriarch();
-				
-		HSSFPicture picture = patriarch.createPicture(anchor,index);
-		
+
+		HSSFPicture picture = patriarch.createPicture(anchor, index);
 		picture.setAnchor(picture.getPreferredSize());
-	
 	}
-	
-	public void setContentValueColor(int indexRow, int indexCellFrom, int indexCellTo, String texto, String color)
-	{
-		if(this.getSheet().getRow(indexRow) == null)
+
+	public void setContentValueColor(int indexRow, int indexCellFrom,
+			int indexCellTo, String texto, String color) {
+		if (this.getSheet().getRow(indexRow) == null)
 			this.getSheet().createRow(indexRow);
-		
-		for(int index = indexCellFrom; index <= indexCellTo; index++)
-		{
-			if(this.getSheet().getRow(indexRow).getCell(index) == null)
+
+		for (int index = indexCellFrom; index <= indexCellTo; index++) {
+			if (this.getSheet().getRow(indexRow).getCell(index) == null)
 				this.getSheet().getRow(indexRow).createCell(index);
 		}
-		
+
 		this.getSheet().addMergedRegion(new CellRangeAddress(indexRow, indexRow, indexCellFrom, indexCellTo));
-						
-		if(color == null || color.length() == 0)
+
+		HSSFCellStyle verde = crearStyleDynamic(HSSFColor.DARK_GREEN.index, 214, 254, 217);
+		HSSFCellStyle rojo = crearStyleDynamic(HSSFColor.DARK_RED.index, 255, 177, 177);
+		HSSFCellStyle ambar = crearStyleDynamic(HSSFColor.DARK_YELLOW.index, 254, 254, 204);
+		
+		if (color == null || color.length() == 0)
 			this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(this.getStyleContent());
-		else if(color.equals("#00FF00"))
-			this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(this.getStyleContentCenterVerde());
-		else if(color.equals("#FFFF00"))
-			this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(this.getStyleContentCenterAmarillo());
-		else if(color.equals("#FF0000"))
-			this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(this.getStyleContentCenterRojo());
+		else if (color.equals("#00FF00"))
+			this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(verde);
+		else if (color.equals("#FFFF00"))
+			this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(ambar);
+		else if (color.equals("#FF0000"))
+			this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(rojo);
 		else
 			this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(this.getStyleContent());
-				
+
 		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellValue(texto);
 	}
-	
-	public InputStream getExcelStream() throws IOException
-	{
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();     
+
+	public InputStream getExcelStream() throws IOException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		this.getWb().write(baos);
-		return new ByteArrayInputStream(baos.toByteArray());		
+		return new ByteArrayInputStream(baos.toByteArray());
 	}
-	
+
 	// ---- PRIVATE METHOD'S ----
-	
-	protected HSSFCell obtenerCelda(int indexRow, int indexCell)
-	{
+
+	protected HSSFCell obtenerCelda(int indexRow, int indexCell) {
 		HSSFRow filaExcel = sheet.getRow(indexRow);
 		HSSFCell cellExcel = null;
-		
-		if(filaExcel == null)
+
+		if (filaExcel == null)
 			filaExcel = sheet.createRow(indexRow);
-		
+
 		cellExcel = filaExcel.getCell(indexCell);
-		
-		if(cellExcel == null)
+
+		if (cellExcel == null)
 			cellExcel = filaExcel.createCell(indexCell);
-		
+
 		return cellExcel;
 	}
-	
-	private void crearLabelStaticStyle()
-	{
+
+	private void crearLabelStaticStyle() {
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_LEFT);
-		
+
 		HSSFFont font = wb.createFont();
 		font.setFontName("Arial");
-		font.setFontHeightInPoints((short)10);
+		font.setFontHeightInPoints((short) 10);
 		font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
 		style.setFont(font);
-		
+
 		this.setStyleLabel(style);
-		
+
 	}
-	
-	private void crearContentStaticStyle()
-	{
+
+	private void crearContentStaticStyle() {
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_LEFT);
-		
+
 		HSSFFont font = wb.createFont();
 		font.setFontName("Arial");
-		font.setFontHeightInPoints((short)10);
+		font.setFontHeightInPoints((short) 10);
 		style.setFont(font);
 
 		this.setStyleContent(style);
 	}
-	
-	private void crearContentStaticStyleCenter()
-	{
+
+	private void crearContentStaticStyleCenter() {
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-		
+
 		HSSFFont font = wb.createFont();
 		font.setFontName("Arial");
-		font.setFontHeightInPoints((short)10);
+		font.setFontHeightInPoints((short) 10);
 		style.setFont(font);
 
 		this.setStyleContentCenter(style);
 	}
-	
-	private void crearContentStaticStyleCenterNO()
-	{
+
+	private void crearContentStaticStyleCenterNO() {
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		style.setFillForegroundColor(HSSFColor.RED.index);
 		style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		
+
 		HSSFFont font = wb.createFont();
 		font.setFontName("Arial");
-		font.setFontHeightInPoints((short)10);
+		font.setFontHeightInPoints((short) 10);
 		style.setFont(font);
 
 		this.setStyleContentNO(style);
 	}
-	
-	private void crearContentStaticStyleCenterSI()
-	{
+
+	private void crearContentStaticStyleCenterSI() {
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		style.setFillForegroundColor(HSSFColor.GREEN.index);
 		style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		
+
 		HSSFFont font = wb.createFont();
 		font.setFontName("Arial");
-		font.setFontHeightInPoints((short)10);
+		font.setFontHeightInPoints((short) 10);
 		style.setFont(font);
 
 		this.setStyleContentSI(style);
 	}
-	
-	private void crearStyleBarraTitulo()
-	{
+
+	private void crearStyleBarraTitulo() {
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		style.setFillForegroundColor(HSSFColor.BLUE.index);
 		style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		
+
 		HSSFFont font = wb.createFont();
 		font.setFontName("Arial");
-		font.setFontHeightInPoints((short)10);
+		font.setFontHeightInPoints((short) 10);
 		font.setColor(HSSFColor.WHITE.index);
 		style.setFont(font);
 
 		this.setStyleBarraTitulo(style);
 	}
-	
-	private void crearStyleFooter()
-	{
+
+	private void crearStyleFooter() {
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		style.setFillForegroundColor(HSSFColor.LIGHT_BLUE.index);
 		style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		
+
 		HSSFFont font = wb.createFont();
 		font.setFontName("Arial");
-		font.setFontHeightInPoints((short)10);
+		font.setFontHeightInPoints((short) 10);
 		font.setColor(HSSFColor.WHITE.index);
 		style.setFont(font);
 
 		this.setStyleFooter(style);
 	}
-	
-	private void crearStyleFooterRight()
-	{
+
+	private void crearStyleFooterRight() {
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
 		style.setFillForegroundColor(HSSFColor.LIGHT_BLUE.index);
 		style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		
+
 		HSSFFont font = wb.createFont();
 		font.setFontName("Arial");
-		font.setFontHeightInPoints((short)10);
+		font.setFontHeightInPoints((short) 10);
 		font.setColor(HSSFColor.WHITE.index);
 		style.setFont(font);
 
 		this.setStyleFooterRight(style);
 	}
-	
-	private void crearContentStaticStyleRojo()
-	{
+
+	private void crearContentStaticStyleRojo() {
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		style.setFillForegroundColor(HSSFColor.RED.index);
 		style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		
+
 		HSSFFont font = wb.createFont();
 		font.setFontName("Arial");
-		font.setFontHeightInPoints((short)10);
+		font.setFontHeightInPoints((short) 10);
 		style.setFont(font);
 
 		this.setStyleContentCenterRojo(style);
 	}
-	
-	private void crearContentStaticStyleVerde()
-	{
+
+	private void crearContentStaticStyleVerde() {
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		style.setFillForegroundColor(HSSFColor.GREEN.index);
 		style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		
+
 		HSSFFont font = wb.createFont();
 		font.setFontName("Arial");
-		font.setFontHeightInPoints((short)10);
+		font.setFontHeightInPoints((short) 10);
 		style.setFont(font);
 
 		this.setStyleContentCenterVerde(style);
 	}
-	
-	private void crearContentStaticStyleAmarillo()
-	{
+
+	private void crearContentStaticStyleAmarillo() {
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		style.setFillForegroundColor(HSSFColor.YELLOW.index);
 		style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		
+
 		HSSFFont font = wb.createFont();
 		font.setFontName("Arial");
-		font.setFontHeightInPoints((short)10);
+		font.setFontHeightInPoints((short) 10);
 		style.setFont(font);
 
 		this.setStyleContentCenterAmarillo(style);
 	}
+
+	private HSSFColor crearColor(short colorIndex, int red, int green, int blue) {
+		HSSFPalette palette = wb.getCustomPalette();
+		palette.setColorAtIndex(colorIndex, (byte) red, (byte) green, (byte) blue);
+		return palette.getColor(colorIndex);
+	}
+
+	public HSSFCellStyle crearStyleDynamic(short align, short color, short colorFont, short fill, short fontSize) {
+		HSSFCellStyle style = wb.createCellStyle();
+		style.setAlignment(align);
+		style.setFillForegroundColor(color);
+		style.setFillPattern(fill);
+
+		HSSFFont font = wb.createFont();
+		font.setFontName("Arial");
+		font.setFontHeightInPoints((short) fontSize);
+		font.setColor(colorFont);
+		style.setFont(font);
+
+		return style;
+	}
+	
+	public HSSFCellStyle crearStyleDynamic(short align, short colorIndex, int red, int green, int blue) {
+		crearColor(colorIndex, red, green, blue);
+		return crearStyleDynamic(align, colorIndex, HSSFColor.WHITE.index, HSSFCellStyle.SOLID_FOREGROUND, (short) 10);
+	}
+
+	public HSSFCellStyle crearStyleDynamic(short colorIndex, int red, int green, int blue) {
+		crearColor(colorIndex, red, green, blue);
+		return crearStyleDynamic(HSSFCellStyle.ALIGN_CENTER, colorIndex, HSSFColor.BLACK.index, HSSFCellStyle.SOLID_FOREGROUND, (short) 10);
+	}
 	
 	// ---- GETTER'S AND SETTER'S ----
-	
+
 	public HSSFSheet getSheet() {
 		return sheet;
 	}
@@ -505,7 +573,7 @@ public class DocumentoExcel
 	public void setStyleBarraTitulo(HSSFCellStyle styleBarraTitulo) {
 		this.styleBarraTitulo = styleBarraTitulo;
 	}
-	
+
 	public HSSFCellStyle getStyleFooter() {
 		return styleFooter;
 	}
@@ -563,8 +631,4 @@ public class DocumentoExcel
 		this.styleContentSI = styleContentSI;
 	}
 
-	
-	
-	
-	
 }
