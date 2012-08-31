@@ -156,14 +156,14 @@ public class ConexionDAO {
 				}
 
 			} catch (SQLException e1) {
-				log.error(e1.getMessage());
+				log.error(e1);
 				e1.printStackTrace();
 			}
 			s.close();
 			con.close();
 			initialContext.close();
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			e1.printStackTrace();
 		}
 		return res;
@@ -205,7 +205,7 @@ public class ConexionDAO {
 			con.close();
 			retorno=true;
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			e1.printStackTrace();
 			retorno=false;
 			try{
@@ -245,7 +245,7 @@ public class ConexionDAO {
 			con.close();
 			retorno=true;
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			e1.printStackTrace();
 			retorno=false;
 			try{
@@ -291,7 +291,7 @@ public class ConexionDAO {
 		con.close();
 
 		} catch (Exception e1) {
-		log.error(e1.getMessage());
+		log.error(e1);
 		s.close();
 		con.close();
 		e1.printStackTrace();
@@ -326,7 +326,7 @@ public class ConexionDAO {
 			con.close();
 			
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			s.close();
 			con.close();
 			e1.printStackTrace();
@@ -374,7 +374,7 @@ public class ConexionDAO {
 			con.close();
 			return lista;
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			s.close();
 			con.close();
 			e1.printStackTrace();
@@ -418,7 +418,7 @@ public class ConexionDAO {
 			con.close();
 			return lista;
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			s.close();
 			con.close();
 			e1.printStackTrace();
@@ -463,7 +463,7 @@ public class ConexionDAO {
 			con.close();
 			return lista;
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			s.close();
 			con.close();
 			e1.printStackTrace();
@@ -517,7 +517,7 @@ public class ConexionDAO {
 			con.close();
 			return res;
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			s.close();
 			con.close();
 			e1.printStackTrace();
@@ -554,7 +554,7 @@ public class ConexionDAO {
 			con.close();
 			
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			s.close();
 			con.close();
 			e1.printStackTrace();
@@ -599,7 +599,7 @@ public class ConexionDAO {
 			con.close();
 			
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			s.close();
 			con.close();
 			e1.printStackTrace();
@@ -644,7 +644,7 @@ public class ConexionDAO {
 			con.close();
 			
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			s.close();
 			con.close();
 			e1.printStackTrace();
@@ -696,7 +696,7 @@ public class ConexionDAO {
 			return -1;
 			
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			con.close();
 			e1.printStackTrace();
 			return 0;
@@ -742,7 +742,7 @@ public class ConexionDAO {
 			return -1;
 			
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			con.close();
 			e1.printStackTrace();
 			return 0;
@@ -777,7 +777,7 @@ public class ConexionDAO {
 			con.close();
 			
 		} catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			s.close();
 			con.close();
 			e1.printStackTrace();
@@ -815,10 +815,10 @@ public class ConexionDAO {
 			con.close();
 			
 		}  catch (SQLException e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			e1.printStackTrace();
 		}  catch (Exception e1) {
-			log.error(e1.getMessage());
+			log.error(e1);
 			e1.printStackTrace();
 			s.close();
 			con.close();

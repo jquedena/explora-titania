@@ -55,7 +55,7 @@ public class Connection {
 		try {
 			res = acceso.findCliente(cod_cliente);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -67,7 +67,7 @@ public class Connection {
 			res = acceso.findAllGestorxOfxTe(cod_area,
 					cod_territorio, cod_oficina);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -77,7 +77,7 @@ public class Connection {
 		try {
 			res = acceso.findATOG(cod_usuario);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -87,7 +87,7 @@ public class Connection {
 		try {
 			res = acceso.findAllRecord(cod_mult);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -97,7 +97,7 @@ public class Connection {
 		try {
 			res = acceso.findRecord(codigo);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}*/
@@ -107,7 +107,7 @@ public class Connection {
 		try {
 			res = acceso.findMultitablaxValor2(valor2);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -119,7 +119,7 @@ public class Connection {
 			res = acceso.findAllOficinaxTe(cod_area,
 					cod_territorio);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -130,7 +130,7 @@ public class Connection {
 		try {
 			res = acceso.findComponente(codReg, codCat, path);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -140,7 +140,7 @@ public class Connection {
 		try {
 			res = acceso.findAllTerritorio(cod_area);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -152,7 +152,7 @@ public class Connection {
 			res = acceso.findTotal(ind_registro,
 					cod_territorio, cod_oficina, cod_gestor);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -162,7 +162,7 @@ public class Connection {
 		try {
 			res = acceso.findAllMultitabla();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -172,7 +172,7 @@ public class Connection {
 		try {
 			res = acceso.findAllPerfil();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -182,7 +182,7 @@ public class Connection {
 		try {
 			res = acceso.findAllPermisoPerfil();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -192,7 +192,7 @@ public class Connection {
 		try {
 			res = acceso.createMultitabla(multitabla);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -202,7 +202,7 @@ public class Connection {
 		try {
 			res = acceso.createPerfil(perfil);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -212,7 +212,7 @@ public class Connection {
 		try {
 			res = acceso.createPermisoPerfil(permisoPerfil);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -222,7 +222,7 @@ public class Connection {
 		try {
 			res = acceso.createCliente(cliente);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -232,7 +232,7 @@ public class Connection {
 		try {
 			res = acceso.createEmpresa(empresa);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -242,7 +242,7 @@ public class Connection {
 		try {
 			res = acceso.createTotal(total);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -252,7 +252,7 @@ public class Connection {
 		try {
 			res = acceso.createArea(area);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -262,7 +262,7 @@ public class Connection {
 		try {
 			res = acceso.createTerritorio(territorio);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -272,7 +272,7 @@ public class Connection {
 		try {
 			res = acceso.createOficina(oficina);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -282,7 +282,7 @@ public class Connection {
 		try {
 			res = acceso.createGestor(gestor);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -292,7 +292,7 @@ public class Connection {
 		try {
 			res = acceso.deleteAllGestor(cod_area);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -307,7 +307,7 @@ public class Connection {
 		try {
 			res = acceso.findPerfil(cod_perfil);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -319,7 +319,7 @@ public class Connection {
 			res = acceso.findPermisoPerfil(cod_perfil,
 					tipo_acceso, valor_rcp);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -329,7 +329,7 @@ public class Connection {
 		try {
 			res = acceso.findMultitabla(cod_mult, cod_ele);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}*/
@@ -339,7 +339,7 @@ public class Connection {
 		try {
 			res = acceso.updateMultitabla(multitabla);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -349,7 +349,7 @@ public class Connection {
 		try {
 			res = acceso.updatePerfil(perfil);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -359,7 +359,7 @@ public class Connection {
 		try {
 			res = acceso.deleteMultitabla(cod_mult, cod_ele);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -371,7 +371,7 @@ public class Connection {
 			res = acceso.listaDetalleFiltroComplejo(tipo,
 					tipo2, codigos);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -381,7 +381,7 @@ public class Connection {
 		try {
 			res = acceso.listaDetalleFiltroSimple(tipo, codigos);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -391,7 +391,7 @@ public class Connection {
 		try {
 			res = acceso.deletePerfil(cod_perfil);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -403,7 +403,7 @@ public class Connection {
 			res = acceso.deletePermisoPerfil(cod_perfil,
 					tipo_acceso, valor_rcp);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -413,7 +413,7 @@ public class Connection {
 		try {
 			res = acceso.deleteCliente(cod_cliente);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -423,7 +423,7 @@ public class Connection {
 		try {
 			res = acceso.findAllEmpresa();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -433,7 +433,7 @@ public class Connection {
 		try {
 			res = acceso.findPerfilxRegistro(registro);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -443,7 +443,7 @@ public class Connection {
 		try {
 			res = acceso.findEtiquetasSegmentos(tablaBase);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -453,7 +453,7 @@ public class Connection {
 		try {
 			res = acceso.listaEtiquetasPorCodigo(codigo);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -463,7 +463,7 @@ public class Connection {
 		try {
 			res = acceso.findEtiquetas();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -473,7 +473,7 @@ public class Connection {
 		try {
 			res = acceso.findCantidadSegmentos();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -485,7 +485,7 @@ public class Connection {
 			res = acceso.findGestorxRegistro(registro,
 					codTerritorio, codOficina);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -495,7 +495,7 @@ public class Connection {
 		try {
 			res = acceso.findEtiSeg(codMult, codElem);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -505,7 +505,7 @@ public class Connection {
 		try {
 			res = acceso.findNV(codMult, codElem);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -515,7 +515,7 @@ public class Connection {
 		try {
 			res = acceso.findFamilias();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -525,7 +525,7 @@ public class Connection {
 		try {
 			res = acceso.deleteTotales();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -535,7 +535,7 @@ public class Connection {
 		try {
 			res = acceso.deleteClientes();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -545,7 +545,7 @@ public class Connection {
 		try {
 			res = acceso.deleteGestores();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -555,7 +555,7 @@ public class Connection {
 		try {
 			res = acceso.deleteOficinas();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -565,7 +565,7 @@ public class Connection {
 		try {
 			res = acceso.deleteTerritorios();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -575,7 +575,7 @@ public class Connection {
 		try {
 			res = acceso.deleteAreas();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -585,7 +585,7 @@ public class Connection {
 		try {
 			res = acceso.deleteEmpresas();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -595,7 +595,7 @@ public class Connection {
 		try {
 			res = acceso.countCliente();
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;*/
 		return countCliente2("-1", "-1", "-1", tipo);
@@ -637,17 +637,17 @@ public class Connection {
 				stmt.execute();
 				res = stmt.getInt(1);
 			} catch (SQLException e) {
-				logger.error(e.getMessage());
+				logger.error(e);
 			}
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		} finally {
 			try {
 				stmt.close();
-			} catch (Throwable e) {logger.error(e.getMessage());}
+			} catch (Throwable e) {logger.error(e);}
 			try {
 				con.close();
-			} catch (Throwable e) {logger.error(e.getMessage());}
+			} catch (Throwable e) {logger.error(e);}
 		}
 		
 		return res;
@@ -659,7 +659,7 @@ public class Connection {
 			res = acceso.countClientebyTerritorio(
 					cod_territorio);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;*/
 		return countCliente2(cod_territorio, "-1", "-1", tipo);
@@ -671,7 +671,7 @@ public class Connection {
 			res = acceso.countClientebyOficina(cod_territorio,
 					cod_oficina);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;*/
 		return countCliente2(cod_territorio, cod_oficina, "-1", tipo);
@@ -683,7 +683,7 @@ public class Connection {
 			res = acceso.countClientebyGestor(cod_territorio,
 					cod_oficina, cod_gestor);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}*/
 		return countCliente2(cod_territorio, cod_oficina, cod_gestor, tipo);
 	}
@@ -693,7 +693,7 @@ public class Connection {
 		try {
 			res = acceso.datosTerritorio(codigo);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -703,7 +703,7 @@ public class Connection {
 		try {
 			res = acceso.datosOficina(codigo);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -713,7 +713,7 @@ public class Connection {
 		try {
 			res = acceso.datosGestor(codigo);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -723,7 +723,7 @@ public class Connection {
 		try {
 			res = acceso.datosEmpresa(codigo);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
@@ -733,7 +733,7 @@ public class Connection {
 		try {
 			res = acceso.findGestorMasaOficina(cod_oficina);
 		} catch (Throwable e) {
-			logger.error(e.getMessage());
+			logger.error(e);
 		}
 		return res;
 	}
