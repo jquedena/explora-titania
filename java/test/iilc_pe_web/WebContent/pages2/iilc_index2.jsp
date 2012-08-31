@@ -77,7 +77,8 @@ function parpadeo(){
 }
 
 function validaPerfil(){
-
+	perfil = '<c:out value="${sessionScope.perfil.cod_perfil}" />';
+	
 	if(perfilTerritorio != "") {
 		if($("#territorio").val()=="-1"){
 			$("#territorio").val(perfilTerritorio);
@@ -89,6 +90,22 @@ function validaPerfil(){
 			$("#oficina").val(perfilOficina);
 		}
 	}
+		
+	if(perfil == "LC01") {
+		if($("#territorio").val()=="-1"){
+			alert("Debe seleccionar un territorio.");
+			return false;
+		}
+	}
+	
+	if(perfil == "LC06") {
+		if($("#territorio").val().indexOf(",")>-1){
+			alert("Debe seleccionar un territorio.");
+			return false;
+		}
+	}
+	
+	return true;
 }
 
 function padL(number, numDigits) {
@@ -486,7 +503,9 @@ function popup2(){
 }*/
 
 function consulta(){
-	validaPerfil();	
+	if(!validaPerfil()) {
+		return false;
+	}
 	// ui-state-active
 
 	hayResultados = false;
@@ -541,7 +560,9 @@ function consulta(){
 }
 
 function consultaCliente(){
-	validaPerfil();
+	if(!validaPerfil()) {
+		return false;
+	};
 	
 	if(document.forms[0].cod_cliente.value.length==0){
 		alert("Ingrese un c\u00F3digo de cliente.");
@@ -553,7 +574,7 @@ function consultaCliente(){
 	document.forms[0].tipo_detalle[0].checked = true;
 	tipo_detalle = '0';
 	$(".option-ui").removeClass("ui-state-active");
-       $(".option-ui").eq(0).addClass("ui-state-active");
+    $(".option-ui").eq(0).addClass("ui-state-active");
 	AjaxRequest.get({
 	    'url':'consulta2.do'
 	    ,'parameters':{ 
@@ -597,7 +618,9 @@ function consultaCliente(){
 }
 
 function consultaDetalle(num){
-	validaPerfil();
+	if(!validaPerfil()) {
+		return false;
+	};
 	tipo_detalle = num;
 	hayResultados = false;
 	var i;
@@ -669,7 +692,9 @@ function consultaPaginaNum(e){
 }
 
 function consultaPagina(tipo){
-	validaPerfil();
+	if(!validaPerfil()) {
+		return false;
+	};
 	if(document.forms[0].numRegXPag.value.length==0){
 		return;
 	}
@@ -1126,15 +1151,16 @@ $(function(){
 				<tr style="background-color:#dceaf4;">
 					<td>&nbsp;</td>
 					<td style="vertical-align:middle;">
+					<div id="radio_txt" style="display:none; height: 38px; font-size: 85%;vertical-align: middle;"></div>
 					<div id="radio" style="height: 38px; font-size: 85%;vertical-align: middle;">
 					<logic:notEmpty name = "listadoRadios">
 						<logic:iterate name="listadoRadios" id="vinc">
 							<input type="radio"
 								id="radio${vinc.orden}"
-								name="tipo_detalle" 
+								name="tipo_detalle"
 								value='<bean:write name="vinc" property="detalle"/>' 
 								onclick='<bean:write name="vinc" property="funcion"/>'>
-							<label class="option-ui" for="radio${vinc.orden}"><bean:write name="vinc" property="descorta" /></label>
+							<label id="radio_txt${vinc.orden}" class="option-ui" for="radio${vinc.orden}"><bean:write name="vinc" property="descorta" /></label>
 						</logic:iterate>
 	                </logic:notEmpty>
 					</div>

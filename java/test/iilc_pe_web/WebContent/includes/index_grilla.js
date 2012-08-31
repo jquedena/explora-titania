@@ -104,10 +104,17 @@ function bloquear(){
 	document.forms[0].btnBuscar.disabled = true;
 	document.forms[0].btnLimpiar.disabled = true;
 
-	/*var i;
-	for(i=0; i<document.forms[0].tipo_detalle.length; i++){
-		document.forms[0].tipo_detalle[i].disabled = true;
-	}*/
+	// $("#radio input").button("option", "disabled", true);
+	page = "";
+   	for (i_ = 0; i_ < document.forms[0].tipo_detalle.length; i_++){ 
+      	 if (document.forms[0].tipo_detalle[i_].checked) {
+      		 page = $("#radio_txt" + (i_ + 1)).html();
+         	 break;
+   		}
+   	}
+   	$("#radio_txt").html("Consultando la opci&oacute;n: <b>" + page + "</b>");
+   	$("#radio_txt").css({"display": "inline"});
+   	$("#radio").css({"display": "none"});
 	
 	// document.getElementById("buscarPagoHaberes").style.visibility = 'hidden';
 	document.getElementById("btnExcel").src = 'images/btnExcel0.gif';
@@ -132,11 +139,12 @@ function desbloquear(hayResultados){
 	document.forms[0].btnBuscar.disabled = false;
 	document.forms[0].btnLimpiar.disabled = false;
 	
+	// $("#radio input").button("option", "disabled", false);
+   	
+   	$("#radio_txt").css({"display": "none"});
+   	$("#radio").css({"display": "inline"});
+   	
 	if(hayResultados){
-		/**
-		 *for(i=0; i<document.forms[0].tipo_detalle.length; i++){
-		 *	document.forms[0].tipo_detalle[i].disabled = false;
-		}*/
 		document.getElementById("btnExcel").src = 'images/btnExcel1.gif';
 	}
 	

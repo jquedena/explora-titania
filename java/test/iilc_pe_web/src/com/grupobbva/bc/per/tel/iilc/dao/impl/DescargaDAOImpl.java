@@ -42,7 +42,7 @@ public class DescargaDAOImpl {
 	public int insertar(String registro, String archivo, String descripcion) {
 		String sql = "{call iilc.piilc_descargas_excel.sp_insertar(?, ?, ?, ?)}";
 		Connection cnn = getConnection();
-		CallableStatement stm;
+		CallableStatement stm = null;
 		int result = -1;
 		
 		try {
@@ -53,13 +53,23 @@ public class DescargaDAOImpl {
 			stm.registerOutParameter(4, OracleTypes.INTEGER);
 			stm.execute();
 			result = stm.getInt(4);
-			
-			stm.close();
-			cnn.close();
 		} catch (SQLException e) {
 			logger.error("DescargaDAOImpl :: insertar", e);
 		} catch (NullPointerException e) {
 			logger.error("DescargaDAOImpl :: insertar", e);
+		} finally {
+			try {
+				if(stm != null)
+					stm.close();
+			} catch (SQLException e) {
+				logger.error("DescargaDAOImpl :: insertar :: stm", e);
+			}
+			try {
+				if(cnn != null)
+					cnn.close();
+			} catch (SQLException e) {
+				logger.error("DescargaDAOImpl :: insertar :: cnn", e);
+			}
 		}
 		
 		return result;
@@ -68,28 +78,38 @@ public class DescargaDAOImpl {
 	public void actualizar(int id, int estado) {
 		String sql = "{call iilc.piilc_descargas_excel.sp_actualizar(?, ?)}";
 		Connection cnn = getConnection();
-		CallableStatement stm;
+		CallableStatement stm = null;
 		
 		try {
 			stm = cnn.prepareCall(sql);
 			stm.setInt(1, id);
 			stm.setInt(2, estado);
 			stm.execute();
-
-			stm.close();
-			cnn.close();
 		} catch (SQLException e) {
-			logger.error("DescargaDAOImpl :: findDescargas", e);
+			logger.error("DescargaDAOImpl :: actualizar", e);
 		} catch (NullPointerException e) {
-			logger.error("DescargaDAOImpl :: findDescargas", e);
+			logger.error("DescargaDAOImpl :: actualizar", e);
+		} finally {
+			try {
+				if(stm != null)
+					stm.close();
+			} catch (SQLException e) {
+				logger.error("DescargaDAOImpl :: actualizar :: stm", e);
+			}
+			try {
+				if(cnn != null)
+					cnn.close();
+			} catch (SQLException e) {
+				logger.error("DescargaDAOImpl :: actualizar :: cnn", e);
+			}
 		}
 	}
 	
 	public List<Descarga> findDescargas(String registro) {
 		String sql = "{call iilc.piilc_descargas_excel.sp_listar(?, ?)}";
 		Connection cnn = getConnection();
-		CallableStatement stm;
-		ResultSet rss;
+		CallableStatement stm = null;
+		ResultSet rss = null;
 		Descarga descarga = null;
 		List<Descarga> result = new ArrayList<Descarga>();
 		
@@ -111,13 +131,29 @@ public class DescargaDAOImpl {
 				
 				result.add(descarga);
 			}
-			
-			stm.close();
-			cnn.close();
 		} catch (SQLException e) {
 			logger.error("DescargaDAOImpl :: findDescargas", e);
 		} catch (NullPointerException e) {
 			logger.error("DescargaDAOImpl :: findDescargas", e);
+		} finally {
+			try {
+				if(rss != null)
+					rss.close();
+			} catch (SQLException e) {
+				logger.error("DescargaDAOImpl :: findDescargas :: rss", e);
+			}
+			try {
+				if(stm != null)
+					stm.close();
+			} catch (SQLException e) {
+				logger.error("DescargaDAOImpl :: findDescargas :: stm", e);
+			}
+			try {
+				if(cnn != null)
+					cnn.close();
+			} catch (SQLException e) {
+				logger.error("DescargaDAOImpl :: findDescargas :: cnn", e);
+			}
 		}
 		
 		return result;

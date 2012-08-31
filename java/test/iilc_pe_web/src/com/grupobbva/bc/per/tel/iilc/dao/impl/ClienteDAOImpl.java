@@ -526,14 +526,17 @@ public class ClienteDAOImpl {
 					}
 				} else {
 					logger.error("ClienteDAOImpl :: findAllClientebyFilter :: Error al obtener el resultado de la consulta.");
+					logger.error("SQL: " + sql);
 				}
 			} catch (SQLException e) {
 				logger.error("ClienteDAOImpl", e);
+				logger.error("SQL: " + sql);
 			}
 			s.close();			
 			con.close();
 		} catch (Exception e) {
 			logger.error("ClienteDAOImpl", e);
+			logger.error("SQL: " + sql);
 		}
 		return res;
 	}
@@ -933,11 +936,13 @@ public class ClienteDAOImpl {
 
 			} catch (SQLException e) {
 				logger.error(e);
+				logger.error("SQL: " + sql);
 			}
 			s.close();
 			con.close();
 		} catch (Exception e) {
 			logger.error(e);
+			logger.error("SQL: " + sql);
 		}
 		return cliente;
 	}
@@ -1202,11 +1207,13 @@ public class ClienteDAOImpl {
 
 			} catch (SQLException e) {
 				logger.error(e);
+				logger.error("SQL: " + sql);
 			}
 			s.close();
 			con.close();
 		} catch (Exception e) {
 			logger.error(e);
+			logger.error("SQL: " + sql);
 		}
 		return res;
 	}
