@@ -76,9 +76,7 @@ function parpadeo(){
 	setTimeout("parpadeo()", 1000);
 }
 
-function validaPerfil(){
-	perfil = '<c:out value="${sessionScope.perfil.cod_perfil}" />';
-	
+function validarPerfilConsulta(){
 	if(perfilTerritorio != "") {
 		if($("#territorio").val()=="-1"){
 			$("#territorio").val(perfilTerritorio);
@@ -90,7 +88,12 @@ function validaPerfil(){
 			$("#oficina").val(perfilOficina);
 		}
 	}
-		
+}
+
+function validaPerfil(){
+	validarPerfilConsulta();
+	perfil = '<c:out value="${sessionScope.perfil.cod_perfil}" />';
+	
 	if(perfil == "LC01") {
 		if($("#territorio").val()=="-1"){
 			alert("Debe seleccionar un territorio.");
@@ -560,9 +563,7 @@ function consulta(){
 }
 
 function consultaCliente(){
-	if(!validaPerfil()) {
-		return false;
-	};
+	validarPerfilConsulta();
 	
 	if(document.forms[0].cod_cliente.value.length==0){
 		alert("Ingrese un c\u00F3digo de cliente.");
