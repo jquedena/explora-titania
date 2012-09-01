@@ -33,19 +33,7 @@ class RentasController extends Zend_Controller_Action {
 	
 	public function datosAction(){
 		//$evt[] = array('btndetpredio000001','click','$("#ventanadetallepredio" ).dialog( "open" );');
-		$url = $this->view->util()->getPath();
-		$datospers = $this->_request->getParam ( 'datospers', '' );
-			if ($datospers == '') {
-				header ( 'location:' . $url . 'index.php/busqpers/?tit=Datos Contribuyente&url=' . $url . 'index.php/rentas/datos/?datospers=', true );
-			} else {				
-				list ( $cidpers, $nompers, $dir , $fechaproyeccion ) = explode ( '|', $datospers );
-				echo $this->view->inlineScript()->appendScript('pintardatoscontribuyente("'.$cidpers .'","'. $nompers .'","'. $dir .'")');
-				echo $this->view->inlineScript()->appendScript('detalleprediollenarcomponentes()');
-				echo $this->view->inlineScript()->appendScript('limpiarformulariodetallepredio()');				
-			}
-	}
-	
-	public function datos1Action(){
+
 //		$this->view->util()->registerScriptJSController($this->getRequest());
 //		$url = $this->view->util()->getPath();
 //		$datospers = $this->_request->getParam ( 'datospers', '' );
@@ -56,6 +44,20 @@ class RentasController extends Zend_Controller_Action {
 //				echo $this->view->inlineScript()->appendScript('pintardatoscontribuyente("'.$cidpers .'","'. $nompers .'","'. $dir .'")');
 //				echo $this->view->inlineScript()->appendScript('detalleprediollenarcomponentes()');
 //				echo $this->view->inlineScript()->appendScript('limpiarformulariodetallepredio()');				
+//			}
+	}
+	
+	public function datos1Action(){
+		$this->view->util()->registerScriptJSController($this->getRequest());
+//		$url = $this->view->util()->getPath();
+//		$datospers = $this->_request->getParam ( 'datospers', '' );
+//			if ($datospers == '') {
+//				header ( 'location:' . $url . 'index.php/busqpers/?tit=Datos Contribuyente&url=' . $url . 'index.php/rentas/datos/?datospers=', true );
+//			} else {				
+//				list ( $cidpers, $nompers, $dir , $fechaproyeccion ) = explode ( '|', $datospers );
+//				echo $this->view->inlineScript()->appendScript('pintardatoscontribuyente("'.$cidpers .'","'. $nompers .'","'. $dir .'")');
+				echo $this->view->inlineScript()->appendScript('detalleprediollenarcomponentes()');
+				echo $this->view->inlineScript()->appendScript('limpiarformulariodetallepredio()');				
 //			}
 	}
 	
@@ -167,6 +169,9 @@ class RentasController extends Zend_Controller_Action {
 		$array['result']['caract_piso'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
 		
 		$array['result']['instal_unid_medida'] = array(array('00001','A'),array('00002','B'),array('00003','C'));
+		
+		$array['result']['rustico_clasifpredio'] = array(array('00001','TIERRAS APTAS PARA CULTIVO LIMPIO CON RIEGO POR GRAVEDAD Y AGUA SUPERFICIAL'),array('00002','TIERRAS APTAS PARA CULTIVO LIMPIO CON RIEGO PROVENIENTE DE BOMBEO DE AGUA SUPERF'),array('00003','TIERRAS APTAS PARA CULTIVO LIMPIO CON RIEGO PROVENIENTE DE BOMBEO DE AGUA SUBT'),array('00004','TIERRAS APTAS PARA CULTIVO PERMANENTE CON RIEGO'),array('00005','TIERRAS APTAS PARA PASTOREO BAJO RIEGO'),array('00006','TIERRAS ERIAZAS'));
+		$array['result']['rustico_categpredio'] = array(array('00001','1'),array('00002','2'),array('00003','3'),array('00004','4'),array('00005','5'),array('00006','6'));
 		
 		echo json_encode($array);
 	}

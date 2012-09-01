@@ -281,6 +281,267 @@
   </tr>
 </table>
 </div>
+
+<!-- ---------------------------------------------------------------------------------------------------------------------------------  -->
+<!-- form predio rustico -->
+<div id="ventanadatosprediorustico">
+<table width="660" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="30">&nbsp;</td>
+    <td width="600">&nbsp;</td>
+    <td width="30">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td  style="border:1px solid">
+   	  <fieldset>
+        	<legend><h2>Predios Colindantes</h2></legend>
+            <table width="600" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="6" align="right" height="8px"></td>
+  </tr>
+  <thead class="ui-widget ui-widget-header ui-title1">          
+  <tr>
+    <th width="40">&nbsp;</th>
+    <th width="10">&nbsp;</th>
+    <th width="300" align="center">Ubicaci&oacute;n</th>
+    <th width="10">&nbsp;</th>
+    <th width="220" align="center">Propietario</th>
+    <th width="20" align="center">(*)</th>
+  </tr>
+  </thead>
+  <tr>
+    <td align="right"><b>Norte:</b></td>
+    <td>&nbsp;</td>
+    <td><input type="text" style="width:100%" id="txtrust_predcolinnorte" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" style="width:100%" id="txtrust_propietarionorte" value="" /></td>
+    <td align="center"><input type="checkbox" id="txtrust_checknorte" /></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="right" height="5px"></td>
+    </tr>
+  <tr>
+    <td align="right"><b>Sur:</b></td>
+    <td>&nbsp;</td>
+    <td><input type="text" style="width:100%" id="txtrust_predcolinsur" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" style="width:100%" id="txtrust_propietariosur" value="" /></td>
+    <td align="center"><input type="checkbox" id="txtrust_checksur" /></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="right" height="5px"></td>
+  </tr>
+  <tr>
+    <td align="right"><b>Este:</b></td>
+    <td>&nbsp;</td>
+    <td><input type="text" style="width:100%" id="txtrust_predcolineste" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" style="width:100%" id="txtrust_propietarioeste" value="" /></td>
+    <td align="center"><input type="checkbox" id="txtrust_checkeste" /></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="right" height="5px"></td>
+  </tr>
+  <tr>
+    <td align="right"><b>Oeste:</b></td>
+    <td>&nbsp;</td>
+    <td><input type="text" style="width:100%" id="txtrust_predcolinoeste" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" style="width:100%" id="txtrust_propietariooeste" value="" /></td>
+    <td align="center"><input type="checkbox" id="txtrust_checkoeste" /></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="right" height="8px"></td>
+  </tr>
+</table>
+
+        </fieldset>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td  style="border:1px solid">
+    	<fieldset>
+        	<legend><h2>Datos Relativos al Terreno</h2></legend><br>
+            <table width="600" border="0" cellspacing="0" cellpadding="0">
+            
+    <tr>
+    <td width="105"><b>Plan de Cultivo:</b></td>
+    <td width="15">&nbsp;</td>
+    <td width="130"><input type="text" style="width:130px" id="txtrust_plancultivo" value="" /></td>
+    <td width="15">&nbsp;</td>
+    <td width="115"><b>Canon de Agua:</b></td>
+    <td width="10">&nbsp;</td>
+    <td width="210"><input type="text" style="width:130px" id="txtrust_canonagua" value="" /></td>
+  </tr>
+  <tr>
+    <td colspan="7" align="right" height="8px"></td>
+  </tr>
+</table>
+
+    	</fieldset>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td style="border:1px solid">
+    <fieldset>
+        	<legend><h2>Determinaci&oacute;n del valuo del Predio</h2></legend>
+            <table width="600" border="0" cellspacing="0" cellpadding="0">
+ <thead class="ui-widget ui-widget-header ui-title1">
+  <tr>  	
+    <th width="265">Clasificaci&oacute;n:</th>
+    <th width="10">&nbsp;</th>
+    <th width="55">Categoria:</th>
+    <th width="10">&nbsp;</th>
+    <th width="80">Arancel:</th>
+    <th width="10">&nbsp;</th>
+    <th width="80">Hectarias:</th>
+    <th width="10">&nbsp;</th>
+    <th width="80">Valor Total:</th>
+    
+  </tr>
+  </thead>
+  <tr>
+    <td colspan="9" height="5px"></td>
+    </tr>
+  <tr>
+    <td><select id="cbrustico_clasif_0" style="width:100%"></select></td>
+    <td>&nbsp;</td>
+    <td><select id="cbrustico_categ_0" style="width:100%">
+    </select></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_arancel_0" style="width:80px" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_hectaria_0" style="width:80px" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_valor_0" style="width:80px" value="" /></td>
+  </tr>
+  <tr>
+    <td colspan="9" height="5px"></td>
+  </tr>
+  <tr>
+    <td><select id="cbrustico_clasif_1" style="width:100%"></select></td>
+    <td>&nbsp;</td>
+    <td><select id="cbrustico_categ_1" style="width:100%">
+    </select></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_arancel_1" style="width:80px" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_hectaria_1" style="width:80px" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_valor_1" style="width:80px" value="" /></td>
+  </tr>
+  <tr>
+    <td colspan="9" height="5px"></td>
+  </tr>
+  <tr>
+     <td><select id="cbrustico_clasif_2" style="width:100%"></select></td>
+    <td>&nbsp;</td>
+    <td><select id="cbrustico_categ_2" style="width:100%">
+    </select></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_arancel_2" style="width:80px" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_hectaria_2" style="width:80px" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_valor_2" style="width:80px" value="" /></td>
+  </tr>
+  <tr>
+   <td colspan="9" height="5px"></td>
+  </tr>
+  <tr>
+     <td><select id="cbrustico_clasif_3" style="width:100%"></select></td>
+    <td>&nbsp;</td>
+    <td><select id="cbrustico_categ_3" style="width:100%">
+    </select></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_arancel_3" style="width:80px" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_hectaria_3" style="width:80px" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_valor_3" style="width:80px" value="" /></td>
+  </tr>
+  <tr>
+   <td colspan="9" height="5px"></td>
+  </tr>
+    <tr>
+     <td><select id="cbrustico_clasif_4" style="width:100%"></select></td>
+    <td>&nbsp;</td>
+    <td><select id="cbrustico_categ_4" style="width:100%">
+    </select></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_arancel_4" style="width:80px" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_hectaria_4" style="width:80px" value="" /></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_valor_4" style="width:80px" value="" /></td>
+  </tr>
+  <tr>
+    <td colspan="9" height="5px"></td>
+  </tr>
+    <tr>
+      <td><select id="cbrustico_clasif_5" style="width:100%">
+      </select></td>
+      <td>&nbsp;</td>
+      <td><select id="cbrustico_categ_5" style="width:100%">
+      </select></td>
+      <td>&nbsp;</td>
+      <td><input type="text" id="cbrustico_arancel_5" style="width:80px" value="" /></td>
+      <td>&nbsp;</td>
+      <td><input type="text" id="cbrustico_hectaria_5" style="width:80px" value="" /></td>
+      <td>&nbsp;</td>
+      <td><input type="text" id="cbrustico_valor_5" style="width:80px" value="" /></td>
+    </tr>
+   <tr>
+    <td colspan="9" height="5px"></td>
+  </tr>
+    <tr>
+     <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><b>Valor Total</b></td>
+    <td>&nbsp;</td>
+    <td><input type="text" id="cbrustico_valortotal" style="width:80px" value="" /></td>
+  </tr>
+<tr>
+    <td colspan="9" height="8px"></td>
+  </tr>
+</table>
+
+    </fieldset>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><b>(*) El mismo Propietario</b></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</div>
+
 <!-- ---------------------------------------------------------------------------------------------------------------------------------  -->
 <div id="ventanadetallepredio">
 
@@ -391,6 +652,12 @@
 				        <td>&nbsp;</td>
 				        <td><fieldset><legend>Uso Espec&iacute;fico del Predio</legend><select id="cb_usoespecificopredio" style="width:100%;padding:2px"></select></fieldset></td>
 				      </tr>
+				      <tr>
+				        <td colspan="5" height="8px"></td>
+				        </tr>
+				        <tr>
+				        <td colspan="5" align="left"><button id="btnprediorustico">Datos de Predio R&uacute;stico</button></td>
+				        </tr>
 				    </table></td>
 				    <td>&nbsp;</td>
 				  </tr>
