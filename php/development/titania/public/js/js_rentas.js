@@ -108,6 +108,18 @@ $(function() {
 			Cerrar: function(){$( this ).dialog( "close" );}
 		}
 	});
+	$( "#ventanadatosprediorustico" ).dialog({
+		resizable: false,
+		height:580,
+		width:680,
+		modal: true,
+		autoOpen:false,
+		draggable:false,
+		title:"Busqueda de Contribuyente",
+		buttons: {
+			Cerrar: function(){$( this ).dialog( "close" );}
+		}
+	});
 });
 
 
@@ -278,7 +290,19 @@ function detalleprediollenarcomponentes(){
 			$('#cb_instalacionmotivo').html(contenidocombo(data.result.instalacion_motivo));
 			$('#cb_instalacionunidmedida').html(contenidocombo(data.result.instal_unid_medida));
 			
-			
+			$('#cbrustico_clasif_0').html(contenidocombo(data.result.rustico_clasifpredio));
+			$('#cbrustico_clasif_1').html(contenidocombo(data.result.rustico_clasifpredio));
+			$('#cbrustico_clasif_2').html(contenidocombo(data.result.rustico_clasifpredio));
+			$('#cbrustico_clasif_3').html(contenidocombo(data.result.rustico_clasifpredio));
+			$('#cbrustico_clasif_4').html(contenidocombo(data.result.rustico_clasifpredio));
+			$('#cbrustico_clasif_5').html(contenidocombo(data.result.rustico_clasifpredio));
+			$('#cbrustico_categ_0').html(contenidocombo(data.result.rustico_categpredio));
+			$('#cbrustico_categ_1').html(contenidocombo(data.result.rustico_categpredio));
+			$('#cbrustico_categ_2').html(contenidocombo(data.result.rustico_categpredio));
+			$('#cbrustico_categ_3').html(contenidocombo(data.result.rustico_categpredio));
+			$('#cbrustico_categ_4').html(contenidocombo(data.result.rustico_categpredio));
+			$('#cbrustico_categ_5').html(contenidocombo(data.result.rustico_categpredio));
+			$('#btnprediorustico').click(function(event){ $("#ventanadatosprediorustico" ).dialog( "open" );  });
 		}
 	});
 }
@@ -294,7 +318,7 @@ function detallepredio(cod, nombre, dirfis, codpredio){
 		if (data.result != undefined && data.result == 'error'){console.log(data.mensaje);} 
 		else {
 			//alert(data.result.codusopredio);
-			$('#c_dirpred').val(data.result.dirpred);
+			$('#c_dirpred').html(data.result.dirpred);
 			$('#txt_fechaadquisicion').val(data.result.fechaadq);
 			$('#txt_fechabaja').val(data.result.fechabaj);
 			$('#txt_ultimorecalculo').val(data.result.fecharecalculo);
