@@ -1,5 +1,8 @@
 
 $(function(){
+	
+	$( "#anadirdatosprediorustico" ).click(function(event){ anadirdatosprediorustico()});
+	
 		$( "#tabs_detallepredio" ).tabs();
 		
 		$("#c_codigocontrib").numeric({ decimal: false, negative: false }, function() { alert("Solo Numeros Enteros Positivos..."); this.value = ""; this.focus(); });
@@ -9,11 +12,13 @@ $(function(){
 				buscardatoscontribuyente($('#c_codigocontrib').val());
 			}   
 		});	
-		$('#c_nombrecontrib').keyup(function(event) {
+		$('#c_nombrecontrib,#c_apepatcontrib,#c_apematcontrib ').keyup(function(event) {
 			if(event.keyCode == 13){
 				var nombre = $('#c_nombrecontrib').val();
+				var apepat = $('#c_apepatcontrib').val();
+				var apemat = $('#c_apematcontrib').val();
 				
-				var jqxhr = $.getJSON(path+"rentas/buscarcontribuyentexnombre/?nombre="+nombre);	
+				var jqxhr = $.getJSON(path+"rentas/buscarcontribuyentexnombre/?nombre="+nombre+"&apepat="+apepat+"&apemat="+apemat);	
 				jqxhr.success(function(data){
 					if (data.result != undefined && data.result == 'error'){console.log(data.mensaje);} 
 					else {
@@ -23,15 +28,17 @@ $(function(){
 						});
 						cad += '</tbody></table>';
 						
-						$('#div_rptabuscarpersonanombre').html(cad)
+						$('#div_rptabuscarpersonanombre').html(cad)						
+						$("#div_result_princ").html($("#ventanabuscarpersonanombre" ).html());
 						mouseHover("tbl_buscarpersonanombre");
-						$("#ventanabuscarpersonanombre" ).dialog( "open" );
+						//$("#ventanabuscarpersonanombre" ).dialog( "open" );
 					}
 				});
 				
 			}   
 		});		
-		$('#c_direccontri').keyup(function(event) {
+
+		$('#c_centropobladcontri , #c_viacontrib , #c_nroviacontrib , #c_mzacontrib , #c_lotecontrib').keyup(function(event) {
 			if(event.keyCode == 13){
 				var dir = $('#c_direccontri').val();
 				
@@ -58,8 +65,10 @@ $(function(){
 						cad += '</tbody></table>';
 						
 						$('#div_rptabuscarpersonadir').html(cad)
+						$("#div_result_princ").html($("#ventanabuscarpersonadireccion" ).html());
 						mouseHover("tbl_buscarpersonadir");
-						$("#ventanabuscarpersonadireccion" ).dialog( "open" );
+						//$("#ventanabuscarpersonadireccion" ).dialog( "open" );
+						
 					}
 				});
 				
@@ -70,6 +79,7 @@ $(function(){
 
 
 $(function() {
+	
 	$( "#dialog:ui-dialog" ).dialog( "destroy" );					
 	$( "#ventanadetallepredio" ).dialog({
 		resizable: false,
@@ -84,30 +94,34 @@ $(function() {
 		   ,Cerrar: function(){$( this ).dialog( "close" );}
 		}
 	});
-	$( "#ventanabuscarpersonanombre" ).dialog({
-		resizable: false,
-		height:300,
-		width:750,
-		modal: true,
-		autoOpen:false,
-		draggable:false,
-		title:"Busqueda de Contribuyente",
-		buttons: {
-			Cerrar: function(){$( this ).dialog( "close" );}
-		}
-	});
-	$( "#ventanabuscarpersonadireccion" ).dialog({
-		resizable: false,
-		height:300,
-		width:880,
-		modal: true,
-		autoOpen:false,
-		draggable:false,
-		title:"Busqueda de Contribuyente",
-		buttons: {
-			Cerrar: function(){$( this ).dialog( "close" );}
-		}
-	});
+	
+	$( "#ventanabuscarpersonanombre" ).hide();
+	$( "#ventanabuscarpersonadireccion" ).hide();
+	
+//	$( "#ventanabuscarpersonanombre" ).dialog({
+//		resizable: false,
+//		height:300,
+//		width:750,
+//		modal: true,
+//		autoOpen:false,
+//		draggable:false,
+//		title:"Busqueda de Contribuyente",
+//		buttons: {
+//			Cerrar: function(){$( this ).dialog( "close" );}
+//		}
+//	});
+//	$( "#ventanabuscarpersonadireccion" ).dialog({
+//		resizable: false,
+//		height:300,
+//		width:880,
+//		modal: true,
+//		autoOpen:false,
+//		draggable:false,
+//		title:"Busqueda de Contribuyente",
+//		buttons: {
+//			Cerrar: function(){$( this ).dialog( "close" );}
+//		}
+//	});
 	$( "#ventanadatosprediorustico" ).dialog({
 		resizable: false,
 		height:580,
@@ -133,8 +147,14 @@ function buscardatoscontribuyente(codpers){
 		if (data.result != undefined && data.result == 'error'){console.log(data.mensaje);} 
 		else {
 			$( "#c_codigocontrib" ).val( data.result.contribuyente.codigo );
-			$( "#c_nombrecontrib" ).val( data.result.contribuyente.ape_paterno + ' '+ data.result.contribuyente.ape_materno + ' '+ data.result.contribuyente.nombre );	
-			$( "#c_direccontri" ).val( data.result.contribuyente.dirfiscal );				
+			$( "#c_nombrecontrib" ).val( data.result.contribuyente.nombre );	
+			$( "#c_apepatcontrib" ).val( data.result.contribuyente.ape_paterno);
+			$( "#c_apematcontrib" ).val( data.result.contribuyente.ape_materno );
+			$( "#c_centropobladcontri" ).val( data.result.contribuyente.centropoblad );
+			$( "#c_viacontrib" ).val( data.result.contribuyente.via );
+			$( "#c_nroviacontrib" ).val( data.result.contribuyente.nro );
+			$( "#c_mzacontrib" ).val( data.result.contribuyente.mza );
+			$( "#c_lotecontrib" ).val( data.result.contribuyente.lote );
 			
 			var predios = data.result.predios;
 			var cadpredio = '';
@@ -208,7 +228,7 @@ function buscardatoscontribuyente(codpers){
 				  
 		      });
 			  
-			  $( "#div_predios" ).html( cadpredio );	
+			  $( "#div_result_princ" ).html( cadpredio );	
 			  $(function(){$("button").button();});
 		}
 	});
@@ -290,18 +310,8 @@ function detalleprediollenarcomponentes(){
 			$('#cb_instalacionmotivo').html(contenidocombo(data.result.instalacion_motivo));
 			$('#cb_instalacionunidmedida').html(contenidocombo(data.result.instal_unid_medida));
 			
-			$('#cbrustico_clasif_0').html(contenidocombo(data.result.rustico_clasifpredio));
-			$('#cbrustico_clasif_1').html(contenidocombo(data.result.rustico_clasifpredio));
-			$('#cbrustico_clasif_2').html(contenidocombo(data.result.rustico_clasifpredio));
-			$('#cbrustico_clasif_3').html(contenidocombo(data.result.rustico_clasifpredio));
-			$('#cbrustico_clasif_4').html(contenidocombo(data.result.rustico_clasifpredio));
-			$('#cbrustico_clasif_5').html(contenidocombo(data.result.rustico_clasifpredio));
-			$('#cbrustico_categ_0').html(contenidocombo(data.result.rustico_categpredio));
-			$('#cbrustico_categ_1').html(contenidocombo(data.result.rustico_categpredio));
-			$('#cbrustico_categ_2').html(contenidocombo(data.result.rustico_categpredio));
-			$('#cbrustico_categ_3').html(contenidocombo(data.result.rustico_categpredio));
-			$('#cbrustico_categ_4').html(contenidocombo(data.result.rustico_categpredio));
-			$('#cbrustico_categ_5').html(contenidocombo(data.result.rustico_categpredio));
+			$('#cbrustico_clasif_x').html(contenidocombo(data.result.rustico_clasifpredio));
+			$('#cbrustico_categ_x').html(contenidocombo(data.result.rustico_categpredio));
 			$('#btnprediorustico').click(function(event){ $("#ventanadatosprediorustico" ).dialog( "open" );  });
 		}
 	});
@@ -485,4 +495,19 @@ function llenardatosinstalacion(jsondata){
 	$('#txt_instalacionnrodoc').val(data.tipodoc);	
 	$('#cb_instalacionmotivo').val(data.codmotivo);	
 	$('#txt_instalacionfechadoc').val(data.fechadoc);
+}
+
+
+function anadirdatosprediorustico(){
+	var correl = $('#correlprediorustico').val();
+	var modelo = $('#div_modelo_datoscalculoprediorustico').html();
+	
+	modelo = modelo.replace(/\_x/g,'_'+correl);
+		
+	$('#div_datoscalculoprediorustico').append(modelo);
+	
+	$('#correlprediorustico').val(parseInt(correl) + 1); 
+	//if(correl == '0'){$('#borrardatosprediorustico_'+correl).hide();}
+	
+	
 }

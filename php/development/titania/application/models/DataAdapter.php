@@ -4,7 +4,7 @@ require_once dirname(__FILE__).'/../../library/Log4PHP/Logger.php';
 class Model_DataAdapter {
 
 	private static $instance;
-	private static $driver = "host=192.168.2.30 port=5432 dbname=titania_test user=desarrollo password=desarrollo";
+	private static $driver = "host=192.168.2.38 port=5432 dbname=titania_test user=desarrollo password=desarrollo";
 	private $connection = null;
 	private $logger = null;
 

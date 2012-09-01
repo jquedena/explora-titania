@@ -71,7 +71,18 @@ class RentasController extends Zend_Controller_Action {
 		$direccion = $this->_request->getParam ( 'direccion', '' );
 		
 		$array['mensaje'] = "OK";
-		$array['result']['contribuyente'] = array("codigo"=> $codpers, "nombre"=> "Miguel", "ape_paterno"=> "Villanueva", "ape_materno"=> "Gonzalez", "tipoDocumento"=> "", "nroDocumento"=> "", "dirfiscal"=> "Asoc Juan Linares Rojas D-15");
+		$array['result']['contribuyente'] = array(  "codigo"=> $codpers, 
+				 								    "nombre"=> "Miguel", 
+													"ape_paterno"=> "Villanueva", 
+													"ape_materno"=> "Gonzalez", 
+													"tipoDocumento"=> "", 
+													"nroDocumento"=> "", 
+													"centropoblad"=> "Asoc.", 
+													"via"=> " Juan Linares Rojas",
+													"nro"=> "",
+													"mza"=> "D",
+													"lote"=> "15",
+													"dirfiscal"=> "Asoc Juan Linares Rojas D-15");
 		
 		$predios[] = array("codigo"=> "000001", "tipo"=> "X", "direccion"=> "mi casita 01", "uso"=> "CASA"    ,"porcentaje" => '100', "fechaadq"=>"21/03/1990" , "fechabaj"=>"" ,"valorepredio"=> "100.00", "valorafecto"=> "100.00", "impuestoanual"=> "10.00" , "valuo"=>"876.00" );
 		$predios[] = array("codigo"=> "000002", "tipo"=> "Y", "direccion"=> "mi casita 02", "uso"=> "COMERCIO","porcentaje" => '100', "fechaadq"=>"26/12/2010" , "fechabaj"=>"26/01/2012" ,"valorepredio"=> "200.00", "valorafecto"=> "200.00", "impuestoanual"=> "10.00" , "valuo"=>"123.00" );
@@ -88,6 +99,8 @@ class RentasController extends Zend_Controller_Action {
 		$array['mensaje'] = "OK";
 		
 		$nombre = $this->_request->getParam ( 'nombre', '' );
+		$apepat = $this->_request->getParam ( 'apepat', '' );
+		$apemat = $this->_request->getParam ( 'apemat', '' );
 		
 		$array['result']['contribuyentes'][0]['codpers'] = '125589';
 		$array['result']['contribuyentes'][0]['nombre'] = 'BARZOLA ROJAS DIANA';
