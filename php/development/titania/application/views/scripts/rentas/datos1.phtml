@@ -9,8 +9,9 @@
   </tr>
   <tr>
     <td>
-    <div style="border:1px solid">
-    <table width="700" border="0" cellspacing="0" cellpadding="0">
+    <div style="border:1px solid" align="center">
+    
+    <!--table width="700" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td colspan="5" height="10"></td>
         </tr>
@@ -34,7 +35,53 @@
       <tr>
         <td colspan="5"  height="10"></td>
         </tr>
-    </table>
+    </table-->
+    <table width="700" border="0" cellspacing="0" cellpadding="0">
+      <tbody><tr>
+        <td colspan="13" height="10"></td>
+        </tr>
+      <tr>
+        <td width="20">&nbsp;</td>
+        <td width="100"><fieldset>
+            <legend>C&oacute;digo:</legend><input id="c_codigocontrib" maxlength="6" style="width:100%" value=""></fieldset></td>
+        <td width="10">&nbsp;</td>
+        <td width="180"><fieldset>
+          <legend>Nombre:</legend><input id="c_nombrecontrib" style="width:100%" value=""></fieldset></td>
+        <td width="10">&nbsp;</td>
+        <td width="180"><fieldset>
+          <legend>Apellido Paterno:</legend>
+          <input id="c_apepatcontrib" style="width:100%" value=""></fieldset></td>
+        <td width="10">&nbsp;</td>
+        <td colspan="5"><fieldset>
+          <legend>Apellido Materno:</legend>
+          <input id="c_apematcontrib" style="width:100%" value=""></fieldset></td>
+        <td width="20">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="13" height="8px"></td>
+        </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><fieldset><legend>C&oacute;digo Predial:</legend><input id="c_predial" style="width:100%" value=""></fieldset></td>
+        <td></td>
+        <td><fieldset><legend>Centro Poblado:</legend><input id="c_centropobladcontri" style="width:100%" value=""></fieldset></td>
+        <td>&nbsp;</td>
+        <td><fieldset><legend>Via:</legend><input id="c_viacontrib" style="width:100%" value=""></fieldset></td>
+        <td>&nbsp;</td>
+        <td width="50"><fieldset>
+          <legend>Nro:</legend><input id="c_nroviacontrib" style="width:100%" value=""></fieldset></td>
+        <td width="10">&nbsp;</td>
+        <td width="50"><fieldset>
+          <legend>Mza:</legend><input id="c_mzacontrib" style="width:100%" value=""></fieldset></td>
+        <td width="10">&nbsp;</td>
+        <td width="50"><fieldset><legend>Lote:</legend><input id="c_lotecontrib" style="width:100%" value=""></fieldset></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="13" height="10"></td>
+        </tr>
+    </tbody></table>
+    
     </div>    
     
     </td>
@@ -51,13 +98,13 @@
     </tr>
   <tr>
     <td width="40">&nbsp;</td>
-    <td width="620">PREDIOS:</td>
+    <td width="620"></td>
     <td width="40">&nbsp;</td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td>
-    	<div id="div_predios" style="overflow-y:scroll;height:200px;border:1px solid">
+    	<div id="div_result_princ" style="overflow-y:scroll;height:200px;border:1px solid">
         	<!-- 
             <div style="border:1px solid">
             <table width="600" border="0" cellspacing="0" cellpadding="0">
@@ -135,7 +182,7 @@
   <tr>
     <td>&nbsp;</td>
     <td align="right">
-    <button id="btnnuevopredio" name="btnnuevopredio" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-state-hover" role="button"><span class="ui-button-text">Nuevo Predio</span></button>
+    <!--button id="btnnuevopredio" name="btnnuevopredio" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-state-hover" role="button"><span class="ui-button-text">Nuevo Predio</span></button -->
     </td>
     <td>&nbsp;</td>
   </tr>
@@ -400,115 +447,55 @@
     <td style="border:1px solid">
     <fieldset>
         	<legend><h2>Determinaci&oacute;n del valuo del Predio</h2></legend>
+        	<ul><li class="ui-state-default ui-corner-all" style="width:16px" id="anadirdatosprediorustico" ><span class="ui-icon ui-icon-plusthick"></span></li></ul>
             <table width="600" border="0" cellspacing="0" cellpadding="0">
  <thead class="ui-widget ui-widget-header ui-title1">
   <tr>  	
-    <th width="265">Clasificaci&oacute;n:</th>
+    <th width="241">Clasificaci&oacute;n:</th>
     <th width="10">&nbsp;</th>
     <th width="55">Categoria:</th>
     <th width="10">&nbsp;</th>
-    <th width="80">Arancel:</th>
+    <th width="72">Arancel:</th>
     <th width="10">&nbsp;</th>
-    <th width="80">Hectarias:</th>
+    <th width="72">Hectarias:</th>
     <th width="10">&nbsp;</th>
-    <th width="80">Valor Total:</th>
-    
+    <th width="72">Valor Total:</th>
+    <th width="10">&nbsp;</th>
+    <th width="18"></th>
+    <th width="20"></th>
   </tr>
   </thead>
-  <tr>
-    <td colspan="9" height="5px"></td>
-    </tr>
-  <tr>
-    <td><select id="cbrustico_clasif_0" style="width:100%"></select></td>
-    <td>&nbsp;</td>
-    <td><select id="cbrustico_categ_0" style="width:100%">
-    </select></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_arancel_0" style="width:80px" value="" /></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_hectaria_0" style="width:80px" value="" /></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_valor_0" style="width:80px" value="" /></td>
-  </tr>
-  <tr>
-    <td colspan="9" height="5px"></td>
-  </tr>
-  <tr>
-    <td><select id="cbrustico_clasif_1" style="width:100%"></select></td>
-    <td>&nbsp;</td>
-    <td><select id="cbrustico_categ_1" style="width:100%">
-    </select></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_arancel_1" style="width:80px" value="" /></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_hectaria_1" style="width:80px" value="" /></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_valor_1" style="width:80px" value="" /></td>
-  </tr>
-  <tr>
-    <td colspan="9" height="5px"></td>
-  </tr>
-  <tr>
-     <td><select id="cbrustico_clasif_2" style="width:100%"></select></td>
-    <td>&nbsp;</td>
-    <td><select id="cbrustico_categ_2" style="width:100%">
-    </select></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_arancel_2" style="width:80px" value="" /></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_hectaria_2" style="width:80px" value="" /></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_valor_2" style="width:80px" value="" /></td>
-  </tr>
-  <tr>
-   <td colspan="9" height="5px"></td>
-  </tr>
-  <tr>
-     <td><select id="cbrustico_clasif_3" style="width:100%"></select></td>
-    <td>&nbsp;</td>
-    <td><select id="cbrustico_categ_3" style="width:100%">
-    </select></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_arancel_3" style="width:80px" value="" /></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_hectaria_3" style="width:80px" value="" /></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_valor_3" style="width:80px" value="" /></td>
-  </tr>
-  <tr>
-   <td colspan="9" height="5px"></td>
-  </tr>
     <tr>
-     <td><select id="cbrustico_clasif_4" style="width:100%"></select></td>
-    <td>&nbsp;</td>
-    <td><select id="cbrustico_categ_4" style="width:100%">
-    </select></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_arancel_4" style="width:80px" value="" /></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_hectaria_4" style="width:80px" value="" /></td>
-    <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_valor_4" style="width:80px" value="" /></td>
-  </tr>
-  <tr>
-    <td colspan="9" height="5px"></td>
-  </tr>
-    <tr>
-      <td><select id="cbrustico_clasif_5" style="width:100%">
-      </select></td>
-      <td>&nbsp;</td>
-      <td><select id="cbrustico_categ_5" style="width:100%">
-      </select></td>
-      <td>&nbsp;</td>
-      <td><input type="text" id="cbrustico_arancel_5" style="width:80px" value="" /></td>
-      <td>&nbsp;</td>
-      <td><input type="text" id="cbrustico_hectaria_5" style="width:80px" value="" /></td>
-      <td>&nbsp;</td>
-      <td><input type="text" id="cbrustico_valor_5" style="width:80px" value="" /></td>
+    <td colspan="12" height="5px"></td>
     </tr>
-   <tr>
-    <td colspan="9" height="5px"></td>
-  </tr>
+    <tr><td colspan="12" height="5px">
+    <input type="hidden" value="0" id="correlprediorustico">
+    
+    <div id="div_modelo_datoscalculoprediorustico" style="display: none; ">    
+      <table id="tbl_datoscalculoprediorustico_x" width="580" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td width="241"><select id="cbrustico_clasif_x" style="width:100%"></select></td>
+	    <td width="10">&nbsp;</td>
+	    <td width="55"><select id="cbrustico_categ_x" style="width:100%"></select></td>
+	    <td width="10">&nbsp;</td>
+	    <td width="72"><input type="text" id="cbrustico_arancel_x" readonly="readonly" style="width:100%" value="0.00" /></td>
+	    <td width="10">&nbsp;</td>
+	    <td width="72"><input type="text" id="cbrustico_hectaria_x" style="width:100%" value="0.00" /></td>
+	    <td width="10">&nbsp;</td>
+	    <td width="72"><input type="text" id="cbrustico_valor_x" readonly="readonly" style="width:100%" value="0.00" /></td>
+	    <td width="10">&nbsp;</td>
+	    <td width="18"><ul><li class="ui-state-default ui-corner-all" id="borrardatosprediorustico_x" onclick="$('#tbl_datoscalculoprediorustico_x').remove();" style="width:16px"><span class="ui-icon ui-icon-closethick"></span></li></ul></td>
+	  </tr>
+	  <tr>
+	    <td colspan="11" height="5px"></td>
+	  </tr>
+  	  </table> 	  
+    </div>
+    
+    <div id="div_datoscalculoprediorustico" style="overflow-y:scroll;height:100px;border:1px solid">
+    </div>
+        
+    </td></tr>
     <tr>
      <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -518,10 +505,13 @@
     <td>&nbsp;</td>
     <td><b>Valor Total</b></td>
     <td>&nbsp;</td>
-    <td><input type="text" id="cbrustico_valortotal" style="width:80px" value="" /></td>
+    <td><input type="text" id="cbrustico_valortotal" readonly="readonly" style="width:80px" value="" /></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
   </tr>
 <tr>
-    <td colspan="9" height="8px"></td>
+    <td colspan="12" height="8px"></td>
   </tr>
 </table>
 
