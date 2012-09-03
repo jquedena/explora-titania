@@ -95,7 +95,8 @@ function validaPerfil(){
 	perfil = '<c:out value="${sessionScope.perfil.cod_perfil}" />';
 	
 	if(perfil == "LC01" || perfil == "LC06") {
-		if( ((document.forms[0].clasificacion.value == '-1'     ) && 
+		if( (($("#territorio").val() == "-1" || $("#territorio").val() == perfilTerritorio) &&
+			(document.forms[0].clasificacion.value == '-1'     ) && 
 			(document.forms[0].margen_ordinario.value == '-1'   ) && 
 			(document.forms[0].etiqueta.value == '-1'           ) && 
 			(document.forms[0].edad.value == '-1'               ) && 
@@ -479,6 +480,7 @@ function openFile(tipo){
 				$("#rightPanel").css({"width": "400px", "display": "inline"});
 				$("#imgShow").css({"display": "none"});
 				$("#imgHide").css({"display": "inline"});
+				$("#titlehide").html("Ocultar Descargas aqu&iacute; -&gt;");
 				idVerificar = setInterval("verificarCargas()", 5000);   
 			}
 			,'onTimeout':function(req){ alert("Tiempo de espera agotado. Intente nuevamente."); }
@@ -948,11 +950,13 @@ $(function(){
 			$("#rightPanel").css({"width": "400px", "display": "inline"});
 			$("#imgShow").css({"display": "none"});
 			$("#imgHide").css({"display": "inline"});
+			$("#titlehide").html("Ocultar Descargas aqu&iacute; -&gt;");
 		} else{
 			$("#leftPanel").css({"width": "100%"});
 			$("#rightPanel").css({"width": "0%", "display": "none"});
 			$("#imgShow").css({"display": "inline"});
 			$("#imgHide").css({"display": "none"});
+			$("#titlehide").html("Ver Descargas aqu&iacute; -&gt;");
 		}
 	});
 });
@@ -966,7 +970,7 @@ $(function(){
 	<tr>
 		<td style="width: 100%;height: 20px;" align="right">
 			<div id="btnHide">
-				<b>Ver descargas aqu&iacute; -&gt;</b>
+				<b id="titlehide">Ver descargas aqu&iacute; -&gt;</b>
 				<img id="imgShow" style="display: inline" src="${pageContext.request.contextPath}/images/btn_hide_menu.gif">
 				<img id="imgHide" style="display: none;" src="${pageContext.request.contextPath}/images/btn_show_menu.gif">
 			</div>
