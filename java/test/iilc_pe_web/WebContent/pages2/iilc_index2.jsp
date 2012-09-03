@@ -94,16 +94,16 @@ function validaPerfil(){
 	validarPerfilConsulta();
 	perfil = '<c:out value="${sessionScope.perfil.cod_perfil}" />';
 	
-	if(perfil == "LC01") {
-		if($("#territorio").val()=="-1"){
-			alert("Debe seleccionar un territorio.");
-			return false;
-		}
-	}
-	
-	if(perfil == "LC06") {
-		if($("#territorio").val().indexOf(",")>-1){
-			alert("Debe seleccionar un territorio.");
+	if(perfil == "LC01" || perfil == "LC06") {
+		if( ((document.forms[0].clasificacion.value == '-1'     ) && 
+			(document.forms[0].margen_ordinario.value == '-1'   ) && 
+			(document.forms[0].etiqueta.value == '-1'           ) && 
+			(document.forms[0].edad.value == '-1'               ) && 
+			(document.forms[0].cuota_riesgo_total.value == '-1' ) && 
+			(document.forms[0].cod_empresa.value == '-2' || 
+			 document.forms[0].cod_empresa.value == '-1'     ) && 
+			(document.forms[0].tipo_cliente.value == '-1'    )) ){
+			alert("Debe seleccionar al menos un campo para la b\u00FAsqueda.");
 			return false;
 		}
 	}
