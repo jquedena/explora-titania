@@ -7,7 +7,9 @@ import indra.bbva.pizele.service.ParametroService;
 import indra.bbva.pizele.service.ProcesoAutomaticoService;
 import indra.core.GenericAction;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -24,6 +26,7 @@ public class ProcesoCargaAction extends GenericAction {
 
 	private static final long serialVersionUID = 3695775976954224296L;
 	private static String hora = "";
+	private static Date fecha = new Date();
 	private Logger logger = Logger.getLogger(this.getClass());
 
 	@Resource
@@ -31,7 +34,7 @@ public class ProcesoCargaAction extends GenericAction {
 
 	@Resource
 	private ProcesoAutomaticoService procesoAutomaticoService;
-	
+
 	public static String getHora() {
 		return hora;
 	}
@@ -40,25 +43,44 @@ public class ProcesoCargaAction extends GenericAction {
 		ProcesoCargaAction.hora = hora;
 	}
 
+	public static Date getFecha() {
+		return fecha;
+	}
+
+	public static void setFecha(Date fecha) {
+		ProcesoCargaAction.fecha = fecha;
+	}
+
 	public void ejecutaCargaLogrosMIS() {
 
 		boolean terminoConError = false;
 		String msg = "";
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
 		ProcesoAutomatico objProcesoAutomatico = new ProcesoAutomatico();
-		objProcesoAutomatico.setIdTipo(Constantes.ProcesoAutomaticoTipo.CargaLogrosEpigrafesMIS);
-		objProcesoAutomatico.setIdEstado(Constantes.ProcesoAutomaticoEstado.Pendiente);
+		objProcesoAutomatico
+				.setIdTipo(Constantes.ProcesoAutomaticoTipo.CargaLogrosEpigrafesMIS);
+		objProcesoAutomatico
+				.setIdEstado(Constantes.ProcesoAutomaticoEstado.Pendiente);
+		objProcesoAutomatico.setFecha(formatter.format(ProcesoCargaAction.getFecha()));
 		objProcesoAutomatico.setHora(ProcesoCargaAction.getHora());
 
 		try {
 
-			if (this.getProcesoAutomaticoService().listarProcesoAutomatico(objProcesoAutomatico).size() > 0)
+			if (this.getProcesoAutomaticoService().listarProcesoAutomatico(
+					objProcesoAutomatico).size() > 0) {
+				this.logger.error("Existe un proceso iniciado.");
 				return;
+			}
 
-			this.getProcesoAutomaticoService().insertarProcesoAutomatico(objProcesoAutomatico);
+			this.logger.error("Insertando tarea.");
+			this.getProcesoAutomaticoService().insertarProcesoAutomatico(
+					objProcesoAutomatico);
 
-			// Ejecutar Proceso de Carga de Logros de epigrafes MIS Independientes del SDO.
-			this.getProcesoAutomaticoService().cargarArchivoMISIndependienteSDO();
+			// Ejecutar Proceso de Carga de Logros de epigrafes MIS
+			// Independientes del SDO.
+			this.getProcesoAutomaticoService()
+					.cargarArchivoMISIndependienteSDO();
 		} catch (Exception ex) {
 			this.logger.error("Error al iniciar la carga", ex);
 			msg = ex.getMessage();
@@ -66,24 +88,31 @@ public class ProcesoCargaAction extends GenericAction {
 		}
 
 		if (terminoConError) {
-			if (objProcesoAutomatico.getId() == null || objProcesoAutomatico.getId() == 0L) {
-				this.logger.error("ERROR AL INSERTAR EL REGISTRO DE UN PROCESO AUTOMATICO DE CARGA DE LOGROS DE EPIGRAFES MIS INDEPENDIENTES DEL SDO");
+			if (objProcesoAutomatico.getId() == null
+					|| objProcesoAutomatico.getId() == 0L) {
+				this.logger
+						.error("ERROR AL INSERTAR EL REGISTRO DE UN PROCESO AUTOMATICO DE CARGA DE LOGROS DE EPIGRAFES MIS INDEPENDIENTES DEL SDO");
 				return;
 			} else {
 				objProcesoAutomatico.setObservacion(msg);
-				objProcesoAutomatico.setIdEstado(Constantes.ProcesoAutomaticoEstado.Terminado_Error);
+				objProcesoAutomatico
+						.setIdEstado(Constantes.ProcesoAutomaticoEstado.Terminado_Error);
 			}
 		} else {
-			objProcesoAutomatico.setIdEstado(Constantes.ProcesoAutomaticoEstado.Terminado);
-			objProcesoAutomatico.setObservacion("Proceso se realizó con éxito.");
+			objProcesoAutomatico
+					.setIdEstado(Constantes.ProcesoAutomaticoEstado.Terminado);
+			objProcesoAutomatico
+					.setObservacion("Proceso se realizó con éxito.");
 		}
 
 		try {
-			this.getProcesoAutomaticoService().actualizarProcesoAutomatico(objProcesoAutomatico);
+			this.getProcesoAutomaticoService().actualizarProcesoAutomatico(
+					objProcesoAutomatico);
 		} catch (Exception ex) {
-			this.logger.error("ERROR AL ACTUALIZAR EL REGISTRO "
-				+ objProcesoAutomatico.getId()
-				+ " DEL PROCESO AUTOMATICO DE CARGA DE LOGROS DE EPIGRAFES MIS INDEPENDIENTES DEL SDO.");
+			this.logger
+					.error("ERROR AL ACTUALIZAR EL REGISTRO "
+							+ objProcesoAutomatico.getId()
+							+ " DEL PROCESO AUTOMATICO DE CARGA DE LOGROS DE EPIGRAFES MIS INDEPENDIENTES DEL SDO.");
 		}
 
 	}
@@ -94,12 +123,21 @@ public class ProcesoCargaAction extends GenericAction {
 
 		try {
 
-			Parametro objParamFlagEjecTomaDes = this.getParametroService().obtenerParametro(Constantes.ProcesoCargaLogrosMIS.FLAG_EJECUCION);
+			Parametro objParamFlagEjecTomaDes = this.getParametroService()
+					.obtenerParametro(
+							Constantes.ProcesoCargaLogrosMIS.FLAG_EJECUCION);
 			ejecutar = (objParamFlagEjecTomaDes.getValorEntero() == 1L);
 
 			if (ejecutar) {
 
-				if (ProcesoCargaAction.getHora().equals(this.getParametroService().obtenerParametro(Constantes.ProcesoCargaLogrosMIS.HORA_EJECUCION).getValorTexto())) {
+				if (ProcesoCargaAction
+						.getHora()
+						.equals(
+								this
+										.getParametroService()
+										.obtenerParametro(
+												Constantes.ProcesoCargaLogrosMIS.HORA_EJECUCION)
+										.getValorTexto())) {
 					ejecutar = true;
 				} else
 					ejecutar = false;
@@ -109,14 +147,18 @@ public class ProcesoCargaAction extends GenericAction {
 					ejecutar = false;
 
 					Parametro objFiltro = new Parametro();
-					objFiltro.setIdParametroPadre(Constantes.ProcesoCargaLogrosMIS.DIAS_EJECUCION);
+					objFiltro
+							.setIdParametroPadre(Constantes.ProcesoCargaLogrosMIS.DIAS_EJECUCION);
 					objFiltro.setEstadoRegistro("A");
-					List<Parametro> listaDiasEjecucion = this.getParametroService().listarParametroFiltro(objFiltro);
+					List<Parametro> listaDiasEjecucion = this
+							.getParametroService().listarParametroFiltro(
+									objFiltro);
 
 					Calendar hoy = Calendar.getInstance();
-					
+
 					for (int index = 0; index < listaDiasEjecucion.size(); index++) {
-						if (listaDiasEjecucion.get(index).getValorEntero() == Long.valueOf(hoy.get(Calendar.DAY_OF_WEEK))) {
+						if (listaDiasEjecucion.get(index).getValorEntero() == Long
+								.valueOf(hoy.get(Calendar.DAY_OF_WEEK))) {
 							ejecutar = true;
 							break;
 						}
@@ -127,7 +169,8 @@ public class ProcesoCargaAction extends GenericAction {
 			}
 
 		} catch (Exception ex) {
-			this.logger.error("ProcesoCargaAction :: validarEjecucionCargaLogrosMIS", ex);
+			this.logger.error(
+					"ProcesoCargaAction :: validarEjecucionCargaLogrosMIS", ex);
 			ejecutar = false;
 		}
 

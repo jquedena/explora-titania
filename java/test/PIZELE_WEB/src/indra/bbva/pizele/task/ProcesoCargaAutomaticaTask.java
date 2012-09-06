@@ -22,7 +22,7 @@ public class ProcesoCargaAutomaticaTask {
 
 	public void ejecutarCargasAutomaticas() {
 		SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy_HHmm");
-		logger.debug("Aun estoy vivo :" + formatter.format(new Date()));
+		logger.info("Aun estoy vivo :" + formatter.format(new Date()));
 
 		Calendar hoy = Calendar.getInstance();
 		String HoraActual = "";
@@ -40,9 +40,11 @@ public class ProcesoCargaAutomaticaTask {
 		else
 			HoraActual = HoraActual + minutoActual;
 		
+		ProcesoCargaAction.setFecha(hoy.getTime());
 		ProcesoCargaAction.setHora(HoraActual);
 		
 		if (this.getProcesoCargaAction().validarEjecucionCargaLogrosMIS()) {
+			logger.error("Iniciando la carga del archivo.");
 			CartaLogroMISThread th = new CartaLogroMISThread();
 			th.setProcesoCargaAction(this.getProcesoCargaAction());
 			th.start();
