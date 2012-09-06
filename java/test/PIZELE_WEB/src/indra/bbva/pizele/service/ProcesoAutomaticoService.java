@@ -81,6 +81,7 @@ public class ProcesoAutomaticoService {
 				logger.error("Proceso de carga.", ex);
 			}
 	        try {
+	        	Thread.sleep(120000);
 	        	this.procesoAutomaticoPersistence.cambiaEstadoCargarArchivoMISIndependienteSDO(parameters);
 				errMessage = parameters.get("ERRMSG");
 				if(errMessage != null) { 
