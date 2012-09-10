@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.2/Umlnotation" xmi:id="_Fc41sPFXEeGq96VACT_Pnw" type="Class" name="classdiagram.dnx">
+  <eAnnotations xmi:id="_Fc41svFXEeGq96VACT_Pnw" source="com.ibm.xtools.common.ui.reduction.editingCapabilities">
+    <details xmi:id="_Fc41s_FXEeGq96VACT_Pnw" key="com.ibm.xtools.viz.java.webservice.capability" value="1"/>
+    <details xmi:id="_Fc41tPFXEeGq96VACT_Pnw" key="com.ibm.xtools.viz.webservice.capabilty" value="1"/>
+    <details xmi:id="_Fc41tfFXEeGq96VACT_Pnw" key="com.ibm.xtools.activities.javaVisualizerActivity" value="1"/>
+  </eAnnotations>
+  <children xmi:id="_q9LAMPFXEeGq96VACT_Pnw">
+    <children xmi:id="_q-z-8PFXEeGq96VACT_Pnw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_q-z-8fFXEeGq96VACT_Pnw" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_q-z-8vFXEeGq96VACT_Pnw" type="Stereotype"/>
+    <children xmi:id="_q-9I4PFXEeGq96VACT_Pnw" type="Name"/>
+    <children xmi:id="_q-9I4fFXEeGq96VACT_Pnw" type="Parent"/>
+    <children xmi:id="_q-9I4vFXEeGq96VACT_Pnw" visible="false" type="ANNOTATION_COMPARTMENT">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_q-9I4_FXEeGq96VACT_Pnw"/>
+    </children>
+    <children xmi:id="_rATMsPFXEeGq96VACT_Pnw" type="ANNOTATED_ATTRIBUTE_COMPARTMENT">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_rATMsfFXEeGq96VACT_Pnw"/>
+    </children>
+    <children xmi:id="_rATMsvFXEeGq96VACT_Pnw" type="ANNOTATED_OPERATION_COMPARTMENT">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_rATMs_FXEeGq96VACT_Pnw"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_q9LAMfFXEeGq96VACT_Pnw" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=ObjetivoDAO%5Bjcu%5Ename=ObjetivoDAO.java%5Bjpack%5Ename=pe.com.bbva.model.dao%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=SistemaSDOWeb%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_q9LAMvFXEeGq96VACT_Pnw" x="4752" y="3300"/>
+  </children>
+  <children xmi:id="_v2F28PFXEeGq96VACT_Pnw">
+    <children xmi:id="_v2F28_FXEeGq96VACT_Pnw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_v2F29PFXEeGq96VACT_Pnw" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_v2F29fFXEeGq96VACT_Pnw" type="Stereotype"/>
+    <children xmi:id="_v2F29vFXEeGq96VACT_Pnw" type="Name"/>
+    <children xmi:id="_v2F29_FXEeGq96VACT_Pnw" type="Parent"/>
+    <children xmi:id="_v2F2-PFXEeGq96VACT_Pnw" type="ANNOTATION_COMPARTMENT">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_v2F2-fFXEeGq96VACT_Pnw" collapsed="true"/>
+    </children>
+    <children xmi:id="_v8DVAfFXEeGq96VACT_Pnw" type="ANNOTATED_ATTRIBUTE_COMPARTMENT">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_v8DVAvFXEeGq96VACT_Pnw" collapsed="true"/>
+    </children>
+    <children xmi:id="_v8DVA_FXEeGq96VACT_Pnw" type="ANNOTATED_OPERATION_COMPARTMENT">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_v8DVBPFXEeGq96VACT_Pnw"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_v2F28fFXEeGq96VACT_Pnw" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=proxy.load%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=SistemaSDOWeb%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_v2F28vFXEeGq96VACT_Pnw" x="11352" y="3300" height="10018"/>
+  </children>
+  <children xmi:id="_yQ66pPFXEeGq96VACT_Pnw">
+    <children xmi:id="_yREEkPFXEeGq96VACT_Pnw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_yREEkfFXEeGq96VACT_Pnw" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_yREEkvFXEeGq96VACT_Pnw" type="Stereotype"/>
+    <children xmi:id="_yREEk_FXEeGq96VACT_Pnw" type="Name"/>
+    <children xmi:id="_yREElPFXEeGq96VACT_Pnw" type="Parent"/>
+    <children xmi:id="_yREElfFXEeGq96VACT_Pnw" visible="false" type="ANNOTATION_COMPARTMENT">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_yREElvFXEeGq96VACT_Pnw"/>
+    </children>
+    <children xmi:id="_yREEl_FXEeGq96VACT_Pnw" type="ANNOTATED_ATTRIBUTE_COMPARTMENT">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_yREEmPFXEeGq96VACT_Pnw"/>
+    </children>
+    <children xmi:id="_yREEmfFXEeGq96VACT_Pnw" type="ANNOTATED_OPERATION_COMPARTMENT">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_yREEmvFXEeGq96VACT_Pnw"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_yQ66pfFXEeGq96VACT_Pnw" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=AccesoAction%5Bjcu%5Ename=AccesoAction.java%5Bjpack%5Ename=igrupobbva.pe.sistemasdoweb.actions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=SistemaSDOWeb%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yQ66pvFXEeGq96VACT_Pnw" x="21384" y="7128"/>
+  </children>
+  <children xmi:id="_08beoPFXEeGq96VACT_Pnw">
+    <children xmi:id="_08beo_FXEeGq96VACT_Pnw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_08bepPFXEeGq96VACT_Pnw" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_08bepfFXEeGq96VACT_Pnw" type="Stereotype"/>
+    <children xmi:id="_08bepvFXEeGq96VACT_Pnw" type="Name"/>
+    <children xmi:id="_08bep_FXEeGq96VACT_Pnw" type="Parent"/>
+    <children xmi:id="_08beqPFXEeGq96VACT_Pnw" type="ANNOTATION_COMPARTMENT">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_08beqfFXEeGq96VACT_Pnw"/>
+    </children>
+    <children xmi:id="_0-qTQvFXEeGq96VACT_Pnw" type="ANNOTATED_ATTRIBUTE_COMPARTMENT">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_0-qTQ_FXEeGq96VACT_Pnw"/>
+    </children>
+    <children xmi:id="_0-qTRPFXEeGq96VACT_Pnw" type="ANNOTATED_OPERATION_COMPARTMENT">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_0-qTRfFXEeGq96VACT_Pnw"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_08beofFXEeGq96VACT_Pnw" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=ObjetivosAction%5Bjcu%5Ename=ObjetivosAction.java%5Bjpack%5Ename=igrupobbva.pe.sistemasdoweb.actions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=SistemaSDOWeb%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_08beovFXEeGq96VACT_Pnw" x="3960" y="5544"/>
+  </children>
+  <styles xmi:type="umlnotation:UMLDiagramStyle" xmi:id="_Fc41sfFXEeGq96VACT_Pnw"/>
+  <element xsi:nil="true"/>
+  <edges xmi:id="_wxsjkPFXEeGq96VACT_Pnw" source="_v2F28PFXEeGq96VACT_Pnw" target="_q9LAMPFXEeGq96VACT_Pnw">
+    <children xmi:id="_wx2UkPFXEeGq96VACT_Pnw" type="KindLabel">
+      <children xmi:id="_wx2UkvFXEeGq96VACT_Pnw" type="Stereotype"/>
+      <children xmi:id="_wx2UlPFXEeGq96VACT_Pnw" type="Kind"/>
+      <children xmi:id="_wx2Uk_FXEeGq96VACT_Pnw" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wx2UkfFXEeGq96VACT_Pnw" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_wxsjkfFXEeGq96VACT_Pnw" lineWidth="1" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=proxy.load%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=SistemaSDOWeb%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=ObjetivoDAO%5Bjcu%5Ename=ObjetivoDAO.java%5Bjpack%5Ename=pe.com.bbva.model.dao%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=SistemaSDOWeb%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wxsjkvFXEeGq96VACT_Pnw" points="[-3742, -3101, 5041, 1010]$[-4960, -4111, 3823, 0]$[-7223, -4111, 1560, 0]"/>
+  </edges>
+  <edges xmi:id="_yWIx0PFXEeGq96VACT_Pnw" source="_yQ66pPFXEeGq96VACT_Pnw" target="_v2F28PFXEeGq96VACT_Pnw">
+    <children xmi:id="_yWIx0_FXEeGq96VACT_Pnw" type="KindLabel">
+      <children xmi:id="_yWIx1fFXEeGq96VACT_Pnw" type="Stereotype"/>
+      <children xmi:id="_yWIx1_FXEeGq96VACT_Pnw" type="Kind"/>
+      <children xmi:id="_yWIx1vFXEeGq96VACT_Pnw" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yWIx1PFXEeGq96VACT_Pnw" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_yWIx0fFXEeGq96VACT_Pnw" lineWidth="1" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=AccesoAction%5Bjcu%5Ename=AccesoAction.java%5Bjpack%5Ename=igrupobbva.pe.sistemasdoweb.actions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=SistemaSDOWeb%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=proxy.load%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=SistemaSDOWeb%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_yWIx0vFXEeGq96VACT_Pnw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_1Hwk4PFXEeGq96VACT_Pnw" source="_08beoPFXEeGq96VACT_Pnw" target="_v2F28PFXEeGq96VACT_Pnw">
+    <children xmi:id="_1Hwk4_FXEeGq96VACT_Pnw" type="KindLabel">
+      <children xmi:id="_1Hwk5fFXEeGq96VACT_Pnw" type="Stereotype"/>
+      <children xmi:id="_1Hwk5_FXEeGq96VACT_Pnw" type="Kind"/>
+      <children xmi:id="_1Hwk5vFXEeGq96VACT_Pnw" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1Hwk5PFXEeGq96VACT_Pnw" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_1Hwk4fFXEeGq96VACT_Pnw" lineWidth="1" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=ObjetivosAction%5Bjcu%5Ename=ObjetivosAction.java%5Bjpack%5Ename=igrupobbva.pe.sistemasdoweb.actions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=SistemaSDOWeb%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=proxy.load%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=SistemaSDOWeb%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_1Hwk4vFXEeGq96VACT_Pnw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+</notation:Diagram>
