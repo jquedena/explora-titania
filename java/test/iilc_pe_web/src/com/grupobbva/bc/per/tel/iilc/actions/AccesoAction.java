@@ -176,8 +176,7 @@ public class AccesoAction extends Action {
 			else {
 				if (perfil.getComponente().equalsIgnoreCase("TRUE-FALSE-FALSE"))
 					atogAux.setElementAt("", 2);
-				if (perfil.getComponente()
-						.equalsIgnoreCase("FALSE-FALSE-FALSE")) {
+				if (perfil.getComponente().equalsIgnoreCase("FALSE-FALSE-FALSE")) {
 					atogAux.setElementAt("", 2);
 					atogAux.setElementAt("", 1);
 				}
@@ -186,7 +185,7 @@ public class AccesoAction extends Action {
 		}
 		formBeanConsulta.setAtog(atog);
 		formBeanConsulta.setCod_perfil(perfil.getCod_perfil());
-		String cod_area = atog.get(0);
+		String cod_area = atog.get(0) == null ? "" : atog.get(0);
 		String cod_territorio = atog.get(1);
 		String cod_oficina = atog.get(2);
 		String cod_gestor = atog.get(3);

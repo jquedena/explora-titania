@@ -892,7 +892,7 @@ public class Consulta2Action extends DispatchAction {
 			request.setAttribute("titulo", titulo);
 		} catch (Exception e) {
 			errors.add("name", new ActionError("id"));
-			e.printStackTrace();
+			log.error("Filtro por territorio, oficina, gestor", e);
 		}
 		if (!errors.isEmpty()) {
 			saveErrors(request, errors);
