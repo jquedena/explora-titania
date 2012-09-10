@@ -118,7 +118,7 @@ public class Connection {
 					.lookup("ejb/com/grupobbva/bc/per/tele/sdo/sesionws/SesionWSHome");			
 		} catch (NamingException e) {
 
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.out
 					.println("[Error al instaciarInterfazHome - ConexionEJB ]");
 		}
@@ -1209,12 +1209,12 @@ public class Connection {
 		try {
 			if (aSesionWSHome != null)
 				return aSesionWSHome.create();
-		} catch (javax.ejb.CreateException ce) {
+		} catch (javax.ejb.CreateException e) {
 			// Auto-generated catch block
-			ce.printStackTrace();
-		} catch (RemoteException re) {
+			logger.error("Connection", e);
+		} catch (RemoteException e) {
 			// Auto-generated catch block
-			re.printStackTrace();
+			logger.error("Connection", e);
 		}
 		return null;
 	}
@@ -1236,7 +1236,7 @@ public class Connection {
 			return aSesionWS.busAllAnho();
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1249,7 +1249,7 @@ public class Connection {
 			return aSesionWS.busAnhosAcciones();
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1262,7 +1262,7 @@ public class Connection {
 			return aSesionWS.busAnhoMaxAcciones();
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1277,7 +1277,7 @@ public class Connection {
 					codEpigrafe);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1298,7 +1298,7 @@ public class Connection {
 					nro_gest_segu_2, nro_conc_segu_2, mon_segu_2, usuario);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return null;
 	}
@@ -1310,7 +1310,7 @@ public class Connection {
 			return aSesionWS.codigoAccion();
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return 0;
 	}
@@ -1322,7 +1322,7 @@ public class Connection {
 			return aSesionWS.eliminarAccion(codAccion);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1335,7 +1335,7 @@ public class Connection {
 			return aSesionWS.codOficinaMax(codTerritorio);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1351,7 +1351,7 @@ public class Connection {
 			return aSesionWS.reportePGOResumen(codTerritorio, hash);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1365,7 +1365,7 @@ public class Connection {
 			return aSesionWS.reportePGOResumen2(codTerritorio, mes, anho);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1378,7 +1378,7 @@ public class Connection {
 			return aSesionWS.reportePGO1(codAnho, codMes, codOficina);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1392,7 +1392,7 @@ public class Connection {
 			return aSesionWS.reportePGOEsfuerzos(codAnho, codMes, codOficina);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1405,7 +1405,7 @@ public class Connection {
 			return aSesionWS.busOficinaCodyNom(codTerritorio);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1421,7 +1421,7 @@ public class Connection {
 			return aSesionWS.busAllAnhos();
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1434,7 +1434,7 @@ public class Connection {
 			return aSesionWS.busGestorxOficina(codOficina);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1448,7 +1448,7 @@ public class Connection {
 					codOficina);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1467,7 +1467,7 @@ public class Connection {
 					codTerritorio, codGestor, anho, mes, orden, get, usuario, codEpigrafe);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1482,7 +1482,7 @@ public class Connection {
 					codOficina);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1495,7 +1495,7 @@ public class Connection {
 			return aSesionWS.codigoCampMax();
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return 0;
@@ -1507,7 +1507,7 @@ public class Connection {
 			return aSesionWS.eliminarCampania(codCamp);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1520,7 +1520,7 @@ public class Connection {
 			return aSesionWS.mostrarEditarCampania(codCamp);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1534,7 +1534,7 @@ public class Connection {
 			return aSesionWS.editarCampania(anho, mes, nomCamp, orden, codCamp, usuario, codEpigrafe);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1548,7 +1548,7 @@ public class Connection {
 			return aSesionWS.metasOficina(codOficina, anio, mes, codEpigrafe);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return 0;
@@ -1562,7 +1562,7 @@ public class Connection {
 			return aSesionWS.metasGestor(codGestor, anio, mes, codEpigrafe);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return 0;
@@ -1581,7 +1581,7 @@ public class Connection {
 					nomTerritorio, codOficina, nombres);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return 0;
@@ -1596,7 +1596,7 @@ public class Connection {
 			return resultIngreso;
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1609,7 +1609,7 @@ public class Connection {
 			return aSesionWS.busID_IngresoMax();
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return 0;
@@ -1622,7 +1622,7 @@ public class Connection {
 			return aSesionWS.busIngresoxUSUARIOxMes(mes, codTerritorioUsuario);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1635,7 +1635,7 @@ public class Connection {
 			return aSesionWS.busIngresoxUSUARIOxAnho(anho, codTerritorioUsuario);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1648,7 +1648,7 @@ public class Connection {
 			return aSesionWS.busIngresoxOFICINAxMes(mes, codOficina, codTerritorioUsuario);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1661,7 +1661,7 @@ public class Connection {
 			return aSesionWS.busIngresoxOFICINAxAnho(anho, codOficina, codTerritorioUsuario);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null;
@@ -1674,7 +1674,7 @@ public class Connection {
 			return aSesionWS.busIngresoxTERRITORIOxMes(mes, nomTerritorio, codTerritorioUsuario);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null;
@@ -1687,7 +1687,7 @@ public class Connection {
 			return aSesionWS.busIngresoxTERRITORIOxAnho(anho, nomTerritorio, codTerritorioUsuario);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1704,7 +1704,7 @@ public class Connection {
 			return aSessionService.findxCodPerfil(codPerfil);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return null;
 
@@ -1717,7 +1717,7 @@ public class Connection {
 			return aSessionService.findAllMenu();
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return null;
 	}
@@ -1728,7 +1728,7 @@ public class Connection {
 			return aSessionService.createMenu(menu);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return false;
 	}
@@ -1739,7 +1739,7 @@ public class Connection {
 			return aSessionService.deleteMenu(padre.toString());
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return false;
 	}
@@ -1750,7 +1750,7 @@ public class Connection {
 			return aSessionService.findxIdMenu(padre.toString());
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return null;
 	}
@@ -1761,7 +1761,7 @@ public class Connection {
 			return aSessionService.updateMenu(menu);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return false;
 	}
@@ -1772,7 +1772,7 @@ public class Connection {
 		try {
 			return aSesionWS.findAllOficinaConMetas(codTerritorio, mes, anio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 			return null;
 		}
 	}
@@ -1785,7 +1785,7 @@ public class Connection {
 			return aSesionWS.pggSeguimiento1(mes, anho, codOficina, codGestor);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1798,7 +1798,7 @@ public class Connection {
 		try {
 			return aSesionWS.pggSeguimiento1(mes, anho, codOficina, codGestor, progSeguimiento);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1810,7 +1810,7 @@ public class Connection {
 		try {
 			return aSesionWS.findProgramacionSeguimiento(mes, anio, codTerritorio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1826,7 +1826,7 @@ public class Connection {
 					codGestor, progSeguimiento);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1841,7 +1841,7 @@ public class Connection {
 					codGestor);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1855,7 +1855,7 @@ public class Connection {
 			return aSesionWS.pggSeguimiento2(mes, anho, codOficina, codGestor, progSeguimiento);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1869,7 +1869,7 @@ public class Connection {
 			return aSesionWS.pggSeguimiento2(mes, anho, codOficina, codGestor);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1884,7 +1884,7 @@ public class Connection {
 					codGestor);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1899,7 +1899,7 @@ public class Connection {
 					codGestor, progSeguimiento);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1915,7 +1915,7 @@ public class Connection {
 					tipoSeguimiento, numDato, codigo1, codigo2, valor, usuario);
 			return aboolean;
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 			return false;
 		}
 	}
@@ -1930,7 +1930,7 @@ public class Connection {
 					tipoSeguimiento, numDato, codigo1, codigo2, valor, usuario);
 			return aboolean;
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 			return false;
 		}
 	}
@@ -1941,7 +1941,7 @@ public class Connection {
 			return aSesionWS.actualizarPorcentajeEpigrafe(datos);
 		} catch (RemoteException ex) {
 			//		 Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return 0;
 	}
@@ -1954,7 +1954,7 @@ public class Connection {
 			return aSesionWS.findEpigrafesinPlanes(codOficina, anho, mes);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -1973,7 +1973,7 @@ public class Connection {
 					compGest, usuario);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return false;
@@ -1988,7 +1988,7 @@ public class Connection {
 					nomCampania, nroClie, compGest, usuario);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return false;
@@ -2003,7 +2003,7 @@ public class Connection {
 					codCamp, mes, anho);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -2016,7 +2016,7 @@ public class Connection {
 			return aSesionWS.eliminarCampaniaDetalle(codCamp);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return false;
@@ -2029,7 +2029,7 @@ public class Connection {
 			return aSesionWS.findTerritorioByCodOficina(codOficina);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -2044,7 +2044,7 @@ public class Connection {
 					.reportePGOResumenxAnioMes(codTerritorio, mes, anio);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -2059,7 +2059,7 @@ public class Connection {
 					numeroCliente, compromisoGestor, usuario);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return false;
 	}
@@ -2071,7 +2071,7 @@ public class Connection {
 			return aSesionWS.busAccion(codAccion);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return null;
 	}
@@ -2084,7 +2084,7 @@ public class Connection {
 			return aSesionWS.busGestorxOficinaxAnioxMes(codOficina, mes, anio);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -2097,7 +2097,7 @@ public class Connection {
 			return aSesionWS.busCampaniaDetalle(codCampaniaDetalle);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -2122,7 +2122,7 @@ public class Connection {
 				System.out.println("Error [ConexionEJB] : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2162,7 +2162,7 @@ public class Connection {
 				System.out.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2188,7 +2188,7 @@ public class Connection {
 				System.out.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2214,7 +2214,7 @@ public class Connection {
 				System.out.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2246,7 +2246,7 @@ public class Connection {
 				System.out.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2272,7 +2272,7 @@ public class Connection {
 				System.out.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2299,7 +2299,7 @@ public class Connection {
 				System.out.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error");
 		}
 
@@ -2325,7 +2325,7 @@ public class Connection {
 				System.out.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error");
 		}
 
@@ -2352,7 +2352,7 @@ public class Connection {
 				System.out.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2378,7 +2378,7 @@ public class Connection {
 				System.out.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2410,7 +2410,7 @@ public class Connection {
 				System.out.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2437,7 +2437,7 @@ public class Connection {
 						.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2479,7 +2479,7 @@ public class Connection {
 						.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2508,7 +2508,7 @@ public class Connection {
 						.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2537,7 +2537,7 @@ public class Connection {
 						.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2551,7 +2551,7 @@ public class Connection {
 			return aSesionWS.xBusAllTablaPerfiles();
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return null;
 	}*/
@@ -2578,7 +2578,7 @@ public class Connection {
 						.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2606,7 +2606,7 @@ public class Connection {
 						.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2620,7 +2620,7 @@ public class Connection {
 			return aSesionWS.xBusAllTablaFirmas();
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return null;
 	}
@@ -2635,7 +2635,7 @@ public class Connection {
 					codigoOficina, descripcion, fecha);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return 0;
@@ -2648,7 +2648,7 @@ public class Connection {
 			return aSesionWS.xBusAllTablaMaestroPlanes(contadorMes);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -2675,7 +2675,7 @@ public class Connection {
 						.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2692,7 +2692,7 @@ public class Connection {
 					codigoTerritorio, prioridad, fechaGrabacion);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return 0;
@@ -2723,7 +2723,7 @@ public class Connection {
 						.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2737,7 +2737,7 @@ public class Connection {
 			return aSesionWS.xBusAllTablaMetasGestor(contadorMes);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -2764,7 +2764,7 @@ public class Connection {
 						.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2785,7 +2785,7 @@ public class Connection {
 					nombreGestor, codigoTerritorio);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return 0;
@@ -2821,7 +2821,7 @@ public class Connection {
 						.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2835,7 +2835,7 @@ public class Connection {
 			return aSesionWS.xBusAllTablaParametros();
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -2853,7 +2853,7 @@ public class Connection {
 					afectaSeguimiento, afectaPlanificacion, fechaPlanificacion);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return 0;
 	}
@@ -2865,7 +2865,7 @@ public class Connection {
 			return aSesionWS.xBusAllTablaPlanes(mes);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return null;
 	}*/
@@ -2891,7 +2891,7 @@ public class Connection {
 						.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2926,7 +2926,7 @@ public class Connection {
 					factAsignGteOf);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return 0;
@@ -2976,7 +2976,7 @@ public class Connection {
 						.println("Error [ConexionEJB]   : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error   ");
 		}
 
@@ -2989,7 +2989,7 @@ public class Connection {
 			return aSesionWS.actualizarEstadoFlag(flag);
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return 0;
 	}*/
@@ -3015,7 +3015,7 @@ public class Connection {
 						.println("Error [ConexionEJB] : sesionSesionGeneralHome null ");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 			System.err.println("Error");
 		}
 
@@ -3029,7 +3029,7 @@ public class Connection {
 			return aSesionWS.buscarEstadoFlag();
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}		
 		return null;
 	}*/
@@ -3054,7 +3054,7 @@ public class Connection {
 					.println("Error [ConexionEJB] : sesionSesionGeneralHome null ");
 		}
 	} catch (Exception e) {
-		e.printStackTrace();
+		logger.error("Connection", e);
 		System.err.println("Error");
 	}
 
@@ -3069,7 +3069,7 @@ public class Connection {
 			return aSesionWS.obtenerPrimerMesPresup();
 		} catch (RemoteException ex) {
 			// Auto-generated catch block
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return valor;
@@ -3081,7 +3081,7 @@ public class Connection {
 		try {
 			return aSesionWS.buscarUsuariosLDAP(codOficina, codEmpresa, limiteOcurrencias);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -3093,7 +3093,7 @@ public class Connection {
 		try {
 			return aSesionWS.findProgTerritorio(progTerritorio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -3105,7 +3105,7 @@ public class Connection {
 		try {
 			return aSesionWS.findTodosProgTerritorio(progTerritorio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 
 		return null;
@@ -3117,7 +3117,7 @@ public class Connection {
 		try {
 			return aSesionWS.crearProgTerritorio(progTerritorio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return false;
@@ -3129,7 +3129,7 @@ public class Connection {
 		try {
 			return aSesionWS.actualizarProgTerritorio(progTerritorio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return false;
@@ -3141,7 +3141,7 @@ public class Connection {
 		try {
 			return aSesionWS.eliminarProgTerritorio(progTerritorio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return false;
@@ -3153,7 +3153,7 @@ public class Connection {
 		try {
 			aSesionWS.actualizarIngreso(tipo, idIngreso, mes, anio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return;
@@ -3165,7 +3165,7 @@ public class Connection {
 		try {
 			return aSesionWS.busIngresoxUsuario(anho, mes, dia, codTerritorioUsuario);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null; 
@@ -3177,7 +3177,7 @@ public class Connection {
 		try {
 			return aSesionWS.busIngresoxOficina(anho, mes, dia, codTerritorioUsuario);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null; 
@@ -3189,7 +3189,7 @@ public class Connection {
 		try {
 			return aSesionWS.busIngresoxTerritorio(anho, mes, dia, codTerritorioUsuario);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null; 
@@ -3201,7 +3201,7 @@ public class Connection {
 		try {
 			return aSesionWS.insertUpdateMesesReferencia(mes, anio, sel_mes);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return false; 
@@ -3213,7 +3213,7 @@ public class Connection {
 		try {
 			return aSesionWS.findMesesReferencia(mes, anio);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return -1; 
@@ -3228,7 +3228,7 @@ public class Connection {
 			
 			return aSesionWS.testearBD();
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null;
@@ -3240,7 +3240,7 @@ public class Connection {
 		try {
 			return aSesionWS.findOficinaHija(oficinaHija);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null; 
@@ -3252,7 +3252,7 @@ public class Connection {
 		try {
 			return aSesionWS.crearOficinaHija(oficinaHija);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return false; 
@@ -3264,7 +3264,7 @@ public class Connection {
 		try {
 			return aSesionWS.actualizarOficinaHija(oficinaHija);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return false; 
@@ -3276,7 +3276,7 @@ public class Connection {
 		try {
 			return aSesionWS.eliminarOficinaHija(oficinaHija);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return false; 
@@ -3288,7 +3288,7 @@ public class Connection {
 		try {
 			return aSesionWS.findTodosOficinaHija();
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null; 
@@ -3300,7 +3300,7 @@ public class Connection {
 		try {
 			return aSesionWS.findHijas(codOficinaPadre);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null; 
@@ -3314,7 +3314,7 @@ public class Connection {
 			return aSesionWS.distribuirGOF(listaGestoresLDAP, codEpigrafe, anho,
 					codOficina, mes);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return new Vector(0, 1); 
@@ -3328,7 +3328,7 @@ public class Connection {
 			aSesionWS.actualizarMetaGestoresPlanes(listaEpigrafe, anho,
 					codOficina, mes, codGestorGOF, usuario);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return; 
@@ -3342,7 +3342,7 @@ public class Connection {
 			return aSesionWS.buscarResumenMontos(listaEpigrafe, codTerritorio, codOficina, anho,
 					mes);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null; 
@@ -3356,7 +3356,7 @@ public class Connection {
 			return aSesionWS.buscarMontoGestor(codGestor, codEpigrafe, anho,
 					codOficina, mes);
 		} catch (RemoteException ex) {			
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null; 
@@ -3368,7 +3368,7 @@ public class Connection {
 			Oficina anOficina = aSesionWS.findByCodOficinaHija(codOficina);
 			return anOficina;
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null;
@@ -3382,7 +3382,7 @@ public class Connection {
 			aSesionWS.actualizarGestoresEliminadosLDAP(listaGestoresLDAP, codEpigrafe, anho,
 					codOficina, mes, usuario);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return;		
@@ -3396,7 +3396,7 @@ public class Connection {
 			aSesionWS.actualizarGestoresDistribuidosLDAP(codEpigrafe, anho,
 					codOficina, mes, usuario);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return;
@@ -3410,7 +3410,7 @@ public class Connection {
 			aSesionWS.actualizarCargoGestoresLDAP(listaGestoresLDAP, codEpigrafe, anho,
 					codOficina, mes, usuario);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return;		
@@ -3422,7 +3422,7 @@ public class Connection {
 		try {
 			aSesionWS.editarMensajeTerritorio(codTerritorio, mensaje, colorFondo);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return;		
@@ -3435,7 +3435,7 @@ public class Connection {
 		try {
 			aSesionWS.eliminarMetaGestoresHijas(listaGestores);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return;		
@@ -3447,7 +3447,7 @@ public class Connection {
 		try {
 			return aSesionWS.reportexUsuario(dia, mes, anio, codTerritorio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null;		
@@ -3459,7 +3459,7 @@ public class Connection {
 		try {
 			return aSesionWS.reportexOficina(dia, mes, anio, codTerritorio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null;		
@@ -3471,7 +3471,7 @@ public class Connection {
 		try {
 			return aSesionWS.reportexTerritorio(dia, mes, anio, codTerritorio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null;		
@@ -3483,7 +3483,7 @@ public class Connection {
 		try {
 			return aSesionWS.reportexUsuarioxAnio(anio, codTerritorio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null;		
@@ -3495,7 +3495,7 @@ public class Connection {
 		try {
 			return aSesionWS.listarDiasMesesxAnio(anio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null;		
@@ -3507,7 +3507,7 @@ public class Connection {
 		try {
 			return aSesionWS.reportexOficinaxAnio(anio, codTerritorio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null;
@@ -3519,7 +3519,7 @@ public class Connection {
 		try {
 			return aSesionWS.reportexTerritorioxAnio(anio, codTerritorio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null;
@@ -3533,7 +3533,7 @@ public class Connection {
 			aSesionWS.insertarIngresoForm(tipo, mes, anio, 
 					codUsuario, editUsuario, codGestor, codOficina);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return ;
@@ -3545,7 +3545,7 @@ public class Connection {
 		try {
 			aSesionWS.actualizarIngresoFormEditUsuario(id);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return;
@@ -3557,7 +3557,7 @@ public class Connection {
 		try {
 			return aSesionWS.existeIngresoForm(tipo, mes, anio, codUsuario, fecha, codGestorM, codOficinaM);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return 0;
@@ -3569,7 +3569,7 @@ public class Connection {
 		try {
 			return aSesionWS.exportarTablasTXT(tabla, mes, anio);
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		
 		return null;
@@ -3580,7 +3580,7 @@ public class Connection {
 		try {
 			result= createSesionWS().registrarPermisoPerfil(permisoPerfil);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 		}
 		
 		return result;
@@ -3594,7 +3594,7 @@ public class Connection {
 			aSesionWS = createSesionWS();
 			result = aSesionWS.listadoIngresoxDia(diaActual, codTerritorio);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Connection", e);
 		}
 		
 		return result;
@@ -3719,7 +3719,7 @@ public class Connection {
 			BigDecimal avg = aSesionWS.promedioMensual(anho, mes, codOfi, codTerr, codEpi, codGestor);
 			return avg;
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return null;
 	}
@@ -3730,7 +3730,7 @@ public class Connection {
 			 Vector<Seguimiento> seguimiento = aSesionWS.consultaSeguimientoAccionEsfuerzo(codOfi, mes, anho, codGestor);
 			return seguimiento;
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return null;
 	}
@@ -3741,7 +3741,7 @@ public class Connection {
 			 Vector<Seguimiento> seguimiento = aSesionWS.consultaSeguimientoAccionEsfuerzoPGO(codOfi, mes, anho);
 			return seguimiento;
 		} catch (RemoteException ex) {
-			ex.printStackTrace();
+			logger.error("Connection", ex);
 		}
 		return null;
 	}

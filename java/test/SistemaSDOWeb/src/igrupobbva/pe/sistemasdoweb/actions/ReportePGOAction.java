@@ -386,7 +386,8 @@ public class ReportePGOAction extends DispatchAction{
 	        	request.setAttribute("codTerritorioReturn",codTerritorio); // codTerritorioLDAP
 	        	request.setAttribute("nomTerritorio",nomTerritorio);
 	        	request.setAttribute("listaTerritorio",listaTerritorio);
-	        		        	
+	        
+	        	RegistraValorDefecto.getInstancia().registrar(request, codAnho, codMes, codOficina);
 	        	log.info("[ReportePGOAction :: inicioReportePGOResumen] Fin");
         	} catch(Exception e) {
         		log.error("[ReportePGOAction :: inicioReportePGOResumen] ");
