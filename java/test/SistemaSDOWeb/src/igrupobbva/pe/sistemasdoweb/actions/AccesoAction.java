@@ -131,24 +131,28 @@ public class AccesoAction extends DispatchAction {
 						if (user.getCargo() == null){
 							request.setAttribute("txtError", "Usuario no Tiene c" + (char) 243 + "digo de cargo asignado.");
 							mensaje = "Usuario no Tiene c" + (char) 243 + "digo de cargo asignado.";
-							sesion.setAttribute("mensaje", mensaje);	
+							sesion.setAttribute("mensaje", mensaje);
 							forward = mapping.findForward("error");
+							return (forward);
 						}
 						
 						gestor = buscarGestor(usuario);
 							
-						if (gestor == null || gestor.getCodigoPerfil() == null){
+						if (gestor == null || gestor.getCodigoPerfil() == null || gestor.getCodigoPerfil().length() == 0){
 							request.setAttribute("txtError", "Usuario no Tiene permisos necesarios.");
 							mensaje = "Usuario no Tiene permisos necesarios.";
 							sesion.setAttribute("mensaje", mensaje);
 							forward = mapping.findForward("error");
+							return (forward);
 						}
+						
 						Oficina oficinaActual = conexion.findByCodOficina(gestor.getCodigoOficina());
 						if (oficinaActual == null){
 							request.setAttribute("txtError", "Usted no tiene oficina asignada en el Sistema.");
 							mensaje = "Usted no tiene oficina asignada en el Sistema.";
 							sesion.setAttribute("mensaje", mensaje);
-							forward = mapping.findForward("error");					
+							forward = mapping.findForward("error");
+							return (forward);
 						}					
 						
 						Territorio territorioActual = conexion.findByCodTerritorio(oficinaActual.getTerr() != null ? oficinaActual.getTerr().getCodTerr() : "-1");
@@ -157,6 +161,7 @@ public class AccesoAction extends DispatchAction {
 							mensaje = "Usted no tiene territorio asignado en el Sistema.";
 							sesion.setAttribute("mensaje", mensaje);;
 							forward = mapping.findForward("error");
+							return (forward);
 						}
 						
 						if(gestor.getCodigoPerfil().equals("GTE") || gestor.getCodigoPerfil().equals("JPR")){
@@ -165,6 +170,7 @@ public class AccesoAction extends DispatchAction {
 								mensaje = "Usted no tiene territorio asignado en el Sistema.";
 								sesion.setAttribute("mensaje", mensaje);;
 								forward = mapping.findForward("error");
+								return (forward);
 							}
 						}
 						
@@ -189,11 +195,11 @@ public class AccesoAction extends DispatchAction {
 			        	int ultimo = cnx.nuevoIngreso(String.valueOf(cnx.busID_IngresoMax()+1),usuario,gestor.getPerfilMostrar(),nomTerritorio, user.getBancoOficina().getCodigo(), gestor.getNombreGestor());
 			        	sesion.setAttribute("idIngresoUsuario", new Integer(ultimo));		    	        	
 					} else {
-						if(gestor == null || gestor.getCodigoPerfil() == null) {
+						if(gestor == null || gestor.getCodigoPerfil() == null  || gestor.getCodigoPerfil().length() == 0) {
 							mensaje = "Usuario no tiene privilegio!!!";
 							sesion.setAttribute("mensaje", mensaje);
 							forward = mapping.findForward("error");				
-							request.setAttribute("txtError", "Usuario no Tiene Permiso Para acceder al Sistema.");		
+							request.setAttribute("txtError", "Usuario no Tiene Permiso Para acceder al Sistema.");
 						} else {	
 							sesion.setAttribute("acceso", gestor.getCodigoPerfil());
 							
