@@ -98,8 +98,9 @@ public class ReporteIngresoDAO extends AbstractSQL {
 	        if(tipoPeriodo == ReporteIngresoDAO.REPORTE_DIARIO) 
 	        	query += " AND (A.MES=" + mes + " AND TO_NUMBER(SUBSTR(A.FECHA, 1, 2))=" + dia + ")";
 	        
-	        if(tipoPeriodo == ReporteIngresoDAO.REPORTE_MENSUAL) 
-	        	query += " AND (A.MES=" + mes + " OR A.MES=" + (mes + 1) + ")";
+	        if(tipoPeriodo == ReporteIngresoDAO.REPORTE_MENSUAL)
+	        	query += " AND A.MES=" + mes;
+	        	// query += " AND (A.MES=" + mes + " OR A.MES=" + (mes + 1) + ")";
 	          
 	        if(codTerritorio.trim().length() > 0)
 	        	query += " AND A.COD_TERR='" + codTerritorio + "'";
