@@ -360,6 +360,7 @@ public class ClienteDAOImpl {
 			try {
 				ResultSet rst = s.executeQuery(sql);
 				if(rst != null) {
+					rst.setFetchSize(512);
 					while (rst.next()) {
 						if (res == null) res = new Vector<Cliente>(0, 1);
 						

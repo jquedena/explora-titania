@@ -459,8 +459,8 @@ var _numeroRegistros = 0;
 function openFile(tipo){
 	if(hayResultados){
 		flag = true;
-		if(_numeroRegistros > <%=Constantes.TOT_REGEXCEL%>) {
-			flag = confirm("Resultado excede el l\u00EDmite de registros permitidos del Excel. \u00BFDesea igual realizar la descarga\u003F");
+		if(_numeroRegistros > <%=session.getAttribute("T00MAX") %>) {
+			flag = confirm("Resultado excede el l\u00EDmite de registros permitidos (<%=session.getAttribute("T00MAX") %>). \u00BFDesea igual realizar la descarga\u003F");
 		}
 		
 		if(!flag){

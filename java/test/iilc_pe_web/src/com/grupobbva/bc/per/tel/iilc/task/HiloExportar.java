@@ -94,7 +94,12 @@ public class HiloExportar implements Runnable {
 	            
 	            idDescarga = cnn.insertarDescarga(registro, file, descripcion);
 	            
-	            boolean status = exportObject.exportacionMasiva(formato, this.tipoDetalle, file, path, (this.tipoDetalle==0) ? true : false);
+	            boolean status = false;
+	            try {
+	            	status = exportObject.exportacionMasiva(formato, this.tipoDetalle, file, path, (this.tipoDetalle==0) ? true : false);
+	            } catch(Exception e) {
+	            	log.error("[HiloExportar :: run]", e);
+	            }
 	            
 	            if(status) {
 	            	cnn.actualizarDescarga(idDescarga, 2);

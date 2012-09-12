@@ -126,7 +126,7 @@ public class DescargaDAOImpl {
 				descarga.setFecha((Timestamp) rss.getTimestamp("fecha"));
 				descarga.setRegistro(rss.getString("registro"));
 				descarga.setArchivo(rss.getString("archivo"));
-				descarga.setDescripcion(rss.getString("descripcion"));
+				// descarga.setDescripcion(rss.getString("descripcion"));
 				descarga.setEstado(rss.getInt("estado"));
 				
 				result.add(descarga);

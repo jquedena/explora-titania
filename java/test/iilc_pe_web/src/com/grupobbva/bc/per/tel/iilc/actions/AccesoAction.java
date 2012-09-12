@@ -124,6 +124,10 @@ public class AccesoAction extends Action {
 				request.setAttribute("fechaCarga", "Ha ocurrido un error al realizarce la carga.");
 			}
 			
+			ConexionDAO cnn = new ConexionDAO();
+			int maxResult = Integer.parseInt(cnn.findRecord("T00MAX").getValor1());
+			request.getSession().setAttribute("T00MAX", maxResult);			
+			
 			forward = mapping.findForward(Constantes.FW_PRINCIPAL);
 		}
 		return (forward);
