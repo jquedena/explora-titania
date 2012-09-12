@@ -32,7 +32,9 @@ import org.apache.log4j.Logger;
 import pe.com.indra.excel.CellComponent;
 import pe.com.indra.excel.ColourComponent;
 
+import com.grupobbva.bc.per.tel.iilc.common.Constantes;
 import com.grupobbva.bc.per.tel.iilc.common.NumeroUtil;
+import com.grupobbva.bc.per.tel.iilc.conexionEJB.ConexionDAO;
 import com.grupobbva.bc.per.tel.iilc.serializable.Cliente;
 import com.grupobbva.bc.per.tel.iilc.serializable.Multitabla;
 
@@ -184,13 +186,17 @@ public class ExportCarpeta {
 			List<CellComponent> cols = imprimirCabecera(cabecera);
 			prepareRowsExcel(cols, sheet, workbook, "head");
 			formato.setExportacion(true);
-			lista_cliente = formato.obtenerListadoAll(pestanaTodos);			
+			
+			ConexionDAO cnn = new ConexionDAO();
+			int maxResult = Integer.parseInt(cnn.findRecord("T00MAX").getValor1());
+			
+			lista_cliente = formato.obtenerListadoAll(pestanaTodos, maxResult);			
 
 			int filaInicial = 3;
 			imprimirResultado(lista_cliente, cabecera, filaInicial, sheet, workbook);
-
 			workbook.write();
 			workbook.close();
+			lista_cliente = null;
 			res = true;
 		} catch (Exception e) {
 			log.error("[ExportObject :: exportacionMasiva] Error en generacion del archivo", e);

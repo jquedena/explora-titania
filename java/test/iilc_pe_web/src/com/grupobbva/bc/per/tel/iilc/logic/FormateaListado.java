@@ -304,13 +304,13 @@ public class FormateaListado {
 		return total;
 	}
 
-    public Vector<Cliente> obtenerListadoAll(boolean pestanaTodos) {
+    public Vector<Cliente> obtenerListadoAll(boolean pestanaTodos, int maxResult) {
         Vector<Cliente> listadoConduccion = new Vector<Cliente>(); 
         ConexionEJB ejb = new ConexionEJB();
         try {
         	int xreg = -1;
-        	if(getNum_registros() > Constantes.TOT_REGEXCEL) {
-        		xreg = Constantes.TOT_REGEXCEL;
+        	if(getNum_registros() > maxResult) {
+        		xreg = maxResult;
         	}
 		    
         	listadoConduccion = ejb.findAllClientebyFilter(-1, xreg, cod_territorio, cod_oficina, cod_gestor, nivel_vinculacion, clasificacion, margen_ordinario, etiqueta, edad, porcrie, cod_empresa, tipo_cliente, cod_cliente, col_orden, pestanaTodos, tipoOpcion);
