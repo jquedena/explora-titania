@@ -183,10 +183,10 @@
 	<th style="width: 250px;" rowspan='3'>Ep&iacute;grafe</th>
 	<th style="width: 85px; background-color: #a5a5a5;" rowspan='3'>Facturaci&oacute;n</th>
 	<th style="width: 85px; background-color: #a5a5a5;" rowspan='3'>Ajuste Territorial a la Facturaci&oacute;n</th>
-	<th colspan=2>GOF</th>
-	<th colspan=2>GCO</th>
-	<th colspan=2>GPE</th>
-	<th colspan=2>EBP</th>
+	<th colspan=2><c:out value="${requestScope._GOF}"/></th>
+	<th colspan=2><c:out value="${requestScope._GCO}"/></th>
+	<th colspan=2><c:out value="${requestScope._GPE}"/></th>
+	<th colspan=2><c:out value="${requestScope._GPT}"/></th>
 	<th style="width: 75px;" rowspan=3>Total<br/>Asignado</th>
 </tr>
 <tr class="Header">

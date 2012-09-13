@@ -40,7 +40,7 @@ public class UtilListas {
 	public Vector obtenerListAnhos(String anho, int rango) {
 		Vector anhos = new Vector();
 		
-		log.info("[UtilListas :: obtenerListAnhos] Inicio");
+		// log.info("[UtilListas :: obtenerListAnhos] Inicio");
 		
 		for (int i = 0; i < rango; i++) {
 			Multitabla multiAnho = new Multitabla();
@@ -50,13 +50,13 @@ public class UtilListas {
 			anhos.add(multiAnho);
 		}
 		
-		log.info("[UtilListas :: obtenerListAnhos] Fin");
+		// log.info("[UtilListas :: obtenerListAnhos] Fin");
 		
 		return anhos;
 	}
 
 	public static String[] getArrayStrings(String cadena, String delim) {
-		log.info("[UtilListas :: getArrayStrings] Inicio");
+		// log.info("[UtilListas :: getArrayStrings] Inicio");
 		
 		if (isStringBlank(cadena))
 			return new String[0];
@@ -69,18 +69,18 @@ public class UtilListas {
 			indice++;
 		}
 		
-		log.info("[UtilListas :: getArrayStrings] Fin");
+		// log.info("[UtilListas :: getArrayStrings] Fin");
 		return array;
 	}
 
 	public static boolean isStringBlank(String cadena) {
 		boolean b = false;
 		
-		log.info("[UtilListas :: isStringBlank] Inicio");
+		// log.info("[UtilListas :: isStringBlank] Inicio");
 		if (cadena == null || cadena.trim().length() == 0)
 			b = true;
 		
-		log.info("[UtilListas :: isStringBlank] Fin");
+		// log.info("[UtilListas :: isStringBlank] Fin");
 		
 		return b;
 	}
@@ -90,7 +90,7 @@ public class UtilListas {
 		String valor2 = "2";
 		Vector listPresup = new Vector();
 		
-		log.info("[UtilListas :: obtenerListPresup] Inicio");
+		// log.info("[UtilListas :: obtenerListPresup] Inicio");
 		
 		int primerMesPresupuesto = conexion.obtenerPrimerMesPresup();
 
@@ -116,7 +116,7 @@ public class UtilListas {
 			ConstantesUtil.mostrarMensajeExcepcion(e);
 		}
 		
-		log.info("[UtilListas :: obtenerListPresup] Fin");
+		// log.info("[UtilListas :: obtenerListPresup] Fin");
 		
 		return listPresup;
 	}
@@ -124,7 +124,7 @@ public class UtilListas {
 	public String obtenerNomMesAnterior(String mes) {
 		String mesAnterior = mes;
 		
-		log.info("[UtilListas :: obtenerNomMesAnterior] Inicio");
+		// log.info("[UtilListas :: obtenerNomMesAnterior] Inicio");
 		
 		if (mes.equals("01")) {
 			mesAnterior = "12";
@@ -136,7 +136,7 @@ public class UtilListas {
 			}
 		}
 		
-		log.info("[UtilListas :: obtenerNomMesAnterior] Fin");
+		// log.info("[UtilListas :: obtenerNomMesAnterior] Fin");
 		
 		return obtenerNomMes(mesAnterior);
 	}
@@ -144,7 +144,7 @@ public class UtilListas {
 	public String obtenerNomMes(String mes) {
 		String mesMostrar = "";
 		
-		log.info("[UtilListas :: obtenerNomMes] Inicio");
+		// log.info("[UtilListas :: obtenerNomMes] Inicio");
 		
 		switch (Integer.parseInt(mes)) {
 		case 1:
@@ -185,7 +185,7 @@ public class UtilListas {
 			break;
 		}
 		
-		log.info("[UtilListas :: obtenerNomMes] Fin");
+		// log.info("[UtilListas :: obtenerNomMes] Fin");
 		
 		return mesMostrar;
 	}
@@ -194,7 +194,7 @@ public class UtilListas {
 		Gestor gestor = null;
 		
 		try {
-			log.info("[UtilListas :: buscarGestor] Inicio");
+			// log.info("[UtilListas :: buscarGestor] Inicio");
 			
 			IILDPeUsuario user = IILDPeUsuario.recuperarUsuario(codigoUsuario);
 
@@ -217,7 +217,7 @@ public class UtilListas {
 				gestor.setCodigoTerritorio(oficina.getTerr().getCodTerr());
 			}
 			
-			log.info("[UtilListas :: buscarGestor] Fin");
+			// log.info("[UtilListas :: buscarGestor] Fin");
 		} catch (Exception e) {
 			log.error("[UtilListas :: buscarGestor] ");
 			ConstantesUtil.mostrarMensajeExcepcion(e);
@@ -231,7 +231,7 @@ public class UtilListas {
 		Connection con = new Connection();
 		
 		try {
-			log.info("[UtilListas :: listarGestoresNormal] Inicio");
+			// log.info("[UtilListas :: listarGestoresNormal] Inicio");
 			
 			IILDPeCriterioBusqueda cb = new IILDPeCriterioBusqueda();
 			cb.setCodigoOficina(codOficina);
@@ -278,7 +278,7 @@ public class UtilListas {
 				}
 			}
 			
-			log.info("[UtilListas :: listarGestoresNormal] Fin");
+			// log.info("[UtilListas :: listarGestoresNormal] Fin");
 			return vistaGestores;
 		} catch (Exception e) {
 			log.error("[UtilListas :: listarGestoresNormal] ");
@@ -294,7 +294,7 @@ public class UtilListas {
 		Connection con = new Connection();
 
 		try {
-			log.info("[UtilListas :: listarGestores] Inicio");
+			// log.info("[UtilListas :: listarGestores] Inicio");
 			
 			IILDPeCriterioBusqueda cb = new IILDPeCriterioBusqueda();
 			cb.setCodigoOficina(codigoOficina);
@@ -336,7 +336,7 @@ public class UtilListas {
 											gestor.setCodigoTerritorio(oficina.getTerr().getCodTerr());
 											gestor.setCodigoOficina(oficina.getCodOfic());
 										}else{
-											log.info("[UtilListas :: listarGestores] cod oficina" + usuarioEncontrado.getCodigoOficina());
+											// log.info("[UtilListas :: listarGestores] cod oficina" + usuarioEncontrado.getCodigoOficina());
 										}
 									}
 									metaGestor = conexion.findMetGestorByPrimaryKey(codEpigrafe, anho, usuarioEncontrado.getCodigoOficina(), mes, gestor.getCodigoGestor());
@@ -353,7 +353,7 @@ public class UtilListas {
 										gestor.setPorcAsignado(new BigDecimal("0"));
 									}
 									
-									log.info("[UtilListas :: listarGestores] porcentaje" + gestor.getPorcAsignado());
+									// log.info("[UtilListas :: listarGestores] porcentaje" + gestor.getPorcAsignado());
 									vistaGestores.add(gestor);
 								}
 							}
@@ -362,7 +362,7 @@ public class UtilListas {
 				}
 			}
 			
-			log.info("[UtilListas :: listarGestores] Fin");
+			// log.info("[UtilListas :: listarGestores] Fin");
 			return vistaGestores;
 		} catch (Exception e) {
 			log.error("[UtilListas :: listarGestores] ");
@@ -378,7 +378,7 @@ public class UtilListas {
 		Vector finalPlanesAccion = new Vector();
 		
 		try {
-			log.info("[UtilListas :: consultarPLanesAccion] Inicio");
+			// log.info("[UtilListas :: consultarPLanesAccion] Inicio");
 			
 			aux = conexion.consultarPLanesAccion(codigoOficina, mes, anho,
 					codigoGestor);
@@ -398,7 +398,7 @@ public class UtilListas {
 				}
 			}
 			
-			log.info("[UtilListas :: consultarPLanesAccion] Fin");
+			// log.info("[UtilListas :: consultarPLanesAccion] Fin");
 			
 			return finalPlanesAccion;
 		} catch (Exception e) {
@@ -415,7 +415,7 @@ public class UtilListas {
 		Vector finalPlanesAccion = new Vector();
 		
 		try {
-			log.info("[UtilListas :: consultarPlanesAccionesPPG] Inicio");
+			// log.info("[UtilListas :: consultarPlanesAccionesPPG] Inicio");
 			
 			aux = conexion.consultarCampaniasDetallesPGG(codigoOficina, mes,
 					anho, codigoGestor);
@@ -435,7 +435,7 @@ public class UtilListas {
 				}
 			}
 			
-			log.info("[UtilListas :: consultarPlanesAccionesPPG] Fin");
+			// log.info("[UtilListas :: consultarPlanesAccionesPPG] Fin");
 			
 			return finalPlanesAccion;
 		} catch (Exception e) {
@@ -452,7 +452,7 @@ public class UtilListas {
 		Vector finalCampDetalle = new Vector();
 		
 		try {
-			log.info("[UtilListas :: consultarCampaniasDetalles] Inicio");
+			// log.info("[UtilListas :: consultarCampaniasDetalles] Inicio");
 			
 			aux = conexion.consultarCampaniasDetalles(codigoOficina, mes, anho,
 					codigoGestor);
@@ -471,7 +471,7 @@ public class UtilListas {
 					finalCampDetalle.add(campGeneral);
 				}
 			}
-			log.info("[UtilListas :: consultarCampaniasDetalles] Fin");
+			// log.info("[UtilListas :: consultarCampaniasDetalles] Fin");
 			
 			return finalCampDetalle;
 		} catch (Exception e) {
@@ -488,7 +488,7 @@ public class UtilListas {
 		Vector finalCampDetalle = new Vector();
 		
 		try {
-			log.info("[UtilListas :: consultarCampaniasDetallesPGG] Inicio");
+			// log.info("[UtilListas :: consultarCampaniasDetallesPGG] Inicio");
 			
 			aux = conexion.consultarCampaniasDetallesPGG(codigoOficina, mes,
 					anho, codigoGestor);
@@ -507,7 +507,7 @@ public class UtilListas {
 					finalCampDetalle.add(campGeneral);
 				}
 			}
-			log.info("[UtilListas :: consultarCampaniasDetallesPGG] Fin");
+			// log.info("[UtilListas :: consultarCampaniasDetallesPGG] Fin");
 			
 			return finalCampDetalle;
 		} catch (Exception e) {
@@ -536,7 +536,7 @@ public class UtilListas {
 	 */
 
 	public static String setearCaracterLeft(String cadena, char c, int num) {
-		log.info("[UtilListas :: setearCaracterLeft] Inicio");
+		// log.info("[UtilListas :: setearCaracterLeft] Inicio");
 		
 		String temp = "";
 		if (cadena == null)
@@ -546,7 +546,7 @@ public class UtilListas {
 			temp += c;
 		temp += cadena;
 
-		log.info("[UtilListas :: setearCaracterLeft] Fin");	
+		// log.info("[UtilListas :: setearCaracterLeft] Fin");	
 		
 		return temp;
 	}
@@ -566,7 +566,7 @@ public class UtilListas {
 		int longTrama = 0;
 		int numero = 0;
 
-		log.info("[UtilListas :: tramaToBigDecimal] Inicio");
+		// log.info("[UtilListas :: tramaToBigDecimal] Inicio");
 		
 		if (numeroTrama == null) {
 			return new BigDecimal(0.00);
@@ -603,7 +603,7 @@ public class UtilListas {
 
 		bd.setScale(decimales);
 		
-		log.info("[UtilListas :: tramaToBigDecimal] Fin");
+		// log.info("[UtilListas :: tramaToBigDecimal] Fin");
 
 		return bd;
 	}
@@ -614,7 +614,7 @@ public class UtilListas {
 		Connection con = new Connection();
 
 		try {
-			log.info("[UtilListas :: listarGestoresSinMontos] Inicio");
+			// log.info("[UtilListas :: listarGestoresSinMontos] Inicio");
 			
 			IILDPeCriterioBusqueda cb = new IILDPeCriterioBusqueda();
 			cb.setCodigoOficina(codigoOficina);
@@ -656,11 +656,11 @@ public class UtilListas {
 											gestor.setCodigoTerritorio(oficina.getTerr().getCodTerr());
 											gestor.setCodigoOficina(oficina.getCodOfic());
 										}else{
-											log.info("[UtilListas :: listarGestoresSinMontos] cod oficina:"+ usuarioEncontrado.getCodigoOficina());
+											// log.info("[UtilListas :: listarGestoresSinMontos] cod oficina:"+ usuarioEncontrado.getCodigoOficina());
 										}
 									}
 									
-									log.info("[UtilListas :: listarGestoresSinMontos] porcentaje: "+ gestor.getPorcAsignado());
+									// log.info("[UtilListas :: listarGestoresSinMontos] porcentaje: "+ gestor.getPorcAsignado());
 									vistaGestores.add(gestor);
 								}
 							}
@@ -669,7 +669,7 @@ public class UtilListas {
 				}
 			}
 			
-			log.info("[UtilListas :: listarGestoresSinMontos] Fin");
+			// log.info("[UtilListas :: listarGestoresSinMontos] Fin");
 			
 			return vistaGestores;
 		} catch (Exception e) {

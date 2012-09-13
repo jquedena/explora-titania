@@ -30,9 +30,11 @@ public class ObjetivoDAO extends AbstractSQL {
 			ResultSet rst = this.executeProcedure("IIDO.PK_OBJETIVO.PROC_INSERTAR_OBJETIVO", parameters);		
 			try {
 				if(rst != null) {
-					result[0] = rst.getString("COD_META_GESTOR");
-					result[1] = rst.getString("ACCION");
-					rst.close();
+					if(rst.next()) {
+						result[0] = rst.getString("COD_META_GESTOR");
+						result[1] = rst.getString("ACCION");
+						rst.close();
+					}
 				}
 			} catch(SQLException e) {
 				log.error("ObjetivoDAO :: registrar", e);

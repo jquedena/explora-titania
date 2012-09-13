@@ -45,7 +45,7 @@ public class AbstractSQL {
 		try {
 			initialContext = new InitialContext();
 			if (initialContext == null) {
-				log.info("[AbstractSQL] initialContext null");
+				log.debug("[AbstractSQL] initialContext null");
 			}
 			
 			dataSource = (DataSource) initialContext.lookup(ConstantesUtil.DATASOURCE_CONTEXT);
@@ -94,7 +94,7 @@ public class AbstractSQL {
 			}
 			
 			query = "{call " + procedure + "(" + criterio + ")}";
-			log.info("INDRA:AbstractSQL:executeProcedure:{" + query + "}");
+			log.debug("INDRA:AbstractSQL:executeProcedure:{" + query + "}");
 
 			cnn = dataSource.getConnection();
 			stm = cnn.prepareCall(query);
@@ -105,16 +105,16 @@ public class AbstractSQL {
 					o = parameters[i - 1];
 					if (o instanceof String) {
 						stm.setString(i, (String) o);
-						log.info("STRING :: " + i + " - " + o);
+						log.debug("STRING :: " + i + " - " + o);
 					} else if (o instanceof BigDecimal) {
 						stm.setBigDecimal(i, (BigDecimal) o);
-						log.info("BIGDECIMAL :: " + i + " - "  + o);
+						log.debug("BIGDECIMAL :: " + i + " - "  + o);
 					} else if (o instanceof Date) {
 						stm.setDate(i, (Date) o);
-						log.info("DATE :: " + i + " - "  + o);
+						log.debug("DATE :: " + i + " - "  + o);
 					} else {
 						stm.setObject(i, o);
-						log.info("OBJECT :: " + i + " - "  +o);
+						log.debug("OBJECT :: " + i + " - "  +o);
 					}
 				}
 			}
@@ -145,10 +145,14 @@ public class AbstractSQL {
 					if(criterio.length() > 0) criterio += ",";
 					criterio += "?";
 				}
+			} else {
+				if(out != null && out.length() > 0) {
+					criterio += "?";
+				}
 			}
 			
 			query = "{call " + procedure + "(" + criterio + ")}";
-			log.info("INDRA:AbstractSQL:executeProcedure:{" + query + "}");
+			log.debug("INDRA:AbstractSQL:executeProcedure:{" + query + "}");
 
 			cnn = dataSource.getConnection();
 			stm = cnn.prepareCall(query);
@@ -157,19 +161,19 @@ public class AbstractSQL {
 				for (Entry<String, Object> entry : parameters.entrySet()) {
 					if (entry.getValue() instanceof String) {
 						stm.setString(entry.getKey(), (String) entry.getValue());
-						if(entry.getValue() != null) log.info("STRING :: " + entry.getKey() + " - " + entry.getValue().toString());
+						if(entry.getValue() != null) log.debug("STRING :: " + entry.getKey() + " - " + entry.getValue().toString());
 					} else if (entry.getValue() instanceof BigDecimal) {
 						stm.setBigDecimal(entry.getKey(), (BigDecimal) entry.getValue());
-						if(entry.getValue() != null) log.info("BIGDECIMAL :: " + entry.getKey() + " - "  + entry.getValue().toString());
+						if(entry.getValue() != null) log.debug("BIGDECIMAL :: " + entry.getKey() + " - "  + entry.getValue().toString());
 					} else if (entry.getValue() instanceof Date) {
 						stm.setString(entry.getKey(), formatter.format(entry.getValue()));
-						if(entry.getValue() != null) log.info("DATE :: " + entry.getKey() + " - "  + formatter.format(entry.getValue()));
+						if(entry.getValue() != null) log.debug("DATE :: " + entry.getKey() + " - "  + formatter.format(entry.getValue()));
 					} else if (entry.getValue() instanceof java.util.Date) {
 						stm.setString(entry.getKey(), formatter.format(entry.getValue()));
-						if(entry.getValue() != null) log.info("DATE :: " + entry.getKey() + " - "  + formatter.format(entry.getValue()));
+						if(entry.getValue() != null) log.debug("DATE :: " + entry.getKey() + " - "  + formatter.format(entry.getValue()));
 					} else {
 						stm.setObject(entry.getKey(), entry.getValue());
-						if(entry.getValue() != null) log.info("OBJECT :: " + entry.getKey() + " - "  + entry.getValue().toString());
+						if(entry.getValue() != null) log.debug("OBJECT :: " + entry.getKey() + " - "  + entry.getValue().toString());
 					}
 				}
 			}
@@ -201,7 +205,7 @@ public class AbstractSQL {
 			}
 			
 			query = "{call " + procedure + "(" + criterio + ")}";
-			log.info("INDRA:AbstractSQL:executeProcedure:{" + query + "}");
+			log.debug("INDRA:AbstractSQL:executeProcedure:{" + query + "}");
 
 			cnn = dataSource.getConnection();
 			stm = cnn.prepareCall(query);
@@ -210,19 +214,19 @@ public class AbstractSQL {
 				for (Entry<String, Object> entry : parameters.entrySet()) {
 					if (entry.getValue() instanceof String) {
 						stm.setString(entry.getKey(), (String) entry.getValue());
-						if(entry.getValue() != null) log.info("STRING :: " + entry.getKey() + " - " + entry.getValue().toString());
+						if(entry.getValue() != null) log.debug("STRING :: " + entry.getKey() + " - " + entry.getValue().toString());
 					} else if (entry.getValue() instanceof BigDecimal) {
 						stm.setBigDecimal(entry.getKey(), (BigDecimal) entry.getValue());
-						if(entry.getValue() != null) log.info("BIGDECIMAL :: " + entry.getKey() + " - "  + entry.getValue().toString());
+						if(entry.getValue() != null) log.debug("BIGDECIMAL :: " + entry.getKey() + " - "  + entry.getValue().toString());
 					} else if (entry.getValue() instanceof Date) {
 						stm.setString(entry.getKey(), formatter.format(entry.getValue()));
-						if(entry.getValue() != null) log.info("DATE :: " + entry.getKey() + " - "  + formatter.format(entry.getValue()));
+						if(entry.getValue() != null) log.debug("DATE :: " + entry.getKey() + " - "  + formatter.format(entry.getValue()));
 					} else if (entry.getValue() instanceof java.util.Date) {
 						stm.setString(entry.getKey(), formatter.format(entry.getValue()));
-						if(entry.getValue() != null) log.info("DATE :: " + entry.getKey() + " - "  + formatter.format(entry.getValue()));
+						if(entry.getValue() != null) log.debug("DATE :: " + entry.getKey() + " - "  + formatter.format(entry.getValue()));
 					} else {
 						stm.setObject(entry.getKey(), entry.getValue());
-						if(entry.getValue() != null) log.info("OBJECT :: " + entry.getKey() + " - "  + entry.getValue().toString());
+						if(entry.getValue() != null) log.debug("OBJECT :: " + entry.getKey() + " - "  + entry.getValue().toString());
 					}
 				}
 			}
@@ -244,7 +248,7 @@ public class AbstractSQL {
 		stm = null;
 		ResultSet result = null;
 		try {
-			log.info("INDRA:AbstractSQL:executeQuery:{" + query + "}");
+			log.debug("INDRA:AbstractSQL:executeQuery:{" + query + "}");
 
 			cnn = dataSource.getConnection();
 			stm = cnn.prepareCall(query);
@@ -261,7 +265,7 @@ public class AbstractSQL {
 		stm = null;
 		boolean result = false;
 		try {
-			log.info("INDRA:AbstractSQL:execute:{" + query + "}");
+			log.debug("INDRA:AbstractSQL:execute:{" + query + "}");
 
 			cnn = dataSource.getConnection();
 			stm.executeUpdate(query);

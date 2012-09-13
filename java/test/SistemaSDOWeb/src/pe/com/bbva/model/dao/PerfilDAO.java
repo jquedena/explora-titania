@@ -1,8 +1,10 @@
 package pe.com.bbva.model.dao;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import pe.com.indra.component.model.AbstractSQL;
 
@@ -29,6 +31,35 @@ public class PerfilDAO extends AbstractSQL {
 	
 	public boolean actualizarPerfil(Perfil perfil) {
 		return (this.executeProcedure("iido.pk_perfil.proc_actualizar_perfil", crearParametros(perfil)) != -1);
+	}
+	
+	public List<Equivalencia> findEquivalenciaAll() {
+		ResultSet rst = null;
+		List<Equivalencia> result = new ArrayList<Equivalencia>();
+		Equivalencia equivalencia = new Equivalencia();
+		try {
+			rst = this.executeProcedure("iido.pk_perfil.proc_consulta_equivalencia", null, "SYS_PERFIL");
+			
+			if(rst != null) {
+				while(rst.next()) {
+					equivalencia = new Equivalencia();
+					equivalencia.setCodCargo(rst.getString("COD_CAR")); 
+					equivalencia.setCodPerfil(rst.getString("COD_PER"));
+					equivalencia.setPerfil(rst.getString("PERFIL"));
+					equivalencia.setNombrePerfil(rst.getString("NOM_PERFIL"));
+					equivalencia.setUsuActualizo(rst.getString("USU_ACTU"));
+					equivalencia.setUsuRegistro(rst.getString("USU_REGI"));
+					result.add(equivalencia);
+				}
+				rst.close();
+			}
+		} catch(Exception e) {
+			log.error("findEquivalenciaByCodCargo", e);
+		} finally {
+			this.close();
+		}
+		
+		return result;
 	}
 	
 	public Equivalencia findEquivalenciaByCodCargo(String codCargo) {
