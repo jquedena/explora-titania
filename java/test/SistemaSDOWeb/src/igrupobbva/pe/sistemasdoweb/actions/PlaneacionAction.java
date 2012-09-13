@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.Vector;
@@ -35,12 +36,14 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
 
+import pe.com.bbva.model.dao.PerfilDAO;
 import pe.com.stefanini.common.exception.BaseException;
 
 import com.grupobbva.bc.per.tele.ldap.comunes.IILDPeVector;
 import com.grupobbva.bc.per.tele.ldap.directorio.IILDPeCriterioBusqueda;
 import com.grupobbva.bc.per.tele.ldap.directorio.IILDPeGestorUsuarios;
 import com.grupobbva.bc.per.tele.sdo.serializable.Epigrafe;
+import com.grupobbva.bc.per.tele.sdo.serializable.Equivalencia;
 import com.grupobbva.bc.per.tele.sdo.serializable.Gestor;
 import com.grupobbva.bc.per.tele.sdo.serializable.MaestroPlan;
 import com.grupobbva.bc.per.tele.sdo.serializable.Multitabla;
@@ -1023,6 +1026,24 @@ public class PlaneacionAction extends BaseLoadDataAction {
 			request.setAttribute("GPE", newMap.get("GPE") == null ? 0 : newMap.get("GPE"));
 			request.setAttribute("GPT", newMap.get("GPT") == null ? 0 : newMap.get("GPT"));
 
+			int i;
+			PerfilDAO perfilDAO = new PerfilDAO();
+			List<Equivalencia> eq = perfilDAO.findEquivalenciaAll();
+			for(i = 0; i < eq.size(); i++) {
+				if(eq.get(i).getCodPerfil().equalsIgnoreCase("GOF")) {
+					request.setAttribute("_GOF", eq.get(i).getPerfil());
+				}
+				if(eq.get(i).getCodPerfil().equalsIgnoreCase("GCO")) {
+					request.setAttribute("_GCO", eq.get(i).getPerfil());
+				}
+				if(eq.get(i).getCodPerfil().equalsIgnoreCase("GPE")) {
+					request.setAttribute("_GPE", eq.get(i).getPerfil());
+				}
+				if(eq.get(i).getCodPerfil().equalsIgnoreCase("GPT")) {
+					request.setAttribute("_GPT", eq.get(i).getPerfil());
+				}
+			}
+			
 			request.setAttribute("listaPlanesResumen", listaPlanesResumen);
 			request.setAttribute("listaOficina", listaOficina);
 			request.setAttribute("listaAnhos", listaAnhos);
