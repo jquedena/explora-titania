@@ -1,0 +1,66 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+    	<ui:define name="contenido">
+    		
+    		<br/>            
+            <h:outputText value="#{message['usuario.titulo']}" styleClass="tituloPantalla"/>
+            <p:separator />
+            
+            <h:form id="frmPrincipalUsuario">
+            	<h:panelGrid id="pgFormDto" columns="2" cellpadding="4">
+            		
+            		<h:outputLabel id="lblId" for="txtId" dir="ltr" value="#{message['general.label.id']}" styleClass="label" rendered="#{sessionMBean.ACCION != 1}"/>
+                    <h:outputText id="txtId" value="#{usuarioModel.dto.id}" rendered="#{sessionMBean.ACCION != 1}"/>
+
+					<h:outputLabel id="lblCbxTipoAcceso" dir="ltr" for="cbxCbxTipoAcceso" value="#{message['situacion.label.codAplicativo']}" styleClass="label"/>
+                    <p:selectOneMenu id="cbxCbxTipoAcceso"  value="#{usuarioModel.dto.codTipoAcceso}">
+						<f:selectItem itemValue="#{usuarioModel.seleccione}" itemLabel="Seleccione" />
+						<f:selectItems value="#{usuarioModel.listaTipoAcceso}" />  
+					</p:selectOneMenu>
+                    
+                    <h:outputLabel id="lblValor" dir="ltr" for="txtValor"  value="#{message['usuario.label.valor']}" styleClass="label"/>
+            		<p:inputText id="txtValor" value="#{usuarioModel.dto.valor}" styleClass="txtCampo" maxlength="7" required="true" readonly="#{sessionMBean.ACCION == 3}" >
+            			<f:validateLength maximum="7" minimum="0" />
+			        </p:inputText>
+                    
+ 					<h:outputLabel id="lblDesSituacion" dir="ltr" for="cbxPerfil" value="#{message['usuario.label.perfil']}" styleClass="label"/>
+			        <p:selectOneMenu id="cbxPerfil" value="#{usuarioModel.dto.perfil.id}" required="true" readonly="#{sessionMBean.ACCION == 3}" >
+			        	<f:selectItem itemValue="#{usuarioModel.seleccione}" itemLabel="Seleccione" />
+			        	<f:selectItems value="#{usuarioModel.listaPerfiles}" />  
+			        </p:selectOneMenu>
+ 
+            	</h:panelGrid>
+            	
+            	<p:separator />
+            	
+                <h:panelGrid>
+                    <f:facet name="footer">  
+                        <p:outputPanel  style="float:left">  
+                            <h:commandLink title="#{message['general.button.guardar.tip']}"
+                                           onclick="return confirm('#{message.general_mensaje_confirmacion}');"
+                                           value="#{message['general.button.guardar']}" styleClass="estiloLink"
+                                           action="#{usuarioMBean.guardar}">                                    
+                            </h:commandLink>       
+                                             
+                            <p:spacer width="30" />
+                            
+                            <h:commandLink title="#{message['general.button.atras.tip']}" immediate="true"
+                                           value="#{message['general.button.atras']}" styleClass="estiloLink"
+                                           action="#{usuarioMBean.retroceder}">                                    
+                            </h:commandLink>
+
+                        </p:outputPanel>
+                    </f:facet>    
+                </h:panelGrid>
+            		
+            </h:form>
+             			
+    	</ui:define>
+    </ui:composition>
+</html>    	

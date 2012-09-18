@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+	
+	<ui:define name="contenido">
+
+		<br />
+		<h:outputText value="#{message['carga.titulo']}"
+			styleClass="tituloPantalla" />
+		<p:separator />
+			<p:messages id="msgs2" showDetail="false"/>
+		<h:form id="frmPrincipal"  styleClass="txtCampo label">
+		
+			<h:panelGrid id="pgFormFilter" columns="10" cellpadding="4">	
+				<h:outputText value="FECHA"	/>
+				<p:calendar value="#{cargaMBean.fechaBusqueda}"   pattern="dd/MM/yyyy"  required="true" navigator="true" />		
+				<p:commandButton image="ui-icon ui-icon-search"
+					value="BUSCAR"
+					title="#{message['general.button.buscar.filtro.tip']}" 
+					update="tblPrincipal"
+					actionListener="#{cargaMBean.buscar}">
+					<f:ajax render="tblPrincipal" />
+				</p:commandButton>
+			</h:panelGrid>		
+			
+			<p:dataTable id="tblPrincipal" value="#{cargaMBean.lista}" styleClass="valueColTable"
+				var="dto" rowsPerPageTemplate="10,20,30,40,50" paginator="true" 
+				rows="10" widgetVar="widTable">
+				<p:column style="text-align:left;" filterBy="#{dto.cargaDtoPK.proceso}"
+					headerText="#{message['carga.nombre.proceso']}"
+					sortBy="#{dto.cargaDtoPK.proceso}">
+					<h:outputText value="#{dto.cargaDtoPK.proceso}" />
+				</p:column>
+				<p:column style="text-align:left;" 
+					headerText="#{message['carga.fecha.proceso']}">
+					<h:outputText value="#{dto.cargaDtoPK.fecha}" >
+						<f:convertDateTime pattern="#{sessionMBean.formatoFecha}"/>
+					</h:outputText>
+				</p:column>
+				<p:column style="text-align:left;"
+					headerText="#{message['carga.hora.proceso']}">
+					<h:outputText value="#{dto.cargaDtoPK.fecha}">
+						<f:convertDateTime pattern="#{sessionMBean.formatoHora}"  timeZone="#{aplicacionMBean.timeZone}"/>
+					</h:outputText>
+				</p:column>
+				<p:column style="text-align:left;"
+					headerText="#{message['carga.tiempo.ejecucion']}">
+					<h:outputText value="#{dto.tiempoEjecucion}" />
+				</p:column>	
+				<p:column style="text-align:left;"
+					headerText="#{message['carga.total.ejecutado']}">
+					<h:outputText value="#{dto.totVal}" />
+				</p:column>	
+				<p:column style="text-align:left;"
+					headerText="#{message['carga.total.cargado']}">
+					<h:outputText value="#{dto.totValOk}" />
+				</p:column>	
+				<p:column style="text-align:left;" sortBy="#{dto.errores}"
+					headerText="#{message['carga.total.errado']}">
+					<h:outputText value="#{dto.errores}" />
+				</p:column>								
+				
+				
+			</p:dataTable>
+			
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
