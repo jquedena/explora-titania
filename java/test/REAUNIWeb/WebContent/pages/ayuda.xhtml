@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"            
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="contenido">     
+            <br />            
+            <h:outputText value="#{message['ayuda.titulo']}" styleClass="tituloPantalla"/>
+            <p:separator />
+            <p:messages id="mensajes" showDetail="false"/>
+            <p:focus />
+            <h:form>                
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

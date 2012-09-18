@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" >
+    <h:head>
+         <f:facet name="first">
+             <meta content='text/html; charset=ISO-8859-1' http-equiv="Content-Type"/>
+         </f:facet>
+         <f:loadBundle basename="com.indra.pe.bbva.reauni.message.ApplicationResources" var="message" />
+         <title><h:outputText value="#{message['general.cabecera.titulo.aplicacion']}"/></title>            
+         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/recursos/css/default.css" />
+         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/recursos/css/theme.css" />
+         <script type="text/javascript" src="#{request.contextPath}/recursos/js/script.js" />
+    </h:head>
+    <h:body onload="dlgLogout.show();">
+        <h:form>
+            <p:dialog modal="true" header="REASIGNACIÓN Y UNIFICACIÓN ONLINE" widgetVar="dlgLogout" width="300" closable="false">
+            	<p><b>SU SESIÓN HA EXPIRADO.</b></p>
+            	<p:commandButton value="CERRAR SESIÓN" onclick="cerrar();"/>
+            </p:dialog>
+        </h:form>
+    </h:body>
+</html>

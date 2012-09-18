@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+    	<ui:define name="contenido">
+    	
+		            <h:outputText value="#{message['operacionCentrales.titulo']}"  styleClass="tituloPantalla"/>
+		            <p:separator />           
+
+            		<h:form id="frmOperacionesCentrales">	
+    					
+    					<h:panelGrid columns="5" cellpadding="6">
+    					
+    						    <h:outputLabel id="lblBusqProducto" for="txtBusqProducto" value="#{message['operacionCentrales.label.producto']}" styleClass="label"/>
+			                    <p:inputText id="txtBusqProducto" value="#{operacionesCentralizadasModel.dtoFiltro.producto}" 
+			                    			 styleClass="txtCampo" maxlength="4" size="20">
+			                        <f:validateLength maximum="4" minimum="0" />
+			                    </p:inputText>
+			
+			                    <h:outputLabel id="lblBusqRegistro" for="txtBusqRegistro" value="#{message['operacionCentrales.label.registro']}" styleClass="label"/>
+			                    <p:inputText id="txtBusqRegistro" label="#{message['operacionCentrales.label.registro']}" 
+			                                 value="#{operacionesCentralizadasModel.dtoFiltro.registro}" 
+			                                 size="20" styleClass="txtCampo" maxlength="7">
+			                        <f:validateLength maximum="7" minimum="0" />
+			                    </p:inputText>
+		                </h:panelGrid>
+		                
+						<h:panelGrid columns="1" cellpadding="6">
+	        				<p:outputPanel>
+	        					<p:commandButton image="ui-icon ui-icon-search"
+	        						value="BUSCAR" 
+	        						title="#{message['general.button.buscar.filtro.tip']}"   
+			                        actionListener="#{operacionesCentralizadasMBean.buscarListaOperacionesCentralizadas}" update="tblOperacionesCentrales msgs">
+			                        <f:ajax render="tblOperacionesCentrales" />
+			                    </p:commandButton>
+			                    <p:spacer width="5px">  
+	                            <p:commandButton title="#{message['general.button.nuevo.tip']}"
+	                                           value="#{message['general.button.nuevo']}" 
+	                                           styleClass="estiloLink"
+	                                           ajax="false"
+	                                           action="#{operacionesCentralizadasMBean.nuevo}">                                    
+	                            </p:commandButton>
+	                        </p:outputPanel>
+   			 			</h:panelGrid>
+   			 					
+			            <p:dataTable id="tblOperacionesCentrales" value="#{operacionesCentralizadasModel.lista}" var="dto"
+			                             rowsPerPageTemplate="10,20,30,40,50"  emptyMessage="#{message['general.table.sinRegistros']}"                               
+			                             paginator="true" rows="#{sessionMBean.cantidadRegistros}"  widgetVar="widTable">
+			                             
+			                        <p:column styleClass="botonesTabla">
+				                        <p:commandButton image="ui-icon ui-icon-search" title="#{message['general.button.ver.tip']}"
+				                                         action="#{operacionesCentralizadasMBean.ver}" ajax="false">
+				                            <f:setPropertyActionListener value="#{dto}" target="#{operacionesCentralizadasModel.dto}" />                                                                    
+				                        </p:commandButton>
+				                        
+				                      
+				                        
+				                        <p:commandButton rendered="false" image="ui-icon ui-icon-pencil" title="#{message['general.button.editar.tip']}"
+				                                         action="#{operacionesCentralizadasMBean.editar}" ajax="false">
+				                            <f:setPropertyActionListener value="#{dto}" target="#{operacionesCentralizadasModel.dto}" />                                                                    
+				                        </p:commandButton>
+				                        
+				                         <p:spacer width="20"/>
+   
+				                         <p:commandButton image="ui-icon ui-icon-trash" 
+				                         				 update=":frmSituaciones:display" 
+				                        				 title="#{message['general.button.eliminar.tip']}"
+				                        				 onclick="return confirm('¿Está seguro de eliminar el registro?')"
+				                                         action="#{operacionesCentralizadasMBean.eliminar}"
+				                                         >     
+				                            <f:setPropertyActionListener value="#{dto}" target="#{operacionesCentralizadasModel.dto}" />                                                                            
+				                        </p:commandButton>
+				                    </p:column>
+			                        
+			                        <p:column id="colRegistro" headerText="#{message['operacionCentrales.label.registro']}" sortBy="#{dto.registro}"  
+			                       			 style="text-align:center;">
+				                        <h:outputText value="#{dto.registro}" styleClass="valueColTable" />
+				                    </p:column>
+				                    
+				                    <p:column id="colProducto" headerText="#{message['operacionCentrales.label.producto']}" sortBy="#{dto.producto}" >
+				                        <h:outputText value="#{dto.producto}" styleClass="valueColTable" />
+				                    </p:column>                  	
+			           </p:dataTable>
+			           
+			           <p:dialog header="#{dto.descripcion}"  widgetVar="dialogEliminarOpeCentralizada" resizable="false" id="dlgEliminarOpeCentralizada"  
+                				  showEffect="fade" modal="true">
+                				  
+                			<h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+  	  							
+  	  							
+  	  							<h:outputLabel value="#{message['operacionCentrales.msj.eliminar']}" styleClass="label"/> 
+  	  							<h:outputLabel value="" styleClass="label"/>
+  	  							
+	                			<p:commandButton value="Si" update="tblOperacionesCentrales msgs" oncomplete="dialogEliminarOpeCentralizada.hide()" action="#{operacionesCentralizadasMBean.eliminar}"/>
+	         					<p:commandButton value="No" onclick="dialogEliminarOpeCentralizada.hide()" type="button" />
+	         					
+	         				</h:panelGrid>	     
+			            </p:dialog>                   
+		    		</h:form>
+		 
+    	</ui:define>		
+    </ui:composition>
+</html>    	

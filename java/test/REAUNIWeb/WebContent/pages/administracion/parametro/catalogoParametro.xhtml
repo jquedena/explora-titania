@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"            
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="contenido">     
+            <br />            
+            <h:outputText value="#{message['catalogo.parametro.titulo']}" styleClass="tituloPantalla" />
+            <p:separator />           
+
+            <h:form id="frmPrincipal"  styleClass="txtCampo label">                
+                <h:panelGrid id="pgFormDto" columns="6" cellpadding="10">
+                    <h:outputLabel value="#{message['general.label.id']}" rendered="#{sessionMBean.accion != 1}"/>
+                    <h:outputText value="#{parametroMBean.dto.id}" rendered="#{sessionMBean.accion != 1}"/>
+					
+                    <h:outputLabel value="#{message['catalogo.parametro.label.descripcion']}" />
+                    <p:inputText label="#{message['catalogo.parametro.label.descripcion']}" 
+                                 value="#{parametroMBean.dto.descripcion}"  readonly="#{sessionMBean.accion == 3}"
+                                 required="true" size="50">
+                        <f:validateLength maximum="100" minimum="3" />
+                        <f:ajax />
+                    </p:inputText>
+                </h:panelGrid>         
+               
+                <p:separator />
+                <p:dataTable id="tblPrincipal" value="#{parametroMBean.dto.listaParametros}" var="dto" widgetVar="widTable"   styleClass="valueColTable" emptyMessage="#{message['general.table.sinRegistros']}">
+                    <p:column style="text-align:center;">
+                        <p:commandButton image="ui-icon ui-icon-search"  title="#{message['general.button.ver.tip']}"                        			     
+                                         action="#{parametroMBean.verParametro}" ajax="false">
+                            <f:setPropertyActionListener value="#{dto}" target="#{parametroMBean.parametroDto}" />                                                                    
+                        </p:commandButton>
+                        <p:spacer width="20"/>
+                        <p:commandButton image="ui-icon ui-icon-pencil" title="#{message['general.button.editar.tip']}"
+                                         action="#{parametroMBean.editarParametro}" ajax="false" rendered="#{sessionMBean.accion != 3}">
+                            <f:setPropertyActionListener value="#{dto}" target="#{parametroMBean.parametroDto}" />                                                                    
+                        </p:commandButton>
+                    </p:column>
+                    <p:column headerText="#{message['general.label.id']}"  style="text-align:center;">
+                        <h:outputText value="#{dto.id}" />
+                    </p:column>
+                    <p:column headerText="#{message['parametro.label.descripcion']}" sortBy="#{dto.descripcion}" >
+                        <h:outputText value="#{dto.descripcion}" />
+                    </p:column>
+                    <p:column headerText="#{message['parametro.label.descripcion.corta']}" >
+                        <h:outputText value="#{dto.descripcionCorta}" />
+                    </p:column>
+                    <p:column headerText="#{message['parametro.label.estado']}" sortBy="#{dto.estadoTexto}">
+                        <h:outputText value="#{dto.estadoTexto}" />
+                    </p:column>
+                    <p:column headerText="#{message['parametro.label.tipo']}" >
+                        <h:outputText value="#{dto.tipo}" />
+                    </p:column>                    
+                    <p:column headerText="#{message['parametro.label.valor.entero']}" >
+                        <h:outputText value="#{dto.valorEntero}" />
+                    </p:column>                    
+                    <p:column headerText="#{message['parametro.label.valor.fecha']}" >
+                        <h:outputText value="#{dto.valorFecha}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>                    
+                    <p:column headerText="#{message['parametro.label.valor.real']}" >
+                        <h:outputText value="#{dto.valorReal}" />
+                    </p:column>                    
+                    <p:column headerText="#{message['parametro.label.valor.cadena']}" >
+                        <h:outputText value="#{dto.valorCadena}" />
+                    </p:column>                    
+                    <p:column headerText="#{message['parametro.label.valor.boolean']}" >
+                        <h:outputText value="#{dto.valorBooleanTexto}" />
+                    </p:column>
+                    
+                    <f:facet name="header">
+                        <p:outputPanel>  
+                            <p:commandLink title="#{message['catalogo.parametro.button.add']}"
+                                           value="#{message['catalogo.parametro.button.add']}"                                           
+                                           action="#{parametroMBean.nuevoParametro}" styleClass="estiloLink"
+                                           ajax="false">                                    
+                            </p:commandLink>                            
+                        </p:outputPanel>
+                    </f:facet>
+                </p:dataTable>
+                <h:panelGrid>
+                    <f:facet name="footer">  
+                        <p:outputPanel  style="float:left">  
+                            <p:commandButton title="#{message['general.button.guardar.tip']}" style="background-color: red; color: FFFFFF"
+                                           onclick="return confirm('#{message.general_mensaje_confirmacion}');"
+                                           ajax="false" rendered="#{sessionMBean.accion != 3}"
+                                           value="#{message['general.button.guardar']}"
+                                           action="#{parametroMBean.guardar}">                                    
+                            </p:commandButton>                        
+                            <p:spacer width="30" />
+                            <p:commandButton title="#{message['general.button.atras.tip']}" immediate="true"
+                                           value="#{message['general.button.atras']}" style="background-color: red; color: FFFFFF"
+                                           ajax="false"                                       
+                                           action="#{parametroMBean.retroceder}">                                    
+                            </p:commandButton>
+
+                        </p:outputPanel>
+                    </f:facet>    
+                </h:panelGrid>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

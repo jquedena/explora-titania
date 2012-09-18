@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    
+    <session-factory>
+        
+        <property name="hibernate.show_sql">false</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.CatalogoParametroDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.ContratoDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.EstadoSolicitudDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.FechaCorteDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.FechaCorteDetaDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.InvolucradoDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.OficinaInvolucradoDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.OficinaSolicitudDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.OpcionMenuDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.OperacionCentralizadaDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.ParametroDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.PerfilDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.PerfilOpcionMenuDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.PermisoPerfilDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.SituacionDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.SolicitudDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.TipoPrestamoDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.TerritorioDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.OficinaDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.GestorDto"/>
+        
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.ProductoDto"/>            
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.ContratoTemporalDto"/>
+        
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.EjecucionProcesoDto"/>
+        
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.AvisoSilencioAdministrativoDto"/>
+               
+     </session-factory>
+     
+</hibernate-configuration>

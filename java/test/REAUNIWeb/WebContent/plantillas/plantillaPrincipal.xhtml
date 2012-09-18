@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+    <f:view contentType="text/html">
+         <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=ISO-8859-1' http-equiv="Content-Type"/>
+            </f:facet>
+            <f:loadBundle basename="com.indra.pe.bbva.reauni.message.ApplicationResources" var="message" />
+            <title><h:outputText value="#{message['general.cabecera.titulo.aplicacion']}"/></title>            
+            <link type="text/css" rel="stylesheet" href="#{request.contextPath}/recursos/css/default.css" />
+            <link type="text/css" rel="stylesheet" href="#{request.contextPath}/recursos/css/theme.css" />
+            <script type="text/javascript" src="#{request.contextPath}/recursos/js/script.js" />
+        </h:head>
+        <h:body onload="getFechaHora()">
+        <h:form id="frmReloj">
+             <div id="divBanner">
+                    <table id="tblBanner" width="100%" cellpadding="0" cellspacing="0">
+                     	<tr id="trBanner">
+                     		<td id="tdBannerImagen">
+                     			&nbsp;
+                     		</td>
+                     		<td style="background-color: white;">
+                     			&nbsp;
+                     		</td>
+                     		<td id="tdBannerTitulo">
+                     			&nbsp;
+                     		</td>
+                      </tr>
+                    </table>
+             </div>
+			<div id="divHeader">
+				<table id="tblHeader" width="100%" cellpadding="3" cellspacing="3">
+				<tr id="trHeader">
+					<td id="tdHeaderInfo" align="left" style="color:C40A0A;font-weight: bold;">
+						<h:outputText id="textCodCargo" styleClass="txtTituloHeader" value="#{sessionMBean.codCargo}" /> 
+						<h:outputText id="textGuion1" styleClass="txtTituloHeader" value=" - " /> 
+						<h:outputText id="textDesCargo" styleClass="txtTituloHeader" value="#{sessionMBean.desCargo}" />
+						<h:outputText id="textSlash" styleClass="txtTituloHeader" value=" / " /> 			
+						<h:outputText id="textRegistro" styleClass="txtTituloHeader" value="#{sessionMBean.registro} " />
+						<h:outputText id="textGuion2" styleClass="txtTituloHeader" value=" - " /> 
+						<h:outputText id="textNombresUsuarioLogueado" styleClass="txtTituloHeader" value="#{sessionMBean.nombresApellidos}" />
+						<h:outputText id="textGuion3" styleClass="txtTituloHeader" value=" || " />			                       
+						<h:outputText  styleClass="txtTituloHeader" value="#{sessionMBean.codOficina} : #{sessionMBean.desOficina}" />		
+					</td>
+					<td id="tdHeaderReloj" width="20%" align="right">
+						<input id="inReloj" class="txtTituloHeader" style="border: 0;color: #C40A0A;background: #F7F7F7;font-weight: bold;" title="#{message['general.msj.fecha.hora']}"/>   
+					</td>
+				</tr>
+				</table>
+			</div> 
+			<div id="divMenu">
+				<ui:include id="plantillaMenu" src="menu.xhtml" />
+			</div>
+		</h:form>
+
+					<div id="divPnlContenido">
+						<h:panelGrid id="pnlContenido"  columns="1" width="100%" border="0">   
+							<p:messages id="msgs" showDetail="false"/>
+ 							<ui:insert name="contenido"/>
+ 						</h:panelGrid>	
+                	</div> 
+                    
+                    <div id="divFooter" class="ui-widget ui-widget-header ui-corner-all" align="center">
+                    	<ui:include  id="plantillaFooter" src="footer.xhtml"/>
+                    </div>
+        </h:body>
+    </f:view>
+</html>    

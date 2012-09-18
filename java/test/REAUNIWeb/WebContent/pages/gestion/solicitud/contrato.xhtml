@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:panelGrid id="pgContratosTemporaral" columns="1">
+	<h:panelGroup id="idPgContatosAReasignarUnificar">
+		<h:outputText style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+			rendered="#{solicitudMBean.dto.tramiteSolicitudDto.id==1015}"
+			value="CONTRATOS A #{solicitudMBean.dto.tipoDto.descripcion}" />
+		<p:dataGrid var="oficinaSolicitudDto" value="#{solicitudMBean.dto.listaOficinasSolicitud}" columns="1">
+			<h:panelGrid cellspacing="10" columns="10">
+				<h:outputText
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}"
+					style="color: #cc0000; FONT-FAMILY: 'Verdana';font-weight: bold;"
+					value="TERRITORIO : #{oficinaSolicitudDto.oficinaDto.territorioDto.codTerritorio}-#{oficinaSolicitudDto.oficinaDto.territorioDto.desTerritorio} / OFICINA #{oficinaSolicitudDto.tipoOficinaDto.descripcion} : #{oficinaSolicitudDto.oficinaDto.codOficina}-#{oficinaSolicitudDto.oficinaDto.desOficina}" />
+
+				<h:outputLabel value="TOTAL ACTIVO"
+					style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}" />
+
+				<h:outputLabel value="#{oficinaSolicitudDto.totalActivo}"
+					style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}">
+					<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}"
+						currencySymbol="S/." />
+				</h:outputLabel>
+
+				<h:outputLabel value="TOTAL PASIVO"
+					style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}" />
+
+				<h:outputLabel value="#{oficinaSolicitudDto.totalPasivo}"
+					style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}">
+					<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}"
+						currencySymbol="S/." />
+				</h:outputLabel>
+			</h:panelGrid>
+			<p:column>
+				<p:dataTable value="#{oficinaSolicitudDto.listaContratos}"
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}"
+					emptyMessage="NO EXISTEN CONTRATOS PARA #{solicitudMBean.dto.tipoDto.descripcion}"
+					var="contratoDto">
+
+					<p:columnGroup type="header">							  
+			            <p:row>
+			            	<p:column rowspan="2" headerText=" " rendered="#{solicitudMBean.dto.tramiteSolicitudDto.id==1015}"/>
+							<p:column rowspan="2" headerText="CONTRATO" />
+							<p:column rowspan="2" headerText="PRODUCTO" />
+							<p:column colspan="4" headerText="SALDOS" />
+							<p:column rowspan="2" headerText="FECHA CREACIÓN" />
+							<p:column rowspan="2" headerText="SITUACIÓN" />
+							<p:column rowspan="2" headerText="TIPO PRESTAMO" />
+			            </p:row>
+			            <p:row>
+			            	<p:column headerText="ACTIVO" />
+							<p:column headerText="PASIVO" />
+							<p:column headerText="MORA" />
+							<p:column headerText="VENCIDO" />
+						</p:row>
+			        </p:columnGroup>
+					
+					<p:column rendered="#{solicitudMBean.dto.tramiteSolicitudDto.id==1015}">
+						<p:commandButton image="ui-icon ui-icon-close"
+							disabled="#{solicitudMBean.dto.responsableSolicitante != sessionMBean.registro}"
+							title="QUITAR #{solicitudMBean.dto.tipoDto.descripcion}"
+							onclick="return confirm('ESTÁ SEGURO QUE DESEA QUITAR EL CONTRATO DE LA SOLICITUD?');"
+							action="#{solicitudMBean.eliminarContrato}" ajax="false"
+							update=":frmPrincipal:pgPrincipal">
+							<f:setPropertyActionListener value="#{contratoDto}" target="#{solicitudMBean.contratoDto}" />
+						</p:commandButton>
+					</p:column>
+					<p:column style="text-align:left;">#{contratoDto.codigoContrato}</p:column>
+					<p:column style="text-align:left;">#{contratoDto.productoDto.codProd} -  #{contratoDto.productoDto.descProd}</p:column>
+					<p:column style="text-align:right;">
+						<h:outputText value="#{contratoDto.saldoD}">
+							<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}" currencySymbol="S/." />
+						</h:outputText>
+					</p:column>
+					<p:column style="text-align:right;">
+						<h:outputText value="#{contratoDto.saldoA}">
+							<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}" currencySymbol="S/." />
+						</h:outputText>
+					</p:column>
+					<p:column style="text-align:right;">
+						<h:outputText value="#{contratoDto.salMora}">
+							<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}" currencySymbol="S/." />
+						</h:outputText>
+					</p:column>
+					<p:column style="text-align:right;">
+						<h:outputText value="#{contratoDto.saldoVen}">
+							<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}" currencySymbol="S/." />
+						</h:outputText>
+					</p:column>
+					<p:column>
+						<h:outputText value="#{contratoDto.fechaApertura}" />
+					</p:column>
+					<p:column>#{contratoDto.descripcionSituacion}</p:column>
+					<p:column>#{contratoDto.tipoPrestamoDto.descripcion}</p:column>
+				</p:dataTable>
+			</p:column>
+		</p:dataGrid>
+	</h:panelGroup>
+
+		<h:outputText style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+			rendered="#{solicitudMBean.dto.tramiteSolicitudDto.id==1015}"
+			value="CONTRATOS DISPONIBLES A #{solicitudMBean.dto.tipoDto.descripcion}" />
+
+		<p:dataTable id="tblPrincipal"
+			rendered="#{solicitudMBean.dto.tramiteSolicitudDto.id==1015}"
+			value="#{solicitudMBean.mediumCarsModel}" var="dto"
+			emptyMessage="NO EXISTEN CONTRATOS DISPONIBLES"
+			rowStyleClass="#{dto.oficinaDto.codOficina == solicitudMBean.dto.oficinaPrincipalCliente ? 'estiloContrato' : null}"
+			selection="#{solicitudMBean.listaContratosTemporalSelected}">
+
+			<p:columnGroup type="header">							  
+	            <p:row>
+	            	<p:column rowspan="2" selectionMode="multiple" style="width:18px" />
+					<p:column rowspan="2" headerText="CONTRATO" />
+					<p:column rowspan="2" headerText="TERRITORIO" />
+					<p:column rowspan="2" headerText="OFICINA" />
+					<p:column rowspan="2" headerText="PRODUCTO" />
+					<p:column colspan="4" headerText="SALDOS" />
+					<p:column rowspan="2" headerText="FECHA CREACIÓN" />
+					<p:column rowspan="2" headerText="SITUACIÓN" />
+					<p:column rowspan="2" headerText="TIPO PRESTAMO" />
+	            </p:row>
+	            <p:row>
+	            	<p:column headerText="ACTIVO" />
+					<p:column headerText="PASIVO" />
+					<p:column headerText="MORA" />
+					<p:column headerText="VENCIDO" />
+				</p:row>
+	        </p:columnGroup>
+
+			<p:column selectionMode="multiple" style="width:18px" />
+			<p:column style="text-align:left;">#{dto.codigoContrato}</p:column>
+			<p:column style="text-align:left;">#{dto.oficinaDto.territorioDto.codTerritorio} - #{dto.oficinaDto.territorioDto.desTerritorio}</p:column>
+			<p:column style="text-align:left;">#{dto.oficinaDto.codOficina} - #{dto.oficinaDto.desOficina}</p:column>
+			<p:column style="text-align:left;">#{dto.productoDto.codProd} - #{dto.productoDto.descProd}</p:column>
+			<p:column style="text-align:right;">
+				<h:outputText value="#{dto.saldoD}">
+					<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}" currencySymbol="S/." />
+				</h:outputText>
+			</p:column>
+			<p:column style="text-align:right;">
+				<h:outputText value="#{dto.saldoA}">
+					<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}"	currencySymbol="S/." />
+				</h:outputText>
+			</p:column>
+			<p:column style="text-align:right;">
+				<h:outputText value="#{dto.salMora}">
+					<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}" currencySymbol="S/." />
+				</h:outputText>
+			</p:column>
+			<p:column style="text-align:right;">
+				<h:outputText value="#{dto.saldoVen}">
+					<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}" currencySymbol="S/." />
+				</h:outputText>
+			</p:column>
+			<p:column>#{dto.fechaApertura}</p:column>
+			<p:column>#{dto.descripcionSituacion}</p:column>
+			<p:column>#{dto.tipoPrestamoDto.descripcion}</p:column>
+
+			<f:facet name="header">
+				<p:commandButton id="multiViewButton"
+					disabled="#{solicitudMBean.dto.responsableSolicitante != sessionMBean.registro}"
+					value="#{solicitudMBean.dto.tipoDto.descripcion}"
+					icon="ui-icon-search"
+					actionListener="#{solicitudMBean.grabarContratos}"
+					ajax="false"
+					update=":frmPrincipal:idTabView:pgContratosTemporaral" />
+				<p:spacer width="30" />
+				<p:commandButton id="sbReasignarTodos"
+					disabled ="#{solicitudMBean.dto.responsableSolicitante != sessionMBean.registro}"
+					value="#{solicitudMBean.dto.tipoDto.descripcion} TODOS"
+					icon="ui-icon-search"
+					onclick="return confirm('ESTÁ SEGURO QUE DESEA REASIGNAR O UNIFICAR TODOS LOS CONTRATOS?');"
+					actionListener="#{solicitudMBean.grabarContratosAll}"
+					ajax="false"
+					update=":msgs :frmPrincipal:idTabView:pgContratosTemporaral" />
+				<p:spacer width="30" />
+				<p:commandButton title="ENVIAR SOLICITUD"
+					onclick="return confirm('ESTÁ SEGURO QUE DESEA ENVIAR LA SOLICITUD?');"
+					ajax="false"
+					rendered="#{solicitudMBean.dto.usuarioCreacion==sessionMBean.registro  &amp;&amp; sessionMBean.accion==2 &amp;&amp; solicitudMBean.dto.tramiteSolicitudDto.id == 1015}"
+					value="ENVIAR SOLICITUD" action="#{solicitudMBean.enviar}" />
+			</f:facet>
+		</p:dataTable>
+	</h:panelGrid>
+	<h:panelGrid columns="3">
+		<p:commandButton type="button"
+			title="IMPRIMIR CONTRATOS A #{solicitudMBean.dto.tipoDto.descripcion}"
+			value="IMPRIMIR"
+			onclick="imprimir('frmPrincipal:idTabView:idPgContatosAReasignarUnificar')"
+			ajax="false" />
+		<p:spacer />
+		<p:commandButton title="CERRAR LA SOLICITUD" immediate="true"
+			value="CERRAR"
+			onclick="return confirm('ESTÁ SEGURO QUE DESEA CERRAR LA SOLICITUD?');"
+			style="background-color: red; color: FFFFFF" ajax="false"
+			action="#{solicitudMBean.retroceder}">
+		</p:commandButton>
+	</h:panelGrid>
+</html>

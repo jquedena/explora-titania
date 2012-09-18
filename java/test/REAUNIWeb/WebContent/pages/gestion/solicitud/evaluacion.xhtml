@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:panelGrid id="pgEvaluacionesSolicitud">
+	<p:dataGrid var="oficinaSolicitudDto" columns="1" value="#{solicitudMBean.dto.listaOficinasSolicitud}">
+		<p:column>
+			<h:panelGrid cellspacing="10" columns="10" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}">
+				<h:outputText
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"
+					style="color: #cc0000;font-family: 'Verdana';font-weight: bold;"
+					value="TERRITORIO : #{oficinaSolicitudDto.oficinaDto.territorioDto.codTerritorio}-#{oficinaSolicitudDto.oficinaDto.territorioDto.desTerritorio} / OFICINA #{oficinaSolicitudDto.tipoOficinaDto.descripcion} : #{oficinaSolicitudDto.oficinaDto.codOficina}-#{oficinaSolicitudDto.oficinaDto.desOficina}" />
+
+				<h:outputLabel value="TOTAL ACTIVO"
+					style="font-family: 'Verdana';font-weight: bold;"
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}" />
+
+				<h:outputLabel value="#{oficinaSolicitudDto.totalActivo}"
+					style="font-family: 'Verdana';font-weight: bold;"
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}">
+					<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}" currencySymbol="S/." />
+				</h:outputLabel>
+
+				<h:outputLabel value="TOTAL PASIVO"
+					style="font-family: 'Verdana';font-weight: bold;"
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}" />
+
+				<h:outputLabel value="#{oficinaSolicitudDto.totalPasivo}"
+					style="font-family: 'Verdana';font-weight: bold;"
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}">
+					<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}" currencySymbol="S/." />
+				</h:outputLabel>
+
+				<h:outputLabel value="TOTAL ACTIVO"
+					style="font-family: 'Verdana';font-weight: bold;"
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1032}" />
+				
+				<h:outputLabel value="#{solicitudMBean.dto.totalActivo}"
+					style="font-family: 'Verdana';font-weight: bold;"
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1032}">
+					<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}" currencySymbol="S/." />
+				</h:outputLabel>
+
+				<h:outputLabel value="TOTAL PASIVO"
+					style="font-family: 'Verdana';font-weight: bold;"
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1032}" />
+				
+				<h:outputLabel value="#{solicitudMBean.dto.totalPasivo}"
+					style="font-family: 'Verdana';font-weight: bold;"
+					rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1032}">
+					<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}" currencySymbol="S/." />
+				</h:outputLabel>
+			</h:panelGrid>
+			
+			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"/>
+			<h:outputText
+				rendered="#{oficinaSolicitudDto.silencioAdministrativo &amp;&amp; oficinaSolicitudDto.tipoOficinaDto.id!=1033}"
+				style="color: #00cc00;font-family: 'Verdana';font-weight: bold;"
+				value="LA OFICINA FUE ACEPTADA POR EL SILENCIO ADMINISTRATIVO" />
+			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"/>
+			<h:outputText style="font-family: 'Verdana';font-weight: bold;"
+				rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"
+				value="HA RECIBIDO EL CORREO DE CONFORMIDAD DE LA SOLICITUD DEL GT/GR/JPN?" />
+			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"/>
+
+			<p:dataTable value="#{oficinaSolicitudDto.listaInvolucrados}"
+				rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"
+				var="solicitudInvolucradoDto">
+				<p:column headerText="CARGO">#{solicitudInvolucradoDto.involucradoDto.descripcionCargo}</p:column>
+				<p:column headerText="REGISTRO">#{solicitudInvolucradoDto.involucradoDto.registro}</p:column>
+				<p:column headerText="NOMBRES Y APELLIDOS">#{solicitudInvolucradoDto.involucradoDto.nombres} #{solicitudInvolucradoDto.involucradoDto.apellidoPaterno} #{solicitudInvolucradoDto.involucradoDto.apellidoMaterno}</p:column>
+				<p:column headerText="APROBACION">
+					<p:selectOneMenu style="border-width: 0px;"
+						disabled="#{solicitudMBean.bloquearControles || oficinaSolicitudDto.realizoVotoTerritorial || ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
+						converter="parametroConvert" onchange="submit()"
+						immediate="true"
+						valueChangeListener="#{solicitudMBean.cambiarDecisionEvaluacion}"
+						update=":msgs" value="#{solicitudInvolucradoDto.estadoDto}">
+						<f:selectItems
+							value="#{solicitudMBean.listaEstadoArobacion}"
+							var="parametroDto" itemLabel="#{parametroDto.descripcion}"
+							itemValue="#{parametroDto}" />
+					</p:selectOneMenu>
+				</p:column>
+				<p:column headerText="COMENTARIO">
+					<p:inputText value="#{solicitudInvolucradoDto.comentario}"
+						label="COMENTARIO"
+						disabled="#{solicitudMBean.bloquearControles || oficinaSolicitudDto.realizoVotoTerritorial || ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
+						size="60">
+						<f:ajax />
+					</p:inputText>
+				</p:column>
+				<p:column>
+					<p:commandButton title="GUARDAR EVALUACION"
+						disabled="#{solicitudMBean.bloquearControles || oficinaSolicitudDto.realizoVotoTerritorial || ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
+						rendered="#{oficinaSolicitudDto.tipoOficinaDto.id!=1033&amp;&amp;!oficinaSolicitudDto.silencioAdministrativo &amp;&amp; !(solicitudMBean.dto.tramiteSolicitudDto.id==1015 || solicitudMBean.dto.tramiteSolicitudDto.id==1021)}"
+						value="GUARDAR EVALUACION"
+						onclick="return confirm('ESTÁ SEGURO QUE DESEA GUARDAR LA EVALUACIÓN?');"
+						update="pgEvaluacionesSolicitud"
+						style="float: rigth" ajax="false;" action="#{solicitudMBean.grabarEvaluacion}">
+							<f:setPropertyActionListener value="#{solicitudInvolucradoDto}" target="#{solicitudMBean.oficinaInvolucradoDto}" />
+							<f:setPropertyActionListener value="#{oficinaSolicitudDto}" target="#{solicitudMBean.oficinaSolicitudDto}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"/>
+			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"/>
+
+			<h:outputText style="font-family: 'Verdana';font-weight: bold;"
+				rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033 &amp;&amp; solicitudMBean.mostrarDeclaracionJurada}"
+				value="DE CONTAR CON AJUSTE/BONIFICACION, EL GT/GR/JPN ACEPTÓ SU APLICACIÓN?" />
+			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"/>
+
+			<p:selectOneMenu converter="parametroConvert"
+				rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033 &amp;&amp; solicitudMBean.mostrarDeclaracionJurada}"
+				disabled="#{(solicitudMBean.bloquearControles || oficinaSolicitudDto.habilitarDeclaracionJurada)}"
+				value="#{oficinaSolicitudDto.estadoAprobacionAjuBonDto}">
+				<f:selectItems value="#{solicitudMBean.listaEstadoArobacion}"
+					var="parametroDto" itemLabel="#{parametroDto.descripcion}"
+					itemValue="#{parametroDto}" />
+				<f:ajax />
+			</p:selectOneMenu>
+		</p:column>
+	</p:dataGrid>
+</h:panelGrid>
+</html>

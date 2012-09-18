@@ -1,0 +1,578 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+	<ui:define name="contenido">
+		<br />
+		<h:outputText value="GESTION DE SOLICITUDES DE #{solicitudMBean.dto.tipoDto.descripcion}"
+			styleClass="tituloPantalla" />
+		<p:separator />
+
+		<p:growl id="msg_alert" showDetail="true"/>
+		
+		<p:dialog modal="true" widgetVar="statusDialog" header="Cargando..."
+			draggable="false" closable="false">
+			<p:graphicImage value="/recursos/design/ajaxloadingbar.gif" />
+		</p:dialog>
+
+		<h:form id="frmPrincipal" styleClass="txtCampo label">
+			<h:panelGrid id="pgPrincipal">
+				<p:tabView effectDuration="normal" id="idTabView">
+					<p:ajax event="tabChange" update=":msgs" />
+					<p:tab title="SOLICITUD" id="tabSolicitud">
+						<h:outputLabel value="#{message['solicitud.solicitud']}"
+							style="font-size: 11px;font-weight: bold;" />
+						<p:separator />
+						<h:panelGrid id="pgSolicitud" columns="8">
+							
+							<h:outputLabel style="font-weight: bold;" value="TIPO SOL. (*)" />
+							<p:selectOneMenu value="#{solicitudMBean.dto.tipoDto}"
+								style="width: 140px;font-weight: bold;"
+								converter="parametroConvert"
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}">
+								<f:selectItems value="#{solicitudMBean.tiposSolicitud}"
+									var="parametroDto" itemLabel="#{parametroDto.descripcion}"
+									itemValue="#{parametroDto}" />
+								<p:ajax update=":frmPrincipal:pgPrincipal" listener="#{solicitudMBean.cambioTipoSolicitud}" />
+							</p:selectOneMenu>
+							<p:spacer width="15px" />
+							
+							<h:outputLabel value="COD. SOLICITUD" style="font-weight: bold;" />
+							<h:outputText id="codigoSolicitud" value="#{solicitudMBean.dto.codigoSolicitud}"	style="font-size: 9px;font-weight: bold;" />
+							<p:spacer width="15px" />
+
+							<h:outputLabel value="FECHA REGISTRO" style="font-weight: bold;" />
+							<h:outputText value="#{solicitudMBean.dto.fechaCreacion}" style="font-weight: bold;">
+								<f:convertDateTime pattern="#{aplicacionMBean.formatoFechaHora}" timeZone="#{aplicacionMBean.timeZone}" />
+							</h:outputText>
+
+							<h:outputLabel value="COD. CLIENTE (*)" style="font-weight: bold;" />
+							<h:panelGrid columns="2">
+								<p:inputText id="itCodigoCliente"
+									label="#{message['solicitud.cliente.codigo']}"
+									value="#{solicitudMBean.dto.codigoCliente}"
+									readonly="#{sessionMBean.accion != 1}" size="20" maxlength="8" style="font-weight: bold;">
+									<p:ajax event="keyup" listener="#{solicitudMBean.cambioCliente}" />
+								</p:inputText>
+								<p:commandButton image="ui-icon ui-icon-search"
+									title="BUSCAR CLIENTE" ajax="true"
+									rendered="#{sessionMBean.accion == 1}" immediate="true"
+									onstart="statusDialog.show();" onsuccess="statusDialog.hide();"
+									actionListener="#{solicitudMBean.obtenerCliente}"
+									update=":msgs :frmPrincipal:idTabView:nombreCliente :frmPrincipal:idTabView:codigoSolicitud :frmPrincipal:idTabView:clasificacion :frmPrincipal:idTabView:segmento :frmPrincipal:idTabView:itCodigoCliente">
+								</p:commandButton>
+							</h:panelGrid>
+							<p:spacer width="15px" />
+
+							<h:outputLabel value="NOMBRE CLIENTE" style="font-weight: bold;" />
+							<h:outputText id="nombreCliente" value="#{solicitudMBean.dto.nombreCliente}" style="font-size: 9px;font-weight: bold;" />
+							<p:spacer width="15px" />
+
+							<h:outputLabel value="SEGMENTO" style="font-weight: bold;" />
+							<h:outputText id="segmento" value="#{solicitudMBean.dto.segmentoClienteDesc}" style="font-weight: bold;" />
+
+							<h:outputLabel value="CLASIFICACIÓN" style="font-weight: bold;"/>
+							<h:outputText id="clasificacion" value="#{solicitudMBean.dto.clasificacionClienteDesc}" style="font-weight: bold;"/>
+							<p:spacer width="15px" />
+
+							<h:outputLabel value="ESTADO" style="font-weight: bold;" />
+							<p:selectOneMenu
+								value="#{solicitudMBean.dto.tramiteSolicitudDto}"
+								converter="parametroConvert" disabled="true"
+								style="font-weight: bold; width: 200px;">
+								<f:selectItems value="#{solicitudMBean.estadosSolicitud}"
+									var="parametroDto" itemLabel="#{parametroDto.descripcion}"
+									itemValue="#{parametroDto}" />
+							</p:selectOneMenu>
+							<p:spacer width="15px" />
+
+							<h:outputLabel value="FECHA MOD." style="font-weight: bold;"/>
+							<h:outputText value="#{solicitudMBean.dto.fechaModificacion}" style="font-weight: bold;">
+								<f:convertDateTime pattern="#{aplicacionMBean.formatoFechaHora}" timeZone="#{aplicacionMBean.timeZone}" />
+							</h:outputText>
+							
+							<h:outputLabel value="MOTIVO TRASLADO (*)" style="font-weight: bold;"/>
+							<p:selectOneMenu value="#{solicitudMBean.dto.motivoTrasladoDto}"
+								style="width: 190px; font-weight: bold;"
+								converter="parametroConvert"
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}">
+								<f:selectItems value="#{solicitudMBean.motivosSolicitud}"
+									var="parametroDto" itemLabel="#{parametroDto.descripcion}"
+									itemValue="#{parametroDto}" />
+								<p:ajax update=":frmPrincipal:idTabView:pgSolicitud"
+									listener="#{solicitudMBean.cambioMotivo}" />
+							</p:selectOneMenu>
+							<p:spacer width="15px" />
+
+							<h:outputLabel value="COMENTARIO" style="font-weight: bold;" rendered="#{solicitudMBean.dto.motivoTrasladoDto.id==1026}" />
+							<p:inputText label="#{message['solicitud.motivo.comentario']}"
+								id="itMotivoComentarios"
+								value="#{solicitudMBean.dto.motivoComentarios}"
+								readonly="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								required="true" size="50" style="font-weight: bold;"
+								rendered="#{solicitudMBean.dto.motivoTrasladoDto.id==1026}">
+								<f:validateLength maximum="30" minimum="0" />
+							</p:inputText>
+							<p:spacer width="5px" rendered="#{solicitudMBean.dto.motivoTrasladoDto.id!=1026}" />
+							<p:spacer width="5px" rendered="#{solicitudMBean.dto.motivoTrasladoDto.id!=1026}" />
+							<p:spacer width="15px" />
+							
+							<p:spacer width="15px" />
+							<p:spacer width="200px" />
+							
+							<h:outputLabel value="TOTAL ACTIVO" style="font-weight: bold;"/>
+							<h:outputLabel value="#{solicitudMBean.dto.totalActivo}" style="font-weight: bold;">
+								<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}" currencySymbol="S/." />
+							</h:outputLabel>
+							<p:spacer width="15px" />
+							
+							<h:outputLabel value="TOTAL PASIVO" style="font-weight: bold;"/>
+							<h:outputLabel value="#{solicitudMBean.dto.totalPasivo}" style="font-weight: bold;">
+								<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}" currencySymbol="S/." />
+							</h:outputLabel>
+						</h:panelGrid>
+
+						<p>&nbsp;</p>
+						
+						<h:outputLabel value="#{message['solicitud.solicitante']}"
+							style="font-size: 11px;font-weight: bold;" />
+						<p:separator />
+						<h:panelGrid id="pgSolicitante" columns="8" cellpadding="10">
+							<h:outputLabel
+								value="#{message['solicitud.oficina.solicitante']}" />
+							<h:outputText
+								value="#{solicitudMBean.dto.oficinaSolicitante} - #{solicitudMBean.dto.oficinaSolicitanteDesc}" />
+
+							<h:outputLabel
+								value="#{message['solicitud.responsable.solicitante']}" />
+							<h:outputText
+								value="#{solicitudMBean.dto.responsableSolicitante} - #{solicitudMBean.dto.responsableSolicitanteDesc}" />
+						</h:panelGrid>
+
+						<h:outputLabel value="#{message['solicitud.receptor']}"
+							style="font-size: 11px;font-weight: bold;" />
+						<p:separator />
+						
+						<h:panelGrid id="pgReceptor" columns="1">
+
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:outputLabel value="#{message['solicitud.oficina']}" />
+								<p:outputPanel>	
+									<p:autoComplete id="oficReceptora"
+										value="#{solicitudMBean.dto.oficinaReceptorDto}"
+										completeMethod="#{solicitudMBean.buscarOficina}" var="p"
+										itemLabel="#{p.codOficina} - #{p.desOficina}"
+										itemValue="#{p}" converter="oficinaConvert"
+										styleClass="autocomplete"
+										forceSelection="true" scrollHeight="200"
+										minQueryLength="3"
+										disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}">
+										<p:ajax event="keyup"
+											listener="#{solicitudMBean.keyupOficina}" />
+										<p:ajax event="blur"
+											update=":msgs :frmPrincipal:idTabView:cboGestor :frmPrincipal:idTabView:lblTerritorio" />
+										<p:ajax event="itemSelect"
+											listener="#{solicitudMBean.cambioOficinaReceptor}"
+											update=":msgs :frmPrincipal:idTabView:cboGestor :frmPrincipal:idTabView:lblTerritorio" />
+									</p:autoComplete>
+									<p:spacer width="22px;" />
+								<h:outputLabel id="lblTerritorio" value="#{solicitudMBean.dto.territorioReceptorDto.codTerritorio} - #{solicitudMBean.dto.territorioReceptorDto.desTerritorio}" />
+								</p:outputPanel>
+								
+								<h:outputLabel value="#{message['solicitud.gestor']}" />
+								<p:selectOneMenu id="cboGestor" 
+									value="#{solicitudMBean.dto.gestorReceptorDto}"
+									converter="gestorConvert"
+									disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+									style="width: 350;">
+									<f:selectItem itemLabel="-- SELECCIONAR UN GESTOR --"
+										itemValue="" />
+									<f:selectItems value="#{solicitudMBean.listaGestores}" var="dto"
+										itemLabel="#{dto.codGestor} - #{dto.perfilGestor} - #{dto.nomGestor}"
+										itemValue="#{dto}" />
+								</p:selectOneMenu>
+							</h:panelGrid>
+						</h:panelGrid>
+						<br />
+
+						<h:outputLabel value="#{message['solicitud.bonificacion']}"
+							rendered="#{solicitudMBean.dto.tipoDto.id==1006}"
+							style="font-size: 11px;font-weight: bold;" />
+						<p:separator rendered="#{solicitudMBean.dto.tipoDto.id==1006}" />
+						<h:panelGrid id="pgBonificacion" columns="8" cellpadding="10"
+							rendered="#{solicitudMBean.dto.tipoDto.id==1006}">
+							<h:outputLabel
+								value="#{solicitudMBean.lblBonificacionNoExcede7Dias}" />
+							<p:selectBooleanCheckbox
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								value="#{solicitudMBean.dto.bonificacionNoExcede7Dias}"
+								label="#{solicitudMBean.lblBonificacionNoExcede7Dias}">
+								<f:ajax />
+							</p:selectBooleanCheckbox>
+							
+							<h:outputLabel
+								rendered="#{solicitudMBean.bonificacion2}" 
+								value="#{solicitudMBean.lblBonificacion2}" />
+							<p:selectBooleanCheckbox
+								rendered="#{solicitudMBean.bonificacion2}"
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								value="#{solicitudMBean.dto.bonificacion2}">
+								<f:ajax />
+							</p:selectBooleanCheckbox>
+
+							<h:outputLabel value="#{solicitudMBean.lblBonificacionOtros}" />
+							<p:selectBooleanCheckbox
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								value="#{solicitudMBean.dto.bonificacionOtros}"
+								label="#{message['solicitud.bonificacion.otros']}">
+								<p:ajax update=":frmPrincipal:idTabView:pgBonificacion" />
+							</p:selectBooleanCheckbox>
+
+							<h:outputLabel
+								value="#{message['solicitud.bonificacion.comentario']}"
+								rendered="#{solicitudMBean.dto.bonificacionOtros}" />
+							<p:inputText
+								label="#{message['solicitud.bonificacion.comentario']}"
+								value="#{solicitudMBean.dto.bonificacionComentarios}"
+								readonly="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								required="true" size="50"
+								rendered="#{solicitudMBean.dto.bonificacionOtros}">
+								<f:validateLength maximum="30" minimum="0" />
+							</p:inputText>
+						</h:panelGrid>
+
+						<h:outputLabel value="#{message['solicitud.ajuste']}"
+							rendered="#{solicitudMBean.dto.tipoDto.id==1007}"
+							style="font-size: 11px;font-weight: bold;" />
+						<p:separator rendered="#{solicitudMBean.dto.tipoDto.id==1007}" />
+						<h:panelGrid id="pgAjustes" columns="12" cellpadding="10"
+							rendered="#{solicitudMBean.dto.tipoDto.id==1007}">
+							<h:outputLabel value="#{solicitudMBean.lblAjustesGrupoEconomico}" />
+							<p:selectBooleanCheckbox
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								value="#{solicitudMBean.dto.ajusteFormaGrupo}"
+								label="#{message['solicitud.ajuste.forma.grupo.economico']}">
+								<f:ajax />
+							</p:selectBooleanCheckbox>
+
+							<h:outputLabel
+								value="#{solicitudMBean.lblAjustesVentaUltimoEjercicio}" />
+							<p:selectBooleanCheckbox
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								value="#{solicitudMBean.dto.ajusteVentaUltimo}"
+								label="#{message['solicitud.ajuste.venta.ultimo.ejercicio']}">
+								<f:ajax />
+							</p:selectBooleanCheckbox>
+
+							<h:outputLabel value="#{solicitudMBean.lblAjustesOtros}" />
+							<p:selectBooleanCheckbox
+								value="#{solicitudMBean.dto.ajusteOtros}"
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								label="#{message['solicitud.ajuste.otros']}">
+								<p:ajax update=":frmPrincipal:idTabView:pgAjustes" />
+							</p:selectBooleanCheckbox>
+
+							<h:outputLabel value="#{message['solicitud.ajuste.comentario']}"
+								rendered="#{solicitudMBean.dto.ajusteOtros}" />
+							<p:inputText
+								label="#{message['solicitud.bonificacion.comentario']}"
+								value="#{solicitudMBean.dto.ajusteComentarios}"
+								readonly="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								required="true" size="50"
+								rendered="#{solicitudMBean.dto.ajusteOtros}">
+								<f:validateLength maximum="30" minimum="0" />
+							</p:inputText>
+						</h:panelGrid>
+						
+						<h:panelGrid>
+							<f:facet name="footer">
+								<p:outputPanel>
+									<p:commandButton title="NUEVO" immediate="true"
+										update=":frmPrincipal:pgPrincipal"
+										onclick="return confirm('ESTÁ SEGURO QUE DESEA LIMPIAR EL FORMULARIO?')"
+										value="NUEVO" action="#{solicitudMBean.nuevo}">
+									</p:commandButton>
+									<p:spacer width="30" />
+									<p:commandButton title="GUARDAR SOLICITUD"
+										onclick="return confirm('ESTÁ SEGURO QUE DESEA GUARDAR LA SOLICITUD?');"
+										ajax="false"
+										rendered="#{( sessionMBean.accion==1||solicitudMBean.dto.usuarioCreacion==sessionMBean.registro)  &amp;&amp; solicitudMBean.dto.tramiteSolicitudDto.id==1015}"
+										value="GUARDAR" action="#{solicitudMBean.guardar}">
+									</p:commandButton>
+									<p:spacer width="30" />
+									<p:commandButton title="ENVIAR SOLICITUD"
+										onclick="return confirm('ESTÁ SEGURO QUE DESEA ENVIAR LA SOLICITUD?');"
+										ajax="false"
+										rendered="#{solicitudMBean.dto.usuarioCreacion==sessionMBean.registro  &amp;&amp; sessionMBean.accion==2 &amp;&amp; solicitudMBean.dto.tramiteSolicitudDto.id == 1015}"
+										value="ENVIAR SOLICITUD" action="#{solicitudMBean.enviar}">
+									</p:commandButton>
+									<p:spacer width="30"
+										rendered="#{sessionMBean.accion==2 &amp;&amp; solicitudMBean.dto.tramiteSolicitudDto.id == 1015}" />
+									<p:commandButton title="CERRAR LA SOLICITUD" immediate="true"
+										value="CERRAR" ajax="false"
+										onclick="return confirm('ESTÁ SEGURO QUE DESEA CERRAR LA SOLICITUD?');"
+										action="#{solicitudMBean.retroceder}">
+									</p:commandButton>
+									<p:spacer width="30" />
+									<p:commandButton title="ANULAR SOLICITUD"
+										onclick="return confirm('ESTÁ SEGURO QUE DESEA ANULAR LA SOLICITUD?');"
+										ajax="false"
+										rendered="#{solicitudMBean.dto.usuarioCreacion==sessionMBean.registro &amp;&amp;  sessionMBean.accion==2}"
+										value="ANULAR" action="#{solicitudMBean.anular}">
+									</p:commandButton>
+									<p:spacer width="30" />
+									<p:commandButton title="REEVALUAR SOLICITUD"
+										onclick="return confirm('ESTÁ SEGURO QUE DESEA REEVALUAR LA SOLICITUD?');"
+										ajax="false"
+										rendered="#{sessionMBean.perfilDto.id==5 &amp;&amp;  sessionMBean.accion==2 &amp;&amp; (solicitudMBean.dto.tramiteSolicitudDto.id==1016 || solicitudMBean.dto.tramiteSolicitudDto.id==1018 || solicitudMBean.dto.tramiteSolicitudDto.id==1017)}"
+										value="REEVALUAR" action="#{solicitudMBean.reevaluar}">
+									</p:commandButton>
+								</p:outputPanel>
+							</f:facet>
+						</h:panelGrid>
+						
+						<br/>
+						<h:outputLabel value="SEGUIMIENTO" rendered="#{sessionMBean.accion==2}" style="font-size: 11px;font-weight: bold;" />
+						<p:separator />					
+						<!-- p:tab title="STATUS SOLICITUD" -->
+						<h:panelGrid rendered="#{sessionMBean.accion==2}">
+							<p:dataTable id="tblEstados" value="#{solicitudMBean.dto.listaEstados}" var="dto">
+								<p:column headerText="FECHA" style="text-align:center;">
+									<h:outputText value="#{dto.fecha}">
+										<f:convertDateTime
+											pattern="#{aplicacionMBean.formatoFechaHora}"
+											timeZone="#{aplicacionMBean.timeZone}" />
+									</h:outputText>
+								</p:column>
+								<p:column style="text-align:left;" headerText="USUARIO">
+									#{dto.usuarioDto.codusu} - #{dto.usuarioDto.nombre} #{dto.usuarioDto.apepat} #{dto.usuarioDto.apemat}
+								</p:column>
+								<p:column style="text-align:left;" headerText="CARGO">
+									#{dto.usuarioDto.codcargo} - #{dto.usuarioDto.nomcargo} 
+								</p:column>
+								<p:column style="text-align:left;" headerText="OFICINA">
+									#{dto.usuarioDto.codofi} - #{dto.usuarioDto.desofi} 
+								</p:column>
+								<p:column style="text-align:center;" headerText="ESTADO">
+									#{dto.estadoDto.descripcion} 
+								</p:column>
+								<p:column style="text-align:left;" headerText="COMENTARIO">
+									#{dto.comentario} 
+								</p:column>
+							</p:dataTable>
+						</h:panelGrid>
+						<!--/p:tab -->
+					</p:tab>
+
+					<p:tab title="CONTRATOS" id="tabContrato" rendered="#{sessionMBean.accion==2}">
+						<ui:include src="/pages/gestion/solicitud/contrato.xhtml" />
+					</p:tab>
+
+					<p:tab title="EVALUACIONES" rendered="#{sessionMBean.accion==2 &amp;&amp; solicitudMBean.dto.tramiteSolicitudDto.id!=1015}">
+						<ui:include src="/pages/gestion/solicitud/evaluacion.xhtml" />
+					</p:tab>
+
+					<p:tab title="INVOLUCRADOS" rendered="#{sessionMBean.accion==2  &amp;&amp; solicitudMBean.dto.tramiteSolicitudDto.id!=1015}">
+						<h:panelGroup id="idPgInvolucrados">
+							<h:outputText
+								style="color: #cc0000; FONT-FAMILY: 'Verdana';font-weight: bold;"
+								value="CLIENTE" />
+							<br />
+							<h:panelGrid columns="14">
+								<h:outputLabel value="#{message['solicitud.cliente.codigo']}:"
+									style="FONT-FAMILY: 'Verdana';font-weight: bold;" />
+								<h:outputText value="#{solicitudMBean.dto.codigoCliente}" />
+								<br />
+								<h:outputLabel value="#{message['solicitud.cliente.nombre']}:"
+									style="FONT-FAMILY: 'Verdana';font-weight: bold;" />
+								<h:outputText value="#{solicitudMBean.dto.nombreCliente}" />
+								<br />
+								<h:outputLabel value="#{message['solicitud.cliente.segmento']}:"
+									style="FONT-FAMILY: 'Verdana';font-weight: bold;" />
+								<p:outputPanel>
+									<h:outputText value="#{solicitudMBean.dto.segmentoCliente}" />-#{solicitudMBean.dto.segmentoClienteDesc}
+								</p:outputPanel>
+							</h:panelGrid>
+							<br />
+							<br />
+							<h:outputText
+								style="color: #cc0000; FONT-FAMILY: 'Verdana';font-weight: bold;"
+								value="OFICINA SOLICITANTE" />
+							<br />
+							<h:panelGrid columns="10">
+								<h:outputLabel value="OFICINA:"
+									style="FONT-FAMILY: 'Verdana';font-weight: bold;" />
+								<h:outputText
+									value="#{solicitudMBean.dto.oficinaSolicitante}-#{solicitudMBean.dto.oficinaSolicitanteDesc}" />
+								<br />
+								<h:outputLabel value="RESPONSABLE:"
+									style="FONT-FAMILY: 'Verdana';font-weight: bold;" />
+								<h:outputText
+									value="#{solicitudMBean.dto.responsableSolicitante}-#{solicitudMBean.dto.responsableSolicitanteDesc}" />
+							</h:panelGrid>
+							<br />
+							<br />
+
+							<h:panelGrid id="pgInvolucradoSolicitud"
+								rendered="#{solicitudMBean.dto.contratosGenerados}">
+								<p:dataGrid var="oficinaSolicitudDto"
+									value="#{solicitudMBean.dto.listaOficinasSolicitud}"
+									columns="1">
+									<h:panelGrid cellspacing="10" columns="10">
+										<h:outputText
+											rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"
+											style="color: #cc0000; FONT-FAMILY: 'Verdana';font-weight: bold;"
+											value="TERRITORIO : #{oficinaSolicitudDto.oficinaDto.territorioDto.codTerritorio}-#{oficinaSolicitudDto.oficinaDto.territorioDto.desTerritorio} / OFICINA #{oficinaSolicitudDto.tipoOficinaDto.descripcion} : #{oficinaSolicitudDto.oficinaDto.codOficina}-#{oficinaSolicitudDto.oficinaDto.desOficina}" />
+
+										<h:outputLabel value="TOTAL ACTIVO"
+											style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+											rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}" />
+
+										<h:outputLabel value="#{oficinaSolicitudDto.totalActivo}"
+											style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+											rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}">
+											<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}"
+												currencySymbol="S/." />
+										</h:outputLabel>
+
+										<h:outputLabel value="TOTAL PASIVO"
+											style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+											rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}" />
+
+										<h:outputLabel value="#{oficinaSolicitudDto.totalPasivo}"
+											style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+											rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031}">
+											<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}"
+												currencySymbol="S/." />
+										</h:outputLabel>
+
+										<h:outputLabel value="TOTAL ACTIVO"
+											style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+											rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1032}" />
+
+										<h:outputLabel value="#{solicitudMBean.dto.totalActivo}"
+											style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+											rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1032}">
+											<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}"
+												currencySymbol="S/." />
+										</h:outputLabel>
+
+										<h:outputLabel value="TOTAL PASIVO"
+											style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+											rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1032}" />
+
+										<h:outputLabel value="#{solicitudMBean.dto.totalPasivo}"
+											style="FONT-FAMILY: 'Verdana';font-weight: bold;"
+											rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1032}">
+											<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}"
+												currencySymbol="S/." />
+										</h:outputLabel>
+									</h:panelGrid>
+
+									<p:column>
+
+										<p:dataTable value="#{oficinaSolicitudDto.listaInvolucrados}"
+											rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"
+											var="solicitudInvolucradoDto">
+											<p:column headerText="CARGO">
+								               #{solicitudInvolucradoDto.involucradoDto.descripcionCargo}
+								            </p:column>
+											<p:column headerText="REGISTRO">
+								               #{solicitudInvolucradoDto.involucradoDto.registro}
+								            </p:column>
+											<p:column headerText="NOMBRES">
+								               #{solicitudInvolucradoDto.involucradoDto.nombres} 
+								            </p:column>
+											<p:column headerText="APELLIDO PATERNO">
+								               #{solicitudInvolucradoDto.involucradoDto.apellidoPaterno} 
+								            </p:column>
+											<p:column headerText="APELLIDO MATERNO">
+								               #{solicitudInvolucradoDto.involucradoDto.apellidoMaterno} 
+								            </p:column>
+										</p:dataTable>
+									</p:column>
+
+								</p:dataGrid>
+								<br />
+							</h:panelGrid>
+
+
+						</h:panelGroup>
+
+						<p:commandButton type="button" title="IMPRIMIR INVOLUCRADOS"
+							value="IMPRIMIR"
+							onclick="imprimir('frmPrincipal:idTabView:idPgInvolucrados')"
+							ajax="false" />
+					</p:tab>
+
+					<p:tab title="GESTION DE FILES"
+						rendered="#{sessionMBean.accion==2  &amp;&amp; solicitudMBean.dto.tramiteSolicitudDto.id!=1015}">
+						<h:outputText rendered="#{!solicitudMBean.mostrarGestionFile}"
+							style="color: #FF0000; FONT-FAMILY: 'Verdana';font-weight: bold;"
+							value="#{solicitudMBean.mensajeMostrarGestionFile}" />
+
+						<h:panelGrid columns="1"
+							rendered="#{solicitudMBean.mostrarGestionFile}">
+							<p:dataGrid var="oficinaSolicitudDto"
+								value="#{solicitudMBean.dto.listaOficinasSolicitud}" columns="1">
+								<h:outputText
+									rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031 &amp;&amp; oficinaSolicitudDto.estadoEvaluacion}"
+									style="color: #cc0000; FONT-FAMILY: 'Verdana';font-weight: bold;"
+									value="TERRITORIO : #{oficinaSolicitudDto.oficinaDto.territorioDto.codTerritorio}-#{oficinaSolicitudDto.oficinaDto.territorioDto.desTerritorio} / OFICINA: #{oficinaSolicitudDto.oficinaDto.codOficina}-#{oficinaSolicitudDto.oficinaDto.desOficina}" />
+								<br />
+								<p:column>
+									<p:dataTable value="#{oficinaSolicitudDto.listaContratos}"
+										rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1031 &amp;&amp; oficinaSolicitudDto.estadoEvaluacion}"
+										var="contratoDto">
+										<p:column headerText="RECEPCIONADO?">
+											<p:selectBooleanCheckbox value="#{contratoDto.estadoFile}"
+												disabled="#{!solicitudMBean.restringirGestionFiles}" />
+										</p:column>
+										<p:column headerText="CONTRATO">
+							                #{contratoDto.codigoContrato}
+							            </p:column>
+										<p:column headerText="PRODUCTO">
+								             #{contratoDto.productoDto.codProd} -  #{contratoDto.productoDto.descProd}
+							            </p:column>
+										<p:column headerText="IMPORTE (SOLES)">
+											<h:outputText value="#{contratoDto.importe}">
+												<f:convertNumber pattern="#{aplicacionMBean.formatoMontos}"
+													currencySymbol="S/." />
+											</h:outputText>
+
+										</p:column>
+										<p:column headerText="FECHA APERTURA">
+											<h:outputText value="#{contratoDto.fechaApertura}" />
+										</p:column>
+
+										<p:column headerText="SITUACIÓN">
+											<h:outputText value="#{contratoDto.descripcionSituacion}" />
+										</p:column>
+									</p:dataTable>
+								</p:column>
+							</p:dataGrid>
+							<br />
+							<br />
+							<p:commandButton title="GUARDAR FILES" value="GUARDAR FILES"
+								rendered="#{solicitudMBean.restringirGestionFiles}"
+								onclick="return confirm('ESTÁ SEGURO QUE DESEA GUARDAR FILES?');"
+								style="float: rigth" ajax="false;"
+								action="#{solicitudMBean.grabarFiles}">
+							</p:commandButton>
+							<br />
+						</h:panelGrid>
+					</p:tab>
+				</p:tabView>
+			</h:panelGrid>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

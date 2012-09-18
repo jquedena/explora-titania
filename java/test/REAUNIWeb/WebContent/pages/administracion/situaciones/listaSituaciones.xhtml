@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+    	<ui:define name="contenido">
+
+    				<h:panelGrid id="pnlGridSituacionesTitulo" columns="1" border="0">
+			        
+			            <h:outputText value="#{message['situacion.titulo']}" styleClass="tituloPantalla"/>
+			                       
+					</h:panelGrid>
+					
+					<p:separator />
+					
+            		<h:form id="frmSituaciones">	
+    					
+    					<h:panelGrid id="pnlGridFiltroSituaciones" cellpadding="6"  columns="6" border="0">
+    					
+    						    <h:outputLabel id="lblBusqCodAplicativo" for="txtBusqCodAplicativo" value="#{message['situacion.label.codAplicativo']}" styleClass="label"/>
+			                    <p:inputText id="txtBusqCodAplicativo" value="#{situacionesMBean.situacionModel.dtoFiltro.codigoAplicativo}" size="10" 
+			                    			 styleClass="txtCampo" maxlength="10">
+			                        <f:validateLength maximum="10" minimum="0" />
+			                    </p:inputText>
+			
+			                    <h:outputLabel id="lblBusqCodSituacion" for="txtBusqCodSituacion" value="#{message['situacion.label.codSituacion']}" styleClass="label"/>
+			                    <p:inputText id="txtBusqCodSituacion" label="#{message['situacion.label.codSituacion']}" 
+			                                 value="#{situacionesMBean.situacionModel.dtoFiltro.codigoSituacion}" size="10" 
+			                                 styleClass="txtCampo" maxlength="10">
+			                        <f:validateLength maximum="10" minimum="0" />
+			                    </p:inputText>
+			
+			                    <h:outputLabel id="lblBusqDesSituacion" for="txtBusqDesSituacion" value="#{message['situacion.label.desSituacion']}" styleClass="label"/>
+			                    <p:inputText id="txtBusqDesSituacion" label="#{message['situacion.label.desSituacion']}"  value="#{situacionesMBean.situacionModel.dtoFiltro.descripcion}" 
+			                                 size="30" styleClass="txtCampo" maxlength="200">
+			                        <f:validateLength maximum="100" minimum="0" />
+			                    </p:inputText>             
+		                </h:panelGrid>
+   			 			<h:panelGrid columns="1" cellpadding="6">
+						<p:outputPanel id="pnlOutBotonesNuevo">
+        					<p:commandButton id="btnBuscarSituaciones"
+        						value="BUSCAR"
+        						image="ui-icon ui-icon-search"
+        						title="#{message['general.button.buscar.filtro.tip']}"   
+	                            actionListener="#{situacionesMBean.buscarListaSituaciones}"
+	                            update="tblSituaciones msgs">
+	                        	<f:ajax render="tblSituaciones" />
+	                        </p:commandButton>  
+        					<p:spacer width="5px;"/>
+                            <p:commandButton id="linkNuevaSituacion"
+                            			   title="#{message['general.button.nuevo.tip']}"
+                                           value="#{message['general.button.nuevo']}" 
+                                           styleClass="estiloLink"
+                                           ajax="false"
+                                           action="#{situacionesMBean.nuevo}">                                    
+                            </p:commandButton>
+                        </p:outputPanel>
+		    			</h:panelGrid>
+			            <p:dataTable id="tblSituaciones" 
+			            				value="#{situacionesMBean.situacionModel.lista}" var="dto"
+			                             rowsPerPageTemplate="10,20,30,40,50" 
+			                             emptyMessage="#{message['general.table.sinRegistros']}"                                
+			                             paginator="true" 
+			                             rows="#{sessionMBean.cantidadRegistros}"  
+			                             widgetVar="widTable">
+			                             
+			                        <p:column styleClass="botonesTabla">
+				                        <p:commandButton image="ui-icon ui-icon-search" title="#{message['general.button.ver.tip']}"
+				                                         action="#{situacionesMBean.ver}" ajax="false">
+				                            <f:setPropertyActionListener value="#{dto}" target="#{situacionesMBean.situacionModel.dto}" />                                                                    
+				                        </p:commandButton>
+				                        
+				                        <p:spacer width="20"/>
+				                        
+				                        <p:commandButton image="ui-icon ui-icon-pencil" title="#{message['general.button.editar.tip']}"
+				                                         action="#{situacionesMBean.editar}" ajax="false">
+				                            <f:setPropertyActionListener value="#{dto}" target="#{situacionesMBean.situacionModel.dto}" />                                                                    
+				                        </p:commandButton>
+				                        
+				                        <p:spacer width="20"/>
+				                        
+				                        <p:commandButton image="ui-icon ui-icon-trash" 
+				                        				 onclick="return confirm('¿Está seguro de eliminar el registro?')" 
+				                        				 title="#{message['general.button.eliminar.tip']}"
+				                                         action="#{situacionesMBean.eliminar}"
+				                                         update=":frmSituaciones:display"
+				                                          >     
+				                            <f:setPropertyActionListener value="#{dto}" target="#{situacionesMBean.situacionModel.dto}" />                                                                            
+				                        </p:commandButton>
+				                    </p:column>
+			                        
+			                        <p:column id="colCodAplicativo" headerText="#{message['situacion.label.codAplicativo']}" sortBy="#{dto.codigoAplicativo}"  
+			                       			 style="text-align:center;">
+				                        <h:outputText value="#{dto.codigoAplicativo}" styleClass="valueColTable" />
+				                    </p:column>
+				                    
+				                    <p:column id="colCodSituacion" headerText="#{message['situacion.label.codSituacion']}" sortBy="#{dto.codigoSituacion}" >
+				                        <h:outputText value="#{dto.codigoSituacion}" styleClass="valueColTable" />
+				                    </p:column>
+				                    
+				                    <p:column id="colDesSituacion" headerText="#{message['situacion.label.desSituacion']}" sortBy="#{dto.descripcion}" >
+				                        <h:outputText value="#{dto.descripcion}" styleClass="valueColTable" />
+				                    </p:column>                  	
+			            </p:dataTable>
+			            
+			            <p:dialog header="#{dto.descripcion}"  widgetVar="dialogEliminarSituacion" resizable="false" id="dlgEliminarSituacion"  
+                				  showEffect="fade" modal="true">
+                				  
+                			<h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+  	  							
+  	  							
+  	  							<h:outputLabel value="#{message['situacion.msj.eliminar']}" styleClass="label"/> 
+  	  							<h:outputLabel value="" styleClass="label"/>
+  	  							
+	                			<p:commandButton value="Si" update="tblSituaciones msgs" oncomplete="dialogEliminarSituacion.hide()" action="#{situacionesMBean.eliminar}"/>
+	         					<p:commandButton value="No" onclick="dialogEliminarSituacion.hide()" type="button" />
+	         					
+	         				</h:panelGrid>	     
+			            </p:dialog>
+			                              
+		    		</h:form>
+
+    	</ui:define>		
+    </ui:composition>
+</html>    	

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<script type="text/javascript">
+		
+	</script>
+</h:head>
+
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+	<ui:define name="contenido">
+
+		<h:panelGrid id="pnlGridUsuariosTitulo" columns="1">
+			<h:outputText value="#{message['usuario.titulo']}"
+				styleClass="tituloPantalla" />
+		</h:panelGrid>
+
+		<p:separator />
+
+		<h:form id="frmPrincipal">
+			<h:panelGrid id="pgFormFilter" columns="4" cellpadding="6">
+
+				<h:outputLabel value="#{message['usuario.columna.label.valor']}"
+					styleClass="label" />
+				<p:inputText id="txtBusqValor"
+					value="#{usuarioMBean.usuarioModel.dtoFiltro.valor}"
+					styleClass="txtCampo" maxlength="7">
+				</p:inputText>
+
+				<h:outputLabel value="#{message['usuario.label.perfil']}"
+					styleClass="label" />
+				<p:selectOneMenu id="cbxPerfil"
+					value="#{usuarioMBean.usuarioModel.dtoFiltro.perfil.id}"
+					required="true">
+					<f:selectItem itemValue="#{usuarioMBean.usuarioModel.seleccione}"
+						itemLabel="Todos" />
+					<f:selectItems value="#{usuarioMBean.usuarioModel.listaPerfiles}" />
+				</p:selectOneMenu>
+			</h:panelGrid>
+			<h:panelGrid columns="1" cellpadding="6">
+				<p:outputPanel id="pnlOutBotonesNuevo">
+					<p:commandButton image="ui-icon ui-icon-search"
+						value="BUSCAR"
+						title="#{message['general.button.buscar.filtro.tip']}"
+						update="tblUsuarios msgs"
+						actionListener="#{usuarioMBean.buscarListaUsuarios}">
+						<f:ajax render="tblUsuarios">
+						</f:ajax>
+					</p:commandButton>
+					<p:spacer width="5px;"/>
+					<p:commandButton id="linkNuevaUsuario"
+						title="#{message['general.button.nuevo.tip']}"
+						value="#{message['general.button.nuevo']}"
+						styleClass="estiloLink"	
+						ajax="false"
+						action="#{usuarioMBean.nuevo}">
+					</p:commandButton>
+				</p:outputPanel>
+			</h:panelGrid>
+			<p:dataTable id="tblUsuarios"
+				value="#{usuarioMBean.usuarioModel.lista}"
+				styleClass="valueColTable" var="dto"
+				rowsPerPageTemplate="10,20,30,40,50" paginator="true"
+				emptyMessage="#{message['general.table.sinRegistros']}"
+				rows="#{sessionMBean.cantidadRegistros}" 
+				widgetVar="widTable">
+
+				<p:column styleClass="botonesTabla">
+					<p:commandButton image="ui-icon ui-icon-search"
+						title="#{message['general.button.ver.tip']}"
+						action="#{usuarioMBean.ver}" ajax="false">
+						<f:setPropertyActionListener value="#{dto}"
+							target="#{usuarioMBean.usuarioModel.dto}" />
+					</p:commandButton>
+
+					<p:spacer width="20" />
+
+					<p:commandButton image="ui-icon ui-icon-pencil"
+						title="#{message['general.button.editar.tip']}"
+						action="#{usuarioMBean.editar}" ajax="false">
+						<f:setPropertyActionListener value="#{dto}"
+							target="#{usuarioMBean.usuarioModel.dto}" />
+					</p:commandButton>
+
+					<p:spacer width="20" />
+
+					<p:commandButton id="btnEliminarUsuario"
+						update="tblUsuarios"
+						onclick="return confirm('¿Está seguro de eliminar el registro?')"
+						title="#{message['general.button.eliminar.tip']}"
+						action="#{usuarioMBean.eliminar}"
+						image="ui-icon ui-icon-trash">
+						<f:setPropertyActionListener value="#{dto}"
+							target="#{usuarioMBean.usuarioModel.dto}"
+							for="btnEliminarUsuario" />
+					</p:commandButton>
+				</p:column>
+
+				<p:column id="colRegistro"
+					headerText="#{message['usuario.columna.label.valor']}"
+					sortBy="#{dto.valor}" style="text-align:center;">
+					<h:outputText value="#{dto.valor}" styleClass="valueColTable" />
+				</p:column>
+
+				<p:column id="colNombrePerfil"
+					headerText="#{message['usuario.columna.label.perfil']}"
+					sortBy="#{dto.perfil.nombre}">
+					<h:outputText value="#{dto.perfil.nombre}"
+						styleClass="valueColTable" />
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

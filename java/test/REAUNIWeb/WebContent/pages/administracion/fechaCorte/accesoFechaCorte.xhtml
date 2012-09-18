@@ -1,0 +1,139 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:jb="http://java.sun.com/jsf/composite/componentes">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+	<ui:define name="contenido">
+
+		<br />
+		<h:outputText value="#{message['accesoFechaCorte.titulo']}"
+			styleClass="tituloPantalla" />
+		<p:separator />
+
+		<h:form id="frmAccesoFechaCorte">
+			<h:panelGrid id="pgFormDto" columns="1" cellpadding="4">
+				<h:panelGrid id="pnlGridAccesoFechaCorte" columns="4">
+
+					<h:outputLabel id="lblRegistro" for="txtRegistro"
+						value="#{message['accesoFechaCorte.label.Registro']}"
+						styleClass="label" />
+					<p:inputText id="txtRegistro"
+						label="#{message['accesoFechaCorte.label.Registro']}"
+						value="#{accesoFechaCorteMBean.accesoFechaCorteModel.dto.registroResponsable}"
+						required="true" readonly="#{sessionMBean.accion == 3}">
+						<f:validateLength maximum="7" minimum="7" />
+						<p:ajax event="blur" listener="#{accesoFechaCorteMBean.cargar}"
+							update="txtNombreRegistro msgs" />
+					</p:inputText>
+
+					<h:outputLabel id="lblNombreRegistro" for="txtNombreRegistro"
+						value="#{message['accesoFechaCorte.label.nombreRegistro']}"
+						styleClass="label" />
+					<p:inputText id="txtNombreRegistro"
+						label="#{message['accesoFechaCorte.label.nombreRegistro']}"
+						size="50"
+						value="#{accesoFechaCorteMBean.accesoFechaCorteModel.dto.nombreResponsable}"
+						readonly="true">
+						<f:validateLength minimum="1" />
+					</p:inputText>
+
+					
+					<h:outputLabel id="lblNumeroSolicitudes"
+						for="spinnerNumeroSolicitudes"
+						value="#{message['accesoFechaCorte.label.numeroSolicitudes']}"
+						styleClass="label" />
+					<p:spinner id="spinnerNumeroSolicitudes"
+						value="#{accesoFechaCorteMBean.accesoFechaCorteModel.dto.cantidadSolicitud}"
+						required="true" readonly="#{sessionMBean.accion == 3}" min="1"
+						max="20" />
+				</h:panelGrid>
+				<h:panelGrid id="pnlGridFechaCorte" columns="1">
+					<h:panelGrid columns="2">
+						<h:outputLabel id="lblFechaCorte" for="btnFechaCorte"
+							value="#{message['accesoFechaCorte.label.fechaCorte']}"
+							styleClass="label" />
+						<p:commandButton onclick="dlgFechaCorte.show()" type="button"
+							image="ui-icon ui-icon-search" id="btnFechaCorte" value="..."
+							disabled="#{sessionMBean.accion == 3}" />
+					</h:panelGrid>
+					<h:panelGrid id="pnlBusquedaGridFechaCorte" columns="2">
+
+						<h:outputLabel id="lblFechaInicio" for="fecFechaInicio"
+							value="#{message['fechaCorte.label.fechaInicio']}"
+							styleClass="label" />
+						<p:calendar id="fecFechaInicio"
+							label="#{message['fechaCorte.label.fechaInicio']}"
+							value="#{accesoFechaCorteMBean.accesoFechaCorteModel.dto.fechaCorteDto.fechaInicio}"
+							showOn="button" pattern="#{aplicacionMBean.formatoFecha}"
+							disabled="true">
+						</p:calendar>
+
+						<h:outputLabel id="lblFechaFin" for="fecFechaFin"
+							value="#{message['fechaCorte.label.fechaFin']}"
+							styleClass="label" />
+						<p:calendar id="fecFechaFin"
+							label="#{message['fechaCorte.label.fechaFin']}"
+							value="#{accesoFechaCorteMBean.accesoFechaCorteModel.dto.fechaCorteDto.fechaFin}"
+							showOn="button" pattern="#{aplicacionMBean.formatoFecha}"
+							disabled="true">
+						</p:calendar>
+
+						<h:outputLabel id="lblEstadoCorte" for="cbxEstadoCorte"
+							value="#{message['fechaCorte.label.estadoCorte']}"
+							styleClass="label" />
+						<p:selectOneMenu
+							label="#{message['fechaCorte.label.estadoCorte']}"
+							id="cbxEstadoCorte"
+							value="#{accesoFechaCorteMBean.accesoFechaCorteModel.dto.fechaCorteDto.estadoCorte}"
+							disabled="true">
+							<f:selectItems value="#{fechaCorteModel.listaEstados}" />
+						</p:selectOneMenu>
+
+					</h:panelGrid>
+				</h:panelGrid>
+			</h:panelGrid>
+
+			<p:separator />
+
+			<h:panelGrid>
+				<f:facet name="footer">
+					<p:outputPanel style="float:left">
+
+						<p:commandButton title="#{message['general.button.guardar.tip']}"
+							rendered="#{sessionMBean.accion != 3}"
+							value="#{message['general.button.guardar']}" ajax="false"
+							styleClass="estiloBoton"
+							onclick="return confirm('¿Está seguro de guardar los cambios?')"
+							action="#{accesoFechaCorteMBean.guardar}">
+						</p:commandButton>
+
+						<p:spacer width="30" />
+
+						<p:commandButton title="#{message['general.button.atras.tip']}"
+							immediate="true" value="#{message['general.button.atras']}"
+							ajax="false" styleClass="estiloBoton"
+							action="#{accesoFechaCorteMBean.retroceder}">
+						</p:commandButton>
+
+					</p:outputPanel>
+				</f:facet>
+			</h:panelGrid>
+
+		</h:form>
+
+		<p:dialog rendered="true"
+			header="#{message['form.general.agregar.fechaCorte']}"
+			widgetVar="dlgFechaCorte" width="750" height="500">
+			<jb:buscarFechaCorte
+				fechaCorteDto="#{accesoFechaCorteMBean.accesoFechaCorteModel.fechaCorteSeleccionado}"
+				accion="#{accesoFechaCorteMBean.seleccionarFechaCorte}" />
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>
+</html>
