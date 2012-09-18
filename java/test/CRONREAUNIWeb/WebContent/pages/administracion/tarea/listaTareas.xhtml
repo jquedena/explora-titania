@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+
+	<ui:define name="contenido">
+
+		<br />
+		<h:outputText value="#{message['tarea.titulo']}"
+			styleClass="tituloPantalla" />
+		<p:separator />
+
+		<h:form id="frmPrincipal"  styleClass="txtCampo label">
+
+			<h:panelGrid id="pgFormFilter" columns="10" cellpadding="4">
+				<h:outputLabel value="#{message['general.label.id']}"
+					styleClass="label" />
+				<p:inputText value="#{tareaMBean.dtoFiltro.id}"
+					onkeypress="return fn_validaTecla('entero',this)">					
+					<f:validateLongRange minimum="0" maximum="999999" />
+					<f:ajax />
+				</p:inputText>
+
+				<h:outputLabel
+					value="#{message['tarea.descripcion']}"
+					styleClass="label"  />
+				<p:inputText
+					label="#{message['tarea.descripcion']}"
+					value="#{tareaMBean.dtoFiltro.descripcion}" size="50">
+					<f:validateLength maximum="100" minimum="0" />
+					<f:ajax />
+				</p:inputText> 
+				<h:outputLabel
+					value="#{message['tarea.proceso']}"
+					styleClass="label"  />
+				<p:inputText
+					label="#{message['tarea.proceso']}"
+					value="#{tareaMBean.dtoFiltro.proceso}" size="50">
+					<f:validateLength maximum="100" minimum="0" />
+					<f:ajax />
+				</p:inputText> 
+				<p:commandButton image="ui-icon ui-icon-search"
+					value="BUSCAR"
+					title="#{message['general.button.buscar.filtro.tip']}" 
+					immediate="true" update="tblPrincipal"
+					actionListener="#{tareaMBean.buscar}">
+					<f:ajax render="tblPrincipal" />
+				</p:commandButton>
+			</h:panelGrid>		
+			
+			<p:dataTable id="tblPrincipal" value="#{tareaMBean.lista}" styleClass="valueColTable"
+				var="dto" rowsPerPageTemplate="10,20,30,40,50" paginator="true" 
+				rows="#{sessionMBean.CANTIDAD_REGISTROS}" widgetVar="widTable">
+				<p:column style="text-align:center;">
+					<p:commandButton image="ui-icon ui-icon-search" 
+						title="#{message['general.button.ver.tip']}"
+						action="#{tareaMBean.ver}" ajax="false">
+						<f:setPropertyActionListener value="#{dto}"
+							target="#{tareaMBean.dto}" />
+					</p:commandButton>
+				</p:column>
+				<p:column  style="text-align:center;">
+					<p:commandButton image="ui-icon ui-icon-pencil"
+						title="#{message['general.button.editar.tip']}"
+						action="#{tareaMBean.editar}" ajax="false">
+						<f:setPropertyActionListener value="#{dto}"
+							target="#{tareaMBean.dto}" />
+					</p:commandButton>
+				</p:column>
+				<p:column headerText="#{message['general.label.id']}"
+					style="text-align:center;">
+					<h:outputText value="#{dto.id}" />
+				</p:column>
+				<p:column style="text-align:left;"
+					headerText="#{message['tarea.descripcion']}"
+					sortBy="#{dto.descripcion}">
+					<h:outputText value="#{dto.descripcion}" />
+				</p:column>
+				<p:column style="text-align:left;"
+					headerText="#{message['tarea.descripcion.detallada']}">
+					<h:outputText value="#{dto.descripcionDetallada}" />
+				</p:column>
+				<p:column style="text-align:left;"
+					headerText="#{message['tarea.proceso']}">
+					<h:outputText value="#{dto.proceso}" />
+				</p:column>
+				<p:column style="text-align:left;"
+					headerText="#{message['tarea.fecha.hora']}">
+					<h:outputText value="#{dto.fechaHora}"  >
+						<f:convertDateTime pattern="MM/dd/yyyy HH:mm"/>
+					</h:outputText>
+				</p:column>
+				<p:column style="text-align:left;"
+					headerText="#{message['tarea.estado']}">
+					<h:outputText value="#{dto.estado}" />
+				</p:column>
+
+				<f:facet name="header">
+					<p:outputPanel>
+						<p:commandLink title="#{message['general.button.nuevo.tip']}" styleClass="estiloLink"
+							value="#{message['general.button.nuevo']}"		
+							ajax="false"				 
+							action="#{tareaMBean.nuevo}">
+						</p:commandLink>
+						<p:spacer width="20" />
+						<p:commandLink styleClass="estiloLink"
+							title="#{message['general.button.exportar.excel.tip']}"
+							value="#{message['general.button.exportar.excel']}"
+							ajax="false">
+							<p:dataExporter type="xls" target="tblPrincipal"
+								fileName="tablaExportada" excludeColumns="0,1" />
+						</p:commandLink>
+						<p:spacer width="20" />
+						<p:commandLink styleClass="estiloLink"
+							title="#{message['general.button.exportar.pdf.tip']}"
+							value="#{message['general.button.exportar.pdf']}" 
+							ajax="false">
+							<p:dataExporter type="pdf" target="tblPrincipal"
+								fileName="tablaExportada" excludeColumns="0,1" />
+						</p:commandLink>
+						<p:spacer width="20" />
+						<h:commandLink styleClass="estiloLink"
+							title="#{message['general.button.exportar.csv.tip']}"
+							value="#{message['general.button.exportar.csv']}"
+							ajax="false">
+							<p:dataExporter type="csv" target="tblPrincipal"
+								fileName="tablaExportada" excludeColumns="0,1" />
+						</h:commandLink>
+					</p:outputPanel>
+				</f:facet>
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

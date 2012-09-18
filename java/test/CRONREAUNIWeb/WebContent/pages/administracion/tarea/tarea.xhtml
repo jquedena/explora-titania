@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"            
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+
+        <ui:define name="contenido">     
+            <br />            
+            <h:outputText value="#{message['tarea.titulo']}" styleClass="tituloPantalla" />
+            <p:separator />           
+
+            <h:form id="frmPrincipal"  styleClass="txtCampo label">                
+                <h:panelGrid id="pgFormDto" columns="4" cellpadding="10">
+                    <h:outputLabel value="#{message['general.label.id']}" rendered="#{sessionMBean.ACCION != 1}"/>
+                    <h:outputText value="#{tareaMBean.dto.id}" rendered="#{sessionMBean.ACCION != 1}"/>
+					
+                    <h:outputLabel value="#{message['tarea.descripcion']}" />
+                    <p:inputText label="#{message['tarea.descripcion']}" 
+                                 value="#{tareaMBean.dto.descripcion}"  readonly="#{sessionMBean.ACCION == 3}"
+                                 required="true" size="50" >
+                        <f:validateLength maximum="100" minimum="5" />
+                        <f:ajax />
+                    </p:inputText>
+                    
+                    <h:outputLabel value="#{message['tarea.descripcion.detallada']}" />
+                    <p:inputTextarea label="#{message['tarea.descripcion.detallada']}" 
+                                 value="#{tareaMBean.dto.descripcionDetallada}"  readonly="#{sessionMBean.ACCION == 3}"
+                                 required="true" size="200" rows="5" cols="100">
+                        <f:validateLength maximum="500" minimum="0" />
+                        <f:ajax />
+                    </p:inputTextarea>
+                    
+                    <h:outputLabel value="#{message['tarea.proceso']}" />
+                    <p:inputText label="#{message['tarea.proceso']}" 
+                                 value="#{tareaMBean.dto.proceso}"  readonly="#{sessionMBean.ACCION == 3}"
+                                 required="true" size="50">
+                        <f:validateLength maximum="100" minimum="5" />
+                        <f:ajax />
+                    </p:inputText>
+                    
+                    <!-- <h:outputLabel value="#{message['tarea.fecha.hora']}" />
+                    <p:calendar value="#{tareaMBean.dto.fechaHora}"  mode="inline" pattern="MM/dd/yyyy HH:mm" disabled="#{sessionMBean.ACCION == 3}">
+                     	<f:ajax />
+                    </p:calendar> -->
+                    
+                    
+                     <h:outputLabel value="#{message['tarea.descripcion']}" />
+                    <p:inputText label="#{message['tarea.descripcion']}" 
+                                 value="#{tareaMBean.dto.expresionQuartz}"  readonly="#{sessionMBean.ACCION == 3}"
+                                 required="true" size="50" >
+                        <f:validateLength maximum="100" minimum="5" />
+                        <f:ajax />
+                    </p:inputText>
+                    <h:outputLabel value="#{message['tarea.estado']}" />
+					<p:selectBooleanCheckbox
+						value="#{tareaMBean.dto.estado}"
+						disabled="#{sessionMBean.ACCION == 3}">
+						<f:ajax />
+					</p:selectBooleanCheckbox>
+                </h:panelGrid>         
+               
+                <p:separator />
+               
+                <h:panelGrid>
+                    <f:facet name="footer">  
+                        <p:outputPanel  style="float:left">  
+                            <p:commandButton title="#{message['general.button.guardar.tip']}" style="background-color: red; color: FFFFFF"
+                                           onclick="return confirm('#{message.general_mensaje_confirmacion}');"
+                                           ajax="false" rendered="#{sessionMBean.ACCION != 3}"
+                                           value="#{message['general.button.guardar']}"
+                                           action="#{tareaMBean.guardar}">                                    
+                            </p:commandButton>                        
+                            <p:spacer width="30" />
+                            <p:commandButton title="#{message['general.button.atras.tip']}" immediate="true"
+                                           value="#{message['general.button.atras']}" style="background-color: red; color: FFFFFF"
+                                           ajax="false"                                       
+                                           action="#{tareaMBean.retroceder}">                                    
+                            </p:commandButton>
+
+                        </p:outputPanel>
+                    </f:facet>    
+                </h:panelGrid>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

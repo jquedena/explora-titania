@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+	<h:head>
+		<script type="text/javascript">
+			function limpiarFiltroUsuario(){
+				document.getElementById("frmListaUsuario:cbxTipoAcceso").value = -1;
+				document.getElementById("frmListaUsuario:cbxPerfil").value = -1;
+			}
+		</script>
+	</h:head>
+
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+    	<ui:define name="contenido">
+    	 
+        	<h:panelGrid id="pnlGridUsuariosTitulo" columns="1">
+        		   <h:outputText value="#{message['usuario.titulo']}" styleClass="tituloPantalla"/>
+        	</h:panelGrid>
+        		
+         	<p:separator />
+         	
+         	<h:form id="frmListaUsuario">
+         		<h:panelGrid id="pgFormFilter" columns="6" cellpadding="6">
+         		
+         			<h:outputLabel value="#{message['general.label.tipoAcesso']}" styleClass="label"/>
+					<p:selectOneMenu id="cbxTipoAcceso"  value="#{usuarioModel.dtoFiltro.codTipoAcceso}">
+						<f:selectItem itemValue="#{usuarioModel.seleccione}" itemLabel="Todos" />
+						<f:selectItems value="#{usuarioModel.listaTipoAcceso}" />  
+					</p:selectOneMenu>
+            		
+            		<h:outputLabel value="#{message['usuario.label.valor']}" styleClass="label"/>
+            		<p:inputText id="txtBusqValor" value="#{usuarioModel.dtoFiltro.valor}" 
+			                    			 styleClass="txtCampo" maxlength="7">
+			        </p:inputText>	
+			        
+			        <h:outputLabel value="#{message['usuario.label.perfil']}" styleClass="label"/>
+			        <p:selectOneMenu id="cbxPerfil" value="#{usuarioModel.dtoFiltro.perfil.id}" >
+			        	<f:selectItem itemValue="#{usuarioModel.seleccione}" itemLabel="Todos" />
+			        	<f:selectItems value="#{usuarioModel.listaPerfiles}" />  
+			        </p:selectOneMenu>
+			        
+         		</h:panelGrid>
+ 	
+            	<p:separator />   
+   			 			
+		        <h:panelGrid id="pnlGridAccionesSituaciones" columns="2" style="text-align: right">
+		            <p:commandButton image="ui-icon ui-icon-search"
+		            	title="#{message['general.button.buscar.filtro.tip']}"
+		                value="#{message['general.button.buscar.filtro']}" ajax="false" 
+		                actionListener="#{usuarioMBean.buscarListaUsuarios}">
+		           </p:commandButton> 
+		           
+		           <p:commandButton image="ui-icon ui-icon-calculator"  title="#{message['general.button.limpiar.tip']}"
+		           				    value="#{message['general.button.limpiar']}" type="reset" ajax="false" onclick="javascript:limpiarFiltroUsuario()">
+		           </p:commandButton>          
+		               
+		        </h:panelGrid>
+		        
+		        <p:dataTable id="tblUsuarios" value="#{usuarioModel.lista}" var="dto" emptyMessage="#{message['general.table.sinRegistros']}"
+			                             rowsPerPageTemplate="10,20,30,40,50"                                 
+			                             paginator="true" rows="#{aplicacionMBean.numeroRegistros}"  widgetVar="widTable">
+			                             
+			                        <p:column styleClass="botonesTabla">
+				                        <p:commandButton image="ui-icon ui-icon-search" title="#{message['general.button.ver.tip']}"
+				                                         action="#{usuarioMBean.ver}" ajax="false">
+				                            <f:setPropertyActionListener value="#{dto}" target="#{usuarioModel.dto}" />                                                                    
+				                        </p:commandButton>
+				                        <p:spacer width="20"/>
+				                        <p:commandButton image="ui-icon ui-icon-pencil" title="#{message['general.button.editar.tip']}"
+				                                         action="#{usuarioMBean.editar}" ajax="false">
+				                            <f:setPropertyActionListener value="#{dto}" target="#{usuarioModel.dto}" />                                                                    
+				                        </p:commandButton>
+				                        <p:spacer width="20"/>
+				                        <p:commandButton image="ui-icon ui-icon-trash" title="#{message['general.button.eliminar.tip']}"
+				                                         action="#{usuarioMBean.eliminar}" ajax="false">
+				                            <f:setPropertyActionListener value="#{dto}" target="#{usuarioModel.dto}" />                                                                    
+				                        </p:commandButton>
+				                    </p:column>
+			                        
+			                        <p:column id="colRegistro" headerText="#{message['usuario.columna.label.valor']}" sortBy="#{dto.valor}"  
+			                       			 style="text-align:center;">
+				                        <h:outputText value="#{dto.valor}" styleClass="valueColTable" />
+				                    </p:column>
+				                    
+				                    <p:column id="colNombrePerfil" headerText="#{message['usuario.columna.label.perfil']}" sortBy="#{dto.perfil.nombre}" >
+				                        <h:outputText value="#{dto.perfil.nombre}" styleClass="valueColTable" />
+				                    </p:column>
+ 
+				        			<f:facet name="header">
+				        				<p:outputPanel id="pnlOutBotonesNuevo">  
+				                            <h:commandLink id="linkNuevaUsuario"
+				                            			   title="#{message['general.button.nuevo.tip']}"
+				                                           value="#{message['general.button.nuevo']}" 
+				                                           styleClass="estiloLink"
+				                                           action="#{usuarioMBean.nuevo}">                                    
+				                            </h:commandLink>
+				                            <p:spacer width="20" />
+				                            
+				                        </p:outputPanel>    
+				        			</f:facet>                  	
+			                </p:dataTable>
+		        
+         	</h:form>
+         	
+        </ui:define>
+    </ui:composition>
+</html>   

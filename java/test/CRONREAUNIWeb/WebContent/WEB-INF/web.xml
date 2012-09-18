@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	
+	<context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>#{sessionMBean.tema}</param-value>
+    </context-param>
+	
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>javax.faces.CONFIG_FILES</param-name>
+		<param-value></param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Production</param-value>
+	</context-param>
+	
+<!-- 	<context-param> -->
+<!-- 		<param-name>com.ibm.ws.jsf.JSP_UPDATE_CHECK</param-name> -->
+<!-- 		<param-value>true</param-value> -->
+<!-- 	</context-param> -->
+	
+<!-- 	<context-param> -->
+<!-- 		<param-name>com.ibm.ws.jsf.LOAD_FACES_CONFIG_AT_STARTUP</param-name> -->
+<!-- 		<param-value>true</param-value> -->
+<!-- 	</context-param> -->
+	
+	<servlet>
+        <display-name>ActionValidarAcceso</display-name>
+        <servlet-name>ActionValidarAcceso</servlet-name>
+        <servlet-class>com.indra.pe.bbva.core.ldap.acceso.ActionValidarAcceso</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>ApplicationInitServlet</servlet-name>
+        <servlet-class>com.indra.pe.bbva.core.configuracion.ApplicationInitServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+	
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+        <servlet-name>ActionValidarAcceso</servlet-name>
+        <url-pattern>/ActionValidarAcceso.do</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ApplicationInitServlet</servlet-name>
+        <url-pattern>/ApplicationInitServlet.do</url-pattern>
+    </servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.faces</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	
+	<listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+	
+	<listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener> 
+	
+	<listener>
+		<listener-class>com.indra.pe.bbva.core.configuracion.WebServletContextListener</listener-class>
+	</listener>
+ 
+	<welcome-file-list>
+		<welcome-file>/faces/reauni-ldap.xhtml</welcome-file>
+	</welcome-file-list>
+	
+</web-app>
