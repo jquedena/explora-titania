@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="REAUNIWebEAR">
+        <wb-resource deploy-path="/" source-path="/"/>
+        <dependent-module archiveName="REAUNIWeb.war" deploy-path="/" handle="module:/resource/REAUNIWeb/REAUNIWeb">
+            <dependent-object>Module_1335980663456</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
