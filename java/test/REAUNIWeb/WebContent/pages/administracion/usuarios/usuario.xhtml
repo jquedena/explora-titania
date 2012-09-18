@@ -1,0 +1,72 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+    	<ui:define name="contenido">
+    		
+    		<br/>            
+            <h:outputText value="#{message['usuario.titulo']}" styleClass="tituloPantalla"/>
+            <p:separator />
+            
+            <h:form id="frmPrincipalUsuario">
+            	<h:panelGrid id="pgFormDto" columns="2" cellpadding="4">
+            		
+            		<h:outputLabel id="lblId" for="txtId" dir="ltr" value="#{message['general.label.id']}" styleClass="label" rendered="#{sessionMBean.accion != 1}"/>
+                    <h:outputText id="txtId" value="#{usuarioModel.dto.id}" rendered="#{sessionMBean.accion != 1}"/>
+
+					<h:outputLabel id="lblCbxTipoAcceso" dir="ltr" for="cbxCbxTipoAcceso" value="#{message['usuario.label.tipoAcceso']}" styleClass="label"/>
+                    <p:selectOneMenu id="cbxCbxTipoAcceso" label="#{message['usuario.label.tipoAcceso']}" value="#{usuarioModel.dto.tipoAcceso}"  immediate="true" disabled="#{sessionMBean.accion == 3}">
+						<f:selectItems value="#{usuarioModel.listaTipoAcceso}" />  
+						<p:ajax listener="#{usuarioMBean.cambiarTipoAcceso2}" update="pgFormDto"  event="change"/>
+					</p:selectOneMenu>
+                    
+                    <h:outputLabel id="lblValor" dir="ltr" value="#{message['usuario.label.valor']}" styleClass="label"/>
+            		<p:inputText id="txtRegistro" label="#{message['usuario.label.valor']}" value="#{usuarioModel.dto.valor}" styleClass="txtCampo"  maxlength="7" rendered="#{usuarioModel.dto.tipoAcceso==1027}"   readonly="#{sessionMBean.editable==1 }" >
+            			<f:validateLength maximum="7" minimum="7"  />
+			        </p:inputText>
+			        <p:inputText id="txtCargo" label="#{message['usuario.label.valor']}" value="#{usuarioModel.dto.valor}" styleClass="txtCampo" maxlength="4" rendered="#{usuarioModel.dto.tipoAcceso==1028}" readonly="#{sessionMBean.editable == 1}" >
+            			<f:validateLength maximum="4" minimum="1" />
+			        </p:inputText>
+                    
+ 					<h:outputLabel id="lblDesSituacion" dir="ltr" for="cbxPerfil" value="#{message['usuario.label.perfil']}" styleClass="label"/>
+			        <p:selectOneMenu id="cbxPerfil" label="#{message['usuario.label.perfil']}" value="#{usuarioModel.dto.perfil.id}" required="true" disabled="#{sessionMBean.accion == 3}" readonly="#{sessionMBean.accion == 3}" >
+			        	<f:selectItems value="#{usuarioModel.listaPerfiles}" />  
+			        </p:selectOneMenu>
+ 
+            	</h:panelGrid>
+            	
+            	<p:separator />
+            	
+                <h:panelGrid>
+                    <f:facet name="footer">  
+                        <p:outputPanel  style="float:left">  
+
+							<p:commandButton
+								title="#{message['general.button.guardar.tip']}" rendered="#{sessionMBean.accion != 3}"
+								value="#{message['general.button.guardar']}" ajax="false"
+								styleClass="estiloBoton"
+								onclick="return confirm('¿Está seguro de guardar los cambios?')"
+								action="#{usuarioMBean.guardar}">
+							</p:commandButton>
+							
+							<p:spacer width="30" />
+							
+							<p:commandButton title="#{message['general.button.atras.tip']}"
+								immediate="true" value="#{message['general.button.atras']}"
+								ajax="false" styleClass="estiloBoton"
+								action="#{usuarioMBean.retroceder}">
+							</p:commandButton>
+
+                        </p:outputPanel>
+                    </f:facet>    
+                </h:panelGrid>
+            		
+            </h:form>
+             			
+    	</ui:define>
+    </ui:composition>
+</html>    	

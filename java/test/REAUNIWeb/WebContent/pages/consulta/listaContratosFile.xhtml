@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+	<ui:define name="contenido">
+		<h:outputText value="GESTION DE FILES DE CONTRATOS" styleClass="tituloPantalla" />
+		<p:separator />
+
+		<h:form id="frmPrincipal" styleClass="txtCampo label">
+			<h:panelGrid columns="12">
+				<h:outputLabel value="CODIGO SOLICITUD" styleClass="label" />
+				<p:inputText label="CODIGO SOLICITUD"
+					value="#{consultaContratoFileMBean.contratoDto.oficinaSolicitudDto.solicitudDto.codigoSolicitud}"
+					size="20">
+					<f:ajax />
+				</p:inputText>
+				<p:spacer width="5px"/>
+				<p:spacer width="15px"/>
+				
+				<h:outputLabel value="CODIGO CONTRATO" styleClass="label" />
+				<p:inputText id="itCodigoCliente" label="CODIGO CONTRATO"
+					value="#{consultaContratoFileMBean.contratoDto.codigoContrato}"
+					size="20">
+					<f:ajax />
+				</p:inputText>
+				<p:spacer width="5px"/>
+				<p:spacer width="15px"/>
+				
+				<h:outputLabel value="#{message['solicitud.cliente.codigo']}"
+					styleClass="label" />
+				<p:inputText label="#{message['solicitud.cliente.codigo']}"
+					value="#{consultaContratoFileMBean.contratoDto.oficinaSolicitudDto.solicitudDto.codigoCliente}"
+					size="20">
+					<f:ajax />
+				</p:inputText>
+				<p:spacer width="5px"/>
+				<p:spacer width="15px"/>
+
+				<h:outputLabel for="fechaInicio" value="#{message['solicitud.fecha.inicio']}" styleClass="label"/>
+				<p:calendar id="fechaInicio"
+					value="#{consultaContratoFileMBean.dtoFiltro.fechaInicio}"
+					showOn="button"
+					pattern="#{aplicacionMBean.formatoFecha}"
+					locale="es"
+					label="#{message['solicitud.fecha.inicio']}">
+					<p:ajax event="dateSelect" listener="#{consultaContratoFileMBean.listenerAsignarFechaInicio}" />
+				</p:calendar>
+				<p:spacer width="5px"/>
+				<p:spacer width="15px"/>
+				
+				<h:outputLabel for="fechaHasta" value="#{message['solicitud.fecha.hasta']}" styleClass="label"/>
+				<p:calendar id="fechaHasta"
+					value="#{consultaContratoFileMBean.dtoFiltro.fechaHasta}"
+					showOn="button"
+					pattern="#{aplicacionMBean.formatoFecha}"
+					locale="es"
+					label="#{message['solicitud.fecha.hasta']}">
+					<p:ajax event="dateSelect" listener="#{consultaContratoFileMBean.listenerAsignarFechaHasta}" />
+				</p:calendar>
+				<p:spacer width="5px"/>
+				<p:spacer width="15px"/>
+				
+				<p:spacer width="5px"/>
+				<p:spacer width="5px"/>
+				<p:spacer width="5px"/>
+				<p:spacer width="15px"/>
+				
+				<h:outputLabel for="oficSolicitante" value="#{message['solicitud.oficina.solicitante']}" styleClass="label"/>
+				<p:autoComplete id="oficSolicitante"
+					value="#{consultaContratoFileMBean.dtoFiltro.oficSolicitante}"
+					completeMethod="#{consultaContratoFileMBean.buscarSolicitante}"  
+					var="p"
+					itemLabel="#{p.codOficina} - #{p.desOficina}"
+					itemValue="#{p}"
+					converter="oficinaConvert"
+					styleClass="autocomplete"
+					disabled="#{!consultaContratoFileMBean.dtoFiltro.flag_oficinaSolicitante}"
+					forceSelection="true"
+					scrollHeight="200"
+					minQueryLength="3" >
+					<p:ajax event="keyup" listener="#{consultaContratoFileMBean.keyupOficinaSolicitanteBuscar}" />
+					<p:ajax event="itemSelect" listener="#{consultaContratoFileMBean.listenerSeleccionarOficinaSolicitante}" />
+				</p:autoComplete>
+				<p:selectBooleanCheckbox value="#{consultaContratoFileMBean.dtoFiltro.flag_oficinaSolicitante}" disabled="#{consultaContratoFileMBean.activaOficinaSolicitante}">
+					<p:ajax update="oficSolicitante" listener="#{consultaContratoFileMBean.listenerCheckOficinaSolicitante}" />
+				</p:selectBooleanCheckbox>
+				<p:spacer width="15px"/>
+				
+				<h:outputLabel for="oficReceptora" value="#{message['solicitud.oficina.receptora']}" styleClass="label"/>
+				<p:autoComplete id="oficReceptora"
+					value="#{consultaContratoFileMBean.dtoFiltro.oficinaReceptora}"
+					completeMethod="#{consultaContratoFileMBean.buscarSolicitante}"  
+					var="p"
+					itemLabel="#{p.codOficina} - #{p.desOficina}"
+					itemValue="#{p}"
+					converter="oficinaConvert"
+					styleClass="autocomplete"
+					disabled="#{!consultaContratoFileMBean.dtoFiltro.flag_oficinaReceptora}"
+					forceSelection="true"
+					scrollHeight="200"
+					minQueryLength="3" >
+					<p:ajax event="keyup" listener="#{consultaContratoFileMBean.keyupOficinaReceptoraBuscar}" />
+					<p:ajax event="itemSelect" listener="#{consultaContratoFileMBean.listenerSeleccionarOficinaReceptora}" />
+				</p:autoComplete>
+				<p:selectBooleanCheckbox value="#{consultaContratoFileMBean.dtoFiltro.flag_oficinaReceptora}" disabled="#{consultaContratoFileMBean.activaOficinaReceptora}">
+					<p:ajax update="oficReceptora" listener="#{consultaContratoFileMBean.listenerCheckOficinaReceptora}" />
+				</p:selectBooleanCheckbox>
+				<p:spacer width="15px"/>
+				
+				<h:outputLabel for="oficCedente" value="#{message['solicitud.oficina.cedente']}" styleClass="label"/>
+				<p:autoComplete id="oficCedente"
+					value="#{consultaContratoFileMBean.dtoFiltro.oficinaCedente}"
+					completeMethod="#{consultaContratoFileMBean.buscarSolicitante}"  
+					var="p"
+					itemLabel="#{p.codOficina} - #{p.desOficina}"
+					itemValue="#{p}"
+					converter="oficinaConvert"
+					styleClass="autocomplete"
+					disabled="#{!consultaContratoFileMBean.dtoFiltro.flag_oficinaCedente}"
+					forceSelection="true"
+					scrollHeight="200"
+					minQueryLength="3" >
+					<p:ajax event="keyup" listener="#{consultaContratoFileMBean.keyupOficinaCedenteBuscar}" />
+					<p:ajax event="itemSelect" listener="#{consultaContratoFileMBean.listenerSeleccionarOficinaCedente}" />
+				</p:autoComplete>
+				<p:selectBooleanCheckbox value="#{consultaContratoFileMBean.dtoFiltro.flag_oficinaCedente}" disabled="#{consultaContratoFileMBean.activaOficinaCedente}">
+					<p:ajax update="oficCedente" listener="#{consultaContratoFileMBean.listenerCheckOficinaCedente}" />
+				</p:selectBooleanCheckbox>
+				<p:outputPanel>
+					<p:spacer width="15px"/>
+					<p:commandButton image="ui-icon ui-icon-search"
+						value="BUSCAR"
+						title="#{message['general.button.buscar.filtro.tip']}"
+						immediate="true" update="tblPrincipal"
+						actionListener="#{consultaContratoFileMBean.buscar}">
+						<f:ajax render="tblPrincipal" />
+					</p:commandButton>
+				</p:outputPanel>				
+			</h:panelGrid>
+
+			<h:panelGrid>
+				<p:dataTable id="tblPrincipal"
+					value="#{consultaContratoFileMBean.listaContratos}"
+					styleClass="valueColTable" var="dto"
+					emptyMessage="#{message['general.table.sinRegistros']}"
+					rowsPerPageTemplate="10,20,30,40,50" paginator="true"
+					rows="#{sessionMBean.cantidadRegistros}" widgetVar="widTable"
+					style="width: 100%" >
+					<p:column>
+						<p:commandButton title="RECEPCIONAR FILE" value="RECEPCIONAR"
+							rendered="#{!dto.estadoFile}" ajax="false"
+							onclick="return confirm('ESTÁ SEGURO QUE DESEA GUARDAR EL ESTADO DEL FILE DEL CONTRATO?');"
+							style="font-size: 9px;font-weight: bold;color:#cc0000"
+							action="#{consultaContratoFileMBean.guardarContrato}">
+							<f:setPropertyActionListener value="#{dto}"
+								target="#{consultaContratoFileMBean.contrato}" />
+							<f:ajax render="tblPrincipal" />
+						</p:commandButton>
+						<h:outputText
+							style="font-size: 9px;font-weight: bold;color:#009933"
+							value="RECEPCIONADO" rendered="#{dto.estadoFile}" />
+					</p:column>
+
+					<p:column headerText="TIPO SOLICITUD">
+						<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.tipoDto.descripcion}" />
+					</p:column>
+					<p:column headerText="#{message['solicitud.cliente.codigo']}">
+						<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.codigoCliente}" />
+					</p:column>
+					<p:column headerText="#{message['solicitud.fecha.registro']}">
+						<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.fechaCreacion}">
+							<f:convertDateTime  pattern="#{aplicacionMBean.formatoFecha}"/>
+				        </h:outputText>
+					</p:column>
+					<p:column headerText="EST. SEGMENTACIÓN">
+						<h:outputText value="#{dto.estadoDto.descripcion}" />
+					</p:column>
+					<p:column headerText="CONTRATO" style="text-align:left;">
+						#{dto.codigoContrato}
+					</p:column>
+					<p:column style="text-align:left;" headerText="OFICINA PRINCIPAL">
+						#{dto.oficinaSolicitudDto.solicitudDto.oficinaPrincipalCliente} - #{dto.oficinaSolicitudDto.solicitudDto.oficinaPrincipalClienteDesc}
+					</p:column>
+					<p:column style="text-align:left;" headerText="GESTOR PRINCIPAL">
+						#{dto.oficinaSolicitudDto.solicitudDto.gestorPrincipalCliente} - #{dto.oficinaSolicitudDto.solicitudDto.gestorPrincipalClienteDesc}
+					</p:column>
+<!-- 					<p:column style="text-align:left;" headerText="TERRITORIO CEDENTE"> -->
+<!-- 						#{dto.oficinaSolicitudDto.oficinaDto.territorioDto.codTerritorio} - #{dto.oficinaSolicitudDto.oficinaDto.territorioDto.desTerritorio} -->
+<!-- 					</p:column> -->
+<!-- 					<p:column style="text-align:left;" headerText="OFICINA CEDENTE"> -->
+<!-- 						#{dto.oficinaSolicitudDto.oficinaDto.codOficina} - #{dto.oficinaSolicitudDto.oficinaDto.desOficina} -->
+<!-- 					</p:column> -->
+					<p:column style="text-align:left;" headerText="OFICINA RECEPTORA">
+						#{dto.oficinaSolicitudDto.solicitudDto.oficinaReceptorDto.codOficina} - #{dto.oficinaSolicitudDto.solicitudDto.oficinaReceptorDto.desOficina}
+					</p:column>
+					<p:column style="text-align:left;" headerText="GESTOR RECEPTOR">
+						#{dto.oficinaSolicitudDto.solicitudDto.gestorReceptorDto.regGestor} - #{dto.oficinaSolicitudDto.solicitudDto.gestorReceptorDto.nomGestor}
+					</p:column>
+					<p:column style="text-align:left;" headerText="PRODUCTO">
+						#{dto.productoDto.codProd} - #{dto.productoDto.descProd}
+					</p:column>
+					<p:column headerText="TIPO DE PRESTAMO">
+						<h:outputText value="#{dto.tipoPrestamoDto.descripcion}" />
+					</p:column>
+					<p:column style="text-align:right;" headerText="TOTAL PASIVO (S/.)">
+						#{dto.totalPasivo} 
+					</p:column>
+					<p:column style="text-align:right;" headerText="TOTAL ACTIVO (S/.)">
+						#{dto.totalActivo} 
+					</p:column>
+					<p:column headerText="FECHA APERTURA">
+						<h:outputText value="#{dto.fechaApertura}" />
+					</p:column>
+	
+					<p:column headerText="SITUACIÓN">
+						<h:outputText value="#{dto.descripcionSituacion}" />
+					</p:column>
+				</p:dataTable>
+				<f:facet name="footer">
+					<p:commandButton title="GUARDAR FILES CONTRATOS" immediate="true"
+						value="GUARDAR" rendered="false"
+						onclick="return confirm('ESTA SEGURO QUE DESEA GUARDAR LOS FILES DE LOS CONTRATOS?');"
+						style="background-color: red; color: 003300" ajax="false"
+						actionListener="#{consultaContratoFileMBean.guardarFiles}">
+						<f:ajax render="tblPrincipal" />
+					</p:commandButton>
+				</f:facet>
+			</h:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

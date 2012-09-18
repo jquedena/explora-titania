@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+    	<ui:define name="contenido">
+    	
+		            <h:outputText value="#{message['fechaCorte.titulo']}"  styleClass="tituloPantalla"/>
+		            <p:separator />           
+
+            		<h:form id="frmFechaCorte">	
+    					
+    					<h:panelGrid columns="6" cellpadding="6">
+    					
+    						    <h:outputLabel id="lblBusqNombreActividad" for="txtBusqNombreActividad" value="#{message['fechaCorte.label.nombreActividad']}" styleClass="label"/>
+			                    <p:inputText id="txtBusqNombreActividad" value="#{fechaCorteModel.dtoFiltro.nombreActividad}" label="#{message['fechaCorte.label.nombreActividad']}"
+			                    			 styleClass="txtCampo" maxlength="200">
+			                        <f:validateLength maximum="200" minimum="0" />
+			                    </p:inputText>
+			
+			                    <h:outputLabel id="lblBusqFechaIni" for="fecBusqFechaIni" value="#{message['fechaCorte.label.fechaInicio']}" styleClass="label"/>
+			                    <p:calendar id="fecBusqFechaIni" value="#{fechaCorteModel.dtoFiltro.fechaInicio}" showOn="button"  pattern="#{aplicacionMBean.formatoFecha}"
+			                    			label="#{message['fechaCorte.label.fechaInicio']}" maxdate="#{fechaCorteModel.dtoFiltro.fechaFin}">
+			                    	
+                    			</p:calendar>  
+			
+			                    <h:outputLabel id="lblBusqFechaFin" for="fecBusqFechaFin" value="#{message['fechaCorte.label.fechaFin']}" styleClass="label"/>
+			                    <p:calendar id="fecBusqFechaFin" value="#{fechaCorteModel.dtoFiltro.fechaFin}"  showOn="button" pattern="#{aplicacionMBean.formatoFecha}" 
+			                    			label="#{message['fechaCorte.label.fechaFin']}"  mindate="#{fechaCorteModel.dtoFiltro.fechaInicio}">
+                    			</p:calendar> 
+    						
+    							<h:outputLabel id="lblBusqEstadoCorte" for="cbxBusqEstadoCorte" value="#{message['fechaCorte.label.estadoCorte']}" styleClass="label"/>
+    							<p:selectOneMenu id="cbxBusqEstadoCorte" value="#{fechaCorteModel.dtoFiltro.estadoCorte}" label="#{message['fechaCorte.label.estadoCorte']}" >
+			                        <f:selectItems value="#{fechaCorteModel.listaEstados}"/>
+			                    </p:selectOneMenu>
+    							
+    							<h:outputLabel id="lblBusqFechaCreacion" for="fecBusqFechaCreacion" value="#{message['fechaCorte.label.fechaCreacion']}" styleClass="label"/>
+			                    <p:calendar id="fecBusqFechaCreacion" value="#{fechaCorteModel.dtoFiltro.fechaCreacion}" showOn="button" pattern="#{aplicacionMBean.formatoFecha}"
+			                    			label="#{message['fechaCorte.label.fechaCreacion']}">
+                    			</p:calendar> 
+		                </h:panelGrid>
+   			 			<h:panelGrid columns="1" cellpadding="6">
+   			 				<p:outputPanel>
+		        				<p:commandButton image="ui-icon ui-icon-search" title="#{message['general.button.buscar.filtro.tip']}"
+		        					update="tblFechaCorte msgs"
+		        					value="BUSCAR" 
+			                        actionListener="#{fechaCorteMBean.buscarListaFechaCorte}">
+			                        <f:ajax render="tblFechaCorte" />
+			                    </p:commandButton>
+	        					<p:spacer width="5px"/>  
+	                            <p:commandButton title="#{message['general.button.nuevo.tip']}"
+	                                           value="#{message['general.button.nuevo']}" 
+	                                           styleClass="estiloLink"
+	                                           ajax="false"
+	                                           action="#{fechaCorteMBean.nuevo}">                                    
+	                            </p:commandButton>
+	                        </p:outputPanel>
+		    			</h:panelGrid>
+			            <p:dataTable id="tblFechaCorte" value="#{fechaCorteModel.lista}" var="dto"
+			                             rowsPerPageTemplate="10,20,30,40,50" emptyMessage="#{message['general.table.sinRegistros']}"                                
+			                             paginator="true" rows="#{sessionMBean.cantidadRegistros}"  widgetVar="widTable">
+			                             
+			                        <p:column styleClass="botonesTabla">
+				                        <p:commandButton image="ui-icon ui-icon-search" title="#{message['general.button.ver.tip']}"
+				                                         action="#{fechaCorteMBean.ver}" ajax="false">
+				                            <f:setPropertyActionListener value="#{dto}" target="#{fechaCorteModel.dto}" />                                                                    
+				                        </p:commandButton>
+				                        
+				                        <p:spacer width="20"/>
+				                        
+				                        <p:commandButton image="ui-icon ui-icon-pencil" title="#{message['general.button.editar.tip']}"
+				                                         action="#{fechaCorteMBean.editar}" ajax="false">
+				                            <f:setPropertyActionListener value="#{dto}" target="#{fechaCorteModel.dto}" />                                                                    
+				                        </p:commandButton>
+ 
+				                    </p:column>
+			                        
+			                        <p:column headerText="#{message['general.label.id']}"  style="text-align:center;">
+                        				<h:outputText value="#{dto.id}" styleClass="valueColTable" />
+                    				</p:column>
+			                        
+			                        
+			                        <p:column id="colNombreActividad" headerText="#{message['fechaCorte.columna.nombreActividad']}" sortBy="#{dto.nombreActividad}"  
+			                       			 style="text-align:center;">
+				                        <h:outputText value="#{dto.nombreActividad}" styleClass="valueColTable" />
+				                    </p:column>
+			                        
+			                        <p:column id="colFechaInicio" headerText="#{message['fechaCorte.columna.fechaInicio']}" sortBy="#{dto.fechaInicio}"  
+			                       			 style="text-align:center;">
+				                        <h:outputText value="#{dto.fechaInicio}" styleClass="valueColTable"  >
+				                        	<f:convertDateTime  pattern="#{aplicacionMBean.formatoFecha}"/>
+				                        </h:outputText>
+				                    </p:column>
+				                    
+				                    <p:column id="colFechaFin" headerText="#{message['fechaCorte.columna.fechaFin']}" sortBy="#{dto.fechaFin}" >
+				                        <h:outputText value="#{dto.fechaFin}" styleClass="valueColTable"  >
+				                        	<f:convertDateTime  pattern="#{aplicacionMBean.formatoFecha}"/>
+				                        </h:outputText>
+				                    </p:column>
+				                    
+				                     <p:column  headerText="FECHA CREACIÓN"   
+			                       			 style="text-align:center;">
+				                        <h:outputText value="#{dto.fechaCreacion}" styleClass="valueColTable"  >
+				                        	<f:convertDateTime  pattern="#{aplicacionMBean.formatoFechaHora}" timeZone="#{aplicacionMBean.timeZone}"/>
+				                        </h:outputText>
+				                    </p:column>
+				                     <p:column  headerText="FECHA MODIFICACIÓN"   
+			                       			 style="text-align:center;">
+				                        <h:outputText value="#{dto.fechaModificacion}" styleClass="valueColTable"  >
+				                        	<f:convertDateTime  pattern="#{aplicacionMBean.formatoFechaHora}" timeZone="#{aplicacionMBean.timeZone}"/>
+				                        </h:outputText>
+				                    </p:column>
+				                    
+				                 
+				                    
+				                    <p:column id="colEstadoCorte" headerText="#{message['fechaCorte.columna.estadoCorte']}" sortBy="#{dto.estadoCorte}" >				                        
+				                        <p:selectOneMenu styleClass="valueColTable" value="#{dto.estadoCorte}" label="#{message['fechaCorte.label.estadoCorte']}" disabled="true"
+				                        	 >
+					                        <f:selectItems value="#{fechaCorteModel.listaEstados}"/>
+					                    </p:selectOneMenu>
+				                    </p:column>                 	
+			           </p:dataTable>
+                
+		    		</h:form>
+		 
+    	</ui:define>		
+    </ui:composition>
+</html>    	

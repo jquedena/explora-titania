@@ -1,0 +1,66 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+    	<ui:define name="contenido">
+    		
+    		<br/>            
+            <h:outputText value="#{message['tipoPrestamo.titulo']}" styleClass="tituloPantalla"/>
+            <p:separator />
+            
+            <h:form id="frmPrincipal">
+            	<h:panelGrid id="pgFormDto" columns="2" cellpadding="4">
+            		
+            		<h:outputLabel id="lblId" for="txtId" value="#{message['general.label.id']}" styleClass="label" rendered="#{sessionMBean.accion != 1}"/>
+                    <h:outputText id="txtId" value="#{tipoPrestamoModel.dto.id}" rendered="#{sessionMBean.accion != 1}"/>
+
+					<h:outputLabel id="lblTipoPrestamo" for="txtTipoPrestamo" value="#{message['tipoPrestamo.label.codigo']}" styleClass="label"/>
+                    <p:inputText id="txtTipoPrestamo" label="#{message['tipoPrestamo.label.codigo']}" required="true" 
+                    			 value="#{tipoPrestamoMBean.tipoPrestamoModel.dto.codigo}" readonly="#{sessionMBean.accion == 3}">
+                    	<f:validateLength maximum="10" minimum="1" />
+                    </p:inputText>
+                    
+                    <h:outputLabel id="lblDescripcion" for="txtDescripcion" value="#{message['tipoPrestamo.label.descripcion']}" styleClass="label"/>
+                    <p:inputText id="txtDescripcion" label="#{message['tipoPrestamo.label.descripcion']}" required="true" 
+                    			 value="#{tipoPrestamoMBean.tipoPrestamoModel.dto.descripcion}" readonly="#{sessionMBean.accion == 3}">
+                    	<f:validateLength maximum="100" minimum="1" />
+                    </p:inputText>	
+ 
+            	</h:panelGrid>
+            	
+            	<p:separator />
+            	
+                <h:panelGrid>
+                    <f:facet name="footer">  
+                        <p:outputPanel  style="float:left">  
+ 
+                            <p:commandButton
+								title="#{message['general.button.guardar.tip']}" rendered="#{sessionMBean.accion != 3}"
+								value="#{message['general.button.guardar']}" ajax="false"
+								styleClass="estiloBoton"
+								onclick="return confirm('¿Está seguro de guardar los cambios?')"
+								action="#{tipoPrestamoMBean.guardar}">
+							</p:commandButton>
+							
+							<p:spacer width="30" />
+							
+							<p:commandButton title="#{message['general.button.atras.tip']}"
+								immediate="true" value="#{message['general.button.atras']}"
+								ajax="false" styleClass="estiloBoton"
+								action="#{tipoPrestamoMBean.retroceder}">
+							</p:commandButton>
+                            
+
+                        </p:outputPanel>
+                    </f:facet>    
+                </h:panelGrid>
+            		
+            </h:form>
+             			
+    	</ui:define>
+    </ui:composition>
+</html>    	

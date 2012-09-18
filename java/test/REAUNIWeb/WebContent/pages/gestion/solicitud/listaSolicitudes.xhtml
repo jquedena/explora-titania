@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+	<ui:define name="contenido">
+
+		<h:outputText value="#{message['solicitud.titulo']}" styleClass="tituloPantalla" />
+		<p:separator />
+		
+		<h:form id="frmPrincipal"  styleClass="txtCampo label">			
+			<h:panelGrid columns="12">
+			
+				<h:outputLabel value="#{message['solicitud.cliente.codigo']}" styleClass="label" />
+				<p:inputText  id="itCodigoCliente" 
+					label="#{message['solicitud.cliente.codigo']}"
+                    value="#{solicitudMBean.dtoFiltro.codigoCliente}"
+                    size="20">
+					<f:ajax />
+                </p:inputText>
+                <p:spacer width="5px;"/>
+                <p:spacer width="15px;"/>
+                
+				<h:outputLabel value="#{message['solicitud.cliente.nombre']}" styleClass="label" />
+				<p:inputText value="#{solicitudMBean.dtoFiltro.nombreCliente}" size="40">
+					<f:ajax />
+				</p:inputText>
+				<p:spacer width="5px;"/>
+				<p:spacer width="15px;"/>
+				
+				<h:outputLabel value="#{message['solicitud.codigo']}"
+					styleClass="label" />
+				<p:inputText value="#{solicitudMBean.dtoFiltro.codigoSolicitud}" size="40">
+					<f:ajax />
+				</p:inputText>
+				<p:spacer width="5px;"/>
+				<p:spacer width="15px;"/>
+			
+				<h:outputLabel value="#{message['solicitud.tipo']}" />                    
+				<p:selectOneMenu style="width:240px" value="#{solicitudMBean.dtoFiltro.tipoDto}" converter="parametroConvert">
+					<f:selectItems value="#{solicitudMBean.tiposSolicitudFiltro}"
+						var="parametroDto" itemLabel="#{parametroDto.descripcion}"
+						itemValue="#{parametroDto}" />	
+					<f:ajax />
+				</p:selectOneMenu>
+				<p:spacer width="5px;"/>
+				<p:spacer width="15px;"/>
+
+				<h:outputLabel value="#{message['solicitud.tramite']}" styleClass="label" />
+				<p:selectOneMenu style="width:240px" value="#{solicitudMBean.dtoFiltro.tramiteSolicitudDto}" converter="parametroConvert">
+					<f:selectItems value="#{solicitudMBean.estadosSolicitudFiltro}"
+						var="parametroDto" itemLabel="#{parametroDto.descripcion}"
+						itemValue="#{parametroDto}" />	
+					<f:ajax />						
+				</p:selectOneMenu>
+				<p:spacer width="5px;"/>
+				<p:spacer width="15px;"/>
+				
+				<p:spacer width="5px;"/>
+				<p:spacer width="5px;"/>
+				<p:spacer width="5px;"/>
+				<p:spacer width="15px;"/>
+				
+				<h:outputLabel for="fechaInicio" value="#{message['solicitud.fecha.inicio']}" styleClass="label"/>
+				<p:calendar id="fechaInicio"
+					value="#{solicitudMBean.dtoFiltro.fechaInicio}"
+					showOn="button"
+					pattern="#{aplicacionMBean.formatoFecha}"
+					locale="es_PE" 
+					label="#{message['solicitud.fecha.inicio']}">
+					<p:ajax event="dateSelect" listener="#{solicitudMBean.listenerAsignarFechaInicio}" />
+				</p:calendar>
+				<p:spacer width="5px;"/>
+				<p:spacer width="15px;"/>
+				
+				<h:outputLabel for="fechaHasta" value="#{message['solicitud.fecha.hasta']}" styleClass="label"/>
+				<p:calendar id="fechaHasta"
+					value="#{solicitudMBean.dtoFiltro.fechaHasta}"
+					showOn="button"
+					pattern="#{aplicacionMBean.formatoFecha}"
+					locale="es_PE"
+					label="#{message['solicitud.fecha.hasta']}">
+					<p:ajax event="dateSelect" listener="#{solicitudMBean.listenerAsignarFechaHasta}" />
+				</p:calendar>
+				<p:spacer width="5px;"/>
+				<p:spacer width="15px;"/>
+				
+				<p:spacer width="5px;"/>
+				<p:spacer width="5px;"/>
+				<p:spacer width="5px;"/>
+				<p:spacer width="15px;"/>			
+			
+				<h:outputLabel for="oficSolicitante" value="#{message['solicitud.oficina.solicitante']}" styleClass="label"/>
+				<p:autoComplete id="oficSolicitante"				
+					value="#{solicitudMBean.dtoFiltro.oficSolicitante}"
+					completeMethod="#{solicitudMBean.buscarSolicitante}"  
+                    var="p"
+                    itemLabel="#{p.codOficina} - #{p.desOficina}"
+                    itemValue="#{p}"
+                    converter="oficinaConvert"
+                    styleClass="autocomplete"
+                    disabled="#{!solicitudMBean.dtoFiltro.flag_oficinaSolicitante}"
+                    forceSelection="true"
+                    scrollHeight="200"
+                    minQueryLength="3" >
+                    <p:ajax event="keyup" listener="#{solicitudMBean.keyupOficinaSolicitanteBuscar}" />
+                    <p:ajax event="itemSelect" listener="#{solicitudMBean.listenerSeleccionarOficinaSolicitante}" />
+				</p:autoComplete>
+				<p:selectBooleanCheckbox value="#{solicitudMBean.dtoFiltro.flag_oficinaSolicitante}" disabled="#{solicitudMBean.activaOficinaSolicitante}">
+					<p:ajax update="oficSolicitante" listener="#{solicitudMBean.listenerCheckOficinaSolicitante}" />
+				</p:selectBooleanCheckbox>
+				<p:spacer width="15px;"/>
+				
+				<h:outputLabel for="oficReceptora" value="#{message['solicitud.oficina.receptora']}" styleClass="label"/>
+				<p:autoComplete id="oficReceptora"
+					value="#{solicitudMBean.dtoFiltro.oficinaReceptora}"
+					completeMethod="#{solicitudMBean.buscarSolicitante}"  
+                    var="p"
+                    itemLabel="#{p.codOficina} - #{p.desOficina}"
+                    itemValue="#{p}"
+                    converter="oficinaConvert"
+                    styleClass="autocomplete"
+                    disabled="#{!solicitudMBean.dtoFiltro.flag_oficinaReceptora}"
+                    forceSelection="true"
+                    scrollHeight="200"
+                    minQueryLength="3" >
+                    <p:ajax event="keyup" listener="#{solicitudMBean.keyupOficinaReceptoraBuscar}" />
+                    <p:ajax event="itemSelect" listener="#{solicitudMBean.listenerSeleccionarOficinaReceptora}" />
+                </p:autoComplete>
+				<p:selectBooleanCheckbox value="#{solicitudMBean.dtoFiltro.flag_oficinaReceptora}" disabled="#{solicitudMBean.activaOficinaReceptora}">
+					<p:ajax update="oficReceptora" listener="#{solicitudMBean.listenerCheckOficinaReceptora}" />
+				</p:selectBooleanCheckbox>
+				<p:spacer width="15px;"/>
+				
+				<h:outputLabel for="oficCedente" value="#{message['solicitud.oficina.cedente']}" styleClass="label"/>
+				<p:autoComplete id="oficCedente"
+					value="#{solicitudMBean.dtoFiltro.oficinaCedente}"
+					completeMethod="#{solicitudMBean.buscarSolicitante}"  
+                    var="p"
+                    itemLabel="#{p.codOficina} - #{p.desOficina}"
+                    itemValue="#{p}"
+                    converter="oficinaConvert"
+                    styleClass="autocomplete"
+                    disabled="#{!solicitudMBean.dtoFiltro.flag_oficinaCedente}"
+                    forceSelection="true"
+                    scrollHeight="200"
+                    minQueryLength="3" >
+                    <p:ajax event="keyup" listener="#{solicitudMBean.keyupOficinaCedenteBuscar}" />
+                    <p:ajax event="itemSelect" listener="#{solicitudMBean.listenerSeleccionarOficinaCedente}" />
+                </p:autoComplete>
+				<p:selectBooleanCheckbox value="#{solicitudMBean.dtoFiltro.flag_oficinaCedente}" disabled="#{solicitudMBean.activaOficinaCedente}">
+					<p:ajax update="oficCedente" listener="#{solicitudMBean.listenerCheckOficinaCedente}" />
+				</p:selectBooleanCheckbox>
+				<p:spacer width="15px;"/>
+			</h:panelGrid>
+			<br/>
+			<p:outputPanel>	
+				<p:commandButton image="ui-icon ui-icon-search"
+					value="BUSCAR"
+					title="#{message['general.button.buscar.filtro.tip']}" 
+					immediate="true" update="tblPrincipal"
+					actionListener="#{solicitudMBean.buscar}">
+					<f:ajax render="tblPrincipal" />
+				</p:commandButton>
+				<p:spacer width="5px;"/>
+				<p:commandButton title="#{message['general.button.nuevo.tip']}" styleClass="estiloLink"
+					value="#{message['general.button.nuevo']}"		
+					ajax="false"				 
+					action="#{solicitudMBean.nuevo}" />
+			</p:outputPanel>
+			<p>&nbsp;</p>
+			<p:dataTable id="tblPrincipal" value="#{solicitudMBean.lista}" styleClass="valueColTable"
+				emptyMessage="#{message['general.table.sinRegistros']}"
+				var="dto" rowsPerPageTemplate="10,20,30,40,50" paginator="true" 
+				rows="#{sessionMBean.cantidadRegistros}" widgetVar="widTable" >
+				
+				<p:column style="font-size: small;" styleClass="botonesTabla">
+					<p:commandButton image="ui-icon ui-icon-pencil"
+						title="#{message['general.button.editar.tip']}"
+						action="#{solicitudMBean.editar}" ajax="false">
+						<f:setPropertyActionListener value="#{dto}" target="#{solicitudMBean.dto}" />
+					</p:commandButton>
+				</p:column>
+				<p:column headerText="IDENTIFICADOR">
+					<h:outputText value="#{dto.id}" />
+				</p:column>
+				<p:column headerText="CÓD. SOLICITUD">
+					<h:outputText value="#{dto.codigoSolicitud}" />
+				</p:column>
+				<p:column headerText="FEC. REGISTRO">
+					<h:outputText value="#{dto.fechaCreacion}">
+						<f:convertDateTime  pattern="#{aplicacionMBean.formatoFecha}"/>
+				    </h:outputText>
+				</p:column>
+				<p:column headerText="#{message['solicitud.oficina.solicitante']}">
+					<h:outputText value="#{dto.oficinaSolicitante}" />&nbsp;-&nbsp;<h:outputText value="#{dto.oficinaSolicitanteDesc}" />
+				</p:column>
+				<p:column headerText="#{message['solicitud.oficina.cedente']}">
+					<p:dataGrid id="tblCedente" value="#{dto.listaOficinasSolicitud}" styleClass="valueColTable"
+						emptyMessage="#{message['general.table.sinRegistros']}"
+						var="ofic" widgetVar="widTable"
+						columns="1" >
+						<p:column rendered="#{ofic.tipoOficinaDto.id == 1031}">
+							<h:outputText value="#{ofic.oficinaDto.codOficina}"/>&nbsp;-&nbsp;<h:outputText value="#{ofic.oficinaDto.desOficina}" />
+						</p:column>
+					</p:dataGrid>
+				</p:column>
+				<p:column headerText="#{message['solicitud.receptor.oficina']}">
+					<h:outputText value="#{dto.oficinaReceptorDto.codOficina}" />&nbsp;-&nbsp;<h:outputText value="#{dto.oficinaReceptorDto.desOficina}" />
+				</p:column>
+				<p:column headerText="#{message['solicitud.tipo']}">
+					<h:outputText value="#{dto.tipoDto.descripcion}" />
+				</p:column>
+				<p:column headerText="CÓD. CLIENTE">
+					<h:outputText value="#{dto.codigoCliente}" />
+				</p:column>
+				<p:column
+					headerText="#{message['solicitud.cliente.nombre']}">
+					<h:outputText value="#{dto.nombreCliente}" />
+				</p:column>
+				<p:column headerText="#{message['solicitud.tramite']}">
+					<h:outputText value="#{dto.tramiteSolicitudDto.descripcion}" />
+				</p:column>
+
+				<p:column headerText="#{message['solicitud.declaracion']}">
+					<h:outputText value="#{dto.tipoDeclaracion}" />
+				</p:column>
+				<p:column headerText="TOTAL ACTIVO (S/.)">
+					<h:outputText value="#{dto.totalActivo}" />
+				</p:column>
+				<p:column headerText="TOTAL PASIVO (S/.)">
+					<h:outputText value="#{dto.totalPasivo}" />
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

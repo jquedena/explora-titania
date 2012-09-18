@@ -1,0 +1,74 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+    	<ui:define name="contenido">
+    		
+    		<br/>            
+            <h:outputText value="#{message['fechaCorte.titulo']}" styleClass="tituloPantalla"/>
+            <p:separator />
+            
+            <h:form id="frmFechaCorte">
+            	<h:panelGrid id="pgFormDto" columns="2" cellpadding="4">
+            		
+            		<h:outputLabel id="lblId" for="txtId" value="#{message['general.label.id']}" styleClass="label" rendered="#{sessionMBean.accion != 1}"/>
+                    <h:outputText id="txtId" value="#{fechaCorteModel.dto.id}" rendered="#{sessionMBean.accion != 1}"/>
+
+					<h:outputLabel id="lblNombreActividad" for="txtNombreActividad" value="#{message['fechaCorte.label.nombreActividad']}" styleClass="label"/>
+                    <p:inputText id="txtNombreActividad" label="#{message['fechaCorte.label.nombreActividad']}" required="true"
+                    			 value="#{fechaCorteModel.dto.nombreActividad}" readonly="#{sessionMBean.accion == 3}" disabled="#{sessionMBean.accion == 3}" >
+                    	<f:validateLength maximum="200" minimum="0" />
+                    </p:inputText>	
+
+                    <h:outputLabel id="lblFechaInicio" for="fecFechaInicio" value="#{message['fechaCorte.label.fechaInicio']}" styleClass="label"/>
+                    <p:calendar id="fecFechaInicio" label="#{message['fechaCorte.label.fechaInicio']}" value="#{fechaCorteModel.dto.fechaInicio}" showOn="button"  pattern="#{aplicacionMBean.formatoFecha}" 
+                    			readonly="#{sessionMBean.accion == 3}" maxdate="#{fechaCorteModel.dtoFiltro.fechaFin}" required="true" disabled="#{sessionMBean.accion == 3}">
+                    </p:calendar> 
+ 
+                    <h:outputLabel id="lblFechaFin" for="fecFechaFin" value="#{message['fechaCorte.label.fechaFin']}" styleClass="label"/>
+                   	<p:calendar id="fecFechaFin" label="#{message['fechaCorte.label.fechaFin']}" value="#{fechaCorteModel.dto.fechaFin}" showOn="button"  pattern="#{aplicacionMBean.formatoFecha}" 
+                   				readonly="#{sessionMBean.accion == 3}" mindate="#{fechaCorteModel.dtoFiltro.fechaFin}" required="true" disabled="#{sessionMBean.accion == 3}" >
+                    </p:calendar> 
+                    
+                    <h:outputLabel id="lblEstadoCorte" for="cbxEstadoCorte" value="#{message['fechaCorte.label.estadoCorte']}" styleClass="label"/>
+    				<p:selectOneMenu id="cbxEstadoCorte" label="#{message['fechaCorte.label.estadoCorte']}" disabled="#{sessionMBean.accion == 3}" value="#{fechaCorteModel.dto.estadoCorte}" readonly="#{sessionMBean.accion == 3}">
+			           <f:selectItems value="#{fechaCorteModel.listaEstados}"/>
+			        </p:selectOneMenu>
+                    
+            	</h:panelGrid>
+            	
+            	<p:separator />
+            	
+                <h:panelGrid>
+                    <f:facet name="footer">  
+                        <p:outputPanel  style="float:left">  
+
+							<p:commandButton
+								title="#{message['general.button.guardar.tip']}" rendered="#{sessionMBean.accion != 3}"
+								value="#{message['general.button.guardar']}" ajax="false"
+								styleClass="estiloBoton"
+								onclick="return confirm('¿Está seguro de guardar los cambios?')"
+								action="#{fechaCorteMBean.guardar}">
+							</p:commandButton>
+							
+							<p:spacer width="30" />
+							
+							<p:commandButton title="#{message['general.button.atras.tip']}"
+								immediate="true" value="#{message['general.button.atras']}"
+								ajax="false" styleClass="estiloBoton"
+								action="#{fechaCorteMBean.retroceder}">
+							</p:commandButton>
+								
+                        </p:outputPanel>
+                    </f:facet>    
+                </h:panelGrid>
+            		
+            </h:form>
+             			
+    	</ui:define>
+    </ui:composition>
+</html>    	

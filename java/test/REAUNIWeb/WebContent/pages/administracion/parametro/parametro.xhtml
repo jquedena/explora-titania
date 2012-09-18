@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+
+	<ui:define name="contenido">
+		<br />
+		<h:outputText value="#{message['catalogo.parametro.titulo']}"
+			styleClass="tituloPantalla" />
+		<p:separator />
+		<h:form id="frmPrincipal" styleClass="txtCampo label">
+			<h:panelGrid id="pgFormDto" columns="6" cellpadding="4">
+
+				<h:outputLabel value="#{message['parametro.label.descripcion']}" />
+				<p:inputText id="itNombre"
+					label="#{message['parametro.label.descripcion']}"
+					value="#{parametroMBean.parametroDto.descripcion}"
+					readonly="#{parametroMBean.accionParametro == 3}" required="true"
+					size="50">
+					<f:validateLength maximum="200" minimum="1" />
+					<f:ajax />
+				</p:inputText>
+
+				<h:outputLabel
+					value="#{message['parametro.label.descripcion.corta']}" />
+				<p:inputText label="#{message['parametro.label.descripcion.corta']}"
+					value="#{parametroMBean.parametroDto.descripcionCorta}"
+					readonly="#{parametroMBean.accionParametro == 3}">
+					<f:validateLength maximum="20" minimum="0" />
+					<f:ajax />
+				</p:inputText>
+
+				<h:outputLabel value="#{message['parametro.label.estado']}" />
+				<p:selectBooleanCheckbox
+					value="#{parametroMBean.parametroDto.estado}"
+					disabled="#{parametroMBean.accionParametro == 3}">
+					<f:ajax />
+				</p:selectBooleanCheckbox>
+
+				<h:outputLabel value="#{message['parametro.label.tipo']}" />
+				<p:selectOneMenu value="#{parametroMBean.parametroDto.tipo}"
+					disabled="#{parametroMBean.accionParametro == 3}">
+					<f:selectItems value="#{parametroMBean.siTipos}" />
+					<f:ajax />
+				</p:selectOneMenu>
+
+				<h:outputLabel value="#{message['parametro.label.valor.entero']}" />
+				<p:inputText label="#{message['parametro.label.valor.entero']}"
+					value="#{parametroMBean.parametroDto.valorEntero}"
+					onkeypress="return fn_validaTecla('entero',this)"
+					readonly="#{parametroMBean.accionParametro == 3}">
+					<f:ajax />
+				</p:inputText>
+
+				<h:outputLabel value="#{message['parametro.label.valor.real']}" />
+				<p:inputText label="#{message['parametro.label.valor.real']}"
+					value="#{parametroMBean.parametroDto.valorReal}"
+					onkeypress="return fn_validaTecla('decimal',this)"
+					readonly="#{parametroMBean.accionParametro == 3}">
+					<f:ajax />
+				</p:inputText>
+
+				<h:outputLabel value="#{message['parametro.label.valor.fecha']}" />
+				<p:calendar value="#{parametroMBean.parametroDto.valorFecha}" disabled="#{parametroMBean.accionParametro == 3}"
+					pattern="MM/dd/yyyy HH:mm" >
+					<f:ajax />
+				</p:calendar>
+
+				<h:outputLabel value="#{message['parametro.label.valor.cadena']}" />
+				<p:inputText label="#{message['parametro.label.valor.cadena']}"
+					value="#{parametroMBean.parametroDto.valorCadena}"
+					readonly="#{parametroMBean.accionParametro == 3}">
+					<f:validateLength maximum="200" minimum="0" />
+					<f:ajax />
+				</p:inputText>
+				<h:outputLabel value="#{message['parametro.label.valor.boolean']}" />
+				<p:selectBooleanCheckbox
+					value="#{parametroMBean.parametroDto.valorBoolean}"
+					disabled="#{parametroMBean.accionParametro == 3}">
+					<f:ajax />
+				</p:selectBooleanCheckbox>
+
+				<h:outputLabel
+					value="#{message['parametro.label.catalogo.parametro.padre']}" />
+				<p:selectOneMenu
+					value="#{parametroMBean.parametroDto.catalogoParametroPadreDto}"
+					converter="catalogoConvert"
+					disabled="#{parametroMBean.accionParametro == 3}">
+					<f:selectItems value="#{aplicacionMBean.listaCatalogos}" var="dto"
+						itemLabel="#{dto.descripcion}" itemValue="#{dto}" />
+					<f:ajax render="somParametro"
+						listener="#{parametroMBean.cambioCatalogoParametro}" />
+				</p:selectOneMenu>
+
+				<h:outputLabel value="#{message['parametro.label.parametro.padre']}" />
+				<p:selectOneMenu id="somParametro"
+					value="#{parametroMBean.parametroDto.parametroPadreDto}"
+					converter="parametroConvert"
+					disabled="#{parametroMBean.accionParametro == 3}">
+					<f:selectItems value="#{parametroMBean.listaParametrosPadre}"
+						var="parametroDto" itemLabel="#{parametroDto.descripcion}"
+						itemValue="#{parametroDto}" />
+					<f:ajax />
+				</p:selectOneMenu>
+
+
+			</h:panelGrid>
+
+			<h:panelGrid>
+				<f:facet name="footer">
+					<p:outputPanel style="float:left">
+						<p:commandButton
+							title="#{message['catalogo.parametro.button.add']}" rendered="#{parametroMBean.accionParametro != 3}"
+							value="#{message['catalogo.parametro.button.add']}" ajax="false"
+							immediate="true" styleClass="estiloBoton"
+							action="#{parametroMBean.agregarParametro}">
+						</p:commandButton>
+						<p:spacer width="30" />
+						<p:commandButton title="#{message['general.button.atras.tip']}"
+							immediate="true" value="#{message['general.button.atras']}"
+							ajax="false" styleClass="estiloBoton"
+							action="#{parametroMBean.retrocederParametro}">
+						</p:commandButton>
+
+					</p:outputPanel>
+				</f:facet>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

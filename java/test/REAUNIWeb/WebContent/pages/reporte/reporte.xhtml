@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<h:head>
+	<script type="text/javascript"> 
+	
+	function descarga(){
+			alert($existe);
+			var opciones="toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, width=300px, height=200px, top=85, left=140";
+			ventana = window.open("#{request.contextPath}/pages/reporte/espera_exportacion.jsp","","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, width=300px, height=200px, top=85, left=140");
+		return false;
+	}
+	
+	</script>
+</h:head>
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+
+	<ui:define name="contenido">
+
+		<br />
+		<h:outputText value="REPORTES MENSUALES DE REASIGNACIONES Y UNIFICACIONES" styleClass="tituloPantalla" />
+		<p:separator />
+
+		<h:form id="frmPrincipal" styleClass="txtCampo label" title="" >
+ 
+			<h:panelGrid columns="18">
+				
+				<h:outputLabel value="REPORTE" styleClass="label" style="font-weight: bold;" />
+				<p:selectOneMenu  value="#{reporteMBean.tipo_reporte}" style=" border-width: 0px;aling:left"    required="true" label="TIPO" >					
+					<f:selectItems value="#{reporteMBean.tipos}" />
+					<f:ajax />
+				</p:selectOneMenu>
+				<br/>
+				<h:outputLabel value="Año" styleClass="label" />
+				<p:selectOneMenu     value="#{reporteMBean.anio_reporte}"  style="border-width: 0px;"  required="true" label="AÑO">
+					
+					<f:selectItems value="#{reporteMBean.años}" />
+					<f:ajax />
+				</p:selectOneMenu>
+				<br/>
+				<h:outputLabel value="Mes" styleClass="label" />
+				<p:selectOneMenu   value="#{reporteMBean.mes_reporte}"   style="border-width: 0px;" required="true" label="MES" >					
+					<f:selectItem itemValue="1" itemLabel="#{message['mes.enero']}" />
+					<f:selectItem itemValue="2" itemLabel="#{message['mes.febrero']}" />
+					<f:selectItem itemValue="3" itemLabel="#{message['mes.marzo']}" />
+					<f:selectItem itemValue="4" itemLabel="#{message['mes.abril']}" />
+					<f:selectItem itemValue="5" itemLabel="#{message['mes.mayo']}" />
+					<f:selectItem itemValue="6" itemLabel="#{message['mes.junio']}" />
+					<f:selectItem itemValue="7" itemLabel="#{message['mes.julio']}" />
+					<f:selectItem itemValue="8" itemLabel="#{message['mes.agosto']}" />
+					<f:selectItem itemValue="9" itemLabel="#{message['mes.septiembre']}" />
+					<f:selectItem itemValue="10" itemLabel="#{message['mes.octubre']}" />
+					<f:selectItem itemValue="11" itemLabel="#{message['mes.noviembre']}" />
+					<f:selectItem itemValue="12" itemLabel="#{message['mes.diciembre']}" />
+					<f:ajax />
+				</p:selectOneMenu>
+				<br/>
+				<br></br>
+				<h:commandLink  styleClass="ui-icon ui-icon-search" style="width:25;height: 25"  title="#{message['general.button.descargar']}"
+					   action="#{reporteMBean.carga_parametros}" >
+				</h:commandLink>
+				
+			</h:panelGrid>
+		</h:form>
+	</ui:define> 
+</ui:composition>
+</html>

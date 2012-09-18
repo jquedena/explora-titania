@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+    	<ui:define name="contenido">
+    	
+		            <h:outputText value="#{message['accesoFechaCorte.titulo']}"  styleClass="tituloPantalla"/>
+		            <p:separator />           
+
+            		<h:form id="frmAccesoFechaCorte">	
+    					
+    					<h:panelGrid columns="3" cellpadding="6">
+    					
+    						<h:outputLabel id="lblRegistro" dir="ltr" for="txtRegistro" value="#{message['accesoFechaCorte.label.Registro']}" styleClass="label"/>
+                    		<p:inputText id="txtRegistro" label="#{message['accesoFechaCorte.label.Registro']}"  
+                    					 value="#{accesoFechaCorteMBean.accesoFechaCorteModel.dtoFiltro.registroResponsable}"/>    
+		                </h:panelGrid>
+   			 			<h:panelGrid columns="1" cellpadding="6">
+                   			<p:outputPanel>
+	                   			<p:commandButton image="ui-icon ui-icon-search" 
+	                   				title="#{message['general.button.buscar.filtro.tip']}"
+	                   				update="tblAccesoFechaCorte msgs"
+	                   				value="BUSCAR" 
+			                        actionListener="#{accesoFechaCorteMBean.buscarListaAccesoFechaCorte}">
+			                        <f:ajax render="tblAccesoFechaCorte" />
+			                    </p:commandButton>
+			                    <p:spacer width="5px"/>
+	                            <p:commandButton title="#{message['general.button.nuevo.tip']}"
+	                                           value="#{message['general.button.nuevo']}" 
+	                                           styleClass="estiloLink"
+	                                           ajax="false"
+	                                           action="#{accesoFechaCorteMBean.nuevo}">                                    
+	                            </p:commandButton>
+	                        </p:outputPanel>
+	                    </h:panelGrid>
+			            <p:dataTable id="tblAccesoFechaCorte" value="#{accesoFechaCorteMBean.accesoFechaCorteModel.lista}" var="dto"
+			                             rowsPerPageTemplate="10,20,30,40,50" emptyMessage="#{message['general.table.sinRegistros']}"                                
+			                             paginator="true" rows="#{sessionMBean.cantidadRegistros}"  widgetVar="widTable">
+			                             
+			                        <p:column styleClass="botonesTabla">
+				                        <p:commandButton image="ui-icon ui-icon-search" title="#{message['general.button.ver.tip']}"
+				                                         action="#{accesoFechaCorteMBean.ver}" ajax="false">
+				                            <f:setPropertyActionListener value="#{dto}" target="#{accesoFechaCorteMBean.accesoFechaCorteModel.dto}" />                                                                    
+				                        </p:commandButton>
+				                        
+				                        <p:spacer width="20"/>
+				                        
+				                        <p:commandButton image="ui-icon ui-icon-pencil" title="#{message['general.button.editar.tip']}"
+				                                         action="#{accesoFechaCorteMBean.editar}" ajax="false">
+				                            <f:setPropertyActionListener value="#{dto}" target="#{accesoFechaCorteMBean.accesoFechaCorteModel.dto}" />                                                                    
+				                        </p:commandButton>
+				                        
+				                         <p:spacer width="20"/>
+ 
+				                        <p:commandButton image="ui-icon ui-icon-trash" 
+				                        				 update=":frmAccesoFechaCorte:display" 
+				                        				 title="#{message['general.button.eliminar.tip']}"
+				                        				 onclick="return confirm('¿Está seguro de eliminar el registro?')"
+				                                         action="#{accesoFechaCorteMBean.eliminar}"
+				                                         >     
+				                            <f:setPropertyActionListener value="#{dto}" target="#{accesoFechaCorteMBean.accesoFechaCorteModel.dto}" />                                                                            
+				                        </p:commandButton>
+				                    </p:column>
+			                        
+			                        <p:column headerText="#{message['general.label.id']}"  style="text-align:center;">
+                        				<h:outputText value="#{dto.id}" styleClass="valueColTable" />
+                    				</p:column>
+			                        
+			                        <p:column id="colRegistro" headerText="#{message['accesoFechaCorte.columna.Registro']}" sortBy="#{dto.registroResponsable}"  
+			                       			 style="text-align:center;">
+				                        <h:outputText value="#{dto.registroResponsable}" styleClass="valueColTable" />
+				                    </p:column>
+				                    
+				                     <p:column  headerText="#{message['accesoFechaCorte.label.nombreRegistro']}"  >
+				                        <h:outputText value="#{dto.nombreResponsable}" styleClass="valueColTable" />
+				                    </p:column>
+			    
+			                      	<p:column id="colCantidadSolicitud" headerText="#{message['accesoFechaCorte.columna.cantidadSolicitud']}" sortBy="#{dto.cantidadSolicitud}" >
+				                        <h:outputText value="#{dto.cantidadSolicitud}" styleClass="valueColTable" />
+				                    </p:column>
+				                    
+				                    <p:column headerText="NOM. FEC. CORTE"  >
+				                        <h:outputText value="#{dto.fechaCorteDto.nombreActividad}" styleClass="valueColTable" />
+				                    </p:column>
+				                    
+				                    <p:column id="colEstado" headerText="#{message['accesoFechaCorte.columna.fechaCorte.estado']}" sortBy="#{dto.fechaCorte.estadoAcceso}" >				                        
+				                        <p:selectOneMenu
+											label="#{message['fechaCorte.label.estadoCorte']}"											
+											value="#{dto.fechaCorteDto.estadoCorte}"							
+											disabled="true">
+											<f:selectItems value="#{fechaCorteModel.listaEstados}" />
+										</p:selectOneMenu>
+				                    </p:column>
+				                    
+				                    
+				        			
+				        			<p:column id="colFechaInicio" headerText="#{message['accesoFechaCorte.columna.fechaCorte.fechaInicio']}" sortBy="#{dto.fechaCorte.fechaInicio}"  
+			                       			 style="text-align:center;">
+				                        <h:outputText value="#{dto.fechaCorteDto.fechaInicio}" styleClass="valueColTable"  >
+				                        	<f:convertDateTime  pattern="#{aplicacionMBean.formatoFecha}"/>
+				                        </h:outputText>
+				                    </p:column>
+				        			
+				        			<p:column id="colFechaFin" headerText="#{message['accesoFechaCorte.columna.fechaCorte.fechaFin']}" sortBy="#{dto.fechaCorte.fechaFin}" >
+				                        <h:outputText value="#{dto.fechaCorteDto.fechaFin}" styleClass="valueColTable"  >
+				                        	<f:convertDateTime  pattern="#{aplicacionMBean.formatoFecha}"/>
+				                        </h:outputText>
+				                    </p:column>
+ 	
+				        			<p:column rendered="false" id="colFechaCreacion" headerText="#{message['accesoFechaCorte.columna.fechaCorte.fechaCreacion']}" sortBy="#{dto.fechaCorte.fechaCreacion}"  
+			                       			 style="text-align:center;">
+				                        <h:outputText value="#{dto.fechaCorteDto.fechaCreacion}" styleClass="valueColTable" />
+				                    </p:column>
+				                    
+				                    <p:column rendered="false" id="colFechaModificacion" headerText="#{message['accesoFechaCorte.columna.fechaCorte.fechaModificacion']}" sortBy="#{dto.fechaCorte.fechaModificacion}" >
+				                        <h:outputText value="#{dto.fechaCorteDto.fechaModificacion}" styleClass="valueColTable" />
+				                    </p:column>
+            	
+			            </p:dataTable>
+			                 
+			             <p:dialog header="#{dto.descripcion}"  widgetVar="dialogEliminarAccesoFechaCorte" resizable="false" id="dlgEliminarAccesoFechaCorte"  
+                				  showEffect="fade" modal="true">
+                				  
+                			<h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+  	  							
+  	  							<h:outputLabel value="#{message['accesoFechaCorte.msj.eliminar']}" styleClass="label"/> 
+  	  							<h:outputLabel value="" styleClass="label"/>
+  	  							
+	                			<p:commandButton value="Si" update="tblAccesoFechaCorte msgs" oncomplete="dialogEliminarAccesoFechaCorte.hide()" action="#{accesoFechaCorteMBean.eliminar}"/>
+	         					<p:commandButton value="No" onclick="dialogEliminarAccesoFechaCorte.hide()" type="button" />
+	         					
+	         				</h:panelGrid>	     
+			            </p:dialog>                  
+		    		</h:form>
+		 
+    	</ui:define>		
+    </ui:composition>
+</html>    	

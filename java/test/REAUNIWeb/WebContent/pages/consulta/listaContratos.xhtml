@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+
+	<ui:define name="contenido">
+
+		<h:outputText value="REASIGNACION Y UNIFICACION DE CONTRATOS" styleClass="tituloPantalla" />
+		<p:separator />
+		<h:form id="frmPrincipal" styleClass="txtCampo label">
+
+			<h:panelGrid columns="12">
+				<h:outputLabel value="NUMERO SOLICITUD" styleClass="label" />
+				<p:inputText label="NUMERO SOLICITUD"
+					value="#{consultaMBean.contratoDto.oficinaSolicitudDto.solicitudDto.codigoSolicitud}"
+					size="20">
+					<f:ajax />
+				</p:inputText>
+				<p:spacer width="5px"/>
+				<p:spacer width="15px"/>
+				
+				<h:outputLabel value="CODIGO CONTRATO" styleClass="label" />
+				<p:inputText id="itCodigoCliente" label="CODIGO CONTRATO"
+					value="#{consultaMBean.contratoDto.codigoContrato}" size="20">
+					<f:ajax />
+				</p:inputText>
+				<p:spacer width="5px"/>
+				<p:spacer width="15px"/>
+				
+				<h:outputLabel value="#{message['solicitud.cliente.codigo']}" styleClass="label" />
+				<p:inputText label="#{message['solicitud.cliente.codigo']}"
+					value="#{consultaMBean.contratoDto.oficinaSolicitudDto.solicitudDto.codigoCliente}"
+					size="20">
+					<f:ajax />
+				</p:inputText>
+				<p:spacer width="5px"/>
+				<p:spacer width="15px"/>
+
+				<h:outputLabel value="ESTADO CONTRATO" styleClass="label" />
+				<p:selectOneMenu style="border-width: 0px; width: 150px;"
+					converter="parametroConvert"
+					value="#{consultaMBean.contratoDto.estadoDto}">
+					<f:selectItems value="#{consultaMBean.listaEstados}"
+						var="parametroDto" itemLabel="#{parametroDto.descripcion}"
+						itemValue="#{parametroDto}" />
+					<f:ajax />
+				</p:selectOneMenu>
+				<p:spacer width="5px"/>
+				<p:spacer width="15px"/>
+				
+				<h:outputLabel for="fechaInicio"
+					value="#{message['solicitud.fecha.inicio']}" styleClass="label" />
+				<p:calendar id="fechaInicio"
+					value="#{consultaMBean.dtoFiltro.fechaInicio}" showOn="button"
+					pattern="#{aplicacionMBean.formatoFecha}"
+					locale="es"
+					label="#{message['solicitud.fecha.inicio']}">
+					<p:ajax event="dateSelect"
+						listener="#{consultaMBean.listenerAsignarFechaInicio}" />
+				</p:calendar>
+				<p:spacer width="5px"/>
+				<p:spacer width="15px"/>
+
+				<h:outputLabel for="fechaHasta"
+					value="#{message['solicitud.fecha.hasta']}" styleClass="label" />
+				<p:calendar id="fechaHasta"
+					value="#{consultaMBean.dtoFiltro.fechaHasta}" showOn="button"
+					pattern="#{aplicacionMBean.formatoFecha}"
+					locale="es"
+					label="#{message['solicitud.fecha.hasta']}">
+					<p:ajax event="dateSelect"
+						listener="#{consultaMBean.listenerAsignarFechaHasta}" />
+				</p:calendar>
+				<p:spacer width="5px"/>
+				<p:spacer width="15px"/>
+				
+				<h:outputLabel for="oficSolicitante"
+					value="#{message['solicitud.oficina.solicitante']}"
+					styleClass="label" />
+				<p:autoComplete id="oficSolicitante"
+					value="#{consultaMBean.dtoFiltro.oficSolicitante}"
+					completeMethod="#{consultaMBean.buscarSolicitante}" var="p"
+					itemLabel="#{p.codOficina} - #{p.desOficina}"
+					itemValue="#{p}" converter="oficinaConvert"
+					styleClass="autocomplete"
+					disabled="#{!consultaMBean.dtoFiltro.flag_oficinaSolicitante}"
+					forceSelection="true" scrollHeight="200" minQueryLength="3">
+					<p:ajax event="itemSelect"
+						listener="#{consultaMBean.listenerSeleccionarOficinaSolicitante}" />
+				</p:autoComplete>
+				<p:selectBooleanCheckbox
+					value="#{consultaMBean.dtoFiltro.flag_oficinaSolicitante}"
+					disabled="#{consultaMBean.activaOficinaSolicitante}">
+					<p:ajax update="oficSolicitante"
+						listener="#{consultaMBean.listenerCheckOficinaSolicitante}" />
+				</p:selectBooleanCheckbox>
+				<p:spacer width="15px"/>
+				
+				<h:outputLabel for="oficReceptora"
+					value="#{message['solicitud.oficina.receptora']}"
+					styleClass="label" />
+				<p:autoComplete id="oficReceptora"
+					value="#{consultaMBean.dtoFiltro.oficinaReceptora}"
+					completeMethod="#{consultaMBean.buscarSolicitante}" var="p"
+					itemLabel="#{p.codOficina} - #{p.desOficina}"
+					itemValue="#{p}" converter="oficinaConvert"
+					styleClass="autocomplete"
+					disabled="#{!consultaMBean.dtoFiltro.flag_oficinaReceptora}"
+					forceSelection="true" scrollHeight="200" minQueryLength="3">
+					<p:ajax event="itemSelect"
+						listener="#{consultaMBean.listenerSeleccionarOficinaReceptora}" />
+				</p:autoComplete>
+				<p:selectBooleanCheckbox
+					value="#{consultaMBean.dtoFiltro.flag_oficinaReceptora}"
+					disabled="#{consultaMBean.activaOficinaReceptora}">
+					<p:ajax update="oficReceptora"
+						listener="#{consultaMBean.listenerCheckOficinaReceptora}" />
+				</p:selectBooleanCheckbox>
+				<p:spacer width="15px"/>
+
+				<h:outputLabel for="oficCedente"
+					value="#{message['solicitud.oficina.cedente']}" styleClass="label" />
+				<p:autoComplete id="oficCedente"
+					value="#{consultaMBean.dtoFiltro.oficinaCedente}"
+					completeMethod="#{consultaMBean.buscarSolicitante}" var="p"
+					itemLabel="#{p.codOficina} - #{p.desOficina}"
+					itemValue="#{p}" converter="oficinaConvert"
+					styleClass="autocomplete"
+					disabled="#{!consultaMBean.dtoFiltro.flag_oficinaCedente}"
+					forceSelection="true" scrollHeight="200" minQueryLength="3">
+					<p:ajax event="itemSelect"
+						listener="#{consultaMBean.listenerSeleccionarOficinaCedente}" />
+				</p:autoComplete>
+				<p:selectBooleanCheckbox
+					value="#{consultaMBean.dtoFiltro.flag_oficinaCedente}"
+					disabled="#{consultaMBean.activaOficinaCedente}">
+					<p:ajax update="oficCedente"
+						listener="#{consultaMBean.listenerCheckOficinaCedente}" />
+				</p:selectBooleanCheckbox>
+				<p:outputPanel>
+					<p:spacer width="15px"/>
+					<p:commandButton image="ui-icon ui-icon-search"
+						value="BUSCAR"
+						title="#{message['general.button.buscar.filtro.tip']}"
+						immediate="true" update="tblPrincipal"
+						actionListener="#{consultaMBean.buscar}">
+						<f:ajax render="tblPrincipal" />
+					</p:commandButton>
+					<h:commandLink>
+						<p:graphicImage value="/recursos/imagenes/botones/excel.png" /> 
+					    <p:dataExporter type="xls" target="tblPrincipal" fileName="Contratos"/><!--  preProcessor="#{tableBean.preProcessPDF}" -->  
+					</h:commandLink> 
+				</p:outputPanel>
+			</h:panelGrid>
+
+			<p:dataTable id="tblPrincipal"
+				value="#{consultaMBean.listaContratos}" styleClass="valueColTable"
+				var="dto" rowsPerPageTemplate="10,20,30,40,50" paginator="true"
+				emptyMessage="#{message['general.table.sinRegistros']}"
+				rows="#{sessionMBean.cantidadRegistros}" widgetVar="widTable"
+				style="width: 100%">
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="ESTADO"/>
+					</f:facet>
+					<p:selectOneMenu style="border-width: 0px; width: 100px;"
+						disabled="#{dto.estadoDto.id==1038 || (dto.estadoBkp.id==1035)}"
+						converter="parametroConvert" value="#{dto.estadoDto}">
+						<f:selectItems value="#{consultaMBean.estadosHost}"
+							var="parametroDto" itemLabel="#{parametroDto.descripcion}"
+							itemValue="#{parametroDto}" />
+						<f:ajax render="tblPrincipal" />
+					</p:selectOneMenu>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="COMENTARIO"/>
+					</f:facet>
+					<p:inputText label="COMENTARIO" value="#{dto.comentarioEstado}"
+						size="60"
+						readonly="#{dto.estadoDto.id==1038 || (dto.estadoBkp.id==1035)}"
+						required="#{dto.estadoDto.id==1036}">
+						<f:ajax />
+					</p:inputText>
+				</p:column>
+				<p:column>
+					<p:commandButton title="GUARDAR CONTRATO" value="GUARDAR"
+						onclick="return confirm('ESTÁ SEGURO QUE DESEA GUARDAR EL ESTADO DEL CONTRATO?');"
+						rendered="#{!(dto.estadoDto.id==1038 || (dto.estadoBkp.id==1035)) &amp;&amp; dto.estadoDto.id!=1034}"
+						ajax="false" action="#{consultaMBean.guardarContrato}">
+						<f:setPropertyActionListener value="#{dto}"
+							target="#{consultaMBean.contrato}" />
+						<f:ajax render="tblPrincipal" />
+					</p:commandButton>
+					<h:outputText
+						style="font-size: 9px;font-weight: bold;color:#009933"
+						value="#{dto.estadoDto.descripcion}"
+						rendered="#{(dto.estadoDto.id==1038 || dto.estadoBkp.id==1035)}" />
+				</p:column>
+				<p:column style="display: none;">
+					<f:facet name="header">
+						<h:outputText value="ESTADO PROCESAMIENTO"/>
+					</f:facet>
+					<h:outputText
+						style="font-size: 9px;font-weight: bold;color:#009933"
+						value="#{dto.estadoDto.descripcion}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{message['solicitud.cliente.codigo']}"/>
+					</f:facet>
+					<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.codigoCliente}" />
+				</p:column>
+				<p:column style="text-align:left;">
+					<f:facet name="header">
+						<h:outputText value="CONTRATO"/>
+					</f:facet>
+					<h:outputText value="#{dto.codigoContrato}" />
+				</p:column>
+				<p:column style="text-align:left;">
+					<f:facet name="header">
+						<h:outputText value="TERRITORIO CEDENTE"/>
+					</f:facet>
+					<h:outputText value="#{dto.oficinaSolicitudDto.oficinaDto.territorioDto.codTerritorio} - #{dto.oficinaSolicitudDto.oficinaDto.territorioDto.desTerritorio}" />
+				</p:column>
+				<p:column style="text-align:left;">
+					<f:facet name="header">
+						<h:outputText value="OFICINA CEDENTE"/>
+					</f:facet>
+					<h:outputText value="#{dto.oficinaSolicitudDto.oficinaDto.codOficina} - #{dto.oficinaSolicitudDto.oficinaDto.desOficina}" />
+				</p:column>
+				<p:column style="text-align:left;">
+					<f:facet name="header">
+						<h:outputText value="OFICINA RECEPTORA"/>
+					</f:facet>
+					<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.oficinaReceptorDto.codOficina} - #{dto.oficinaSolicitudDto.solicitudDto.oficinaReceptorDto.desOficina}" />
+				</p:column>
+				<p:column style="text-align:left;" headerText="GESTOR RECEPTOR">
+					<f:facet name="header">
+						<h:outputText value="GESTOR RECEPTOR"/>
+					</f:facet>
+					<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.gestorReceptorDto.regGestor} - #{dto.oficinaSolicitudDto.solicitudDto.gestorReceptorDto.nomGestor}" />
+				</p:column>
+				<p:column style="text-align:left;">
+					<f:facet name="header">
+						<h:outputText value="PRODUCTO"/>
+					</f:facet>
+					<h:outputText value="#{dto.productoDto.codProd} - #{dto.productoDto.descProd}" />
+				</p:column>
+				<p:column style="text-align:right;">
+					<f:facet name="header">
+						<h:outputText value="TOTAL PASIVO (S/.)"/>
+					</f:facet>
+					<h:outputText value="#{dto.totalPasivo}" />
+				</p:column>
+				<p:column style="text-align:right;">
+					<f:facet name="header">
+						<h:outputText value="TOTAL ACTIVO (S/.)"/>
+					</f:facet>
+					<h:outputText value="#{dto.totalActivo}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="FECHA APERTURA"/>
+					</f:facet>
+					<h:outputText value="#{dto.fechaApertura}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="SITUACIÓN"/>
+					</f:facet>
+					<h:outputText value="#{dto.descripcionSituacion}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{message['solicitud.fecha.registro']}"/>
+					</f:facet>
+					<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.fechaCreacion}">
+						<f:convertDateTime pattern="#{aplicacionMBean.formatoFecha}" />
+					</h:outputText>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

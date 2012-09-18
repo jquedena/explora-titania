@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+    	<ui:define name="contenido">
+    	
+		            <h:outputText value="#{message['tipoPrestamo.titulo']}"  styleClass="tituloPantalla"/>
+		            <p:separator />           
+
+            		<h:form id="frmTipoPrestamo">	
+    					
+    					<h:panelGrid columns="5" cellpadding="6">
+    					
+    						    <h:outputLabel id="lblBusqTipoPrestamo" for="txtBusqTipoPrestamo" value="#{message['tipoPrestamo.label.tipoPrestamo']}" styleClass="label"/>
+			                    <p:inputText id="txtBusqTipoPrestamo" value="#{tipoPrestamoMBean.tipoPrestamoModel.dtoFiltro.codigo}" 
+			                    			 styleClass="txtCampo" maxlength="10">
+			                        <f:validateLength maximum="10" minimum="0" />
+			                    </p:inputText>
+			
+			                    <h:outputLabel id="lblBusqDescripcion" for="txtBusqDescripcion" value="#{message['tipoPrestamo.label.descripcion']}" styleClass="label"/>
+			                    <p:inputText id="txtBusqDescripcion" label="#{message['tipoPrestamo.label.descripcion']}" 
+			                                 value="#{tipoPrestamoMBean.tipoPrestamoModel.dtoFiltro.descripcion}" 
+			                                 size="50" styleClass="txtCampo" maxlength="100">
+			                        <f:validateLength maximum="100" minimum="0" />
+			                    </p:inputText>
+		                </h:panelGrid>
+						<h:panelGrid columns="1" cellpadding="6">
+	        				<p:outputPanel>
+	        					<p:commandButton image="ui-icon ui-icon-search"
+	        						value="BUSCAR"
+	        						title="#{message['general.button.buscar.filtro.tip']}"  
+			                        actionListener="#{tipoPrestamoMBean.buscarListaTipoPrestamo}"
+			                        update="tblTipoPrestamno msgs">
+			                        <f:ajax render="tblTipoPrestamno" />
+			                    </p:commandButton>
+			                    <p:spacer width="5px"/>
+	                            <p:commandButton title="#{message['general.button.nuevo.tip']}"
+	                                           value="#{message['general.button.nuevo']}" 
+	                                           styleClass="estiloLink"
+	                                           ajax="false"
+	                                           action="#{tipoPrestamoMBean.nuevo}">                                    
+	                            </p:commandButton>
+	                        </p:outputPanel>
+	                    </h:panelGrid>
+			            <p:dataTable id="tblTipoPrestamno" value="#{tipoPrestamoMBean.tipoPrestamoModel.lista}" var="dto"
+			                             rowsPerPageTemplate="10,20,30,40,50" emptyMessage="#{message['general.table.sinRegistros']}"                                
+			                             paginator="true" rows="#{sessionMBean.cantidadRegistros}"  widgetVar="widTable">
+			                             
+			                        <p:column styleClass="botonesTabla">
+				                        <p:commandButton image="ui-icon ui-icon-search" title="#{message['general.button.ver.tip']}"
+				                                         action="#{tipoPrestamoMBean.ver}" ajax="false">
+				                            <f:setPropertyActionListener value="#{dto}" target="#{tipoPrestamoMBean.tipoPrestamoModel.dto}" />                                                                    
+				                        </p:commandButton>
+				                        <p:spacer width="20"/>
+				                        <p:commandButton image="ui-icon ui-icon-pencil" title="#{message['general.button.editar.tip']}"
+				                                         action="#{tipoPrestamoMBean.editar}" ajax="false">
+				                            <f:setPropertyActionListener value="#{dto}" target="#{tipoPrestamoMBean.tipoPrestamoModel.dto}" />                                                                    
+				                        </p:commandButton>
+				                        <p:spacer width="20"/>
+				                        <p:commandButton image="ui-icon ui-icon-trash"
+				                        				 title="#{message['general.button.eliminar.tip']}"
+				                        				 update=":frmTipoPrestamo:display" 
+				                        				 id="btnEliminarTipoPrestamo"
+				                        				 onclick="return confirm('¿Está seguro de eliminar el registro?')" 
+				                                         action="#{tipoPrestamoMBean.eliminar}" 
+				                                         >
+				                            <f:setPropertyActionListener value="#{dto}" target="#{tipoPrestamoMBean.tipoPrestamoModel.dto}" />                                                                    
+				                        </p:commandButton>
+				                    </p:column>
+			                        
+			                        <p:column id="colTipoPrestamo" headerText="#{message['tipoPrestamo.label.tipoPrestamo']}" sortBy="#{dto.codigo}"  
+			                       			 style="text-align:center;">
+				                        <h:outputText value="#{dto.codigo}" styleClass="valueColTable" />
+				                    </p:column>
+				                    
+				                    <p:column id="colDescripcion" headerText="#{message['tipoPrestamo.label.descripcion']}" sortBy="#{dto.descripcion}" >
+				                        <h:outputText value="#{dto.descripcion}" styleClass="valueColTable" />
+				                    </p:column>                	
+			            </p:dataTable>
+			            <p:dialog id="dlgEliminacionTipoPrestamo" widgetVar="confirmarEliminacionTipoPrestamo" 
+			            		  modal="true" resizable="false" header="#{tipoPrestamoModel.dto.descripcion}"  showEffect="fade"   > 
+			            		  
+			            		  <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+  	  							
+  	  								<h:outputLabel value="#{message['tipoPrestamo.msj.eliminar']}" styleClass="label"/> 
+  	  								<h:outputLabel value="" styleClass="label"/>
+  	  								 
+	         						<p:commandButton value="Si" update="tblTipoPrestamno msgs" oncomplete="confirmarEliminacionTipoPrestamo.hide()" action="#{tipoPrestamoMBean.eliminar}"/>
+	         						<p:commandButton value="No" onclick="confirmarEliminacionTipoPrestamo.hide()" type="button" />
+	         						
+	         					 </h:panelGrid>	   
+	     				</p:dialog>                   
+		    	</h:form>
+		 
+    	</ui:define>		
+    </ui:composition>
+</html>    	

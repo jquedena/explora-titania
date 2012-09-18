@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+	<ui:define name="contenido">
+		<h:outputText value="#{message['catalogo.parametro.titulo']}" styleClass="tituloPantalla" />
+		<p:separator />
+		<h:form id="frmPrincipal"  styleClass="txtCampo label">
+
+			<h:panelGrid id="pgFormFilter" columns="5" cellpadding="4">
+				<h:outputLabel value="#{message['general.label.id']}"
+					styleClass="label" />
+				<p:inputText value="#{parametroMBean.dtoFiltro.id}"
+					onkeypress="return fn_validaTecla('entero',this)">					
+					<f:validateLongRange minimum="0" maximum="999999" />
+					<f:ajax />
+				</p:inputText>
+
+				<h:outputLabel
+					value="#{message['catalogo.parametro.label.descripcion']}"
+					styleClass="label"  />
+				<p:inputText
+					label="#{message['catalogo.parametro.label.descripcion']}"
+					value="#{parametroMBean.dtoFiltro.descripcion}" size="50">
+					<f:validateLength maximum="100" minimum="0" />
+					<f:ajax />
+				</p:inputText>
+			</h:panelGrid>
+			<h:panelGrid columns="1" cellpadding="6">	
+				<p:outputPanel>
+					<p:commandButton image="ui-icon ui-icon-search"
+						value="BUSCAR"
+						title="#{message['general.button.buscar.filtro.tip']}" 
+						immediate="true" update="tblPrincipal"
+						actionListener="#{parametroMBean.buscar}">
+						<f:ajax render="tblPrincipal" />
+					</p:commandButton>
+					<p:spacer width="5px"/>
+					<p:commandButton title="#{message['general.button.nuevo.tip']}" styleClass="estiloLink"
+						value="#{message['general.button.nuevo']}"		
+						ajax="false"				 
+						action="#{parametroMBean.nuevo}">
+					</p:commandButton>
+				</p:outputPanel>
+			</h:panelGrid>
+			<p:dataTable id="tblPrincipal" value="#{parametroMBean.lista}" styleClass="valueColTable"
+				var="dto" 
+				rowsPerPageTemplate="10,20,30,40,50" paginator="true"  
+				emptyMessage="#{message['general.table.sinRegistros']}"
+				rows="#{sessionMBean.cantidadRegistros}" widgetVar="widTable">
+				<p:column style="font-size: small" styleClass="botonesTabla">
+					<p:commandButton image="ui-icon ui-icon-search" 
+						title="#{message['general.button.ver.tip']}"
+						action="#{parametroMBean.ver}" ajax="false">
+						<f:setPropertyActionListener value="#{dto}"
+							target="#{parametroMBean.dto}" />
+					</p:commandButton>
+					<p:spacer width="20"/>
+					<p:commandButton image="ui-icon ui-icon-pencil"
+						title="#{message['general.button.editar.tip']}"
+						action="#{parametroMBean.editar}" ajax="false">
+						<f:setPropertyActionListener value="#{dto}"
+							target="#{parametroMBean.dto}" />
+					</p:commandButton>
+				</p:column>
+				
+				<p:column headerText="#{message['general.label.id']}"
+					style="text-align:center;">
+					<h:outputText value="#{dto.id}" />
+				</p:column>
+				<p:column style="text-align:left;"
+					headerText="#{message['catalogo.parametro.label.descripcion']}"
+					sortBy="#{dto.descripcion}">
+					<h:outputText value="#{dto.descripcion}" />
+				</p:column>
+				<p:column style="text-align:center;"
+					headerText="#{message['catalogo.parametro.label.parametros']}">
+					<h:outputText value="#{dto.cantidadParametros}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
