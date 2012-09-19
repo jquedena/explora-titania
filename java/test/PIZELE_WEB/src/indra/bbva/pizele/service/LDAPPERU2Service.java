@@ -43,6 +43,9 @@ public class LDAPPERU2Service {
 				gestor.setApellidoPaterno(ldapperu2.getApepat());
 				gestor.setApellidoMaterno(ldapperu2.getApemat());
 				gestor.setCodigoRegistro(ldapperu2.getCodusu());
+				gestor.setCargo(ldapperu2.getCargo());
+				gestor.setPerfil(ldapperu2.getPerfil());
+				gestor.setPerfilID(ldapperu2.getPerfilID());
 				break;
 			}
 		}
@@ -62,6 +65,7 @@ public class LDAPPERU2Service {
 				gestor.setCodigoRegistro(ldapperu2.getCodusu());
 				gestor.setCargo(ldapperu2.getCargo());
 				gestor.setPerfil(ldapperu2.getPerfil());
+				gestor.setPerfilID(ldapperu2.getPerfilID());
 				break;
 			}
 		}

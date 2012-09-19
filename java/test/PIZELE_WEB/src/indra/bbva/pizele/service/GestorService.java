@@ -41,6 +41,7 @@ public class GestorService
 				gestor.setApellidoPaterno(ldapperu2.getApepat());
 				gestor.setApellidoMaterno(ldapperu2.getApemat());
 				gestor.setPerfil(ldapperu2.getPerfil());
+				gestor.setPerfilID(ldapperu2.getPerfilID());
 				gestor.setOficinaHija(hija ? "*" : "");
 				gestores.add(gestor);
 			}	

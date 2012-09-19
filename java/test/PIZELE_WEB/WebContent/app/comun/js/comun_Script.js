@@ -88,7 +88,7 @@ function seleccionaOficinas()
 				
 					    			$.each(data.listaObjetos, function(i,objeto)
 					    			{  			
-					    				$('#idGestor').append($('<option>', { value : objeto.codusu }).text(objeto.nombreCompleto));  
+					    				$('#idGestor').append($('<option>', { value : objeto.codigoRegistro }).text(objeto.nombreCompleto));  
 					    			});  	
 					    						    							    		
 				 			}								    		

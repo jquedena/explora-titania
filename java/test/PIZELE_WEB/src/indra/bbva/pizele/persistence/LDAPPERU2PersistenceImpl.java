@@ -60,6 +60,7 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 			open();
 			ResultSet result = null;
 			if(stm != null) {
+				log.debug("SQL: " + query);
 				result = stm.executeQuery(query);
 				if(result != null) {
 					while(result.next()) {
@@ -70,6 +71,7 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 						gestor.setApemat(result.getString("APEMAT"));
 						gestor.setCargo(result.getString("CODCARGO"));
 						gestor.setPerfil(result.getString("CODPERFIL"));
+						gestor.setPerfilID(result.getString("PERFIL_ID"));
 						listaGestores.add(gestor);
 					}
 				}
@@ -103,7 +105,7 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 		
 		Parametro item = parametro.obtenerParametro(LDAPPERU2PersistenceImpl.CARGOS_GERENTES);
 		String listaCargos = item != null ? item.getValorTexto() : "''";
-		String query = "SELECT CODUSU, NOMBRE, APEPAT, APEMAT, CODCARGO, NULL CODPERFIL FROM IIWX.LDAPPERU2 WHERE CODOFI = '" + codofi + "' AND CODCARGO IN (" + listaCargos + ")";
+		String query = "SELECT CODUSU, NOMBRE, APEPAT, APEMAT, CODCARGO, " + obtenerPerfiles() + " FROM IIWX.LDAPPERU2 WHERE CODOFI = '" + codofi + "' AND CODCARGO IN (" + listaCargos + ")";
 		result = read(query);
 		
 		return result;
@@ -114,7 +116,7 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 
 		Parametro item = parametro.obtenerParametro(LDAPPERU2PersistenceImpl.CARGOS_USUARIOS);
 		String listaCargos = item != null ? item.getValorTexto() : "''";
-		String query = "SELECT CODUSU, NOMBRE, APEPAT, APEMAT, CODCARGO, NULL CODPERFIL FROM IIWX.LDAPPERU2 WHERE CODOFI = '" + codofi + "' AND CODCARGO IN (" + listaCargos + ")";
+		String query = "SELECT CODUSU, NOMBRE, APEPAT, APEMAT, CODCARGO, " + obtenerPerfiles() + " FROM IIWX.LDAPPERU2 WHERE CODOFI = '" + codofi + "' AND CODCARGO IN (" + listaCargos + ")";
 		result = read(query);
 		
 		return result;
@@ -139,7 +141,7 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 		
 		Parametro item = parametro.obtenerParametro(LDAPPERU2PersistenceImpl.CARGOS_GOF);
 		String listaCargos = item != null ? item.getValorTexto() : "''";
-		String query = "SELECT CODUSU, NOMBRE, APEPAT, APEMAT, CODCARGO, NULL CODPERFIL FROM IIWX.LDAPPERU2 WHERE CODOFI = '" + codofi + "' AND CODCARGO IN (" + listaCargos + ")";
+		String query = "SELECT CODUSU, NOMBRE, APEPAT, APEMAT, CODCARGO, " + obtenerPerfiles() + " FROM IIWX.LDAPPERU2 WHERE CODOFI = '" + codofi + "' AND CODCARGO IN (" + listaCargos + ")";
 		listaLDAP = read(query);
 		
 		if(listaLDAP != null && listaLDAP.size() > 0) {
@@ -153,6 +155,7 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 		String result = "'---'";
 		String temp1 = "'---'";
 		String temp2 = "'---'";
+		String temp3 = "'---'";
 		Connection cnn = null;
 		Statement stm = null;
 		
@@ -167,21 +170,25 @@ public class LDAPPERU2PersistenceImpl implements LDAPPERU2Persistence {
 		try {
 			String query = "SELECT "
 				+ "'WHEN ''' || A.COD_CAR || ''' THEN ''' || B.PERFIL || ''' ' COD_PERFIL, "
-				+ "'WHEN ''' || A.COD_CAR || ''' THEN ''' || B.PRIORIDAD || ''' ' ORDEN "
+				+ "'WHEN ''' || A.COD_CAR || ''' THEN ''' || B.PRIORIDAD || ''' ' ORDEN, "
+				+ "'WHEN ''' || A.COD_CAR || ''' THEN ''' || B.COD_PERFIL || ''' ' PERFIL_ID "
 				+ "FROM IIDO.TIIDO_EQUIVALENCIAS A INNER JOIN IIDO.TIIDO_PERFILES B ON A.COD_PER=B.COD_PERFIL";
 			ResultSet rst = null;
 			if(stm != null) {
 				temp1 = "";
 				temp2 = "";
+				temp3 = "";
 				rst = stm.executeQuery(query);
 				if(rst != null) {
 					while(rst.next()) {
 						temp1 += rst.getString("COD_PERFIL");
 						temp2 += rst.getString("ORDEN");
+						temp3 += rst.getString("PERFIL_ID");
 					}
 					temp1 = "(CASE UPPER(CODCARGO) " + temp1 + " ELSE '---' END) CODPERFIL";
 					temp2 = "(CASE UPPER(CODCARGO) " + temp2 + " ELSE '9' END) ORDEN";
-					result = temp1 + "," + temp2; 
+					temp3 = "(CASE UPPER(CODCARGO) " + temp3 + " ELSE '---' END) PERFIL_ID";
+					result = temp1 + "," + temp2 + "," + temp3; 
 					rst.close();
 				}
 			}

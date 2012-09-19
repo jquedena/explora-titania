@@ -118,12 +118,12 @@ function crearColumnasMoviles(gestores, rubros, activo){
 	
 	html  = "<table align='left' class='dataTable' style='width:" + (75 * rubros.length) + "px; border:1px solid #fff;' cellpadding='0' cellspacing='1'><tbody>";
 	$.each(gestores, function(i, gestor){
-		perfil = (gestor.perfil.length == 0) ? '' : " - " + gestor.perfil;
+		perfil = (gestor.perfilID.length == 0) ? '' : " - " + gestor.perfilID;
 		html += "<tr class='" + gestor.codigoRegistro + "'>";
 		html += "<td style='display:none;'>";
 		html += "<input type='text' style='width: 50px;' id_item='' name='" + gestor.codigoRegistro + "' id='" + gestor.codigoRegistro + "' value='" + gestor.nombre 
 			+ "%" + gestor.apellidoPaterno 
-			+ "%" + gestor.apellidoMaterno
+			+ "%" + gestor.apellidoMaterno + ' ' + gestor.oficinaHija
 			+ "%" + perfil + " '/>";
 		html += "</td>";
 		

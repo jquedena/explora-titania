@@ -12,6 +12,7 @@ public class Gestor implements Serializable {
 	private String apellidoMaterno;
 	private String cargo;
 	private String perfil;
+	private String perfilID;
 	private String oficinaHija;
 
 	public String getCodigoRegistro() {
@@ -74,4 +75,11 @@ public class Gestor implements Serializable {
 		this.oficinaHija = oficinaHija;
 	}
 
+	public String getPerfilID() {
+		return this.perfilID;
+	}
+	
+	public void setPerfilID(String perfilID) {
+		this.perfilID = perfilID;
+	}	
 }
