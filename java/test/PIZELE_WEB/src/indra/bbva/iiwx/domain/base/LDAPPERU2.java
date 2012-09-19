@@ -13,6 +13,7 @@ public class LDAPPERU2 implements Serializable {
 	private String apemat;
 	private String cargo;
 	private String perfil;
+	private String perfilID;
 	
 	public String getCodofi() {
 		return codofi;
@@ -57,10 +58,14 @@ public class LDAPPERU2 implements Serializable {
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
-	
+	public String getPerfilID() {
+		return this.perfilID;
+	}
+	public void setPerfilID(String perfilID) {
+		this.perfilID = perfilID;
+	}
 	public String getNombreCompleto()
 	{
 		return this.getNombre() + " " + this.getApepat() + " " + this.getApemat();
 	}
-	
 }
