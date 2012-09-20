@@ -15,8 +15,10 @@ import indra.bbva.pizele.service.OpcionService;
 import indra.bbva.pizele.service.TerritorioService;
 import indra.core.GenericAction;
 import indra.core.ObjetoRender;
+import indra.ldap2db.zIILDPeUsuario;
 
 import javax.annotation.Resource;
+import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -99,7 +101,12 @@ public class SeguridadAction extends GenericAction
 				codigoUsuario = request.getParameter("codldap").trim();
 			}
 	
-			user = IILDPeUsuario.recuperarUsuario(codigoUsuario);			
+			try {
+				user = IILDPeUsuario.recuperarUsuario(codigoUsuario);
+			} catch(Exception ex) {
+				user = zIILDPeUsuario.recuperarUsuario(codigoUsuario);
+			}
+			
 			if(user == null)
 				return ERROR;
 				

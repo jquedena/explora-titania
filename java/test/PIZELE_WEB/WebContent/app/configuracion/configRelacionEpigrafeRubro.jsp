@@ -7,6 +7,7 @@
 <script type="text/javascript" language="JavaScript">
 	$(document).ready(function(){
 		inicializarEstadoAnioMes(); 
+		inicializarEstadoRubro();
 		seleccioneChangeTextAnio();
 		seleccioneChangeTextMes();
 	});

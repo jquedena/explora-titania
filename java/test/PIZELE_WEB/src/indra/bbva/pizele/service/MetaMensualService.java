@@ -98,6 +98,7 @@ public class MetaMensualService {
 			metaMensual.setApell_pat_gestor(gestor.getApellidoPaterno());
 			metaMensual.setApell_mat_gestor(gestor.getApellidoMaterno() + " " + gestor.getOficinaHija());
 			metaMensual.setCod_perfil(gestor.getPerfilID());
+			metaMensual.setPerfil(gestor.getPerfil());
 			
 			if ((Constantes.RubroFijosNoDesasignables.CONTACTOS.equals(metaMensual.getId_rubro())) ||
 				(Constantes.RubroFijosNoDesasignables.VISITAS.equals(metaMensual.getId_rubro())) ) {

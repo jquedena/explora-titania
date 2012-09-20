@@ -28,6 +28,7 @@ public class MetaMensual  extends GenericBean implements Serializable {
 	private  String ausente4 = "N";
 	private  String ausente5 = "N";
 	private  String  cod_perfil = "";
+	private  String  perfil = "";
 	private  String flag_epigrafe_sdo = "N";
 	private  Long    meta_sdo = 0L;
 	private  Long    meta_mensual = 0L;
@@ -206,5 +207,10 @@ public class MetaMensual  extends GenericBean implements Serializable {
 	public void setSemana5Minimo(Long semana5Minimo) {
 		this.semana5Minimo = semana5Minimo;
 	}
-	
+	public String getPerfil() {
+		return perfil;
+	}
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
+	}
 }
