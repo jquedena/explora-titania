@@ -1,3 +1,72 @@
+_ajaxPOST = null;
+function ajaxPOST(url, parameters){
+	_post = $.post(path + url, parameters);
+	
+	_post.success(function(requestData){
+		_ajaxPOST = requestData;
+	});
+	
+	_post.error(function(requestData, errMessagke, errNumber){
+		if(errNumber == '') {
+			openDialogError("No se puede determinar el error.");
+		} else {
+			openDialogError(errNumber +': ' + errMessage);
+		}
+	});	
+	
+	return _ajaxPOST;
+}
+
+function configurarGridPost(idPanel, idControl, _colNames, _colModel, _caption, _width, _height, parameters){
+	_post = $.post(path + "jqgrid/array", parameters);
+	
+	_post.success(function(requestData){
+		_html += requestData;
+		_html += "<script type='text/javascript'>";
+		_html += "configurarGrid('" + idControl + "', data_" + idControl + ", _colNames, _colModel, '" + _caption + "', " + _width + ", " + _height + ");";
+		_html += "</script>";
+		$("#"+idPanel).html(requestData);
+		console.log();
+		console.log();
+		console.log();
+		
+	});
+	
+	_post.error(function(requestData, errMessagke, errNumber){
+		if(errNumber == '') {
+			openDialogError("No se puede determinar el error.");
+		} else {
+			openDialogError(errNumber +': ' + errMessage);
+		}
+	});
+}
+
+function configurarGrid(id, _data, _colNames, _colModel, _caption, _width, _height){
+	console.log(_data);
+	console.log(_colNames);
+	console.log(_colModel);
+	$("#" + id).jqGrid({
+		scroll: 1,
+		data: _data,
+		datatype: "local",
+		height: _height,
+		width: _width,
+		rowNum: 30,
+		rownumbers: true,
+		// rowList: [10,20,30],
+		// loadtext: 'Cargando datos...',
+		// recordtext: "{0} - {1} de {2} elementos",
+     	// emptyrecords: 'No hay resultados',
+     	// pgtext: 'Pág: {0} de {1}', //Paging input control text format. 
+   	colNames: _colNames,
+   	colModel: _colModel,
+   	pager: "#p" + id,
+   	viewrecords: true,
+   	loadonce: true,
+   	caption: "&nbsp;&nbsp;&nbsp;" + _caption
+	});
+}
+
 function deshabilitarComponente(id, sw){
 	id = "#" + id;
 	

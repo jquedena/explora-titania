@@ -6,26 +6,14 @@ class Zend_View_Helper_JQGrid extends Zend_View_Helper_Abstract{
     }
     
     /**
-     * Configuracion del script para las ventanas de dialogo
-     * @param type $id
-     * @param type $title
-     * @param type $buttons
-     * @param type $height
-     * @param type $width
-     * @param type $dialogClass
-     * @param type $resizable
-     * @param type $autoOpen
-     * @param type $closeOnEscape
-     * @param type $modal
-     * @param type $href
-     * @return string 
+     * Configuracion del script para jqGrid
      */
     public function scriptConfig($id
-            , $query
-            , $parameters
             , $colNames
-            , $colModel){
-        $script = "\n<table id='tb_".$id."'></table>";
+            , $colModel
+    		, $heigth
+    		, $width){
+        $script  = "\n<table id='tb_".$id."'></table>";
         $script .= "\n<div id='pg_".$id."'></div>";
         $script .= "\n<script type='text/javascript'>";
         $script .= "\n\tjQuery('#tb_".$id."').jqGrid({";

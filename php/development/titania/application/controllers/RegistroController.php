@@ -1,34 +1,13 @@
 <?php
-
-/**
- * RentasController
- * 
- * @author
- * @version 
- */
-
 require_once 'Zend/Controller/Action.php';
 
-class RentasController extends Zend_Controller_Action {
-	/**
-	 * The default action - show the home page
-	 */
+class RegistroController extends Zend_Controller_Action {
 	
 	public function init() {
 		$this->view->util()->registerScriptJSController($this->getRequest());
 	}
 	
-	public function indexAction() {
-		
-		$nombrestore = 'seguridad.login';
-		$arraydatos[]= 'MALOIS';
-		$arraydatos[]= '123456';
-		
-		$cn = new Model_DataAdapter();
-		$datos = $cn->ejec_store_procedura_sql_array($nombrestore,$arraydatos);		
-		
-		print_r($datos);
-		
+	public function indexAction() {		
 	}
 	
 	public function datosAction(){
