@@ -59,7 +59,7 @@ public class ConfRelacionEpigrafeRubroAction extends ComunAction {
 			super.cargarMeses();
 			
 			super.setAnio(String.valueOf(FechaUtil.anioActual()));
-			this.setMes(Long.valueOf(FechaUtil.mesActual()));
+			this.setMes(Long.valueOf(FechaUtil.mesActual()) + 6);
 			this.cargarRubrosFijos(Long.parseLong(this.getAnio()), null);
 			
 		} catch (Exception ex) {

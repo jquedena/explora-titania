@@ -94,8 +94,7 @@ public class LogroConsultaAction extends ComunAction {
 			listaMetas = this.getConsultaLogroService().getListaMetas();
 
 			if (listaLogros.size() == 0)
-				super.renderJsonERROR(super
-						.getMensaje("ConsultaLogro.error.no_existe.data"));
+				super.renderJsonERROR(super.getMensaje("ConsultaLogro.error.no_existe.data"));
 			else {
 				listaSemaforo = this.getSemaforoService().listarSemaforo(null);
 
@@ -109,23 +108,17 @@ public class LogroConsultaAction extends ComunAction {
 						objLogroDetalle.setIdRubro(objRubro.getId());
 
 						for (LogroMeta objLogroMeta : listaLogros) {
-							if (objLogroDetalle.getCodigo().equals(
-									objLogroMeta.getCodigo())
-									&& objLogroDetalle.getIdRubro() == objLogroMeta
-											.getIdRubro()) {
-								objLogroDetalle.setLogro(objLogroMeta
-										.getMonto());
+							if (objLogroDetalle.getCodigo().equals(objLogroMeta.getCodigo())
+									&& objLogroDetalle.getIdRubro().compareTo(objLogroMeta.getIdRubro()) == 0 ) {
+								objLogroDetalle.setLogro(objLogroMeta.getMonto());
 								break;
 							}
 						}
 
 						for (LogroMeta objLogroMeta : listaMetas) {
-							if (objLogroDetalle.getCodigo().equals(
-									objLogroMeta.getCodigo())
-									&& objLogroDetalle.getIdRubro() == objLogroMeta
-											.getIdRubro()) {
-								objLogroDetalle
-										.setMeta(objLogroMeta.getMonto());
+							if (objLogroDetalle.getCodigo().equals(objLogroMeta.getCodigo())
+									&& objLogroDetalle.getIdRubro().compareTo(objLogroMeta.getIdRubro()) == 0) {
+								objLogroDetalle.setMeta(objLogroMeta.getMonto());
 								break;
 							}
 						}
@@ -137,8 +130,7 @@ public class LogroConsultaAction extends ComunAction {
 
 						Long porcentaje = objLogroDetalle.getLogro()
 								* 100
-								/ (objLogroDetalle.getMeta() == 0L ? 1L
-										: objLogroDetalle.getMeta());
+								/ (objLogroDetalle.getMeta() == 0L ? 1L : objLogroDetalle.getMeta());
 						objLogroDetalle.setPorcentaje(porcentaje + "%");
 
 						for (Semaforo objSemaforo : listaSemaforo) {

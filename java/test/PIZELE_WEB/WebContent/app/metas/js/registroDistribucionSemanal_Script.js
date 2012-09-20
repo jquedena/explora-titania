@@ -504,7 +504,7 @@ function regargarListaCompletaListasMensuales(data)
 		newRow = "<tr class='" + cssClase + "'>";
 		newRow = newRow + "<td style='text-align:center;width:5px;'><input type='radio' name='rdoMetasMensuales' style='display:none;' value='" + objeto.id + "'/>";
 		newRow = newRow + "<img src='/PIZELE_WEB/images/arrow_white.gif'/></td>";
-		newRow = newRow + "<td style='width:275px;'>" + objeto.nom_gestor + ' ' + objeto.apell_pat_gestor + ' ' + objeto.apell_mat_gestor + ' - ' + objeto.cod_perfil + "</td>";
+		newRow = newRow + "<td style='width:275px;'>" + objeto.nom_gestor + ' ' + objeto.apell_pat_gestor + ' ' + objeto.apell_mat_gestor + ' - ' + objeto.perfil + "</td>";
 		
 		if ((objeto.id_rubro!=1 && objeto.id_rubro!=2) || flag_epigrafe_sdo=='S')
 			newRow = newRow + "<td id='tdMetaSDO' class='metaSDO_TD' style='width:35px;'>" + objeto.meta_sdo + "</td>";

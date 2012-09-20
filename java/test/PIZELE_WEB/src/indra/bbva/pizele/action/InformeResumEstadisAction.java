@@ -1,22 +1,15 @@
 package indra.bbva.pizele.action;
 
 import indra.bbva.pizele.common.Constantes;
-import indra.bbva.pizele.domain.base.RubroLogro;
-import indra.bbva.pizele.domain.base.Semaforo;
 import indra.bbva.pizele.domain.extend.InformeParametro;
-import indra.bbva.pizele.domain.extend.RankingDetalle;
 import indra.bbva.pizele.domain.extend.RubroLogroMeta;
-import indra.bbva.pizele.domain.extend.VerificacionLogroDetalle;
-import indra.bbva.pizele.service.ResumenCumplimientoService;
 import indra.bbva.pizele.service.ResumenEstadisticoService;
-import indra.bbva.pizele.service.SemaforoService;
 import indra.core.DocumentoExcel;
 import indra.core.FechaUtil;
 import indra.core.ImagenReporte;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

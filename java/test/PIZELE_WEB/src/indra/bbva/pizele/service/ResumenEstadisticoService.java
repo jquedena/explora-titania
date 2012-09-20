@@ -1,14 +1,12 @@
 package indra.bbva.pizele.service;
 
+import indra.bbva.pizele.domain.extend.InformeParametro;
+import indra.bbva.pizele.domain.extend.RubroLogroMeta;
+import indra.bbva.pizele.persistence.ResumenEstadisticoPersistence;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import indra.bbva.pizele.domain.base.RubroLogro;
-import indra.bbva.pizele.domain.extend.InformeParametro;
-import indra.bbva.pizele.domain.extend.RankingDetalle;
-import indra.bbva.pizele.domain.extend.RubroLogroMeta;
-import indra.bbva.pizele.persistence.ResumenEstadisticoPersistence;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,7 +57,7 @@ public class ResumenEstadisticoService
 			
 			for(RubroLogroMeta existeRubroLogroMeta : listaResumenEstadistico)
 			{
-				if(tempRubroLogroMeta.getIdRubro() == existeRubroLogroMeta.getIdRubro())
+				if(tempRubroLogroMeta.getIdRubro().compareTo(existeRubroLogroMeta.getIdRubro()) == 0)
 				{
 					existeRubroLogroMeta.setLogro(tempRubroLogroMeta.getLogro());
 					nuevo = false;
@@ -89,7 +87,7 @@ public class ResumenEstadisticoService
 			
 			for(RubroLogroMeta existeRubroLogroMeta : listaResumenEstadistico)
 			{
-				if(tempRubroLogroMeta.getIdRubro() == existeRubroLogroMeta.getIdRubro())
+				if(tempRubroLogroMeta.getIdRubro().compareTo(existeRubroLogroMeta.getIdRubro()) == 0)
 				{
 					existeRubroLogroMeta.setPromedioHistorico(tempRubroLogroMeta.getPromedioHistorico());
 					nuevo = false;
