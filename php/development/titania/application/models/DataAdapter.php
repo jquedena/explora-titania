@@ -4,22 +4,17 @@ require_once dirname(__FILE__).'/../../library/Log4PHP/Logger.php';
 class Model_DataAdapter {
 
 	private static $instance;
-	private static $driver = "host=192.168.2.38 port=5432 dbname=titania_test user=desarrollo password=desarrollo";
+	private static $driver = "host=192.168.2.2 port=5432 dbname=titania_test user=desarrollo password=desarrollo";
+	// private static $driver = "host=192.168.2.38 port=5432 dbname=titania_test user=desarrollo password=desarrollo";
+	// private static $driver = "host=190.81.63.199 port=5432 dbname=titania_test user=desarrollo password=desarrollo";
 	private $connection = null;
 	private $logger = null;
-
-	private function info($message){
-		if($this->logger->isInfoEnabled()) {
-			$this->logger->info($message);
-		}
-	}
 
 	private function initDB() {
 		$state = "Accediendo a la base de datos.";
 		if ($this->connection == null) {
 			try {
 				$this->connection = pg_connect(self::$driver);
-				// pg_set_client_encoding($this->connection, "Latin1");
 			}
 			catch (Exception $e) {
 				$this->logger->error("initDB", $e);
@@ -27,7 +22,7 @@ class Model_DataAdapter {
 		} else {
 			$state = "No existe un conexion abierta.";            
 		}
-		$this->info("initDB::".$state);
+		$this->logger->debug("initDB::".$state);
 	}
 
 	public function __clone() {
@@ -43,7 +38,7 @@ class Model_DataAdapter {
 		Logger::configure(LOG_ERROR);
 		
 		$this->logger = Logger::getLogger(__CLASS__);
-		$this->info("Inicializando la base de datos.");
+		$this->logger->debug("Inicializando la base de datos.");
 		$this->initDB();
 	}
 
@@ -81,6 +76,39 @@ class Model_DataAdapter {
 		return $result;
 	}
 
+	public function executeAssocQuery($function, $parameters = null) {
+		$_rows = null;
+	
+		try {
+			$_parameters = '';
+			if(count($parameters) > 0){
+				$_parameters = implode("','", $parameters);
+				$_parameters = "'" . $_parameters . "',";
+			}
+	
+			$_query = "BEGIN; select " . $function . "(". $_parameters . "'ref_cursor'); FETCH ALL IN ref_cursor;";
+			$this->logger->info($_query);
+			$result = pg_query ($this->connection, $_query) or die(pg_last_error());
+	
+			if (!$result) {
+				pg_query($this->connection, "ROLLBACK");
+			} else {
+				pg_query($this->connection, "COMMIT");
+			}
+	
+			$_rowCount = pg_num_rows($result);
+			$_rows = array();
+			for ($i=0; $i < $_rowCount; $i++) {
+				$_row = pg_fetch_assoc($result, $i);
+				$_rows[$i] = $_row; // json_encode($_row, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_FORCE_OBJECT);
+			}
+		} catch (Exception $e) {
+			$this->logger->error($e->getMessage());
+		}
+	
+		return $_rows;
+	}
+	
 	public function ejec_store_procedura_sql($function, $parameters = null) {
 		$_rows = null;
 		
@@ -92,7 +120,7 @@ class Model_DataAdapter {
 			}
 		
 			$_query = "BEGIN; select " . $function . "(". $_parameters . "'ref_cursor'); FETCH ALL IN ref_cursor;";
-			$this->info($_query);
+			$this->logger->info($_query);
 			$result = pg_query ($this->connection, $_query) or die(pg_last_error());
 			
 			if (!$result) {
@@ -114,5 +142,12 @@ class Model_DataAdapter {
 		}
 		
 		return $_rows;
+	}
+	
+	
+	
+	public function saveQuery($name, $function, $parameters = null) {
+		$dataSet = new Zend_Session_Namespace('dataSet');
+		$dataSet[$name] = $this->ejec_store_procedura_sql($function, $parameters);
 	}
 }

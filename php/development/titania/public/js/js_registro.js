@@ -1,6 +1,94 @@
+/* _data = [{
+		cidpers: "0000000020",
+		crazsoc: "ARIZAGA DE CUBILLAS JUANA (SUC.INTESTADA)",
+		direccf: "CERCADO DE PUENTE PIEDRA-CA. RICARDO PALMA NRO. 0348",
+		vtipdoc: null,
+		vnrodoc: null
+		},
+		{
+		cidpers: "0000000052",
+		crazsoc: "CHUMPITAZ VILLAR VDA.DE SEGUIL JUANA",
+		direccf: "CERCADO DE PUENTE PIEDRA-AV. PUENTE PIEDRA NRO. 482",
+		vtipdoc: null,
+		vnrodoc: "07993203"
+		},
+		{
+		cidpers: "0000000088",
+		crazsoc: "CABRERA JARA SAMUEL JUAN",
+		direccf: "COOP. VIV. RESID. LA ENSENADA- MZA. N1 LTE. 40",
+		vtipdoc: null,
+		vnrodoc: "322651932"
+		}];*/
+_data = [];
+_colNames = ["C\u00F3digo", "Administrado", "Direcci\u00F3n Fiscal"];
+_colModel = [
+	  {name:'cidpers',index:'cidpers', width:70}
+	, {name:'crazsoc',index:'crazsoc', width:150}
+	, {name:'direccf',index:'direccf', width:150}
+];
+
+function buscarContribuyente() {
+	_colNames = ["C\u00F3digo", "Administrado", "Direcci\u00F3n Fiscal"];
+	_colModel = [
+		  {name:'cidpers',index:'cidpers', width:70}
+		, {name:'crazsoc',index:'crazsoc', width:300}
+		, {name:'direccf',index:'direccf', width:600}
+	];
+	
+	if(trim($('#c_codigocontrib').val()).length > 0){
+		$('#c_codigocontrib').val(LPad($('#c_codigocontrib').val(), 10, '0'));
+	}
+
+	parameters = {
+		"procedure": "public.buscar_persona",
+		"parameters": '{' +
+			'"p_nvar1":"' + $("#c_codigocontrib").val() + '",' +
+			'"p_nvar2":"' + $("#c_nombrecontrib").val() + '",' +
+			'"p_nvar3":"' + $("#c_apepatcontrib").val() + '",' +
+			'"p_nvar4":"' + $("#c_apematcontrib").val() + '",' +
+			'"p_nvar5":""' +
+		'}'
+	};
+	
+	_post = $.post(path + "jqgrid/array", parameters);
+	
+	_post.success(function(requestData){
+		// $("#tblResult").html(requestData);
+		console.log(requestData);
+		configurarGrid("tblResult", requestData, _colNames, _colModel, "Resultados de la busqueda", 1000, 290);
+	});
+	
+	_post.error(function(requestData, errMessagke, errNumber){
+		if(errNumber == '') {
+			openDialogError("No se puede determinar el error.");
+		} else {
+			openDialogError(errNumber +': ' + errMessage);
+		}
+	});
+	
+
+}
+
+function buscarPredio() {
+}
 
 $(function(){
-	
+	$("#btnbuscar").button("option", "icons", {primary:'ui-icon-search'});
+	$("#btnestcta").button("option", "icons", {primary:'ui-icon-document'});
+	$("#btncontri").button("option", "icons", {primary:'ui-icon-person'});
+
+	configurarGrid("tblResult", _data, _colNames, _colModel, "Resultados de la busqueda", 1000, 290);
+	$("#panelContribuyente").on("keyup", "input", function(e) {
+		if(e.keyCode == 13){
+			buscarContribuyente();
+		}
+    });
+});
+
+
+
+$(function(){
+
 	$( "#anadirdatosprediorustico" ).click(function(event){ anadirdatosprediorustico()});
 	
 		$( "#tabs_detallepredio" ).tabs();
@@ -18,7 +106,7 @@ $(function(){
 				var apepat = $('#c_apepatcontrib').val();
 				var apemat = $('#c_apematcontrib').val();
 				
-				var jqxhr = $.getJSON(path+"rentas/buscarcontribuyentexnombre/?nombre="+nombre+"&apepat="+apepat+"&apemat="+apemat);	
+				var jqxhr = $.getJSON(path+"registro/buscarcontribuyentexnombre/?nombre="+nombre+"&apepat="+apepat+"&apemat="+apemat);	
 				jqxhr.success(function(data){
 					if (data.result != undefined && data.result == 'error'){console.log(data.mensaje);} 
 					else {
@@ -42,7 +130,7 @@ $(function(){
 			if(event.keyCode == 13){
 				var dir = $('#c_direccontri').val();
 				
-				var jqxhr = $.getJSON(path+"rentas/buscarcontribuyentexdir/?dir="+dir);	
+				var jqxhr = $.getJSON(path+"registro/buscarcontribuyentexdir/?dir="+dir);	
 				jqxhr.success(function(data){
 					if (data.result != undefined && data.result == 'error'){console.log(data.mensaje);} 
 					else {
@@ -73,8 +161,7 @@ $(function(){
 				});
 				
 			}   
-		});		
-		
+		});
 });
 
 
@@ -142,12 +229,12 @@ $(function() {
 function buscardatoscontribuyente(codpers){
 	//$( "#c_codigocontrib" ).html( cod );	
 	
-	var jqxhr = $.getJSON(path+"rentas/datoscontribuyente/?codpers="+codpers);	
+	var jqxhr = $.getJSON(path+"registro/datoscontribuyente/?codpers="+codpers);	
 	jqxhr.success(function(data){
 		if (data.result != undefined && data.result == 'error'){console.log(data.mensaje);} 
 		else {
 			$( "#c_codigocontrib" ).val( data.result.contribuyente.codigo );
-			$( "#c_nombrecontrib" ).val( data.result.contribuyente.nombre );	
+			$( "#c_nombrecontrib" ).val( data.result.contribuyente.nombre );
 			$( "#c_apepatcontrib" ).val( data.result.contribuyente.ape_paterno);
 			$( "#c_apematcontrib" ).val( data.result.contribuyente.ape_materno );
 			$( "#c_centropobladcontri" ).val( data.result.contribuyente.centropoblad );
@@ -278,7 +365,7 @@ function limpiarformulariodetallepredio(){
 }
 
 function detalleprediollenarcomponentes(){
-	var jqxhr = $.getJSON(path+"rentas/detalleprediollenarcomponentes/");	
+	var jqxhr = $.getJSON(path+"registro/detalleprediollenarcomponentes/");	
 	jqxhr.success(function(data){
 		if (data.result != undefined && data.result == 'error'){console.log(data.mensaje);} 
 		else {		
@@ -323,7 +410,7 @@ function detallepredio(cod, nombre, dirfis, codpredio){
 	$( "#c_dirfiscal_x" ).html( dirfis );
 	$('#c_codpred').html(codpredio);
 	
-	var jqxhr = $.getJSON(path+"rentas/detallepredio/?codpred="+cod);	
+	var jqxhr = $.getJSON(path+"registro/detallepredio/?codpred="+cod);	
 	jqxhr.success(function(data){
 		if (data.result != undefined && data.result == 'error'){console.log(data.mensaje);} 
 		else {

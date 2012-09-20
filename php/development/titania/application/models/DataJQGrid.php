@@ -14,22 +14,15 @@ class Model_DataJQGrid {
         $this->logger = Logger::getLogger(__CLASS__);
     }
     
-    public function registerQuery($name, $query, $colsView) {
-        $rows = $this->dataAdapter->executeQuery($query);
-        
-        $adapter->colsView = $colsView;
-        $adapter->rows = $rows;
-        
-        $session = new Zend_Session_Namespace($name);
-        $session->data = $adapter;
+    public function getJSON($procedure, $parameters) {
+    	$rows = $this->dataAdapter->executeRowsToJSON($procedure, $parameters);
     }
     
-    public function getDataTable($name, $page, $sidx, $sord, $limit) {
+    public function getDataTable($procedure, $parameters, $page, $sidx, $sord, $limit) {
 
-        $session = new Zend_Session_Namespace($name);        
-        $rows = $session->data;
-        
+		$rows = $this->dataAdapter->ejec_store_procedura_sql($procedure, $parameters);		
         $count = count($rows);
+        
         if( $count >0 ) {
             $total_pages = ceil($count/$limit);
         } else {
@@ -41,9 +34,9 @@ class Model_DataJQGrid {
         $start = $limit * $page - $limit; // do not put $limit*($page - 1)
         if ($start < 0) $start = 0;
         
-        // $sidx = $_GET['sidx']; // get index row - i.e. user click to sort
-        // $sord = $_GET['sord']; // get the direction
-        // if(!$sidx) $sidx = 1;
+        $sidx = $_GET['sidx']; // get index row - i.e. user click to sort
+        $sord = $_GET['sord']; // get the direction
+        if(!$sidx) $sidx = 1;
         
         $responce->page = $page;
         $responce->total = $total_pages;
