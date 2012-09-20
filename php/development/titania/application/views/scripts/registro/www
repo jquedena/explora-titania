@@ -1,0 +1,28 @@
+<div id="p<?php echo $this->idControl;?>"></div>
+<table id="<?php echo $this->idControl;?>"></table>
+<script type="text/javascript">
+	var data_<?php echo $this->idControl;?> = <?php echo $this->arrayJSON;?>;
+	configurarGrid("<?php echo $this->idControl;?>", data_<?php echo $this->idControl;?>, <?php echo $this->colNames;?>, <?php echo $this->colModel;?>, "<?php echo $this->caption;?>", <?php echo $this->width;?>, <?php echo $this->height;?>);
+</script>
+
+//	configurarGrid("tblResult", _tblResult, _colNames, _colModel, "Resultados de la busqueda", 1000, 290);
+//	jQuery("#tblResult").jqGrid('setGridParam', {"data": _data}).trigger("reloadGrid");
+//	$("#tblResult").jqGrid('clearGridData', true);
+
+	$("panelResult").html("<b>Cargando...</b>");
+	_html = ajaxPOST("jqgrid/array", parameters);	
+	$("panelResult").html(_html);
+	console.log($("panelResult").html());
+	// configurarGrid("tblResult", data_tblResult, _colNames, _colModel, "Resultados de la busqueda", 1000, 290);	
+	
+	
+	/*for(i = 0; i < 100; i++) { // _data.length
+		tmp = {cidpers: _data[i].cidpers
+			, crazsoc: _data[i].crazsoc
+			, direccf: _data[i].direccf	};
+		console.log(tmp);
+		$("#tblResult").jqGrid('addRowData', (i + 1), tmp);
+	}*/
+	
+//	$("#tblResult").jqGrid("clearGridData", true);
+//	$("#tblResult")[0].addJSONData(_data);
