@@ -94,7 +94,7 @@ function validaPerfil(){
 	validarPerfilConsulta();
 	perfil = '<c:out value="${sessionScope.perfil.cod_perfil}" />';
 	
-	if(perfil == "LC01" || perfil == "LC06") {
+	if(!buscoCliente && (perfil == "LC01" || perfil == "LC06")) {
 		if( (($("#territorio").val() == "-1" || $("#territorio").val() == perfilTerritorio) &&
 			(document.forms[0].clasificacion.value == '-1'     ) && 
 			(document.forms[0].margen_ordinario.value == '-1'   ) && 
@@ -209,6 +209,7 @@ function abrirListaEmpresas(){
 }
 
 function limpiar(){
+	buscoCliente = false;
 	<c:if test="${sessionScope.perfil.cod_perfil=='LC06'}">
 		document.forms[0].territorio.value="-1";
 		document.forms[0].oficina.value="-1";
@@ -508,6 +509,7 @@ function popup2(){
 }*/
 
 function consulta(){
+	buscoCliente = false;
 	if(!validaPerfil()) {
 		return false;
 	}
@@ -564,7 +566,10 @@ function consulta(){
 	mostrarProceso(1);
 }
 
+var buscoCliente = false;
+
 function consultaCliente(){
+	buscoCliente = true;
 	validarPerfilConsulta();
 	
 	if(document.forms[0].cod_cliente.value.length==0){

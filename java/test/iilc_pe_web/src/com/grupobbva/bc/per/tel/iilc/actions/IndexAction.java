@@ -52,6 +52,11 @@ public class IndexAction extends Action {
 		ActionForward forward = new ActionForward();
 		List<Menu> listMenu = null;
 		IILDPeUsuario user = null;
+
+		String componente;
+		String terr;
+		String ofic = "";
+		String gest;
 		
 		try {
 			String opt = request.getParameter("opt") == null ? "" : request.getParameter("opt");
@@ -83,10 +88,10 @@ public class IndexAction extends Action {
 				
 				if (permisoPerfil != null) {
 					if (!permisoPerfil.getPerfil().getDes_perfil().equals("ADMINISTRADOR")) {
-						String componente = permisoPerfil.getPerfil().getComponente();
-						String terr = componente.substring(0, componente.indexOf("-"));
-						String ofic = componente.substring((componente.indexOf("-") + 1), componente.lastIndexOf("-"));
-						String gest = "";
+						componente = permisoPerfil.getPerfil().getComponente();
+						terr = componente.substring(0, componente.indexOf("-"));
+						ofic = componente.substring((componente.indexOf("-") + 1), componente.lastIndexOf("-"));
+						gest = "";
 
 						if (cod_cargo.equals("B25")
 								|| cod_cargo.equals("B52")
@@ -140,12 +145,12 @@ public class IndexAction extends Action {
 				}
 				
 				OficinaTerritorioDAOImpl oficinaDao = new OficinaTerritorioDAOImpl();
-				if(!oficinaDao.verificarGestor(usuario.trim().toUpperCase()) && !(
+				if(!oficinaDao.verificarGestor(usuario.trim().toUpperCase(), user.getBancoOficina().getCodigo(), cod_cargo) && !(
 						permisoPerfil.getCod_perfil().equalsIgnoreCase("LC06") ||
 						permisoPerfil.getCod_perfil().equalsIgnoreCase("LC05") ||
 						permisoPerfil.getCod_perfil().equalsIgnoreCase("LC02") ||
 						permisoPerfil.getCod_perfil().equalsIgnoreCase("LC01") )) {
-					request.setAttribute("mensaje", "Su c&oacute;digo de registro no es est&aacute; registrado en el archivo de gestores de la aplicaci&oacute;n de Carpetas Comerciales.");
+					request.setAttribute("mensaje", "Su c&oacute;digo de registro no est&aacute; registrado en el archivo de gestores de la aplicaci&oacute;n de Carpetas Comerciales.");
 					forward = mapping.findForward(Constantes.FW_ERROR);
 					return forward;
 				}
@@ -203,7 +208,11 @@ public class IndexAction extends Action {
 
 		Oficina beanOfi = null;
 		Territorio beanTer = null;
-		beanOfi = conexion.datosOficina(user.getBancoOficina().getCodigo());
+		
+		beanOfi = null;
+		if(user.getBancoOficina() != null)
+			beanOfi = conexion.datosOficina(user.getBancoOficina().getCodigo());
+		
 		if (beanOfi != null && beanOfi.getCod_oficina() != null) {
 			// Gerente de Oficina
 			atogAux.add(beanOfi.getCod_area());
