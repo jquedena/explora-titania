@@ -284,6 +284,7 @@ public class ClienteDAOImpl {
 			if(rst.next()) {
 				result = new HashMap<String, String>();
 				result.put("cod_oficina", rst.getString("cod_oficina"));
+				result.put("cod_territorio", rst.getString("cod_territorio"));
 				result.put("des_oficina", rst.getString("cod_oficina") + " - " + rst.getString("des_oficina"));
 				result.put("nom_gestor", rst.getString("nom_gestor"));
 			}

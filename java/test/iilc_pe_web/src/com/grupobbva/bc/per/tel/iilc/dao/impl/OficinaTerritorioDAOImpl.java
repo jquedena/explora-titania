@@ -39,10 +39,16 @@ public class OficinaTerritorioDAOImpl implements IOficinaTerritorioDAO {
 		return cnn;
 	}
 	
-	public boolean verificarGestor(String registro) {
+	public boolean verificarGestor(String registro, String codOficina, String cargo) {
 		int verificar = -1;
     	try {
-    		String query = "select count(1) cta from iilc.tiilc_gestor where reg_gestor='" + registro + "'";
+    		String query = "";
+    		
+    		if(cargo.equals("B23")) {
+    			query = "select count(1) cta from iilc.tiilc_gestor where cod_oficina = '" + codOficina + "' and perfil_gestor = 'M'";
+    		} else {
+    			query = "select count(1) cta from iilc.tiilc_gestor where reg_gestor='" + registro + "'";
+    		}
     		
     		Connection cnn = getConnection();
     		Statement stm = cnn.createStatement();
@@ -59,7 +65,7 @@ public class OficinaTerritorioDAOImpl implements IOficinaTerritorioDAO {
 			verificar = -1;
 			logger.error("verificarGestor", e);
 		}
-		return (verificar == 1);
+		return (verificar >= 1);
 	}
 	
 	public int perfil(String codUsuario, String codCargo) {

@@ -50,6 +50,7 @@ import com.grupobbva.bc.per.tel.iilc.serializable.Oficina;
 import com.grupobbva.bc.per.tel.iilc.serializable.Perfil;
 import com.grupobbva.bc.per.tel.iilc.serializable.json.Respuesta;
 import com.grupobbva.bc.per.tele.ldap.directorio.IILDPeUsuario;
+import com.ibm.ws.http.HttpRequest;
 
 @SuppressWarnings({"unused", "unchecked"})
 public class Consulta2Action extends DispatchAction {
@@ -405,7 +406,7 @@ public class Consulta2Action extends DispatchAction {
 			request.getSession().setAttribute("parametrosConsulta", con);
 			
 			if(!identificador_ajax){
-				respuestaArray(response, listaConduccion, con);
+				respuestaArray(response, request, listaConduccion, con);
 			}
 
 			// Cuando se hace clic en Buscar grabar Historico
@@ -697,7 +698,7 @@ public class Consulta2Action extends DispatchAction {
 					.getAttribute("formato");
 
 			request.getSession().setAttribute("parametrosConsulta", con);
-			respuestaArray(response, listaConduccion, con);
+			respuestaArray(response, request, listaConduccion, con);
 
 			return null;
 
@@ -752,7 +753,7 @@ public class Consulta2Action extends DispatchAction {
 			request.getSession().setAttribute("formato", formato);
 			request.getSession().setAttribute("listaConduccion", listaConduccion);
 			request.getSession().setAttribute("parametrosConsulta", con);
-			respuestaArray(response, listaConduccion, con);
+			respuestaArray(response, request, listaConduccion, con);
 
 			return null;
 		} catch (Exception e) {
@@ -950,7 +951,7 @@ public class Consulta2Action extends DispatchAction {
 	 * @param codEtiqueta
 	 * @throws IOException
 	 */
-	private void respuestaArray(HttpServletResponse response,
+	private void respuestaArray(HttpServletResponse response, HttpServletRequest request,
 			Vector<Cliente> listaConduccion, Consulta con) throws IOException {
 		PrintWriter out = response.getWriter();
 		int numColumnas = 1;
@@ -983,11 +984,19 @@ public class Consulta2Action extends DispatchAction {
 			resp.setNumPags(con.getNumPags());
 			resp.setNumRegistros(con.getNumRegistros());
 			
-			if(listaConduccion.size()==0 && !formato_general.getCod_cliente().equalsIgnoreCase("-1")) {
+			if(listaConduccion == null && !formato_general.getCod_cliente().equalsIgnoreCase("-1")) {
 				ConexionEJB ejb = new ConexionEJB();
-				 Map<String, String> result = ejb.findCliente(formato_general.getCod_cliente());
+				Map<String, String> result = ejb.findCliente(formato_general.getCod_cliente());
 				if(result != null) {
-					resp.setMensaje("El cliente pertenece a la oficina " + result.get("des_oficina") + " y al gestor " + result.get("nom_gestor") + ", debe  ingresar clientes de su cartera.");
+					IILDPeUsuario user = (IILDPeUsuario) request.getSession().getAttribute("user");
+					String codOficinaUser = user.getBancoOficina().getCodigo();
+					Perfil perfil = (Perfil) request.getSession().getAttribute("perfil");
+					if(result.get("cod_oficina").equalsIgnoreCase(codOficinaUser) || result.get("cod_territorio").equalsIgnoreCase(codOficinaUser) || perfil.getCod_perfil().equalsIgnoreCase("LC01") || perfil.getCod_perfil().equalsIgnoreCase("LC06") ) {
+						resp.setMensaje("No se encontraron resultados.");
+					} else {
+						resp.setMensaje("El cliente pertenece a la oficina " + result.get("des_oficina").trim() + " y al gestor " + result.get("nom_gestor").trim() + ", debe  ingresar clientes de su cartera.");					
+					}
+					resp.setCodigoOficina(result.get("cod_oficina"));
 				} else {
 					resp.setMensaje("El cliente no existe");
 				}
@@ -996,9 +1005,16 @@ public class Consulta2Action extends DispatchAction {
 
 		if(listaConduccion == null && !formato_general.getCod_cliente().equalsIgnoreCase("-1")) {
 			ConexionEJB ejb = new ConexionEJB();
-			 Map<String, String> result = ejb.findCliente(formato_general.getCod_cliente());
+			Map<String, String> result = ejb.findCliente(formato_general.getCod_cliente());
 			if(result != null) {
-				resp.setMensaje("El cliente pertenece a la oficina " + result.get("des_oficina") + " y al gestor " + result.get("nom_gestor") + ", debe  ingresar clientes de su cartera.");
+				IILDPeUsuario user = (IILDPeUsuario) request.getSession().getAttribute("user");
+				String codOficinaUser = user.getBancoOficina().getCodigo();
+				Perfil perfil = (Perfil) request.getSession().getAttribute("perfil");
+				if(result.get("cod_oficina").equalsIgnoreCase(codOficinaUser) || result.get("cod_territorio").equalsIgnoreCase(codOficinaUser) || perfil.getCod_perfil().equalsIgnoreCase("LC01") || perfil.getCod_perfil().equalsIgnoreCase("LC06") ) {
+					resp.setMensaje("No se encontraron resultados.");
+				} else {
+					resp.setMensaje("El cliente pertenece a la oficina " + result.get("des_oficina").trim() + " y al gestor " + result.get("nom_gestor").trim() + ", debe  ingresar clientes de su cartera.");					
+				}
 				resp.setCodigoOficina(result.get("cod_oficina"));
 			} else {
 				resp.setMensaje("El cliente no existe");
