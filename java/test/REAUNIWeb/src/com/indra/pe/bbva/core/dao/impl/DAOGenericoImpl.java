@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -28,7 +29,8 @@ public class DAOGenericoImpl<Dto> extends HibernateDaoSupport implements
 		DAOGenerico<Dto>, Serializable {
 
 	private static final long serialVersionUID = 7924055871810120486L;
-
+	private static Logger logger = Logger.getLogger(DAOGenericoImpl.class);
+	
 	@Autowired
 	public DAOGenericoImpl(@Qualifier("sessionFactoryReauni") SessionFactory sessionFactory) {
 		super.setSessionFactory(sessionFactory);

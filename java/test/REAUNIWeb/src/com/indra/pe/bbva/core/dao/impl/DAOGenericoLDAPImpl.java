@@ -3,6 +3,7 @@ package com.indra.pe.bbva.core.dao.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,7 +20,8 @@ import com.indra.pe.bbva.core.exception.DAOException;
 public class DAOGenericoLDAPImpl<Dto> extends HibernateDaoSupport implements DAOGenericoLDAP<Dto>, Serializable {
  
 	private static final long serialVersionUID = -8895299671262815827L;
-
+	private static Logger logger = Logger.getLogger(DAOGenericoLDAPImpl.class);
+	
 	@Autowired
 	public DAOGenericoLDAPImpl(@Qualifier("sessionFactoryLdap") SessionFactory sessionFactory) {
 		super.setSessionFactory(sessionFactory);
@@ -77,7 +79,4 @@ public class DAOGenericoLDAPImpl<Dto> extends HibernateDaoSupport implements DAO
 		
 		return territorio;
 	}
-
-
-	
 }
