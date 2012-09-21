@@ -202,16 +202,22 @@
 						</h:panelGrid>
 						<br />
 
-						<h:outputLabel value="#{message['solicitud.bonificacion']}"
-							rendered="#{solicitudMBean.dto.tipoDto.id==1006}"
-							style="font-size: 11px;font-weight: bold;" />
+						<p:outputPanel>
+							<h:outputLabel value="#{message['solicitud.bonificacion']}"
+								rendered="#{solicitudMBean.dto.tipoDto.id==1006}"
+								style="font-size: 11px;font-weight: bold;" />
+							<p:selectBooleanCheckbox value="#{solicitudMBean.dto.aplicaAjusteBonificacion}">
+								<p:ajax update=":frmPrincipal:idTabView:pgBonificacion" />
+							</p:selectBooleanCheckbox>
+						</p:outputPanel>
+						
 						<p:separator rendered="#{solicitudMBean.dto.tipoDto.id==1006}" />
 						<h:panelGrid id="pgBonificacion" columns="8" cellpadding="10"
 							rendered="#{solicitudMBean.dto.tipoDto.id==1006}">
 							<h:outputLabel
 								value="#{solicitudMBean.lblBonificacionNoExcede7Dias}" />
 							<p:selectBooleanCheckbox
-								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015 &amp;&amp; !solicitudMBean.dto.aplicaAjusteBonificacion}"
 								value="#{solicitudMBean.dto.bonificacionNoExcede7Dias}"
 								label="#{solicitudMBean.lblBonificacionNoExcede7Dias}">
 								<f:ajax />
@@ -222,14 +228,14 @@
 								value="#{solicitudMBean.lblBonificacion2}" />
 							<p:selectBooleanCheckbox
 								rendered="#{solicitudMBean.bonificacion2}"
-								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015 &amp;&amp; !solicitudMBean.dto.aplicaAjusteBonificacion}"
 								value="#{solicitudMBean.dto.bonificacion2}">
 								<f:ajax />
 							</p:selectBooleanCheckbox>
 
 							<h:outputLabel value="#{solicitudMBean.lblBonificacionOtros}" />
 							<p:selectBooleanCheckbox
-								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015 &amp;&amp; !solicitudMBean.dto.aplicaAjusteBonificacion}"
 								value="#{solicitudMBean.dto.bonificacionOtros}"
 								label="#{message['solicitud.bonificacion.otros']}">
 								<p:ajax update=":frmPrincipal:idTabView:pgBonificacion" />
@@ -241,22 +247,28 @@
 							<p:inputText
 								label="#{message['solicitud.bonificacion.comentario']}"
 								value="#{solicitudMBean.dto.bonificacionComentarios}"
-								readonly="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								readonly="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015 &amp;&amp; !solicitudMBean.dto.aplicaAjusteBonificacion}"
 								required="true" size="50"
 								rendered="#{solicitudMBean.dto.bonificacionOtros}">
 								<f:validateLength maximum="30" minimum="0" />
 							</p:inputText>
 						</h:panelGrid>
 
-						<h:outputLabel value="#{message['solicitud.ajuste']}"
-							rendered="#{solicitudMBean.dto.tipoDto.id==1007}"
+						<p:outputPanel>
+							<h:outputLabel value="#{message['solicitud.ajuste']}"
+								rendered="#{solicitudMBean.dto.tipoDto.id==1007}"
 							style="font-size: 11px;font-weight: bold;" />
+							<p:selectBooleanCheckbox value="#{solicitudMBean.dto.aplicaAjusteBonificacion}">
+								<p:ajax update=":frmPrincipal:idTabView:pgAjustes" />
+							</p:selectBooleanCheckbox>
+						</p:outputPanel>
+						
 						<p:separator rendered="#{solicitudMBean.dto.tipoDto.id==1007}" />
 						<h:panelGrid id="pgAjustes" columns="12" cellpadding="10"
 							rendered="#{solicitudMBean.dto.tipoDto.id==1007}">
 							<h:outputLabel value="#{solicitudMBean.lblAjustesGrupoEconomico}" />
 							<p:selectBooleanCheckbox
-								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015 &amp;&amp; !solicitudMBean.dto.aplicaAjusteBonificacion}"
 								value="#{solicitudMBean.dto.ajusteFormaGrupo}"
 								label="#{message['solicitud.ajuste.forma.grupo.economico']}">
 								<f:ajax />
@@ -265,7 +277,7 @@
 							<h:outputLabel
 								value="#{solicitudMBean.lblAjustesVentaUltimoEjercicio}" />
 							<p:selectBooleanCheckbox
-								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015 &amp;&amp; !solicitudMBean.dto.aplicaAjusteBonificacion}"
 								value="#{solicitudMBean.dto.ajusteVentaUltimo}"
 								label="#{message['solicitud.ajuste.venta.ultimo.ejercicio']}">
 								<f:ajax />
@@ -274,7 +286,7 @@
 							<h:outputLabel value="#{solicitudMBean.lblAjustesOtros}" />
 							<p:selectBooleanCheckbox
 								value="#{solicitudMBean.dto.ajusteOtros}"
-								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015 &amp;&amp; !solicitudMBean.dto.aplicaAjusteBonificacion}"
 								label="#{message['solicitud.ajuste.otros']}">
 								<p:ajax update=":frmPrincipal:idTabView:pgAjustes" />
 							</p:selectBooleanCheckbox>
@@ -284,7 +296,7 @@
 							<p:inputText
 								label="#{message['solicitud.bonificacion.comentario']}"
 								value="#{solicitudMBean.dto.ajusteComentarios}"
-								readonly="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
+								readonly="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015 &amp;&amp; !solicitudMBean.dto.aplicaAjusteBonificacion}"
 								required="true" size="50"
 								rendered="#{solicitudMBean.dto.ajusteOtros}">
 								<f:validateLength maximum="30" minimum="0" />

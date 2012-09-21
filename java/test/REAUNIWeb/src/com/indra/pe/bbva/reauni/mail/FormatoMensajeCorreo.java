@@ -34,8 +34,8 @@ import com.indra.pe.bbva.reauni.view.helper.ApplicationHelper;
 public class FormatoMensajeCorreo {
 	
 	private static Logger logger = Logger.getLogger(FormatoMensajeCorreo.class);
-	private static SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy hh:mm aa");
-	private static DecimalFormat formatoNumero = new DecimalFormat("###,###,##0.00");
+	public static SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy hh:mm aa");
+	public static DecimalFormat formatoNumero = new DecimalFormat("###,###,##0.00");
 	
 	public static File archivoNuevo(String ruta, String nombre) {
 		File f = null;
@@ -386,7 +386,7 @@ public class FormatoMensajeCorreo {
 					mensaje.append("<td align='center'>" + FormatoMensajeCorreo.formatoFecha.format(col.getFechaSolicitud()) + "</td>");
 					mensaje.append("<td align='right'>S/." + FormatoMensajeCorreo.formatoNumero.format(col.getTotalActivo()) + "</td>");
 					mensaje.append("<td align='right'>S/." + FormatoMensajeCorreo.formatoNumero.format(col.getTotalPasivo()) + "</td>");
-					mensaje.append("<td>" + col.getTipoPrestamoDto().getDescripcion() + "</td>");
+					mensaje.append("<td>&nbsp;" + col.getTipoPrestamoDto().getDescripcion() + "</td>");
 					mensaje.append("<td class='last'>" + col.getDescripcionSituacion() + "</td>");
 					mensaje.append("</tr>");
 					totalActivo=totalActivo.add(col.getTotalActivo());
@@ -398,10 +398,10 @@ public class FormatoMensajeCorreo {
 		// mensaje.append("<tr><td colspan='13' style='border-left: 0px;'>&nbsp;</td></tr>");
 		mensaje.append("<tr>");
 		if(gestionFile) {
-			mensaje.append("<td style='border-right: 0px;'>&nbsp;</td>");
+			mensaje.append("<td style='border-left: 0px;'>&nbsp;</td>");
 			mensaje.append("<td>&nbsp;</td>");
 		}
-		mensaje.append("<td colspan=5>&nbsp;</td>");
+		mensaje.append("<td style='border-left: 0px;' colspan=5>&nbsp;</td>");
 		mensaje.append("<td style='border-bottom:1px solid #000;'><b>Total</b></td>");
 		mensaje.append("<td style='border-bottom:1px solid #000;' align='right'><b>S/." + FormatoMensajeCorreo.formatoNumero.format(totalActivo) + "</b></td>");
 		mensaje.append("<td style='border-bottom:1px solid #000;' align='right'><b>S/." + FormatoMensajeCorreo.formatoNumero.format(totalPasivo) + "</b></td>");
@@ -414,7 +414,6 @@ public class FormatoMensajeCorreo {
 		
 		return mensaje.toString();
 	}
-	
 	
 	public static String formatoCorreoSilencioAdm(SolicitudDto solicitudDto){
 		return FormatoMensajeCorreo.formatoCorreoEvaluacion(solicitudDto);

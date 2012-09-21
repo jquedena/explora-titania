@@ -131,5 +131,4 @@
 	<welcome-file-list>
 		<welcome-file>/faces/reauni-ldap.xhtml</welcome-file>
 	</welcome-file-list>
-	
 </web-app>

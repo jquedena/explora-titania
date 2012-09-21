@@ -6,13 +6,18 @@ import java.util.List;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
+import com.indra.pe.bbva.core.configuracion.WebServletContextListener;
+import com.indra.pe.bbva.core.dao.DAOGenerico;
+import com.indra.pe.bbva.core.exception.DAOException;
 import com.indra.pe.bbva.core.mail.CorreoElectronico;
 import com.indra.pe.bbva.core.util.Constantes;
 import com.indra.pe.bbva.core.util.Utilitarios;
 import com.indra.pe.bbva.reauni.model.entidad.ContratoDto;
+import com.indra.pe.bbva.reauni.model.entidad.EstadoSolicitudDto;
 import com.indra.pe.bbva.reauni.model.entidad.OficinaInvolucradoDto;
 import com.indra.pe.bbva.reauni.model.entidad.OficinaSolicitudDto;
 import com.indra.pe.bbva.reauni.model.entidad.SolicitudDto;
@@ -23,10 +28,21 @@ import com.indra.pe.bbva.reauni.view.helper.SessionHelper;
 @Service("gestionCorreo")
 public class GestionCorreo {
 
+	private static Logger logger = Logger.getLogger(GestionCorreo.class);
 	public static String CONTRATO_NO_RECEPCIONADOS = "ContratosNoRecepcionados.html";
 	public static String CONTRATO_RECEPCIONADOS = "ContratosRecepcionados.html";
 	public static String RECHAZO_APROBACION = "Solicitud.html";
 	public static String SILENCIO_ADMINISTRATIVO = "SilencioAdministrativo.html";
+	
+	private DAOGenerico<SolicitudDto> daoTarea;
+	
+	@SuppressWarnings("unchecked")
+	public DAOGenerico<SolicitudDto> getDaoTarea() {
+		if(daoTarea ==  null){
+			daoTarea = (DAOGenerico<SolicitudDto>) WebServletContextListener.getApplicationContext().getBean("daoGenerico");
+		}
+		return daoTarea;
+	}
 	
 	public GestionCorreo() {
 	}
@@ -59,13 +75,63 @@ public class GestionCorreo {
 		beanCorreo.setFrom(s.getResponsableSolicitanteDesc());
 		beanCorreo.setEmailFrom(s.getEmailSolicitante());
 		beanCorreo.setListaTo(obtenerToEmailPorSolicitud(s));
-		// beanCorreo.setListaCc(s.getEmailSolicitante());
 		beanCorreo.setFileName("Solicitud.html");
 		beanCorreo.setMensajeAdjunto(FormatoMensajeCorreo.formatoCorreoEvaluacion(s, false));
 
 		return beanCorreo;
 	}
 
+	@SuppressWarnings("unchecked")
+	public Correo obtenerCorreoGestionFileCourier(SolicitudDto s) {
+
+		String email = "";
+		if (ApplicationHelper.obtenerParametroPorId(1082L) != null) {
+			email = ApplicationHelper.obtenerParametroPorId(1082L).getValorCadena();
+		}
+		
+		String _GOF = "";
+		List<OficinaInvolucradoDto> listaInvolucrado;
+		List<OficinaSolicitudDto> listaOficinaSolicitud = s.getListaOficinasSolicitud();
+		for(OficinaSolicitudDto o : listaOficinaSolicitud) {
+			if(o.getTipoOficina().compareTo(1032L) == 0) {
+				listaInvolucrado = o.getListaInvolucrados();
+				for(OficinaInvolucradoDto inv : listaInvolucrado) {
+					if(inv.getCargo().equalsIgnoreCase("B21")) {
+						_GOF = inv.getInvolucradoDto().getNombres() + " " + inv.getInvolucradoDto().getApellidoPaterno() + " " + inv.getInvolucradoDto().getApellidoMaterno(); 
+						break;
+					}
+				}
+				break;
+			}
+		}
+		
+		Correo beanCorreo = new Correo();
+		beanCorreo.setAsunto(" Gestión de Files – Solicitud Aprobada ");
+		beanCorreo.setMensaje(" Estimados,<br>"
+		+ " La solicitud N° " + s.getCodigoSolicitud() + " fue aprobada el " + getFechaAprobacionRechazo(s)
+		+ " por los involucrados, por lo cual se les adjunta  todos los contratos de la misma para gestionar la recepción de files con el gestor " 
+		+ s.getGestorReceptorDto().getNomGestor() + " o en su defecto con el GOF "
+		+ _GOF
+		+ " de la oficina receptora.<br>"
+		+ " Saludos Cordiales,<br> " + " DESARROLLO COMERCIAL");
+
+		beanCorreo.setListaTo(email);
+		beanCorreo.setFileName("Contratos");
+		String sql = "SELECT t.id, t.des_oficina, t.des_oficina_receptor, t.nom_gestor, t.producto, "
+			+ "t.codigo_contrato, t.fecha_apertura, t.saldod, t.saldoa, t.tipo_prestamo, t.situacion "
+			+ "FROM vreauni_no_recepcion_files t WHERE id = '" + s.getId() + "'";
+
+		List listaContratos = null;
+		try {
+			listaContratos = getDaoTarea().ejecutarSQL(sql);
+			beanCorreo.setMensajeAdjuntoExcel(FormatoMensajeCorreo.formatoCorreoResumen(listaContratos, Constantes.CABECERA_REPORTE_GESTION_FILES, "Contratos"));
+		} catch (DAOException e) {
+			logger.error("Generando lista de contratos para la Gestion de Files", e);
+		}
+
+		return beanCorreo;
+	}
+	
 	public Correo obtenerCorreoNoRecepcionFile(List<Object[]> contratos, Long dias, String email) {
 		Correo beanCorreo = new Correo();
 		beanCorreo.setAsunto(" Files Pendientes de Recepción ");
@@ -80,10 +146,10 @@ public class GestionCorreo {
 		if (ApplicationHelper.obtenerParametroPorId(1052L) != null) {
 			String email_auditoria = ApplicationHelper.obtenerParametroPorId(1052L).getValorCadena();
 			if (email_auditoria != null && !email_auditoria.equals("")) {
-				beanCorreo.setListaCc(email_auditoria);// auditoria
+				beanCorreo.setListaCc(email_auditoria); // auditoria
 			}
 		} else {
-			beanCorreo.setListaCc("");// auditoria
+			beanCorreo.setListaCc(""); // auditoria
 		}
 		return beanCorreo;
 	}
@@ -141,10 +207,10 @@ public class GestionCorreo {
 		if (ApplicationHelper.obtenerParametroPorId(1052L) != null) {
 			String email_auditoria = ApplicationHelper.obtenerParametroPorId(1052L).getValorCadena();
 			if (email_auditoria != null && !email_auditoria.equals("")) {
-				beanCorreo.setListaCc(email_auditoria);// auditoria
+				beanCorreo.setListaCc(email_auditoria); // auditoria
 			}
 		} else {
-			beanCorreo.setListaCc("");// auditoria
+			beanCorreo.setListaCc(""); // auditoria
 		}
 		return beanCorreo;
 	}
@@ -161,26 +227,21 @@ public class GestionCorreo {
 							|| oi.getInvolucradoDto().getCargo().equals("CH6")
 							|| oi.getInvolucradoDto().getCargo().equals("OS8")) {
 						if (!oi.getEstadoDto().getId().equals(1034L))
-							sbInvolucrados.append(oi.getInvolucradoDto()
-									.getCargo()
+							sbInvolucrados.append(oi.getInvolucradoDto().getCargo()
 									+ " : "
 									+ oi.getInvolucradoDto().getRegistro()
 									+ "-"
 									+ oi.getInvolucradoDto().getNombres()
 									+ " "
-									+ oi.getInvolucradoDto()
-											.getApellidoPaterno()
+									+ oi.getInvolucradoDto().getApellidoPaterno()
 									+ " "
-									+ oi.getInvolucradoDto()
-											.getApellidoMaterno()
+									+ oi.getInvolucradoDto().getApellidoMaterno()
 									+ " ("
 									+ oi.getEstadoDto().getDescripcion()
 									+ ") <br>");
 					}
 				}
-
 			}
-
 		}
 
 		Correo beanCorreo = new Correo();
@@ -202,7 +263,7 @@ public class GestionCorreo {
 	public Correo obtenerCorreoSilencioAdministrativo(
 			SolicitudDto solicitudDto, String fecha_inicio, String fecha_fin) {
 		Correo beanCorreo = new Correo();
-		beanCorreo.setAsunto(" Silencio Administrativo en Evaluación de Solicitud "
+		beanCorreo.setAsunto(" Silencio Administrativo en Evaluación de Solicitud N° "
 						+ solicitudDto.getCodigoSolicitud());
 		beanCorreo.setMensaje(" Nuevamente se les hace presente la siguiente solicitud para su respectiva "
 						+ " evaluación debido a que se encuentra en  evaluación desde "
@@ -216,15 +277,27 @@ public class GestionCorreo {
 		return beanCorreo;
 	}
 
-	public Correo obtenerCorreoSilencioAdministrativoBatch(
-			SolicitudDto solicitudDto) {
+	private String getFechaAprobacionRechazo(SolicitudDto s) {
+		String fecha = "";
+		for(EstadoSolicitudDto e : s.getListaEstados()) {
+			if(e.getEstadoDto().getId().compareTo(1017L) == 0 || e.getEstadoDto().getId().compareTo(1018L) == 0) {
+				fecha = FormatoMensajeCorreo.formatoFecha.format(e.getFecha());
+				break;
+			}
+		}
+		return fecha;
+	}
+	
+	public Correo obtenerCorreoSilencioAdministrativoBatch(SolicitudDto s) {
+		
+		
+		
 		Correo beanCorreo = new Correo();
-		beanCorreo.setAsunto(" Solicitud Aprobada por Silencio Administrativo "
-				+ solicitudDto.getCodigoSolicitud());
-		beanCorreo.setMensaje(" La solicitud ha sido aprobada por el proceso de Silencio Administrativo. ");
-		beanCorreo.setMensajeAdjunto(FormatoMensajeCorreo.formatoCorreoSilencioAdm(solicitudDto));
-		beanCorreo.setListaTo(obtenerToEmailPorSolicitud(solicitudDto));
-		beanCorreo.setListaCc(solicitudDto.getEmailSolicitante());
+		beanCorreo.setAsunto("SOLICITUD APROBADA POR SILENCIO ADMINISTRATIVO N° " + s.getCodigoSolicitud());
+		beanCorreo.setMensaje("Estimados,<br/>La solicitud N° " + s.getCodigoSolicitud()+ " fue aprobada el " + getFechaAprobacionRechazo(s) + " por Silencio Administrativo. ");
+		beanCorreo.setMensajeAdjunto(FormatoMensajeCorreo.formatoCorreoSilencioAdm(s));
+		beanCorreo.setListaTo(obtenerToEmailPorSolicitud(s));
+		beanCorreo.setListaCc(s.getEmailSolicitante());
 		return beanCorreo;
 	}
 
@@ -296,27 +369,4 @@ public class GestionCorreo {
 		
 		return toEmail.toString();
 	}
-
-	/*private InternetAddress[] obtenerToEmailPorSolicitudInit(SolicitudDto solicitudDto) throws AddressException {
-
-		List<String> correos = new ArrayList<String>();
-		for (OficinaSolicitudDto os : solicitudDto.getListaOficinasSolicitud()) {
-			if (os.getListaInvolucrados() != null) {
-				for (OficinaInvolucradoDto oi : os.getListaInvolucrados()) {
-					String email = oi.getInvolucradoDto().getEmail();
-					if (email != null)
-						correos.add(email);
-				}
-			}
-
-		}
-
-		InternetAddress lista[] = new InternetAddress[correos.size()];
-		int i = 0;
-		for (String s : correos) {
-			lista[i++] = new InternetAddress(s);
-		}
-		return lista;
-	}*/
-
 }

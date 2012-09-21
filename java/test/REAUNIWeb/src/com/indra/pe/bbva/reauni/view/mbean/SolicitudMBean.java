@@ -236,6 +236,7 @@ public class SolicitudMBean extends GenericMBean {
 			this.dto.setResponsableSolicitante(sessionMBean.getRegistro());
 			this.dto.setResponsableSolicitanteDesc(sessionMBean.getNombresApellidos());
 
+			this.aplicaAjusteBonificacion = false;
 			// showMessage(sessionMBean.getMensajeFechaCorte());
 			return com.indra.pe.bbva.reauni.util.Constantes.UrlNavegacion.URL_SOLICITUD;
 		} else {
@@ -250,7 +251,9 @@ public class SolicitudMBean extends GenericMBean {
 		this.sessionMBean.setAccion(Constantes.Form.EDITAR);
 
 		try {
-			this.dto = this.bo.obtener(this.dto.getId());		
+			this.dto = this.bo.obtener(this.dto.getId());
+			this.aplicaAjusteBonificacion = (this.dto.getTipoDeclaracion().length() > 0);
+			
 			for (OficinaSolicitudDto os : this.dto.getListaOficinasSolicitud()) {				
 				for (OficinaInvolucradoDto oi : os.getListaInvolucrados()) {
 					oi.setEstadoDtoBkp(oi.getEstadoDto());
@@ -1787,5 +1790,15 @@ public class SolicitudMBean extends GenericMBean {
 	
 	public String getBr() {
 		return "<br />";
+	}
+	
+	boolean aplicaAjusteBonificacion;
+	
+	public boolean getAplicaAjusteBonificacion() {
+		return aplicaAjusteBonificacion;
+	}
+	
+	public void setAplicaAjusteBonificacion(boolean aplicaAjusteBonificacion) {
+		this.aplicaAjusteBonificacion = aplicaAjusteBonificacion;
 	}
 }

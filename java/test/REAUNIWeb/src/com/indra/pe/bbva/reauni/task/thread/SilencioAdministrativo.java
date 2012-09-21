@@ -36,7 +36,6 @@ public class SilencioAdministrativo extends Thread{
 			listaParametros.add(c.getTime());
 			listaParametros.add(Boolean.TRUE);
 			
-			
 			List<SolicitudDto> lista = getDaoTarea().ejecutarQuery(sql, listaParametros);
 			GestionCorreo gestionCorreo = (GestionCorreo) WebServletContextListener.getApplicationContext().getBean("gestionCorreo");
 			

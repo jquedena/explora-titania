@@ -63,7 +63,7 @@
 			<h:outputText style="font-family: 'Verdana';font-weight: bold;"
 				rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"
 				value="HA RECIBIDO EL CORREO DE CONFORMIDAD DE LA SOLICITUD DEL GT/GR/JPN?" />
-			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"/>
+			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1033}"/>
 
 			<p:dataTable value="#{oficinaSolicitudDto.listaInvolucrados}"
 				rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"
@@ -99,7 +99,8 @@
 						value="GUARDAR EVALUACION"
 						onclick="return confirm('ESTÁ SEGURO QUE DESEA GUARDAR LA EVALUACIÓN?');"
 						update="pgEvaluacionesSolicitud"
-						style="float: rigth" ajax="false;" action="#{solicitudMBean.grabarEvaluacion}">
+						ajax="true"
+						style="float: rigth" action="#{solicitudMBean.grabarEvaluacion}">
 							<f:setPropertyActionListener value="#{solicitudInvolucradoDto}" target="#{solicitudMBean.oficinaInvolucradoDto}" />
 							<f:setPropertyActionListener value="#{oficinaSolicitudDto}" target="#{solicitudMBean.oficinaSolicitudDto}" />
 					</p:commandButton>

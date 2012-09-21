@@ -59,7 +59,7 @@
 				<p:calendar id="fechaInicio"
 					value="#{consultaMBean.dtoFiltro.fechaInicio}" showOn="button"
 					pattern="#{aplicacionMBean.formatoFecha}"
-					locale="es"
+					locale="es_PE"
 					label="#{message['solicitud.fecha.inicio']}">
 					<p:ajax event="dateSelect"
 						listener="#{consultaMBean.listenerAsignarFechaInicio}" />
@@ -72,7 +72,7 @@
 				<p:calendar id="fechaHasta"
 					value="#{consultaMBean.dtoFiltro.fechaHasta}" showOn="button"
 					pattern="#{aplicacionMBean.formatoFecha}"
-					locale="es"
+					locale="es_PE"
 					label="#{message['solicitud.fecha.hasta']}">
 					<p:ajax event="dateSelect"
 						listener="#{consultaMBean.listenerAsignarFechaHasta}" />
@@ -152,10 +152,9 @@
 						actionListener="#{consultaMBean.buscar}">
 						<f:ajax render="tblPrincipal" />
 					</p:commandButton>
-					<h:commandLink>
-						<p:graphicImage value="/recursos/imagenes/botones/excel.png" /> 
-					    <p:dataExporter type="xls" target="tblPrincipal" fileName="Contratos"/><!--  preProcessor="#{tableBean.preProcessPDF}" -->  
-					</h:commandLink> 
+					<p:commandButton ajax="false" value="EXPORTAR XLS"> 
+					    <p:dataExporter type="xls" target="tblPrincipal" fileName="Contratos" excludeColumns="0,2" /><!--  preProcessor="#{tableBean.preProcessPDF}" -->  
+					</p:commandButton> 
 				</p:outputPanel>
 			</h:panelGrid>
 
@@ -178,9 +177,8 @@
 							itemValue="#{parametroDto}" />
 						<f:ajax render="tblPrincipal" />
 					</p:selectOneMenu>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<p:spacer width="15" />
 				</p:column>
-				
 				<p:column>
 					<f:facet name="header">
 						<h:outputText value="COMENTARIO"/>

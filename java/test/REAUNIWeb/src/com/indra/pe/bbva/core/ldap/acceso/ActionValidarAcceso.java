@@ -15,6 +15,7 @@ import com.grupobbva.bc.per.tele.seguridad.ServiciosSeguridadBbva;
 import com.indra.pe.bbva.core.configuracion.WebServletContextListener;
 import com.indra.pe.bbva.core.util.Utilitarios;
 import com.indra.pe.bbva.ldap.service.LdapService;
+import com.indra.pe.bbva.ldap2db.IIWXPeUsuario;
 import com.indra.pe.bbva.reauni.model.entidad.OficinaDto;
 import com.indra.pe.bbva.reauni.model.entidad.OperacionCentralizadaDto;
 import com.indra.pe.bbva.reauni.model.entidad.PermisoPerfilDto;
@@ -61,7 +62,12 @@ public class ActionValidarAcceso extends HttpServlet implements Servlet {
 			objSeguridad = new ServiciosSeguridadBbva(request);
 			objSeguridad.obtener_ID();
 			reg = objSeguridad.getUsuario().toUpperCase();
-			iildPeUsuario = IILDPeUsuario.recuperarUsuario(reg);
+			try {
+				iildPeUsuario = IILDPeUsuario.recuperarUsuario(reg);
+			} catch(Exception ex) {
+				iildPeUsuario = IIWXPeUsuario.recuperarUsuario(reg);
+			}
+			
 			if (iildPeUsuario != null) {
 
 				PermisoPerfilBO permisoPerfilBO = (PermisoPerfilBO) WebServletContextListener.getApplicationContext().getBean("permisoPerfilBO");
