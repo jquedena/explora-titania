@@ -65,6 +65,10 @@ public class GestionCorreo {
 			correoElectronico = new CorreoElectronico();
 			correoElectronico.enviar(obtenerCorreoRechazoAprobacion(solicitudDto));
 			break;
+		case GESTION_FILE:
+			correoElectronico = new CorreoElectronico();
+			correoElectronico.enviar(obtenerCorreoGestionFileCourier(solicitudDto));
+			break;
 		}
 	}
 
@@ -119,7 +123,7 @@ public class GestionCorreo {
 		beanCorreo.setFileName("Contratos");
 		String sql = "SELECT t.id, t.des_oficina, t.des_oficina_receptor, t.nom_gestor, t.producto, "
 			+ "t.codigo_contrato, t.fecha_apertura, t.saldod, t.saldoa, t.tipo_prestamo, t.situacion "
-			+ "FROM vreauni_no_recepcion_files t WHERE id = '" + s.getId() + "'";
+			+ "FROM reauni.vreauni_envio_gestion_files t WHERE id = '" + s.getId() + "'";
 
 		List listaContratos = null;
 		try {
