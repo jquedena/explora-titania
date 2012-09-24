@@ -831,7 +831,6 @@ public class SolicitudMBean extends GenericMBean {
 							this.oficinaSolicitudDto.setEstadoEvaluacion(Boolean.FALSE);
 						}
 						
-						
 						this.bo.editarOficinaInvolucrado(this.oficinaInvolucradoDto);
 						
 						if(sessionMBean.getEsGerenteTerritorial() || this.dto.getResponsableSolicitante().equalsIgnoreCase(sessionMBean.getRegistro())) {
@@ -943,6 +942,13 @@ public class SolicitudMBean extends GenericMBean {
 			//Enviamos correo si y solo sí se aprueba o se rechaza la solicitud
 			if (estadoSolicitud.equals(1017L) || estadoSolicitud.equals(1018L)) {
 				try {
+					for (OficinaSolicitudDto os : this.dto.getListaOficinasSolicitud()) {
+						if(os.getEstadoEvaluacion() != null && os.getEnvioGestionFile() != null) {
+							os.setEnvioGestionFile(new Date());
+							this.bo.editarOficinaSolicitud(os);
+						}
+					}
+					
 					EstadoSolicitudDto es = new EstadoSolicitudDto();
 					es.setEstadoDto(ApplicationHelper.obtenerParametroPorId(estadoSolicitud));
 					es.setFecha(Utilitarios.Fecha.obtenerFechaActualDate());
@@ -955,6 +961,7 @@ public class SolicitudMBean extends GenericMBean {
 						es.setComentario("SE RECHAZA LA SOLICITUD");
 					}				
 					this.bo.insertarEstado(es);
+					
 					solicitudDto.setTramiteSolicitudDto(ApplicationHelper.obtenerParametroPorId(estadoSolicitud));					
 					solicitudDto.setFechaModificacion(Utilitarios.Fecha.obtenerFechaActualDate());
 					solicitudDto.setUsuarioModificacion(this.sessionMBean.getRegistro());					
@@ -965,6 +972,7 @@ public class SolicitudMBean extends GenericMBean {
 				
 				try {
 					gestionCorreo.lanzarTipoCorreo(solicitudDto, TipoCorreoEnum.RECHAZO_APROBACION, null);
+					gestionCorreo.lanzarTipoCorreo(solicitudDto, TipoCorreoEnum.GESTION_FILE, null);
 					showMessage("SOLICITUD EVALUADA DE MANERA SATISFACTORIA");
 				} catch (Exception e) {
 					logger.error("", e);
