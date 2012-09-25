@@ -4,12 +4,17 @@ require_once 'Zend/Controller/Action.php';
 class RegistroController extends Zend_Controller_Action {
 	
 	public function init() {
-		$this->view->util()->registerScriptJSController($this->getRequest());
+		// $this->view->util()->registerScriptJSController($this->getRequest());
 	}
 	
 	public function indexAction() {		
+          $this->view->util()->registerScriptJSControllerAction($this->getRequest());
 	}
 	
+      public function listarpredioAction() {
+          $this->view->util()->registerScriptJSControllerAction($this->getRequest());
+      }
+      
 	public function datosAction(){
 		//$evt[] = array('btndetpredio000001','click','$("#ventanadetallepredio" ).dialog( "open" );');
 
