@@ -1,8 +1,8 @@
 <?php
 
 class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
-	
-	private $widthLayout = 1200;
+
+    private $widthLayout = 1030;
 
     public function util() {
         return $this;
@@ -11,27 +11,27 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
     public function getTitle() {
         return "Titania - Municipalidad de Puente Piedra";
     }
-    
+
     public function getEntidad() {
-    	return "Municipalidad de Puente Piedra";
+        return "Municipalidad de Puente Piedra";
     }
-    
+
     public function getRUC() {
-    	return "20131366702";
+        return "20131366702";
     }
-    
+
     public function getAreaCobranza() {
-    	return "Sub Gerencia de Tesoreria";
+        return "Sub Gerencia de Tesoreria";
     }
-    
+
     public function getProtocol() {
         return "http://";
     }
-    
-	public function getHost() {
-		return str_replace(":".$_SERVER["SERVER_PORT"], "", $_SERVER["HTTP_HOST"]);
-	}
-	
+
+    public function getHost() {
+        return str_replace(":" . $_SERVER["SERVER_PORT"], "", $_SERVER["HTTP_HOST"]);
+    }
+
     public function getPath() {
         $path = explode("/index.php", $_SERVER["PHP_SELF"]);
         return $this->getProtocol() . $this->getHost() . $path[0] . "/" . PATH;
@@ -41,19 +41,19 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
         $path = explode("/index.php", $_SERVER["PHP_SELF"]);
         return $this->getProtocol() . $this->getHost() . $path[0] . "/";
     }
-    
-	public function getPathReport() {
-		return $this->getProtocol() . $this->getHost() . '/titania_report/index.jsp?';
-	}
-    
+
+    public function getPathReport() {
+        return $this->getProtocol() . $this->getHost() . '/titania_report/index.jsp?';
+    }
+
     public function getLink($url) {
         return $this->getPath2() . "index.php/" . $url;
     }
-    
+
     public function getImage($image) {
         return $this->getPath() . "img/$image";
     }
-    
+
     public function getScript($pathJS) {
         $script = "\n";
         $files = $this->readFile($pathJS, $this->getPath());
@@ -63,56 +63,56 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
             }
         }
         return $script;
-    }    
-    
+    }
+
     public function registerScriptJSController(Zend_Controller_Request_Abstract $request) {
         $controller = $request->getControllerName();
         $action = $request->getActionName();
-        $script = "\t\t<script type='text/javascript' src='".$this->getPath()."js/js_".$controller.".js'/></script>\n";
+        $script = "\t\t<script type='text/javascript' src='" . $this->getPath() . "js/js_" . $controller . ".js'/></script>\n";
         $session = new Zend_Session_Namespace("scriptController");
         $session->data = $script;
         return $script;
     }
-    
+
     public function registerScriptJSControllerAction(Zend_Controller_Request_Abstract $request) {
-    	$controller = $request->getControllerName();
-    	$action = $request->getActionName();
-    	$script = "\t\t<script type='text/javascript' src='".$this->getPath()."js/js_".$controller."_".$action.".js'/></script>\n";
-    	$session = new Zend_Session_Namespace("scriptControllerAction");
-    	$session->data = $script;
-    	return $script;
+        $controller = $request->getControllerName();
+        $action = $request->getActionName();
+        $script = "\t\t<script type='text/javascript' src='" . $this->getPath() . "js/js_" . $controller . "_" . $action . ".js'/></script>\n";
+        $session = new Zend_Session_Namespace("scriptControllerAction");
+        $session->data = $script;
+        return $script;
     }
 
     public function registerLeaveControllerAction(Zend_Controller_Request_Abstract $request) {
-    	$controller = $request->getControllerName();
-    	$action = $request->getActionName();
-    	$script  = "\t\t<script type='text/javascript'/>var __rw = ".'false'.";</script>\n";
-    	$session = new Zend_Session_Namespace("leave");
-    	$session->data = $script;
-    	return $script;
-    }    
-    
+        $controller = $request->getControllerName();
+        $action = $request->getActionName();
+        $script = "\t\t<script type='text/javascript'/>var __rw = " . 'false' . ";</script>\n";
+        $session = new Zend_Session_Namespace("leave");
+        $session->data = $script;
+        return $script;
+    }
+
     public function getScriptJSController() {
         $session = new Zend_Session_Namespace("scriptController");
         $script = $session->data;
         $session->data = "";
         return $script;
     }
-    
+
     public function getScriptJSControllerAction() {
-    	$session = new Zend_Session_Namespace("scriptControllerAction");
-    	$script = $session->data;
-    	$session->data = "";
-    	return $script;
+        $session = new Zend_Session_Namespace("scriptControllerAction");
+        $script = $session->data;
+        $session->data = "";
+        return $script;
     }
-    
+
     public function getScriptLeave() {
-    	$session = new Zend_Session_Namespace("leave");
-    	$script = $session->data;
-    	$session->data = "";
-    	return $script;
+        $session = new Zend_Session_Namespace("leave");
+        $script = $session->data;
+        $session->data = "";
+        return $script;
     }
-    
+
     public function getStyle() {
         $files = $this->readFile("css", $this->getPath());
         $script = $this->style($files);
@@ -120,13 +120,13 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
     }
 
     public function getWidthLayout() {
-    	return $this->widthLayout . "px";
+        return $this->widthLayout . "px";
     }
-    
+
     public function getSubstractWidthLayout($size) {
-    	return ($this->widthLayout - $size) . "px";
-    }    
-    
+        return ($this->widthLayout - $size) . "px";
+    }
+
     private function style($files) {
         $script = "\n";
         foreach ($files as $value) {
@@ -141,7 +141,7 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
         }
         return $script;
     }
-    
+
     private function readFile($carpeta, $path) {
         $script = array();
         if (is_dir(PATH . $carpeta)) {
@@ -158,8 +158,9 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
                 closedir($_carpeta);
             }
         }
-        
+
         sort($script);
         return $script;
     }
+
 }

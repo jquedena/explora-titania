@@ -142,15 +142,6 @@ tbody.ui-table-body tr td{
 	/* border-right: 1px solid #d8d8d8; */
 	border-bottom: 1px solid #f4f4f4; /* #1c5dab */
 }
-.ui-editar{
-	background: url(../img/pencil.png) no-repeat center center;
-}
-.ui-eliminar{
-	background: url(../img/b_drop.png) no-repeat center center;
-}
-.ui-ver{
-	background: url(../img/find.png) no-repeat center center;
-}
 .ui-disabled-text{
 	background-color: #fffbc3; 
 }

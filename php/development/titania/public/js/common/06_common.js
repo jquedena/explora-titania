@@ -1,74 +1,63 @@
-_ajaxPOST = null;
-function ajaxPOST(url, parameters){
-	_post = $.post(path + url, parameters);
+function procesarConsultaSubProceso(parameters, fnc) {
+    _post = $.post(path + "jqgrid/registrar", parameters);
 	
-	_post.success(function(requestData){
-		_ajaxPOST = requestData;
-	});
+    _post.success(fnc);
 	
-	_post.error(function(requestData, errMessagke, errNumber){
-		if(errNumber == '') {
-			openDialogError("No se puede determinar el error.");
-		} else {
-			openDialogError(errNumber +': ' + errMessage);
-		}
-	});	
-	
-	return _ajaxPOST;
+    _post.error(function(requestData, errMessage, errNumber){
+        if(errNumber == '') {
+            openDialogError("No se puede determinar el error.");
+        } else {
+            openDialogError(errNumber +': ' + errMessage);
+        }
+    });
 }
 
-function configurarGridPost(idPanel, idControl, _colNames, _colModel, _caption, _width, _height, parameters){
-	_post = $.post(path + "jqgrid/array", parameters);
-	
-	_post.success(function(requestData){
-		_html += requestData;
-		_html += "<script type='text/javascript'>";
-		_html += "configurarGrid('" + idControl + "', data_" + idControl + ", _colNames, _colModel, '" + _caption + "', " + _width + ", " + _height + ");";
-		_html += "</script>";
-		$("#"+idPanel).html(requestData);
-		console.log();
-		console.log();
-		console.log();
-		
-	});
-	
-	_post.error(function(requestData, errMessagke, errNumber){
-		if(errNumber == '') {
-			openDialogError("No se puede determinar el error.");
-		} else {
-			openDialogError(errNumber +': ' + errMessage);
-		}
-	});
+function procesarConsulta(idPanel, idx, _options, parameters) {
+    procesarConsultaSubProceso(parameters, function(requestData){
+        $("#" + idPanel).html(requestData);
+        actualizarGrid(idx, _options);
+    });
 }
 
-function configurarGrid(id, _data, _colNames, _colModel, _caption, _width, _height){
-	console.log(_data);
-	console.log(_colNames);
-	console.log(_colModel);
-	$("#" + id).jqGrid({
-		scroll: 1,
-		data: _data,
-		datatype: "local",
-		height: _height,
-		width: _width,
-		rowNum: 30,
-		rownumbers: true,
-		// rowList: [10,20,30],
-		// loadtext: 'Cargando datos...',
-		// recordtext: "{0} - {1} de {2} elementos",
-     	// emptyrecords: 'No hay resultados',
-     	// pgtext: 'Pág: {0} de {1}', //Paging input control text format. 
-   	colNames: _colNames,
-   	colModel: _colModel,
-   	pager: "#p" + id,
-   	viewrecords: true,
-   	loadonce: true,
-   	caption: "&nbsp;&nbsp;&nbsp;" + _caption
-	});
+function actualizarGrid(id, _options){
+    _url = path + "jqgrid/paginar?name=" + id;
+    options = $.extend({
+        url: _url,
+        datatype: "json",
+        rowNum: 30,
+        rownumbers: true,
+        recordtext: "{0} - {1} de {2} elementos",
+        emptyrecords: 'No hay resultados',
+        pgtext: 'Pag: {0} de {1}',
+        pager: "#p" + id,
+        viewrecords: true,
+        loadonce: true
+    }, _options);
+    idx = "#" + id;
+    $(idx).jqGrid(options);
+    // $(idx).jqGrid('bindKeys', {"onEnter":function( rowid ) { alert("You enter a row with id:"+rowid)} });
+}
+
+function inicializarGrid(id, _options){
+    options = $.extend({
+        scroll: 1,
+        data: [],
+        datatype: "local",
+        rowNum: 30,
+        rownumbers: true,
+        recordtext: "{0} - {1} de {2} elementos",
+        emptyrecords: 'No hay resultados',
+        pgtext: 'Pag: {0} de {1}',
+        pager: "#p" + id,
+        viewrecords: true,
+        loadonce: true
+    }, _options);
+    idx = "#" + id;
+    $(idx).jqGrid(options);
 }
 
 function deshabilitarComponente(id, sw){
-	id = "#" + id;
+    id = "#" + id;
 	
     if (sw == true || sw == 1) {
         $(id).removeAttr('disabled');
@@ -86,72 +75,72 @@ function closeDialog(id) {
 }
 
 function openDialogData1(url, data, width, height, title) {
-	var _post = $.post(path + url, data);
+    var _post = $.post(path + url, data);
 	
-	if(url != undefined) {
-		_post.success(function(requestData){
-			$("#jqDialog1").html(requestData);
+    if(url != undefined) {
+        _post.success(function(requestData){
+            $("#jqDialog1").html(requestData);
 			
-		    if(width != undefined) $('#jqDialog1').dialog('option', 'width', width);
-		    if(height != undefined) $('#jqDialog1').dialog('option', 'height', height);
-		    if(title != undefined) $('#jqDialog1').dialog('option', 'title', title);
-		    $('#jqDialog1').dialog('open');
-		});
+            if(width != undefined) $('#jqDialog1').dialog('option', 'width', width);
+            if(height != undefined) $('#jqDialog1').dialog('option', 'height', height);
+            if(title != undefined) $('#jqDialog1').dialog('option', 'title', title);
+            $('#jqDialog1').dialog('open');
+        });
 		
-		_post.error(function(requestData, errMessage, errNumber){
-			if(errNumber == '') {
-				openDialogError("No se puede determinar el error.");
-			} else {
-				openDialogError(errNumber +': ' + errMessage);
-			}
-		});	
-	}
+        _post.error(function(requestData, errMessage, errNumber){
+            if(errNumber == '') {
+                openDialogError("No se puede determinar el error.");
+            } else {
+                openDialogError(errNumber +': ' + errMessage);
+            }
+        });	
+    }
 }
 
 function openDialog1(url, width, height, title) {
-	var _post = $.post(path + url);
+    var _post = $.post(path + url);
 	
-	if(url != undefined) {
-		_post.success(function(requestData){
-			$("#jqDialog1").html(requestData);
+    if(url != undefined) {
+        _post.success(function(requestData){
+            $("#jqDialog1").html(requestData);
 			
-		    if(width != undefined) $('#jqDialog1').dialog('option', 'width', width);
-		    if(height != undefined) $('#jqDialog1').dialog('option', 'height', height);
-		    if(title != undefined) $('#jqDialog1').dialog('option', 'title', title);
-		    $('#jqDialog1').dialog('open');
-		});
+            if(width != undefined) $('#jqDialog1').dialog('option', 'width', width);
+            if(height != undefined) $('#jqDialog1').dialog('option', 'height', height);
+            if(title != undefined) $('#jqDialog1').dialog('option', 'title', title);
+            $('#jqDialog1').dialog('open');
+        });
 		
-		_post.error(function(requestData, errMessage, errNumber){
-			if(errNumber == '') {
-				openDialogError("No se puede determinar el error.");
-			} else {
-				openDialogError(errNumber +': ' + errMessage);
-			}
-		});	
-	}
+        _post.error(function(requestData, errMessage, errNumber){
+            if(errNumber == '') {
+                openDialogError("No se puede determinar el error.");
+            } else {
+                openDialogError(errNumber +': ' + errMessage);
+            }
+        });	
+    }
 }
 
 function openDialog2(url, width, height, title) {	
-	var _post = $.post(path + url);
+    var _post = $.post(path + url);
 	
-	if(url != undefined) {
-		_post.success(function(requestData){
-			$("#jqDialog2").html(requestData);
+    if(url != undefined) {
+        _post.success(function(requestData){
+            $("#jqDialog2").html(requestData);
 			
-		    if(width != undefined) $('#jqDialog2').dialog('option', 'width', width);
-		    if(height != undefined) $('#jqDialog2').dialog('option', 'height', height);
-		    if(title != undefined) $('#jqDialog2').dialog('option', 'title', title);
-		    $('#jqDialog2').dialog('open');
-		});
+            if(width != undefined) $('#jqDialog2').dialog('option', 'width', width);
+            if(height != undefined) $('#jqDialog2').dialog('option', 'height', height);
+            if(title != undefined) $('#jqDialog2').dialog('option', 'title', title);
+            $('#jqDialog2').dialog('open');
+        });
 		
-		_post.error(function(requestData, errMessage, errNumber){
-			if(errNumber == '') {
-				openDialogError("No se puede determinar el error.");
-			} else {
-				openDialogError(errNumber +': ' + errMessage);
-			}
-		});	
-	}
+        _post.error(function(requestData, errMessage, errNumber){
+            if(errNumber == '') {
+                openDialogError("No se puede determinar el error.");
+            } else {
+                openDialogError(errNumber +': ' + errMessage);
+            }
+        });	
+    }
 }
 
 function openDialogConfirm1(contenido, width, height) {
@@ -190,31 +179,31 @@ function openDialogInfo(contenido, width, height) {
 }
 
 function mouseHover(idTable) {
-	idTable = '#' +  idTable + " tbody";
+    idTable = '#' +  idTable + " tbody";
 	
-	$(idTable).delegate('tr', 'hover', function() {
-		$(this).toggleClass("ui-state-highlight").next().stop(true, true);
-	});
+    $(idTable).delegate('tr', 'hover', function() {
+        $(this).toggleClass("ui-state-highlight").next().stop(true, true);
+    });
 }
 
 function DoNavrow(theUrl) {
-	window.open(theUrl, '_self');
+    window.open(theUrl, '_self');
 }
 
 $(function(){
-   $("#itemMenu1").menu({
-       content: $("#itemMenu1").next().html(),
-       showSpeed: 1,
-       flyOut: true
-   });
-   $("#itemMenu2").menu({
-       content: $("#itemMenu2").next().html(),
-       showSpeed: 1,
-       flyOut: true
-   });
-   $("#itemMenu3").menu({
-       content: $("#itemMenu3").next().html(),
-       showSpeed: 1,
-       flyOut: true
-   });
+    $("#itemMenu1").menu({
+        content: $("#itemMenu1").next().html(),
+        showSpeed: 1,
+        flyOut: true
+    });
+    $("#itemMenu2").menu({
+        content: $("#itemMenu2").next().html(),
+        showSpeed: 1,
+        flyOut: true
+    });
+    $("#itemMenu3").menu({
+        content: $("#itemMenu3").next().html(),
+        showSpeed: 1,
+        flyOut: true
+    });
 });
