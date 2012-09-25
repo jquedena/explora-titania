@@ -583,7 +583,7 @@ function consultaCliente(){
 	tipo_detalle = '0';
 	$(".option-ui").removeClass("ui-state-active");
     $(".option-ui").eq(0).addClass("ui-state-active");
-	AjaxRequest.get({
+	AjaxRequest.post({
 	    'url':'consulta2.do'
 	    ,'parameters':{ 
 	    	'method':'buscar2',
