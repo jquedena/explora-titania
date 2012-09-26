@@ -11,36 +11,48 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
-/**
- *
- * @author INDRA PERU SAC
- */
 @Entity
 @Table(name = "TREAUNI_INVOLUCRADO",schema="REAUNI")
 public class InvolucradoDto implements Serializable {
-    private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    
+	private static final long serialVersionUID = 1L;
+    
     @Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "SEQ_INVOLUCRADO")
 	@TableGenerator(name = "SEQ_INVOLUCRADO", schema = "REAUNI", table = "TREAUNI_ENTIDAD", pkColumnName = "NOMBRE", valueColumnName = "CORRELATIVO", pkColumnValue = "TREAUNI_INVOLUCRADO", allocationSize = 1)
     private Long id;
+    
     @Column(name = "REGISTRO")
     private String registro;
+    
     @Column(name = "NOMBRES")
     private String nombres;
+    
     @Column(name = "APELLIDO_PATERNO")
     private String apellidoPaterno;
+    
     @Column(name = "APELLIDO_MATERNO")
     private String apellidoMaterno;
+    
     @Column(name = "CARGO")
     private String cargo;
+    
+    @JoinColumn(name = "CARGO", referencedColumnName = "CARGO", nullable=true, insertable=false, updatable=false)
+	@ManyToOne
+	@LazyToOne(LazyToOneOption.FALSE)
+    private CargoDto cargoDto;
+    
     @Column(name = "DESCRIPCION_CARGO")
     private String descripcionCargo;
     
@@ -114,8 +126,6 @@ public class InvolucradoDto implements Serializable {
         this.descripcionCargo = descripcionCargo;
     }
 
-    
-
 	public List<OficinaInvolucradoDto> getListaOficinaInvolucrados() {
 		return listaOficinaInvolucrados;
 	}
@@ -125,14 +135,20 @@ public class InvolucradoDto implements Serializable {
 		this.listaOficinaInvolucrados = listaOficinaInvolucrados;
 	}
 	
-	
-
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public CargoDto getCargoDto() {
+		return cargoDto;
+	}
+
+	public void setCargoDto(CargoDto cargoDto) {
+		this.cargoDto = cargoDto;
 	}
 
 	@Override

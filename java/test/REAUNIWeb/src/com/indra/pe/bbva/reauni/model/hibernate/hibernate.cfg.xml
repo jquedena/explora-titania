@@ -27,14 +27,11 @@
         <mapping class="com.indra.pe.bbva.reauni.model.entidad.TerritorioDto"/>
         <mapping class="com.indra.pe.bbva.reauni.model.entidad.OficinaDto"/>
         <mapping class="com.indra.pe.bbva.reauni.model.entidad.GestorDto"/>
-        
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.CargoDto"/>
         <mapping class="com.indra.pe.bbva.reauni.model.entidad.ProductoDto"/>            
         <mapping class="com.indra.pe.bbva.reauni.model.entidad.ContratoTemporalDto"/>
-        
         <mapping class="com.indra.pe.bbva.reauni.model.entidad.EjecucionProcesoDto"/>
-        
         <mapping class="com.indra.pe.bbva.reauni.model.entidad.AvisoSilencioAdministrativoDto"/>
-               
      </session-factory>
      
 </hibernate-configuration>

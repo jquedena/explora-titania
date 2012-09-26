@@ -1,13 +1,10 @@
 package com.indra.pe.bbva.reauni.mail;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
 import com.indra.pe.bbva.core.configuracion.WebServletContextListener;
@@ -110,7 +107,7 @@ public class GestionCorreo {
 		}
 		
 		Correo beanCorreo = new Correo();
-		beanCorreo.setAsunto(" Gestión de Files – Solicitud Aprobada ");
+		beanCorreo.setAsunto(" Gestión de Files – Solicitud N° " + s.getCodigoSolicitud() + " Aprobada ");
 		beanCorreo.setMensaje(" Estimados,<br>"
 		+ " La solicitud N° " + s.getCodigoSolicitud() + " fue aprobada el " + getFechaAprobacionRechazo(s)
 		+ " por los involucrados, por lo cual se les adjunta  todos los contratos de la misma para gestionar la recepción de files con el gestor " 
@@ -128,6 +125,7 @@ public class GestionCorreo {
 		List listaContratos = null;
 		try {
 			listaContratos = getDaoTarea().ejecutarSQL(sql);
+			getDaoTarea().executeProcedure("update reauni.treauni_oficina_solicitud set fecha_envio_gestion_file=sysdate where id = '" + s.getId() + "' and envio_gestion_file=1 and fecha_envio_gestion_file is null");
 			beanCorreo.setMensajeAdjuntoExcel(FormatoMensajeCorreo.formatoCorreoResumen(listaContratos, Constantes.CABECERA_REPORTE_GESTION_FILES, "Contratos"));
 		} catch (DAOException e) {
 			logger.error("Generando lista de contratos para la Gestion de Files", e);
@@ -220,43 +218,88 @@ public class GestionCorreo {
 	}
 
 	public Correo obtenerCorreoRechazoAprobacion(SolicitudDto solicitudDto) {
+		int temp = 0;
 		String estado = "";
-		StringBuffer sbInvolucrados = new StringBuffer();
+		String codTerr = "";
+		StringBuffer aux1 = new StringBuffer();
+		StringBuffer aux2 = new StringBuffer();
+		Map<String, String> listaInvolucrados = new HashMap<String, String>();
 
 		for (OficinaSolicitudDto os : solicitudDto.getListaOficinasSolicitud()) {
-
-			if (!os.getTipoOficinaDto().getId().equals(1033L)) {
+			if (os.getTipoOficinaDto().getId().compareTo(1031L) == 0) {
+				aux1.append("<b>");
+				aux1.append(os.getOficinaDto().getTerritorioDto().getDesTerritorio());
+				aux1.append(" - ");
+				aux1.append(os.getOficinaDto().getDesOficina());
+				aux1.append("</b>");
 				for (OficinaInvolucradoDto oi : os.getListaInvolucrados()) {
-					if (oi.getInvolucradoDto().getCargo().equals("CH1")
-							|| oi.getInvolucradoDto().getCargo().equals("CH6")
-							|| oi.getInvolucradoDto().getCargo().equals("OS8")) {
-						if (!oi.getEstadoDto().getId().equals(1034L))
-							sbInvolucrados.append(oi.getInvolucradoDto().getCargo()
-									+ " : "
-									+ oi.getInvolucradoDto().getRegistro()
-									+ "-"
-									+ oi.getInvolucradoDto().getNombres()
-									+ " "
-									+ oi.getInvolucradoDto().getApellidoPaterno()
-									+ " "
-									+ oi.getInvolucradoDto().getApellidoMaterno()
-									+ " ("
-									+ oi.getEstadoDto().getDescripcion()
-									+ ") <br>");
+					if (oi.getEstadoDto().getId().compareTo(1034L) != 0) {
+						aux1.append(oi.getPerfil());
+						aux1.append(" : ");
+						aux1.append(oi.getInvolucradoDto().getRegistro());
+						aux1.append(" - ");
+						aux1.append(oi.getNombreCompleto());
+						aux1.append("(");
+						aux1.append(oi.getEstadoDto().getDescripcion());
+						if(oi.getEstadoDto().getId().compareTo(1018L) == 0) {
+							aux1.append(",");
+							aux1.append(oi.getComentario().toUpperCase());
+						}
+						aux1.append(")<br>");
+						temp = 1;
+					}
+				}
+				if(temp != 1) {
+					aux1 = new StringBuffer();
+				}
+				aux2 = new StringBuffer();
+				aux2.append("1031_");
+				aux2.append(os.getOficinaDto().getTerritorioDto().getCodTerritorio());
+				listaInvolucrados.put(aux2.toString(), aux1.toString());
+			}
+			
+			if(os.getTipoOficinaDto().getId().compareTo(1032L) == 0) {
+				for (OficinaInvolucradoDto oi : os.getListaInvolucrados()) {
+					if (oi.getEstadoDto().getId().compareTo(1034L) != 0) {
+						if(!codTerr.equalsIgnoreCase(os.getOficinaDto().getTerritorioDto().getCodTerritorio())) {
+							aux1.append(os.getOficinaDto().getTerritorioDto().getDesTerritorio());
+							aux1.append("<br>&nbsp;&nbsp;&nbsp;");
+							aux1.append(oi.getPerfil());
+							aux1.append(oi.getPerfil());
+							
+							codTerr = os.getOficinaDto().getTerritorioDto().getCodTerritorio();
+						}
+
+						aux1.append(" - ");
+						aux1.append(os.getOficinaDto().getDesOficina());
+						aux1.append(oi.getPerfil());
+						aux1.append(" : ");
+						aux1.append(oi.getInvolucradoDto().getRegistro());
+						aux1.append(" - ");
+						aux1.append(oi.getNombreCompleto());
+						aux1.append("(");
+						aux1.append(oi.getEstadoDto().getDescripcion());
+						if(oi.getEstadoDto().getId().compareTo(1018L) == 0) {
+							aux1.append(",");
+							aux1.append(oi.getComentario().toUpperCase());
+						}
+						aux1.append(")<br>");
 					}
 				}
 			}
 		}
 
 		Correo beanCorreo = new Correo();
-		// "SOLICITUD APROBADA POR SILENCIO ADMINISTRATIVO"
-		// solicitudDto.getTramiteSolicitudDto().getDescripcion()
-		beanCorreo.setAsunto(" Rechazo/Aprobación de Solicitud " + solicitudDto.getCodigoSolicitud());
+		beanCorreo.setAsunto(" " + solicitudDto.getTramiteSolicitudDto().getDescripcionCorta() + " DE SOLICITUD N° " + solicitudDto.getCodigoSolicitud());
 		beanCorreo.setMensaje(" Estimados Sres,<br>"
-				+ " Se les hace presente la siguiente solicitud que fue "
-				+ solicitudDto.getTramiteSolicitudDto().getDescripcion()
-				+ " por los siguientes involucrados: <br>"
-				+ sbInvolucrados.toString());
+				+ " La solicitud N ° "
+				+ solicitudDto.getCodigoSolicitud()
+				+ " fue "
+				+ solicitudDto.getTramiteSolicitudDto().getDescripcion().toLowerCase()
+				+ " el "
+				+ getFechaAprobacionRechazo(solicitudDto)
+				+ " por: <br>"
+				+ aux1.toString());
 		beanCorreo.setMensajeAdjunto(FormatoMensajeCorreo.formatoCorreoEvaluacion(solicitudDto));
 		beanCorreo.setFileName(GestionCorreo.RECHAZO_APROBACION);
 		beanCorreo.setListaTo(obtenerToEmailPorSolicitud(solicitudDto));

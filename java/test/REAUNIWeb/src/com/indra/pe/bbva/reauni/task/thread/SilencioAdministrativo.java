@@ -44,6 +44,9 @@ public class SilencioAdministrativo extends Thread{
 					try {
 						CorreoElectronico correoElectronico =  new CorreoElectronico();
 						correoElectronico.enviar(gestionCorreo.obtenerCorreoSilencioAdministrativoBatch(s));
+						
+						correoElectronico = new CorreoElectronico();
+						correoElectronico.enviar(gestionCorreo.obtenerCorreoGestionFileCourier(s));
 					}catch(Exception e){
 						logger.error("Enviando correo - SilencioAdministrativo ",e);
 					}

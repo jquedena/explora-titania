@@ -141,6 +141,9 @@
 						actionListener="#{consultaContratoFileMBean.buscar}">
 						<f:ajax render="tblPrincipal" />
 					</p:commandButton>
+					<p:commandButton ajax="false" value="EXPORTAR XLS"> 
+					    <p:dataExporter type="xls" target="tblPrincipal" fileName="ContratosGestionFiles" excludeColumns="0" /><!--   preProcessor="#{tableBean.preProcessPDF}" -->  
+					</p:commandButton> 
 				</p:outputPanel>				
 			</h:panelGrid>
 
@@ -166,59 +169,118 @@
 							style="font-size: 9px;font-weight: bold;color:#009933"
 							value="RECEPCIONADO" rendered="#{dto.estadoFile}" />
 					</p:column>
+					<p:column style="display: none;">
+						<f:facet name="header">
+							<h:outputText value="ESTADO" />
+						</f:facet>
+						<h:outputText style="font-size: 9px;font-weight: bold;color:#009933" value="RECEPCIONADO" rendered="#{dto.estadoFile}" />
+						<h:outputText style="font-size: 9px;font-weight: bold;color:#009933" value="NO RECEPCIONADO" rendered="#{!dto.estadoFile}" />
+					</p:column>
 
-					<p:column headerText="TIPO SOLICITUD">
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="TIPO SOLICITUD" />
+						</f:facet>
 						<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.tipoDto.descripcion}" />
 					</p:column>
-					<p:column headerText="#{message['solicitud.cliente.codigo']}">
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{message['solicitud.cliente.codigo']}" />
+						</f:facet>
 						<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.codigoCliente}" />
 					</p:column>
-					<p:column headerText="#{message['solicitud.fecha.registro']}">
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{message['solicitud.fecha.registro']}" />
+						</f:facet>
 						<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.fechaCreacion}">
 							<f:convertDateTime  pattern="#{aplicacionMBean.formatoFecha}"/>
 				        </h:outputText>
 					</p:column>
-					<p:column headerText="EST. SEGMENTACIÓN">
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="EST. SEGMENTACIÓN" />
+						</f:facet>
 						<h:outputText value="#{dto.estadoDto.descripcion}" />
 					</p:column>
-					<p:column headerText="CONTRATO" style="text-align:left;">
-						#{dto.codigoContrato}
+
+					<p:column style="text-align:left;">
+						<f:facet name="header">
+							<h:outputText value="CONTRATO" />
+						</f:facet>
+						<h:outputText value="#{dto.codigoContrato}" />
 					</p:column>
-					<p:column style="text-align:left;" headerText="OFICINA PRINCIPAL">
-						#{dto.oficinaSolicitudDto.solicitudDto.oficinaPrincipalCliente} - #{dto.oficinaSolicitudDto.solicitudDto.oficinaPrincipalClienteDesc}
+
+					<p:column style="text-align:left;">
+						<f:facet name="header">
+							<h:outputText value="OFICINA PRINCIPAL" />
+						</f:facet>
+						<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.oficinaPrincipalCliente} - #{dto.oficinaSolicitudDto.solicitudDto.oficinaPrincipalClienteDesc}" />
 					</p:column>
-					<p:column style="text-align:left;" headerText="GESTOR PRINCIPAL">
-						#{dto.oficinaSolicitudDto.solicitudDto.gestorPrincipalCliente} - #{dto.oficinaSolicitudDto.solicitudDto.gestorPrincipalClienteDesc}
+
+					<p:column style="text-align:left;">
+						<f:facet name="header">
+							<h:outputText value="OFICINA PRINCIPAL" />
+						</f:facet>
+						<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.gestorPrincipalCliente} - #{dto.oficinaSolicitudDto.solicitudDto.gestorPrincipalClienteDesc}" />
 					</p:column>
-<!-- 					<p:column style="text-align:left;" headerText="TERRITORIO CEDENTE"> -->
-<!-- 						#{dto.oficinaSolicitudDto.oficinaDto.territorioDto.codTerritorio} - #{dto.oficinaSolicitudDto.oficinaDto.territorioDto.desTerritorio} -->
-<!-- 					</p:column> -->
-<!-- 					<p:column style="text-align:left;" headerText="OFICINA CEDENTE"> -->
-<!-- 						#{dto.oficinaSolicitudDto.oficinaDto.codOficina} - #{dto.oficinaSolicitudDto.oficinaDto.desOficina} -->
-<!-- 					</p:column> -->
-					<p:column style="text-align:left;" headerText="OFICINA RECEPTORA">
-						#{dto.oficinaSolicitudDto.solicitudDto.oficinaReceptorDto.codOficina} - #{dto.oficinaSolicitudDto.solicitudDto.oficinaReceptorDto.desOficina}
+
+					<p:column style="text-align:left;">
+						<f:facet name="header">
+							<h:outputText value="OFICINA PRINCIPAL" />
+						</f:facet>
+						<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.oficinaReceptorDto.codOficina} - #{dto.oficinaSolicitudDto.solicitudDto.oficinaReceptorDto.desOficina}" />
 					</p:column>
-					<p:column style="text-align:left;" headerText="GESTOR RECEPTOR">
-						#{dto.oficinaSolicitudDto.solicitudDto.gestorReceptorDto.regGestor} - #{dto.oficinaSolicitudDto.solicitudDto.gestorReceptorDto.nomGestor}
+					
+					<p:column style="text-align:left;">
+						<f:facet name="header">
+							<h:outputText value="GESTOR RECEPTOR" />
+						</f:facet>
+						<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.gestorReceptorDto.regGestor} - #{dto.oficinaSolicitudDto.solicitudDto.gestorReceptorDto.nomGestor}" />
 					</p:column>
-					<p:column style="text-align:left;" headerText="PRODUCTO">
-						#{dto.productoDto.codProd} - #{dto.productoDto.descProd}
+					
+					<p:column style="text-align:left;">
+						<f:facet name="header">
+							<h:outputText value="PRODUCTO" />
+						</f:facet>
+						<h:outputText value="#{dto.productoDto.codProd} - #{dto.productoDto.descProd}" />
 					</p:column>
-					<p:column headerText="TIPO DE PRESTAMO">
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="TIPO DE PRESTAMO" />
+						</f:facet>
 						<h:outputText value="#{dto.tipoPrestamoDto.descripcion}" />
 					</p:column>
-					<p:column style="text-align:right;" headerText="TOTAL PASIVO (S/.)">
-						#{dto.totalPasivo} 
+					
+					<p:column style="text-align:right;">
+						<f:facet name="header">
+							<h:outputText value="TOTAL PASIVO (S/.)" />
+						</f:facet>
+						<h:outputText value="#{dto.totalPasivo}" /> 
 					</p:column>
-					<p:column style="text-align:right;" headerText="TOTAL ACTIVO (S/.)">
-						#{dto.totalActivo} 
+					
+					<p:column style="text-align:right;">
+						<f:facet name="header">
+							<h:outputText value="TOTAL ACTIVO (S/.)" />
+						</f:facet>
+						<h:outputText value="#{dto.totalActivo}" /> 
 					</p:column>
-					<p:column headerText="FECHA APERTURA">
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="FECHA APERTURA" />
+						</f:facet>
 						<h:outputText value="#{dto.fechaApertura}" />
 					</p:column>
 	
-					<p:column headerText="SITUACIÓN">
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="SITUACIÓN" />
+						</f:facet>
 						<h:outputText value="#{dto.descripcionSituacion}" />
 					</p:column>
 				</p:dataTable>
