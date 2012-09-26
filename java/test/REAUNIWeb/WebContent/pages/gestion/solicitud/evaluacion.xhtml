@@ -74,14 +74,15 @@
 				<p:column headerText="APROBACION">
 					<p:selectOneMenu style="border-width: 0px;"
 						disabled="#{solicitudMBean.bloquearControles || oficinaSolicitudDto.realizoVotoTerritorial || ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
-						converter="parametroConvert" onchange="submit()"
+						converter="parametroConvert"
 						immediate="true"
 						valueChangeListener="#{solicitudMBean.cambiarDecisionEvaluacion}"
-						update=":msgs" value="#{solicitudInvolucradoDto.estadoDto}">
+						value="#{solicitudInvolucradoDto.estadoDto}" >
 						<f:selectItems
 							value="#{solicitudMBean.listaEstadoArobacion}"
 							var="parametroDto" itemLabel="#{parametroDto.descripcion}"
 							itemValue="#{parametroDto}" />
+						<p:ajax update="msgs msg_alert" />  
 					</p:selectOneMenu>
 				</p:column>
 				<p:column headerText="COMENTARIO">
@@ -93,13 +94,17 @@
 					</p:inputText>
 				</p:column>
 				<p:column>
+					<!-- oficinaSolicitudDto.tipoOficinaDto.id!=1033 &amp;&amp; -->
 					<p:commandButton title="GUARDAR EVALUACION"
 						disabled="#{solicitudMBean.bloquearControles || oficinaSolicitudDto.realizoVotoTerritorial || ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
-						rendered="#{oficinaSolicitudDto.tipoOficinaDto.id!=1033&amp;&amp;!oficinaSolicitudDto.silencioAdministrativo &amp;&amp; !(solicitudMBean.dto.tramiteSolicitudDto.id==1015 || solicitudMBean.dto.tramiteSolicitudDto.id==1021)}"
+						rendered="#{(sessionMBean.registro==solicitudMBean.dto.responsableSolicitante || sessionMBean.registro==solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; !oficinaSolicitudDto.silencioAdministrativo &amp;&amp; !(solicitudMBean.dto.tramiteSolicitudDto.id==1015 || solicitudMBean.dto.tramiteSolicitudDto.id==1021)}"
 						value="GUARDAR EVALUACION"
 						onclick="return confirm('ESTÁ SEGURO QUE DESEA GUARDAR LA EVALUACIÓN?');"
-						update="pgEvaluacionesSolicitud"
 						ajax="true"
+						immediate="true"
+						onstart="statusDialog.show();"
+						onsuccess="statusDialog.hide();"
+						update="pgEvaluacionesSolicitud"
 						style="float: rigth" action="#{solicitudMBean.grabarEvaluacion}">
 							<f:setPropertyActionListener value="#{solicitudInvolucradoDto}" target="#{solicitudMBean.oficinaInvolucradoDto}" />
 							<f:setPropertyActionListener value="#{oficinaSolicitudDto}" target="#{solicitudMBean.oficinaSolicitudDto}" />

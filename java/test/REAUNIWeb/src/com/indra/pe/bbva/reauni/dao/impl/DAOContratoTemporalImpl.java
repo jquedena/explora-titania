@@ -34,7 +34,7 @@ public class DAOContratoTemporalImpl extends DAOGenericoImpl<ContratoTemporalDto
 		String query = "";
 		try {
 	    	query += "select e from ContratoTemporalDto as e where e.codigoCentral = ";
-			query += "'" + codigoCliente +"' and not exists (select c.codigoContrato from ContratoDto c, OficinaSolicitudDto os, SolicitudDto s where c.oficinaSolicitudDto.id = os.id and os.solicitudDto.id = s.id and s.tramiteSolicitudDto.id not in (1021) and s.codigoCliente = '"+codigoCliente+"' and c.codigoContrato = e.codigoContrato)" +
+			query += "'" + codigoCliente +"' and not exists (select c.codigoContrato from ContratoDto c, OficinaSolicitudDto os, SolicitudDto s where c.oficinaSolicitudDto.id = os.id and os.solicitudDto.id = s.id and s.tramiteSolicitudDto.id not in (1021, 1022) and s.codigoCliente = '"+codigoCliente+"' and c.codigoContrato = e.codigoContrato)" +
 					" and exists (select x.codOficina from OficinaDto x where x.codOficina=e.oficina)";		
 					
 			Session session = getSession();

@@ -399,7 +399,7 @@ public class FormatoMensajeCorreo {
 		mensaje.append("<tr>");
 		if(gestionFile) {
 			mensaje.append("<td style='border-left: 0px;'>&nbsp;</td>");
-			mensaje.append("<td>&nbsp;</td>");
+			mensaje.append("<td style='border-left: 0px;'>&nbsp;</td>");
 		}
 		mensaje.append("<td style='border-left: 0px;' colspan=5>&nbsp;</td>");
 		mensaje.append("<td style='border-bottom:1px solid #000;'><b>Total</b></td>");

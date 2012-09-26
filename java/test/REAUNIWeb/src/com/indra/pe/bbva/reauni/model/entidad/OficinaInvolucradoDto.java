@@ -1,6 +1,7 @@
 package com.indra.pe.bbva.reauni.model.entidad;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -165,6 +166,28 @@ public class OficinaInvolucradoDto implements Serializable, Comparable<Object> {
 			}
 		}
 		return realizoVoto;
+	}
+	
+	public BigDecimal getOrden() {
+		if(involucradoDto.getCargoDto() != null)
+			return involucradoDto.getCargoDto().getOrden();
+		else
+			return BigDecimal.TEN;
+	}
+
+	public String getPerfil() {
+		if(involucradoDto.getCargoDto() != null)
+			return involucradoDto.getCargoDto().getPerfil();
+		else
+			return "";
+	}
+	
+
+	public String getNombreCompleto() {
+		if(involucradoDto != null) 
+			return involucradoDto.getNombres() + " " + involucradoDto.getApellidoPaterno() + " " + involucradoDto.getApellidoMaterno();
+		else
+			return "";
 	}
 	
 	@Override

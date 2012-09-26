@@ -3,7 +3,6 @@ package com.indra.pe.bbva.reauni.model.entidad;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -96,10 +95,13 @@ public class OficinaSolicitudDto implements Serializable {
 
 	@Column(name = "SILENCIO_ADMINISTRATIVO")
 	private Boolean silencioAdministrativo;
-	
+
 	@Column(name = "ENVIO_GESTION_FILE")
+	private BigDecimal envioGestionFile;
+	
+	@Column(name = "FECHA_ENVIO_GESTION_FILE")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date envioGestionFile;
+	private Date fechaEnvioGestionFile;
 
 	public OficinaSolicitudDto() {
 	}
@@ -167,7 +169,7 @@ public class OficinaSolicitudDto implements Serializable {
 	public List<OficinaInvolucradoDto> getListaInvolucrados() {
 		if (this.listaInvolucrados == null)
 			this.listaInvolucrados = new ArrayList<OficinaInvolucradoDto>();
-		Utilitarios.General.ordena(this.listaInvolucrados, "cargo");
+		Utilitarios.General.ordena(this.listaInvolucrados, "orden");
 		return listaInvolucrados;
 	}
 
@@ -210,18 +212,15 @@ public class OficinaSolicitudDto implements Serializable {
 		return estadoAprobacionAjuBonDto;
 	}
 
-	public void setEstadoAprobacionAjuBonDto(
-			ParametroDto estadoAprobacionAjuBonDto) {
+	public void setEstadoAprobacionAjuBonDto(ParametroDto estadoAprobacionAjuBonDto) {
 		this.estadoAprobacionAjuBonDto = estadoAprobacionAjuBonDto;
 	}
 
 	public Boolean getHabilitarEvaluacion() {
-		SessionMBean sessionMBean = (SessionMBean) WebServletContextListener
-				.getApplicationContext().getBean("sessionMBean");
+		SessionMBean sessionMBean = (SessionMBean) WebServletContextListener.getApplicationContext().getBean("sessionMBean");
 
 		for (OficinaInvolucradoDto oi : listaInvolucrados) {
-			if (oi.getInvolucradoDto().getRegistro()
-					.equals(sessionMBean.getRegistro())) {
+			if (oi.getInvolucradoDto().getRegistro().equals(sessionMBean.getRegistro())) {
 				this.habilitarEvaluacion = Boolean.TRUE;
 				break;
 			}
@@ -253,7 +252,7 @@ public class OficinaSolicitudDto implements Serializable {
 	public void setTipoOficina(Long tipoOficina) {
 		this.tipoOficina = tipoOficina;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		int hash = 0;
@@ -281,32 +280,24 @@ public class OficinaSolicitudDto implements Serializable {
 	}
 
 	public Boolean getRealizoVotoTerritorial() {
-		String territorio = getOficinaDto().getTerritorioDto()
-				.getCodTerritorio();
-		int votoTerritorial = getRealizoVoto(OficinaInvolucradoDto.GERENTE_TERRITORIAL
-				+ territorio);
+		String territorio = getOficinaDto().getTerritorioDto().getCodTerritorio();
+		int votoTerritorial = getRealizoVoto(OficinaInvolucradoDto.GERENTE_TERRITORIAL + territorio);
 		if (votoTerritorial <= 0) {
-			votoTerritorial = getRealizoVoto(OficinaInvolucradoDto.JEFE_PROMOCION_NEGOCIOS
-					+ territorio);
+			votoTerritorial = getRealizoVoto(OficinaInvolucradoDto.JEFE_PROMOCION_NEGOCIOS + territorio);
 			if (votoTerritorial == -1) {
 				@SuppressWarnings("unchecked")
-				DAOGenerico<OficinaInvolucradoDto> dao = (DAOGenerico<OficinaInvolucradoDto>) WebServletContextListener
-						.getApplicationContext().getBean("daoGenerico");
+				DAOGenerico<OficinaInvolucradoDto> dao = (DAOGenerico<OficinaInvolucradoDto>) WebServletContextListener.getApplicationContext().getBean("daoGenerico");
 
 				try {
 					List<OficinaInvolucradoDto> involucrado = null;
 					String query = "";
 					query += "select o from OficinaInvolucradoDto o join o.oficinaSolicitudDto os join os.solicitudDto s, PermisoPerfilDto e ";
-					query += "where e.tipoAcceso=1027 and e.perfil.id=3 and e.valor=o.involucradoDto.registro and os.tipoOficinaDto.id="
-							+ this.getTipoOficina();
-					query += " and os.oficinaDto.territorioDto.codTerritorio='"
-							+ territorio + "' and s.id="
-							+ this.getSolicitudDto().getId();
+					query += "where e.tipoAcceso=1027 and e.perfil.id=3 and e.valor=o.involucradoDto.registro and os.tipoOficinaDto.id=" + this.getTipoOficina();
+					query += " and os.oficinaDto.territorioDto.codTerritorio='" + territorio + "' and s.id=" + this.getSolicitudDto().getId();
 					involucrado = dao.ejecutarQuery(query);
 
 					if (involucrado != null && involucrado.size() > 0) {
-						votoTerritorial = involucrado.get(0).getRealizoVoto() ? 1
-								: 0;
+						votoTerritorial = involucrado.get(0).getRealizoVoto() ? 1 : 0;
 					}
 
 				} catch (Exception e) {
@@ -329,36 +320,48 @@ public class OficinaSolicitudDto implements Serializable {
 		}
 		return -1;
 	}
+	
+	private int buscarInvolucradoPorCargo(String cargoTerritorio) {
+		OficinaInvolucradoDto os;
+		int i = -1;
+		for (i = 0; i < getListaInvolucrados().size(); i++) {
+			os = getListaInvolucrados().get(i);
+			if ((os.getInvolucradoDto().getCargo() + os.getOficinaSolicitudDto().getOficinaDto().getTerritorioDto().getCodTerritorio()).equalsIgnoreCase(cargoTerritorio)) {
+				return i;
+			}
+		}
+		return -1;
+	}
 
 	public Boolean getRealizoVoto() {
 		Boolean realizoVoto = Boolean.TRUE;
 
 		if (!getSilencioAdministrativo()) {
-			SessionMBean sessionMBean = (SessionMBean) WebServletContextListener
-					.getApplicationContext().getBean("sessionMBean");
+			SessionMBean sessionMBean = (SessionMBean) WebServletContextListener.getApplicationContext().getBean("sessionMBean");
+			String codIdUsuario = sessionMBean.getRegistro();
+			String codIdSolicitante = getSolicitudDto().getResponsableSolicitante();
 			int indexInvolucrado = buscarInvolucrado(sessionMBean.getRegistro());
 
-			if (indexInvolucrado > -1
-					&& indexInvolucrado < getListaInvolucrados().size()) {
-				OficinaInvolucradoDto o = getListaInvolucrados().get(
-						indexInvolucrado);
-				realizoVoto = o.getRealizoVoto();
+			if(codIdUsuario.equalsIgnoreCase(codIdSolicitante)) {
+				realizoVoto = Boolean.FALSE;
+			} else {
+				if (indexInvolucrado > -1 && indexInvolucrado < getListaInvolucrados().size()) {
+					OficinaInvolucradoDto o = getListaInvolucrados().get(indexInvolucrado);
+					realizoVoto = o.getRealizoVoto();
+				}
 			}
 		}
 
 		return realizoVoto;
 	}
 
-	public int getRealizoVoto(String cargo) {
+	public int getRealizoVoto(String cargoTerritorio) {
 		int realizoVoto = 1;
 		if (!getSilencioAdministrativo()) {
-			int indexInvolucrado = Math.abs(Collections.binarySearch(
-					getListaInvolucrados(), cargo));
+			int indexInvolucrado = buscarInvolucradoPorCargo(cargoTerritorio);
 
-			if (indexInvolucrado > 0
-					&& indexInvolucrado < getListaInvolucrados().size()) {
-				OficinaInvolucradoDto o = getListaInvolucrados().get(
-						indexInvolucrado);
+			if (indexInvolucrado > 0 && indexInvolucrado < getListaInvolucrados().size()) {
+				OficinaInvolucradoDto o = getListaInvolucrados().get(indexInvolucrado);
 				realizoVoto = o.getRealizoVoto() ? 1 : 0;
 			} else {
 				realizoVoto = -1;
@@ -369,11 +372,9 @@ public class OficinaSolicitudDto implements Serializable {
 	}
 
 	public Boolean getHabilitarDeclaracionJurada() {
-		SessionMBean sessionMBean = (SessionMBean) WebServletContextListener
-				.getApplicationContext().getBean("sessionMBean");
+		SessionMBean sessionMBean = (SessionMBean) WebServletContextListener.getApplicationContext().getBean("sessionMBean");
 		String codOficinaInv = getOficinaDto().getCodOficina();
-		String codTerritorioInv = getOficinaDto().getTerritorioDto()
-				.getCodTerritorio();
+		String codTerritorioInv = getOficinaDto().getTerritorioDto().getCodTerritorio();
 		String codOficinaUsr = sessionMBean.getCodOficina();
 		String codIdUsuario = sessionMBean.getRegistro();
 		String codIdSolicitante = getSolicitudDto().getResponsableSolicitante();
@@ -395,11 +396,19 @@ public class OficinaSolicitudDto implements Serializable {
 		return result;
 	}
 	
-	public Date getEnvioGestionFile() {
+	public Date getFechaEnvioGestionFile() {
+		return fechaEnvioGestionFile;
+	}
+
+	public void setFechaEnvioGestionFile(Date fechaEnvioGestionFile) {
+		this.fechaEnvioGestionFile = fechaEnvioGestionFile;
+	}
+	
+	public BigDecimal getEnvioGestionFile() {
 		return envioGestionFile;
 	}
 
-	public void setEnvioGestionFile(Date envioGestionFile) {
+	public void setEnvioGestionFile(BigDecimal envioGestionFile) {
 		this.envioGestionFile = envioGestionFile;
 	}
 
@@ -416,8 +425,7 @@ public class OficinaSolicitudDto implements Serializable {
 					if (o1.getOficinaDto().getTerritorioDto() == null) {
 						tipoOficina1 += "0000";
 					} else {
-						tipoOficina1 += o1.getOficinaDto().getTerritorioDto()
-								.getCodTerritorio();
+						tipoOficina1 += o1.getOficinaDto().getTerritorioDto().getCodTerritorio();
 					}
 					if (o1.getOficinaDto().getCodOficina() == null) {
 						tipoOficina1 += "0000";
@@ -433,8 +441,7 @@ public class OficinaSolicitudDto implements Serializable {
 					if (o2.getOficinaDto().getTerritorioDto() == null) {
 						tipoOficina2 += "0000";
 					} else {
-						tipoOficina2 += o2.getOficinaDto().getTerritorioDto()
-								.getCodTerritorio();
+						tipoOficina2 += o2.getOficinaDto().getTerritorioDto().getCodTerritorio();
 					}
 					if (o2.getOficinaDto().getCodOficina() == null) {
 						tipoOficina2 += "0000";

@@ -941,14 +941,7 @@ public class SolicitudMBean extends GenericMBean {
 			
 			//Enviamos correo si y solo sí se aprueba o se rechaza la solicitud
 			if (estadoSolicitud.equals(1017L) || estadoSolicitud.equals(1018L)) {
-				try {
-					for (OficinaSolicitudDto os : this.dto.getListaOficinasSolicitud()) {
-						if(os.getEstadoEvaluacion() != null && os.getEnvioGestionFile() != null) {
-							os.setEnvioGestionFile(new Date());
-							this.bo.editarOficinaSolicitud(os);
-						}
-					}
-					
+				try {					
 					EstadoSolicitudDto es = new EstadoSolicitudDto();
 					es.setEstadoDto(ApplicationHelper.obtenerParametroPorId(estadoSolicitud));
 					es.setFecha(Utilitarios.Fecha.obtenerFechaActualDate());
@@ -972,7 +965,6 @@ public class SolicitudMBean extends GenericMBean {
 				
 				try {
 					gestionCorreo.lanzarTipoCorreo(solicitudDto, TipoCorreoEnum.RECHAZO_APROBACION, null);
-					gestionCorreo.lanzarTipoCorreo(solicitudDto, TipoCorreoEnum.GESTION_FILE, null);
 					showMessage("SOLICITUD EVALUADA DE MANERA SATISFACTORIA");
 				} catch (Exception e) {
 					logger.error("", e);
@@ -980,7 +972,24 @@ public class SolicitudMBean extends GenericMBean {
 				}
 			}
 			
-		}		
+		}
+		
+		if((solicitudDto.getTramiteSolicitudDto().getId().equals(1017L) || solicitudDto.getTramiteSolicitudDto().getId().equals(1020L)) && (estadoSolicitud.equals(1017L) || estadoSolicitud.equals(1016L))) {
+			try {
+				for (OficinaSolicitudDto os : this.dto.getListaOficinasSolicitud()) {
+					if(os.getEstadoEvaluacion() != null && os.getEnvioGestionFile() == null) {
+						os.setEnvioGestionFile(BigDecimal.ONE);
+						this.bo.editarOficinaSolicitud(os);
+					}
+				}
+				
+				gestionCorreo.lanzarTipoCorreo(solicitudDto, TipoCorreoEnum.GESTION_FILE, null);
+				showMessage("SE ESTA ENVIANDO LA LISTA DE CONTRATOS APROBADOS A GESTIÓN DE FILES");
+			} catch (Exception e) {
+				logger.error("", e);
+				showWarning("NO SE HA PODIDO ENVIAR LA LISTA DE CONTRATOS APROBADOS A GESTION DE FILES");
+			}
+		}
 	}
 
 	// Validamos si ya existe una oficinaOficina en la solicitud
@@ -1807,6 +1816,16 @@ public class SolicitudMBean extends GenericMBean {
 	}
 	
 	public void setAplicaAjusteBonificacion(boolean aplicaAjusteBonificacion) {
+		this.dto.setAjusteComentarios("");
+		this.dto.setAjusteOtros(false);
+		this.dto.setAjusteVentaUltimo(false);
+		this.dto.setAjusteFormaGrupo(false);
+		
+		this.dto.setBonificacionComentarios("");
+		this.dto.setBonificacionOtros(false);
+		this.dto.setBonificacion2(false);
+		this.dto.setBonificacionNoExcede7Dias(false);
+		
 		this.aplicaAjusteBonificacion = aplicaAjusteBonificacion;
 	}
 }
