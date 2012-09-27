@@ -1,6 +1,5 @@
 package com.indra.pe.bbva.core.util;
 
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -17,11 +16,14 @@ import java.security.spec.KeySpec;
 import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -67,6 +69,38 @@ public class Utilitarios {
 	private static String[] meses = {"", "Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre" };
 
     public static class General {
+
+    	public static Map<String, String> orderForKeysDesc(Map<String, String> map) {
+    		Map newMap = new LinkedHashMap<String, String>();
+			ArrayList values = new ArrayList(map.keySet());
+			Collections.sort(values, Collections.reverseOrder());
+			Iterator<String> it = values.iterator();
+			String tmp = "";
+			while(it.hasNext()) {
+				tmp = it.next();
+				for(Map.Entry k : map.entrySet()) {
+					if(tmp.equalsIgnoreCase(k.getKey().toString()))
+					{newMap.put(k.getKey(), k.getValue());}
+				}
+			}
+			return newMap;
+		}
+    	
+    	public static Map<String, String> orderForKeys(Map<String, String> map) {
+    		Map newMap = new LinkedHashMap<String, String>();
+			ArrayList values = new ArrayList(map.keySet());
+			Collections.sort(values);
+			Iterator<String> it = values.iterator();
+			String tmp = "";
+			while(it.hasNext()) {
+				tmp = it.next();
+				for(Map.Entry k : map.entrySet()) {
+					if(tmp.equalsIgnoreCase(k.getKey().toString()))
+					{newMap.put(k.getKey(), k.getValue());}
+				}
+			}
+			return newMap;
+		}
     	
         public static void ordena(List lista, final String propiedad) {
             Collections.sort(lista, new Comparator() {

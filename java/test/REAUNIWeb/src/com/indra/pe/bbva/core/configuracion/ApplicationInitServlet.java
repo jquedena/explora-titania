@@ -23,10 +23,6 @@ import com.indra.pe.bbva.reauni.util.Constantes;
 import com.indra.pe.bbva.reauni.view.helper.SessionHelper;
 import com.indra.pe.bbva.reauni.view.mbean.AplicacionMBean;
 
-/**
- * 
- * @author INDRA PERU SA
- */
 public class ApplicationInitServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -3125474794678604270L;

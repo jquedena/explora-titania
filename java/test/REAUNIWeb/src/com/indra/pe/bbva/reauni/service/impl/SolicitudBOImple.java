@@ -326,8 +326,7 @@ public class SolicitudBOImple implements SolicitudBO {
 			throws ServiceException {
 		boolean retorno = false;
 		try {
-			retorno = daoSolicitud.puedeCrearNuevaSolicitud(codigoCliente,
-					ofiReceptor, ofiCedente, codigoSolicitud);
+			retorno = daoSolicitud.puedeCrearNuevaSolicitud(codigoCliente, ofiReceptor, ofiCedente, codigoSolicitud);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}

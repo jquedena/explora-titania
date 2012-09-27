@@ -833,7 +833,7 @@ public class SolicitudMBean extends GenericMBean {
 						
 						this.bo.editarOficinaInvolucrado(this.oficinaInvolucradoDto);
 						
-						if(sessionMBean.getEsGerenteTerritorial() || this.dto.getResponsableSolicitante().equalsIgnoreCase(sessionMBean.getRegistro())) {
+						if(sessionMBean.getEsGerenteTerritorial() || this.oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("GTE") || this.oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("GR")) {
 							this.oficinaSolicitudDto.setFechaEvaluacion(Utilitarios.Fecha.obtenerFechaActualDate());
 							this.oficinaSolicitudDto.setUsuarioEvaluacion(this.sessionMBean.getRegistro());
 							this.bo.editarOficinaSolicitud(this.oficinaSolicitudDto);
@@ -993,11 +993,9 @@ public class SolicitudMBean extends GenericMBean {
 	}
 
 	// Validamos si ya existe una oficinaOficina en la solicitud
-	private OficinaSolicitudDto validarExisteOficinaSolicitud(
-			OficinaDto oficinaDto) {
+	private OficinaSolicitudDto validarExisteOficinaSolicitud(OficinaDto oficinaDto) {
 		for (OficinaSolicitudDto os : this.dto.getListaOficinasSolicitud()) {
-			if (os.getOficinaDto() != null
-					&& os.getOficinaDto().equals(oficinaDto)) {
+			if (os.getOficinaDto() != null && os.getOficinaDto().equals(oficinaDto)) {
 				return os;
 			}
 		}
