@@ -275,8 +275,7 @@ public class OficinaSolicitudDto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.indra.pe.bbva.reauni.entidad.OficinaSolicitudDto[ id=" + id
-				+ " ]";
+		return "com.indra.pe.bbva.reauni.entidad.OficinaSolicitudDto[ id=" + id + " ]";
 	}
 
 	public Boolean getRealizoVotoTerritorial() {
@@ -360,7 +359,7 @@ public class OficinaSolicitudDto implements Serializable {
 		if (!getSilencioAdministrativo()) {
 			int indexInvolucrado = buscarInvolucradoPorCargo(cargoTerritorio);
 
-			if (indexInvolucrado > 0 && indexInvolucrado < getListaInvolucrados().size()) {
+			if (indexInvolucrado >= 0 && indexInvolucrado < getListaInvolucrados().size()) {
 				OficinaInvolucradoDto o = getListaInvolucrados().get(indexInvolucrado);
 				realizoVoto = o.getRealizoVoto() ? 1 : 0;
 			} else {

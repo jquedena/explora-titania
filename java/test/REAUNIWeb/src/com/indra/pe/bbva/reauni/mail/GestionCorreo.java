@@ -1,6 +1,7 @@
 package com.indra.pe.bbva.reauni.mail;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -219,21 +220,20 @@ public class GestionCorreo {
 
 	public Correo obtenerCorreoRechazoAprobacion(SolicitudDto solicitudDto) {
 		int temp = 0;
-		String estado = "";
 		String codTerr = "";
+		String codOfic = "";
 		StringBuffer aux1 = new StringBuffer();
 		StringBuffer aux2 = new StringBuffer();
-		Map<String, String> listaInvolucrados = new HashMap<String, String>();
+		Map<String, String> listaTerritorios = new LinkedHashMap<String, String>();
+		Map<String, String> listaOficina = new LinkedHashMap<String, String>();
+		Map<String, String> listaInvolucrados = new LinkedHashMap<String, String>();
+		
 
 		for (OficinaSolicitudDto os : solicitudDto.getListaOficinasSolicitud()) {
-			if (os.getTipoOficinaDto().getId().compareTo(1031L) == 0) {
-				aux1.append("<b>");
-				aux1.append(os.getOficinaDto().getTerritorioDto().getDesTerritorio());
-				aux1.append(" - ");
-				aux1.append(os.getOficinaDto().getDesOficina());
-				aux1.append("</b>");
+			if (os.getTipoOficinaDto().getId().compareTo(1031L) == 0 || os.getTipoOficinaDto().getId().compareTo(1032L) == 0) {
 				for (OficinaInvolucradoDto oi : os.getListaInvolucrados()) {
 					if (oi.getEstadoDto().getId().compareTo(1034L) != 0) {
+						aux1 = new StringBuffer();
 						aux1.append(oi.getPerfil());
 						aux1.append(" : ");
 						aux1.append(oi.getInvolucradoDto().getRegistro());
@@ -241,54 +241,123 @@ public class GestionCorreo {
 						aux1.append(oi.getNombreCompleto());
 						aux1.append("(");
 						aux1.append(oi.getEstadoDto().getDescripcion());
-						if(oi.getEstadoDto().getId().compareTo(1018L) == 0) {
+						if(oi.getEstadoDto().getId().compareTo(1030L) == 0) {
 							aux1.append(",");
 							aux1.append(oi.getComentario().toUpperCase());
 						}
-						aux1.append(")<br>");
-						temp = 1;
-					}
-				}
-				if(temp != 1) {
-					aux1 = new StringBuffer();
-				}
-				aux2 = new StringBuffer();
-				aux2.append("1031_");
-				aux2.append(os.getOficinaDto().getTerritorioDto().getCodTerritorio());
-				listaInvolucrados.put(aux2.toString(), aux1.toString());
-			}
-			
-			if(os.getTipoOficinaDto().getId().compareTo(1032L) == 0) {
-				for (OficinaInvolucradoDto oi : os.getListaInvolucrados()) {
-					if (oi.getEstadoDto().getId().compareTo(1034L) != 0) {
-						if(!codTerr.equalsIgnoreCase(os.getOficinaDto().getTerritorioDto().getCodTerritorio())) {
-							aux1.append(os.getOficinaDto().getTerritorioDto().getDesTerritorio());
-							aux1.append("<br>&nbsp;&nbsp;&nbsp;");
-							aux1.append(oi.getPerfil());
-							aux1.append(oi.getPerfil());
-							
-							codTerr = os.getOficinaDto().getTerritorioDto().getCodTerritorio();
+						aux1.append(")");
+						
+						aux2 = new StringBuffer();
+						if(oi.getPerfil().equalsIgnoreCase("GTE") || oi.getPerfil().equalsIgnoreCase("GR")) {
+							aux2.append(os.getOficinaDto().getTerritorioDto().getCodTerritorio());
+						} else {
+							if(os.getTipoOficinaDto().getId().compareTo(1032L) == 0) {
+								aux2.append(os.getOficinaDto().getTerritorioDto().getCodTerritorio());
+							} else {
+								aux2.append(os.getOficinaDto().getCodOficina());
+							}
 						}
-
-						aux1.append(" - ");
-						aux1.append(os.getOficinaDto().getDesOficina());
-						aux1.append(oi.getPerfil());
-						aux1.append(" : ");
-						aux1.append(oi.getInvolucradoDto().getRegistro());
-						aux1.append(" - ");
-						aux1.append(oi.getNombreCompleto());
-						aux1.append("(");
-						aux1.append(oi.getEstadoDto().getDescripcion());
-						if(oi.getEstadoDto().getId().compareTo(1018L) == 0) {
-							aux1.append(",");
-							aux1.append(oi.getComentario().toUpperCase());
-						}
-						aux1.append(")<br>");
+						aux2.append("_");
+						aux2.append(os.getTipoOficinaDto().getId());
+						aux2.append("_");
+						aux2.append(oi.getOrden());
+						listaInvolucrados.put(aux2.toString(), aux1.toString());
+						
+						// Hasta encontrarle un mejor lugar
+						codTerr = os.getOficinaDto().getTerritorioDto().getCodTerritorio();
+						aux2 = new StringBuffer();
+						aux2.append(os.getTipoOficinaDto().getId());
+						aux2.append("_");
+						aux2.append(codTerr);
+						listaTerritorios.put(aux2.toString(), os.getOficinaDto().getTerritorioDto().getDesTerritorio());
+						
+						aux2 = new StringBuffer();
+						aux2.append(os.getTipoOficinaDto().getId());
+						aux2.append("_");
+						aux2.append(codTerr);
+						aux2.append("_");
+						aux2.append(os.getOficinaDto().getCodOficina());
+						listaOficina.put(aux2.toString(), os.getOficinaDto().getDesOficina());	
 					}
 				}
 			}
 		}
 
+		listaTerritorios = Utilitarios.General.orderForKeysDesc(listaTerritorios);
+		listaOficina = Utilitarios.General.orderForKeys(listaOficina);
+		listaInvolucrados = Utilitarios.General.orderForKeys(listaInvolucrados);
+		
+		// logger.info(listaTerritorios);
+		// logger.info(listaOficina);
+		// logger.info(listaInvolucrados);
+		
+		aux1 = new StringBuffer();
+		temp = 0;
+		for(Map.Entry<String, String> k0 : listaTerritorios.entrySet()) {
+			if(k0.getKey().indexOf("1032") > -1) {
+				aux1.append("Oficina Receptora:  <br>");
+			} else {
+				if(temp == 0) {
+					aux1.append("Oficinas Cedentes: <br>");
+					temp = 1;
+				}
+			}
+			aux1.append("<b>");
+			aux1.append(k0.getValue());
+			aux1.append("</b>");
+
+			if(temp == 1) {
+				aux1.append("<br>"); // &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			}
+			
+			codTerr = k0.getKey().substring(5);
+			
+			if(k0.getKey().indexOf("1031") > -1) {
+				for(Map.Entry<String, String> k2 : listaInvolucrados.entrySet()) {
+					if(k2.getKey().indexOf(codTerr + "_1031") > -1) {
+						// aux1.append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+						aux1.append("<b>");
+						aux1.append(k2.getValue());
+						aux1.append("</b><br>");
+					}
+				}
+			}
+			
+			for(Map.Entry<String, String> k1 : listaOficina.entrySet()) {
+				if((k1.getKey().indexOf(codTerr) > -1) && ((temp == 0 && k1.getKey().indexOf("1032") > -1) || temp == 1)) {
+					if(temp == 0) {
+						aux1.append(" - ");
+					}
+					aux1.append("<b>");
+					aux1.append(k1.getValue());
+					
+					codOfic = k1.getKey().substring(10);
+					for(Map.Entry<String, String> k2 : listaInvolucrados.entrySet()) {
+						if(k2.getKey().indexOf(codOfic) > -1) {
+							aux1.append(" : ");
+							aux1.append(k2.getValue());
+						}
+					}
+					
+					aux1.append("</b><br>");
+				}
+			}
+			
+			if(k0.getKey().indexOf("1032") > -1) {
+				for(Map.Entry<String, String> k2 : listaInvolucrados.entrySet()) {
+					if(k2.getKey().indexOf(codTerr + "_1032") > -1) {
+						// aux1.append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+						aux1.append("<b>");
+						aux1.append(k2.getValue());
+						aux1.append("</b><br>");
+					}
+				}
+			}
+			
+			aux1.append("<br><br>");
+		}
+		
+		
 		Correo beanCorreo = new Correo();
 		beanCorreo.setAsunto(" " + solicitudDto.getTramiteSolicitudDto().getDescripcionCorta() + " DE SOLICITUD N° " + solicitudDto.getCodigoSolicitud());
 		beanCorreo.setMensaje(" Estimados Sres,<br>"

@@ -92,16 +92,13 @@
 						size="60">
 						<f:ajax />
 					</p:inputText>
-				</p:column>
-				<p:column>
-					<!-- oficinaSolicitudDto.tipoOficinaDto.id!=1033 &amp;&amp; -->
 					<p:commandButton title="GUARDAR EVALUACION"
 						disabled="#{solicitudMBean.bloquearControles || oficinaSolicitudDto.realizoVotoTerritorial || ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
 						rendered="#{(sessionMBean.registro==solicitudMBean.dto.responsableSolicitante || sessionMBean.registro==solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; !oficinaSolicitudDto.silencioAdministrativo &amp;&amp; !(solicitudMBean.dto.tramiteSolicitudDto.id==1015 || solicitudMBean.dto.tramiteSolicitudDto.id==1021)}"
 						value="GUARDAR EVALUACION"
 						onclick="return confirm('ESTÁ SEGURO QUE DESEA GUARDAR LA EVALUACIÓN?');"
 						ajax="true"
-						immediate="true"
+						immediate="false"
 						onstart="statusDialog.show();"
 						onsuccess="statusDialog.hide();"
 						update="pgEvaluacionesSolicitud"
@@ -109,6 +106,7 @@
 							<f:setPropertyActionListener value="#{solicitudInvolucradoDto}" target="#{solicitudMBean.oficinaInvolucradoDto}" />
 							<f:setPropertyActionListener value="#{oficinaSolicitudDto}" target="#{solicitudMBean.oficinaSolicitudDto}" />
 					</p:commandButton>
+					<!-- oficinaSolicitudDto.tipoOficinaDto.id!=1033 &amp;&amp; -->					
 				</p:column>
 			</p:dataTable>
 			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"/>

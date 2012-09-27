@@ -43,6 +43,12 @@
     </servlet>
     
     <servlet>
+        <display-name>CerrarSesion</display-name>
+        <servlet-name>CerrarSesion</servlet-name>
+        <servlet-class>com.indra.pe.bbva.core.ldap.acceso.CerrarSesionServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
         <servlet-name>ApplicationInitServlet</servlet-name>
         <servlet-class>com.indra.pe.bbva.core.configuracion.ApplicationInitServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
@@ -57,6 +63,11 @@
 	<servlet-mapping>
         <servlet-name>ActionValidarAcceso</servlet-name>
         <url-pattern>/ActionValidarAcceso.do</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/CerrarSesion.do</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>

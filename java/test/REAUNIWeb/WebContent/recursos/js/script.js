@@ -231,7 +231,20 @@ function fn_DisableCopyPaste() {
 	}
 }
 
+function obtenerContexto(){
+	url = document.URL;
+	tmp = url.split("REAUNIWeb");
+	return tmp[0] + "REAUNIWeb/";
+}
+
 function cerrar() {
-	opener = null;
-	window.close();
+	$.ajax({
+		url: obtenerContexto() + 'CerrarSesion.do',
+		success: function(data) {
+			window.open(obtenerContexto() + "ActionValidarAcceso.do", "_self");
+		},
+		error: function(data) {
+			alert("No se pudo cerrar la sesión.");
+		}
+	});
 }

@@ -324,7 +324,7 @@ public class DAOSolicitudImple extends DAOGenericoImpl<SolicitudDto> implements
 		
 		String query = "select e from SolicitudDto e, OficinaSolicitudDto os where os.solicitudDto.id=e.id and os.tipoOficinaDto.id=1031 " +
 				"and e.codigoCliente = '"+codigoCliente+"' and e.oficinaReceptorDto.id='"+ofiReceptor+"' and os.oficinaDto.id = '" +ofiCedente+"' " +
-				"and e.tramiteSolicitudDto.id not in (1018,1022) and e.id!="+codigoSolicitud;		
+				"and e.tramiteSolicitudDto.id not in (1018,1022,1021) and e.id!="+codigoSolicitud;		
 		Session session = getSession();
 		Query q = session.createQuery(query);
 		
