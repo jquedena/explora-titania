@@ -21,6 +21,7 @@ import com.indra.pe.bbva.reauni.model.entidad.OficinaSolicitudDto;
 import com.indra.pe.bbva.reauni.model.entidad.SolicitudDto;
 import com.indra.pe.bbva.reauni.view.helper.ApplicationHelper;
 import com.indra.pe.bbva.reauni.view.helper.SessionHelper;
+import com.indra.pe.bbva.reauni.view.mbean.SessionMBean;
 
 @SuppressWarnings({"rawtypes", "unused"})
 @Service("gestionCorreo")
@@ -67,6 +68,12 @@ public class GestionCorreo {
 			correoElectronico = new CorreoElectronico();
 			correoElectronico.enviar(obtenerCorreoGestionFileCourier(solicitudDto));
 			break;
+		case ANULACION_GESTION_FILE:
+			if(getFechaAprobacionRechazo(solicitudDto).length() > 0) {
+				correoElectronico = new CorreoElectronico();
+				correoElectronico.enviar(obtenerCorreoAnulacionGestionFileCourier(solicitudDto));
+			}
+			break;
 		}
 	}
 
@@ -83,6 +90,23 @@ public class GestionCorreo {
 		return beanCorreo;
 	}
 
+	public Correo obtenerCorreoAnulacionGestionFileCourier(SolicitudDto s) {		
+		String email = "";
+		if (ApplicationHelper.obtenerParametroPorId(1082L) != null) {
+			email = ApplicationHelper.obtenerParametroPorId(1082L).getValorCadena();
+		}
+				
+		Correo beanCorreo = new Correo();
+		beanCorreo.setListaTo(email);
+		beanCorreo.setAsunto(" Gestión de Files – Solicitud N° " + s.getCodigoSolicitud() + " Anulada ");
+		beanCorreo.setMensaje(" Estimados,<br>"
+		+ " La solicitud N° " + s.getCodigoSolicitud() + " fue anulada el " + getFechaAnulacion(s)
+		+ " por el solicitante, por lo cual se les pide cancelar el traslado de file.<br>"
+		+ " Saludos Cordiales,<br> " + " DESARROLLO COMERCIAL");
+		
+		return beanCorreo;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public Correo obtenerCorreoGestionFileCourier(SolicitudDto s) {
 
@@ -126,7 +150,7 @@ public class GestionCorreo {
 		List listaContratos = null;
 		try {
 			listaContratos = getDaoTarea().ejecutarSQL(sql);
-			getDaoTarea().executeProcedure("update reauni.treauni_oficina_solicitud set fecha_envio_gestion_file=sysdate where id = '" + s.getId() + "' and envio_gestion_file=1 and fecha_envio_gestion_file is null");
+			getDaoTarea().executeProcedure("update reauni.treauni_oficina_solicitud set fecha_envio_gestion_file=sysdate where solicitud = '" + s.getId() + "' and envio_gestion_file=1 and fecha_envio_gestion_file is null");
 			beanCorreo.setMensajeAdjuntoExcel(FormatoMensajeCorreo.formatoCorreoResumen(listaContratos, Constantes.CABECERA_REPORTE_GESTION_FILES, "Contratos"));
 		} catch (DAOException e) {
 			logger.error("Generando lista de contratos para la Gestion de Files", e);
@@ -404,10 +428,18 @@ public class GestionCorreo {
 		return fecha;
 	}
 	
-	public Correo obtenerCorreoSilencioAdministrativoBatch(SolicitudDto s) {
-		
-		
-		
+	private String getFechaAnulacion(SolicitudDto s) {
+		String fecha = "";
+		for(EstadoSolicitudDto e : s.getListaEstados()) {
+			if(e.getEstadoDto().getId().compareTo(1022L) == 0) {
+				fecha = FormatoMensajeCorreo.formatoFecha.format(e.getFecha());
+				break;
+			}
+		}
+		return fecha;
+	}
+	
+	public Correo obtenerCorreoSilencioAdministrativoBatch(SolicitudDto s) {		
 		Correo beanCorreo = new Correo();
 		beanCorreo.setAsunto("SOLICITUD APROBADA POR SILENCIO ADMINISTRATIVO N° " + s.getCodigoSolicitud());
 		beanCorreo.setMensaje("Estimados,<br/>La solicitud N° " + s.getCodigoSolicitud()+ " fue aprobada el " + getFechaAprobacionRechazo(s) + " por Silencio Administrativo. ");
@@ -429,6 +461,7 @@ public class GestionCorreo {
 	 */
 	public Correo obtenerCorreoContratosObservados(SolicitudDto solicitudDto,
 			ContratoDto contratoDto) {
+		SessionMBean sessionMBean = (SessionMBean) WebServletContextListener.getApplicationContext().getBean("sessionMBean");
 		Correo beanCorreo = new Correo();
 		beanCorreo.setAsunto(" Contrato Observado "
 				+ contratoDto.getCodigoContrato() + " ("
@@ -436,6 +469,7 @@ public class GestionCorreo {
 		beanCorreo.setMensaje(" Estimado Sr/Sra, <br> El contrato de la referencia no pudo ser procesado por el siguiente motivo : "
 						+ contratoDto.getComentarioEstado()
 						+ " <br><br><br>  Saludos Coordiales <br> OPERACIONES CENTRALIZADAS");
+		beanCorreo.setEmailFrom(sessionMBean.getEmail());
 		beanCorreo.setListaTo(solicitudDto.getEmailSolicitante());
 		String email_operaciones = ApplicationHelper.obtenerParametroPorId(1055L).getValorCadena();
 		if (email_operaciones != null && !email_operaciones.equals("")) {

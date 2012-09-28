@@ -358,6 +358,7 @@ public class SolicitudMBean extends GenericMBean {
 	}
 	
 	public void cambioCliente(SelectEvent event) {
+		logger.error("Test ->" + this.dto.getCodigoCliente());
 		if(event.getObject() != null) {
 			String o = (String) event.getObject();
 			this.dto.setCodigoCliente(o);
@@ -1138,25 +1139,30 @@ public class SolicitudMBean extends GenericMBean {
 	public String anular() {
 		String to = null;
 		try {
-			this.dto.setUsuarioModificacion(sessionMBean.getRegistro());
-			this.dto.setFechaModificacion(Utilitarios.Fecha
-					.obtenerFechaActualDate());
-			this.dto.setTramiteSolicitudDto(ApplicationHelper
-					.obtenerParametroPorId(1022L));
-
-			EstadoSolicitudDto es = new EstadoSolicitudDto();
-			es.setEstadoDto(this.dto.getTramiteSolicitudDto());
-			es.setFecha(Utilitarios.Fecha.obtenerFechaActualDate());
-
-			es.setSolicitudDto(this.dto);
-			es.setUsuario(this.sessionMBean.getRegistro());
-			es.setUsuarioDto(this.sessionMBean.getUsuarioLdapSesion());
-			es.setComentario("ANULACION DE LA SOLICITUD");
-			this.dto.getListaEstados().add(es);
-
-			this.bo.editar(this.dto);
-
-			showMessage("SOLICITUD ANULADA SATISFACTORIAMENTE");
+			if(this.bo.existenContratos(this.dto.getId()) == 0) {
+				this.dto.setUsuarioModificacion(sessionMBean.getRegistro());
+				this.dto.setFechaModificacion(Utilitarios.Fecha.obtenerFechaActualDate());
+				this.dto.setTramiteSolicitudDto(ApplicationHelper.obtenerParametroPorId(1022L));
+	
+				EstadoSolicitudDto es = new EstadoSolicitudDto();
+				es.setEstadoDto(this.dto.getTramiteSolicitudDto());
+				es.setFecha(Utilitarios.Fecha.obtenerFechaActualDate());
+	
+				es.setSolicitudDto(this.dto);
+				es.setUsuario(this.sessionMBean.getRegistro());
+				es.setUsuarioDto(this.sessionMBean.getUsuarioLdapSesion());
+				es.setComentario("ANULACION DE LA SOLICITUD");
+				this.dto.getListaEstados().add(es);
+	
+				this.bo.editar(this.dto);
+	
+				gestionCorreo.lanzarTipoCorreo(this.dto, TipoCorreoEnum.ANULACION_GESTION_FILE, null);
+				
+				showMessage("SOLICITUD ANULADA SATISFACTORIAMENTE");
+			} else {
+				showWarning("NO SE PUEDE ANULAR LA SOLICITUD, EXISTEN CONTRATOS PROCESADOS");
+			}
+			
 			to = retroceder();
 		} catch (Exception ex) {
 			logger.error(ex);
@@ -1171,37 +1177,41 @@ public class SolicitudMBean extends GenericMBean {
 		String to = null;
 		
 		try {
-			this.dto.setUsuarioModificacion(sessionMBean.getRegistro());
-			this.dto.setFechaModificacion(Utilitarios.Fecha.obtenerFechaActualDate());
-			this.dto.setTramiteSolicitudDto(ApplicationHelper.obtenerParametroPorId(1016L));
-
-			EstadoSolicitudDto es = new EstadoSolicitudDto();
-			es.setEstadoDto(this.dto.getTramiteSolicitudDto());
-			es.setFecha(Utilitarios.Fecha.obtenerFechaActualDate());			
-
-			es.setSolicitudDto(this.dto);
-			es.setUsuario(this.sessionMBean.getRegistro());
-			es.setUsuarioDto(this.sessionMBean.getUsuarioLdapSesion());
-			es.setComentario("REEVALUACIÓN DE LA SOLICITUD");
-			
-			for(OficinaSolicitudDto os:this.dto.getListaOficinasSolicitud()) {
-				os.setEstadoEvaluacion(null);
-				os.setEstadoAprobacionAjuBonDto(ApplicationHelper.obtenerParametroPorId(1034L));
-				os.setFechaEvaluacion(null);				
-				os.setSilencioAdministrativo(Boolean.FALSE);
-				os.setHabilitarEvaluacion(Boolean.TRUE);	
+			if(this.bo.existenContratos(this.dto.getId()) == 0 && this.bo.validarContratos(this.dto.getId()) == 0) {
+				this.dto.setUsuarioModificacion(sessionMBean.getRegistro());
+				this.dto.setFechaModificacion(Utilitarios.Fecha.obtenerFechaActualDate());
+				this.dto.setTramiteSolicitudDto(ApplicationHelper.obtenerParametroPorId(1016L));
+	
+				EstadoSolicitudDto es = new EstadoSolicitudDto();
+				es.setEstadoDto(this.dto.getTramiteSolicitudDto());
+				es.setFecha(Utilitarios.Fecha.obtenerFechaActualDate());			
+	
+				es.setSolicitudDto(this.dto);
+				es.setUsuario(this.sessionMBean.getRegistro());
+				es.setUsuarioDto(this.sessionMBean.getUsuarioLdapSesion());
+				es.setComentario("REEVALUACIÓN DE LA SOLICITUD");
 				
-				for (OficinaInvolucradoDto oi : os.getListaInvolucrados()) {
-					oi.setEstadoDto(ApplicationHelper.obtenerParametroPorId(1034L));
-					oi.setComentario(null);
-					oi.setFecha(null);
-				}
-			}			
-			this.dto.getListaEstados().add(es);
-
-			this.bo.editar(this.dto);
-
-			showMessage("SOLICITUD REEVALUADA SATISFACTORIAMENTE");
+				for(OficinaSolicitudDto os:this.dto.getListaOficinasSolicitud()) {
+					os.setEstadoEvaluacion(null);
+					os.setEstadoAprobacionAjuBonDto(ApplicationHelper.obtenerParametroPorId(1034L));
+					os.setFechaEvaluacion(null);				
+					os.setSilencioAdministrativo(Boolean.FALSE);
+					os.setHabilitarEvaluacion(Boolean.TRUE);	
+					
+					for (OficinaInvolucradoDto oi : os.getListaInvolucrados()) {
+						oi.setEstadoDto(ApplicationHelper.obtenerParametroPorId(1034L));
+						oi.setComentario(null);
+						oi.setFecha(null);
+					}
+				}			
+				this.dto.getListaEstados().add(es);
+	
+				this.bo.editar(this.dto);
+	
+				showMessage("SOLICITUD REEVALUADA SATISFACTORIAMENTE");
+			} else {
+				showMessage("NO SE PUEDE REEVALUAR LA SOLICITUD, EXISTE UN PROCESO INICIADO PARA ALGUN CONTRATO");
+			}
 			to = retroceder();
 		} catch (Exception ex) {
 			logger.error(ex);

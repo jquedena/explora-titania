@@ -9,7 +9,8 @@ public enum TipoCorreoEnum {
 	NO_RECEPCION_FILE,
 	PROCESAMIENTO_CORREO,
 	CONTRATO_OBSERVADO,
-	GESTION_FILE;
+	GESTION_FILE,
+	ANULACION_GESTION_FILE;
 	
 	public static TipoCorreoEnum getTipoCorreoEnum(int index){
 		switch(index){
@@ -29,6 +30,8 @@ public enum TipoCorreoEnum {
 					return TipoCorreoEnum.CONTRATO_OBSERVADO;
 			case 8:
 					return TipoCorreoEnum.GESTION_FILE;
+			case 9:
+					return TipoCorreoEnum.ANULACION_GESTION_FILE;
 		default:
 			throw new RuntimeException("index desconocido " + index);	
 		}

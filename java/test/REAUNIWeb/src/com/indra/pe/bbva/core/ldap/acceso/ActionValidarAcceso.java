@@ -15,7 +15,6 @@ import com.grupobbva.bc.per.tele.seguridad.ServiciosSeguridadBbva;
 import com.indra.pe.bbva.core.configuracion.WebServletContextListener;
 import com.indra.pe.bbva.core.util.Utilitarios;
 import com.indra.pe.bbva.ldap.service.LdapService;
-import com.indra.pe.bbva.ldap2db.IIWXPeUsuario;
 import com.indra.pe.bbva.reauni.model.entidad.OficinaDto;
 import com.indra.pe.bbva.reauni.model.entidad.OperacionCentralizadaDto;
 import com.indra.pe.bbva.reauni.model.entidad.PermisoPerfilDto;
@@ -24,10 +23,6 @@ import com.indra.pe.bbva.reauni.service.OperacionesCentralesBO;
 import com.indra.pe.bbva.reauni.service.PermisoPerfilBO;
 import com.indra.pe.bbva.reauni.view.mbean.SessionMBean;
 
-/**
- * 
- * @author INDRA PERU SA
- */
 public class ActionValidarAcceso extends HttpServlet implements Servlet {
 
 	private static final long serialVersionUID = 2692392374210259330L;
@@ -65,7 +60,8 @@ public class ActionValidarAcceso extends HttpServlet implements Servlet {
 			try {
 				iildPeUsuario = IILDPeUsuario.recuperarUsuario(reg);
 			} catch(Exception ex) {
-				iildPeUsuario = IIWXPeUsuario.recuperarUsuario(reg);
+				logger.error("LDAP2", ex);
+				// iildPeUsuario = IIWXPeUsuario.recuperarUsuario(reg);
 			}
 			
 			if (iildPeUsuario != null) {
@@ -87,6 +83,7 @@ public class ActionValidarAcceso extends HttpServlet implements Servlet {
 					sessionMBean.setPerfilDto(permisoPerfilDto.getPerfil());
 					sessionMBean.setCodOficina(iildPeUsuario.getBancoOficina().getCodigo());
 					sessionMBean.setDesOficina(iildPeUsuario.getBancoOficina().getDescripcion());
+					sessionMBean.setEmail(iildPeUsuario.getEmail());
 
 					// Obteniendo el territorio de la oficina
 					OficinaBO oficinaBO = (OficinaBO) WebServletContextListener.getApplicationContext().getBean("oficinaBO");

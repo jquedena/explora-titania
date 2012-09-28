@@ -34,24 +34,31 @@ public interface SolicitudBO {
 	
 	public void guardarContratos(List<ContratoDto> listaContratos) throws ServiceException;
 	
-	public void guardarContrato(ContratoDto contratoDto)
-	throws ServiceException;
+	public void guardarContrato(ContratoDto contratoDto) throws ServiceException;
 
 	public void insertarOficinaSolicitud(OficinaSolicitudDto os) throws ServiceException;
 	
 	public void insertarEstado(EstadoSolicitudDto estado) throws ServiceException;
+	
 	public void editarEstado(EstadoSolicitudDto estado) throws ServiceException;
 	
-	public void actualizarOficinaInvolucrado(Long idOficinaInvolucrado,
-			Long estado, Date fecha, String comentario) throws ServiceException;
+	public void actualizarOficinaInvolucrado(Long idOficinaInvolucrado,	Long estado, Date fecha, String comentario) throws ServiceException;
+	
 	public void cambiarEstadoOficinaSolicitud (Long idOficinaSolicitud, Boolean estado) throws ServiceException;
+	
 	public void editarOficinaInvolucrado (OficinaInvolucradoDto oi) throws ServiceException;
+	
 	public void insertarOficinaInvolucrado (OficinaInvolucradoDto oi) throws ServiceException;
 	
 	public void editarOficinaSolicitud(OficinaSolicitudDto os) throws ServiceException;
 	
 	public OficinaSolicitudDto obtenerOficinaSolicitud(Long id) throws ServiceException;
+	
 	public boolean puedeCrearNuevaSolicitud (String codigoCliente, String ofiReceptor, String ofiSolicitante, Long codigoSolicitud)throws ServiceException;
 	
 	public SolicitudDto obtenerSolicitud(ContratoDto contrato);
+	
+	public int existenContratos(Long id);
+	
+	public int validarContratos(Long id);
 }
