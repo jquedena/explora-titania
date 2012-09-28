@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -26,11 +27,13 @@ import com.indra.pe.bbva.reauni.model.entidad.SolicitudDto;
 import com.indra.pe.bbva.reauni.service.SolicitudBO;
 import com.indra.pe.bbva.reauni.view.mbean.SessionMBean;
 
+@SuppressWarnings("rawtypes")
 @Service("solicitudBO")
 @Transactional
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class SolicitudBOImple implements SolicitudBO {
-
+	private static Logger logger = Logger.getLogger(SolicitudBOImple.class);
+	
 	@Autowired
 	@Qualifier("daoGenerico")
 	private DAOGenerico<SolicitudDto> dao;
@@ -309,8 +312,7 @@ public class SolicitudBOImple implements SolicitudBO {
 	public void actualizarOficinaInvolucrado(Long idOficinaInvolucrado,
 			Long estado, Date fecha, String comentario) throws ServiceException {
 		try {
-			daoOficinaSolicitud
-					.ejecutarSQL("UPDATE REAUNI.TREAUNI_OFICINA_INVOLUCRADO SET ESTADO="
+			daoOficinaSolicitud.ejecutarSQL("UPDATE REAUNI.TREAUNI_OFICINA_INVOLUCRADO SET ESTADO="
 							+ estado
 							+ " comentario = '"
 							+ comentario
@@ -337,5 +339,40 @@ public class SolicitudBOImple implements SolicitudBO {
 	@Override
 	public SolicitudDto obtenerSolicitud(ContratoDto contrato) {
 		return daoSolicitud.obtenerSolicitud(contrato);
+	}
+
+	@Override
+	public int existenContratos(Long id) {
+		int count = -1;
+		String query = "select count(1) from reauni.treauni_contrato a "
+			+ "inner join reauni.treauni_oficina_solicitud b on a.oficina_solicitud=b.id "
+			+ "where a.estado<>1037 and b.solicitud=" + id;
+		try {
+			List result = daoOficinaSolicitud.ejecutarSQL(query);
+			if(result != null && result.size() > 0) {
+				count = Integer.parseInt(result.get(0).toString());
+			}
+		} catch (DAOException e) {
+			logger.error("existenContratos", e);
+		}
+		return count;
+	}
+
+	@Override
+	public int validarContratos(Long id) {
+		int count = -1;
+		String query = "select count(1) from reauni.vreauni_gestion_files s "
+			+ "where s.id<>" + id + " and s.codigo_contrato not in( "
+			+ "select t.codigo_contrato from reauni.vreauni_gestion_files t " 
+			+ "where t.id=" + id + " and t.tramite_solicitud=1018 ) and s.tramite_solicitud not in (1018, 1022, 1021)";
+		try {
+			List result = daoOficinaSolicitud.ejecutarSQL(query);
+			if(result != null && result.size() > 0) {
+				count = Integer.parseInt(result.get(0).toString());
+			}
+		} catch (DAOException e) {
+			logger.error("existenContratos", e);
+		}
+		return count;
 	}
 }

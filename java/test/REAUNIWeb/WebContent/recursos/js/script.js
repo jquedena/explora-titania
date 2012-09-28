@@ -241,10 +241,11 @@ function cerrar() {
 	$.ajax({
 		url: obtenerContexto() + 'CerrarSesion.do',
 		success: function(data) {
-			window.open(obtenerContexto() + "ActionValidarAcceso.do", "_self");
+			// window.open(obtenerContexto() + "ActionValidarAcceso.do", "_self");
+			window.close();
 		},
 		error: function(data) {
-			alert("No se pudo cerrar la sesión.");
+			alert("No se pudo cerrar la sesi\u00F3n.");
 		}
 	});
 }

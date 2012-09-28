@@ -22,6 +22,7 @@ public class SessionMBean {
 	private String desOficina;
 	private String codTerritorio;
 	private String desTerritorio;
+	private String email;
 	
 	private List<OperacionCentralizadaDto> productosOperacionesCentralizadas;
 	private Boolean fechaCorte;
@@ -69,6 +70,14 @@ public class SessionMBean {
 	public String titulo;
 	
 	public SessionMBean() {
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getCodCargo() {
@@ -158,7 +167,6 @@ public class SessionMBean {
 	public void setCodOficina(String codOficina) {
 		this.codOficina = codOficina;
 	}
- 
 
 	public String getDesOficina() {
 		return desOficina;

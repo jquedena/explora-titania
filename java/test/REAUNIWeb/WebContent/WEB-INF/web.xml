@@ -45,7 +45,7 @@
     <servlet>
         <display-name>CerrarSesion</display-name>
         <servlet-name>CerrarSesion</servlet-name>
-        <servlet-class>com.indra.pe.bbva.core.ldap.acceso.CerrarSesionServlet</servlet-class>
+        <servlet-class>com.indra.pe.bbva.core.configuracion.CerrarSesionServlet</servlet-class>
     </servlet>
     
     <servlet>
