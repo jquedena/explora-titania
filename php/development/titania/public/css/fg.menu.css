@@ -9,7 +9,7 @@
 .hidden { position:absolute; top:0; left:-9999px; width:1px; height:1px; overflow:hidden; }
 .fg-button { clear:left;  padding: .4em 1em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1; }
 .fg-button .ui-icon { position: absolute; top: 50%; margin-top: -8px; left: 50%; margin-left: -8px; }
-a.fg-button { float:left; font-family: Verdana,sans-serif; }
+a.fg-button { float:left; } /* font-family: Verdana,sans-serif; */
 button.fg-button { width:auto; overflow:visible; } /* removes extra button width in IE */
 
 .fg-button-icon-left { padding-left: 2.1em; }

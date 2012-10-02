@@ -1,5 +1,5 @@
-function procesarConsultaSubProceso(parameters, fnc) {
-    _post = $.post(path + "jqgrid/registrar", parameters);
+function procesarConsultaSubProceso(source, parameters, fnc) {
+    _post = $.post(path + "jqgrid/" + source, parameters);
 	
     _post.success(fnc);
 	
@@ -12,14 +12,21 @@ function procesarConsultaSubProceso(parameters, fnc) {
     });
 }
 
-function procesarConsulta(idPanel, idx, _options, parameters) {
-    procesarConsultaSubProceso(parameters, function(requestData){
+function procesarSeleccion(idPanel, idx, _options, parameters) {
+    procesarConsultaSubProceso('seleccionar', parameters, function(requestData){
         $("#" + idPanel).html(requestData);
         actualizarGrid(idx, _options);
     });
 }
 
-function actualizarGrid(id, _options){
+function procesarProcedimiento(idPanel, idx, _options, parameters) {
+    procesarConsultaSubProceso('registrar', parameters, function(requestData){
+        $("#" + idPanel).html(requestData);
+        actualizarGrid(idx, _options);
+    });
+}
+
+function actualizarGrid(id, _options, bindkeys){
     _url = path + "jqgrid/paginar?name=" + id;
     options = $.extend({
         url: _url,
@@ -31,11 +38,17 @@ function actualizarGrid(id, _options){
         pgtext: 'Pag: {0} de {1}',
         pager: "#p" + id,
         viewrecords: true,
-        loadonce: true
+        loadonce: true,
+        loadError : function(xhr,st,err) {
+            alert("Type: "+st+"; Response: "+ xhr.status + " " + xhr.statusText);
+            alert(err);
+        }
     }, _options);
     idx = "#" + id;
     $(idx).jqGrid(options);
-    // $(idx).jqGrid('bindKeys', {"onEnter":function( rowid ) { alert("You enter a row with id:"+rowid)} });
+    if(bindkeys != undefined || bindkeys != null) {
+        $(idx).jqGrid('bindKeys', bindkeys);
+    }
 }
 
 function inicializarGrid(id, _options){
@@ -205,5 +218,11 @@ $(function(){
         content: $("#itemMenu3").next().html(),
         showSpeed: 1,
         flyOut: true
+    });
+    $(".ui-text").on("blur", function(){
+        $(this).toggleClass("ui-text-highlight");
+    });
+    $(".ui-text").on("focus", function(){
+        $(this).toggleClass("ui-text-highlight");
     });
 });
