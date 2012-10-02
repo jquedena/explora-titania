@@ -3,6 +3,7 @@
 class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
 
     private $widthLayout = 1030;
+    private $heightLayout = 480;
 
     public function util() {
         return $this;
@@ -127,6 +128,15 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
         return ($this->widthLayout - $size) . "px";
     }
 
+    public function getHeightLayout() {
+        return $this->heightLayout;
+    }
+
+    public function getSubstractHeightLayout($size) {
+        return ($this->heightLayout - $size) . "px";
+    }
+
+        
     private function style($files) {
         $script = "\n";
         foreach ($files as $value) {

@@ -6,8 +6,38 @@ optionContribuyente = {
         {name:'cidpers', index:'cidpers', width:80, align: 'center'},
         {name:'crazsoc', index:'crazsoc', width:420},
         {name:'direccf', index:'direccf', width:420} ],
-    caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda"
+    caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
+    hidegrid: true,
+    /*onSelectRow: function(id) {
+        row = $(this).getRowData(id);
+        console.log(row);
+    },*/
+    ondblClickRow: function(rowid, iRow, iCol,e) {
+        row = $(this).getRowData(rowid);
+        console.log(row);
+    }
 }
+
+optionPredio = {
+    height: 290,
+    width: 1000,
+    colNames: ["C\u00F3digo", "Administrado", "Direcci\u00F3n Fiscal"],
+    colModel: [
+        {name:'cidpers', index:'cidpers', width:80, align: 'center'},
+        {name:'crazsoc', index:'crazsoc', width:420},
+        {name:'direccf', index:'direccf', width:420} ],
+    caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
+    /*onSelectRow: function(id) {
+        row = $(this).getRowData(id);
+        console.log(row);
+    },*/
+    ondblClickRow: function(rowid, iRow, iCol,e) {
+        row = $(this).getRowData(rowid);
+        console.log(row);
+    }
+}
+
+bindkeysContribuyente = {"onEnter": function( rowid ) { listarPredio(rowid) }};
 
 buscarContribuyente = function() {
     valid = false;
@@ -38,19 +68,28 @@ buscarContribuyente = function() {
             $("#panelResult").html(requestData);
             records = $("#ctblResult").val();
             if(records > 1) {
-                actualizarGrid("tblResult", optionContribuyente);
+                actualizarGrid("tblResult", optionContribuyente, bindkeysContribuyente);
             } else {
-                
+                _post = $.post(path + "jqgrid/paginar", {"name": "tblResult"}, function(request){
+                    $("#c_nombrecontrib").val(request.rows[0].cell[1]);
+                }, "json");
+
+                // $("#c_apepatcontrib").val();
+                // $("#c_apematcontrib").val();
             }
         };
         
-        procesarConsultaSubProceso(parameters, proceso);
-        // procesarConsulta("panelResult", "tblResult", optionContribuyente, parameters);
+        procesarConsultaSubProceso('registrar', parameters, proceso);        
+        // procesarProcedimiento("panelResult", "tblResult", optionContribuyente, parameters);
         
     } else {
         openDialogWarning("Ingrese un valor en los campos de busqueda.", 380, 150);
     }
 };
+
+listarPredio = function(id) {
+    
+}
 
 buscarPredio = function() {
 };
@@ -68,14 +107,6 @@ $(function(){
     $("#btnbuscar").button("option", "icons", {
         primary:'ui-icon-search'
     });
-    /*
-    $("#btnestcta").button("option", "icons", {
-        primary:'ui-icon-document'
-    });
-    $("#btncontri").button("option", "icons", {
-        primary:'ui-icon-person'
-    });
-    */
    
     inicializarGrid("tblResult", optionContribuyente);
     
@@ -83,6 +114,16 @@ $(function(){
         if(e.keyCode == 13){
             buscarContribuyente();
         }
+    });
+    
+    $("#c_codigocontrib, #c_predial").on("focus", function() {
+        $("#panelContribuyente input.ui-text").val("");
+        $("#panelPredio input.ui-text").val("");
+    });
+    
+    $(".pnl").on("focus", function() {
+        $("#c_codigocontrib").val("");
+        $("#c_predial").val("");
     });
     
     $("#btnbuscar").click(buscarContribuyente);
