@@ -27,6 +27,7 @@ import oracle.jdbc.driver.OracleTypes;
 
 import org.apache.log4j.Logger;
 
+import pe.com.bbva.model.dao.IngresoDAO;
 import pe.com.bbva.model.dao.ObjetivoDAO;
 import pe.com.bbva.model.dao.PerfilDAO;
 
@@ -1572,19 +1573,10 @@ public class Connection {
 	 * INGRESOS 
 	 */
 
-	public int nuevoIngreso(String id_ingresos, String codUsuario,
-			String cargo, String nomTerritorio, String codOficina, String nombres) {
-		SesionWS aSesionWS = createSesionWS();
-		
-		try {
-			return aSesionWS.nuevoIngreso(id_ingresos, codUsuario, cargo,
-					nomTerritorio, codOficina, nombres);
-		} catch (RemoteException ex) {
-			// Auto-generated catch block
-			logger.error("Connection", ex);
-		}
-
-		return 0;
+	// TODO: Peticion Urgente - Error Ingreso
+	public int nuevoIngreso(String id_ingresos, String codUsuario, String cargo, String nomTerritorio, String codOficina, String nombres) {
+		IngresoDAO ingresoDAO = new IngresoDAO();
+		return ingresoDAO.insertarIngreso(codUsuario, cargo, nomTerritorio, codOficina, nombres);
 	}
 
 	public Vector busIngresoxDIA(String codTerritorioUsuario) {
@@ -3147,16 +3139,10 @@ public class Connection {
 		return false;
 	}
 	
+	// TODO: Peticion Urgente - Error Ingreso
 	public void actualizarIngreso(int tipo, int idIngreso, String mes, String anio) {
-		SesionWS aSesionWS = createSesionWS();
-		
-		try {
-			aSesionWS.actualizarIngreso(tipo, idIngreso, mes, anio);
-		} catch (RemoteException ex) {
-			logger.error("Connection", ex);
-		}
-		
-		return;
+		IngresoDAO ingresoDAO = new IngresoDAO();
+		ingresoDAO.insertarIngresoDetalle(idIngreso, tipo, mes, anio);
 	}
 	
 	public Vector busIngresoxUsuario(String anho, String mes, String dia, String codTerritorioUsuario) {
@@ -3525,42 +3511,22 @@ public class Connection {
 		return null;
 	}
 	
-	public void insertarIngresoForm(int tipo, int mes, int anio, 
-			String codUsuario, String editUsuario, String codGestor, String codOficina) {
-		SesionWS aSesionWS = createSesionWS();
-		
-		try {
-			aSesionWS.insertarIngresoForm(tipo, mes, anio, 
-					codUsuario, editUsuario, codGestor, codOficina);
-		} catch (RemoteException ex) {
-			logger.error("Connection", ex);
-		}
-		
-		return ;
+	// TODO: Peticion Urgente - Error Ingreso
+	public void insertarIngresoForm(int tipo, int mes, int anio, String codUsuario, String editUsuario, String codGestor, String codOficina) {
+		IngresoDAO ingresoDAO = new IngresoDAO();
+		ingresoDAO.insertarIngresoForm(String.valueOf(tipo), String.valueOf(mes), String.valueOf(anio), codUsuario, editUsuario, codGestor, codOficina);
 	}
 	
+	// TODO: Peticion Urgente - Error Ingreso
 	public void actualizarIngresoFormEditUsuario(long id) {
-		SesionWS aSesionWS = createSesionWS();
-		
-		try {
-			aSesionWS.actualizarIngresoFormEditUsuario(id);
-		} catch (RemoteException ex) {
-			logger.error("Connection", ex);
-		}
-		
-		return;
+		IngresoDAO ingresoDAO = new IngresoDAO();
+		ingresoDAO.actualizarIngresoForm(id);
 	}
 	
+	// TODO: Peticion Urgente - Error Ingreso
 	public long existeIngresoForm(int tipo, int mes, int anio, String codUsuario, String fecha, String codGestorM, String codOficinaM) {
-		SesionWS aSesionWS = createSesionWS();
-		
-		try {
-			return aSesionWS.existeIngresoForm(tipo, mes, anio, codUsuario, fecha, codGestorM, codOficinaM);
-		} catch (RemoteException ex) {
-			logger.error("Connection", ex);
-		}
-		
-		return 0;
+		IngresoDAO ingresoDAO = new IngresoDAO();
+		return ingresoDAO.existeIngresoForm(String.valueOf(tipo), String.valueOf(mes), String.valueOf(anio), codUsuario, codGestorM, codOficinaM);
 	}
 	
 	public Vector exportarTablasTXT(int tabla, int mes, int anio) {

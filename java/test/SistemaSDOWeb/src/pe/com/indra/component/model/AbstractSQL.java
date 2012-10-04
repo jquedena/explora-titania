@@ -75,6 +75,60 @@ public class AbstractSQL {
 		
 		return cols;
 	}
+
+	protected int executeProcedureToInt(String procedure, Object[] parameters) {
+		int i = 0;
+		int indexOut = 0;
+		cnn = null;
+		stm = null;
+		int result = -1;
+		try {
+			String query;
+			String criterio = "";
+			
+			if (parameters != null && parameters.length > 0) {
+				for(i = 0; i <= parameters.length; i++) {
+					if(criterio.length() > 0) criterio += ",";
+					criterio += "?";
+				}
+			}
+			
+			query = "{call " + procedure + "(" + criterio + ")}";
+			log.debug("INDRA:AbstractSQL:executeProcedure:{" + query + "}");
+
+			cnn = dataSource.getConnection();
+			stm = cnn.prepareCall(query);
+			
+			if (parameters != null && parameters.length > 0) {
+				Object o = null;
+				for (i = 1; i <= parameters.length; i++) {
+					o = parameters[i - 1];
+					if (o instanceof String) {
+						stm.setString(i, (String) o);
+						log.debug("STRING :: " + i + " - " + o);
+					} else if (o instanceof BigDecimal) {
+						stm.setBigDecimal(i, (BigDecimal) o);
+						log.debug("BIGDECIMAL :: " + i + " - "  + o);
+					} else if (o instanceof Date) {
+						stm.setDate(i, (Date) o);
+						log.debug("DATE :: " + i + " - "  + o);
+					} else {
+						stm.setObject(i, o);
+						log.debug("OBJECT :: " + i + " - "  +o);
+					}
+				}
+			}
+			
+			indexOut = parameters.length + 1;
+			stm.registerOutParameter(indexOut, OracleTypes.INTEGER);
+			stm.execute();
+			result = stm.getInt(indexOut);
+		} catch (Exception ex) {
+			log.error("INDRA:AbstractSQL:executeProcedure", ex);
+		} 
+		
+		return result;
+	}
 	
 	protected ResultSet executeProcedure(String procedure, Object[] parameters) {
 		int i = 0;
