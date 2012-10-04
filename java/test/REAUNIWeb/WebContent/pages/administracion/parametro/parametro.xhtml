@@ -44,11 +44,11 @@
 				</p:selectBooleanCheckbox>
 
 				<h:outputLabel value="#{message['parametro.label.tipo']}" />
-				<p:selectOneMenu value="#{parametroMBean.parametroDto.tipo}"
+				<h:selectOneMenu value="#{parametroMBean.parametroDto.tipo}"
 					disabled="#{parametroMBean.accionParametro == 3}">
 					<f:selectItems value="#{parametroMBean.siTipos}" />
 					<f:ajax />
-				</p:selectOneMenu>
+				</h:selectOneMenu>
 
 				<h:outputLabel value="#{message['parametro.label.valor.entero']}" />
 				<p:inputText label="#{message['parametro.label.valor.entero']}"
@@ -88,7 +88,7 @@
 
 				<h:outputLabel
 					value="#{message['parametro.label.catalogo.parametro.padre']}" />
-				<p:selectOneMenu
+				<h:selectOneMenu
 					value="#{parametroMBean.parametroDto.catalogoParametroPadreDto}"
 					converter="catalogoConvert"
 					disabled="#{parametroMBean.accionParametro == 3}">
@@ -96,10 +96,10 @@
 						itemLabel="#{dto.descripcion}" itemValue="#{dto}" />
 					<f:ajax render="somParametro"
 						listener="#{parametroMBean.cambioCatalogoParametro}" />
-				</p:selectOneMenu>
+				</h:selectOneMenu>
 
 				<h:outputLabel value="#{message['parametro.label.parametro.padre']}" />
-				<p:selectOneMenu id="somParametro"
+				<h:selectOneMenu id="somParametro"
 					value="#{parametroMBean.parametroDto.parametroPadreDto}"
 					converter="parametroConvert"
 					disabled="#{parametroMBean.accionParametro == 3}">
@@ -107,7 +107,7 @@
 						var="parametroDto" itemLabel="#{parametroDto.descripcion}"
 						itemValue="#{parametroDto}" />
 					<f:ajax />
-				</p:selectOneMenu>
+				</h:selectOneMenu>
 
 
 			</h:panelGrid>

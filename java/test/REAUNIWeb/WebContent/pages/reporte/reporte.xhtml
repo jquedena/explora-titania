@@ -32,20 +32,20 @@
 			<h:panelGrid columns="18">
 				
 				<h:outputLabel value="REPORTE" styleClass="label" style="font-weight: bold;" />
-				<p:selectOneMenu  value="#{reporteMBean.tipo_reporte}" style=" border-width: 0px;aling:left"    required="true" label="TIPO" >					
+				<h:selectOneMenu  value="#{reporteMBean.tipo_reporte}" style=" border-width: 0px;aling:left"    required="true" label="TIPO" >					
 					<f:selectItems value="#{reporteMBean.tipos}" />
 					<f:ajax />
-				</p:selectOneMenu>
+				</h:selectOneMenu>
 				<br/>
 				<h:outputLabel value="Año" styleClass="label" />
-				<p:selectOneMenu     value="#{reporteMBean.anio_reporte}"  style="border-width: 0px;"  required="true" label="AÑO">
+				<h:selectOneMenu     value="#{reporteMBean.anio_reporte}"  style="border-width: 0px;"  required="true" label="AÑO">
 					
 					<f:selectItems value="#{reporteMBean.años}" />
 					<f:ajax />
-				</p:selectOneMenu>
+				</h:selectOneMenu>
 				<br/>
 				<h:outputLabel value="Mes" styleClass="label" />
-				<p:selectOneMenu   value="#{reporteMBean.mes_reporte}"   style="border-width: 0px;" required="true" label="MES" >					
+				<h:selectOneMenu   value="#{reporteMBean.mes_reporte}"   style="border-width: 0px;" required="true" label="MES" >					
 					<f:selectItem itemValue="1" itemLabel="#{message['mes.enero']}" />
 					<f:selectItem itemValue="2" itemLabel="#{message['mes.febrero']}" />
 					<f:selectItem itemValue="3" itemLabel="#{message['mes.marzo']}" />
@@ -59,7 +59,7 @@
 					<f:selectItem itemValue="11" itemLabel="#{message['mes.noviembre']}" />
 					<f:selectItem itemValue="12" itemLabel="#{message['mes.diciembre']}" />
 					<f:ajax />
-				</p:selectOneMenu>
+				</h:selectOneMenu>
 				<br/>
 				<br></br>
 				<h:commandLink  styleClass="ui-icon ui-icon-search" style="width:25;height: 25"  title="#{message['general.button.descargar']}"

@@ -19,10 +19,10 @@
                     <h:outputText id="txtId" value="#{usuarioModel.dto.id}" rendered="#{sessionMBean.accion != 1}"/>
 
 					<h:outputLabel id="lblCbxTipoAcceso" dir="ltr" for="cbxCbxTipoAcceso" value="#{message['usuario.label.tipoAcceso']}" styleClass="label"/>
-                    <p:selectOneMenu id="cbxCbxTipoAcceso" label="#{message['usuario.label.tipoAcceso']}" value="#{usuarioModel.dto.tipoAcceso}"  immediate="true" disabled="#{sessionMBean.accion == 3}">
+                    <h:selectOneMenu id="cbxCbxTipoAcceso" label="#{message['usuario.label.tipoAcceso']}" value="#{usuarioModel.dto.tipoAcceso}"  immediate="true" disabled="#{sessionMBean.accion == 3}">
 						<f:selectItems value="#{usuarioModel.listaTipoAcceso}" />  
 						<p:ajax listener="#{usuarioMBean.cambiarTipoAcceso2}" update="pgFormDto"  event="change"/>
-					</p:selectOneMenu>
+					</h:selectOneMenu>
                     
                     <h:outputLabel id="lblValor" dir="ltr" value="#{message['usuario.label.valor']}" styleClass="label"/>
             		<p:inputText id="txtRegistro" label="#{message['usuario.label.valor']}" value="#{usuarioModel.dto.valor}" styleClass="txtCampo"  maxlength="7" rendered="#{usuarioModel.dto.tipoAcceso==1027}"   readonly="#{sessionMBean.editable==1 }" >
@@ -33,9 +33,9 @@
 			        </p:inputText>
                     
  					<h:outputLabel id="lblDesSituacion" dir="ltr" for="cbxPerfil" value="#{message['usuario.label.perfil']}" styleClass="label"/>
-			        <p:selectOneMenu id="cbxPerfil" label="#{message['usuario.label.perfil']}" value="#{usuarioModel.dto.perfil.id}" required="true" disabled="#{sessionMBean.accion == 3}" readonly="#{sessionMBean.accion == 3}" >
+			        <h:selectOneMenu id="cbxPerfil" label="#{message['usuario.label.perfil']}" value="#{usuarioModel.dto.perfil.id}" required="true" disabled="#{sessionMBean.accion == 3}" readonly="#{sessionMBean.accion == 3}" >
 			        	<f:selectItems value="#{usuarioModel.listaPerfiles}" />  
-			        </p:selectOneMenu>
+			        </h:selectOneMenu>
  
             	</h:panelGrid>
             	

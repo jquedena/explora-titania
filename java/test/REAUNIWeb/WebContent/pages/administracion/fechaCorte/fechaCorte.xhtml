@@ -35,9 +35,9 @@
                     </p:calendar> 
                     
                     <h:outputLabel id="lblEstadoCorte" for="cbxEstadoCorte" value="#{message['fechaCorte.label.estadoCorte']}" styleClass="label"/>
-    				<p:selectOneMenu id="cbxEstadoCorte" label="#{message['fechaCorte.label.estadoCorte']}" disabled="#{sessionMBean.accion == 3}" value="#{fechaCorteModel.dto.estadoCorte}" readonly="#{sessionMBean.accion == 3}">
+    				<h:selectOneMenu id="cbxEstadoCorte" label="#{message['fechaCorte.label.estadoCorte']}" disabled="#{sessionMBean.accion == 3}" value="#{fechaCorteModel.dto.estadoCorte}" readonly="#{sessionMBean.accion == 3}">
 			           <f:selectItems value="#{fechaCorteModel.listaEstados}"/>
-			        </p:selectOneMenu>
+			        </h:selectOneMenu>
                     
             	</h:panelGrid>
             	

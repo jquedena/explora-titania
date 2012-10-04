@@ -33,9 +33,9 @@
                     			</p:calendar> 
     						
     							<h:outputLabel id="lblBusqEstadoCorte" for="cbxBusqEstadoCorte" value="#{message['fechaCorte.label.estadoCorte']}" styleClass="label"/>
-    							<p:selectOneMenu id="cbxBusqEstadoCorte" value="#{fechaCorteModel.dtoFiltro.estadoCorte}" label="#{message['fechaCorte.label.estadoCorte']}" >
+    							<h:selectOneMenu id="cbxBusqEstadoCorte" value="#{fechaCorteModel.dtoFiltro.estadoCorte}" label="#{message['fechaCorte.label.estadoCorte']}" >
 			                        <f:selectItems value="#{fechaCorteModel.listaEstados}"/>
-			                    </p:selectOneMenu>
+			                    </h:selectOneMenu>
     							
     							<h:outputLabel id="lblBusqFechaCreacion" for="fecBusqFechaCreacion" value="#{message['fechaCorte.label.fechaCreacion']}" styleClass="label"/>
 			                    <p:calendar id="fecBusqFechaCreacion" value="#{fechaCorteModel.dtoFiltro.fechaCreacion}" showOn="button" pattern="#{aplicacionMBean.formatoFecha}"
@@ -117,10 +117,9 @@
 				                 
 				                    
 				                    <p:column id="colEstadoCorte" headerText="#{message['fechaCorte.columna.estadoCorte']}" sortBy="#{dto.estadoCorte}" >				                        
-				                        <p:selectOneMenu styleClass="valueColTable" value="#{dto.estadoCorte}" label="#{message['fechaCorte.label.estadoCorte']}" disabled="true"
-				                        	 >
+				                        <h:selectOneMenu styleClass="valueColTable" value="#{dto.estadoCorte}" label="#{message['fechaCorte.label.estadoCorte']}" disabled="true">
 					                        <f:selectItems value="#{fechaCorteModel.listaEstados}"/>
-					                    </p:selectOneMenu>
+					                    </h:selectOneMenu>
 				                    </p:column>                 	
 			           </p:dataTable>
                 

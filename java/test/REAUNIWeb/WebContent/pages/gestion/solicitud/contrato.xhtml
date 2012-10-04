@@ -188,11 +188,7 @@
 					rendered="#{solicitudMBean.dto.usuarioCreacion==sessionMBean.registro  &amp;&amp; sessionMBean.accion==2 &amp;&amp; solicitudMBean.dto.tramiteSolicitudDto.id == 1015}"
 					value="ENVIAR SOLICITUD" action="#{solicitudMBean.enviar}" />
 				<p:spacer width="30" />
-				<p:commandLink type="button" value="EXPORTAR XLS">
-				</p:commandLink>
-				<p:commandButton ajax="false" value="EXPORTAR XLS"> 
-				    <p:dataExporter type="xls" target="tblPrincipal" fileName="ContratosGestionFiles" excludeColumns="0" />
-				</p:commandButton>	
+				<p:commandButton ajax="false" value="EXPORTAR XLS" onclick="return exportarContrato();" />	
 			</f:facet>
 		</p:dataTable>
 	</h:panelGrid>

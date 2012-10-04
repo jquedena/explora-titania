@@ -174,7 +174,7 @@ public class DAOSolicitudImple extends DAOGenericoImpl<SolicitudDto> implements
 				
 				if (s.getFechaInicio() != null && s.getFechaHasta() != null) {
 					SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
-					if(condition.length() > 0) condition += " and ";
+					// if(condition.length() > 0) condition += " and ";
 					condition += " and (e.oficinaSolicitudDto.solicitudDto.fechaCreacion >= to_date('" + formater.format(s.getFechaInicio()) + " 00:00:00', 'dd/MM/yyyy  HH24:mi:ss')";
 					condition += " and e.oficinaSolicitudDto.solicitudDto.fechaCreacion <= to_date('" + formater.format(s.getFechaHasta()) + " 23:59:59', 'dd/MM/yyyy  HH24:mi:ss') )";
 				}

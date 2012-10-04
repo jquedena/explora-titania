@@ -88,12 +88,12 @@
 				                    </p:column>
 				                    
 				                    <p:column id="colEstado" headerText="#{message['accesoFechaCorte.columna.fechaCorte.estado']}" sortBy="#{dto.fechaCorte.estadoAcceso}" >				                        
-				                        <p:selectOneMenu
+				                        <h:selectOneMenu
 											label="#{message['fechaCorte.label.estadoCorte']}"											
 											value="#{dto.fechaCorteDto.estadoCorte}"							
 											disabled="true">
 											<f:selectItems value="#{fechaCorteModel.listaEstados}" />
-										</p:selectOneMenu>
+										</h:selectOneMenu>
 				                    </p:column>
 				                    
 				                    
