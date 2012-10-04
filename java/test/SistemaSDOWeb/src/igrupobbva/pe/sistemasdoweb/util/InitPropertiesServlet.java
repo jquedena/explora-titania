@@ -66,7 +66,7 @@ public class InitPropertiesServlet extends HttpServlet {
 	        File fileLog4j = new File(log4jProp);
 	        if (fileLog4j.exists()) {
 	            PropertyConfigurator.configure(log4jProp);
-	            log.info("Initializing log4j with: " + log4jProp);
+	            log.error("Initializing log4j with: " + log4jProp);
 	        }
 	    } catch (Exception e) {
 	        log.error(e);

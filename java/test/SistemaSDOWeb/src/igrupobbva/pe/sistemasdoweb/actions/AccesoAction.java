@@ -193,7 +193,15 @@ public class AccesoAction extends DispatchAction {
 		
 			        	// 201206053 - Por validacion de perfiles
 			        	int ultimo = cnx.nuevoIngreso(String.valueOf(cnx.busID_IngresoMax()+1),usuario,gestor.getPerfilMostrar(),nomTerritorio, user.getBancoOficina().getCodigo(), gestor.getNombreGestor());
-			        	sesion.setAttribute("idIngresoUsuario", new Integer(ultimo));		    	        	
+			        	sesion.setAttribute("idIngresoUsuario", new Integer(ultimo));
+			        	
+			        	// TODO: Peticion Urgente - Error Ingreso
+			        	if(ultimo == -1) {
+			        		mensaje = "Ocurrio un problema al iniciar la sesi&oacute;n!!!";
+							sesion.setAttribute("mensaje", mensaje);
+							forward = mapping.findForward("error");				
+							request.setAttribute("txtError", "Ocurrio un problema al iniciar la sesi&oacute;n.");
+			        	}
 					} else {
 						if(gestor == null || gestor.getCodigoPerfil() == null  || gestor.getCodigoPerfil().length() == 0) {
 							mensaje = "Usuario no tiene privilegio!!!";
