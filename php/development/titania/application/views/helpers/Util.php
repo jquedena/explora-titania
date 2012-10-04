@@ -136,6 +136,20 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
         return ($this->heightLayout - $size) . "px";
     }
 
+    public function getNow() {
+        return date("Y-m-d H:i:s");
+    }
+    
+    public function getPeriodos() {
+        $result = "<select id='cboPeriodo'>";
+        $year = (int) date("Y");
+        for($i = $year; $i >= 1996; $i--) {
+            $result .= "\n\t<option value='$i'>$i</option>";
+        }
+        $result .= "\n</select>";
+        
+        return $result;
+    }
         
     private function style($files) {
         $script = "\n";
