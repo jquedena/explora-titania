@@ -21,23 +21,40 @@ optionContribuyente = {
 optionPredio = {
     height: 290,
     width: 1000,
-    colNames: ["C\u00F3digo", "Administrado", "Direcci\u00F3n Fiscal"],
-    colModel: [
-        {name:'cidpers', index:'cidpers', width:80, align: 'center'},
-        {name:'crazsoc', index:'crazsoc', width:420},
-        {name:'direccf', index:'direccf', width:420} ],
-    caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
-    /*onSelectRow: function(id) {
-        row = $(this).getRowData(id);
-        console.log(row);
-    },*/
-    ondblClickRow: function(rowid, iRow, iCol,e) {
-        row = $(this).getRowData(rowid);
-        console.log(row);
-    }
+    colNames: ['C\u00F3digo',
+        'Direcci\u00F3n',
+        'Uso',
+        'Valor del Predio',
+        'Valor Afecto',
+        'Adquirido',
+        'Nro. de Doc.',
+        '% Prop.'],
+    colModel: [{name: 'ccodpre', index:'ccodpre', width: 80, frozen: true},
+        {name: 'tnumero', index:'tnumero', width: 450, frozen: true},
+        {name: 'cusogen', index:'cusogen', width: 250},
+        {name: 'nvalpre', index:'nvalpre', width: 100, formatter:'currency', align: 'right'},
+        {name: 'nvalafe', index:'nvalafe', width: 100, formatter:'currency', align: 'right'},
+        {name: 'dfecadq', index:'dfecadq', width: 80, formatter:'date', formatoptions: {srcformat:"Y-m-d", newformat:"d-M-Y"}, align: 'center'},
+        {name: 'vnrodoc', index:'vnrodoc', width: 80, align: 'center'},
+        {name: 'nporcen', index:'nporcen', width: 60, align: 'right'}],
+    caption: "&nbsp;&nbsp;&nbsp;Predios Registrados",
+    shrinkToFit: false
 }
 
 bindkeysContribuyente = {"onEnter": function( rowid ) { listarPredio(rowid) }};
+
+buscarPredio = function() { 
+    parameters = {
+        "name": "tblListaPredio",
+        "procedure": "pl_function.listar_predios",
+        "parameters": '{' +
+        '"p_cperiod":"' + $("#cboPeriodo").val() + '",' +
+        '"p_cidpers":"' + $("#lblCodigo").html() + '"' +
+        '}'
+    };
+
+    procesarProcedimiento("panelListaPredio", "tblListaPredio", optionPredio, parameters);
+};
 
 buscarContribuyente = function() {
     valid = false;
@@ -70,18 +87,17 @@ buscarContribuyente = function() {
             if(records > 1) {
                 actualizarGrid("tblResult", optionContribuyente, bindkeysContribuyente);
             } else {
-                _post = $.post(path + "jqgrid/paginar", {"name": "tblResult"}, function(request){
-                    $("#c_nombrecontrib").val(request.rows[0].cell[1]);
-                }, "json");
-
-                // $("#c_apepatcontrib").val();
-                // $("#c_apematcontrib").val();
+                _post = $.post(path + "registro/listarpredio", {"name": "tblResult"}, function(request){
+                    $("#panelRegistro").html(request);
+                    $("#cboPeriodo").on("change", function(){
+                        buscarPredio();
+                    });
+                    buscarPredio();
+                });
             }
         };
         
         procesarConsultaSubProceso('registrar', parameters, proceso);        
-        // procesarProcedimiento("panelResult", "tblResult", optionContribuyente, parameters);
-        
     } else {
         openDialogWarning("Ingrese un valor en los campos de busqueda.", 380, 150);
     }
@@ -91,8 +107,7 @@ listarPredio = function(id) {
     
 }
 
-buscarPredio = function() {
-};
+// buscarPredio = function() {};
 
 $(function(){
     $("#c_codigocontrib").numeric({

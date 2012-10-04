@@ -46,6 +46,7 @@ function actualizarGrid(id, _options, bindkeys){
     }, _options);
     idx = "#" + id;
     $(idx).jqGrid(options);
+    $(idx).jqGrid('setFrozenColumns');
     if(bindkeys != undefined || bindkeys != null) {
         $(idx).jqGrid('bindKeys', bindkeys);
     }
