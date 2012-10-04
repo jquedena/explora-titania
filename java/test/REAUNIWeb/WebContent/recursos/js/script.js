@@ -249,3 +249,7 @@ function cerrar() {
 		}
 	});
 }
+
+function exportarContrato() {
+	window.open(obtenerContexto() + "ExportarContrato.do", "_blank");
+}

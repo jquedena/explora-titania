@@ -42,22 +42,22 @@
 				<p:spacer width="15px;"/>
 			
 				<h:outputLabel value="#{message['solicitud.tipo']}" />                    
-				<p:selectOneMenu style="width:240px" value="#{solicitudMBean.dtoFiltro.tipoDto}" converter="parametroConvert">
+				<h:selectOneMenu style="width:240px" value="#{solicitudMBean.dtoFiltro.tipoDto}" converter="parametroConvert">
 					<f:selectItems value="#{solicitudMBean.tiposSolicitudFiltro}"
 						var="parametroDto" itemLabel="#{parametroDto.descripcion}"
 						itemValue="#{parametroDto}" />	
 					<f:ajax />
-				</p:selectOneMenu>
+				</h:selectOneMenu>
 				<p:spacer width="5px;"/>
 				<p:spacer width="15px;"/>
 
 				<h:outputLabel value="#{message['solicitud.tramite']}" styleClass="label" />
-				<p:selectOneMenu style="width:240px" value="#{solicitudMBean.dtoFiltro.tramiteSolicitudDto}" converter="parametroConvert">
+				<h:selectOneMenu style="width:240px" value="#{solicitudMBean.dtoFiltro.tramiteSolicitudDto}" converter="parametroConvert">
 					<f:selectItems value="#{solicitudMBean.estadosSolicitudFiltro}"
 						var="parametroDto" itemLabel="#{parametroDto.descripcion}"
 						itemValue="#{parametroDto}" />	
 					<f:ajax />						
-				</p:selectOneMenu>
+				</h:selectOneMenu>
 				<p:spacer width="5px;"/>
 				<p:spacer width="15px;"/>
 				

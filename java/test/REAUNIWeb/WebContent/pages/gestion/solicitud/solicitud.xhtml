@@ -33,7 +33,7 @@
 						<h:panelGrid id="pgSolicitud" columns="8">
 							
 							<h:outputLabel style="font-weight: bold;" value="TIPO SOL. (*)" />
-							<p:selectOneMenu value="#{solicitudMBean.dto.tipoDto}"
+							<h:selectOneMenu value="#{solicitudMBean.dto.tipoDto}"
 								style="width: 140px;font-weight: bold;"
 								converter="parametroConvert"
 								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}">
@@ -41,7 +41,7 @@
 									var="parametroDto" itemLabel="#{parametroDto.descripcion}"
 									itemValue="#{parametroDto}" />
 								<p:ajax update=":frmPrincipal:pgPrincipal" listener="#{solicitudMBean.cambioTipoSolicitud}" />
-							</p:selectOneMenu>
+							</h:selectOneMenu>
 							<p:spacer width="15px" />
 							
 							<h:outputLabel value="COD. SOLICITUD" style="font-weight: bold;" />
@@ -83,14 +83,14 @@
 							<p:spacer width="15px" />
 
 							<h:outputLabel value="ESTADO" style="font-weight: bold;" />
-							<p:selectOneMenu
+							<h:selectOneMenu
 								value="#{solicitudMBean.dto.tramiteSolicitudDto}"
 								converter="parametroConvert" disabled="true"
 								style="font-weight: bold; width: 200px;">
 								<f:selectItems value="#{solicitudMBean.estadosSolicitud}"
 									var="parametroDto" itemLabel="#{parametroDto.descripcion}"
 									itemValue="#{parametroDto}" />
-							</p:selectOneMenu>
+							</h:selectOneMenu>
 							<p:spacer width="15px" />
 
 							<h:outputLabel value="FECHA MOD." style="font-weight: bold;"/>
@@ -99,7 +99,7 @@
 							</h:outputText>
 							
 							<h:outputLabel value="MOTIVO TRASLADO (*)" style="font-weight: bold;"/>
-							<p:selectOneMenu value="#{solicitudMBean.dto.motivoTrasladoDto}"
+							<h:selectOneMenu value="#{solicitudMBean.dto.motivoTrasladoDto}"
 								style="width: 190px; font-weight: bold;"
 								converter="parametroConvert"
 								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}">
@@ -108,7 +108,7 @@
 									itemValue="#{parametroDto}" />
 								<p:ajax update=":frmPrincipal:idTabView:pgSolicitud"
 									listener="#{solicitudMBean.cambioMotivo}" />
-							</p:selectOneMenu>
+							</h:selectOneMenu>
 							<p:spacer width="15px" />
 
 							<h:outputLabel value="COMENTARIO" style="font-weight: bold;" rendered="#{solicitudMBean.dto.motivoTrasladoDto.id==1026}" />
@@ -187,7 +187,7 @@
 								</p:outputPanel>
 								
 								<h:outputLabel value="#{message['solicitud.gestor']}" />
-								<p:selectOneMenu id="cboGestor" 
+								<h:selectOneMenu id="cboGestor" 
 									value="#{solicitudMBean.dto.gestorReceptorDto}"
 									converter="gestorConvert"
 									disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
@@ -197,7 +197,7 @@
 									<f:selectItems value="#{solicitudMBean.listaGestores}" var="dto"
 										itemLabel="#{dto.codGestor} - #{dto.perfilGestor} - #{dto.nomGestor}"
 										itemValue="#{dto}" />
-								</p:selectOneMenu>
+								</h:selectOneMenu>
 							</h:panelGrid>
 						</h:panelGrid>
 						<br />

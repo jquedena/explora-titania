@@ -49,6 +49,12 @@
     </servlet>
     
     <servlet>
+        <display-name>ExportarContrato</display-name>
+        <servlet-name>ExportarContrato</servlet-name>
+        <servlet-class>com.indra.pe.bbva.core.configuracion.ExportarContratoServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
         <servlet-name>ApplicationInitServlet</servlet-name>
         <servlet-class>com.indra.pe.bbva.core.configuracion.ApplicationInitServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
@@ -68,6 +74,11 @@
     <servlet-mapping>
         <servlet-name>CerrarSesion</servlet-name>
         <url-pattern>/CerrarSesion.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ExportarContrato</servlet-name>
+        <url-pattern>/ExportarContrato.do</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>

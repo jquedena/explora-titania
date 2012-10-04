@@ -86,13 +86,13 @@
 						<h:outputLabel id="lblEstadoCorte" for="cbxEstadoCorte"
 							value="#{message['fechaCorte.label.estadoCorte']}"
 							styleClass="label" />
-						<p:selectOneMenu
+						<h:selectOneMenu
 							label="#{message['fechaCorte.label.estadoCorte']}"
 							id="cbxEstadoCorte"
 							value="#{accesoFechaCorteMBean.accesoFechaCorteModel.dto.fechaCorteDto.estadoCorte}"
 							disabled="true">
 							<f:selectItems value="#{fechaCorteModel.listaEstados}" />
-						</p:selectOneMenu>
+						</h:selectOneMenu>
 
 					</h:panelGrid>
 				</h:panelGrid>

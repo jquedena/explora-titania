@@ -33,13 +33,13 @@
 
 				<h:outputLabel value="#{message['usuario.label.perfil']}"
 					styleClass="label" />
-				<p:selectOneMenu id="cbxPerfil"
+				<h:selectOneMenu id="cbxPerfil"
 					value="#{usuarioMBean.usuarioModel.dtoFiltro.perfil.id}"
 					required="true">
 					<f:selectItem itemValue="#{usuarioMBean.usuarioModel.seleccione}"
 						itemLabel="Todos" />
 					<f:selectItems value="#{usuarioMBean.usuarioModel.listaPerfiles}" />
-				</p:selectOneMenu>
+				</h:selectOneMenu>
 			</h:panelGrid>
 			<h:panelGrid columns="1" cellpadding="6">
 				<p:outputPanel id="pnlOutBotonesNuevo">

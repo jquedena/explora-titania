@@ -441,7 +441,7 @@ public class SolicitudMBean extends GenericMBean {
 		if (this.dto.getCodigoCliente()!=null && this.dto.getCodigoCliente().length()>=6 && this.dto.getCodigoCliente().length()<=8) {
 			try {
 				ReaUniDatosClienteRs host = null;
-				host = obtenerDatosClienteHost(this.dto.getCodigoCliente(), sessionMBean.getRegistro()); // "P007395"
+				host = obtenerDatosClienteHost(this.dto.getCodigoCliente(), "P007395"); // sessionMBean.getRegistro() "P007395"
 				
 				if (host != null) {
 					if (host.getData() != null 
@@ -713,7 +713,6 @@ public class SolicitudMBean extends GenericMBean {
 			this.listaContratosTemporalSelected[i++] = t;
 		}
 		grabarContratos(ae);
-
 	}
 
 	// Eliminamos un contrato
@@ -817,11 +816,12 @@ public class SolicitudMBean extends GenericMBean {
 						if (oficinaInvolucradoDto.getOficinaSolicitudDto() != null
 							&& oficinaInvolucradoDto.getOficinaSolicitudDto().getEstadoAprobacionAjuBonDto() != null 
 							&& Long.valueOf(1034).equals(oficinaInvolucradoDto.getOficinaSolicitudDto().getEstadoAprobacionAjuBonDto().getId())
-							&& dto.getMostrarDeclaracionJurada()) {
+							&& dto.getMostrarDeclaracionJurada()
+							&& (oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("GTE") || oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("GR"))) {
 							showWarning("PARA GUARDAR SU EVALUACIÓN, ES NECESARIO QUE EVALÚE LA DECLARACIÓN JURADA.");
 							continuar = false;				
 						}	
-					}			
+					}
 					
 					if (continuar) {
 						

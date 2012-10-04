@@ -72,7 +72,7 @@
 				<p:column headerText="REGISTRO">#{solicitudInvolucradoDto.involucradoDto.registro}</p:column>
 				<p:column headerText="NOMBRES Y APELLIDOS">#{solicitudInvolucradoDto.involucradoDto.nombres} #{solicitudInvolucradoDto.involucradoDto.apellidoPaterno} #{solicitudInvolucradoDto.involucradoDto.apellidoMaterno}</p:column>
 				<p:column headerText="APROBACION">
-					<p:selectOneMenu style="border-width: 0px;"
+					<h:selectOneMenu style="border-width: 0px;"
 						disabled="#{solicitudMBean.bloquearControles || oficinaSolicitudDto.realizoVotoTerritorial || ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
 						converter="parametroConvert"
 						immediate="true"
@@ -83,7 +83,7 @@
 							var="parametroDto" itemLabel="#{parametroDto.descripcion}"
 							itemValue="#{parametroDto}" />
 						<p:ajax update="msgs msg_alert" />  
-					</p:selectOneMenu>
+					</h:selectOneMenu>
 				</p:column>
 				<p:column headerText="COMENTARIO">
 					<p:inputText value="#{solicitudInvolucradoDto.comentario}"
@@ -117,7 +117,7 @@
 				value="DE CONTAR CON AJUSTE/BONIFICACION, EL GT/GR/JPN ACEPTÓ SU APLICACIÓN?" />
 			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"/>
 
-			<p:selectOneMenu converter="parametroConvert"
+			<h:selectOneMenu converter="parametroConvert"
 				rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033 &amp;&amp; solicitudMBean.mostrarDeclaracionJurada}"
 				disabled="#{(solicitudMBean.bloquearControles || oficinaSolicitudDto.habilitarDeclaracionJurada)}"
 				value="#{oficinaSolicitudDto.estadoAprobacionAjuBonDto}">
@@ -125,7 +125,7 @@
 					var="parametroDto" itemLabel="#{parametroDto.descripcion}"
 					itemValue="#{parametroDto}" />
 				<f:ajax />
-			</p:selectOneMenu>
+			</h:selectOneMenu>
 		</p:column>
 	</p:dataGrid>
 </h:panelGrid>
