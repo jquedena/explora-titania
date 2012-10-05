@@ -981,28 +981,17 @@ public class SesionAccionesBean implements javax.ejb.SessionBean {
 						bean.setOrden(rst.getString(2));
 						bean.setCompGestor(rst.getString(3));
 						bean.setNomAccion(rst.getString(4));
-						bean.setNumeroCliente(rst.getString(5) != null ? rst
-								.getString(5) : "0");
-						//bean.setPorc_asig(rst.getString(6) != null ?
-						// rst.getString(6) : "");
+						bean.setNumeroCliente(rst.getString(5) != null ? rst.getString(5) : "0");
+						//bean.setPorc_asig(rst.getString(6) != null ? rst.getString(6) : "");
 						bean.setFec_regi(rst.getString(7));
 						bean.setCodGestor(rst.getString(8));
 						bean.setNumeroConcretados1(rst.getInt(9));
 						bean.setMonto1(rst.getInt(10));
 						bean.setNumeroGestiones1(rst.getInt(13));
-						bean.setPorc_asig(rst.getString("fact") != null ? rst
-								.getString("fact") : "");
+						bean.setPorc_asig(rst.getString("fact") != null ? rst.getString("fact") : "");
 
-						compGestor = compGestor
-								+ Integer
-										.parseInt(rst.getString(3) != null ? rst
-												.getString(3)
-												: "0");
-						numeroCliente = numeroCliente
-								+ Integer
-										.parseInt(rst.getString(5) != null ? rst
-												.getString(5)
-												: "0");
+						compGestor = compGestor + Integer.parseInt(rst.getString(3) != null ? rst.getString(3) : "0");
+						numeroCliente = numeroCliente + Integer.parseInt(rst.getString(5) != null ? rst.getString(5) : "0");
 						numeroConcretados = numeroConcretados + rst.getInt(9);
 						monto = monto + rst.getInt(10);
 						numeroGestiones = numeroGestiones + rst.getInt(13);
@@ -1012,11 +1001,7 @@ public class SesionAccionesBean implements javax.ejb.SessionBean {
 						if (mapCont.get(bean.getCodEpigrafe()) == null) {
 							mapCont.put(bean.getCodEpigrafe(), new Integer(1));
 						} else {
-							mapCont
-									.put(bean.getCodEpigrafe(), new Integer(
-											((Integer) mapCont.get(bean
-													.getCodEpigrafe()))
-													.intValue() + 1));
+							mapCont.put(bean.getCodEpigrafe(), new Integer(((Integer) mapCont.get(bean.getCodEpigrafe())).intValue() + 1));
 						}
 					}
 
@@ -1087,28 +1072,10 @@ public class SesionAccionesBean implements javax.ejb.SessionBean {
 																	.parseInt(accionBean
 																			.getNumeroCliente())));
 
-									subBean
-											.setCompGestor(String
-													.valueOf(Integer
-															.parseInt(subBean
-																	.getCompGestor() != null ? subBean
-																	.getCompGestor()
-																	: "0")
-															+ Integer
-																	.parseInt(accionBean
-																			.getCompGestor())));
-
-									subBean.setNumeroGestiones1(subBean
-											.getNumeroGestiones1()
-											+ accionBean.getNumeroGestiones1());
-
-									subBean.setNumeroConcretados1(subBean
-											.getNumeroConcretados1()
-											+ accionBean
-													.getNumeroConcretados1());
-
-									subBean.setMonto1(subBean.getMonto1()
-											+ accionBean.getMonto1());
+									subBean.setCompGestor(String.valueOf(Integer.parseInt(subBean.getCompGestor() != null ? subBean.getCompGestor() : "0") + Integer.parseInt(accionBean.getCompGestor())));
+									subBean.setNumeroGestiones1(subBean.getNumeroGestiones1() + accionBean.getNumeroGestiones1());
+									subBean.setNumeroConcretados1(subBean.getNumeroConcretados1() + accionBean.getNumeroConcretados1());
+									subBean.setMonto1(subBean.getMonto1() + accionBean.getMonto1());
 
 									newRes.add(accionBean);
 								}
@@ -2198,30 +2165,19 @@ public class SesionAccionesBean implements javax.ejb.SessionBean {
 						bean.setCodAccion(rst.getString("COD_ACCI"));
 						bean.setNomEpigrafe(rst.getString(1));
 						bean.setOrden(rst.getString(2));
-						bean.setCompGestor(rst.getString(3) != null ? rst
-								.getString(3) : "0");
+						bean.setCompGestor(rst.getString(3) != null ? rst.getString(3) : "0");
 						bean.setNomAccion(rst.getString(4));
 						bean.setNumeroCliente(rst.getString(5));
-						//bean.setPorc_asig(rst.getString(6) != null ?
-						// rst.getString(6) : "" );
+						//bean.setPorc_asig(rst.getString(6) != null ? rst.getString(6) : "" );
 						bean.setFec_regi(rst.getString(7));
 						bean.setCodGestor(rst.getString(8));
 						bean.setNumeroConcretados2(rst.getInt(9));
 						bean.setMonto2(rst.getInt(10));
 						bean.setNumeroGestiones2(rst.getInt(13));
-						bean.setPorc_asig(rst.getString("fact") != null ? rst
-								.getString("fact") : "");
+						bean.setPorc_asig(rst.getString("fact") != null ? rst.getString("fact") : "");
 
-						compGestor = compGestor
-								+ Integer
-										.parseInt(rst.getString(3) != null ? rst
-												.getString(3)
-												: "0");
-						numeroCliente = numeroCliente
-								+ Integer
-										.parseInt(rst.getString(5) != null ? rst
-												.getString(5)
-												: "0");
+						compGestor = compGestor + Integer.parseInt(rst.getString(3) != null ? rst.getString(3) : "0");
+						numeroCliente = numeroCliente + Integer.parseInt(rst.getString(5) != null ? rst.getString(5) : "0");
 						numeroConcretados = numeroConcretados + rst.getInt(9);
 						monto = monto + rst.getInt(10);
 						numeroGestiones = numeroGestiones + rst.getInt(13);
@@ -2258,17 +2214,8 @@ public class SesionAccionesBean implements javax.ejb.SessionBean {
 							subBean.setNomAccion("Subtotal");
 
 							subBean
-									.setNumeroCliente(String
-											.valueOf(Integer
-													.parseInt(subBean
-															.getNumeroCliente() != null ? subBean
-															.getNumeroCliente()
-															: "0")
-													+ Integer
-															.parseInt(accionBean
-																	.getNumeroCliente() != null ? accionBean
-																	.getNumeroCliente()
-																	: "0")));
+									.setNumeroCliente(String.valueOf(Integer.parseInt(subBean.getNumeroCliente() != null ? subBean.getNumeroCliente() : "0")
+													+ Integer.parseInt(accionBean.getNumeroCliente() != null ? accionBean.getNumeroCliente() : "0")));
 
 							subBean
 									.setCompGestor(String
@@ -2355,13 +2302,8 @@ public class SesionAccionesBean implements javax.ejb.SessionBean {
 					newRes = new Vector(0, 1);
 				}
 
-				// POR MIENTRAS
-				//newRes = new Vector(0, 1);
-
 				bean.setTotalCompGestor(compGestor);
-				//bean.setTotalClientes(numeroCliente);
-				// POR MIENTRAS
-				//bean.setTotalClientes(0);
+				bean.setTotalClientes(numeroCliente);
 				bean.setTotalNumeroConcretados(numeroConcretados);
 				bean.setTotalMonto(monto);
 				bean.setTotalNumeroGestiones(numeroGestiones);
@@ -2669,6 +2611,7 @@ public class SesionAccionesBean implements javax.ejb.SessionBean {
 					newRes = new Vector(0, 1);
 				}
 
+				bean.setTotalClientes(numeroCliente);
 				bean.setTotalCompGestor(compGestor);
 				bean.setTotalNumeroConcretados(numeroConcretados);
 				bean.setTotalMonto(monto);
@@ -3311,6 +3254,7 @@ public class SesionAccionesBean implements javax.ejb.SessionBean {
 					newRes = new Vector(0, 1);
 				}
 
+				bean.setTotalClientes(numeroCliente);
 				bean.setTotalCompGestor(compGestor);
 				bean.setTotalNumeroConcretados(numeroConcretados);
 				bean.setTotalMonto(monto);

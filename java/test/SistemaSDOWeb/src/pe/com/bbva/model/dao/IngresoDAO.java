@@ -46,7 +46,7 @@ public class IngresoDAO extends AbstractSQL {
 	
 	public int existeIngresoForm(String tipo, String mes, String anio, String codUsuario, String codGestor, String codOficina) {
 		int id = -1;
-		Object[] parameters = new Object[7];
+		Object[] parameters = new Object[6];
 		parameters[0] = tipo;
 		parameters[1] = mes;
 		parameters[2] = anio;

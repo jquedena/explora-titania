@@ -261,7 +261,7 @@ Oficina oficinaBean = null;
 				<td class="Title" style="font-size:80%;"><c:out value='${seguimiento.nomEpigrafe}'/></td>
 				<td class="Title C_<c:out value="${seguimiento.codEpigrafe}"/><c:out value="${seguimiento.tipo}"/>" pattern="#,###.00" type="NUMBER" align="right"><fmt:formatNumber value='${seguimiento.metGerOfi}' maxFractionDigits="0" minFractionDigits="0"/></td>
 				<td class="Title T_<c:out value="${seguimiento.codEpigrafe}"/><c:out value="${seguimiento.tipo}"/>" pattern="#,###.00" type="NUMBER" align="right"><fmt:formatNumber value='${seguimiento.totalMIS}' maxFractionDigits="0" minFractionDigits="0"/><c:if test="${seguimiento.totalMIS==null}">&nbsp;</c:if></td>
-				<td class="Title D_<c:out value="${seguimiento.codEpigrafe}"/><c:out value="${seguimiento.tipo}"/>" pattern="#,###.00" type="NUMBER" align="right"><fmt:formatNumber value="${seguimiento.desviacionMIS}" maxFractionDigits="2" minFractionDigits="2"/>%</td>
+				<td class="Title D_<c:out value="${seguimiento.codEpigrafe}"/><c:out value="${seguimiento.tipo}"/>" align="right"><fmt:formatNumber value="${seguimiento.desviacionMIS}" maxFractionDigits="2" minFractionDigits="2"/>%</td>
 			</c:if>
 			<c:if test="${seguimiento.orden!=orden}">
 				<td colspan='5' style="	border: 1px solid #fff; border-right: 1px solid #9dbee7;">&nbsp;</td>
