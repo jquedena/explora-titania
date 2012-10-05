@@ -15,7 +15,7 @@
 			styleClass="tituloPantalla" />
 		<p:separator />
 
-		<p:growl id="msg_alert" showDetail="true"/>
+		<p:growl id="msg_alert" showDetail="false"/>
 		
 		<p:dialog modal="true" widgetVar="statusDialog" header="Cargando..."
 			draggable="false" closable="false">
@@ -83,14 +83,7 @@
 							<p:spacer width="15px" />
 
 							<h:outputLabel value="ESTADO" style="font-weight: bold;" />
-							<h:selectOneMenu
-								value="#{solicitudMBean.dto.tramiteSolicitudDto}"
-								converter="parametroConvert" disabled="true"
-								style="font-weight: bold; width: 200px;">
-								<f:selectItems value="#{solicitudMBean.estadosSolicitud}"
-									var="parametroDto" itemLabel="#{parametroDto.descripcion}"
-									itemValue="#{parametroDto}" />
-							</h:selectOneMenu>
+							<h:outputText value="#{solicitudMBean.dto.tramiteSolicitudDto.descripcion}" />
 							<p:spacer width="15px" />
 
 							<h:outputLabel value="FECHA MOD." style="font-weight: bold;"/>
@@ -123,9 +116,8 @@
 							<p:spacer width="5px" rendered="#{solicitudMBean.dto.motivoTrasladoDto.id!=1026}" />
 							<p:spacer width="5px" rendered="#{solicitudMBean.dto.motivoTrasladoDto.id!=1026}" />
 							<p:spacer width="15px" />
-							
 							<p:spacer width="15px" />
-							<p:spacer width="200px" />
+							<p:spacer width="15px" />
 							
 							<h:outputLabel value="TOTAL ACTIVO" style="font-weight: bold;"/>
 							<h:outputLabel value="#{solicitudMBean.dto.totalActivo}" style="font-weight: bold;">
@@ -202,7 +194,7 @@
 						</h:panelGrid>
 						<br />
 
-						<p:outputPanel>
+						<h:panelGrid columns="2">
 							<p:selectBooleanCheckbox value="#{solicitudMBean.aplicaAjusteBonificacion}"
 								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
 								rendered="#{solicitudMBean.dto.tipoDto.id==1006}">
@@ -211,7 +203,7 @@
 							<h:outputLabel value="#{message['solicitud.bonificacion']}"
 								rendered="#{solicitudMBean.dto.tipoDto.id==1006}"
 								style="font-size: 11px;font-weight: bold;" />
-						</p:outputPanel>
+						</h:panelGrid>
 						
 						<p:separator rendered="#{solicitudMBean.dto.tipoDto.id==1006}" />
 						<h:panelGrid id="pgBonificacion" columns="8" cellpadding="10"
@@ -256,7 +248,7 @@
 							</p:inputText>
 						</h:panelGrid>
 
-						<p:outputPanel>
+						<h:panelGrid columns="2">
 							<p:selectBooleanCheckbox value="#{solicitudMBean.aplicaAjusteBonificacion}"
 								disabled="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
 								rendered="#{solicitudMBean.dto.tipoDto.id==1007}">
@@ -265,7 +257,7 @@
 							<h:outputLabel value="#{message['solicitud.ajuste']}"
 								rendered="#{solicitudMBean.dto.tipoDto.id==1007}"
 								style="font-size: 11px;font-weight: bold;" />
-						</p:outputPanel>
+						</h:panelGrid>
 						
 						<p:separator rendered="#{solicitudMBean.dto.tipoDto.id==1007}" />
 						<h:panelGrid id="pgAjustes" columns="12" cellpadding="10"
