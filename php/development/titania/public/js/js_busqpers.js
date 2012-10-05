@@ -187,11 +187,5 @@ function Buscar(){
 		$("#div_rsbusqpers").html(requestData);
 	});
 	
-	_post.error(function(requestData, errMessage, errNumber){
-		if(errNumber == '') {
-			openDialogError("No se puede determinar el error.");
-		} else {
-			openDialogError(errNumber +': ' + errMessage);
-		}
-	});
+	_post.error(postError);
 }

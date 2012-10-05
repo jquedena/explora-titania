@@ -1,3 +1,28 @@
+verContribuyentePredio = function(rowid) {   
+    if(rowid == undefined || rowid == null) {
+        parameters = {"name": "tblResult"};
+    } else {
+        parameters = $(this).getRowData(rowid);
+    }
+    
+    _post = $.post(path + "registro/listarpredio", parameters);
+    
+    _post.success(function(request){
+        $("#panelRegistro").html(request);
+        $("#cboPeriodo").on("change", function(){
+            buscarPredio();
+        });
+        buscarPredio();
+    });
+	
+    _post.error(postError);
+};
+
+verPredio = function(rowid, iRow, iCol, e) {
+    row = $(this).getRowData(rowid);
+    console.log(row);
+};
+
 optionContribuyente = {
     height: 290,
     width: 1000,
@@ -8,14 +33,11 @@ optionContribuyente = {
         {name:'direccf', index:'direccf', width:420} ],
     caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
     hidegrid: true,
-    /*onSelectRow: function(id) {
+    /* onSelectRow: function(id) {
         row = $(this).getRowData(id);
         console.log(row);
     },*/
-    ondblClickRow: function(rowid, iRow, iCol,e) {
-        row = $(this).getRowData(rowid);
-        console.log(row);
-    }
+    ondblClickRow: verContribuyentePredio
 }
 
 optionPredio = {
@@ -29,8 +51,8 @@ optionPredio = {
         'Adquirido',
         'Nro. de Doc.',
         '% Prop.'],
-    colModel: [{name: 'ccodpre', index:'ccodpre', width: 80, frozen: true},
-        {name: 'tnumero', index:'tnumero', width: 450, frozen: true},
+    colModel: [{name: 'ccodpre', index:'ccodpre', width: 80}, // , frozen: true
+        {name: 'tnumero', index:'tnumero', width: 450}, // , frozen: true
         {name: 'cusogen', index:'cusogen', width: 250},
         {name: 'nvalpre', index:'nvalpre', width: 100, formatter:'currency', align: 'right'},
         {name: 'nvalafe', index:'nvalafe', width: 100, formatter:'currency', align: 'right'},
@@ -38,10 +60,10 @@ optionPredio = {
         {name: 'vnrodoc', index:'vnrodoc', width: 80, align: 'center'},
         {name: 'nporcen', index:'nporcen', width: 60, align: 'right'}],
     caption: "&nbsp;&nbsp;&nbsp;Predios Registrados",
-    shrinkToFit: false
+    ondblClickRow: verPredio
 }
 
-bindkeysContribuyente = {"onEnter": function( rowid ) { listarPredio(rowid) }};
+bindkeysContribuyente = {"onEnter": verContribuyentePredio};
 
 buscarPredio = function() { 
     parameters = {
@@ -87,13 +109,7 @@ buscarContribuyente = function() {
             if(records > 1) {
                 actualizarGrid("tblResult", optionContribuyente, bindkeysContribuyente);
             } else {
-                _post = $.post(path + "registro/listarpredio", {"name": "tblResult"}, function(request){
-                    $("#panelRegistro").html(request);
-                    $("#cboPeriodo").on("change", function(){
-                        buscarPredio();
-                    });
-                    buscarPredio();
-                });
+                verContribuyentePredio();
             }
         };
         
@@ -102,12 +118,6 @@ buscarContribuyente = function() {
         openDialogWarning("Ingrese un valor en los campos de busqueda.", 380, 150);
     }
 };
-
-listarPredio = function(id) {
-    
-}
-
-// buscarPredio = function() {};
 
 $(function(){
     $("#c_codigocontrib").numeric({
