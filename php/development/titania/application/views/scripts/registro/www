@@ -56,8 +56,18 @@
         pager: "#p" + id,
         viewrecords: true,
         loadonce: true,
-        caption: "&nbsp;&nbsp;&nbsp;" + _caption
+        caption: "&nbsp;&nbsp;&nbsp;" + _caption,
+        ondblClickRow: function(rowid, iRow, iCol,e) {
+            row = $(this).getRowData(rowid);
+            console.log(row);
+        }
     });
+    
+    bindkeysContribuyente = {"onEnter": function( rowid ) {
+        alert(rowid);
+        row = $(this).getRowData(rowid);
+        console.log(row);
+    }};
     
 
     // $("#tblListaPredio").jqGrid('hideCol',["dfecadq","nporcen"]);

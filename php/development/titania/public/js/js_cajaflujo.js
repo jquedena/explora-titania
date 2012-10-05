@@ -6,7 +6,7 @@ function aperturarcaja(vaccion){
 		vnrocaja = $('#txtnrocaja').val();
 		vfecha= $('#txtfecha').val();
 		if (vnrocaja=='' || vnrocaja==null){
-			openDialogWarning('Ingrese el Número de Caja a Aperturar');
+			openDialogWarning('Ingrese el Nï¿½mero de Caja a Aperturar');
 			return false;
 		}
 		if (vfecha=='' || vfecha==null || vfecha.length != 10){
@@ -19,7 +19,7 @@ function aperturarcaja(vaccion){
 		vfecha= $('#fechaorg').val();
 		obs =$('#txtobs').val();
 		if (obs=='' || obs==null){
-			openDialogWarning('Ingrese una observación');
+			openDialogWarning('Ingrese una observaciï¿½n');
 			return false;
 		}
 	}
@@ -65,13 +65,7 @@ function cerrarcaja(){
 		openDialogInfo(requestData, 400, 150);
 	});
 	
-	_post.error(function(requestData, errMessage, errNumber){
-		if(errNumber == '') {
-			openDialogError("No se puede determinar el error.");
-		} else {
-			openDialogError(errNumber +': ' + errMessage);
-		}
-	});
+	_post.error(postError);
 }
 
 function datoscaja(op){
@@ -88,13 +82,7 @@ function datoscaja(op){
 		$("#action").html(requestData);
 	});
 	
-	_post.error(function(requestData, errMessage, errNumber){
-		if(errNumber == '') {
-			openDialogError("No se puede determinar el error.");
-		} else {
-			openDialogError(errNumber +': ' + errMessage);
-		}
-	});
+	_post.error(postError);
 }
 
 function ventanareapertura(){
@@ -132,13 +120,7 @@ function lstcajasapert(){
 		mouseHover("tbl_capert");
 	});
 	
-	_post.error(function(requestData, errMessage, errNumber){
-		if(errNumber == '') {
-			openDialogError("No se puede determinar el error.");
-		} else {
-			openDialogError(errNumber +': ' + errMessage);
-		}
-	});
+	_post.error(postError);
 }
 
 var listaCerrada = '';
@@ -191,11 +173,5 @@ function cerrarTodasCajas(){
 		openDialogInfo(requestData, 400, 150);
 	});
 	
-	_post.error(function(requestData, errMessage, errNumber){
-		if(errNumber == '') {
-			openDialogError("No se puede determinar el error.");
-		} else {
-			openDialogError(errNumber +': ' + errMessage);
-		}
-	});
+	_post.error(postError);
 }

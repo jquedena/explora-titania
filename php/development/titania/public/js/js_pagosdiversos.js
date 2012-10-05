@@ -11,13 +11,7 @@ function MostrarBuscarConceptosPagosDiversos(conceptos) {
 			$("#div_buscarconcepto").html(requestData);
 		});
 		
-		_post.error(function(requestData, errMessage, errNumber){
-			if(errNumber == '') {
-				openDialogError("No se puede determinar el error.");
-			} else {
-				openDialogError(errNumber +': ' + errMessage);
-			}
-		});
+		_post.error(postError);
 	} else {
 		$("#hidden_buscarconcepto").val('0');
 		$("#div_buscarconcepto").html('');
@@ -69,13 +63,7 @@ function BusqXCriterioConceptoPagosDiversos(crit, datos) {
 		$("#montoconcepto").focus();
 	});
 	
-	_post.error(function(requestData, errMessage, errNumber){
-		if(errNumber == '') {
-			openDialogError("No se puede determinar el error.");
-		} else {
-			openDialogError(errNumber +': ' + errMessage);
-		}
-	});
+	_post.error(postError);
 }
 
 function AgregarDetalleConceptoPagosDiversos() {
@@ -103,13 +91,7 @@ function AgregarDetalleConceptoPagosDiversos() {
 			$("#divdetallepagodiverso").html(requestData);
 		});
 		
-		_post.error(function(requestData, errMessage, errNumber){
-			if(errNumber == '') {
-				openDialogError("No se puede determinar el error.");
-			} else {
-				openDialogError(errNumber +': ' + errMessage);
-			}
-		});
+		_post.error(postError);
 	}
 }
 
@@ -127,13 +109,7 @@ function BorrarDetalleConceptoPagosDiversos(vcod, vmonto) {
 		$("#divdetallepagodiverso").html(requestData);
 	});
 	
-	_post.error(function(requestData, errMessage, errNumber){
-		if(errNumber == '') {
-			openDialogError("No se puede determinar el error.");
-		} else {
-			openDialogError(errNumber +': ' + errMessage);
-		}
-	});
+	_post.error(postError);
 }
 
 function CobrarConceptoPagosDiversos() {
@@ -143,11 +119,5 @@ function CobrarConceptoPagosDiversos() {
 		$("#div_resultpagosdiversos").html(requestData);
 	});
 	
-	_post.error(function(requestData, errMessage, errNumber){
-		if(errNumber == '') {
-			openDialogError("No se puede determinar el error.");
-		} else {
-			openDialogError(errNumber +': ' + errMessage);
-		}
-	});
+	_post.error(postError);
 }

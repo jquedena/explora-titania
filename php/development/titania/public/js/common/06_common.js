@@ -1,15 +1,18 @@
+postError = function(requestData, errMessage, errNumber){
+    if(errNumber == '') {
+        openDialogError("No se puede determinar el error.");
+    } else {
+        openDialogError(errNumber +': ' + errMessage);
+    }
+};
+
+
 function procesarConsultaSubProceso(source, parameters, fnc) {
     _post = $.post(path + "jqgrid/" + source, parameters);
 	
     _post.success(fnc);
 	
-    _post.error(function(requestData, errMessage, errNumber){
-        if(errNumber == '') {
-            openDialogError("No se puede determinar el error.");
-        } else {
-            openDialogError(errNumber +': ' + errMessage);
-        }
-    });
+    _post.error(postError);
 }
 
 function procesarSeleccion(idPanel, idx, _options, parameters) {
@@ -39,6 +42,7 @@ function actualizarGrid(id, _options, bindkeys){
         pager: "#p" + id,
         viewrecords: true,
         loadonce: true,
+        shrinkToFit: false,
         loadError : function(xhr,st,err) {
             alert("Type: "+st+"; Response: "+ xhr.status + " " + xhr.statusText);
             alert(err);
@@ -101,13 +105,7 @@ function openDialogData1(url, data, width, height, title) {
             $('#jqDialog1').dialog('open');
         });
 		
-        _post.error(function(requestData, errMessage, errNumber){
-            if(errNumber == '') {
-                openDialogError("No se puede determinar el error.");
-            } else {
-                openDialogError(errNumber +': ' + errMessage);
-            }
-        });	
+        _post.error(postError);	
     }
 }
 
@@ -124,13 +122,7 @@ function openDialog1(url, width, height, title) {
             $('#jqDialog1').dialog('open');
         });
 		
-        _post.error(function(requestData, errMessage, errNumber){
-            if(errNumber == '') {
-                openDialogError("No se puede determinar el error.");
-            } else {
-                openDialogError(errNumber +': ' + errMessage);
-            }
-        });	
+        _post.error(postError);	
     }
 }
 
@@ -147,13 +139,7 @@ function openDialog2(url, width, height, title) {
             $('#jqDialog2').dialog('open');
         });
 		
-        _post.error(function(requestData, errMessage, errNumber){
-            if(errNumber == '') {
-                openDialogError("No se puede determinar el error.");
-            } else {
-                openDialogError(errNumber +': ' + errMessage);
-            }
-        });	
+        _post.error(postError);	
     }
 }
 
