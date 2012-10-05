@@ -108,7 +108,7 @@ public class ExportarContratoServlet extends HttpServlet  {
 					doc.setContentValue(indexRow, 6, o.getSalMora());
 					doc.setContentValue(indexRow, 7, o.getSaldoVen());
 					doc.setContentValue(indexRow, 8, o.getFechaApertura());
-					doc.setContentValue(indexRow, 9, o.getSituacion());
+					doc.setContentValue(indexRow, 9, o.getDescripcionSituacion());
 					doc.setContentValue(indexRow, 10, o.getTipoPrestamoDto().getDescripcion());
 					indexRow++;
 				}

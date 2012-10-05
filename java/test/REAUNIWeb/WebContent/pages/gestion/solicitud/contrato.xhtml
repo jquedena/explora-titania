@@ -173,15 +173,6 @@
 					ajax="false"
 					update=":frmPrincipal:idTabView:pgContratosTemporaral" />
 				<p:spacer width="30" />
-				<p:commandButton id="sbReasignarTodos"
-					disabled ="#{solicitudMBean.dto.responsableSolicitante != sessionMBean.registro}"
-					value="#{solicitudMBean.dto.tipoDto.descripcion} TODOS"
-					icon="ui-icon-search"
-					onclick="return confirm('ESTÁ SEGURO QUE DESEA REASIGNAR O UNIFICAR TODOS LOS CONTRATOS?');"
-					actionListener="#{solicitudMBean.grabarContratosAll}"
-					ajax="false"
-					update=":msgs :frmPrincipal:idTabView:pgContratosTemporaral" />
-				<p:spacer width="30" />
 				<p:commandButton title="ENVIAR SOLICITUD"
 					onclick="return confirm('ESTÁ SEGURO QUE DESEA ENVIAR LA SOLICITUD?');"
 					ajax="false"
