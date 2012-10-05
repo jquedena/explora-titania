@@ -186,6 +186,8 @@
 	    	}    
 		}
 	}
+	
+	var INT_PATTERN_NEGATIVO=/\-{0,1}\d{0,}/;
 	</script>
 	<title></title>
 </head>
@@ -380,7 +382,7 @@
 					nombre="<c:out value='${objBean.nombreGestor}'/>"
 					codperfil="<c:out value='${objBean.perfilMostrar}'/>"
 					valueOld="${objBean.porcAsignado}"
-					value=<c:out value="${objBean.metaGestor.porcAsignado}"/> onblur="setearCero();" onkeypress="return validKey(IINT_PATTERN_NEGATIVO);"/>
+					value=<c:out value="${objBean.metaGestor.porcAsignado}"/> onblur="setearCero();" onkeypress="return validKey(INT_PATTERN_NEGATIVO);"/>
 			</c:if>
 			<c:if test="${objBean.porcAsignado == 0 }">
 				<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textCeleste" name=<c:out value="${objBean.codigoGestor}"/> size="10"

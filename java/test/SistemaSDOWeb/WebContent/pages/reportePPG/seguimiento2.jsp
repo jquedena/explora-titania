@@ -617,7 +617,7 @@ if($(".Text").length == 0) {
 		<BR>
 		<%if (c != null || a != null) {%>
 		<center><c:if test="${sessionScope.gestor.codigoPerfil!='ADM' && sessionScope.gestor.codigoPerfil!='SUP' && sessionScope.gestor.codigoPerfil!='CON'}">
-			<input type="button" value="Grabar" onClick="grabar()" <% if (bean.getEstado()!=0) {%> disabled <%}%>>
+			<input type="button" id="btnGrabar" name="btnGrabar" value="Grabar" onClick="grabar()" <% if (bean.getEstado()!=0) {%> disabled <%}%>>
 		</c:if> <input type="button" value="Imprimir" onClick="window.print()"></center>
 		<%} else {
 
