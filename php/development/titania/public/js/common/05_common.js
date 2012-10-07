@@ -8,10 +8,8 @@ postError = function(requestData, errMessage, errNumber){
 
 
 function procesarConsultaSubProceso(source, parameters, fnc) {
-    _post = $.post(path + "jqgrid/" + source, parameters);
-	
+    _post = $.post(path + "jqgrid/" + source, parameters);	
     _post.success(fnc);
-	
     _post.error(postError);
 }
 
@@ -191,17 +189,17 @@ function DoNavrow(theUrl) {
 }
 
 $(function(){
-    $("#itemMenu1").menu({
+    $("#itemMenu1").menuBar({
         content: $("#itemMenu1").next().html(),
         showSpeed: 1,
         flyOut: true
     });
-    $("#itemMenu2").menu({
+    $("#itemMenu2").menuBar({
         content: $("#itemMenu2").next().html(),
         showSpeed: 1,
         flyOut: true
     });
-    $("#itemMenu3").menu({
+    $("#itemMenu3").menuBar({
         content: $("#itemMenu3").next().html(),
         showSpeed: 1,
         flyOut: true

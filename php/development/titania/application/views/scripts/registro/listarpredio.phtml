@@ -1,11 +1,14 @@
-<div id="panelContribuyente" align="left" style="width: 99%; margin: 3px;" >
-    <table border="0" style="width: 100%; line-height: 18px; height: 18px; vertical-align: middle;">
+<div id="panelContribuyente" align="center" class="ui-widget ui-widget-content ui-corner-all" style="width: 1000px;margin: 3px;">
+    <div class="ui-widget ui-state-default ui-corner-top ui-title">
+        <label>Registro de Declaraci&oacute;n Jurada</label>
+    </div>
+    <table border="0" class="ui-table-panelLayout">
         <tr>
             <td style="width: 55px;">C&oacute;digo:</td>
             <td style="width: 75px;font-weight: bold;"><div id="lblCodigo"><?php echo $this->cidpers; ?></div></td>
-            <td style="width: 75px; text-align: right; padding-right: 5px;">Nombre:</td>
+            <td style="width: 75px; text-align: right; padding-right: 9px;">Nombre:</td>
             <td style="font-weight: bold;"><?php echo $this->vnombre; ?></td>
-            <td style="width: 75px;" align="rigth" rowspan="2"><?php echo $this->util()->getPeriodos();?></td>
+            <td style="width: 90px;" align="rigth" rowspan="2"><div class="ui-widget"><?php echo $this->util()->getPeriodos(); ?></div></td>
         </tr><tr>
             <td>Direcci&oacute;n:</td>
             <td colspan="3" style="font-weight: bold;"><?php echo $this->vdirecc; ?></td>
