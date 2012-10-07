@@ -4,12 +4,14 @@
     letter-spacing: .03em;
 }
 
-body {
-    font-size: 0.7em;
+html, body {
     overflow: auto;
     padding: 0px;
     margin: 0px;
     height: 100%;
+}
+body {
+    font-size: 0.7em;
 }
 
 #layout, #north, #south, #west, #east {
@@ -100,53 +102,53 @@ body {
     text-decoration: none;
 }
 #jqDialogCargando table{
-	padding: 5px;
+    padding: 5px;
 }
 #Searchresult {
-	padding: 2px;
+    padding: 2px;
 }
 .ui-title {
-	height: 25px;
-	line-height: 25px;
-	vertical-align: middle;
-	font-size: 120%;
-	font-weight: bold;
+    height: 25px;
+    line-height: 25px;
+    vertical-align: middle;
+    font-size: 120%;
+    font-weight: bold;
 }
 thead.ui-title2 tr th{
-	border-left: 1px solid #fff;
-	height: 24px;
-	line-height: 24px;
-	vertical-align: middle;
-	font-weight: bold;
-	text-align: center;
+    border-left: 1px solid #fff;
+    height: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+    font-weight: bold;
+    text-align: center;
 }
 .ui-titleBar{
-	font-size: 16px; 
-	padding-right: 5px;
-	padding-top: 5px;
-	color: #1c5dab;
-	font-weight: bold;
-	text-align: right;
-	vertical-align: bottom;	
+    font-size: 16px; 
+    padding-right: 5px;
+    padding-top: 5px;
+    color: #1c5dab;
+    font-weight: bold;
+    text-align: right;
+    vertical-align: bottom;	
 }
 .ui-titleBar2{
-	font-size: 100%; 
-	padding: 3px;
-	color: #1c5dab;
-	font-weight: bold;
-	vertical-align: middle;	
+    font-size: 100%; 
+    padding: 3px;
+    color: #1c5dab;
+    font-weight: bold;
+    vertical-align: middle;	
 }
 tbody.ui-table-body tr td{
-	height: 20px;
-	font-size: 90%;
-	/* border-right: 1px solid #d8d8d8; */
-	border-bottom: 1px solid #f4f4f4; /* #1c5dab */
+    height: 20px;
+    font-size: 90%;
+    /* border-right: 1px solid #d8d8d8; */
+    border-bottom: 1px solid #f4f4f4; /* #1c5dab */
 }
 .ui-disabled-text{
-	background-color: #fffbc3; 
+    background-color: #fffbc3; 
 }
 table.ui-tablecontent tr td {
-	padding: 5px;
+    padding: 5px;
 }
 input.ui-text,
 input.ui-text-highlight {
@@ -185,19 +187,44 @@ input.ui-text-highlight {
 }
 
 #jqDialogCargando table{
-	padding: 5px;	
+    padding: 5px;	
 }
 
 .ui-title {
-	height: 25px;
-	line-height: 25px;
-	vertical-align: middle;
-	font-size: 120%;
-	font-weight: bold;
+    height: 25px;
+    line-height: 25px;
+    vertical-align: middle;
+    font-size: 120%;
+    font-weight: bold;
 }
 
 .ui-panelLayout-main {
     width: 100%;
     padding-top: 10px;
     padding-bottom: 2px;
-} 
+}
+
+table.ui-table-panelLayout {
+    width: 100%;
+    vertical-align: middle;
+    padding: 4px;
+}
+table.ui-table-panelLayout tr td{
+    padding: 3px;
+}
+
+.ui-autocomplete {
+    max-height: 118px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    /* add padding to account for vertical scrollbar */
+    padding-right: 8px;
+}
+
+/* IE 6 doesn't support max-height
+ * we use height instead, but this forces the menu to always be this tall
+ */
+* html .ui-autocomplete {
+    height: 118px;
+}

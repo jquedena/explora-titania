@@ -30,7 +30,15 @@
         {
             var $iframe = $("<iframe  />");
         
-            if (!opt.debug) { $iframe.css({ position: "absolute", width: "0px", height: "0px", left: "-770px", top: "-770px" }); }
+            if (!opt.debug) {
+                $iframe.css({
+                    position: "absolute", 
+                    width: "0px", 
+                    height: "0px", 
+                    left: "-770px", 
+                    top: "-770px"
+                });
+            }
 
             $iframe.appendTo("body");
             var doc = $iframe[0].contentWindow.document;
@@ -52,24 +60,35 @@
             }
         }
         
-        if (opt.printContainer) { doc.write($element.outer()); }
-        else { $element.each( function() { doc.write($(this).html()); }); }
+        if (opt.printContainer) {
+            doc.write($element.outer());
+        }
+        else {
+            $element.each( function() {
+                doc.write($(this).html());
+            });
+        }
         
         doc.close();
         
         (opt.operaSupport && $.browser.opera ? tab : $iframe[0].contentWindow).focus();
-        setTimeout( function() { (opt.operaSupport && $.browser.opera ? tab : $iframe[0].contentWindow).print(); if (tab) { tab.close(); } }, 1000);
-    }
+        setTimeout( function() {
+            (opt.operaSupport && $.browser.opera ? tab : $iframe[0].contentWindow).print();
+            if (tab) {
+                tab.close();
+            }
+        }, 1000);
+}
     
-    $.fn.jqprint.defaults = {
-		debug: false,
-		importCSS: true, 
-		printContainer: true,
-		operaSupport: true
-	};
+$.fn.jqprint.defaults = {
+    debug: false,
+    importCSS: true, 
+    printContainer: true,
+    operaSupport: true
+};
 
-    // Thanks to 9__, found at http://users.livejournal.com/9__/380664.html
-    jQuery.fn.outer = function() {
-      return $($('<div style=\'width=800px;\'></div>').html(this.clone())).html();
-    } 
+// Thanks to 9__, found at http://users.livejournal.com/9__/380664.html
+jQuery.fn.outer = function() {
+    return $($('<div style=\'width=800px;\'></div>').html(this.clone())).html();
+} 
 })(jQuery);

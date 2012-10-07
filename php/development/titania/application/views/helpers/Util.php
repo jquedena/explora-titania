@@ -141,7 +141,7 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
     }
     
     public function getPeriodos() {
-        $result = "<select id='cboPeriodo'>";
+        $result = "<select id='cboPeriodo' style='width: 60px;'>";
         $year = (int) date("Y");
         for($i = $year; $i >= 1996; $i--) {
             $result .= "\n\t<option value='$i'>$i</option>";

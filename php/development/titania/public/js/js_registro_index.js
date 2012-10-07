@@ -9,8 +9,17 @@ verContribuyentePredio = function(rowid) {
     
     _post.success(function(request){
         $("#panelRegistro").html(request);
-        $("#cboPeriodo").on("change", function(){
-            buscarPredio();
+        $("#cboPeriodo").combobox();
+        $("#txtPeriodo").attr("maxlength", 4);
+        $("#txtPeriodo").bind("autocompleteselect", function(event, ui) {
+            buscarPredio(ui.item.value);
+        });
+        $("#txtPeriodo").bind("autocompletechange", function(event, ui) {
+            if(ui.item) {
+                buscarPredio(ui.item.value);
+            } else {
+                openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
+            }
         });
         buscarPredio();
     });
@@ -32,7 +41,6 @@ optionContribuyente = {
         {name:'crazsoc', index:'crazsoc', width:420},
         {name:'direccf', index:'direccf', width:420} ],
     caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
-    hidegrid: true,
     /* onSelectRow: function(id) {
         row = $(this).getRowData(id);
         console.log(row);
@@ -65,16 +73,20 @@ optionPredio = {
 
 bindkeysContribuyente = {"onEnter": verContribuyentePredio};
 
-buscarPredio = function() { 
+buscarPredio = function(cperiod) { 
+    if(cperiod == undefined || cperiod == null) {
+        cperiod = $("#cboPeriodo").val();
+    }
     parameters = {
         "name": "tblListaPredio",
         "procedure": "pl_function.listar_predios",
         "parameters": '{' +
-        '"p_cperiod":"' + $("#cboPeriodo").val() + '",' +
+        '"p_cperiod":"' + cperiod + '",' +
         '"p_cidpers":"' + $("#lblCodigo").html() + '"' +
         '}'
     };
 
+    console.log(parameters);
     procesarProcedimiento("panelListaPredio", "tblListaPredio", optionPredio, parameters);
 };
 
