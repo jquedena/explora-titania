@@ -3,7 +3,7 @@
     display: inline-block;
 }
 .ui-combobox tbody tr td {
-    padding: 0;
+    padding: 0 !important;
 }
 .ui-combobox-toggle {
     display: inline-block !important;
@@ -17,7 +17,8 @@
     *height: 1.7em;
     *top: 0.1em;
 }
-.ui-combobox-input {
+.ui-combobox-input,
+.ui-combobox-input-highlight{
     margin: 0;
     padding: 0;
     padding-left: 0.3em;
@@ -25,4 +26,9 @@
     line-height: 18px;
     height: 18px;
     vertical-align: middle;
+}
+.ui-combobox-input-highlight {
+    background: #fbec88 url('../theme/blue_explora/images/ui-bg_glass_55_fbec88_1x400.png') 50% 50% repeat-x;
+    border: 1px solid #fcd113;
+    color: #915608;
 }

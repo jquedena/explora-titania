@@ -213,6 +213,11 @@ table.ui-table-panelLayout tr td{
     padding: 3px;
 }
 
+#panelControl button {
+    margin: 3px;
+    text-align: right;
+}
+
 .ui-autocomplete {
     max-height: 118px;
     overflow-y: auto;
