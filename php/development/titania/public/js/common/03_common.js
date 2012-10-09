@@ -6,7 +6,6 @@ postError = function(requestData, errMessage, errNumber){
     }
 };
 
-
 function procesarConsultaSubProceso(source, parameters, fnc) {
     _post = $.post(path + "jqgrid/" + source, parameters);	
     _post.success(fnc);
@@ -188,6 +187,40 @@ function DoNavrow(theUrl) {
     window.open(theUrl, '_self');
 }
 
+function themeTextBox(selector) {
+    if(selector == undefined || selector == null) {
+        selector = ".ui-text";
+    }
+    $(selector).on("blur", function(){
+        $(this).toggleClass("ui-text-highlight");
+    });
+    $(selector).on("focus", function(){
+        $(this).toggleClass("ui-text-highlight");
+    });
+}
+function themeComboBox(selector) {
+    if(selector == undefined || selector == null) {
+        selector = "select";
+    }
+    $(selector).combobox();
+    $(selector).bind("focus", function(){
+        $(this).toggleClass("ui-combobox-input-highlight");
+    });
+    $(selector).bind("blur", function(){
+        $(this).toggleClass("ui-combobox-input-highlight");
+    });
+}
+
+var userAgent = navigator.userAgent.toLowerCase();
+$.browser = {
+    version: (userAgent.match( /.+(?:rv|it|ra|ie|me)[\/: ]([\d.]+)/ ) || [])[1],
+    chrome: /chrome/.test( userAgent ),
+    safari: /webkit/.test( userAgent ) && !/chrome/.test( userAgent ),
+    opera: /opera/.test( userAgent ),
+    msie: /msie/.test( userAgent ) && !/opera/.test( userAgent ),
+    mozilla: /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent )
+};
+
 $(function(){
     $("#itemMenu1").menuBar({
         content: $("#itemMenu1").next().html(),
@@ -204,10 +237,7 @@ $(function(){
         showSpeed: 1,
         flyOut: true
     });
-    $(".ui-text").on("blur", function(){
-        $(this).toggleClass("ui-text-highlight");
-    });
-    $(".ui-text").on("focus", function(){
-        $(this).toggleClass("ui-text-highlight");
-    });
+    themeTextBox();
+    themeComboBox();
+    // alert($.browser.msie);
 });

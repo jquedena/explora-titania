@@ -42,8 +42,9 @@
         ?>
 
         <script type="text/javascript">
-            var path="<?php echo $this->util()->getPath(); ?>index.php/";
-            var imageInit="<?php echo $this->util()->getImage("alumnos0.jpg"); ?>";
+            var path="<?php echo $this->util()->getPath(); ?>index.php/",
+                pathImage="<?php echo $this->util()->getPath(); ?>img/"
+                imageInit="<?php echo $this->util()->getImage("alumnos0.jpg"); ?>";
 
             $.jgrid.no_legacy_api = true; 
             $.jgrid.useJSON = true; 

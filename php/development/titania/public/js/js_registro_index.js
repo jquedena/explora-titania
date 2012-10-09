@@ -1,3 +1,37 @@
+loadVerDetalle = function(){
+    $("#tabsDetallePredio").tabs();
+
+    themeTextBox("#panelRegistro .ui-text");
+    themeComboBox("#panelRegistro select");
+    
+    $("#dtpFechaAdquisicion, #dtpFechaDescargo").datepicker({
+        dateFormat: "dd/mm/yy",
+        showOn: "button",
+        buttonImage: pathImage + "calendar.gif",
+        buttonImageOnly: true
+    });
+
+    $("#btnBuscarDireccion").button({
+        text: false,
+        icons: {primary:'ui-icon-search'}
+    });
+    
+    $("#btnEditarPredio").button({
+        icons: {primary:'ui-icon-pencil'}
+    });
+
+    $("#btnGrabarPredio").button({
+        icons: {primary:'ui-icon-disk'}
+    });
+
+    $("#btnCancelarPredio").button({
+        icons: {primary:'ui-icon-arrowreturnthick-1-w'}
+    });
+    
+    inicializarGrid("tblPiso", optionPiso);
+    // $("#tblPiso").jqGrid('hideCol',['idsigma','dpredio','cnitems','cperiod','ctipdat','vnrodoc','dfecdoc','cmotivo','ctipdoc','cmescon','canocon','narecom','dafecta']);
+};
+
 verContribuyentePredio = function(rowid) {   
     if(rowid == undefined || rowid == null) {
         parameters = {"name": "tblResult"};
@@ -6,10 +40,10 @@ verContribuyentePredio = function(rowid) {
     }
     
     _post = $.post(path + "registro/listarpredio", parameters);
-    
+    _post.error(postError);
     _post.success(function(request){
         $("#panelRegistro").html(request);
-        $("#cboPeriodo").combobox();
+        themeComboBox();
         $("#txtPeriodo").attr("maxlength", 4);
         $("#txtPeriodo").bind("autocompleteselect", function(event, ui) {
             buscarPredio(ui.item.value);
@@ -23,13 +57,16 @@ verContribuyentePredio = function(rowid) {
         });
         buscarPredio();
     });
-	
-    _post.error(postError);
 };
 
 verPredio = function(rowid, iRow, iCol, e) {
     row = $(this).getRowData(rowid);
-    console.log(row);
+    _post = $.post(path + "registro/verpredio", parameters);
+    _post.error(postError);
+    _post.success(function(request){
+        $("#panelRegistro").html(request);
+        loadVerDetalle();
+    });
 };
 
 optionContribuyente = {
@@ -46,7 +83,7 @@ optionContribuyente = {
         console.log(row);
     },*/
     ondblClickRow: verContribuyentePredio
-}
+};
 
 optionPredio = {
     height: 290,
@@ -59,7 +96,7 @@ optionPredio = {
         'Adquirido',
         'Nro. de Doc.',
         '% Prop.'],
-    colModel: [{name: 'ccodpre', index:'ccodpre', width: 80}, // , frozen: true
+    colModel: [{name: 'ccodpre', index:'ccodpre', width: 80, frozen: true},
         {name: 'tnumero', index:'tnumero', width: 450}, // , frozen: true
         {name: 'cusogen', index:'cusogen', width: 250},
         {name: 'nvalpre', index:'nvalpre', width: 100, formatter:'currency', align: 'right'},
@@ -69,7 +106,92 @@ optionPredio = {
         {name: 'nporcen', index:'nporcen', width: 60, align: 'right'}],
     caption: "&nbsp;&nbsp;&nbsp;Predios Registrados",
     ondblClickRow: verPredio
-}
+};
+
+optionPiso = {
+    height: 200,
+    width: 990,
+    rowNum: 10,
+    colNames: [
+        'idsigma',
+        'dpredio',
+        'cnitems',
+        'cperiod',
+        'ctipdat',
+        'vnrodoc',
+        'dfecdoc',
+        'cmotivo',
+        'ctipdoc',
+        'Nivel',
+        'Antig.',
+        'cmescon',
+        'canocon',
+        'Mat.',
+        'Est.',
+        'Mu',
+        'Te',
+        'Pi',
+        'Pv',
+        'Rv',
+        'Ba',
+        'In',
+        'Area Const.',
+        'Val. Unit. m2',
+        'Inc. 5%',
+        '% Depr',
+        'Depr.',
+        'Val. Unit. Depr.',
+        'narecom',
+        '% Area Com\u00FAn',
+        'Val. Area Com\u00FAn',
+        'Val. del Piso',
+        'dafecta'
+    ],
+    colModel: [
+        {name: 'idsigma', index: 'idsigma', width: 30, hidden: true}, // Identificador de la construccion del predio
+        {name: 'dpredio', index: 'dpredio', width: 30, hidden: true}, // Identificador del predio
+        {name: 'cnitems', index: 'cnitems', width: 30, hidden: true}, // Nro de orden de la construccion
+        {name: 'cperiod', index: 'cperiod', width: 30, hidden: true}, // Ejercicio de la declaracion jurada
+        {name: 'ctipdat', index: 'ctipdat', width: 30, hidden: true}, // Tipo de ficha (1 = declaracion jurada // 2 = acta de inspeccion)
+        {name: 'vnrodoc', index: 'vnrodoc', width: 30, hidden: true}, // Nro de declaracion jurada
+        {name: 'dfecdoc', index: 'dfecdoc', width: 30, hidden: true}, // Fecha de la declaracion jurada
+        {name: 'cmotivo', index: 'cmotivo', width: 30, hidden: true}, // Motivo de la declaracion jurada
+        {name: 'ctipdoc', index: 'ctipdoc', width: 30, hidden: true}, // Tipo de documento con el que se realiza la declaracion jurada
+        {name: 'cnumpis', index: 'cnumpis', width: 30}, // Nro de piso
+        {name: 'nantigu', index: 'nantigu', width: 30}, // Antiguedad
+        {name: 'cmescon', index: 'cmescon', width: 30, hidden: true}, // Mes de la construccion
+        {name: 'canocon', index: 'canocon', width: 30, hidden: true}, // Periodo de Construccion
+        {name: 'cmateri', index: 'cmateri', width: 30, align: 'center'}, // Material
+        {name: 'cconser', index: 'cconser', width: 30, align: 'center'}, // Estado de conservacion
+        {name: 'cmurcol', index: 'cmurcol', width: 20, align: 'center'}, // Muros y columnas
+        {name: 'ctechos', index: 'ctechos', width: 20, align: 'center'}, // Techos
+        {name: 'cmpisos', index: 'cmpisos', width: 20, align: 'center'}, // Pisos
+        {name: 'cpueven', index: 'cpueven', width: 20, align: 'center'}, // Puertas y ventanas
+        {name: 'crevest', index: 'crevest', width: 20, align: 'center'}, // Revestimientos
+        {name: 'cbanios', index: 'cbanios', width: 20, align: 'center'}, // Sanitarios
+        {name: 'celectr', index: 'celectr', width: 20, align: 'center'}, // Instalaciones electricas
+        {name: 'narecon', index: 'narecon', width: 30, align: 'right'}, // Area construida
+        {name: 'nvaluni', index: 'nvaluni', width: 30}, // Valor unitario
+        {name: 'nincrem', index: 'nincrem', width: 30}, // Incremento
+        {name: 'npordep', index: 'npordep', width: 30}, // Porcentaje de depreciacion
+        {name: 'ndepred', index: 'ndepred', width: 30}, // Depreciacion
+        {name: 'nvalare', index: 'nvalare', width: 30}, // Valor unitario depreciado del area construida
+        {name: 'narecom', index: 'narecom', width: 30, hidden: true}, // Area comun
+        {name: 'nporcom', index: 'nporcom', width: 30}, // Porcentaje de area comun
+        {name: 'nvalcom', index: 'nvalcom', width: 30}, // Valor del area comun
+        {name: 'nvalpis', index: 'nvalpis', width: 30}, // Valor total del piso
+        {name: 'dafecta', index: 'dafecta', width: 30, hidden: true}  // Fecha desde donde se comienzan a generar los tributos
+    ],
+    caption: "&nbsp;&nbsp;&nbsp;Pisos",
+    ondblClickRow: function(rowid, iRow, iCol, e) {
+        row = $(this).getRowData(rowid);
+        console.log(row)
+    }
+};
+
+optionInstalacion = {
+    
+};
 
 bindkeysContribuyente = {"onEnter": verContribuyentePredio};
 
@@ -86,7 +208,7 @@ buscarPredio = function(cperiod) {
         '}'
     };
 
-    console.log(parameters);
+    // console.log(parameters);
     procesarProcedimiento("panelListaPredio", "tblListaPredio", optionPredio, parameters);
 };
 
