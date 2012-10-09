@@ -175,3 +175,49 @@ function cerrarTodasCajas(){
 	
 	_post.error(postError);
 }
+
+habsencillera = function(){
+	//id_apertura, cajero,
+	var options = $("input:checked",$('#tbl_capert')).getCheckboxValues();
+	options = options.join(',');
+	var idaper= '0000000001',idcajero=options;
+	dat = {"idaper":idaper,"dtcajeros":options};
+	openDialogData1("sencillera/habsencillera", dat, 550, 450, "Sencillera");
+}
+
+sumary_totals = function(){
+	
+	textbox = $(this)
+	tdparent = textbox.parent();
+	trparent = tdparent.parent();
+	
+	objmonto = $('#mt_montorow',trparent);
+	objtotal = $('#mt_totalrow',trparent);
+	
+	monto = objmonto.html();
+	cant = textbox.val();
+	mt_total=cant*monto;
+	objtotal.val(mt_total);
+	
+	mt_totals=0.00;
+	 $(".mt_total",$('#tbl_monedas')).each(function(){
+		 mt_totals= mt_totals + $(this).val()*1;
+	});
+	$('#mt_totals').html(mt_totals);
+}
+
+guardarsencillero = function(){
+
+	frmtblmonedas = $("#tbl_monedas").find("select, textarea, input,hidden").serialize();
+	vhdid_apert = $('#hdid_apert').val();
+	vhdid_cajero = $('#hdid_cajero').val();
+	vtxtfech_proc = $('#txtfech_proc').val();
+	vhdid_estado= $('#hdid_estado').val();
+	_post = $.post(path + "sencillera/sencilleraguardar/", frmtblmonedas+"&vhdid_apert="+vhdid_apert+"&vhdid_cajero="+vhdid_cajero+"&vtxtfech_proc="+vtxtfech_proc+"&vhdid_estado="+vhdid_estado);
+	_post.success(function(requestData){
+		openDialogInfo(requestData, 400, 150);
+		//$('#result').html(requestData);
+	});
+	
+	_post.error(postError);
+}

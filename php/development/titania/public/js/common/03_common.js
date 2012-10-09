@@ -221,6 +221,18 @@ $.browser = {
     mozilla: /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent )
 };
 
+(function($) {
+    $.fn.getCheckboxValues = function(){
+        var values = [];
+        var i = 0;
+        this.each(function (){
+            values[i++] = $( this).val();
+        });
+        return values;
+    }
+})(jQuery);
+
+
 $(function(){
     $("#itemMenu1").menuBar({
         content: $("#itemMenu1").next().html(),
@@ -239,5 +251,5 @@ $(function(){
     });
     themeTextBox();
     themeComboBox();
-    // alert($.browser.msie);
+// alert($.browser.msie);
 });

@@ -564,141 +564,339 @@ class MantenimientosController extends Zend_Controller_Action {
     }
 
     public function viasAction() {
+        $this->view->util()->registerScriptJSControllerAction($this->getRequest());
+
         $pintar = new Libreria_Pintar();
 
-        $fechAct = date("Y");
+        $fechAct = date("dmY");
 
-        $cbotipo[] = array('01', 'AVENIDA');
-        $cbotipo[] = array('02', 'CALLE');
-        $cbotipo[] = array('03', 'JIRON');
-        $cbotipo[] = array('04', 'AVENIDA');
-        $cbotipo[] = array('05', 'PASAJE');
-        $cbotipo[] = array('06', 'MALECON');
-        $cbotipo[] = array('07', 'ALAMEDA');
-        $cbotipo[] = array('08', 'PROLONGACION');
-        $cbotipo[] = array('10', 'CARRETERA');
-        $cbotipo[] = array('11', 'PASEO');
-        $cbotipo[] = array('12', 'CAMINO');
+        $pintar = new Libreria_Pintar();
+        $cn = new Model_DataAdapter ();
+        $nombrestore = '"public".obt_mconten';
+        $parametros [0] = "";
+        $parametros [1] = "1000000070";
 
-        $val[] = array('cbotipo', $pintar->ContenidoCombo($cbotipo, '9999999999'), 'html');
+        $tabla = $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
 
-        $evt[] = array('btningresar', 'click', '$("#manttvias" ).dialog( "open" );');
+        $val[] = array('cbotipo', $pintar->ContenidoCombo($tabla, '9999999999'), 'html');
 
-        $evt[] = array('btnbuscarcentrpoblado', 'click', '$("#manttvias" ).dialog( "open" );');
+        $val[] = array('txtdesde', date("d-m-Y"), 'val');
+        $val[] = array('txthasta', date("d-m-Y"), 'val');
 
-        $fn[] = array('$(function() {
-						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
-						$( "#manttvias" ).dialog({
-							resizable: false,
-							height:500,
-							width:600,
-							modal: true,
-							autoOpen:false,
-							draggable:false,								
-							buttons: {		
-							   	Guardar: function(){$( this ).dialog( "close" );}				  
-							   ,Cerrar: function(){$( this ).dialog( "close" );}							
-							}					
-						});
-		              });');
+        $evt[] = array('btnbuscar', 'click', '$("#busqresult" ).dialog( "open" );');
 
-        $evt[] = array('btnbuscarvia', 'click', '$("#busqvias" ).dialog( "open" );');
+        $evt[] = array('btnnuevo', 'click', '$("#txtcodcentropobl").val("");
+					$("#cbotipo").val("");		
+					$("#txtcentropobl").val(""); 	
+					
+					$("#txtdesde").val("");
+					$("#txthasta").val("");
+	   					
+						
+						
+						deshabilitarComponente("txtcodcentropobl",true);
+						deshabilitarComponente("cbotipo",true);						
+						deshabilitarComponente("txtcentropobl",true);
+						deshabilitarComponente("cbotipo",true);
+					
+						deshabilitarComponente("txtdesde",true);
+						deshabilitarComponente("txthasta",true);
+						
+							$("#acciones").show();
+	   	');
 
-        $fn[] = array('$(function() {
-						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
-						$( "#busqvias" ).dialog({
-							resizable: false,
-							height:500,
-							width:600,
-							modal: true,
-							autoOpen:false,
-							draggable:false,								
-							buttons: {							   			  
-							    Cerrar: function(){$( this ).dialog( "close" );}							
-							}					
-						});
-		              });');
+        $evt[] = array('btngrabar', 'click', 'manttcentrpob("1");');
 
-        $evt[] = array('btnbuscarcentpobl', 'click', '$("#busqcentrpobl" ).dialog( "open" );');
+        $evt[] = array('btnactualizar', 'click', 'manttcentrpob("2");');
+
+        $evt[] = array('btneliminar', 'click', 'manttcentrpob("3");');
+
+        $evt[] = array('btncancelar', 'click', 'window.location.reload()');
 
         $fn[] = array('$(function() {
 						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
-						$( "#busqcentrpobl" ).dialog({
+						$( "#busqresult" ).dialog({
 							resizable: false,
 							height:500,
-							width:600,
+							width:700,
 							modal: true,
 							autoOpen:false,
-							draggable:false,								
-							buttons: {							   			  
-							    Cerrar: function(){$( this ).dialog( "close" );}							
-							}					
+							draggable:false	,
+							title:"Busqueda de Vias"	
 						});
+				
+						$("#acciones").hide();
+			
+						$("#txtdesde").datepicker();
+						$("#txthasta").datepicker();
+						
+						deshabilitarComponente("btnactualizar",false);
+						deshabilitarComponente("btneliminar",false);		
+					
+						
+						deshabilitarComponente("txtcodcentropobl",false);
+						deshabilitarComponente("cbotipo",false);						
+						deshabilitarComponente("txtcentropobl",false);
+						deshabilitarComponente("cbotipo",false);
+					
+						deshabilitarComponente("txtdesde",false);
+						deshabilitarComponente("txthasta",false);
+						
+				
 		              });');
-
-
-
 
         $pintar->PintarValor($val);
         $pintar->PintarEvento($evt);
         $pintar->EjecutarFuncion($fn);
     }
 
+    public function listardatosviasAction() {
+        $this->_helper->layout->disableLayout();
+        $this->_helper->getHelper('ajaxContext')->initContext();
+
+        $pintar = new Libreria_Pintar();
+        if ($this->getRequest()->isXmlHttpRequest()) {
+            $name = $this->_request->getParam('name');
+
+
+            if (isset($name)) {
+                $dataSet = new Zend_Session_Namespace($name);
+                $rows = $dataSet->data;
+
+                $this->view->ccodcen = $rows[0][0];
+                $this->view->vnombre = $rows[0][1];
+                $this->view->ctipcen = $rows[0][3];
+                $this->view->dfecdes = $rows[0][6];
+                $this->view->dfechas = $rows[0][7];
+            } else {
+                $this->view->ccodcen = $this->_request->getParam('ccodcen');
+                $this->view->vnombre = $this->_request->getParam('vnombre');
+                $this->view->ctipcen = $this->_request->getParam('ctipcen');
+                $this->view->dfecdes = $this->_request->getParam('dfecdes');
+                $this->view->dfechas = $this->_request->getParam('dfechas');
+
+
+
+                if ($this->_request->getParam('dfechas') == '') {
+
+
+                    $val[] = array('txthasta', date("d-m-Y"), 'val');
+                }
+            }
+        }
+
+
+        $pintar->PintarValor($val);
+    }
+
     public function centropobladoAction() {
+        $this->view->util()->registerScriptJSControllerAction($this->getRequest());
 
         $pintar = new Libreria_Pintar();
 
-        $fechAct = date("Y");
+        $fechAct = date("dmY");
 
-        $cbotipo[] = array('01', 'URB.');
-        $cbotipo[] = array('02', 'P.V');
-        $cbotipo[] = array('03', 'BARRIO');
-        $cbotipo[] = array('04', 'C.H.');
-        $cbotipo[] = array('05', 'A.P.V.');
-        $cbotipo[] = array('06', 'P.V.');
-        $cbotipo[] = array('07', 'PROG.V.');
-        $cbotipo[] = array('08', 'AA.HH.');
-        $cbotipo[] = array('09', 'ASOC.');
-        $cbotipo[] = array('10', 'ASOC. COM.');
-        $cbotipo[] = array('11', 'ASOC.RES');
-        $cbotipo[] = array('12', 'ASOC. VIV.');
-        $cbotipo[] = array('13', 'B.M');
-        $cbotipo[] = array('14', 'FDO.');
-        $cbotipo[] = array('15', 'A.P.');
-        $cbotipo[] = array('16', 'COOP.');
-        $cbotipo[] = array('17', 'MDO.');
-        $cbotipo[] = array('18', 'U.V.');
+        $pintar = new Libreria_Pintar();
+        $cn = new Model_DataAdapter ();
+        $nombrestore = '"public".obt_mconten';
+        $parametros [0] = "";
+        $parametros [1] = "1000000025";
 
-        $val[] = array('cbotipo', $pintar->ContenidoCombo($cbotipo, '9999999999'), 'html');
+        $tabla = $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
 
-        $evt[] = array('btningresar', 'click', '$("#manttcentropoblad" ).dialog( "open" );');
+        $val[] = array('cbotipo', $pintar->ContenidoCombo($tabla, '9999999999'), 'html');
+
+        $val[] = array('txtdesde', date("d-m-Y"), 'val');
+        $val[] = array('txthasta', date("d-m-Y"), 'val');
+
+        $evt[] = array('btnbuscar', 'click', '$("#busqresult" ).dialog( "open" );');
+
+        $evt[] = array('btnnuevo', 'click', '$("#txtcodcentropobl").val("");
+					$("#cbotipo").val("");		
+					$("#txtcentropobl").val(""); 	
+					$("#cboPostal").val("");
+					$("#nrozona").val("");
+					$("#txtdesde").val("");
+					$("#txthasta").val("");
+	   	
+					deshabilitarComponente("txtcodcentropobl",true);
+						deshabilitarComponente("cbotipo",true);						
+						deshabilitarComponente("txtcentropobl",true);
+						deshabilitarComponente("cbotipo",true);
+						deshabilitarComponente("cboPostal",true);
+						deshabilitarComponente("nrozona",true);
+						deshabilitarComponente("txtdesde",true);
+						deshabilitarComponente("txthasta",true);
+						
+							$("#acciones").show();
+	   	');
+
+        $evt[] = array('btngrabar', 'click', 'manttcentrpob("1");');
+
+        $evt[] = array('btnactualizar', 'click', 'manttcentrpob("2");');
+
+        $evt[] = array('btneliminar', 'click', 'manttcentrpob("3");');
+
+        $evt[] = array('btncancelar', 'click', 'window.location.reload()');
 
         $fn[] = array('$(function() {
 						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
-						$( "#manttcentropoblad" ).dialog({
+						$( "#busqresult" ).dialog({
 							resizable: false,
 							height:500,
-							width:600,
+							width:700,
 							modal: true,
 							autoOpen:false,
-							draggable:false,								
-							buttons: {		
-							   	Guardar: function(){$( this ).dialog( "close" );}				  
-							   ,Cerrar: function(){$( this ).dialog( "close" );}							
-							}					
+							draggable:false	,
+							title:"Busqueda de CentroPoblado"	
 						});
+				
+						$("#acciones").hide();
+			
+						$("#txtdesde").datepicker();
+						$("#txthasta").datepicker();
+						
+						
+						deshabilitarComponente("txtcodcentropobl",false);
+						deshabilitarComponente("cbotipo",false);						
+						deshabilitarComponente("txtcentropobl",false);
+						deshabilitarComponente("cbotipo",false);
+						deshabilitarComponente("cboPostal",false);
+						deshabilitarComponente("nrozona",false);
+						deshabilitarComponente("txtdesde",false);
+						deshabilitarComponente("txthasta",false);
+						
+				
 		              });');
 
         $pintar->PintarValor($val);
         $pintar->PintarEvento($evt);
         $pintar->EjecutarFuncion($fn);
+    }
+
+    public function listardatoscentrpobAction() {
+        $this->_helper->layout->disableLayout();
+        $this->_helper->getHelper('ajaxContext')->initContext();
+
+        if ($this->getRequest()->isXmlHttpRequest()) {
+            $name = $this->_request->getParam('name');
+
+            $pintar = new Libreria_Pintar();
+            $cn = new Model_DataAdapter ();
+            $nombrestore = '"public".obt_mconten';
+            $parametros [0] = "";
+            $parametros [1] = "1000000025";
+
+            $tabla = $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+
+            if (isset($name)) {
+                $dataSet = new Zend_Session_Namespace($name);
+                $rows = $dataSet->data;
+
+                $this->view->ccodcen = $rows[0][0];
+                $this->view->vnombre = $rows[0][1];
+                $this->view->cdistri = $rows[0][2];
+                $this->view->ctipcen = $rows[0][3];
+                $this->view->cdistri = $rows[0][4];
+                $this->view->cidzona = $rows[0][5];
+                $this->view->dfecdes = $rows[0][6];
+                $this->view->dfechas = $rows[0][7];
+            } else {
+                $this->view->ccodcen = $this->_request->getParam('ccodcen');
+                $this->view->vnombre = $this->_request->getParam('vnombre');
+                $this->view->cdistri = $this->_request->getParam('cdistri');
+                $this->view->ctipcen = $this->_request->getParam('ctipcen');
+                $this->view->cdistri = $this->_request->getParam('cdistri');
+                $this->view->cidzona = $this->_request->getParam('cidzona');
+                $this->view->dfecdes = $this->_request->getParam('dfecdes');
+                $this->view->dfechas = $this->_request->getParam('dfechas');
+
+                $val[] = array('cbotipo', $pintar->ContenidoCombo($tabla, $this->view->ctipcen), 'html');
+
+                if ($this->_request->getParam('dfechas') == '') {
+
+
+                    $val[] = array('txthasta', date("d-m-Y"), 'val');
+                }
+            }
+        }
+        $fn[] = array('
+            	
+            	
+						$("#txtdesde").datepicker();
+						$("#txthasta").datepicker();
+						
+						    	
+						deshabilitarComponente("txtcodcentropobl",true);
+						deshabilitarComponente("cbotipo",true);						
+						deshabilitarComponente("txtcentropobl",true);
+						deshabilitarComponente("cbotipo",true);
+						deshabilitarComponente("cboPostal",true);
+						deshabilitarComponente("nrozona",true);
+						deshabilitarComponente("txtdesde",true);
+						deshabilitarComponente("txthasta",true);
+						
+						
+	   	
+	   	');
+
+        $pintar->PintarValor($val);
+        $pintar->EjecutarFuncion($fn);
+    }
+
+    public function manttcentrpobAction() {
+        $this->_helper->layout->disableLayout();
+        $this->_helper->getHelper('ajaxContext')->initContext();
+
+        if ($this->getRequest()->isXmlHttpRequest()) {
+            $name = $this->_request->getParam('name');
+
+
+            $ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+            $cidpers = $ddatosuserlog->cidpers;
+            $userlogin = $ddatosuserlog->userlogin;
+
+            $p_ccodcen = $this->_request->getParam('p_ccodcen');
+            $p_vnombre = $this->_request->getParam('p_vnombr');
+            $p_cdistri = $this->_request->getParam('p_cdistri');
+            $p_ctipcen = $this->_request->getParam('p_ctipcen');
+            $p_cidzona = $this->_request->getParam('p_cidzona');
+            $p_dfecdes = $this->_request->getParam('p_dfecdes');
+            $p_dfechas = $this->_request->getParam('p_dfechas');
+            $p_nestado = $this->_request->getParam('p_nestado');
+            $p_vhostnm = $userlogin;
+            $p_vusernm = $this->view->util()->getHost();
+
+            if ($p_dfechas == '') {
+                $p_dfechas = date("d-m-Y");
+            }
+
+
+            $cn = new Model_DataAdapter ();
+            $nombrestore = '"public".guardarmpoblad';
+            $parametros [0] = $p_ccodcen;
+            $parametros [1] = $p_ccodcen;
+            $parametros [2] = $p_vnombre;
+            $parametros [3] = $p_cdistri;
+            $parametros [4] = $p_ctipcen;
+            $parametros [5] = $p_cidzona;
+            $parametros [6] = $p_dfecdes;
+            $parametros [7] = $p_dfechas;
+            $parametros [8] = $p_nestado;
+            $parametros [9] = $p_vhostnm;
+            $parametros [10] = $p_vusernm;
+
+            $tabla = $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+
+            print_r($tabla);
+        }
     }
 
     public function valoresunitariosAction() {
 
         $pintar = new Libreria_Pintar();
 
-        $evt[] = array('btningresar', 'click', '$("#manttvaloresunitarios" ).dialog( "open" );');
+        $evt[] = array('#btnbuscar', 'click', '$("#manttvaloresunitarios" ).dialog( "open" );');
 
         $fn[] = array('$(function() {
 						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
