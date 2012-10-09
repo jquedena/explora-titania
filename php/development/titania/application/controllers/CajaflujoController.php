@@ -251,7 +251,8 @@ class CajaflujoController extends Zend_Controller_Action {
 					$dts .='<td align="right">'.$datos[$i][5].'</td>';
 					$dts .='<td style="padding-left:10px;">'.$datos[$i][7].'</td>'; // 6 Es el estado numerico 7 Es el nombre del estado
 					$dts .='<td align="center">';
-					$dts .='<input type="checkbox" id="Chkcaja_'.$i.'" onchange="seleccionar(\''.$datos[$i][0].'\',\''.$datos[$i][6].'\');"/>';
+                              $dts .='<input type="checkbox" id="Chkcaja_'. $i .'" value="' . $datos[ $i ][0].'|' . $datos[ $i ][6].'|' . $datos[ $i ][0].' - '. $datos[ $i ][9].'"           onchange="seleccionar(\''. $datos [$i ][0]. '\',\''. $datos [$i ][6]. '\');"/>';
+					// $dts .='<input type="checkbox" id="Chkcaja_'.$i.'" onchange="seleccionar(\''.$datos[$i][0].'\',\''.$datos[$i][6].'\');"/>';
 					$dts .='<input type="hidden" id="ids_'.$i.'" value="'.$datos[$i][10].'" />';
 					$dts .='</td>';
 					$dts .='</tr>';
