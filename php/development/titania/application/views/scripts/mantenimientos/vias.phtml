@@ -3,16 +3,19 @@
 		<label>VIAS</label>
 	</div>
 	<br/>
-	<table class="ui-tablecontent">
-	<tr>
-	 	<td><button id="btnbuscar" name="btnbuscar" title="Buscar" >Buscar</button> </td>
-	 	<td><button id="btnnuevo" name="btnnuevo">Nuevo</button></td>
-	 	<td><button id="btnactualizar" name="btnactualizar">Actualizar</button></td>
-	 	<td><button id="btneliminar" name="btneliminar">Eliminar</button></td>
+	<table class="ui-tablecontent" width="50%" border="0">
+	<tr id="panelbusqueda">
+	<td>Via: &nbsp;<input class="ui-text"  id="txtbusq" /> </td>
+	</tr>
+	<tr align="center">
+	 	<td colspan="2"><button id="btnbuscar" name="btnbuscar">Buscar</button> 
+	 	<button id="btnnuevo" name="btnnuevo">Nuevo</button>
+	 	<button id="btnactualizar" name="btnactualizar">Actualizar</button>
+	 	<button id="btneliminar" name="btneliminar">Eliminar</button></td>
 	</tr>
 	
 	</table>
-</div>
+
 
 <div id="manttvias" class="ui-widget ui-widget-content ui-corner-all" style="width: 50%;margin: 3px;">
 	<br/>
@@ -32,6 +35,11 @@
 	<tr>
 	  <td>Hasta: </td><td><input id="txthasta" ReadOnly ></td>
 	</tr>	
+	
+	<tr>	
+    <td  colspan="2" align="center"><button id="btngrabar">Grabar</button><button id="btncancelar">Cancelar</button></td>
+    </tr>
+	
 	</table>
 </div>
 
@@ -39,18 +47,14 @@
 	<br/>
 	
 	    
-    <table id="acciones" width="50%">
-    <tr>
-    <td align="center"><button id="btngrabar">Grabar</button><button id="btncancelar">Cancelar</button></td>
-    </tr>
-	</table>
-	
+   
 	<div id="busqresult">
-	<table id="tblResult"></table>
 	<div id="panelResult">
 	
 	</div>
 	</div>
+	</div>
+
 	
 	
 	

@@ -7,33 +7,31 @@ verDatos = function(rowid) {
     
     closeDialog("busqresult");
     
-    
-   _post = $.post(path + "mantenimientos/listardatoscentrpob", parameters);
-    
+    /*    
+   _post = $.post(path + "mantenimientos/listardatoscentrpob", parameters);    
     _post.success(function(request){
-        $("#manttcentropoblad").html(request);
-     
-    });
-	
-    _post.error(postError);
-    
-	
+        $("#manttcentropoblad").html(request);     
+    });	
+    _post.error(postError);    
+	*/
 };
 
 
 optionCentroPoblado = {
     height: 290,
-    width: 600,
-    colNames: ["C\u00F3digo", "Nombre", "Distrito","Tipo Centro","Zona","Desde","Hasta"  ],
+    width: 700,
+    colNames: ["Tipo", "Codigo", "codcen","Nombre","Zona","Nombre Completo","Desde","Hasta","Estado"  ],
     colModel: [
-        {name:'ccodcen', index:'ccodcen', width:50, align: 'center'},
-        {name:'vnombre', index:'vnombre', width:80},
-        {name:'cdistri', index:'cdistri', width:50},
-        {name:'ctipcen', index:'ctipcen', width:50} ,
+        {name:'ctippob', index:'ctippob', width:50, align: 'center'},
+        {name:'mpoblad', index:'mpoblad', width:80, hidden: true},
+        {name:'ccodcen', index:'ccodcen', width:50, hidden: true},
+        {name:'vnompob', index:'vnompob', width:150} ,
         {name:'cidzona', index:'cidzona', width:50},
+        {name:'tnompob', index:'tnompob', width:250},
         {name:'dfecdes', index:'dfecdes', width:50},
-        {name:'dfechas', index:'dfechas', width:50}],
-    caption: "&nbsp;&nbsp;&nbsp",
+        {name:'dfechas', index:'dfechas', width:50},
+        {name:'nestado', index:'nestado', width:50}],
+    caption: "Busqueda",
     hidegrid: true,
       
     ondblClickRow: verDatos
@@ -49,7 +47,7 @@ buscarCentroPoblado = function() {
     	//alert("algo");
         parameters = {
             "name": "tblResult",
-            "procedure": "registro.mostrarcentrpob",
+            "procedure": "registro.contrpob",
             "parameters": '{' +
             '"p_tipo":"01"'+
             '}'
@@ -74,17 +72,51 @@ buscarCentroPoblado = function() {
 
 // buscarPredio = function() {};
 
+buscarCentroPoblado2 = function() {
+    valid = true;
+  
+    if(valid==true) {    
+    	//alert("algo");
+        parameters = {
+            "name": "tblResult",
+            "procedure": "registro.contrpob2",
+            "parameters": '{' +                        
+            '"p_busq":"' + $("#txtbusq").val().toUpperCase() + '"' +
+            
+            '}'
+        };
+        
+        proceso = function(requestData){
+            $("#panelResult").html(requestData);
+            records = $("#ctblResult").val();
+            if(records > 0) {
+                actualizarGrid("tblResult", optionCentroPoblado, bindkeysCentroPoblado);
+            } else {
+             alert("no entro");              
+                
+            }
+        };
+        
+        procesarConsultaSubProceso('registrar', parameters, proceso);        
+    } else {
+        openDialogWarning("Ingrese un valor en los campos de busqueda.", 380, 150);
+    }
+};
+
+
+
 $(function(){
 	buscarCentroPoblado();
      
     inicializarGrid("tblResult", optionCentroPoblado);
     
-    $("#txtbuscar").on("keyup", "input", function(e) {
+    $("#panelbusqueda").on("keyup", "input", function(e) {
         if(e.keyCode == 13){
-            buscarContribuyente();
+        	buscarCentroPoblado2();
         }
     });
     
+    $("#btnbuscar").button("option", "icons", {primary:'ui-icon-search'});
 
     
     $(".pnl").on("focus", function() {
@@ -92,7 +124,8 @@ $(function(){
         $("#c_predial").val("");
     });
     
-
+    
+    $("#btnbuscar").click(buscarCentroPoblado2);
     
     /*
     $("#btningresar").click(function() {

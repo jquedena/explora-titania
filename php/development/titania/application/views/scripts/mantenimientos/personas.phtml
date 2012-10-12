@@ -1,3 +1,5 @@
+<!-- 
+
 <div class="ui-widget ui-widget-content ui-corner-all" style="width: 99%;margin: 3px;">
 	<div class="ui-widget ui-state-default ui-corner-top ui-title">
 		<label>PERSONAS</label>
@@ -89,4 +91,80 @@
         
 	</tr>
 	</table>
+</div>
+ -->
+<div id="panelRegistro">
+	<div align="center" class="ui-widget ui-widget-content ui-corner-all"
+		style="width: 99%; margin: 3px;">
+		<div class="ui-widget ui-state-default ui-corner-top ui-title">
+			<label>Personas</label>
+		</div>
+		<table class="ui-panelLayout-main" border="0" cellpadding="0"
+			cellspacing="0">
+			<tr>
+				<td style="vertical-align: top;">
+					<table style="width: 100%;" class="ui-table-body" border="0">
+						<tr>
+							<td width="20">&nbsp;</td>
+							<td width="100">C&oacute;digo:</td>
+							<td width="10">&nbsp;</td>
+							<td width="100">Nro DNI</td>
+							<td width="10">&nbsp;</td>
+							<td width="180"></td>
+							<td width="10"></td>
+							<td rowspan="3" valign="middle" align="center">
+								<button id="btnbuscar" name="btnbuscar">Buscar</button>
+							</td>
+						</tr>
+						<tr id="only">
+							<td width="20">&nbsp;</td>
+							<td width="100"><input class="ui-text" id="id_person"
+								maxlength="10" style="width: 50%" /></td>
+							<td width="10">&nbsp;</td>
+							<td width="100"><input class="ui-text" id="nrodni"
+								maxlength="8" style="width: 50%" /></td>
+							<td width="10">&nbsp;</td>
+							<td width="180"></td>
+							<td width="10"></td>
+						</tr>
+						<tr>
+							<td width="20">&nbsp;</td>
+							<td width="180">Nombre:</td>
+							<td width="10">&nbsp;</td>
+							<td width="180">Apellido Paterno:</td>
+							<td width="10">&nbsp;</td>
+							<td width="180">Apellido Materno:</td>
+							<td width="20">&nbsp;</td>
+						</tr>
+						<tr id="common">
+							<td width="20">&nbsp;</td>
+							<td width="180"><input class="ui-text" id="ds_nombre"
+								style="width: 80%" /></td>
+							<td width="10">&nbsp;</td>
+							<td width="180"><input class="ui-text" id="ds_apepat"
+								style="width: 80%" /></td>
+							<td width="10">&nbsp;</td>
+							<td width="180"><input class="ui-text" id="ds_apemat"
+								style="width: 80%" /></td>
+							<td width="20">&nbsp;</td>
+							<td rowspan="2" valign="middle" align="center">
+								<button id="btninsert" name="btninsert">Nuevo</button>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="7" height="8px"></td>
+						</tr>
+						<tr>
+							<td colspan="8" align="center"><br />
+								<div id="panelResultpersons">
+									<table id="tblResultpersons"></table>
+									<div id="ptblResultpersons"></div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>
