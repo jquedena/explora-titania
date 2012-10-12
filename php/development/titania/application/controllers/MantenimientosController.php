@@ -328,40 +328,6 @@ class MantenimientosController extends Zend_Controller_Action {
         $pintar->EjecutarFuncion($fn);
     }
 
-    public function uitAction() {
-        $pintar = new Libreria_Pintar();
-
-        $fechAct = date("Y");
-
-        for ($i = 1990; $i <= $fechAct; ++$i) {
-            $cboanos[$i] = array($i, $i);
-        }
-
-        $val[] = array('cboanios', $pintar->ContenidoCombo($cboanos, '9999999999'), 'html');
-
-        $evt[] = array('btningresar', 'click', '$("#divmanttuit" ).dialog( "open" );');
-
-        $fn[] = array('$(function() {
-						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
-						$( "#divmanttuit" ).dialog({
-							resizable: false,
-							height:180,
-							width:300,
-							modal: true,
-							autoOpen:false,
-							draggable:false,								
-							buttons: {						
-							   Guardar: function(){$( this ).dialog( "close" );}
-							   ,Cerrar: function(){$( this ).dialog( "close" );}							
-							}					
-						});
-					});');
-
-        $pintar->PintarValor($val);
-        $pintar->PintarEvento($evt);
-        $pintar->EjecutarFuncion($fn);
-    }
-
     public function depreciacionAction() {
         $pintar = new Libreria_Pintar();
 
@@ -926,4 +892,11 @@ class MantenimientosController extends Zend_Controller_Action {
         
     }
 
+    public function uitAction() {
+        $this->view->util()->registerScriptJSControllerAction($this->getRequest());
+    }
+
+    public function reajusteAction() {
+        $this->view->util()->registerScriptJSControllerAction($this->getRequest());
+    }
 }
