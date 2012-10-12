@@ -12,6 +12,13 @@ html, body {
 }
 body {
     font-size: 0.7em;
+    scrollbar-face-color: #094FA4; 
+    scrollbar-shadow-color: #DEEBF5; 
+    scrollbar-highlight-color: #DEEBF5; 
+    scrollbar-3dlight-color: #5F8ABD; 
+    scrollbar-darkshadow-color: #5F8ABD; 
+    scrollbar-track-color: #F5F5F5; 
+    scrollbar-arrow-color: #FFFFFF;
 }
 
 #layout, #north, #south, #west, #east {
@@ -144,12 +151,15 @@ tbody.ui-table-body tr td{
     /* border-right: 1px solid #d8d8d8; */
     border-bottom: 1px solid #f4f4f4; /* #1c5dab */
 }
-.ui-disabled-text{
-    background-color: #fffbc3; 
+input.ui-state-disabled-text{
+    border:1px solid #fffbc3 !important; /* A6C9E2 */
+    background-color: #fffbc3 !important;
+    color: #905200 !important;
 }
 table.ui-tablecontent tr td {
     padding: 5px;
 }
+.ui-text,
 input.ui-text,
 input.ui-text-highlight {
     text-transform: uppercase;
@@ -170,6 +180,9 @@ input.ui-text-highlight {
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
     border: 1px solid #094fa4;
+}
+input.ui-text,
+input.ui-text-highlight {
     line-height: 18px;
     height: 18px;
     vertical-align: middle;

@@ -19,10 +19,10 @@ function procesarSeleccion(idPanel, idx, _options, parameters) {
     });
 }
 
-function procesarProcedimiento(idPanel, idx, _options, parameters) {
+function procesarProcedimiento(idPanel, idx, _options, parameters, bindkeys) {
     procesarConsultaSubProceso('registrar', parameters, function(requestData){
         $("#" + idPanel).html(requestData);
-        actualizarGrid(idx, _options);
+        actualizarGrid(idx, _options, bindkeys);
     });
 }
 
@@ -65,6 +65,7 @@ function inicializarGrid(id, _options){
         pgtext: 'Pag: {0} de {1}',
         pager: "#p" + id,
         viewrecords: true,
+        shrinkToFit: false,
         loadonce: true
     }, _options);
     idx = "#" + id;
@@ -168,10 +169,12 @@ function openDialogWarning(contenido, width, height) {
     $('#jqDialogWarning').dialog('open');
 }
 
-function openDialogInfo(contenido, width, height) {
+function openDialogInfo(contenido, width, height, buttons, close) {
     $('#jqInfo').html(contenido);
     if(width != undefined) $('#jqDialogInfo').dialog('option', 'width', width);
     if(height != undefined) $('#jqDialogInfo').dialog('option', 'height', height);
+    if(buttons != undefined) $('#jqDialogInfo').dialog('option', 'buttons', buttons);
+    if(close != undefined) $('#jqDialogInfo').dialog('option', 'close', close);
     $('#jqDialogInfo').dialog('open');
 }
 
@@ -203,11 +206,14 @@ function themeComboBox(selector) {
         selector = "select";
     }
     $(selector).combobox();
-    $(selector).bind("focus", function(){
-        $(this).toggleClass("ui-combobox-input-highlight");
-    });
-    $(selector).bind("blur", function(){
-        $(this).toggleClass("ui-combobox-input-highlight");
+    $(selector).each(function(){
+        var id = $(this).attr("id").replace('cbo', '#txt');        
+        $(id).bind("focus", function(){
+            $(this).toggleClass("ui-combobox-input-highlight");
+        });
+        $(id).bind("blur", function(){
+            $(this).toggleClass("ui-combobox-input-highlight");
+        }); 
     });
 }
 

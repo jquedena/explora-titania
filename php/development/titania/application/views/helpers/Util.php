@@ -68,7 +68,6 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
 
     public function registerScriptJSController(Zend_Controller_Request_Abstract $request) {
         $controller = $request->getControllerName();
-        $action = $request->getActionName();
         $script = "\t\t<script type='text/javascript' src='" . $this->getPath() . "js/js_" . $controller . ".js'/></script>\n";
         $session = new Zend_Session_Namespace("scriptController");
         $session->data = $script;
@@ -151,6 +150,18 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
         return $result;
     }
         
+    public function getComboContenedor($idsigma, $selected) {
+        $procedure = 'public.obtener_tabla';
+        $parameters[0] = $idsigma;
+        $dataAdapter = new Model_DataAdapter();
+        $records = $dataAdapter->ejec_store_procedura_sql($procedure, $parameters);
+        
+        $library = new Libreria_Pintar();
+        $html = $library->ContenidoCombo($records, $selected);
+        
+        return $html;
+    }
+    
     private function style($files) {
         $script = "\n";
         foreach ($files as $value) {

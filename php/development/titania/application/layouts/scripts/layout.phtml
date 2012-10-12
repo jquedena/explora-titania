@@ -12,6 +12,7 @@
             }
         </style>
 
+        <link href="<?php echo $this->util()->getPath(); ?>js/ckeditor/skins/v2/editor.css?t=C6HH5UF" rel="stylesheet" type="text/css" />
         <link href="<?php echo $this->util()->getPath(); ?>theme/blue_explora/jquery-ui.css" rel="stylesheet" type="text/css" id="jquery_theme_link" />
         <?php echo $this->util()->getStyle(); ?>
         <link href="<?php echo $this->util()->getImage("refbar.ico"); ?>" rel="shortcut icon" type="image/x-icon" />
@@ -41,6 +42,9 @@
         }
         ?>
 
+        <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/ckeditor/ckeditor.js?t=C6HH5UF"></script>
+        <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/ckeditor/adapterJQuery.js?t=C6HH5UF"></script>
+        <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/ckeditor/es.js?t=C6HH5UF"></script>
         <script type="text/javascript">
             var path="<?php echo $this->util()->getPath(); ?>index.php/",
                 pathImage="<?php echo $this->util()->getPath(); ?>img/"

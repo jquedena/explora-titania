@@ -206,6 +206,7 @@ class CajaflujoController extends Zend_Controller_Action {
 		$evt [] = array("btnbuscar","click","lstcajasapert();");
 		$evt [] = array("btnreaperturar","click","ventanareapertura();");
 		$evt [] = array("btncerrarcaja","click","cerrarTodasCajas();");
+                $evt [] = array("btnhabilitar","click","habsencillera();");
 
 		$val[] = array('txtdia', $date, 'val');
     	
