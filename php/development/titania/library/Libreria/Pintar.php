@@ -149,7 +149,7 @@ class Libreria_Pintar {
         $html = "";
         if (is_array($opciones)) {
             $opciones = array_values($opciones);
-            $html .= "<option value=\"9999999999\">Seleccionar...</option>";
+            $html .= "<option value=\"9999999999\">SELECCIONE</option>";
             for ($i = 0; $i < count($opciones); $i++) {
                 if ($opciones[$i][0] == $valor_defecto) {
                     $html .= "<option value=\"" . $opciones[$i][0] . "\" selected=\"selected\">" . $opciones[$i][1] . "</option>";

@@ -26,6 +26,7 @@
     line-height: 18px;
     height: 18px;
     vertical-align: middle;
+    text-transform: uppercase;
 }
 .ui-combobox-input-highlight {
     background: #fbec88 url('../theme/blue_explora/images/ui-bg_glass_55_fbec88_1x400.png') 50% 50% repeat-x;

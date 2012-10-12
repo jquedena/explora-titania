@@ -6,7 +6,7 @@ function aperturarcaja(vaccion){
 		vnrocaja = $('#txtnrocaja').val();
 		vfecha= $('#txtfecha').val();
 		if (vnrocaja=='' || vnrocaja==null){
-			openDialogWarning('Ingrese el N�mero de Caja a Aperturar');
+			openDialogWarning('Ingrese el N&uacute;mero de Caja a Aperturar');
 			return false;
 		}
 		if (vfecha=='' || vfecha==null || vfecha.length != 10){
@@ -19,7 +19,7 @@ function aperturarcaja(vaccion){
 		vfecha= $('#fechaorg').val();
 		obs =$('#txtobs').val();
 		if (obs=='' || obs==null){
-			openDialogWarning('Ingrese una observaci�n');
+			openDialogWarning('Ingrese una observaci&oacute;n');
 			return false;
 		}
 	}

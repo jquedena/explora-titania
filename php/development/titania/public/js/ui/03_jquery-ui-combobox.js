@@ -85,6 +85,7 @@
             };
 
             $( "<a>" )
+            .attr("id", select.attr("id").replace("cbo", "link"))
             .attr( "tabIndex", -1 )
             .attr( "title", "Desplegar lista" )
             // .css({"top": input.css("top")})

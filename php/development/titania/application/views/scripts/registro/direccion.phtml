@@ -1,19 +1,47 @@
-<table>
+<table class="ui-table-panelLayout" style="width: 680px;">
     <tr>
-        <td>Centro Poblado</td>
+        <td colspan="2" style="text-align: right;">Centro Poblado :</td>
+        <td colspan="7" style="padding-right: 10px;"><input class="ui-text" style="width: 100%" id="txtCentroPoblado" /></td>
     </tr>
     <tr>
-        <td>Via</td>
+        <td rowspan="2" style="text-align: right;width: 45px;">
+            <img width="30px" src="<?php echo $this->util()->getImage("puerta.gif"); ?>" />
+        </td>
+        <td style="text-align: right;width: 45px;">Via :</td>
+        <td colspan="7" style="padding-right: 10px;"><input class="ui-text" style="width: 100%" id="txtVia" /></td>
     </tr>
     <tr>
-        <td>Nro.</td>
-        <td style="font-weight: bold;width: 90px;"><input class="ui-text" style="width: 100%" id="txtNro" /></td>
-        <td>Dpto.</td>
-        <td style="font-weight: bold;width: 90px;"><input class="ui-text" style="width: 100%" id="txtNro" /></td>
-        <td>Mza.</td>
-        <td style="font-weight: bold;width: 90px;"><input class="ui-text" style="width: 100%" id="txtNro" /></td>
-        <td>lte.</td>
-        <td style="font-weight: bold;width: 90px;"><input class="ui-text" style="width: 100%" id="txtNro" /></td>
+        <td style="text-align: right;">Nro. :</td>
+        <td style="font-weight: bold;width: 80px;padding-right: 10px;"><input class="ui-text" style="width: 100%" id="txtNro" /></td>
+        <td style="text-align: right;">Dpto. :</td>
+        <td style="font-weight: bold;width: 80px;padding-right: 10px;"><input class="ui-text" style="width: 100%" id="txtDpt" /></td>
+        <td style="text-align: right;">Mza. :</td>
+        <td style="font-weight: bold;width: 80px;padding-right: 10px;"><input class="ui-text" style="width: 100%" id="txtMza" /></td>
+        <td style="text-align: right;">Lte. :</td>
+        <td style="font-weight: bold;width: 80px;padding-right: 10px;"><input class="ui-text" style="width: 100%" id="txtLte" /></td>
+    </tr>
+    <tr>
+        <td colspan="9" style=""><hr/></td>
+    </tr>
+    <tr>
+        <td colspan="9" style="text-align: right;">
+            <button id="btnAceptarDireccion">Aceptar</button>
+            <button id="btnCancelarDireccion">Cancelar</button>
+        </td>
     </tr>
 </table>
+<script type="text/javascript">
+    $(function(){
+        $("#btnAceptarDireccion").button({
+            icons: {primary:'ui-icon-check'}
+        }).bind("click", function(){
+            closeDialog("jqDialog1");
+        });
+        $("#btnCancelarDireccion").button({
+            icons: {primary:'ui-icon-arrowreturnthick-1-w'}
+        }).bind("click", function(){
+            closeDialog("jqDialog1");
+        });
+    });
+</script>
     
