@@ -5,34 +5,42 @@ verDatos = function(rowid) {
         parameters = $(this).getRowData(rowid);
     }
     
-    closeDialog("busqresult");
-    
+    closeDialog("busqresult");    
     
    /*_post = $.post(path + "mantenimientos/listardatoscentrpob", parameters);
     
     _post.success(function(request){
         $("#manttcentropoblad").html(request);
      
-    });
-	
-    _post.error(postError);*/
-    
+    });	
+    _post.error(postError);*/ 
 	
 };
 
 
 optionVias = {
     height: 290,
-    width: 600,
-    colNames: ["Tipo Via", "Nombre", "Via","Tipo Centro","Nombre Via","Desde","Hasta"  ],
+    width: 800,
+    colNames: ["Codigo", "Cod. Centr.Poblado", "Centro Poblado","Cod. Via","Via"
+               ,"Lado Via","Cuadra Ini","Cuadra Fin","Arancel","Factor Bar","Periodo","Estado",
+               "Host","Usuario","Fecha Tran."],
     colModel: [
-        {name:'ctipvia', index:'ctipvia', width:50, align: 'center'},
-        {name:'mviadis', index:'mviadis', width:80, hidden: true},
-        {name:'vnomvia', index:'vnomvia', width:150},
-        {name:'ccodvia', index:'ccodvia', width:50, hidden: true} ,
+        {name:'idsigma', index:'idsigma,', width:50, hidden: true, align: 'center'},
+        {name:'mpoblad', index:'mpoblad', width:80, hidden: true},
+        {name:'tnompob', index:'tnompob', width:150},
+        {name:'mviadis', index:'mviadis', width:50, hidden: true} ,
         {name:'tnomvia', index:'tnomvia', width:150},
-        {name:'cperdes', index:'cperdes', width:50},
-        {name:'cperhas', index:'cperhas', width:50},
+        {name:'nladvia', index:'nladvia', width:50},
+        {name:'ncuaini', index:'ncuaini', width:50},
+        {name:'ncuafin', index:'ncuafin', width:50},
+        {name:'narance', index:'narance', width:50},
+        {name:'nfacbar', index:'nfacbar', width:50},
+        {name:'cperiod', index:'cperiod', width:50},
+        {name:'nestado', index:'nestado', width:50, hidden: true},
+        {name:'vhostnm', index:'vhostnm', width:50, hidden: true},
+        {name:'vusernm', index:'vusernm', width:50, hidden: true},
+        {name:'ddatetm', index:'ddatetm', width:50, hidden: true}     
+        
         ],
     caption: "&nbsp;&nbsp;&nbsp",
     hidegrid: true,
@@ -50,7 +58,7 @@ buscarVias = function() {
     	//alert("algo");
         parameters = {
             "name": "tblResult",
-            "procedure": "registro.mostrarvias",
+            "procedure": "registro.mostrararancel",
             "parameters": '{' +
             '"p_tipo":"01"'+
             '}'
@@ -75,39 +83,6 @@ buscarVias = function() {
 
 // buscarPredio = function() {};
 
-buscarVias2 = function() {
-    valid = true;
-  
-    if(valid==true) {    
-    	//alert("algo");
-        parameters = {
-            "name": "tblResult",
-            "procedure": "registro.mostrarvias2",
-            "parameters": '{' +                        
-            '"p_busq":"' + $("#txtbusq").val().toUpperCase() + '"' +
-            
-            '}'
-        };
-        
-        proceso = function(requestData){
-            $("#panelResult").html(requestData);
-            records = $("#ctblResult").val();
-            if(records > 0) {
-                actualizarGrid("tblResult", optionVias, bindkeysVias);
-            } else {
-             alert("no entro");              
-                
-            }
-        };
-        
-        procesarConsultaSubProceso('registrar', parameters, proceso);        
-    } else {
-        openDialogWarning("Ingrese un valor en los campos de busqueda.", 380, 150);
-    }
-};
-
-
-
 $(function(){
 	buscarVias();
      
@@ -115,7 +90,7 @@ $(function(){
     
     $("#panelbusqueda").on("keyup", "input", function(e) {
         if(e.keyCode == 13){
-        	buscarVias2();
+        	//buscarVias2();
         }
     });
     
@@ -129,9 +104,8 @@ $(function(){
         $("#c_predial").val("");
     });
     
-    $("#btnbuscar").button("option", "icons", {primary:'ui-icon-search'});
     
-    $("#btnbuscar").click(buscarVias2);
+    //$("#btnbuscar").click(buscarVias);
     
     /*
     $("#btningresar").click(function() {

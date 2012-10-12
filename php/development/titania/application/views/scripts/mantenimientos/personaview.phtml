@@ -1,0 +1,174 @@
+<div class="ui-widget ui-widget-content ui-corner-all"
+	style="width: 70%; margin: 3px;">
+	<div class="ui-widget ui-state-default ui-corner-top ui-title">
+		<label>PERSONAS</label>
+	</div>
+	<br />
+	<div id="divdatos">
+	<table border="0" class="ui-tablecontent" >
+		<tr>
+			<td>Tipo Ingreso&nbsp;<select id="cbotipingreso" name="cbotipingreso"><option value="1">Administrado</option>
+					<option value="2">Contribuyente</option>
+			</select>
+			</td>
+			<td>Codigo&nbsp;
+				<input id="txtcodigo" name="txtcodigo" ReadOnly style="width: 80px;"/>
+				<span id="ds_buscar">Buscar</span><input id="txtbuscar" maxlength="10" style="width: 80px;"/>
+				<input type="hidden" id="st_estado" name="st_estado" style="width: 80px;"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<fieldset>
+					<legend>Identificacion del Contribuyente</legend>
+					<table border="0" style="width: 100%"class="ui-table-body" cellpadding="0" cellspacing="0">
+						<tr>
+							<td>Tipo Documento</td>
+							<td>Nro. Documento</td>
+							<td>Tipo de Persona</td>
+						</tr>
+						<tr>
+							<td><select id="cbotipdoc" name="cbotipdoc"></select>
+							</td>
+							<td><input id="nrodoc" name="nrodoc" />
+							</td>
+							<td><select id="cbotipper" name="cbotipper" ></select>
+							</td>
+						</tr>
+						<tr>
+							<td >Apellido Paterno</td>
+							<td>Apellido Materno</td>
+							<td>Nombres</td>
+						</tr>
+						<tr>
+							<td><input id="apatern" name="apatern" style="width: 150px" /></td>
+							<td><input id="amatern" name="amatern" style="width: 150px" /></td>
+							<td><input id="nombre" name="nombre" style="width: 150px" /></td>
+						</tr>
+						<tr>
+							<td>Sexo</td>
+							<td>Estado Civil</td>
+							<td>F.Nacimiento</td>
+						</tr>
+						<tr>
+							<td>
+								<select id="cbosexo" name="cbosexo">
+									<option value="9">Seleccionar..</option>
+									<option value="1">Masculino</option>
+									<option value="2">Femenino</option>
+								</select>
+							</td>
+							<td>
+								<select id="cboestcivil" name="cboestcivil">
+								</select>
+							</td>
+							<td><input id="fecnace" name="fecnace">
+							</td>
+						</tr>
+						<tr>
+							<td>Nro.Telefono</td>
+							<td>Nro. Movil</td>
+							<td>Correo Electronico</td>
+						</tr>
+						<tr>
+							<td><input id="nrotef" name="nrotef">
+							</td>
+							<td><input id="nromovil" name="nromovil">
+							</td>
+							<td><input id="mail" name="mail">
+							</td>
+						</tr>
+					</table>
+				</fieldset>
+		</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<fieldset>
+					<legend>Direcci&oacute;n Fiscal</legend>
+					<table border="0" class="ui-table-body" cellpadding="0" cellspacing="0"  >
+						<tr>
+							<td>
+								Distrito
+								<select id="distrito" name="distrito" ></select>
+							</td>
+							<td></td>
+							<td colspan="2">
+						</tr>
+						<tr>
+							<td colspan="5"><div>
+									<table>
+										<tr>
+											<td>Urbanizacion, Asentamiento Humano, etc.</td>
+											<td>Nro.</td>
+											<td>Dpto.</td>
+											<td></td>
+										</tr>
+										<tr>
+											<td><input id="denominacion" name="denominacion" style="width: 50;">&nbsp;<input id="direccion" name="direccion">
+											</td>
+											<td><input id="direcnumero" name="direcnumero" style="width: 50;">
+											</td>
+											<td><input id="departamen" name="departamen" style="width: 50;">
+											</td>
+											<td>
+											</td>
+										</tr>
+									</table>
+								</div></td>
+						</tr>
+
+						<tr>
+							<td colspan="5">
+								<div>
+									<table>
+										<tr>
+											<td></td>
+											<td>Mz.</td>
+											<td>Lote</td>
+											<td>Referencia</td>
+										</tr>
+										<tr>
+											<td>
+											</td>
+											<td><input id="manzana" name="manzana" style="width: 50;">
+											</td>
+											<td><input id="lote" name="lote" style="width: 50;">
+											</td>
+											<td><input id="ref"  name="ref" style="width: 250;">
+											</td>
+										</tr>
+									</table>
+								</div>
+							</td>
+						</tr>
+
+					</table>
+				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" valign="middle">
+				<fieldset >
+					<table>
+						<tr>
+							<td valign="middle">	
+								Observaci&oacute;n 
+							</td>
+							<td>
+								<textarea style="width: 452px; margin: 2px 0px; height: 29px; " name="ds_observacion" id="ds_observacion"></textarea>
+							</td>
+						</tr>			
+					</table>
+				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			<td  colspan="2" align="center">
+				<button id="btnguardar" >Guardar</button> &nbsp;
+				<button id="btnregresar">Regresar</button> &nbsp;
+			</td>
+		</tr>
+	</table>
+	</form>
+</div>
