@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="iilc_pe_ear">
+        <wb-resource deploy-path="/" source-path="/"/>
+        <dependent-module deploy-path="/" handle="module:/resource/iilc_pe_ejb/iilc_pe_ejb">
+            <dependent-object>EjbModule_1208203263402</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module deploy-path="/" handle="module:/resource/iilc_pe_web/iilc_pe_web">
+            <dependent-object>WebModule_1208203263402</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="iilc_pe_ejbClient.jar" deploy-path="/" handle="module:/resource/iilc_pe_ejbClient/iilc_pe_ejbClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

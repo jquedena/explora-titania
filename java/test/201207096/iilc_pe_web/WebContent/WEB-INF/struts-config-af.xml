@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+	</form-beans>
+	<action-mappings>
+		<action path="/accesoIilc" type="com.grupobbva.bc.per.tel.iilc.actions.IndexAction" parameter="method" name="FormBeanConsulta">
+			<forward name="default" path="/pages/iilc_index.jsp" />
+			<forward name="error" path="/iilc_error.jsp" />
+			<forward name="administrador" path="/pages/iilc_administracion.jsp" />
+		</action>
+		<action path="/administrarCabecera" type="com.grupobbva.bc.per.tel.iilc.actions.AdministrarCabeceraAction" parameter="method" name="FormBeanConsulta">
+			<forward name="default" path="/pages/administracionCabecera/iilc_default.jsp" />
+			<forward name="administrar" path="/pages/administracionCabecera/iilc_administrar_cabecera.jsp" />
+			<forward name="glosario" path="/pages/administracionCabecera/iilc_glosario.jsp" />
+		</action>
+		<action path="/permisoUsuario" type="com.grupobbva.bc.per.tel.iilc.actions.PermisoUsuarioAction" parameter="method">
+			<forward name="listar" path="/pages/iilc_permiso_usuario.jsp" />
+			<forward name="buscar" path="/pages/iilc_permiso_usuario_buscar.jsp" />
+		</action>
+	</action-mappings>
+</struts-config>

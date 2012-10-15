@@ -1,0 +1,20 @@
+#Wed Sep 07 10:52:11 COT 2011
+vals/org.eclipse.jst.jsp.core.JSPContentValidator/global=FF01
+vals/org.eclipse.wst.dtd.core.dtdDTDValidator/global=FF01
+USER_PREFERENCE=overrideGlobalPreferencestruedisableAllValidationfalseversion1.2.11.v200906261730
+DELEGATES_PREFERENCE=delegateValidatorList
+vals/org.eclipse.jst.jsf.ui.JSFAppConfigValidator/global=FF01
+vals/com.ibm.xtt.xsl.ui.xsl/global=FF02
+eclipse.preferences.version=1
+vals/com.ibm.ast.ws.was61.policyset.ui.BindingXMLValidator/global=FF01
+vals/org.eclipse.jst.jsp.core.JSPBatchValidator/global=FF01
+override=true
+vf.version=3
+vals/com.ibm.ast.ws.was7.policyset.ui.BindingXMLValidator/global=FF01
+suspend=false
+vals/org.eclipse.wst.xsd.core.xsd/global=FF02168com.ibm.ccl.soa.sdo.xsd.validation.internal.EclipseXSDBasedValidator
+USER_MANUAL_PREFERENCE=enabledManualValidatorList
+vals/org.eclipse.wst.html.ui.HTMLValidator/global=FF01
+USER_BUILD_PREFERENCE=enabledBuildValidatorList
+vals/org.eclipse.wst.wsdl.validation.wsdl/global=FF02170com.ibm.ccl.soa.sdo.wsdl.validation.internal.EclipseWSDLBasedValidator
+vals/org.eclipse.wst.xml.core.xml/global=FF03
