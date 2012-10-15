@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>iilc_pe_web</display-name>
+	
+	<filter>
+		<display-name>FiltroSesion</display-name>
+		<filter-name>FiltroSesion</filter-name>
+		<filter-class>com.grupobbva.bc.per.tel.iilc.config.FiltroSesion</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FiltroSesion</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>FiltroSesion</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<servlet>
+		<display-name>Servlet para inicializaciOn de properties</display-name>
+		<servlet-name>InitPropertiesServlet</servlet-name>
+	    	<servlet-class>com.grupobbva.bc.per.tel.iilc.servlet.InitPropertiesServlet</servlet-class>
+		<init-param>
+			<param-name>propertiesLog4J.properties</param-name>
+			<param-value>\WEB-INF\properties\log4j.properties</param-value>
+  		</init-param>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+		 
+	<servlet>
+		<servlet-name>ServletBeanFactory</servlet-name>
+		<servlet-class>com.grupobbva.bc.per.tel.iilc.config.ServletBeanFactory</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletBeanFactory</servlet-name>
+		<url-pattern>/beanFactory</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ApplicationInitServlet</servlet-name>
+		<servlet-class>com.grupobbva.bc.per.tel.iilc.servlet.ApplicationInitServlet</servlet-class>
+		<init-param>
+			<param-name>delayTime</param-name>
+			<param-value>20</param-value>
+		</init-param>
+		<init-param>
+			<param-name>periodTime</param-name>
+			<param-value>60</param-value>
+		</init-param>
+		<load-on-startup>6</load-on-startup>
+	</servlet>
+
+	
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>
+				/WEB-INF/struts-config.xml,
+				/WEB-INF/struts-config-af.xml
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>2</param-value>
+		</init-param>
+		<init-param>
+			<param-name>detail</param-name>
+			<param-value>2</param-value>
+		</init-param>
+		<init-param>
+			<param-name>validate</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>TilesServet</servlet-name>
+		<servlet-class>org.apache.struts.tiles.TilesServlet</servlet-class>
+		<init-param>
+			<param-name>definitions-config</param-name>
+			<param-value>/WEB-INF/tiles-defs.xml</param-value>
+		</init-param>
+		<load-on-startup>7</load-on-startup>
+	</servlet>
+	
+	<welcome-file-list>
+		<welcome-file>iilc_login.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/WEB-INF/struts-bean.tld</taglib-uri>
+			<taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/WEB-INF/struts-html.tld</taglib-uri>
+			<taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/WEB-INF/struts-logic.tld</taglib-uri>
+			<taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/WEB-INF/struts-nested.tld</taglib-uri>
+			<taglib-location>
+				/WEB-INF/struts-nested.tld
+			</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/WEB-INF/struts-template.tld</taglib-uri>
+			<taglib-location>
+				/WEB-INF/struts-template.tld
+			</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/WEB-INF/struts-tiles.tld</taglib-uri>
+			<taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+	
+	<ejb-local-ref id="EJBLocalRef_1200962539700">
+		<description>
+		</description>
+		<ejb-ref-name>ejb/SessionService</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local-home>com.grupobbva.bc.per.tel.iilc.session.SessionServiceLocalHome</local-home>
+		<local>com.grupobbva.bc.per.tel.iilc.session.SessionServiceLocal</local>
+		<ejb-link>iilc_pe_ejb.jar#SessionService</ejb-link>
+	</ejb-local-ref>
+</web-app>

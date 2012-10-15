@@ -1,0 +1,21 @@
+
+	.aw-quirks * {
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+	}
+	
+	
+	#myGrid {
+		width: 100%;
+		font-size:11px;
+	}
+	#myGrid .aw-column-1 {border-right: 1px solid #ccc;}
+	
+	#myGrid .aw-rows-selected {color:#000000; background: #FFFFCC !important;}
+	#myGrid .aw-alternate-even {background: #efefef}
+	#myGrid .aw-alternate-odd {background: #d9e9f4}
+	
+	#myGrid .aw-footer-0 {background: #ddd; border-top: 1px solid #9AC7DE;}
+	#myGrid .aw-footer-1 {background: #ddd; border-top: 1px solid #9AC7DE;}
+	#myGrid .aw-footer-3 {background: #ddd; border-top: 1px solid #9AC7DE;}

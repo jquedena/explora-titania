@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Tiilc_adm_carga_archivo" >
+	<typeAlias alias="tiilc_adm_carga_archivo" type="com.grupobbva.bc.per.tel.iilc.beans.Tiilc_adm_carga_archivo"/>
+
+	<insert id="eliminarArchivo" parameterClass="int" >
+		DELETE FROM iilc.Tiilc_adm_carga_archivo  where id_registro=#value#
+	</insert>
+
+	<parameterMap id="PARAMETRO" class="map">
+		<parameter property="fecha" jdbcType="VARCHAR2" javaType="java.lang.String" mode="OUT"/>
+	</parameterMap>
+
+	<procedure id="lanzarCargaCliente" parameterClass="long" >
+		{call iilc.PIILC_CARGA_CLIENTE.SP_CARGA(#value#)}
+	</procedure>
+ 
+	<procedure id="lanzarCargaGestor" parameterClass="long" >
+		{call iilc.PIILC_CARGA_GESTOR.sp_carga_gestor(#value#)}
+	</procedure>
+
+	<procedure id="lanzarCargaColectivo" parameterClass="long" >
+		{call iilc.PIILC_CARGA_COLECTIVO.sp_carga_colectivo(#value#)}
+	</procedure>
+
+	<procedure id="lanzarCargaVariofer"  parameterClass="long" >
+		{call iilc.PIILC_CARGA_VARIOFER.sp_carga_variofer(#value#)}
+	</procedure>
+
+	<procedure id="lanzarCargaAlmaccc" parameterClass="long" >
+		{call iilc.PIILC_CARGA_ALMACCC.sp_carga_almaccc(#value#)}
+	</procedure>
+
+	<procedure id="lanzarCargaEstm" parameterClass="long" >
+		{call iilc.PIILC_CARGA_ESTM.sp_carga_estm(#value#)}
+	</procedure>
+
+	<select id="verificarExistencia" parameterClass="java.util.Map" resultClass="com.grupobbva.bc.per.tel.iilc.beans.Tiilc_adm_carga_archivo">
+		select id_registro,procesando from iilc.tiilc_adm_carga_archivo where to_char(fecha_inicio,'dd-MM-yyyy')=to_char(#fecha#,'dd-MM-yyyy') and tipo=#tipoCarga#
+	</select>
+
+	<select id="obtenerHoraCarga" parameterClass="java.util.Map" resultClass="com.grupobbva.bc.per.tel.iilc.beans.Tiilc_adm_carga_archivo">
+		select * from iilc.tiilc_adm_carga_archivo where to_char(fecha_inicio, 'HH24:mi')=to_char(to_date(#fecha#,'dd-MM-yyyy HH24:mi'), 'HH24:mi') and tipo=#tipo#
+	</select>
+
+	<select id="obtenerCargaDelDia" parameterClass="java.util.Map" resultClass="com.grupobbva.bc.per.tel.iilc.beans.Tiilc_adm_carga_archivo">
+		select * from iilc.tiilc_adm_carga_archivo where to_date(to_char(fecha_inicio,'dd-MM-yyyy HH24:mi'),'dd-MM-yyyy HH24:mi')=to_date(#fecha#,'dd-MM-yyyy HH24:mi') and tipo=#tipo#
+	</select>
+
+	<select id="obtenerCargaPorID" parameterClass="java.util.Map" resultClass="com.grupobbva.bc.per.tel.iilc.beans.Tiilc_adm_carga_archivo">
+		select * from iilc.tiilc_adm_carga_archivo where id_registro=#id#
+	</select>
+
+	<select id="sp_calcular_dia" resultClass="String">
+		select iilc.PIILC_UTILITARIO.sp_calcular_dia from dual
+	</select>
+
+	<select id="listarIntervalos" parameterClass="java.util.Map"  resultClass="com.grupobbva.bc.per.tel.iilc.serializable.Multitabla">
+		select cod_ele+1 cod_ele,valor1,valor2 from iilc.tiilc_multitabla where cod_mult='T11' order  by cod_ele
+	</select>
+
+	<select id="listarLogArchivo" parameterClass="String"  resultClass="com.grupobbva.bc.per.tel.iilc.beans.Tiilc_error_carga">
+		SELECT lo.LINEA||'	'|| lo.DESC_ERROR||'	'||lo.TEXTO as linea 
+		FROM IILC.TIILC_ERROR_CARGA lo 
+		INNER JOIN IILC.tiilc_adm_carga_archivo a on a.id_registro=lo.id_registro 
+		where  tipo=#value#   order by lo.LINEA asc
+	</select>
+
+	<!-- <select id="validarCruzeIntervalos" parameterClass="java.util.Map"  resultClass="com.grupobbva.bc.per.tel.iilc.serializable.Multitabla"> -->
+	<!-- <select id="validarCruzeIntervalos" parameterClass="java.util.Map"  resultClass="java.lang.Integer"> -->
+	<!-- select * from iilc.tiilc_multitabla where cod_mult='T11' and cod_ele not in (#cod_ele#) and (to_number(valor1)+to_number(valor2) not in(0) ) and ((#valor1# between valor1 and valor2) or (#valor2# between valor1 and valor2) ) and rownum = 1 -->
+	<!-- select iilc.validar_intervalo(#cod_ele#, #valor1#, #valor2#) valida from dual;-->
+	<!-- </select>-->
+
+	<select id="verificarExistenciaPorID" parameterClass="int"  resultClass="com.grupobbva.bc.per.tel.iilc.beans.Tiilc_adm_carga_archivo">
+		select id_registro,procesando,id_estado from iilc.tiilc_adm_carga_archivo  where id_registro=#value#        
+	</select>
+
+	<select id="listarEstadoCarga" parameterClass="String"  resultClass="com.grupobbva.bc.per.tel.iilc.beans.Tiilc_adm_carga_archivo">
+		select to_char(a.FECHA_INICIO,'yyyyMMdd HH24mi') as fecha_formateada,
+		to_char(a.fecha_inicio,'yyyy/MM/dd HH24:mi') fecha_inicio_str,
+		to_char(a.fecha_fin,'yyyy/MM/dd HH24:mi') fecha_fin_str, 
+		a.filas_leidas,
+		a.filas_no_procesadas,
+		a.filas_procesadas, 
+		c.DESCRIPCION as estado_descripcion, 
+		a.archivo_carga ,
+		a.id_estado,
+		to_char(a.FECHA_INICIO_REAL,'yyyy/MM/dd HH24:mi') fecha_inicio_real_str
+		from iilc.tiilc_adm_carga_archivo a, iilc.tiilc_estado_carga_arch c 
+		where  a.id_estado=c.id_estado and TIPO=#value#   and to_date(to_char(FECHA_INICIO,'dd/mm/yyyy'),'dd/mm/yyyy') between sysdate-99999 and  to_date(to_char(sysdate,'dd/mm/yyyy'),'dd/mm/yyyy') 
+		order by FECHA_INICIO  desc
+	</select>
+
+	<select id="listarCargas" parameterClass="String"  resultClass="com.grupobbva.bc.per.tel.iilc.beans.Tiilc_adm_carga_archivo">
+		select ID_REGISTRO,TIPO,FECHA_INICIO,ID_ESTADO,FECHA_FIN,ARCHIVO_CARGA,FILAS_LEIDAS,FILAS_PROCESADAS,FILAS_NO_PROCESADAS,PROCESANDO,
+		USUREG,FECREG,USUMOD,FECMOD,FECHA_INICIO_REAL,
+		to_char(FECHA_INICIO,'dd-MM-yyyy HH24:mi') as fecha_formateada
+		from iilc.tiilc_adm_carga_archivo  
+		where tipo=#value# 
+		order by FECHA_INICIO desc
+	</select>
+
+	<select id="listarProgramaciones" parameterClass="String"  resultClass="com.grupobbva.bc.per.tel.iilc.beans.Tiilc_adm_carga_archivo">
+		select id_registro,procesando from iilc.tiilc_adm_carga_archivo where tipo=#tipoCarga# order by id_registro
+	</select>
+
+	<insert id="insertarProgramacionCarga"  parameterClass="tiilc_adm_carga_archivo">
+		<selectKey resultClass="int" keyProperty="id_registro" >
+			SELECT IILC.SEQ_COD_ADM_CARGA_ARCHIVO.NEXTVAL AS ID FROM DUAL
+		</selectKey>
+		insert into iilc.tiilc_adm_carga_archivo
+		(ID_REGISTRO,TIPO,FECHA_INICIO,ID_ESTADO,USUREG,FECREG,PROCESANDO,ARCHIVO_CARGA,FILAS_LEIDAS,FILAS_PROCESADAS,FILAS_NO_PROCESADAS)
+		values
+		(#id_registro#,#tipo#,to_date(to_char(#fecha_inicio#,'dd-mm-yyyy hh24:mi'),'dd-mm-yyyy hh24:mi'),#id_estado#,#usureg#,sysdate,'0',0,0,0,0)
+	</insert>
+
+	<select id="verificarProgramacionPorRango" parameterClass="tiilc_adm_carga_archivo"  resultClass="com.grupobbva.bc.per.tel.iilc.beans.Tiilc_adm_carga_archivo">
+		select tipo, to_char(fecha_inicio,'dd-mm-yyyy hh24:mi') as fecha_inicio_str
+		from iilc.tiilc_adm_carga_archivo
+		where tipo = #tipo# and
+			  id_estado in (1,2) and
+			  fecha_inicio between  
+			  to_date(to_char(#fecha_inicio# - #horasAntes#/24,'dd-mm-yyyy hh24:mi'),'dd-mm-yyyy hh24:mi')	
+			  and
+			  to_date(to_char(#fecha_inicio# + #horasDespues#/24,'dd-mm-yyyy hh24:mi'),'dd-mm-yyyy hh24:mi')		  			
+	</select>
+	
+	
+	<!--
+		{call IILC.ACTUALIZAR_INTERVALO(#cod_ele#, #valor1#, #valor2#)}
+		update iilc.tiilc_multitabla set  valor1=#valor1#, valor2=#valor2# where cod_mult='T11' and cod_ele=#cod_ele#
+	-->
+	<!-- insert -->
+	<procedure id="grabarIntervalos" parameterClass="java.util.Map" >
+		update iilc.tiilc_multitabla set  valor1=#valor1#, valor2=#valor2# where cod_mult='T11' and cod_ele=#cod_ele#
+	</procedure>
+
+	<update  id="actualizarProgramacionCargaEstado"  parameterClass="tiilc_adm_carga_archivo">
+		update iilc.tiilc_adm_carga_archivo  set id_estado=#id_estado# where id_registro=#id_registro#
+	</update>
+
+	<update  id="actualizarProgramacionCarga"  parameterClass="tiilc_adm_carga_archivo"> 
+		update iilc.tiilc_adm_carga_archivo  set fecha_inicio=#fecha_inicio#, fecha_inicio_real=#fecha_inicio#
+		where id_registro=#id_registro#
+	</update>
+
+	<update  id="sobreescribirProgramacionCarga"  parameterClass="tiilc_adm_carga_archivo"> 
+		update iilc.tiilc_adm_carga_archivo set fecha_inicio=#fecha_inicio#, fecha_inicio_real=#fecha_inicio_real#, ID_ESTADO=#id_estado#,USUMOD=#usureg#,FECMOD=sysdate,PROCESANDO='0',FECHA_FIN=null , ARCHIVO_CARGA=0,FILAS_LEIDAS=0,FILAS_PROCESADAS=0,FILAS_NO_PROCESADAS=0 
+		where TIPO=#tipo# and to_char(fecha_inicio,'dd-mm-yyyy')=to_char(#fecha_inicio#,'dd-mm-yyyy')
+	</update>
+</sqlMap> 
