@@ -8,18 +8,18 @@
                 <table border="0" class="ui-table-panelLayout">
                     <tr>
                         <td style="width: 40px;">C&oacute;digo:</td>
-                        <td style="width: 75px;font-weight: bold;"><div id="lblCodigo">codigo</div></td>
+                        <td style="width: 75px;font-weight: bold;"><div id="lblCodigo"><?php echo $this->mperson; ?></div></td>
                         <td style="width: 60px; text-align: right; padding-right: 4px;">Nombre:</td>
-                        <td style="font-weight: bold;" colspan="2">nombre</td>
+                        <td style="font-weight: bold;" colspan="2"><div id="lblNombre"><?php echo $this->vnombre; ?></div></td>
                         <td style="width: 90px;" align="right" rowspan="3"><div class="ui-widget"><?php echo $this->util()->getPeriodos(); ?></div></td>
                     </tr><tr>
                         <td style="text-align: right; padding-right: 4px;" colspan="3">Direcci&oacute;n Fiscal:</td>
-                        <td style="font-weight: bold;" colspan="2">direccion</td>
+                        <td style="font-weight: bold;" colspan="2"><div id="lblDireccionFiscal"><?php echo $this->vdirecf; ?></div></td>
                     </tr><tr>
                         <td>Predio:</td>
-                        <td style="font-weight: bold;"><div id="lblPredio">predio</div></td>
-                        <td style="text-align: right; padding-right: 4px;">Direcci&oacute;n:</td>
-                        <td style="font-weight: bold;">direccion</td>
+                        <td style="font-weight: bold;"><div id="lblPredio"><div id="lblPredio"><?php echo $this->mpredio["ccodpre"]; ?></div></div></td>
+                        <td style="text-align: right; padding-right: 4px;">Direcci&oacute;n</td>
+                        <td style="font-weight: bold;"><div id="lblDireccion"><?php echo $this->mpredio["vdirpre"]; ?></div></td>
                         <td style="width: 30px;"><button id="btnBuscarDireccion" style="line-height: 25px;height: 25px;" title="Buscar predio" /></td>
                     </tr>
                 </table>
@@ -38,11 +38,11 @@
                         <td style="width: 100px; text-align: center;">Autovaluo</td>
                     </tr>
                     <tr>
-                        <td style="font-weight: bold; text-align: center;">Valor</td>
-                        <td style="font-weight: bold; text-align: center;">Valor</td>
-                        <td style="font-weight: bold; text-align: center;">Valor</td>
-                        <td style="font-weight: bold; text-align: center;">Valor</td>
-                        <td style="font-weight: bold; text-align: center;">Valor</td>
+                        <td style="font-weight: bold; text-align: center;"><div id="lblArancel"><?php echo $this->mpredio["narance"]; ?></div></td>
+                        <td style="font-weight: bold; text-align: center;"><div id="lblValorTerreno"><?php echo $this->mpredio["nvalter"]; ?></div></td>
+                        <td style="font-weight: bold; text-align: center;"><div id="lblValorConstruccion"><?php echo $this->mpredio["nvalpis"]; ?></div></td>
+                        <td style="font-weight: bold; text-align: center;"><div id="lblValorInstalacion"><?php echo $this->mpredio["nvalins"]; ?></div></td>
+                        <td style="font-weight: bold; text-align: center;"><div id="lblAutovaluo"><?php echo $this->mpredio["nvalafe"]; ?></div></td>
                     </tr>
                 </table>
             </div>
@@ -51,10 +51,10 @@
             <div id="panelUsuario" align="center" class="ui-widget ui-widget-content" style="width: 100%;">
                 <table border="0" align="center" class="ui-table-panelLayout" style="width: 470px;">
                     <tr>
-                        <td>Modificado por <b>quispe</b> el <b>27/03/2012</b></td>
+                        <td>Modificado por <b><span id="lblUsuario"><?php echo $this->mpredio["vusernm"]; ?></span></b> el <b><span id="lblFechaModificacion"><?php echo $this->mpredio["ddatetm"]; ?></span></b></td>
                     </tr>
                     <tr>
-                        <td>Ultimo recalculo el <b>27/03/2012</b></td>
+                        <td>Ultimo recalculo el <b><span id="lblFechaProceso"><?php echo $this->mpredio["dafecta"]; ?></span></b></td>
                     </tr>
                 </table>
             </div>
@@ -73,22 +73,412 @@
 <div id="panelDetallePredio">
     <div id="tabsDetallePredio" style="width: 995px; margin: 3px;">
         <ul>
-            <li><a href="#predioDescripcion">Descripci&oacute;n</a></li>
-            <li><a href="#predioPiso">Pisos</a></li>
-            <li><a href="#predioInstalacion">Instalaci&oacute;n</a></li>
-            <li><a href="#predioInafectacion">Inafectaci&oacute;n</a></li>
+            <li id="tabPredioDescripcion"><a href="#predioDescripcion">Descripci&oacute;n</a></li>
+            <li id="tabPredioRustico"<?php echo ($this->mpredio["ctippre"]!='1000000091'? ' style="display:none;"': '')?>><a href="#predioRustico">Rustico</a></li>
+            <li id="tabPredioPiso"><a href="#predioPiso">Pisos</a></li>
+            <li id="tabPredioInstalacion"><a href="#predioInstalacion">Instalaci&oacute;n</a></li>    
+            <li id="tabPredioInafectacion"><a href="#predioInafectacion">Inafectaci&oacute;n y Exoneraci&oacute;n</a></li>
         </ul>
-        <div style="overflow-y: auto; overflow-x: hidden; height:300px; padding: 2px;" id="predioDescripcion">
+        <div style="overflow-y: auto; overflow-x: hidden; height:310px; padding: 2px;" id="predioDescripcion">
             <?php echo $this->render("registro/verpredio/descripcion.php"); ?>
         </div>
+        <div style="overflow-y: hidden; overflow-x: hidden; height:300px; padding: 2px;" id="predioRustico">
+            <?php echo $this->render("registro/verpredio/rustico.php"); ?>
+        </div>        
         <div style="overflow-y: auto; overflow-x: hidden; height:300px; padding: 2px;" id="predioPiso">
             <?php echo $this->render("registro/verpredio/piso.php"); ?>
         </div>
         <div style="overflow-y: auto; overflow-x: hidden; height:300px; padding: 2px;" id="predioInstalacion">
             <?php echo $this->render("registro/verpredio/instalacion.php"); ?>
         </div>
-        <div style="overflow-y: auto; overflow-x: hidden; height:300px; padding: 2px;" id="predioInafectacion">
+        <div style="overflow-y: hidden; overflow-x: hidden; height:300px; padding: 2px;" id="predioInafectacion">
             <?php echo $this->render("registro/verpredio/inafectacion.php"); ?>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    tabs = null;
+    jsonPredio = <?php echo json_encode($this->mpredio); ?>;
+    
+    optionPiso = {
+        height: 200,
+        width: 990,
+        rowNum: 10,
+        colNames: [
+            'Nivel',
+            'Antig.',
+            'cmescon',
+            'canocon',
+            'Mat.',
+            'Est.',
+            'Mu',
+            'Te',
+            'Pi',
+            'Pv',
+            'Rv',
+            'Ba',
+            'In',
+            'Area Con.',
+            'V. Unit. m2',
+            'Inc. 5%',
+            '% Depr',
+            'Depr.',
+            'V. Unit. Depr.',
+            'Area Com.',
+            '% Area Com.',
+            'Val. Area Com.',
+            'Val. del Piso',
+            'dafecta',
+            'idsigma',
+            'dpredio',
+            'cnitems',
+            'cperiod',
+            'ctipdat',
+            'vnrodoc',
+            'dfecdoc',
+            'cmotivo',
+            'ctipdoc',
+            'cmateri',
+            'cconser',
+            'cmurcol',
+            'ctechos',
+            'cmpisos',
+            'cpueven',
+            'crevest',
+            'cbanios',
+            'celectr'
+        ],
+        colModel: [
+            {name: 'cnumpis', index: 'cnumpis', width: 65, align: 'center', editable: true}, // Nro de piso
+            {name: 'nantigu', index: 'nantigu', width: 65, align: 'center', editable: true}, // Antiguedad
+            {name: 'cmescon', index: 'cmescon', width: 30, hidden: true}, // Mes de la construccion
+            {name: 'canocon', index: 'canocon', width: 30, hidden: true}, // Periodo de Construccion
+            {name: 'vmateri', index: 'vmateri', width: 40, align: 'center', editable: true}, // Material
+            {name: 'vconser', index: 'vconser', width: 40, align: 'center', editable: true}, // Estado de conservacion
+            {name: 'vmurcol', index: 'vmurcol', width: 40, align: 'center', editable: true}, // Muros y columnas
+            {name: 'vtechos', index: 'vtechos', width: 40, align: 'center', editable: true}, // Techos
+            {name: 'vmpisos', index: 'vmpisos', width: 40, align: 'center', editable: true}, // Pisos
+            {name: 'vpueven', index: 'vpueven', width: 40, align: 'center', editable: true}, // Puertas y ventanas
+            {name: 'vrevest', index: 'vrevest', width: 40, align: 'center', editable: true}, // Revestimientos
+            {name: 'vbanios', index: 'vbanios', width: 40, align: 'center', editable: true}, // Sanitarios
+            {name: 'velectr', index: 'velectr', width: 40, align: 'center', editable: true}, // Instalaciones electricas
+            {name: 'narecon', index: 'narecon', width: 100, formatter:'currency', align: 'right', editable: true}, // Area construida
+            {name: 'nvaluni', index: 'nvaluni', width: 100, formatter:'currency', align: 'right'}, // Valor unitario
+            {name: 'nincrem', index: 'nincrem', width: 100, formatter:'currency', align: 'right'}, // Incremento
+            {name: 'npordep', index: 'npordep', width: 100, formatter:'currency', align: 'right'}, // Porcentaje de depreciacion
+            {name: 'ndepred', index: 'ndepred', width: 100, formatter:'currency', align: 'right'}, // Depreciacion
+            {name: 'nvalare', index: 'nvalare', width: 100, formatter:'currency', align: 'right'}, // Valor unitario depreciado del area construida
+            {name: 'narecom', index: 'narecom', width: 100, formatter:'currency', align: 'right', editable: true}, // Area comun
+            {name: 'nporcom', index: 'nporcom', width: 100, formatter:'currency', align: 'right', editable: true}, // Porcentaje de area comun
+            {name: 'nvalcom', index: 'nvalcom', width: 100, formatter:'currency', align: 'right'}, // Valor del area comun
+            {name: 'nvalpis', index: 'nvalpis', width: 100, formatter:'currency', align: 'right'}, // Valor total del piso
+            {name: 'dafecta', index: 'dafecta', width: 30, hidden: true},  // Fecha desde donde se comienzan a generar los tributos
+            {name: 'idsigma', index: 'idsigma', width: 30, hidden: true}, // Identificador de la construccion del predio
+            {name: 'dpredio', index: 'dpredio', width: 30, hidden: true}, // Identificador del predio
+            {name: 'cnitems', index: 'cnitems', width: 30, hidden: true}, // Nro de orden de la construccion
+            {name: 'cperiod', index: 'cperiod', width: 30, hidden: true}, // Ejercicio de la declaracion jurada
+            {name: 'ctipdat', index: 'ctipdat', width: 30, hidden: true}, // Tipo de ficha (1 = declaracion jurada // 2 = acta de inspeccion)
+            {name: 'vnrodoc', index: 'vnrodoc', width: 30, hidden: true}, // Nro de declaracion jurada
+            {name: 'dfecdoc', index: 'dfecdoc', width: 30, hidden: true}, // Fecha de la declaracion jurada
+            {name: 'cmotivo', index: 'cmotivo', width: 30, hidden: true}, // Motivo de la declaracion jurada
+            {name: 'ctipdoc', index: 'ctipdoc', width: 30, hidden: true}, // Tipo de documento con el que se realiza la declaracion jurada
+            {name: 'cmateri', index: 'cmateri', width: 30, hidden: true},
+            {name: 'cconser', index: 'cconser', width: 30, hidden: true},
+            {name: 'cmurcol', index: 'cmurcol', width: 30, hidden: true},
+            {name: 'ctechos', index: 'ctechos', width: 30, hidden: true},
+            {name: 'cmpisos', index: 'cmpisos', width: 30, hidden: true},
+            {name: 'cpueven', index: 'cpueven', width: 30, hidden: true},
+            {name: 'crevest', index: 'crevest', width: 30, hidden: true},
+            {name: 'cbanios', index: 'cbanios', width: 30, hidden: true},
+            {name: 'celectr', index: 'celectr', width: 30, hidden: true}
+        ],
+        caption: "&nbsp;&nbsp;&nbsp;Pisos",
+        // footerrow : true,
+        // userDataOnFooter : true,
+        // altRows : true,
+        ondblClickRow: function(rowid, iRow, iCol, e) {
+            row = $(this).getRowData(rowid);
+            console.log(row)
+        }
+    };
+
+    btnInsertarPiso = {
+        caption: "Insertar",
+        title: "Insertar la construcci\u00F3n",
+        buttonicon: "ui-icon-plus",
+        onClickButton:function(){
+            var gsr = $("#tblPiso").jqGrid('getGridParam','selrow');
+            if(gsr){
+                console.log(gsr);
+                // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
+            } else { 
+                alert("Please select Row") 
+            } 
+        } 
+    };
+
+    btnEditarPiso = {
+        caption: "Editar",
+        title: "Editar la construcci\u00F3n",
+        buttonicon: "ui-icon-pencil",
+        onClickButton:function(){
+            var gsr = $("#tblPiso").jqGrid('getGridParam','selrow');
+            if(gsr){
+                console.log(gsr);
+                // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
+            } else { 
+                openDialogWarning("Seleccione la fila a editar.", 380, 150);
+            } 
+        } 
+    };
+    
+    btnEliminarPiso = {
+        caption: "Eliminar",
+        title: "Eliminar la construcci\u00F3n",
+        buttonicon: "ui-icon-trash",
+        onClickButton:function(){
+            var gsr = $("#tblPiso").jqGrid('getGridParam','selrow');
+            if(gsr){
+                console.log(gsr);
+                // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
+            } else { 
+                openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
+            } 
+        } 
+    };
+    
+    optionInstalacion = {height: 200,
+        width: 990,
+        rowNum: 10,
+        colNames: [
+            'idsigma',
+            'dpredio',
+            'cnitems',
+            'cperiod',
+            'ctipdat',
+            'vnrodoc',
+            'dfecdoc',
+            'cmotivo',
+            'ctipdoc',
+            'Nivel',
+            'Antig.',
+            'canocon',
+            'Altura',
+            'Ancho',
+            'Largo',
+            'ctipint',
+            'Descripci\u00F3n',
+            'Val. Inst.',
+            'dafecta'
+        ],
+        colModel: [
+            {name: "idsigma", index: "idsigma", width: 30, hidden: true}, // Identificador de la instalacion del predio
+            {name: "dpredio", index: "dpredio", width: 30, hidden: true}, // Identificador del predio
+            {name: "cnitems", index: "cnitems", width: 30, hidden: true}, // Nro de orden de la construccion
+            {name: "cperiod", index: "cperiod", width: 30, hidden: true}, // Ejercicio de la declaracion jurada
+            {name: "ctipdat", index: "ctipdat", width: 30, hidden: true}, // Tipo de ficha (1 = declaracion jurada // 2 = acta de inspeccion)
+            {name: "vnrodoc", index: "vnrodoc", width: 30, hidden: true}, // Nro de declaracion jurada
+            {name: "dfecdoc", index: "dfecdoc", width: 30, hidden: true}, // Fecha de la declaracion jurada
+            {name: "cmotivo", index: "cmotivo", width: 30, hidden: true}, // Motivo de la declaracion jurada
+            {name: "ctipdoc", index: "ctipdoc", width: 30, hidden: true}, // Tipo de documento con el que se realiza la declaracion jurada
+            {name: "cnumpis", index: "cnumpis", width: 65, align: "center", editable: true}, // Nro de piso
+            {name: "nantigu", index: "nantigu", width: 65, align: "center", editable: true}, // Antiguedad
+            {name: "canocon", index: "canocon", width: 30, hidden: true}, // Periodo de Construccion
+            {name: "nvalanc", index: "nvalanc", width: 30, hidden: true}, // Ancho de la instalacion
+            {name: "nvalalt", index: "nvalalt", width: 30, hidden: true}, // Altura de la instalacion
+            {name: "nvallar", index: "nvallar", width: 30, hidden: true}, // Largo de la instalacion
+            {name: "ctipint", index: "ctipint", width: 30, hidden: true}, // Tipo de instalacion
+            {name: "vdesint", index: "vdesint", width: 250, editable: true}, // Descripcion de la instalacion
+            {name: "nvalins", index: "nvalins", width: 150, align: "right", editable: true}, // Valor de la instalacion
+            {name: "dafecta", index: "dafecta", width: 30, hidden: true}  // Fecha desde donde se comienzan a generar los tributos
+        ],
+        caption: "&nbsp;&nbsp;&nbsp;Instalaci\u00F3n",
+        ondblClickRow: function(rowid, iRow, iCol, e) {
+            row = $(this).getRowData(rowid);
+            console.log(row)
+        }
+    };
+    
+    habilitarComponenteDetalle = function(disabled){
+        $(".ui-text, .ui-combobox-input").attr("disabled", disabled);
+        $(".ui-text, .ui-combobox-input").toggleClass("ui-state-disabled-text");
+        $(".ui-combobox a").button("option", "disabled", disabled);
+        $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto").datepicker("option", "disabled", disabled);
+        $("#btnGrabarPredio").button("option", "disabled", disabled);
+        
+        if($("#cboCondicion").val() == "1000000145"){
+            $("#btnVerCondominante").button("option", "disabled", disabled);
+            $("#nporcen").attr("disabled", disabled);
+            $("#nporcen").toggleClass("ui-state-disabled-text");
+        } else {
+            if(!disabled) {
+                $("#nporcen").attr("disabled", true);
+                $("#nporcen").toggleClass("ui-state-disabled-text"); 
+            }
+        }
+        
+        $("#btnEditarPredio").button("option", "disabled", !disabled);
+        $("#txtPeriodo").toggleClass("ui-state-disabled-text");
+
+        if(disabled) {
+            $("#linkPeriodo").button("option", "disabled", false);
+            $("#txtPeriodo").attr("disabled", false);
+            
+            var hEd = CKEDITOR.instances['txtObservacionInafectacion'];
+            if (hEd) {
+                CKEDITOR.remove(hEd);
+            }
+        } else {
+            CKEDITOR.replace('txtObservacionInafectacion', config);
+        }
+        
+        
+    };
+    
+    cambioTipoPredio = function(event, ui) {
+        if(ui.item) {
+            bVisible = (ui.item.option.value == "1000000091");
+            visibility = (bVisible? "hidden": "visible");
+            display = (bVisible? "inline": "none");
+            $("#panelTerreno").css({"visibility" : visibility});
+            $("#tabPredioRustico").css({"display" : display});
+            
+            contenidocomboContenedor("#cboTipoPredioUrbano", (bVisible ? "1000000209": "1000000202"));
+            
+        } else {
+            openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
+        }
+    };
+    
+    cambioTipoUso = function(event, ui) {
+        if(ui.item) {
+        } else {
+            openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
+        }
+    };
+
+    cambioCondicion = function(event, ui) {
+        if(ui.item) {
+            disable = !(ui.item.option.value == "1000000145");
+            $("#btnVerCondominante").button("option", "disabled", disable);
+            $("#nporcen").attr("disabled", disable);
+            $("#nporcen").toggleClass("ui-state-disabled-text");
+        } else {
+            openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
+        }
+    };
+
+    loadVerDetalle = function(){
+        tabs = $("#tabsDetallePredio").tabs();
+
+        $(".ui-text-numeric").numeric({
+            decimal: '.',
+            negative: false
+        }, function() {
+            openDialogWarning("Solo Numeros Positivos.", 150, 90);
+            this.value = "";
+            this.focus();
+        });
+
+        $("#nnrohab").numeric({
+            decimal: false,
+            negative: false
+        }, function() {
+            openDialogWarning("Solo Numeros Enteros Positivos.", 150, 90);
+            this.value = "";
+            this.focus();
+        });
+
+        themeTextBox("#panelRegistro .ui-text");
+        themeComboBox("#panelRegistro select");
+        habilitarComponenteDetalle(true);
+        
+        $("#txtTipoPredio").bind("autocompleteselect", cambioTipoPredio);
+        $("#txtTipoPredio").bind("autocompletechange", cambioTipoPredio);
+
+        $("#txtUso").bind("autocompleteselect", cambioTipoUso);
+        $("#txtUso").bind("autocompletechange", cambioTipoUso);
+
+        $("#txtCondicion").bind("autocompleteselect", cambioCondicion);
+        $("#txtCondicion").bind("autocompletechange", cambioCondicion);
+
+        $("#txtPeriodo").attr("maxlength", 4);
+
+        $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto").datepicker({
+            dateFormat: "dd/mm/yy",
+            showOn: "button",
+            buttonImage: pathImage + "calendar.gif",
+            buttonImageOnly: true
+        });
+
+        $("#btnVerCondominante").button({
+            text: false,
+            icons: {primary:'ui-icon-search'},
+            disabled: true
+        }).bind("click", function(){
+            openDialogData1("registro/condominio", {}, "725", "405", "Registro de Condomimantes");
+        });
+
+        $("#btnBuscarDireccion").button({
+            text: false,
+            icons: {primary:'ui-icon-search'}
+        }).bind("click", function(){
+            openDialogData1("registro/direccion", {}, "710", "180", "Ubicaci&oacute;n del Predio");
+        });
+    
+        $("#btnEditarPredio").button({
+            icons: {primary:'ui-icon-pencil'}
+        }).bind('click', function(){
+            habilitarComponenteDetalle(false);
+        });
+
+        $("#btnGrabarPredio").button({
+            icons: {primary:'ui-icon-disk'},
+            disabled: true
+        }).bind('click', function(){
+            openDialogData1("registro/declaracion", {}, "700", "490", "Declaraci&oacute;n Jurada");
+        });
+
+        $("#btnCancelarPredio").button({
+            icons: {primary:'ui-icon-arrowreturnthick-1-w'}
+        }).bind('click', function(){
+            location.href = path + "registro";
+        });
+        
+        actualizarGrid("tblPiso", optionPiso, null, function(){
+            $("#tblPiso").jqGrid('navGrid', '#ptblPiso', {edit:true, add:true, del:true, search:false, refresh:false});
+            // $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnInsertarPiso);
+            // $("#tblPiso").jqGrid('navSeparatorAdd','#ptblPiso');
+            // $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnEditarPiso);
+            // $("#tblPiso").jqGrid('navSeparatorAdd','#ptblPiso');
+            // $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnEliminarPiso);
+        });
+    
+        actualizarGrid("tblInstalacion", optionInstalacion, null, function(){
+            $("#tblInstalacion").jqGrid('navGrid', '#ptblInstalacion', {edit:true, add:true, del:true, search:false, refresh:false});
+            // $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnInsertarPiso);
+            // $("#tblInstalacion").jqGrid('navSeparatorAdd','#ptblInstalacion');
+            // $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEditarPiso);
+            // $("#tblInstalacion").jqGrid('navSeparatorAdd','#ptblInstalacion');
+            // $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEliminarPiso);
+        })
+    };
+    
+    config = {
+        skin:'v2'
+        , toolbar: [
+            ['Bold','Italic','Underline','-','NumberedList','BulletedList','-','Outdent','Indent','-','Undo','Redo','-','HorizontalRule','-','Blockquote','CreateDiv'],
+            ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','TextColor','BGColor'],
+            ['UIColor']
+        ]
+    };
+    
+    $(function(){
+        loadVerDetalle();
+    });
+
+    /*
+jQuery("#custbut").jqGrid('navButtonAdd','#pcustbut',{caption:"Edit", onClickButton:function(){ var gsr = jQuery("#custbut").jqGrid('getGridParam','selrow'); if(gsr){ jQuery("#custbut").jqGrid('GridToForm',gsr,"#order"); } else { alert("Please select Row") } } });
+jQuery("#savedata").click(function(){ var invid = jQuery("#invid").val(); if(invid) { jQuery("#custbut").jqGrid('FormToGrid',invid,"#order"); } });
+     */
+</script>

@@ -1,0 +1,41 @@
+<div id="panelCondominante">
+    <div id="ptblCondominante"></div>
+    <table id="tblCondominante"></table>
+</div>
+<script type="text/javascript">
+    optionCondominante = {
+        height: 290,
+        data: [{"mperson":"", "vnombre":"", "nporcen": 0.00, "vnrodoc":""}],
+        width: 700,
+        colNames: ['C\u00F3digo',
+            'Condominante',
+            '%',
+            'Nro. Declaraci\u00F3n'
+        ],
+        colModel: [
+            {name: 'mperson', index:'mperson', width: 80, editable: true, align: 'center'},
+            {name: 'vnombre', index:'vnombre', width: 350},
+            {name: 'nporcen', index:'nporcen', width: 100, editable: true, formatter:'currency', align: 'right'},
+            {name: 'vnrodoc', index:'vnrodoc', width: 100, editable: true, align: 'center'}
+        ],
+        caption: "&nbsp;&nbsp;&nbsp;",
+        onSelectRow: function(id) {
+            row = $(this).getRowData(id);
+            console.log(row);
+        }
+    }
+    
+    parameters = {
+        "name": "tblCondominante",
+        "procedure": "pl_function.listar_condomino",
+        "parameters": '{}'
+    };
+    
+    $(function(){
+        inicializarGrid("tblCondominante", optionCondominante, null, function(){
+            $("#tblCondominante").jqGrid('navGrid', '#ptblCondominante', {edit:true, add:true, del:true, search:false, refresh:false});
+            // $("#tblCondominante").jqGrid('inlineNav', "#ptblCondominante");
+        });
+        //("panelCondominate", "tblCondominante", optionCondominante, parameters);
+    });
+</script>

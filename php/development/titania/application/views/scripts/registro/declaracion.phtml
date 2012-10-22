@@ -18,7 +18,7 @@
     </tr>
     <tr>
         <td style="text-align: right">Motivo:</td>
-        <td><select style="width: 240px;" id="cboMotivo"><?php echo $this->util()->getComboContenedor('1000000004', null); ?></select></td>
+        <td id="cellMotivo"><select style="width: 240px;" id="cboMotivo"><?php echo $this->util()->getComboContenedor('1000000004', null); ?></select></td>
         <td>&nbsp;</td>
     </tr>
     <tr>
@@ -40,7 +40,6 @@
                 ['Bold','Italic','Underline','-','NumberedList','BulletedList','-','Outdent','Indent','-','Undo','Redo','-','HorizontalRule','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','TextColor','BGColor'],
                 ['UIColor']
             ]
-            // , enterMode : CKEDITOR.ENTER_BR
         };
         
         var hEd = CKEDITOR.instances['txtObservacion'];
@@ -56,7 +55,7 @@
             buttonImageOnly: true
         });
         
-        themeComboBox("#cboMotivo");
+        themeComboBox("#cellMotivo select");
         
         $("#btnAceptarDeclaracion").button({
             icons: {primary:'ui-icon-check'}

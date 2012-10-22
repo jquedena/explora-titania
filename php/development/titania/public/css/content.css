@@ -130,20 +130,20 @@ thead.ui-title2 tr th{
     text-align: center;
 }
 .ui-titleBar{
-    font-size: 16px; 
+    font-size: 16px;
     padding-right: 5px;
     padding-top: 5px;
     color: #1c5dab;
     font-weight: bold;
     text-align: right;
-    vertical-align: bottom;	
+    vertical-align: bottom;
 }
 .ui-titleBar2{
-    font-size: 100%; 
+    font-size: 100%;
     padding: 3px;
     color: #1c5dab;
     font-weight: bold;
-    vertical-align: middle;	
+    vertical-align: middle;
 }
 tbody.ui-table-body tr td{
     height: 20px;
@@ -151,15 +151,17 @@ tbody.ui-table-body tr td{
     /* border-right: 1px solid #d8d8d8; */
     border-bottom: 1px solid #f4f4f4; /* #1c5dab */
 }
+table.ui-tablecontent tr td {
+    padding: 5px;
+}
+.ui-state-disabled-text,
 input.ui-state-disabled-text{
     border:1px solid #fffbc3 !important; /* A6C9E2 */
     background-color: #fffbc3 !important;
     color: #905200 !important;
 }
-table.ui-tablecontent tr td {
-    padding: 5px;
-}
 .ui-text,
+.ui-text-highlight,
 input.ui-text,
 input.ui-text-highlight {
     text-transform: uppercase;
@@ -187,13 +189,17 @@ input.ui-text-highlight {
     height: 18px;
     vertical-align: middle;
 }
+.ui-text-highlight,
 input.ui-text-highlight {
     /* background-color: #f8da4e; */
     background: #fbec88 url('../theme/blue_explora/images/ui-bg_glass_55_fbec88_1x400.png') 50% 50% repeat-x;
     border: 1px solid #fcd113;
     color: #915608;
 }
-
+.ui-text-numeric {
+    text-align: right;
+    padding-right: 2px;
+}
 #south {
     border-left: 1px solid #000;
     border-right: 1px solid #000;
