@@ -7,19 +7,126 @@
             <td style="width: 55px;">C&oacute;digo:</td>
             <td style="width: 75px;font-weight: bold;"><div id="lblCodigo"><?php echo $this->cidpers; ?></div></td>
             <td style="width: 75px; text-align: right; padding-right: 9px;">Nombre:</td>
-            <td style="font-weight: bold;"><?php echo $this->vnombre; ?></td>
+            <td style="font-weight: bold;"><div id="lblNombre"><?php echo $this->vnombre; ?></div></td>
             <td style="width: 90px;" align="right" rowspan="2"><div class="ui-widget"><?php echo $this->util()->getPeriodos(); ?></div></td>
         </tr><tr>
             <td>Direcci&oacute;n:</td>
-            <td colspan="3" style="font-weight: bold;"><?php echo $this->vdirecc; ?></td>
+            <td colspan="3" style="font-weight: bold;"><div id="lblDireccion"><?php echo $this->vdirecc; ?></div></td>
         </tr>
     </table>
 </div>
 <div id="panelControl" align="right" class="ui-widget ui-widget-content ui-corner-bottom" style="width: 1000px;margin: 3px;">
     <button id="btnRegistrarPredio">Registrar</button>
+    <button id="btnEditarPredio">Editar</button>
     <button id="btnCancelarPredio">Cancelar</button>
 </div>
 <div id="panelListaPredio" align="center" style="width: 99%;margin: 3px;">
     <table id="tblListaPredio"></table>
     <div id="tblListaPredio"></div>
 </div>
+<script type="text/javascript">
+    verPredio = function(rowid, iRow, iCol, e) {
+        // row = $(this).getRowData(rowid);
+        row = $("#tblListaPredio").jqGrid('getRowData', rowid);
+        parameters = {
+            "mperson": $("#lblCodigo").text(),
+            "vnombre": $("#lblNombre").text(),
+            "vdirecf": $("#lblDireccion").text(),
+            "mpredio": row.mpredio
+        };
+        _post = $.post(path + "registro/verpredio", parameters);
+        _post.error(postError);
+        _post.success(function(request){
+            $("#panelRegistro").html(request);
+        });
+    };
+    
+    optionPredio = {
+        height: 290,
+        width: 1000,
+        colNames: ['C\u00F3digo',
+            'Direcci\u00F3n',
+            'Uso',
+            'Valor del Predio',
+            'Valor Afecto',
+            'Adquirido',
+            'Nro. de Doc.',
+            '% Prop.',
+            'mpredio',
+            'tnompob',
+            'tnomvia',
+            'dnumero',
+            'ddepart',
+            'dmanzan',
+            'dnlotes'],
+        colModel: [{name: 'ccodpre', index:'ccodpre', width: 80, frozen: true},
+            {name: 'tnumero', index:'tnumero', width: 450}, // , frozen: true
+            {name: 'cusogen', index:'cusogen', width: 250},
+            {name: 'nvalpre', index:'nvalpre', width: 100, formatter:'currency', align: 'right'},
+            {name: 'nvalafe', index:'nvalafe', width: 100, formatter:'currency', align: 'right'},
+            {name: 'dfecadq', index:'dfecadq', width: 80, formatter:'date', formatoptions: {srcformat:"Y-m-d", newformat:"d-M-Y"}, align: 'center'},
+            {name: 'vnrodoc', index:'vnrodoc', width: 80, align: 'center'},
+            {name: 'nporcen', index:'nporcen', width: 60, align: 'right'},
+            {name: 'mpredio', index:'mpredio', width: 1, hidden: true},
+            {name: 'tnompob', index:'tnompob', width: 1, hidden: true},
+            {name: 'tnomvia', index:'tnomvia', width: 1, hidden: true},
+            {name: 'dnumero', index:'dnumero', width: 1, hidden: true},
+            {name: 'ddepart', index:'ddepart', width: 1, hidden: true},
+            {name: 'dmanzan', index:'dmanzan', width: 1, hidden: true},
+            {name: 'dnlotes', index:'dnlotes', width: 1, hidden: true}],
+        caption: "&nbsp;&nbsp;&nbsp;Predios Registrados",
+        ondblClickRow: verPredio,
+        onSelectRow: function(id) {
+            row = $(this).getRowData(id);
+            // console.log(row);
+        }
+    };
+
+    bindkeysPredio = {"onEnter": verPredio};
+    
+    buscarPredio = function(cperiod) { 
+        if(cperiod == undefined || cperiod == null) {
+            cperiod = $("#cboPeriodo").val();
+        }
+        parameters = {
+            "name": "tblListaPredio",
+            "procedure": "pl_function.listar_predios",
+            "parameters": '{' +
+            '"p_cperiod":"' + cperiod + '",' +
+            '"p_cidpers":"' + $("#lblCodigo").html() + '"' +
+            '}'
+        };
+
+        procesarProcedimiento("panelListaPredio", "tblListaPredio", optionPredio, parameters, bindkeysPredio);
+    };
+    
+    $(function(){
+        themeComboBox();
+        $("#btnRegistrarPredio").button({
+            icons: {primary:'ui-icon-document'}
+        });
+        $("#btnEditarPredio").button({
+            icons: {primary:'ui-icon-pencil'}
+        }).bind('click', function(){
+            var rowId = $("#tblListaPredio").jqGrid('getGridParam','selrow');
+            verPredio(rowId);
+        });
+        $("#btnCancelarPredio").button({
+            icons: {primary:'ui-icon-arrowreturnthick-1-w'}
+        }).bind('click', function(){
+            location.href = path + "registro";
+        });
+        $("#txtPeriodo").attr("maxlength", 4);
+        $("#txtPeriodo").bind("autocompleteselect", function(event, ui) {
+            buscarPredio(ui.item.value);
+        });
+        $("#txtPeriodo").bind("autocompletechange", function(event, ui) {
+            if(ui.item) {
+                buscarPredio(ui.item.value);
+            } else {
+                openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
+            }
+        });
+        buscarPredio();
+    });
+</script>

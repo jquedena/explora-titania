@@ -19,14 +19,14 @@ function procesarSeleccion(idPanel, idx, _options, parameters) {
     });
 }
 
-function procesarProcedimiento(idPanel, idx, _options, parameters, bindkeys) {
+function procesarProcedimiento(idPanel, idx, _options, parameters, bindkeys, navGrid) {
     procesarConsultaSubProceso('registrar', parameters, function(requestData){
         $("#" + idPanel).html(requestData);
-        actualizarGrid(idx, _options, bindkeys);
+        actualizarGrid(idx, _options, bindkeys, navGrid);
     });
 }
 
-function actualizarGrid(id, _options, bindkeys){
+function actualizarGrid(id, _options, bindkeys, navGrid){
     _url = path + "jqgrid/paginar?name=" + id;
     options = $.extend({
         url: _url,
@@ -51,9 +51,12 @@ function actualizarGrid(id, _options, bindkeys){
     if(bindkeys != undefined || bindkeys != null) {
         $(idx).jqGrid('bindKeys', bindkeys);
     }
+    if(navGrid != undefined || navGrid != null) {
+        navGrid();
+    }
 }
 
-function inicializarGrid(id, _options){
+function inicializarGrid(id, _options, bindkeys, navGrid){
     options = $.extend({
         scroll: 1,
         data: [],
@@ -70,6 +73,30 @@ function inicializarGrid(id, _options){
     }, _options);
     idx = "#" + id;
     $(idx).jqGrid(options);
+    $(idx).jqGrid('setFrozenColumns');
+    if(bindkeys != undefined || bindkeys != null) {
+        $(idx).jqGrid('bindKeys', bindkeys);
+    }
+    if(navGrid != undefined || navGrid != null) {
+        navGrid();
+    };
+}
+
+function contenidocomboContenedor(selectId, idsigma){
+    _post = $.post(path + "util/combocontenedor", {"idsigma": idsigma}, function(request){
+        $(selectId).html(contenidocombo(request));
+    }, 'json');
+    _post.error(postError); 
+}
+
+function contenidocombo(data){
+    var options = '<option value="9999999999">SELECCIONAR</option>';
+    $.each(data, function(i , columns){
+        var value = columns[0];
+        var label = columns[1];		
+        options +='<option value="' + value + '">' + label + '</option>';
+    });	
+    return options;
 }
 
 function deshabilitarComponente(id, sw){
@@ -237,7 +264,6 @@ $.browser = {
         return values;
     }
 })(jQuery);
-
 
 $(function(){
     $("#itemMenu1").menuBar({

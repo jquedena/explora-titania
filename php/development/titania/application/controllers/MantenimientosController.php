@@ -8,8 +8,7 @@ class MantenimientosController extends Zend_Controller_Action {
         $this->view->util()->registerScriptJSController($this->getRequest());
     }
 
-    public function indexAction() {
-        
+    public function indexAction() {   
     }
 
     public function buscarhijosmconten($padre, $depth, $arraydatos) {
