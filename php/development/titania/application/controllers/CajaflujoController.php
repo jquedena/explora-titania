@@ -12,6 +12,7 @@ class CajaflujoController extends Zend_Controller_Action {
     public function indexAction() {
 
         $ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+        // Test
         $nrocaja = $ddatosuserlog->codcajero;
 
         $nombrestore = '"public"."pxcobrowww"';
