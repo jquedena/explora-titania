@@ -849,7 +849,7 @@ class MantenimientosController extends Zend_Controller_Action {
                 $val[] = array('departamen', $vdpto, 'val');
                 $val[] = array('manzana', $vmanzan, 'val');
                 $val[] = array('lote', $vlote, 'val');
-                //$val[] = array('ref', str_replace('"','',str_replace('º','',$vreferen)), 'val');
+                $val[] = array('ref', str_replace('"','',str_replace('�','',$vreferen)), 'val');
                 //echo str_replace('Nº','Nro',$vreferen);
 
                 echo "<textarea>" . $vreferen . "</textarea>";

@@ -7,6 +7,8 @@ class CajaflujoController extends Zend_Controller_Action {
     public function init() {
         $this->view->util()->registerScriptJSController($this->getRequest());
         $this->view->util()->registerLeaveControllerAction($this->getRequest());
+        
+    
     }
 
     public function indexAction() {
@@ -14,6 +16,7 @@ class CajaflujoController extends Zend_Controller_Action {
         $ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
         // Test
         $nrocaja = $ddatosuserlog->codcajero;
+        // Test
 
         $nombrestore = '"public"."pxcobrowww"';
         $arraydatos [0] = '3';
@@ -193,9 +196,36 @@ class CajaflujoController extends Zend_Controller_Action {
             $func->EjecutarFuncion($f);
         }
     }
-
+	public function cerrarcajasAction(){
+		$nombrestore = '"public"."pxcobrowww"';
+		$arraydatos [0] = '2';
+		$arraydatos [1] = '';
+		$arraydatos [2] = '';
+		$cn = new Model_DataAdapter();
+		$datosfecha = $cn->ejec_store_procedura_sql($nombrestore, $arraydatos);
+		$dfecha = explode(" ", $datosfecha[0][0]);
+		$date = $dfecha[0];
+		
+		$evt [] = array("btnbuscar", "click", "lstcajasapert();");
+		$evt [] = array("btnreaperturar", "click", "ventanareapertura();");
+		$evt [] = array("btncerrarcaja", "click", "cerrarTodasCajas();");
+		$evt [] = array("btnhabilitar", "click", "habsencillera();");
+		
+		$val[] = array('txtdia', $date, 'val');
+		
+		$js[] = array('lstcajasapert();');
+		$js[] = array('$("#txtdia").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
+		$js[] = array('$("#txtdia").datepicker("option", "dateFormat", "yy-mm-dd");');
+		
+		$func = new Libreria_Pintar();
+		$func->IniciaScript();
+		$func->EjecutarFuncion($js, "function");
+		$func->PintarEvento($evt);
+		$func->PintarValor($val);
+		$func->FinScript();
+	}
     public function cajasaperturadasAction() {
-
+    	$this->view->util()->registerScriptJSControllerAction($this->getRequest());
         $nombrestore = '"public"."pxcobrowww"';
         $arraydatos [0] = '2';
         $arraydatos [1] = '';
@@ -205,23 +235,14 @@ class CajaflujoController extends Zend_Controller_Action {
         $dfecha = explode(" ", $datosfecha[0][0]);
         $date = $dfecha[0];
 
-        $evt [] = array("btnbuscar", "click", "lstcajasapert();");
-        $evt [] = array("btnreaperturar", "click", "ventanareapertura();");
-        $evt [] = array("btncerrarcaja", "click", "cerrarTodasCajas();");
-        $evt [] = array("btnhabilitar", "click", "habsencillera();");
-
+        
         $val[] = array('txtdia', $date, 'val');
-
-        $js[] = array('lstcajasapert();');
-        $js[] = array('$("#txtdia").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
-        $js[] = array('$("#txtdia").datepicker("option", "dateFormat", "yy-mm-dd");');
 
         $func = new Libreria_Pintar();
         $func->IniciaScript();
-        $func->EjecutarFuncion($js, "function");
-        $func->PintarEvento($evt);
         $func->PintarValor($val);
         $func->FinScript();
+        
     }
 
     public function lstcajasapertAction() {
