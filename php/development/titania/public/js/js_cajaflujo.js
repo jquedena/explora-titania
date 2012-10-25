@@ -1,4 +1,4 @@
-function aperturarcaja(vaccion){
+/*function aperturarcaja(vaccion){
     var vnrocaja='';
     var vfecha='';
     var obs ='';
@@ -237,3 +237,4 @@ guardarsencillero = function(){
 	
     _post.error(postError);
 }
+*/
