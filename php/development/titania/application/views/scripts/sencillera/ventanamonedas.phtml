@@ -1,0 +1,46 @@
+<div align="center" class="ui-panelLayout-main">
+<!--<form id="frmcajero">-->
+	<input type="hidden" id="hdid_apert" name="hdid_apert">
+	<input type="hidden" id="hdid_cajero" name="hdid_cajero">
+	<input type="hidden" id="hdaccion" name="hdid_estado">
+	<table style="width: 90%" border="0">
+		<tr>
+			<td><label for="txtnom_cajero">Cajero </label></td>
+			<td><input type="text" name="txtnom_cajero" id="txtnom_cajero"   class="ui-text"  readonly="readonly"/></td>
+			<td rowspan="3" valign="middle">
+				<button id="btnprocsencillero"> Guardar </button>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="txtfech_proc">Fecha </label></td>
+			<td><input type="text" name="txtfech_proc" id="txtfech_proc" style="width:100px;"  class="ui-text" /></td>
+		</tr>
+	</table>
+	
+<!-- </form>-->
+<form id="frmtblmonedas">
+	<table id="tbl_monedas" class="ui-widget ui-widget-content ui-corner-all ui-table-body" style="padding: 1px;">
+		<thead class="ui-widget ui-widget-header ui-title2">
+			<tr class="ui-widget-header">
+				<th width="200px">Denominacion</th>
+				<th width="100px">Monto</th>
+				<th width="100px">Cantidad</th>
+				<th width="70px">S/. Total</th>
+			</tr>
+		</thead>
+		<tbody class="ui-table-body">
+		
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="4"> <hr/> </td>
+			</tr>
+			<tr>
+				<td colspan="3" ></td>
+				<td align="right"><span id="mt_totals">0.00</span></td>
+			</tr>
+		</tfoot>
+	</table>
+</form>
+</div>
+

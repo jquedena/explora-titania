@@ -10,9 +10,9 @@ class CajaflujoController extends Zend_Controller_Action {
         
     
     }
-
+    
     public function indexAction() {
-
+    	$this->view->util()->registerScriptJSControllerAction($this->getRequest());
         $ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
         // Test
         $nrocaja = $ddatosuserlog->codcajero;
@@ -43,6 +43,39 @@ class CajaflujoController extends Zend_Controller_Action {
         $func->FinScript();
     }
 
+    /*Opcion : Apertura de Caja*/
+    public function aperturacajaAction() {
+    	$this->view->util()->registerScriptJSControllerAction($this->getRequest());
+    	$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+    	// Test
+    	$nrocaja = $ddatosuserlog->codcajero;
+    	// Test
+    
+    	$nombrestore = '"public"."pxcobrowww"';
+    	$arraydatos [0] = '3';
+    	$arraydatos [1] = '';
+    	$arraydatos [2] = '';
+    	$cn = new Model_DataAdapter();
+    	$datosfecha = $cn->ejec_store_procedura_sql($nombrestore, $arraydatos);
+    	$dfecha = explode(" ", $datosfecha[0][0]);
+    	$date = $dfecha[0];
+    
+    	$evt[] = array("btnaperturar", "click", "aperturarcaja('1');");
+    
+    	$ctrl[] = array('txtnrocaja', true);
+    	$ctrl[] = array('txtfecha', true);
+    
+    	$val[] = array('txtnrocaja', substr($nrocaja, -2), 'val');
+    	$val[] = array('txtfecha', $date, 'val');
+    
+    	$func = new Libreria_Pintar();
+    	$func->IniciaScript();
+    	$func->PintarEvento($evt);
+    	$func->ComponenteSoloLectura($ctrl);
+    	$func->PintarValor($val);
+    	$func->FinScript();
+    }
+    
     public function actaperturarcajaAction() {
         $this->_helper->getHelper('ajaxContext')->initContext();
         if ($this->getRequest()->isXmlHttpRequest()) {
@@ -224,8 +257,9 @@ class CajaflujoController extends Zend_Controller_Action {
 		$func->PintarValor($val);
 		$func->FinScript();
 	}
+	 /*Opcion : Aperturar de Cajas(tesorero)*/
     public function cajasaperturadasAction() {
-    	$this->view->util()->registerScriptJSControllerAction($this->getRequest());
+    	
         $nombrestore = '"public"."pxcobrowww"';
         $arraydatos [0] = '2';
         $arraydatos [1] = '';
@@ -237,11 +271,15 @@ class CajaflujoController extends Zend_Controller_Action {
 
         
         $val[] = array('txtdia', $date, 'val');
-
+        $js[] = array('$("#txtdia").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
+        $js[] = array('$("#txtdia").datepicker("option", "dateFormat", "yy-mm-dd");');
+        
         $func = new Libreria_Pintar();
         $func->IniciaScript();
         $func->PintarValor($val);
+        $func->EjecutarFuncion($js, "function");
         $func->FinScript();
+        $this->view->util()->registerScriptJSControllerAction($this->getRequest());
         
     }
 

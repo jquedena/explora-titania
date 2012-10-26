@@ -13,7 +13,83 @@ class sencilleraController extends Zend_Controller_Action {
 
     public function sencilleraAction() {       
     }
+	/*si se usa*/
+    public function ventanamonedasAction() {
+    	$this->_helper->getHelper('ajaxContext')->initContext();
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+    		
+    		$idapertura = $this->_request->getPost('idapertura');
+    		$codcajero = $this->_request->getPost('codcajero');
+    		$nomcajero = $this->_request->getPost('nomcajero');
+    		$accion = $this->_request->getPost('accion');//ingreso(al habilitar) - entregado(al cierre)
+    		
+    		$cn = new Model_DataAdapter ();
+    		$nombrestore = '"public"."pxcobrowww"';
+    		$arraydatos [0] = '2';
+    		$arraydatos [1] = '';
+    		$arraydatos [2] = '';
+    		$datosfecha = $cn->ejec_store_procedura_sql($nombrestore, $arraydatos);
+    		$dfecha = explode(" ", $datosfecha[0][0]);
+    		$date = $dfecha[0];
+			
+    		//tesoreria.buscardvalmon(p_idsigma character varying, p_aperturacaja character varying, p_ctipope character varying, p_ref refcursor)
+    		$nombrestore = 'tesoreria.buscardvalmon';
+    		$arraydatos [0] = '%';
+    		$arraydatos [1] = $idapertura;
+    		if($accion=='ingreso') $arraydatos [2] = '0000000001';
+    		else $arraydatos [2] = '0000000002';
+    		
+    		$datosdvalmon = $cn->ejec_store_procedura_sql($nombrestore, $arraydatos);
+    		//print_r($datosdvalmon);
+    		$bodytbl = '';
+    		$row = 0;
+    		$mt_totals = 0.00;
+    		for ($i = 0; count($datosdvalmon) > $i; $i++) {
+    			if ($datosdvalmon[$i][0] != $datosdvalmon[$i][2]) {
+    		
+    				$bodytbl .='<tr>';
+    				$bodytbl .='<td style="padding-left:10px;"><input type="hidden" name="det[' . $row . '][vidsigma]" value="' . $datosdvalmon[$i][0] . '"><input type="hidden" name="det[' . $row . '][vctipmon]" value="' . $datosdvalmon[$i][3] . '">';
+    				$bodytbl .= $datosdvalmon[$i][4] . '</td>'; //descripcion
+    				$bodytbl .='<td align="right"><span id="mt_montorow">' . $datosdvalmon[$i][5] . '</span></td>'; //montos  
+    				$bodytbl .='<td align="right"><input type="text" name="det[' . $row . '][vncantid]" style="width :50px;text-align: right;" onkeypress="return validarnumeros(event);" class="mt_cant ui-text" id="mt_cant" value="'.$datosdvalmon[$i][6].'" /></td>'; //cantidad
+    				$bodytbl .='<td align="right"><input type="text" name="det[' . $row . '][vntotals]" style="width :50px;text-align: right;" class="mt_total ui-text" id="mt_totalrow" name="mt_totalrow" value="'.$datosdvalmon[$i][7].'" readonly="readonly" /></td>'; //mt_total
+    				$mt_totals += $datosdvalmon[$i][7];
+    				$bodytbl .='</tr>';
+    				$row++;
+    			}
+    		}
+    		
+    		$val[] = array("tbl_monedas tbody", $bodytbl, "html");
+    		$val[] = array('txtfech_proc', $date, 'val');
+    		$val[] = array('txtnom_cajero', $nomcajero, 'val');
+    		$val[] = array('hdid_apert', $idapertura, 'val');
+    		$val[] = array('hdid_cajero', $codcajero, 'val');
+    		$val[] = array('hdaccion', $accion, 'val');
+    		$val[] = array('mt_totals',$mt_totals,'html');
+       		
+    		$js[] = array('$("#txtfech_proc").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
+    		$js[] = array('$("#txtfech_proc").datepicker("option", "dateFormat", "yy-mm-dd");');
+    		$js[] = array('mouseHover("tbl_monedas");');
+    		$js[] = array('$(".mt_cant").on("keyup",sumary_totals);');
+    		$js[] = array("$('#btnprocsencillero').button({ icons: {secondary:'ui-icon-disk'} })");
+       		
+    		$din[] = array("tbl_monedas .mt_total");
 
+       		
+       		$evt[] = array("btnprocsencillero", "click", "guardarsencillero();");
+       		
+       		$func = new Libreria_Pintar();
+    		$func->IniciaScript();
+     		$func->PintarValor($val);
+    		$func->PintarEvento($evt);
+    		//$func->CampoDinero($din);
+    		$func->EjecutarFuncion($js, "function");
+    		$func->FinScript();
+    	}
+    }
+    
+    /*Ya no al uso*/
     public function habsencilleraAction() {
         $this->_helper->getHelper('ajaxContext')->initContext();
         if ($this->getRequest()->isXmlHttpRequest()) {
@@ -88,44 +164,62 @@ class sencilleraController extends Zend_Controller_Action {
             }
         }
     }
-
-    public function sencilleraguardarAction() {
+/*si se usa*/
+    public function guardarsencilleroAction() {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender();
         $this->_helper->getHelper('ajaxContext')->initContext();
 
         if ($this->getRequest()->isXmlHttpRequest()) {
-
+        	
             $det = $this->_request->getPost('det');
             $hdid_apert = $this->_request->getPost('vhdid_apert');
             $hdid_cajero = $this->_request->getPost('vhdid_cajero');
             $txtfech_proc = $this->_request->getPost('vtxtfech_proc');
             $hdid_estado = $this->_request->getPost('vhdid_estado');
-
-
+			
+			/*	correlativo 
+			 *  ,vidsigma varchar
+			 *  ,vaperturacaja varchar
+			 *  ,vctipope varchar
+			 *  ,vctipmon varchar
+			 *  ,vncantid varchar
+			 *  ,vntotals varchar
+			 *  ,vdfecpro varchar
+			 *  ,vnestado varchar
+			 *  ,vusernm varchar
+			 *  ,vhostnm
+			 */
+            
+            /* vidsigma
+             * vncantid
+             * vntotals
+             */
+            
             $ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
             $cidpers = $ddatosuserlog->cidpers;
             $userlogin = $ddatosuserlog->userlogin;
             $cad = '';
             $corr = 1;
             for ($i = 0; $i < count($det); $i++) {
-                $cad .= $corr . '^'; //correlativo del idsigma
-                $cad .= $hdid_apert . '^'; //aperturacaja
-                $cad .= '0000000001^'; //ctipope
-                $cad .= $det[$i]['idmconten'] . '^'; //ctipmon
-                $cad .= $det[$i]['mt_cant'] . '^'; //ncantid
-                $cad .= $det[$i]['mt_totalrow'] . '^'; //ntotals
-                $cad .= $txtfech_proc . '^'; //dfecpro
-                $cad .= '1^'; //nestado
-                $cad .= $userlogin . '^'; //user
-                $cad .= $this->view->util()->getHost() . '~'; //host
-
+                $cad .= $corr . '^'; 				//correlativo
+                $cad .= $det[$i]['vidsigma'] . '^';	//vidsigma*
+                $cad .= $hdid_apert . '^'; 			//vaperturacaja
+                $cad .= '^'; 						//vctipope
+                $cad .= $det[$i]['vctipmon'].'^'; 	//vctipmon*
+                $cad .= $det[$i]['vncantid'].'^'; 	//vncantid*
+                $cad .= '^'; 						//vntotals
+                $cad .= '^'; 						//vdfecpro
+                $cad .= '1^'; 						//vnestado*
+                $cad .= $userlogin . '^'; 			//vusernm*
+                $cad .= $this->view->util()->getHost() . '~'; //vhostnm*
+			
                 $corr++;
             }
-
+			
             $cad = substr($cad, 0, strlen($cad) - 1);
             $cn = new Model_DataAdapter ();
-            $nombrestore = '"tesoreria".guardarmonedas';
+            $nombrestore = '"tesoreria".guardardvalmon';
             $parametros [0] = $cad;
             $parametros [1] = '~';
             $parametros [2] = '^';
@@ -139,7 +233,50 @@ class sencilleraController extends Zend_Controller_Action {
             }
         }
     }
-
+    /*Si se usa*/
+	public function prehabsencilleraAction(){
+		$this->_helper->layout->disableLayout();
+		$this->_helper->viewRenderer->setNoRender();
+		$this->_helper->getHelper('ajaxContext')->initContext();
+		if ($this->getRequest()->isXmlHttpRequest()) {
+			header('Content-type: application/json');
+			$p_cnrcaja = $this->_request->getPost('p_cnrcaja');
+			$p_ciduser = $this->_request->getPost('p_ciduser');
+			
+			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+			$p_vusernm = $ddatosuserlog->userlogin;
+			$p_vhostnm=$this->view->util()->getHost();
+			
+			$cn = new Model_DataAdapter ();
+			$nombrestore = 'tesoreria.habcaja_moneddefault';
+			$parametros [0] = $p_cnrcaja;
+			$parametros [1] = $p_ciduser;
+			$parametros [2] = $p_vusernm;
+			$parametros [3] = $p_vhostnm;
+			
+			$datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+		
+			if ($datos[0][0]=='1'){
+				$jsonarr=array('v_esttransac'=>$datos[0][0],'v_edt'=>$datos[0][1],'v_msg'=>$datos[0][2],'v_idsigma'=>$datos[0][3]);
+				echo json_encode($jsonarr);
+				//print_r($datos);
+			}else{
+				$jsonarr=array('v_esttransac'=>$datos[0][0],'v_descrip'=>'Error en Base de Datos...');
+				echo json_encode($jsonarr);
+				//print_r($datos);
+			}
+			
+			//v_edt,v_msg , v_idsigma
+		}
+		/*tesoreria.habcaja_moneddefault(
+				p_cnrcaja character varying
+				, p_ciduser character varying
+				
+				, p_vusernm character varying
+				, p_vhostnm character varying
+				, p_ref refcursor)
+		*/
+	}
     public function consultasencilleraAction() {
         
     }
