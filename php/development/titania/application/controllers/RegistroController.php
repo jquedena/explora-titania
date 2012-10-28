@@ -5,7 +5,7 @@ require_once 'Zend/Controller/Action.php';
 class RegistroController extends Zend_Controller_Action {
 
     public function init() {
-        
+    	$this->_helper->layout()->setLayout('layoutwithpanel');
     }
 
     public function indexAction() {

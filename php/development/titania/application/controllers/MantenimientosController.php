@@ -1,5 +1,4 @@
 <?php
-
 require_once 'Zend/Controller/Action.php';
 
 class MantenimientosController extends Zend_Controller_Action {
@@ -274,88 +273,25 @@ class MantenimientosController extends Zend_Controller_Action {
         }
     }
 
-    public function ipmAction() {
-        $pintar = new Libreria_Pintar();
-
-        $fechAct = date("Y");
-
-        for ($i = 1990; $i <= $fechAct; ++$i) {
-            $cboanos[$i] = array($i, $i);
-        }
-
-        $cbomes[] = array('1', 'Enero');
-        $cbomes[] = array('2', 'Febrero');
-        $cbomes[] = array('3', 'Marzo');
-        $cbomes[] = array('4', 'Abril');
-        $cbomes[] = array('5', 'Mayo');
-        $cbomes[] = array('6', 'Junio');
-        $cbomes[] = array('7', 'Julio');
-        $cbomes[] = array('8', 'Agosto');
-        $cbomes[] = array('9', 'Septiembre');
-        $cbomes[] = array('10', 'Octubre');
-        $cbomes[] = array('11', 'Noviembre');
-        $cbomes[] = array('12', 'Diciembre');
-
-
-
-        $val[] = array('cboanios', $pintar->ContenidoCombo($cboanos, '9999999999'), 'html');
-
-        $val[] = array('cbomes', $pintar->ContenidoCombo($cbomes, '9999999999'), 'html');
-
-        $evt[] = array('btningresar', 'click', '$("#divmanttipm" ).dialog( "open" );');
-
-        $fn[] = array('$(function() {
-						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
-						$( "#divmanttipm" ).dialog({
-							resizable: false,
-							height:300,
-							width:350,
-							modal: true,
-							autoOpen:false,
-							draggable:false,								
-							buttons: {						
-							   Guardar: function(){$( this ).dialog( "close" );}
-							   ,Cerrar: function(){$( this ).dialog( "close" );}							
-							}					
-						});
-					});');
-
-
-
-        $pintar->PintarValor($val);
-        $pintar->PintarEvento($evt);
-        $pintar->EjecutarFuncion($fn);
-    }
-
     public function depreciacionAction() {
         $pintar = new Libreria_Pintar();
-
         $fechAct = date("Y");
-
         for ($i = 1990; $i <= $fechAct; ++$i) {
             $cboanos[$i] = array($i, $i);
         }
 
-
         $val[] = array('cboanios', $pintar->ContenidoCombo($cboanos, '9999999999'), 'html');
-
-
         $cboclasificacion[] = array('1', 'Casas Habitacion y Departamentos para Vivienda.');
         $cboclasificacion[] = array('2', 'Tiendas,Depositos, Centros de Recreacion o Esparcimiento,Clubes Sociales o Instituciones.');
         $cboclasificacion[] = array('3', 'Edificios -Oficinas.');
         $cboclasificacion[] = array('4', 'Clinicas,Hospitales,Cines,Industrias,Colegios,Talleres.');
-
-
-
+        
         $val[] = array('cboclasificacion', $pintar->ContenidoCombo($cboclasificacion, '9999999999'), 'html');
-
         $cbomateria[] = array('1', 'Croncreto');
         $cbomateria[] = array('2', 'Ladrillo');
         $cbomateria[] = array('3', 'Adobe');
 
         $val[] = array('cbomaterial', $pintar->ContenidoCombo($cbomateria, '9999999999'), 'html');
-
-
         $cboantiguedad[] = array('5', '5');
         $cboantiguedad[] = array('10', '10');
         $cboantiguedad[] = array('15', '15');
@@ -370,18 +306,13 @@ class MantenimientosController extends Zend_Controller_Action {
         $cboantiguedad[] = array('65', '65');
 
         $val[] = array('cboantiguedad', $pintar->ContenidoCombo($cboantiguedad, '9999999999'), 'html');
-
-
         for ($i = 0; $i <= 100; ++$i) {
             $cboporcen[$i] = array($i, $i);
         }
 
         $val[] = array('cbomuybueno', $pintar->ContenidoCombo($cboporcen, '9999999999'), 'html');
-
         $val[] = array('cbobueno', $pintar->ContenidoCombo($cboporcen, '9999999999'), 'html');
-
         $val[] = array('cbomalo', $pintar->ContenidoCombo($cboporcen, '9999999999'), 'html');
-
         $val[] = array('cbomuymalo', $pintar->ContenidoCombo($cboporcen, '9999999999'), 'html');
 
         $evt[] = array('btningresar', 'click', '$("#manttdepreciacion" ).dialog( "open" );');
@@ -407,60 +338,6 @@ class MantenimientosController extends Zend_Controller_Action {
         $pintar->EjecutarFuncion($fn);
     }
 
-    public function timAction() {
-        $pintar = new Libreria_Pintar();
-
-        $fechAct = date("Y");
-
-        for ($i = 1990; $i <= $fechAct; ++$i) {
-            $cboanos[$i] = array($i, $i);
-        }
-
-        $cbomes[] = array('1', 'Enero');
-        $cbomes[] = array('2', 'Febrero');
-        $cbomes[] = array('3', 'Marzo');
-        $cbomes[] = array('4', 'Abril');
-        $cbomes[] = array('5', 'Mayo');
-        $cbomes[] = array('6', 'Junio');
-        $cbomes[] = array('7', 'Julio');
-        $cbomes[] = array('8', 'Agosto');
-        $cbomes[] = array('9', 'Septiembre');
-        $cbomes[] = array('10', 'Octubre');
-        $cbomes[] = array('11', 'Noviembre');
-        $cbomes[] = array('12', 'Diciembre');
-
-
-
-        $val[] = array('cboanios', $pintar->ContenidoCombo($cboanos, '9999999999'), 'html');
-
-        $val[] = array('cbomes', $pintar->ContenidoCombo($cbomes, '9999999999'), 'html');
-
-        $evt[] = array('btningresar', 'click', '$("#mantttim" ).dialog( "open" );');
-
-        $fn[] = array('$(function() {
-						$( "#dialog:ui-dialog" ).dialog( "destroy" );					
-						$( "#mantttim" ).dialog({
-							resizable: false,
-							height:300,
-							width:350,
-							modal: true,
-							autoOpen:false,
-							draggable:false,								
-							buttons: {						
-							   Guardar: function(){$( this ).dialog( "close" );}
-							   ,Cerrar: function(){$( this ).dialog( "close" );}							
-							}					
-						});
-					});');
-
-        $fn[] = array('$("#txtfechven").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
-        $fn[] = array('$("#txtfechven").datepicker("option", "dateFormat", "dd-mm-yy");');
-
-        $pintar->PintarValor($val);
-        $pintar->PintarEvento($evt);
-        $pintar->EjecutarFuncion($fn);
-    }
-
     public function viasAction() {
         $this->view->util()->registerScriptJSControllerAction($this->getRequest());
         $fechAct = date("dmY");
@@ -468,7 +345,7 @@ class MantenimientosController extends Zend_Controller_Action {
         $pintar = new Libreria_Pintar();
         $pintar = new Libreria_Pintar();
         $cn = new Model_DataAdapter ();
-        $nombrestore = '"public".obt_mconten';
+        $nombrestore = 'public.obt_mconten';
         $parametros [0] = "";
         $parametros [1] = "1000000070";
 
@@ -1030,5 +907,4 @@ class MantenimientosController extends Zend_Controller_Action {
         $pintar->PintarEvento($evt);
         $pintar->EjecutarFuncion($fn);
     }
-
 }
