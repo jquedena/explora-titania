@@ -55,9 +55,6 @@
 
             jQuery(document).ready(function () {
                 jQuery.scriptPath = "<?php echo $this->util()->getPath(); ?>";
-                // jQuery.struts2_jquery.local = "es";
-                // jQuery.struts2_jquery.gridLocal = "es";
-                // jQuery.struts2_jquery.timeLocal = "en";
                 jQuery.ajaxSettings.traditional = true;
                 jQuery.ajaxSetup({
                     cache: false
@@ -82,11 +79,11 @@
     <body>
         <table style="width: 100%; height: 100%; padding: 0px; margin: 0px;" cellspacing="0" cellpadding="0">
             <tr>
-                <td style="background: url('<?php echo $this->util()->getImage("main-bg.gif"); ?>');" rowspan="4">&nbsp;</td>
+            	<td style="background: url('<?php echo $this->util()->getImage("main-bg.gif"); ?>'); width: 10px;" rowspan="8">&nbsp;</td>
                 <td style="width: <?php echo $this->util()->getWidthLayout(); ?>; height: 42px; border-right: 1px solid #000; border-left: 1px solid #000;">
                     <?php echo $this->render("northView.phtml"); ?>
                 </td>
-                <td style="background: url('<?php echo $this->util()->getImage("main-bg.gif"); ?>');" rowspan="4">&nbsp;</td>
+                <td style="background: url('<?php echo $this->util()->getImage("main-bg.gif"); ?>');" rowspan="8">&nbsp;</td>
             </tr>
             <tr>
                 <td style="height: 30px; border-right: 1px solid #000; border-left: 1px solid #000;vertical-align: middle;">
