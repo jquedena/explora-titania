@@ -31,7 +31,7 @@ buscarapertcajxfecha = function(_fecha) {
     /*Graficos*/
     _post2 = $.post(path + "cajaflujo/graficocajeros/", "fecha1="+_fecha+"&fecha2="+_fecha);
     _post2.success(function(requestData){
-        openDialogInfo(requestData, 400, 150);
+        $('#scriptgraf').html(requestData);
     //$('#result').html(requestData);
     });
 	
