@@ -26,6 +26,7 @@ import com.indra.pe.bbva.core.configuracion.WebServletContextListener;
 import com.indra.pe.bbva.core.exception.ServiceException;
 import com.indra.pe.bbva.core.util.Constantes;
 import com.indra.pe.bbva.core.util.Utilitarios;
+import com.indra.pe.bbva.core.util.Utilitarios.Log;
 import com.indra.pe.bbva.core.view.GenericMBean;
 import com.indra.pe.bbva.ldap.model.entidad.LdapDto;
 import com.indra.pe.bbva.ldap.service.LdapService;
@@ -77,6 +78,7 @@ public class SolicitudMBean extends GenericMBean {
 	private ContratoTemporalDto[] listaContratosTemporalSelected;
 	private ContratoTemporalDataModel mediumCarsModel;
 
+	private Boolean status;
 	private Boolean mostrarGestionFile;
 	private String mensajeMostrarGestionFile;
 
@@ -251,6 +253,7 @@ public class SolicitudMBean extends GenericMBean {
 		this.sessionMBean.setAccion(Constantes.Form.EDITAR);
 
 		try {
+			this.status = Boolean.FALSE;
 			this.dto = this.bo.obtener(this.dto.getId());
 			this.aplicaAjusteBonificacion = (this.dto.getTipoDeclaracion().length() > 0);
 			
@@ -357,14 +360,19 @@ public class SolicitudMBean extends GenericMBean {
 		this.dto.setGestorReceptor(null);
 	}
 	
-	public void cambioCliente(SelectEvent event) {
-		logger.error("Test ->" + this.dto.getCodigoCliente());
-		if(event.getObject() != null) {
+	public void cambioCliente() {
+		// SelectEvent event
+		if(this.dto.getCodigoCliente() != null) {
+			logger.info("Cliente ->" + this.dto.getCodigoCliente());
+		} else {
+			logger.info("Cliente invalido");
+		}
+		/* if(event.getObject() != null) {
 			String o = (String) event.getObject();
 			this.dto.setCodigoCliente(o);
 		} else {
 			this.dto.setCodigoCliente(null);
-		}
+		}*/
 	}
 	
 	public void keyupOficina(SelectEvent event) {
@@ -414,7 +422,8 @@ public class SolicitudMBean extends GenericMBean {
 	}
 		
 	public void cambiarDecisionEvaluacion (ValueChangeEvent e) {
-		ParametroDto p= (ParametroDto) e.getNewValue();		
+		ParametroDto p= (ParametroDto) e.getNewValue();
+		this.status = (p.getId().compareTo(1034L) != 0);
 		if (p.getId().equals(1029L)) {
 			showMessage("SI ACEPTA SU EVALUACIÓN, PODRÍA APROBAR LA SOLICITUD.");
 		}else if (p.getId().equals(1030L)) {
@@ -438,7 +447,7 @@ public class SolicitudMBean extends GenericMBean {
 	public void obtenerCliente(ActionEvent ae) {
 		String  codigoCliente = this.dto.getCodigoCliente();
 		
-		if (this.dto.getCodigoCliente()!=null && this.dto.getCodigoCliente().length()>=6 && this.dto.getCodigoCliente().length()<=8) {
+		// if (this.dto.getCodigoCliente()!=null && this.dto.getCodigoCliente().length()>=6 && this.dto.getCodigoCliente().length()<=8) {
 			try {
 				ReaUniDatosClienteRs host = null;
 				host = obtenerDatosClienteHost(this.dto.getCodigoCliente(), "P007395"); // sessionMBean.getRegistro() "P007395"
@@ -503,11 +512,11 @@ public class SolicitudMBean extends GenericMBean {
 				logger.error("", e);
 			}
 		
-		} else {
-			showWarning("NO SE PUDO REALIZAR LA BUSQUEDA DEL CLIENTE; PUESTO QUE, EL CÓDIGO DEL CLIENTE DEBE ESTAR ENTRE 6 Y 8 CARACTERES");
-			cambiarCodigoCliente();
-			this.dto.setCodigoCliente(codigoCliente);
-		}
+		//} else {
+		//	showWarning("NO SE PUDO REALIZAR LA BUSQUEDA DEL CLIENTE; PUESTO QUE, EL CÓDIGO DEL CLIENTE DEBE ESTAR ENTRE 6 Y 8 CARACTERES");
+		//	cambiarCodigoCliente();
+		//	this.dto.setCodigoCliente(codigoCliente);
+		//}
 	}
 
 	public void cambioMotivo(javax.faces.event.AjaxBehaviorEvent a) {
@@ -806,6 +815,7 @@ public class SolicitudMBean extends GenericMBean {
 			if (!oficinaInvolucradoDto.getEstadoDto().getId().equals(1034L)) {
 				if (oficinaInvolucradoDto.getEstadoDto().getId().equals(1030L) && (oficinaInvolucradoDto.getComentario()==null|| oficinaInvolucradoDto.getComentario().length()==0 )) {
 					showWarning("PARA RECHAZAR LA EVALUACION DEBE INGRESAR UN COMENTARIO");
+					this.status = Boolean.TRUE;
 				}else {
 					
 					/* (oficinaInvolucradoDto.getInvolucradoDto().getCargo().equals("CH1") 
@@ -817,11 +827,16 @@ public class SolicitudMBean extends GenericMBean {
 							&& oficinaInvolucradoDto.getOficinaSolicitudDto().getEstadoAprobacionAjuBonDto() != null 
 							&& Long.valueOf(1034).equals(oficinaInvolucradoDto.getOficinaSolicitudDto().getEstadoAprobacionAjuBonDto().getId())
 							&& dto.getMostrarDeclaracionJurada()
-							&& (oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("GTE") || oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("GR"))) {
+							&& (oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("GTE") 
+									|| oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("JPN")
+									|| oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("GR"))) {
 							showWarning("PARA GUARDAR SU EVALUACIÓN, ES NECESARIO QUE EVALÚE LA DECLARACIÓN JURADA.");
-							continuar = false;				
+							this.status = Boolean.TRUE;
+							continuar = false;		
 						}	
 					}
+					
+					Date now = Utilitarios.Fecha.obtenerFechaActualDate();
 					
 					if (continuar) {
 						
@@ -834,7 +849,12 @@ public class SolicitudMBean extends GenericMBean {
 						
 						this.bo.editarOficinaInvolucrado(this.oficinaInvolucradoDto);
 						
-						if(sessionMBean.getEsGerenteTerritorial() || this.oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("GTE") || this.oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("GR")) {
+						logger.info(this.oficinaInvolucradoDto.getPerfil());
+						logger.info(this.oficinaSolicitudDto.getEstadoAprobacionAjuBonDto().getDescripcion());
+						if(sessionMBean.getEsGerenteTerritorial()
+								|| this.oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("GTE")
+								|| this.oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("JPN")
+								|| this.oficinaInvolucradoDto.getPerfil().equalsIgnoreCase("GR")) {
 							this.oficinaSolicitudDto.setFechaEvaluacion(Utilitarios.Fecha.obtenerFechaActualDate());
 							this.oficinaSolicitudDto.setUsuarioEvaluacion(this.sessionMBean.getRegistro());
 							this.bo.editarOficinaSolicitud(this.oficinaSolicitudDto);
@@ -842,7 +862,7 @@ public class SolicitudMBean extends GenericMBean {
 						
 						EstadoSolicitudDto es = new EstadoSolicitudDto();
 						es.setEstadoDto(this.dto.getTramiteSolicitudDto());
-						es.setFecha(Utilitarios.Fecha.obtenerFechaActualDate());
+						es.setFecha(now);
 
 						es.setSolicitudDto(this.dto);
 						es.setUsuario(this.sessionMBean.getRegistro());
@@ -852,7 +872,7 @@ public class SolicitudMBean extends GenericMBean {
 						this.bo.insertarEstado(es);
 										
 						this.dto = this.bo.obtener(this.dto.getId());				
-						actualizarEstadoRechazoAprobacion(this.dto);
+						actualizarEstadoRechazoAprobacion(this.dto, now);
 						this.dto = this.bo.obtener(this.dto.getId());
 						actualizarEstadoProcesadaObservada(this.dto);					
 						this.dto = this.bo.obtener(this.dto.getId());
@@ -865,21 +885,21 @@ public class SolicitudMBean extends GenericMBean {
 
 						obtenerOficinaReceptora();
 						mostrarGestionFile();
+						this.status = Boolean.FALSE;
 					}
 				}
 				
 			}else {
+				this.status = Boolean.TRUE;
 				showWarning("PARA GRABAR LA EVALUACIÓN DEBE SELECCIONAR UN ESTADO DIFERENTE A PENDIENTE");
 			}
 			
 			return null;// retroceder();
-			
 		} catch (Exception ex) {
 			logger.error("", ex);
 			showError("HUBO UN ERROR AL GUARDAR LA EVALUACIÓN");
 			return null;
 		}
-
 	}
 	
 	private void actualizarEstadoProcesadaObservada (SolicitudDto s) {
@@ -887,7 +907,7 @@ public class SolicitudMBean extends GenericMBean {
 		consultaMBean.cambiarEstadoSolicitudSegunContratos(s);
 	}
 	
-	private void actualizarEstadoRechazoAprobacion (SolicitudDto solicitudDto) {		
+	private void actualizarEstadoRechazoAprobacion (SolicitudDto solicitudDto, Date now) {		
 		Long estadoSolicitud = 1016L; // En evaluacion		
 		Boolean estReceptora = null;
 		Boolean estCedente = null;
@@ -965,7 +985,8 @@ public class SolicitudMBean extends GenericMBean {
 				}
 				
 				try {
-					gestionCorreo.lanzarTipoCorreo(solicitudDto, TipoCorreoEnum.RECHAZO_APROBACION, null);
+					this.dto = this.bo.obtener(this.dto.getId());
+					gestionCorreo.lanzarTipoCorreo(solicitudDto, TipoCorreoEnum.RECHAZO_APROBACION, null, now);
 					showMessage("SOLICITUD EVALUADA DE MANERA SATISFACTORIA");
 				} catch (Exception e) {
 					logger.error("", e);
@@ -1835,5 +1856,13 @@ public class SolicitudMBean extends GenericMBean {
 		this.dto.setBonificacionNoExcede7Dias(false);
 		
 		this.aplicaAjusteBonificacion = aplicaAjusteBonificacion;
+	}
+	
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void getStatus(Boolean status) {
+		this.status = status;
 	}
 }

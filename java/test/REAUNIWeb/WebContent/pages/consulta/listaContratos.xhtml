@@ -154,9 +154,7 @@
 							<f:ajax render="tblPrincipal" />
 						</p:commandButton>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<p:commandButton ajax="false" value="EXPORTAR XLS"> 
-						    <p:dataExporter type="xls" target="tblPrincipal" fileName="Contratos" excludeColumns="0,2" />  
-						</p:commandButton> 
+						<p:commandButton ajax="false" value="EXPORTAR XLS"  onclick="return exportarContrato(3);" /> 
 					</td>
 				</tr>				
 			</table>

@@ -2,7 +2,10 @@
 package com.indra.pe.bbva.reauni.model.entidad;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,16 +14,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.LazyToOne;
-import org.hibernate.annotations.LazyToOneOption;
+
+import com.indra.pe.bbva.core.configuracion.WebServletContextListener;
+import com.indra.pe.bbva.core.dao.DAOGenerico;
 
 @Entity
 @Table(name = "TREAUNI_INVOLUCRADO",schema="REAUNI")
@@ -48,9 +51,7 @@ public class InvolucradoDto implements Serializable {
     @Column(name = "CARGO")
     private String cargo;
     
-    @JoinColumn(name = "CARGO", referencedColumnName = "CARGO", nullable=true, insertable=false, updatable=false)
-	@ManyToOne
-	@LazyToOne(LazyToOneOption.FALSE)
+    @Transient
     private CargoDto cargoDto;
     
     @Column(name = "DESCRIPCION_CARGO")
@@ -144,6 +145,24 @@ public class InvolucradoDto implements Serializable {
 	}
 
 	public CargoDto getCargoDto() {
+		List<CargoDto> listaCargoDto = null;
+		CargoDto cargoDto = null;
+		@SuppressWarnings("unchecked")
+		DAOGenerico<CargoDto> cargoDAO = (DAOGenerico<CargoDto>) WebServletContextListener.getApplicationContext().getBean("daoGenerico");
+		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("cargo", this.cargo);
+			listaCargoDto = cargoDAO.obtenerDtosConFiltrosEq(CargoDto.class, map);
+			if(listaCargoDto != null && listaCargoDto.size() > 0) {
+				cargoDto = listaCargoDto.get(0);
+			}
+		} catch (Exception e) {
+			cargoDto = new CargoDto();
+			cargoDto.setCargo("---");
+			cargoDto.setOrden(BigDecimal.valueOf(999));
+			cargoDto.setPerfil("---");
+		}		
+		
 		return cargoDto;
 	}
 

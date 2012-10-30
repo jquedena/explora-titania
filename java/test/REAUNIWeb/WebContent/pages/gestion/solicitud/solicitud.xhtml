@@ -58,8 +58,10 @@
 								<p:inputText id="itCodigoCliente"
 									label="#{message['solicitud.cliente.codigo']}"
 									value="#{solicitudMBean.dto.codigoCliente}"
-									readonly="#{sessionMBean.accion != 1}" size="20" maxlength="8" style="font-weight: bold;">
+									readonly="#{sessionMBean.accion != 1}" size="20"
+									maxlength="8" style="font-weight: bold;">
 									<p:ajax event="keyup" listener="#{solicitudMBean.cambioCliente}" />
+									<p:ajax event="blur" listener="#{solicitudMBean.cambioCliente}" />
 								</p:inputText>
 								<p:commandButton image="ui-icon ui-icon-search"
 									title="BUSCAR CLIENTE" ajax="true"
@@ -110,7 +112,8 @@
 								value="#{solicitudMBean.dto.motivoComentarios}"
 								readonly="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015}"
 								required="true" size="50" style="font-weight: bold;"
-								rendered="#{solicitudMBean.dto.motivoTrasladoDto.id==1026}">
+								rendered="#{solicitudMBean.dto.motivoTrasladoDto.id==1026}"
+								maxlength="30">
 								<f:validateLength maximum="30" minimum="0" />
 							</p:inputText>
 							<p:spacer width="5px" rendered="#{solicitudMBean.dto.motivoTrasladoDto.id!=1026}" />
@@ -242,7 +245,7 @@
 								label="#{message['solicitud.bonificacion.comentario']}"
 								value="#{solicitudMBean.dto.bonificacionComentarios}"
 								readonly="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015 || !solicitudMBean.aplicaAjusteBonificacion}"
-								required="true" size="50"
+								required="true" size="50" maxlength="30"
 								rendered="#{solicitudMBean.dto.bonificacionOtros}">
 								<f:validateLength maximum="30" minimum="0" />
 							</p:inputText>
@@ -293,7 +296,7 @@
 								label="#{message['solicitud.bonificacion.comentario']}"
 								value="#{solicitudMBean.dto.ajusteComentarios}"
 								readonly="#{solicitudMBean.dto.tramiteSolicitudDto.id!=1015 || !solicitudMBean.aplicaAjusteBonificacion}"
-								required="true" size="50"
+								required="true" size="50" maxlength="30"
 								rendered="#{solicitudMBean.dto.ajusteOtros}">
 								<f:validateLength maximum="30" minimum="0" />
 							</p:inputText>

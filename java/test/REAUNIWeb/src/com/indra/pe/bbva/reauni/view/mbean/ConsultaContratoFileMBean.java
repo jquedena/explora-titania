@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 
 import com.indra.pe.bbva.core.configuracion.WebServletContextListener;
 import com.indra.pe.bbva.core.exception.ServiceException;
+import com.indra.pe.bbva.core.util.DocumentoExcel;
 import com.indra.pe.bbva.core.util.Utilitarios;
 import com.indra.pe.bbva.core.view.GenericMBean;
 import com.indra.pe.bbva.ldap.service.LdapService;
@@ -382,5 +383,14 @@ public class ConsultaContratoFileMBean extends GenericMBean{
 			resultado.add(ofic);
 		}
 		return resultado;
-	}	
+	}
+	
+	public void exportar(Object document) {
+		try {
+			DocumentoExcel docExcel = new DocumentoExcel(document, "GestionFiles");
+			docExcel.postProcessXLS(document);
+		} catch (Exception e) {
+			logger.error("Exportar", e);
+		}
+	}
 }

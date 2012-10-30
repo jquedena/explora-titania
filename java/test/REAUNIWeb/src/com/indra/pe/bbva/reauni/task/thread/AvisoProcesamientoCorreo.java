@@ -65,8 +65,10 @@ public class AvisoProcesamientoCorreo   extends Thread  {
 				listaCorreo = obtenerListadoCorreo(AvisoProcesamientoCorreo.FORMATO_DIARIO);
 				
 		  		try {
-		  			correoElectronico =  new CorreoElectronico();
-		  			correoElectronico.enviar(getGestionCorreo().obtenerCorreoProcesamientoCorreo(listaCorreo, dia, lista_unificacion, lista_reasignacion));
+		  			if(listaCorreo != null && listaCorreo.length() > 0) {
+		  				correoElectronico =  new CorreoElectronico();
+		  				correoElectronico.enviar(getGestionCorreo().obtenerCorreoProcesamientoCorreo(listaCorreo, dia, lista_unificacion, lista_reasignacion));
+		  			}
 		  		} catch(Exception e) {
 		  			logger.error("Enviando correo aviso procesamiento reasignación", e);
 		  		}
@@ -81,8 +83,10 @@ public class AvisoProcesamientoCorreo   extends Thread  {
 				listaCorreo = obtenerListadoCorreo(AvisoProcesamientoCorreo.FORMATO_MENSUAL);
 				
 		  		try {
-		  			correoElectronico =  new CorreoElectronico();
-		  			correoElectronico.enviar(getGestionCorreo().obtenerCorreoProcesamientoCorreo(listaCorreo, dia, lista_reasignacion, lista_reasignacion));
+		  			if(listaCorreo != null && listaCorreo.length() > 0) {
+		  				correoElectronico =  new CorreoElectronico();
+		  				correoElectronico.enviar(getGestionCorreo().obtenerCorreoProcesamientoCorreo(listaCorreo, dia, lista_reasignacion, lista_reasignacion));
+		  			}
 		  		} catch(Exception e) {
 		  			logger.error("Enviando correo aviso procesamiento reasignación", e);
 		  		}
