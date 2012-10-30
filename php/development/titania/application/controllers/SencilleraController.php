@@ -22,8 +22,9 @@ class sencilleraController extends Zend_Controller_Action {
     		$idapertura = $this->_request->getPost('idapertura');
     		$codcajero = $this->_request->getPost('codcajero');
     		$nomcajero = $this->_request->getPost('nomcajero');
-    		$accion = $this->_request->getPost('accion');//ingreso(al habilitar) - entregado(al cierre)
+    		$accion = $this->_request->getPost('accion');//0000000001(al habilitar) - 0000000002(al cierre)
     		
+    		$codcajero = substr($codcajero, -2);
     		$cn = new Model_DataAdapter ();
     		$nombrestore = '"public"."pxcobrowww"';
     		$arraydatos [0] = '2';
@@ -37,8 +38,7 @@ class sencilleraController extends Zend_Controller_Action {
     		$nombrestore = 'tesoreria.buscardvalmon';
     		$arraydatos [0] = '%';
     		$arraydatos [1] = $idapertura;
-    		if($accion=='ingreso') $arraydatos [2] = '0000000001';
-    		else $arraydatos [2] = '0000000002';
+    		$arraydatos [2] = $accion;
     		
     		$datosdvalmon = $cn->ejec_store_procedura_sql($nombrestore, $arraydatos);
     		//print_r($datosdvalmon);
@@ -62,7 +62,7 @@ class sencilleraController extends Zend_Controller_Action {
     		
     		$val[] = array("tbl_monedas tbody", $bodytbl, "html");
     		$val[] = array('txtfech_proc', $date, 'val');
-    		$val[] = array('txtnom_cajero', $nomcajero, 'val');
+    		$val[] = array('txtnom_cajero', $codcajero.' - '.$nomcajero, 'val');
     		$val[] = array('hdid_apert', $idapertura, 'val');
     		$val[] = array('hdid_cajero', $codcajero, 'val');
     		$val[] = array('hdaccion', $accion, 'val');
@@ -74,6 +74,22 @@ class sencilleraController extends Zend_Controller_Action {
     		$js[] = array('$(".mt_cant").on("keyup",sumary_totals);');
     		$js[] = array("$('#btnprocsencillero').button({ icons: {secondary:'ui-icon-disk'} })");
        		
+    		if ($accion=='0000000002'){
+    			$js[] = array("$('#obscerrarcaja').show();");
+    			$js[] = array("var config = {
+								            skin:'v2'
+								            , toolbar: [
+								                ['Bold','Italic','Underline','-','NumberedList','BulletedList','-','Outdent','Indent','-','Undo','Redo','-','HorizontalRule','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','TextColor','BGColor'],
+								                ['UIColor']
+								            ]
+								        };
+        
+								        var hEd = CKEDITOR.instances['txtobs'];
+								        if (hEd) {
+								            CKEDITOR.remove(hEd);
+								        }
+       								 CKEDITOR.replace('txtobs', config);");
+    		}
     		$din[] = array("tbl_monedas .mt_total");
 
        		
@@ -177,7 +193,11 @@ class sencilleraController extends Zend_Controller_Action {
             $hdid_cajero = $this->_request->getPost('vhdid_cajero');
             $txtfech_proc = $this->_request->getPost('vtxtfech_proc');
             $hdid_estado = $this->_request->getPost('vhdid_estado');
-			
+            $hdaccion = $this->_request->getPost('vhdaccion');//0000000001(al habilitar) - 0000000002(al cierre)
+            $vobs='';
+			if($hdaccion=='0000000002'){
+				$vobs = $this->_request->getPost('vobs');
+			}
 			/*	correlativo 
 			 *  ,vidsigma varchar
 			 *  ,vaperturacaja varchar
@@ -204,15 +224,16 @@ class sencilleraController extends Zend_Controller_Action {
             for ($i = 0; $i < count($det); $i++) {
                 $cad .= $corr . '^'; 				//correlativo
                 $cad .= $det[$i]['vidsigma'] . '^';	//vidsigma*
-                $cad .= $hdid_apert . '^'; 			//vaperturacaja
-                $cad .= '^'; 						//vctipope
+                $cad .= $hdid_apert.'^'; 			//vaperturacaja*
+                $cad .= $hdaccion.'^'; 				//vctipope*//0000000001(al habilitar) - 0000000002(al cierre)
                 $cad .= $det[$i]['vctipmon'].'^'; 	//vctipmon*
                 $cad .= $det[$i]['vncantid'].'^'; 	//vncantid*
                 $cad .= '^'; 						//vntotals
-                $cad .= '^'; 						//vdfecpro
+                $cad .= $txtfech_proc.'^'; 			//vdfecpro
                 $cad .= '1^'; 						//vnestado*
-                $cad .= $userlogin . '^'; 			//vusernm*
+                $cad .= $userlogin.'^'; 			//vusernm*
                 $cad .= $this->view->util()->getHost() . '~'; //vhostnm*
+                
 			
                 $corr++;
             }
@@ -223,16 +244,58 @@ class sencilleraController extends Zend_Controller_Action {
             $parametros [0] = $cad;
             $parametros [1] = '~';
             $parametros [2] = '^';
-            $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
-
-            if ($datos[0][0] == '1') {
-                echo "Guardado Correctamente ";
-                //echo '<script language=\"JavaScript\">window.open(\''.$this->view->util()->getLink('mantenimientos/mconten').'\', \'_self\')</script>';
-            } else {
-                echo 'Error en el guardado...';
-            }
+            $parametros [3] = $vobs;
+           
+			/*
+            if($hdaccion=='0000000002'){
+            	//llamar al controlador Cajaflujo/ actcerrarcaja
+            	$result = cerrarCaja($vobs,'',$hdid_cajero);
+            	if($result[0][1]=='2'){
+            		echo $result[0][0];
+            	}elseif($result[0][1]=='0'){
+            		echo $result[0][0].'<br>';
+            		$datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+            		if ($datos[0][0] == '1') {
+            			echo "Guardado Correctamente ";
+            			//echo '<script language=\"JavaScript\">window.open(\''.$this->view->util()->getLink('mantenimientos/mconten').'\', \'_self\')</script>';
+            		} else {
+            			echo 'Error en el guardado...';
+            		}
+            	}
+            	#cerrarCaja($obs,$vfecha,$nrocaja)
+            }else{*/
+	            $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+	            if ($datos[0][0] == '1') {
+	                echo $datos[0][1];
+	                //echo '<script language=\"JavaScript\">window.open(\''.$this->view->util()->getLink('mantenimientos/mconten').'\', \'_self\')</script>';
+	            } elseif ($datos[0][0] == '2') {
+	                echo $datos[0][1];
+	            }else
+	            	echo "Error";
+           // }
+            
         }
     }
+    
+    /*Cierra la caja es llamado desde la ventana de guardar monedas*/
+    public function cerrarCaja($obs,$vfecha,$nrocaja){
+    	$duser = new Zend_Session_Namespace('userlogin');
+    	$vuser = $duser->data;
+    	$cn = new Model_DataAdapter();
+    	$store = "tesoreria.cerrarcaja";
+    	$arstore [0] = $nrocaja;
+    	$arstore [1] = $vfecha;
+    	$arstore [2] = $vuser;
+    	$arstore [3] = "";
+    	$arstore [4] = $obs;
+    	$dt = $cn->ejec_store_procedura_sql($store, $arstore);
+    	if (is_array($dt)) {
+    		return $dt;
+    	}else{
+    		return array(array('Ah ocurrido un error','2'));
+    	}
+    }
+    
     /*Si se usa*/
 	public function prehabsencilleraAction(){
 		$this->_helper->layout->disableLayout();
@@ -242,6 +305,7 @@ class sencilleraController extends Zend_Controller_Action {
 			header('Content-type: application/json');
 			$p_cnrcaja = $this->_request->getPost('p_cnrcaja');
 			$p_ciduser = $this->_request->getPost('p_ciduser');
+			$p_fechadia = $this->_request->getPost('p_fechadia');
 			
 			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
 			$p_vusernm = $ddatosuserlog->userlogin;
@@ -249,10 +313,11 @@ class sencilleraController extends Zend_Controller_Action {
 			
 			$cn = new Model_DataAdapter ();
 			$nombrestore = 'tesoreria.habcaja_moneddefault';
-			$parametros [0] = $p_cnrcaja;
-			$parametros [1] = $p_ciduser;
-			$parametros [2] = $p_vusernm;
-			$parametros [3] = $p_vhostnm;
+			$parametros [0] = $p_fechadia;
+			$parametros [1] = $p_cnrcaja;
+			$parametros [2] = $p_ciduser;
+			$parametros [3] = $p_vusernm;
+			$parametros [4] = $p_vhostnm;
 			
 			$datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
 		

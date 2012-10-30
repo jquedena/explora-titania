@@ -1,4 +1,4 @@
-<div class="ui-widget ui-widget-content ui-corner-all" style="width: 99%;margin: 3px;">
+<!-- <div class="ui-widget ui-widget-content ui-corner-all" style="width: 99%;margin: 3px;">
 	<div class="ui-widget ui-state-default ui-corner-top ui-title">
 		<label>Cajas Aperturadas</label>
 	</div>
@@ -38,4 +38,32 @@
 	<div id="chartdivpie" align="center"></div>
 	<br/>
 	</div>
+</div>-->
+
+<div id="panelbusqueda" align="center" class="ui-widget ui-widget-content ui-corner-all "  style="width: 800px;margin: 3px;">
+    <div class="ui-widget ui-state-default ui-corner-top ui-title">
+        <label>Cajas </label>
+    </div>
+    <table border="0" class="ui-table-panelLayout">
+		<tr>
+           	<td align="left" width="130px">
+           		<div class="ui-widget">
+           			<input type="text" class="ui-text" id="txtdia" name="txtdia" style="width: 90px;"/>
+           			<input type="hidden" id="fechaorg" name="fechaorg" />
+           			</div>
+           	</td>
+			<td align="left">
+				<button id="btnbuscar">Buscar</button><!-- <button id="btnhabilitar" name="btnhabilitar">Habilitar</button> -->
+			</td>
+        </tr>
+    </table>
 </div>
+<div id="panelResultapertcaj">
+	<table id="tblResultapertcaj"></table>
+	<div id="ptblResultapertcaj"></div>
+</div>
+<br />
+<div id="chartdivbarras" align="center"></div>
+<br /><hr /><br />
+<div id="chartdivpie" align="center"></div>
+<br/>

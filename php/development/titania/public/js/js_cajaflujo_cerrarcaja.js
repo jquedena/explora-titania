@@ -3,16 +3,14 @@ function aperturarcaja(){
     var vnrocaja='';
     var vfecha='';
     var obs ='';
-    var vlocal ='';
-    	vlocal = $('#cbolocal').val();
+    
     	vnrocaja = $('#hddnrocaja').val();
         obs =$('#txtobserv').val();
         
         dat = {
                 "vnrocaja":vnrocaja,
                 "vfecha":vfecha,
-                "obs" : obs,
-                "vlocal":vlocal
+                "obs" : obs
         		};
         _post = $.post(path + "cajaflujo/actaperturarcaja/", dat);
         _post.success(function(requestData){
@@ -21,6 +19,60 @@ function aperturarcaja(){
     	
         _post.error(postError);
 }
+ventanaCerrarCaja= function(){
+	vdatos = {
+		        "idapertura":$('#hddidapercaja').val(),
+		        "codcajero": $('#hddnrocaja').val(),
+		        "nomcajero":$('#hddnomcaj').val(),
+		        "accion":'0000000002'//0000000001(al habilitar) - 0000000002(al cierre)
+		    };
+		    openDialogData1("sencillera/ventanamonedas", vdatos,950, 500, "Monto Entregado");
+		    
+}
+
+sumary_totals = function(){
+	
+    textbox = $(this)
+    tdparent = textbox.parent();
+    trparent = tdparent.parent();
+	
+    objmonto = $('#mt_montorow',trparent);
+    objtotal = $('#mt_totalrow',trparent);
+	
+    monto = objmonto.html();
+    cant = textbox.val();
+    mt_total=cant*monto;
+    objtotal.val(mt_total);
+	
+    mt_totals=0.00;
+    $(".mt_total",$('#tbl_monedas')).each(function(){
+        mt_totals= mt_totals + $(this).val()*1;
+    });
+    $('#mt_totals').html(mt_totals);
+}
+guardarsencillero = function(){
+
+    frmtblmonedas = $("#tbl_monedas").find("select, textarea, input,hidden").serialize();
+    vhdid_apert = $('#hdid_apert').val();
+    vhdid_cajero = $('#hdid_cajero').val();
+    vtxtfech_proc = $('#txtfech_proc').val();
+    vhdid_estado= $('#hdid_estado').val();
+    vhdaccion = $('#hdaccion').val();
+    //vobs = $('#txtobs').val();
+    
+    var oEditor = CKEDITOR.instances['txtobs']
+    var vobs = oEditor.getData();
+
+    vobs=escape(vobs);	
+    _post = $.post(path + "sencillera/guardarsencillero/", frmtblmonedas+"&vhdid_apert="+vhdid_apert+"&vhdid_cajero="+vhdid_cajero+"&vtxtfech_proc="+vtxtfech_proc+"&vhdid_estado="+vhdid_estado+"&vhdaccion="+vhdaccion+"&vobs="+vobs);
+    _post.success(function(requestData){
+        openDialogInfo(requestData, 400, 150);
+    //$('#result').html(requestData);
+    });
+	
+    _post.error(postError);
+}
+
 
 /*function aperturarcaja(vaccion){
     var vnrocaja='';
