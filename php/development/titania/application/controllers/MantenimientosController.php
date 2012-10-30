@@ -363,299 +363,316 @@ class MantenimientosController extends Zend_Controller_Action {
         $pintar->EjecutarFuncion($fn);
     }
 
-    public function personasAction() {
-        $this->view->util()->registerScriptJSControllerAction($this->getRequest());
+public function personasAction(){
+    	$this->view->util()->registerScriptJSControllerAction($this->getRequest());
     }
-
-    public function personaviewAction() {
-        $this->_helper->getHelper('ajaxContext')->initContext();
-        if ($this->getRequest()->isXmlHttpRequest()) {
-            $this->_helper->layout->disableLayout();
-            $name = $this->_request->getParam('name');
-            $action = $this->_request->getPost('action');
-            $idperson = '';
-            $func = new Libreria_Pintar();
-            $arrestcivil = array(array('0000000001', 'CASADO'), array('0000000002', 'SOLTERO'));
-            $arrtipodoc = array(array('0000000001', 'DNI'), array('0000000002', 'RUC'));
-            $arrtipopers = array(array('0000000001', 'NATURAL'), array('0000000002', 'JURIDICA'));
-            $arrcodpostal = array(array('0000000001', 'Puente Piedra'), array('0000000002', 'otros'));
-            $ctipdoc = '';
-            $ctipper = '';
-            $cestciv = '';
-            $cubigeo = '';
-            if (isset($name)) {
-                $dataSet = new Zend_Session_Namespace($name);
-                $rows = $dataSet->data;
-                $idperson = $rows[0][0];
-                //$rows[0][1]; //crazsoc
-                //$rows[0][2]; // direccf
-            } else {
-                $idperson = $this->_request->getPost('id_person');
-            }
-
-            $val[] = array('txtcodigo', $idperson, 'val');
-            if ($action == 'update') {
-                $nombrestore = 'public.buscar_persona2';
-                $arraydatos [0] = $idperson;
-                $cn = new Model_DataAdapter();
-                $datosperson = $cn->ejec_store_procedura_sql($nombrestore, $arraydatos);
-                if (count($datosperson) == 0)
-                    return;
-                $idsigma = $datosperson[0][0];
-                $vpatern = $datosperson[0][1];
-                $vmatern = $datosperson[0][2];
-                $vnombre = $datosperson[0][3];
-                $ctipper = $datosperson[0][4];
-                $vtipper = $datosperson[0][5];
-                $nestado = $datosperson[0][6];
-                $ntipers = $datosperson[0][10];
-                $ntipper = $datosperson[0][11];
-                $cubigeo = $datosperson[0][12];
-                $cdenomi = $datosperson[0][13];
-                $vdirecc = $datosperson[0][14];
-                $vnumero = $datosperson[0][15];
-                $vlote = $datosperson[0][16];
-                $vmanzan = $datosperson[0][17];
-                $vdpto = $datosperson[0][18];
-                $vreferen = $datosperson[0][19];
-                $ctipdoc = $datosperson[0][20];
-                $vtipdoc = $datosperson[0][21];
-                $vnrodoc = $datosperson[0][22];
-                $dfecnac = $datosperson[0][23];
-                $csexo = $datosperson[0][24]; //-- Sexo 1=Masculino  ----- 2= Femenino
-                $dfecinic = $datosperson[0][25];
-                $cestciv = $datosperson[0][26];
-                $ctelfij = $datosperson[0][27];
-                $ctelmov = $datosperson[0][28];
-                $vcorreo = $datosperson[0][29];
-                $vobserv = $datosperson[0][30];
-
-                $val[] = array('txtcodigo', $idperson, 'val');
-                $val[] = array('txtbuscar', $idperson, 'val');
-                $val[] = array('nrodoc', $vnrodoc, 'val');
-                $val[] = array('apatern', $vpatern, 'val');
-                $val[] = array('amatern', $vmatern, 'val');
-                $val[] = array('nombre', $vnombre, 'val');
-                $val[] = array('cbosexo', $csexo, 'val');
-                $val[] = array('fecnace', $dfecnac, 'val');
-                $val[] = array('st_estado', $nestado, 'val');
-                $val[] = array('nrotef', $ctelfij, 'val');
-                $val[] = array('nromovil', $ctelmov, 'val');
-                $val[] = array('mail', $vcorreo, 'val');
-                $val[] = array('denominacion', $cdenomi, 'val');
-                $val[] = array('direccion', $vdirecc, 'val');
-                $val[] = array('direcnumero', $vnumero, 'val');
-                $val[] = array('departamen', $vdpto, 'val');
-                $val[] = array('manzana', $vmanzan, 'val');
-                $val[] = array('lote', $vlote, 'val');
-                $val[] = array('ref', str_replace('"', '', str_replace('ยบ', '', $vreferen)), 'val');
-                //echo str_replace('Nรยบ','Nro',$vreferen);
-
-                echo "<textarea>" . $vreferen . "</textarea>";
-                $val[] = array("ds_observacion", $vobserv, 'html');
-            }
-            $val[] = array('cbotipdoc', $func->ContenidoCombo($arrtipodoc, $ctipdoc), 'html');
-            $val[] = array('cbotipper', $func->ContenidoCombo($arrtipopers, $ctipper), 'html');
-            $val[] = array('cboestcivil', $func->ContenidoCombo($arrestcivil, $cestciv), 'html');
-            $val[] = array('distrito', $func->ContenidoCombo($arrcodpostal, $cubigeo), 'html');
-
-
-            $func->IniciaScript();
-            //$func->PintarEvento($evt);
-            $func->PintarValor($val);
-            $func->FinScript();
-        }
+    public function personaviewAction(){
+    	$this->_helper->getHelper ( 'ajaxContext' )->initContext ();
+    	if ($this->getRequest ()->isXmlHttpRequest ()) {
+    		$this->_helper->layout->disableLayout();
+    		$name = $this->_request->getParam('name');
+    		$action = $this->_request->getPost('action');
+    		$idperson='';
+    		$func = new Libreria_Pintar();
+    		$arrestcivil 	= array(array ('0000000001', 'CASADO'),array ('0000000002', 'SOLTERO'));
+    		$arrtipodoc 	= array(array ('0000000001', 'DNI'),array ('0000000002', 'RUC'));
+    		$arrtipopers 	= array(array ('0000000001', 'NATURAL'),array ('0000000002', 'JURIDICA'));
+    		$arrcodpostal 	= array(array ('0000000001', 'Puente Piedra'),array ('0000000002', 'otros'));
+    		$ctipdoc='';
+    		$ctipper='';
+    		$cestciv='';
+    		$cubigeo='';
+    		if(isset($name)) {
+    			$dataSet = new Zend_Session_Namespace($name);
+    			$rows = $dataSet->data;
+    			$idperson=$rows[0][0];
+    			//$rows[0][1]; //crazsoc
+    			//$rows[0][2]; // direccf
+    		} else {
+    			$idperson = $this->_request->getPost('id_person');
+    		}
+    		
+    		
+    		
+    		$val[] = array('txtcodigo', $idperson, 'val');
+    		if ($action=='update'){
+	    		$nombrestore = 'public.buscar_persona2';
+	    		$arraydatos [0] = $idperson;
+	    		$cn = new Model_DataAdapter();
+	    		$datosperson = $cn->ejec_store_procedura_sql( $nombrestore, $arraydatos );
+				if (count($datosperson)==0)
+					return;
+	    		$idsigma	=	$datosperson[0][0];
+	    		$vpatern	=	$datosperson[0][1];
+	    		$vmatern	=	$datosperson[0][2];
+	    		$vnombre	=	$datosperson[0][3];
+	    		$ctipper	=	$datosperson[0][4];
+	    		$vtipper	=	$datosperson[0][5];
+	    		$nestado	=	$datosperson[0][6];
+	    		$ntipers	=	$datosperson[0][10];
+	    		$ntipper	=	$datosperson[0][11];
+	    		$cubigeo	=	$datosperson[0][12];
+	    		$cdenomi	=	$datosperson[0][13];
+	    		$vdirecc	=	$datosperson[0][14];
+	    		$vnumero	=	$datosperson[0][15];
+	    		$vlote		=	$datosperson[0][16];
+	    		$vmanzan	=	$datosperson[0][17];
+	    		$vdpto		=	$datosperson[0][18];
+	    		$vreferen	=	$datosperson[0][19];
+	    		$ctipdoc	=	$datosperson[0][20];
+	    		$vtipdoc	=	$datosperson[0][21];
+	    		$vnrodoc	=	$datosperson[0][22];
+	    		$dfecnac	=	$datosperson[0][23];
+	    		$csexo		=	$datosperson[0][24];//-- Sexo 1=Masculino  ----- 2= Femenino
+	    		$dfecinic	=	$datosperson[0][25];
+	    		$cestciv	=	$datosperson[0][26];
+	    		$ctelfij	=	$datosperson[0][27];
+	    		$ctelmov	=	$datosperson[0][28];
+	    		$vcorreo	=	$datosperson[0][29];
+	    		$vobserv	=	$datosperson[0][30];
+	    		
+	    		
+	    		$val[] = array('txtcodigo', $idperson, 'val');
+	    		$val[] = array('txtbuscar', $idperson, 'val');
+	    		
+	    		$val[] = array('nrodoc', $vnrodoc, 'val');
+	    		
+	    		$val[] = array('apatern', $vpatern, 'val');
+	    		$val[] = array('amatern', $vmatern, 'val');
+	    		$val[] = array('nombre', $vnombre, 'val');
+	    		$val[] = array('cbosexo',$csexo,'val');
+	    		
+	    		$val[] = array('fecnace', $dfecnac, 'val');
+	    		$val[] = array('st_estado', $nestado, 'val');
+	    		$val[] = array('nrotef', $ctelfij, 'val');
+	    		$val[] = array('nromovil', $ctelmov, 'val');
+	    		$val[] = array('mail', $vcorreo, 'val');
+	    		
+	    		
+	    		
+	    		
+	    		$val[] = array('denominacion', $cdenomi, 'val');
+	    		$val[] = array('direccion', $vdirecc, 'val');
+	    		$val[] = array('direcnumero', $vnumero, 'val');
+	    		$val[] = array('departamen', $vdpto, 'val');
+	    		
+	    		$val[] = array('manzana', $vmanzan, 'val');
+	    		$val[] = array('lote', $vlote, 'val');
+	    		//$val[] = array('ref', str_replace('"','',str_replace('บ','',$vreferen)), 'val');
+	    		//echo str_replace('Nบ','Nro',$vreferen);
+	    		
+	    		echo "<textarea>".$vreferen."</textarea>";
+	    		$val[] = array("ds_observacion",$vobserv,'html');
+	    		
+    		}
+    		$val[] = array('cbotipdoc' ,$func->ContenidoCombo($arrtipodoc, $ctipdoc),'html' );
+    		$val[] = array('cbotipper' ,$func->ContenidoCombo($arrtipopers, $ctipper),'html' );
+    		$val[] = array('cboestcivil' ,$func->ContenidoCombo($arrestcivil, $cestciv),'html' );
+    		$val[] = array('distrito' ,$func->ContenidoCombo($arrcodpostal, $cubigeo),'html' );
+    		
+    		
+    		$func->IniciaScript();
+    		//$func->PintarEvento($evt);
+    		$func->PintarValor($val);
+    		$func->FinScript();
+    		
+    	}
+    	
     }
+    public function personasaveAction(){
+    	$this->_helper->layout->disableLayout ();
+    	$this->_helper->viewRenderer->setNoRender ();
+    	$this->_helper->getHelper ( 'ajaxContext' )->initContext ();
+    	if ($this->getRequest ()->isXmlHttpRequest ()) {
+    		//$cbotipingreso = $this->_request->getPost ( 'cbotipingreso' );
+    		$codperson = $this->_request->getPost ( 'txtcodigo' );
+    		$st_estado = $this->_request->getPost ( 'st_estado' );
+    		$cbotipdoc = $this->_request->getPost ( 'cbotipdoc' );
+    		$nrodoc = $this->_request->getPost ( 'nrodoc' );
+    		$cbotipper = $this->_request->getPost ( 'cbotipper' );
+    		$apatern = $this->_request->getPost ( 'apatern' );
+    		$amatern = $this->_request->getPost ( 'amatern' );
+    		$nombre = $this->_request->getPost ( 'nombre' );
+    		$cbosexo = $this->_request->getPost ( 'cbosexo' );
+    		$cboestcivil = $this->_request->getPost ( 'cboestcivil' );
+    		$fecnace = $this->_request->getPost ( 'fecnace' );
+    		$nrotef = $this->_request->getPost ( 'nrotef' );
+    		$nromovil = $this->_request->getPost ( 'nromovil' );
+    		$mail = $this->_request->getPost ( 'mail' );
+    		$distrito = $this->_request->getPost ( 'distrito' );
+    		$denominacion = $this->_request->getPost ( 'denominacion' );
+    		$direccion= $this->_request->getPost ( 'direccion' );
+    		$direcnumero = $this->_request->getPost ( 'direcnumero' );
+    		$departamen = $this->_request->getPost ( 'departamen' );
+    		$manzana = $this->_request->getPost ( 'manzana' );
+    		$lote = $this->_request->getPost ( 'lote' );
+    		$ref = $this->_request->getPost ( 'ref' );
+    		$ds_observacion = $this->_request->getPost ( 'ds_observacion' );//22
+    		
+    		$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+    		$userlogin = $ddatosuserlog->userlogin;
+    		$cad = '';
+    		$corr = 1;
+    		
+    		$cad .= $corr.'^'; //1
+    		$cad .= $codperson.'^'; //2
+    		$cad .= $st_estado.'^'; //3
+    		$cad .= $cbotipdoc.'^'; //4
+    		$cad .= $nrodoc.'^'; //5
+    		$cad .= $cbotipper.'^'; //6
+    		$cad .= $apatern.'^'; //7
+    		$cad .= $amatern.'^'; //8
+    		$cad .= $nombre.'^'; //9
+    		$cad .= $cbosexo.'^'; //10
+    		$cad .= $cboestcivil.'^'; //11
+    		$cad .= $fecnace.'^'; //12
+    		$cad .= $nrotef.'^'; //13
+    		$cad .= $nromovil.'^'; //14
+    		$cad .= $mail.'^'; //15
+    		$cad .= $distrito.'^'; //16
+    		$cad .= $denominacion.'^'; //17
+    		$cad .= $direccion.'^'; //18
+    		$cad .= $direcnumero.'^'; //19
+    		$cad .= $departamen.'^'; //20
+    		$cad .= $manzana.'^'; //21
+    		$cad .= $lote.'^'; //22
+    		$cad .= $ref.'^'; //23
+    		$cad .= $ds_observacion.'^'; //24
+    		$cad .= $userlogin.'^'; //user 25
+    		$cad .= $this->view->util()->getHost(); //host 26
 
-    public function personasaveAction() {
-        $this->_helper->layout->disableLayout();
-        $this->_helper->viewRenderer->setNoRender();
-        $this->_helper->getHelper('ajaxContext')->initContext();
-        if ($this->getRequest()->isXmlHttpRequest()) {
-            //$cbotipingreso = $this->_request->getPost ( 'cbotipingreso' );
-            $codperson = $this->_request->getPost('txtcodigo');
-            $st_estado = $this->_request->getPost('st_estado');
-            $cbotipdoc = $this->_request->getPost('cbotipdoc');
-            $nrodoc = $this->_request->getPost('nrodoc');
-            $cbotipper = $this->_request->getPost('cbotipper');
-            $apatern = $this->_request->getPost('apatern');
-            $amatern = $this->_request->getPost('amatern');
-            $nombre = $this->_request->getPost('nombre');
-            $cbosexo = $this->_request->getPost('cbosexo');
-            $cboestcivil = $this->_request->getPost('cboestcivil');
-            $fecnace = $this->_request->getPost('fecnace');
-            $nrotef = $this->_request->getPost('nrotef');
-            $nromovil = $this->_request->getPost('nromovil');
-            $mail = $this->_request->getPost('mail');
-            $distrito = $this->_request->getPost('distrito');
-            $denominacion = $this->_request->getPost('denominacion');
-            $direccion = $this->_request->getPost('direccion');
-            $direcnumero = $this->_request->getPost('direcnumero');
-            $departamen = $this->_request->getPost('departamen');
-            $manzana = $this->_request->getPost('manzana');
-            $lote = $this->_request->getPost('lote');
-            $ref = $this->_request->getPost('ref');
-            $ds_observacion = $this->_request->getPost('ds_observacion'); //22
-
-            $ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
-            $userlogin = $ddatosuserlog->userlogin;
-            $cad = '';
-            $corr = 1;
-
-            $cad .= $corr . '^'; //1
-            $cad .= $codperson . '^'; //2
-            $cad .= $st_estado . '^'; //3
-            $cad .= $cbotipdoc . '^'; //4
-            $cad .= $nrodoc . '^'; //5
-            $cad .= $cbotipper . '^'; //6
-            $cad .= $apatern . '^'; //7
-            $cad .= $amatern . '^'; //8
-            $cad .= $nombre . '^'; //9
-            $cad .= $cbosexo . '^'; //10
-            $cad .= $cboestcivil . '^'; //11
-            $cad .= $fecnace . '^'; //12
-            $cad .= $nrotef . '^'; //13
-            $cad .= $nromovil . '^'; //14
-            $cad .= $mail . '^'; //15
-            $cad .= $distrito . '^'; //16
-            $cad .= $denominacion . '^'; //17
-            $cad .= $direccion . '^'; //18
-            $cad .= $direcnumero . '^'; //19
-            $cad .= $departamen . '^'; //20
-            $cad .= $manzana . '^'; //21
-            $cad .= $lote . '^'; //22
-            $cad .= $ref . '^'; //23
-            $cad .= $ds_observacion . '^'; //24
-            $cad .= $userlogin . '^'; //user 25
-            $cad .= $this->view->util()->getHost(); //host 26
-
-
-            $cn = new Model_DataAdapter ();
-            $nombrestore = '"public".guardarpersona';
-            $parametros [0] = $cad;
-            $parametros [1] = '~';
-            $parametros [2] = '^';
-            $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
-
-            //echo "<textarea>".$cad."</textarea>";
-            if ($datos[0][0] == '1') {
-                echo "Guardado Correctamente ";
-                $codperson = $datos[0][1];
-                //echo '<script language=\"JavaScript\">window.open(\''.$this->view->util()->getLink('mantenimientos/mconten').'\', \'_self\')</script>';
-                echo "<script language=\"JavaScript\">row = new Object();row.id_person = '$codperson';xmantepersonupdate(null,row);</script>";
-                //echo "<textarea>'<script language=\"JavaScript\">row = new Object();row.id_person = '$codperson';xmantepersonupdate(null,row);</script>';</textarea>";
-            } else {
-                echo 'Error en el guardado...';
-            }
-        }
+    		
+    		$cn = new Model_DataAdapter ();
+    		$nombrestore = '"public".guardarpersona';
+    		$parametros [0] = $cad ;
+    		$parametros [1] = '~' ;
+    		$parametros [2] = '^';
+    		$datos = $cn->ejec_store_procedura_sql ( $nombrestore, $parametros );
+    		
+    		//echo "<textarea>".$cad."</textarea>";
+    		if($datos[0][0] == '1'){
+    			echo "Guardado Correctamente ";
+    			 $codperson=$datos[0][1];
+    			//echo '<script language=\"JavaScript\">window.open(\''.$this->view->util()->getLink('mantenimientos/mconten').'\', \'_self\')</script>';
+    			echo "<script language=\"JavaScript\">row = new Object();row.id_person = '$codperson';xmantepersonupdate(null,row);</script>";
+    			//echo "<textarea>'<script language=\"JavaScript\">row = new Object();row.id_person = '$codperson';xmantepersonupdate(null,row);</script>';</textarea>";
+    		}else{
+    			echo 'Error en el guardado...';
+    		}
+    		
+    		
+    	}
     }
 
     public function contenedorAction() {
         
     }
 
-    public function uitAction() {
+public function uitAction() {
         $this->view->util()->registerScriptJSControllerAction($this->getRequest());
     }
-
-    public function uitsaveAction() {
-        $this->_helper->layout->disableLayout();
-        $this->_helper->viewRenderer->setNoRender();
-        $this->_helper->getHelper('ajaxContext')->initContext();
-        if ($this->getRequest()->isXmlHttpRequest()) {
-            $idsigma = $this->_request->getPost('idsigma');
-            $cperiod = $this->_request->getPost('cperiod');
-            $ctiptri = $this->_request->getPost('ctiptri');
-            $nvaluit = $this->_request->getPost('mvaluit');
-            $nimpmin = $this->_request->getPost('nimpmin');
-            $nimpmax = $this->_request->getPost('nimpmax');
-
-            $ncosemi = $this->_request->getPost('ncosemi');
-            $ncosadi = $this->_request->getPost('ncosadi');
-            $nestado = $this->_request->getPost('nestado');
-            $oper = $this->_request->getPost('oper'); // add	edit del
-            $id = $this->_request->getPost('id');
-
-            $ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
-            $userlogin = $ddatosuserlog->userlogin;
-            $cn = new Model_DataAdapter ();
-            $nombrestore = '"public".guardarcvaluit';
-            $parametros [0] = $idsigma;
-            $parametros [1] = $cperiod;
-            $parametros [2] = $ctiptri;
-            $parametros [3] = $nvaluit;
-            $parametros [4] = $nimpmin;
-            $parametros [5] = $nimpmax;
-            $parametros [6] = $ncosemi;
-            $parametros [7] = $ncosadi;
-            $parametros [8] = $nestado;
-            $parametros [9] = $this->view->util()->getHost();
-            $parametros [10] = $userlogin;
-
-            $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
-            if ($datos[0][0] == '1') {
-                
-            } else {
-                header("Status: 400 Error al Guardar intentelo en otro momento o contacte al adminsitrador");
-            }
-        }
+	
+    public function uitsaveAction(){
+    	$this->_helper->layout->disableLayout();
+    	$this->_helper->viewRenderer->setNoRender();
+    	$this->_helper->getHelper('ajaxContext')->initContext();
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+	    	$idsigma = $this->_request->getPost('idsigma');
+	    	$cperiod = $this->_request->getPost('cperiod');
+	    	$ctiptri = $this->_request->getPost('ctiptri');
+	    	$nvaluit = $this->_request->getPost('mvaluit');
+	    	$nimpmin = $this->_request->getPost('nimpmin');
+	    	$nimpmax = $this->_request->getPost('nimpmax');
+	    	
+	    	$ncosemi = $this->_request->getPost('ncosemi');
+	    	$ncosadi = $this->_request->getPost('ncosadi');
+	    	$nestado = $this->_request->getPost('nestado');
+	    	$oper = $this->_request->getPost('oper');// add	edit del
+	    	$id = $this->_request->getPost('id');
+	    	
+	    	$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+	    	$userlogin = $ddatosuserlog->userlogin;
+	    	$cn = new Model_DataAdapter ();
+	    	$nombrestore = '"public".guardarcvaluit';
+	    	$parametros [0] = $idsigma;
+	    	$parametros [1] = $cperiod;
+	    	$parametros [2] = $ctiptri;
+	    	$parametros [3] = $nvaluit;
+	    	$parametros [4] = $nimpmin;
+	    	$parametros [5] = $nimpmax;
+	    	$parametros [6] = $ncosemi;
+	    	$parametros [7] = $ncosadi;
+	    	$parametros [8] = $nestado;
+	    	$parametros [9] = $this->view->util()->getHost(); 
+	    	$parametros [10] = $userlogin;
+	    	
+	    	$datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+	    	if ($datos[0][0]=='1'){
+	    		
+	    	}
+	    		else{
+	    			header("Status: 400 Error al Guardar intentelo en otro momento o contacte al adminsitrador");
+	    	}
+    	}
+ 
     }
 
-    public function reajusteAction() {
+  public function reajusteAction() {
         $this->view->util()->registerScriptJSControllerAction($this->getRequest());
     }
+    public function reajustesaveAction(){
+    	$this->_helper->layout->disableLayout();
+    	$this->_helper->viewRenderer->setNoRender();
+    	$this->_helper->getHelper('ajaxContext')->initContext();
+    	if ($this->getRequest()->isXmlHttpRequest()) {
 
-    public function reajustesaveAction() {
-        $this->_helper->layout->disableLayout();
-        $this->_helper->viewRenderer->setNoRender();
-        $this->_helper->getHelper('ajaxContext')->initContext();
-        if ($this->getRequest()->isXmlHttpRequest()) {
-            $idsigma = $this->_request->getPost('idsigma');
-            $cperiod = $this->_request->getPost('cperiod');
-            $ctiping = $this->_request->getPost('ctiping');
-            $cnromes = $this->_request->getPost('cnromes');
-            $nmontim = $this->_request->getPost('nmontim');
-            $nfacrea = $this->_request->getPost('nfacrea');
-            $dfecven = $this->_request->getPost('dfecven');
-            $nmonipm = $this->_request->getPost('nmonipm');
-            $ntipcuo = $this->_request->getPost('ntipcuo');
-            $nipmapl = $this->_request->getPost('nipmapl');
-            $nmorapl = $this->_request->getPost('nmorapl');
-            $nestado = $this->_request->getPost('nestado');
-            $oper = $this->_request->getPost('oper'); // add edit del
-            $id = $this->_request->getPost('id');
+	    	$idsigma = $this->_request->getPost('idsigma');
+	    	$cperiod = $this->_request->getPost('cperiod');
+	    	$ctiping = $this->_request->getPost('ctiping');
+	    	$cnromes = $this->_request->getPost('cnromes');
+	    	$nmontim = $this->_request->getPost('nmontim');
+	    	$nfacrea = $this->_request->getPost('nfacrea');
+	       	$dfecven = $this->_request->getPost('dfecven');
+	    	$nmonipm = $this->_request->getPost('nmonipm');
+	    	$ntipcuo = $this->_request->getPost('ntipcuo');
+	    	$nipmapl = $this->_request->getPost('nipmapl');
+	    	$nmorapl = $this->_request->getPost('nmorapl');
+	    	$nestado = $this->_request->getPost('nestado');
+	    	$oper = $this->_request->getPost('oper');// add	edit del
+	    	$id = $this->_request->getPost('id');
+	    
+    		
+	    	$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+	    	$userlogin = $ddatosuserlog->userlogin;
+	    	$cn = new Model_DataAdapter ();
+	    	$nombrestore = 'public.guardarmreajus';
+	    	$parametros [0] = $idsigma;
+	    	$parametros [1] = $cperiod;
+	    	$parametros [2] = $ctiping;
+	    	$parametros [3] = $cnromes;
+	    	$parametros [4] = $nmontim;
+	    	$parametros [5] = $nfacrea;
+	    	$parametros [6] = $dfecven;
+	    	$parametros [7] = $nmonipm;
 
-            $ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
-            $userlogin = $ddatosuserlog->userlogin;
-            $cn = new Model_DataAdapter ();
-            $nombrestore = 'public.guardarmreajus';
-            $parametros [0] = $idsigma;
-            $parametros [1] = $cperiod;
-            $parametros [2] = $ctiping;
-            $parametros [3] = $cnromes;
-            $parametros [4] = $nmontim;
-            $parametros [5] = $nfacrea;
-            $parametros [6] = $dfecven;
-            $parametros [7] = $nmonipm;
-            $parametros [8] = $ntipcuo;
-            $parametros [9] = $nipmapl;
-            $parametros [10] = $nmorapl;
-            $parametros [11] = $nestado;
-            $parametros [12] = $this->view->util()->getHost();
-            $parametros [13] = $userlogin;
-            /*
-              guardarmreajus (p_idsigma , p_cperanio , p_ctiping , p_cnromes
-              , p_nmontim , p_nfacrea , p_dfecven , p_nmonipm
-              , p_ntipcuo , p_nipmapl , p_nmorapl
-              , p_nestado , p_vhostnm , p_vusernm , p_ref refcursor)
-             */
-            $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
-            if ($datos[0][0] == '1') {
-                
-            } else {
-                header("Status: 400 Error al Guardar intentelo en otro momento o contacte al adminsitrador");
-            }
-        }
+	    	$parametros [8] = $ntipcuo;
+	    	$parametros [9] = $nipmapl;
+	    	$parametros [10] = $nmorapl;
+    	
+	    	$parametros [11] = $nestado;
+	    	$parametros [12] = $this->view->util()->getHost();
+	    	$parametros [13] = $userlogin;
+	    	$datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+	    	if ($datos[0][0]=='1'){
+	    
+	    	}
+	    	else{
+	    		header("Status: 400 Error al Guardar intentelo en otro momento o contacte al adminsitrador");
+	    	}
+	    	
+	
+    	}
+    
     }
 
     public function arancelAction() {

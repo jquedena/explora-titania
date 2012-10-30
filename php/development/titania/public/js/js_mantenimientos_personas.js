@@ -48,7 +48,9 @@ view= function(_parameters){
 	
 	_post = $.post(path + "mantenimientos/personaview", _parameters);
 	 _post.success(function(request){
-		 $("#panelRegistro").html(request);
+		 $("#panelPersons").html(request);
+		 themeTextBox();
+		 themeComboBox();
 		 $('#btnguardar').button({ icons: {primary:'ui-icon-disk'} })
 		 $('#btnguardar').click(function(event){
 			 xsavemanteperson();

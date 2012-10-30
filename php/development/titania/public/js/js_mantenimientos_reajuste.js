@@ -5,7 +5,6 @@ xviewreajust = function(){
 bindkeysreajust = {"onEnter": xviewreajust};
 buscarreajust = function(_periodo) {
 	if(_periodo == undefined || _periodo == null) {
-		//_periodo = $("#cboPeriodo").val();
 		 $("#txtPeriodo").val('');
 		 _periodo ='%'
     }else{
@@ -35,40 +34,12 @@ buscarreajust = function(_periodo) {
             		{navkeys: [true,38,40], height:250,jqModal:false,closeOnEscape:true} // view options
             		);
 
-            /*
-            jQuery("#tblResultreajust").jqGrid('navButtonAdd','#ptblResultreajust',{caption:"Modificar",
-            	onClickButton:function(){
-            		var gsr = jQuery("#tblResultreajust").jqGrid('getGridParam','selrow');
-            		if(gsr){
-            			jQuery("#tblResultreajust").jqGrid('GridToForm',gsr,"#order");
-            		} else {
-            			alert("Please select Row")
-            		}							
-            	} 
-            });
-            
-            jQuery("#tblResultreajust").jqGrid('navButtonAdd','#ptblResultreajust',{caption:"Registrar",
-            	onClickButton:function(){
-            		var gsr = jQuery("#tblResultreajust").jqGrid('getGridParam','selrow');
-            		if(gsr){
-            			jQuery("#tblResultreajust").jqGrid('GridToForm',gsr,"#order");
-            		} else {
-            			alert("Please select Row")
-            		}							
-            	} 
-            });*/
-        //} else {
-        //	xmantepersonupdate();
-        //}
     };
     
     procesarConsultaSubProceso('registrar', parameters, proceso);        
  
 };
 
-//buscar_mreajus
-//p_nvar1 idsigma
-//p_nvar2 periodo
 var anios ={value:"9999999999:Seleccionar" +
 					";1991:1991" +
 					";1992:1992" +
@@ -111,7 +82,7 @@ optionregreajust = {
     height: 290,
     width: 1000,
     editurl: "reajustesave",
-    colNames: ["C\u00F3digo", "Periodo","Tipo", "Mes", "Tasa Interes Mora.", "Factor Reajus.", "Fecha Vencimiento", "IPM", "Tipo Cuota", "Aplica IPM","Aplica Mora","Estado"],
+    colNames: ["C\u00F3digo", "Periodo","Tipo", "Mes", "Taza interes Mora.", "Factor Reajus.", "Fecha Vencimiento", "IPM", "ntipcuo","Aplica IPM","Aplica Mora","Estado"],
     colModel: [
         {name:'idsigma', index:'idsigma', width:100,editable: true, align: 'center', frozen: true,editoptions:{readonly:true,size:10}},
         {name:'cperiod', index:'cperiod', width:90,editable: true, align: 'center', frozen: true,edittype:"select"
@@ -147,29 +118,19 @@ optionregreajust = {
         
         {name:'nmorapl', index:'nmorapl', width:90,editable: true,align:"center",edittype:"checkbox",editoptions:{value:"1:0",defaultValue:"1"},formatter:'checkbox'},//si aplika mora 1 si no 0
         {name:'nestado', index:'nestado', width:90,editable: true,align:"center",edittype:"checkbox",editoptions:{value:"1:0",defaultValue:"1"},formatter:'checkbox'}
-        //{name:'nestado', index:'nestado', width:90,editable:true,align:"center",edittype:"checkbox",editoptions:{value:"1:0",defaultValue:"1"},formatter:'checkbox'}
         ],
-        //cellEdit:true,
     caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda"
     	
-    /* onSelectRow: function(id) {
-        row = $(this).getRowData(id);
-        console.log(row);
-    },*/
-    //ondblClickRow: xviewreajust
+
 };
 $(function(){
-
-    //inicializarGrid("tblResultpersons", optionPerson);
-	//$("#cboPeriodo").combobox();
     $("#txtPeriodo").attr("maxlength", 4);
     $("#txtPeriodo").bind("autocompleteselect", function(event, ui) {
         buscarreajust(ui.item.value);
     });
     $('#txtPeriodo').keyup(function(e) {
-    	//alert(e.keyCode);
     	if(e.keyCode == 13) {
-    		//alert('DAve');
+    
     		if ($('#txtPeriodo').val()==''){
     			buscarreajust();
     		}
@@ -177,10 +138,8 @@ $(function(){
     });
     $("#txtPeriodo").bind("autocompletechange", function(event, ui) {
         if(ui.item) {
-        	//buscarreajust(ui.item.value);
         	buscarreajust(ui.item.value);
         } else {
-            //openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
         	buscarreajust();
         }
     });
