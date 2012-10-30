@@ -19,7 +19,7 @@ public class GestorConvert implements Converter {
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
     	AplicacionMBean aplicacionMBean = (AplicacionMBean)WebServletContextListener.getApplicationContext().getBean("aplicacionMBean");
         String id = String.valueOf(value);
-        if (value.trim().equals("")) {
+        if (value == null || value.trim().equals("")) {
             return null;
         } else {
             try {

@@ -62,7 +62,7 @@
 			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"/>
 			<h:outputText style="font-family: 'Verdana';font-weight: bold;"
 				rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"
-				value="HA RECIBIDO EL CORREO DE CONFORMIDAD DE LA SOLICITUD DEL GT/GR/JPN?" />
+				value="HA RECIBIDO EL CORREO DE CONFORMIDAD DE LA SOLICITUD DEL GT/JPN?" />
 			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id == 1033}"/>
 
 			<p:dataTable value="#{oficinaSolicitudDto.listaInvolucrados}"
@@ -73,7 +73,12 @@
 				<p:column headerText="NOMBRES Y APELLIDOS">#{solicitudInvolucradoDto.involucradoDto.nombres} #{solicitudInvolucradoDto.involucradoDto.apellidoPaterno} #{solicitudInvolucradoDto.involucradoDto.apellidoMaterno}</p:column>
 				<p:column headerText="APROBACION">
 					<h:selectOneMenu style="border-width: 0px;"
-						disabled="#{solicitudMBean.bloquearControles || oficinaSolicitudDto.realizoVotoTerritorial || ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
+						disabled="#{(solicitudMBean.status &amp;&amp; (solicitudInvolucradoDto.estadoDto.id == 1034 || (sessionMBean.registro==solicitudMBean.dto.responsableSolicitante &amp;&amp; solicitudInvolucradoDto.estadoDtoBkp.id!=1034)))
+						|| (sessionMBean.registro==solicitudMBean.dto.responsableSolicitante &amp;&amp; solicitudInvolucradoDto.estadoDtoBkp.id!=1034)
+						|| solicitudMBean.bloquearControles 
+						|| oficinaSolicitudDto.realizoVotoTerritorial 
+						|| ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) 
+							&amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
 						converter="parametroConvert"
 						immediate="true"
 						valueChangeListener="#{solicitudMBean.cambiarDecisionEvaluacion}"
@@ -82,18 +87,27 @@
 							value="#{solicitudMBean.listaEstadoArobacion}"
 							var="parametroDto" itemLabel="#{parametroDto.descripcion}"
 							itemValue="#{parametroDto}" />
-						<p:ajax update="msgs msg_alert" />  
+						<p:ajax onstart="statusDialog.show();" onsuccess="statusDialog.hide();" 
+							update="msgs msg_alert :frmPrincipal:idTabView:pgEvaluacionesSolicitud" />  
 					</h:selectOneMenu>
 				</p:column>
 				<p:column headerText="COMENTARIO">
 					<p:inputText value="#{solicitudInvolucradoDto.comentario}"
 						label="COMENTARIO"
-						disabled="#{solicitudMBean.bloquearControles || oficinaSolicitudDto.realizoVotoTerritorial || ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
+						disabled="#{(solicitudMBean.status &amp;&amp; (solicitudInvolucradoDto.estadoDto.id == 1034 || (sessionMBean.registro==solicitudMBean.dto.responsableSolicitante &amp;&amp; solicitudInvolucradoDto.estadoDtoBkp.id!=1034)))
+						|| (sessionMBean.registro==solicitudMBean.dto.responsableSolicitante &amp;&amp; solicitudInvolucradoDto.estadoDtoBkp.id!=1034)  
+						|| solicitudMBean.bloquearControles 
+						|| oficinaSolicitudDto.realizoVotoTerritorial 
+						|| ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
 						size="60">
 						<f:ajax />
 					</p:inputText>
 					<p:commandButton title="GUARDAR EVALUACION"
-						disabled="#{solicitudMBean.bloquearControles || oficinaSolicitudDto.realizoVotoTerritorial || ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
+						disabled="#{(solicitudMBean.status &amp;&amp; (solicitudInvolucradoDto.estadoDto.id == 1034 || (sessionMBean.registro==solicitudMBean.dto.responsableSolicitante &amp;&amp; solicitudInvolucradoDto.estadoDtoBkp.id!=1034)))
+						|| (sessionMBean.registro==solicitudMBean.dto.responsableSolicitante &amp;&amp; solicitudInvolucradoDto.estadoDtoBkp.id!=1034)  
+						|| solicitudMBean.bloquearControles 
+						|| oficinaSolicitudDto.realizoVotoTerritorial 
+						|| ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
 						rendered="#{(sessionMBean.registro==solicitudMBean.dto.responsableSolicitante || sessionMBean.registro==solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; !oficinaSolicitudDto.silencioAdministrativo &amp;&amp; !(solicitudMBean.dto.tramiteSolicitudDto.id==1015 || solicitudMBean.dto.tramiteSolicitudDto.id==1021)}"
 						value="GUARDAR EVALUACION"
 						onclick="return confirm('ESTÁ SEGURO QUE DESEA GUARDAR LA EVALUACIÓN?');"
@@ -114,7 +128,7 @@
 
 			<h:outputText style="font-family: 'Verdana';font-weight: bold;"
 				rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033 &amp;&amp; solicitudMBean.mostrarDeclaracionJurada}"
-				value="DE CONTAR CON AJUSTE/BONIFICACION, EL GT/GR/JPN ACEPTÓ SU APLICACIÓN?" />
+				value="DE CONTAR CON AJUSTE/BONIFICACION, EL GT/JPN ACEPTÓ SU APLICACIÓN?" />
 			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"/>
 
 			<h:selectOneMenu converter="parametroConvert"

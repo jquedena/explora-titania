@@ -126,8 +126,10 @@ public class CorreoElectronico {
 				message.setFrom(new InternetAddress(beanCorreo.getEmailFrom(), beanCorreo.getFrom()));
 			}
 			
-			message.addRecipients(Message.RecipientType.TO,beanCorreo.getListaTo());
-			
+			if(beanCorreo.getListaTo() != null & beanCorreo.getListaTo().length() > 0) {
+				message.addRecipients(Message.RecipientType.TO, beanCorreo.getListaTo());
+			}
+	
 			if(beanCorreo.getListaCc() != null && beanCorreo.getListaCc().length() > 0) {
 				message.addRecipients(Message.RecipientType.CC,beanCorreo.getListaCc());
 			}

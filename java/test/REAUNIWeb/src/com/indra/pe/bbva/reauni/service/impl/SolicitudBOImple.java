@@ -362,7 +362,7 @@ public class SolicitudBOImple implements SolicitudBO {
 	public int validarContratos(Long id) {
 		int count = -1;
 		String query = "select count(1) from reauni.vreauni_gestion_files s "
-			+ "where s.id<>" + id + " and s.codigo_contrato not in( "
+			+ "where s.id<>" + id + " and s.codigo_contrato in( "
 			+ "select t.codigo_contrato from reauni.vreauni_gestion_files t " 
 			+ "where t.id=" + id + " and t.tramite_solicitud=1018 ) and s.tramite_solicitud not in (1018, 1022, 1021)";
 		try {

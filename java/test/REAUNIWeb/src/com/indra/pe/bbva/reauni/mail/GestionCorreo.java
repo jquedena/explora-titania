@@ -1,6 +1,6 @@
 package com.indra.pe.bbva.reauni.mail;
 
-import java.util.HashMap;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +46,7 @@ public class GestionCorreo {
 	public GestionCorreo() {
 	}
 
-	public void lanzarTipoCorreo(SolicitudDto solicitudDto,	TipoCorreoEnum vTipoCorreoEnum, ContratoDto contratoDto) throws Exception {
+	public void lanzarTipoCorreo(SolicitudDto solicitudDto,	TipoCorreoEnum vTipoCorreoEnum, ContratoDto contratoDto, Date evaluado) throws Exception {
 		CorreoElectronico correoElectronico;
 		switch (vTipoCorreoEnum) {
 
@@ -62,7 +62,7 @@ public class GestionCorreo {
 
 		case RECHAZO_APROBACION:
 			correoElectronico = new CorreoElectronico();
-			correoElectronico.enviar(obtenerCorreoRechazoAprobacion(solicitudDto));
+			correoElectronico.enviar(obtenerCorreoRechazoAprobacion(solicitudDto, evaluado));
 			break;
 		case GESTION_FILE:
 			correoElectronico = new CorreoElectronico();
@@ -76,11 +76,15 @@ public class GestionCorreo {
 			break;
 		}
 	}
+	
+	public void lanzarTipoCorreo(SolicitudDto solicitudDto,	TipoCorreoEnum vTipoCorreoEnum, ContratoDto contratoDto) throws Exception {
+		lanzarTipoCorreo(solicitudDto, vTipoCorreoEnum, contratoDto, null);
+	}
 
 	public Correo obtenerCorreoEvaluacion(SolicitudDto s) {
 		Correo beanCorreo = new Correo();
 		beanCorreo.setAsunto("EVALUAR SOLICITUD DE " + s.getTipoDto().getDescripcion() + " " + s.getCodigoSolicitud());
-		beanCorreo.setMensaje(" Se pone en conocimiento la solicitud de " + s.getTipoDto().getDescripcion().toLowerCase() + " N° " + s.getCodigoSolicitud() + " para su respectiva evaluación.<br><br>CC: GT/GR/JPN Involucrados.");
+		beanCorreo.setMensaje(" Se pone en conocimiento la solicitud de " + s.getTipoDto().getDescripcion().toLowerCase() + " N° " + s.getCodigoSolicitud() + " para su respectiva evaluación.<br><br>CC: GT/JPN Involucrados.");
 		beanCorreo.setFrom(s.getResponsableSolicitanteDesc());
 		beanCorreo.setEmailFrom(s.getEmailSolicitante());
 		beanCorreo.setListaTo(obtenerToEmailPorSolicitud(s));
@@ -151,7 +155,7 @@ public class GestionCorreo {
 		try {
 			listaContratos = getDaoTarea().ejecutarSQL(sql);
 			getDaoTarea().executeProcedure("update reauni.treauni_oficina_solicitud set fecha_envio_gestion_file=sysdate where solicitud = '" + s.getId() + "' and envio_gestion_file=1 and fecha_envio_gestion_file is null");
-			beanCorreo.setMensajeAdjuntoExcel(FormatoMensajeCorreo.formatoCorreoResumen(listaContratos, Constantes.CABECERA_REPORTE_GESTION_FILES, "Contratos"));
+			beanCorreo.setMensajeAdjuntoExcel(FormatoMensajeCorreo.formatoCorreoResumen(listaContratos, Constantes.CABECERA_REPORTE_GESTION_FILES, "Contratos_" + s.getId()));
 		} catch (DAOException e) {
 			logger.error("Generando lista de contratos para la Gestion de Files", e);
 		}
@@ -242,7 +246,7 @@ public class GestionCorreo {
 		return beanCorreo;
 	}
 
-	public Correo obtenerCorreoRechazoAprobacion(SolicitudDto solicitudDto) {
+	public Correo obtenerCorreoRechazoAprobacion(SolicitudDto solicitudDto, Date evaluado) {
 		int temp = 0;
 		String codTerr = "";
 		String codOfic = "";
@@ -385,18 +389,18 @@ public class GestionCorreo {
 		Correo beanCorreo = new Correo();
 		beanCorreo.setAsunto(" " + solicitudDto.getTramiteSolicitudDto().getDescripcionCorta() + " DE SOLICITUD N° " + solicitudDto.getCodigoSolicitud());
 		beanCorreo.setMensaje(" Estimados Sres,<br>"
-				+ " La solicitud N ° "
+				+ " La solicitud N &#176; "
 				+ solicitudDto.getCodigoSolicitud()
 				+ " fue "
 				+ solicitudDto.getTramiteSolicitudDto().getDescripcion().toLowerCase()
 				+ " el "
-				+ getFechaAprobacionRechazo(solicitudDto)
-				+ " por: <br>"
+				+ FormatoMensajeCorreo.formatoFecha.format(evaluado)
+				+ " por: <br><br>"
 				+ aux1.toString());
 		beanCorreo.setMensajeAdjunto(FormatoMensajeCorreo.formatoCorreoEvaluacion(solicitudDto));
 		beanCorreo.setFileName(GestionCorreo.RECHAZO_APROBACION);
 		beanCorreo.setListaTo(obtenerToEmailPorSolicitud(solicitudDto));
-		beanCorreo.setListaCc(solicitudDto.getEmailSolicitante());
+		beanCorreo.setListaCc(solicitudDto.getEmailSolicitante(true));
 		return beanCorreo;
 	}
 
@@ -413,7 +417,7 @@ public class GestionCorreo {
 		beanCorreo.setMensajeAdjunto(FormatoMensajeCorreo.formatoCorreoSilencioAdm(solicitudDto));
 		beanCorreo.setFileName(GestionCorreo.SILENCIO_ADMINISTRATIVO);
 		beanCorreo.setListaTo(obtenerToEmailPorSolicitud(solicitudDto));
-		beanCorreo.setListaCc(solicitudDto.getEmailSolicitante());
+		beanCorreo.setListaCc(solicitudDto.getEmailSolicitante(true));
 		return beanCorreo;
 	}
 
@@ -445,7 +449,7 @@ public class GestionCorreo {
 		beanCorreo.setMensaje("Estimados,<br/>La solicitud N° " + s.getCodigoSolicitud()+ " fue aprobada el " + getFechaAprobacionRechazo(s) + " por Silencio Administrativo. ");
 		beanCorreo.setMensajeAdjunto(FormatoMensajeCorreo.formatoCorreoSilencioAdm(s));
 		beanCorreo.setListaTo(obtenerToEmailPorSolicitud(s));
-		beanCorreo.setListaCc(s.getEmailSolicitante());
+		beanCorreo.setListaCc(s.getEmailSolicitante(true));
 		return beanCorreo;
 	}
 
@@ -470,7 +474,7 @@ public class GestionCorreo {
 						+ contratoDto.getComentarioEstado()
 						+ " <br><br><br>  Saludos Coordiales <br> OPERACIONES CENTRALIZADAS");
 		beanCorreo.setEmailFrom(sessionMBean.getEmail());
-		beanCorreo.setListaTo(solicitudDto.getEmailSolicitante());
+		beanCorreo.setListaTo(solicitudDto.getEmailSolicitante(true));
 		String email_operaciones = ApplicationHelper.obtenerParametroPorId(1055L).getValorCadena();
 		if (email_operaciones != null && !email_operaciones.equals("")) {
 			beanCorreo.setListaCc(email_operaciones);

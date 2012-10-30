@@ -141,9 +141,7 @@
 						actionListener="#{consultaContratoFileMBean.buscar}">
 						<f:ajax render="tblPrincipal" />
 					</p:commandButton>
-					<p:commandButton ajax="false" value="EXPORTAR XLS"> 
-					    <p:dataExporter type="xls" target="tblPrincipal" fileName="ContratosGestionFiles" excludeColumns="0" /><!--   preProcessor="#{tableBean.preProcessPDF}" -->  
-					</p:commandButton> 
+					<p:commandButton ajax="false" value="EXPORTAR XLS" onclick="return exportarContrato(2);" />  
 				</p:outputPanel>				
 			</h:panelGrid>
 
@@ -223,14 +221,14 @@
 
 					<p:column style="text-align:left;">
 						<f:facet name="header">
-							<h:outputText value="OFICINA PRINCIPAL" />
+							<h:outputText value="GESTOR PRINCIPAL" />
 						</f:facet>
 						<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.gestorPrincipalCliente} - #{dto.oficinaSolicitudDto.solicitudDto.gestorPrincipalClienteDesc}" />
 					</p:column>
 
 					<p:column style="text-align:left;">
 						<f:facet name="header">
-							<h:outputText value="OFICINA PRINCIPAL" />
+							<h:outputText value="OFICINA RECEPTOR" />
 						</f:facet>
 						<h:outputText value="#{dto.oficinaSolicitudDto.solicitudDto.oficinaReceptorDto.codOficina} - #{dto.oficinaSolicitudDto.solicitudDto.oficinaReceptorDto.desOficina}" />
 					</p:column>

@@ -578,7 +578,11 @@ public class SolicitudDto implements Serializable {
 	}
 
 	public String getEmailSolicitante() {
-		if(SessionHelper.getModoDebug()) {
+		return emailSolicitante;
+	}
+	
+	public String getEmailSolicitante(boolean modo) {
+		if(SessionHelper.getModoDebug() && modo) {
 			return SessionHelper.getEmailDebug();
 		}
 		

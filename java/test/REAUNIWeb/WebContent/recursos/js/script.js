@@ -237,12 +237,23 @@ function obtenerContexto(){
 	return tmp[0] + "REAUNIWeb/";
 }
 
+
+function exportarContrato(tipo) {
+	var 
+		x = parseInt(screen.width / 2) ,
+		y = parseInt(screen.height / 2); 
+
+	window.open(obtenerContexto() + "ExportarContrato.do?tipo=" + tipo, "_blank", "width=10,height=10,left=" + (x - 10)  + ",top=" + (y - 10) + ",scrollbars=0,directories=0,location=0,status=0");
+}
+
 function cerrar() {
+	window.close();
+}
+
+function cerrarVentana() {
 	$.ajax({
 		url: obtenerContexto() + 'CerrarSesion.do',
 		success: function(data) {
-			// window.open(obtenerContexto() + "ActionValidarAcceso.do", "_self");
-			window.close();
 		},
 		error: function(data) {
 			alert("No se pudo cerrar la sesi\u00F3n.");
@@ -250,6 +261,8 @@ function cerrar() {
 	});
 }
 
-function exportarContrato() {
-	window.open(obtenerContexto() + "ExportarContrato.do", "_blank");
-}
+window.onload = function(){
+    $('#itCodigoCliente').live("cut copy paste",function(e) {
+        e.preventDefault();
+    });
+};

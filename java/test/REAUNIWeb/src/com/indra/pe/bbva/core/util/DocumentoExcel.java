@@ -21,6 +21,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.CellRangeAddress;
 
@@ -39,13 +40,29 @@ public class DocumentoExcel {
 	private HSSFCellStyle styleFooterRight = null;
 	private HSSFCellStyle styleContentNO = null;
 	private HSSFCellStyle styleContentSI = null;
-
-	public DocumentoExcel(String filePath) throws InvalidFormatException,
-			FileNotFoundException, IOException {
+	
+	
+	public DocumentoExcel(Object document, String name) {
+		wb = (HSSFWorkbook) document;
+		wb.setSheetName(0, name);
+		sheet = wb.getSheetAt(0);
+		this.crearContentStaticStyle();
+		this.crearLabelStaticStyle();
+		this.crearContentStaticStyleCenter();
+		this.crearStyleBarraTitulo();
+		this.crearStyleFooter();
+		this.crearStyleFooterRight();
+		this.crearContentStaticStyleCenterNO();
+		this.crearContentStaticStyleCenterSI();
+		this.crearContentStaticStyleRojo();
+		this.crearContentStaticStyleVerde();
+		this.crearContentStaticStyleAmarillo();
+	}
+	
+	public DocumentoExcel(String filePath) throws InvalidFormatException, FileNotFoundException, IOException {
 
 		File file = new File(filePath);
-		this.setWb((HSSFWorkbook) WorkbookFactory.create(new FileInputStream(
-				file)));
+		this.setWb((HSSFWorkbook) WorkbookFactory.create(new FileInputStream(file)));
 		this.setSheet((HSSFSheet) this.getWb().getSheetAt(0));
 		this.crearContentStaticStyle();
 		this.crearLabelStaticStyle();
@@ -205,18 +222,6 @@ public class DocumentoExcel {
 		this.getSheet().getRow(indexRow).getCell(indexCell).setCellValue(valor);
 
 	}
-	
-	public void setBarraTitulo(int indexRow, int indexCell, String valor, short color) {
-
-		if (this.getSheet().getRow(indexRow) == null)
-			this.getSheet().createRow(indexRow);
-		if (this.getSheet().getRow(indexRow).getCell(indexCell) == null)
-			this.getSheet().getRow(indexRow).createCell(indexCell);
-
-		this.getSheet().getRow(indexRow).getCell(indexCell).setCellStyle(this.getStyleBarraTitulo());
-		this.getSheet().getRow(indexRow).getCell(indexCell).setCellValue(valor);
-
-	}
 
 	public void setFooter(int indexRow, int indexCellFrom, int indexCellTo,
 			String titulo) {
@@ -261,18 +266,14 @@ public class DocumentoExcel {
 			this.getSheet().createRow(indexRow);
 
 		for (int index = indexCellFrom; index <= indexCellTo; index++) {
-			if (this.getSheet().getRow(indexRow).getCell(index) == null)
+			if (this.getSheet().getRow(indexRow).getCell(index) == null) {
 				this.getSheet().getRow(indexRow).createCell(index);
+			}
+			this.getSheet().getRow(indexRow).getCell(index).setCellStyle(this.getStyleBarraTitulo());
 		}
-
-		this.getSheet().addMergedRegion(
-				new CellRangeAddress(indexRow, indexRow, indexCellFrom,
-						indexCellTo));
-
-		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellStyle(
-				this.getStyleBarraTitulo());
-		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellValue(
-				titulo);
+		
+		this.getSheet().addMergedRegion(new CellRangeAddress(indexRow, indexRow, indexCellFrom, indexCellTo));
+		this.getSheet().getRow(indexRow).getCell(indexCellFrom).setCellValue(titulo);
 	}
 
 	public void setImagen(int indexRow, int indexCell, String pathImg)
@@ -379,6 +380,11 @@ public class DocumentoExcel {
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_LEFT);
 
+		style.setBorderBottom(CellStyle.BORDER_THIN);
+	    style.setBorderLeft(CellStyle.BORDER_THIN);
+	    style.setBorderRight(CellStyle.BORDER_THIN);
+	    style.setBorderTop(CellStyle.BORDER_THIN);
+		
 		HSSFFont font = wb.createFont();
 		font.setFontName("Arial");
 		font.setFontHeightInPoints((short) 10);
@@ -428,11 +434,18 @@ public class DocumentoExcel {
 	}
 
 	private void crearStyleBarraTitulo() {
+		this.crearColor(HSSFColor.BLUE.index, 83, 142, 213);
+		
 		HSSFCellStyle style = wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		style.setFillForegroundColor(HSSFColor.BLUE.index);
 		style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
 
+		style.setBorderBottom(CellStyle.BORDER_THIN);
+	    style.setBorderLeft(CellStyle.BORDER_THIN);
+	    style.setBorderRight(CellStyle.BORDER_THIN);
+	    style.setBorderTop(CellStyle.BORDER_THIN);
+		
 		HSSFFont font = wb.createFont();
 		font.setFontName("Arial");
 		font.setFontHeightInPoints((short) 10);
@@ -652,4 +665,17 @@ public class DocumentoExcel {
 		this.styleContentSI = styleContentSI;
 	}
 
+	public void postProcessXLS(Object document) {
+	    HSSFRow header;
+	    int i;
+	    int j;
+	       
+	    for(i = 0; i < sheet.getPhysicalNumberOfRows(); i++) {
+	    	header = sheet.getRow(i);
+	    	for(j = 0; j < header.getPhysicalNumberOfCells(); j++) {   
+		        HSSFCell cell = header.getCell(j);   
+		        cell.setCellStyle(i == 0 ? this.getStyleBarraTitulo() : this.getStyleContent());   
+		    }	
+	    }
+	}
 }

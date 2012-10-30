@@ -27,14 +27,16 @@ import com.indra.pe.bbva.ldap.service.LdapService;
 @Table(name = "TREAUNI_ESTADO_SOLICITUD",schema="REAUNI")
 public class EstadoSolicitudDto implements Serializable {
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    
     @Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "SEQ_SOLICITUD_ESTADO")
 	@TableGenerator(name = "SEQ_SOLICITUD_ESTADO", schema = "REAUNI", table = "TREAUNI_ENTIDAD", pkColumnName = "NOMBRE", valueColumnName = "CORRELATIVO", pkColumnValue = "TREAUNI_ESTADO_SOLICITUD", allocationSize = 1)
     private Long id;
+    
     @JoinColumn(name = "ESTADO", referencedColumnName = "ID")
 	@ManyToOne
 	private ParametroDto estadoDto;
+    
     @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
@@ -44,11 +46,11 @@ public class EstadoSolicitudDto implements Serializable {
     
     @Transient
     private LdapDto usuarioDto;   
-    
-    
+        
     @JoinColumn(name = "SOLICITUD", referencedColumnName = "ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private SolicitudDto solicitudDto;   
+    
     @Column(name = "COMENTARIO")
     private String comentario;
     
@@ -76,10 +78,7 @@ public class EstadoSolicitudDto implements Serializable {
         this.fecha = fecha;
     }
 
-    
-    
-
-	public LdapDto getUsuarioDto() {
+    public LdapDto getUsuarioDto() {
 		LdapService ldapService = (LdapService) WebServletContextListener.getApplicationContext().getBean("ldapService");
 		try {
 			return ldapService.obtenerInformacionPorRegistro(this.usuario);
@@ -92,8 +91,6 @@ public class EstadoSolicitudDto implements Serializable {
 		this.usuarioDto = usuarioDto;
 	}
 
-	
-
 	public String getComentario() {
 		return comentario;
 	}
@@ -102,8 +99,6 @@ public class EstadoSolicitudDto implements Serializable {
 		this.comentario = comentario;
 	}
 
-	
-
 	public SolicitudDto getSolicitudDto() {
 		return solicitudDto;
 	}
@@ -111,9 +106,6 @@ public class EstadoSolicitudDto implements Serializable {
 	public void setSolicitudDto(SolicitudDto solicitudDto) {
 		this.solicitudDto = solicitudDto;
 	}
-
-	
-	
 
 	public String getUsuario() {
 		return usuario;
@@ -130,11 +122,8 @@ public class EstadoSolicitudDto implements Serializable {
         return hash;
     }
 
-    
-    
-    @Override
+	@Override
     public boolean equals(Object object) {
-        
         if (!(object instanceof EstadoSolicitudDto)) {
             return false;
         }
@@ -148,6 +137,5 @@ public class EstadoSolicitudDto implements Serializable {
     @Override
     public String toString() {
         return "com.indra.pe.bbva.reauni.entidad.EstadoSolicitudDto[ id=" + id + " ]";
-    }
-    
+    }   
 }

@@ -14,7 +14,7 @@
          <link type="text/css" rel="stylesheet" href="#{request.contextPath}/recursos/css/theme.css" />
          <script type="text/javascript" src="#{request.contextPath}/recursos/js/script.js" />
     </h:head>
-    <h:body onload="dlgLogout.show();">
+    <h:body onload="dlgLogout.show();" unload="cerrarVentana()" >
         <h:form>
             <p:dialog modal="true" header="REASIGNACIÓN Y UNIFICACIÓN ONLINE" widgetVar="dlgLogout" width="300" closable="false">
             	<p><b>SU SESIÓN HA EXPIRADO.</b></p>

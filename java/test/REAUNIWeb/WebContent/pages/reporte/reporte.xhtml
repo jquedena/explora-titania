@@ -6,19 +6,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
 
-<h:head>
-	<script type="text/javascript"> 
-	
-	function descarga(){
-			alert($existe);
-			var opciones="toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, width=300px, height=200px, top=85, left=140";
-			ventana = window.open("#{request.contextPath}/pages/reporte/espera_exportacion.jsp","","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, width=300px, height=200px, top=85, left=140");
-		return false;
-	}
-	
-	</script>
-</h:head>
-
 <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
 
 	<ui:define name="contenido">
@@ -31,21 +18,20 @@
  
 			<h:panelGrid columns="18">
 				
-				<h:outputLabel value="REPORTE" styleClass="label" style="font-weight: bold;" />
-				<h:selectOneMenu  value="#{reporteMBean.tipo_reporte}" style=" border-width: 0px;aling:left"    required="true" label="TIPO" >					
+				<h:outputLabel value="REPORTE" styleClass="label" style="font-weight: bold;"/>
+				<h:selectOneMenu value="#{reporteMBean.tipo_reporte}" style=" border-width: 0px;aling:left" required="true" label="TIPO">					
 					<f:selectItems value="#{reporteMBean.tipos}" />
-					<f:ajax />
+					<f:ajax listener="#{reporteMBean.carga_parametros}" render="msgs exportar" />
 				</h:selectOneMenu>
 				<br/>
 				<h:outputLabel value="Año" styleClass="label" />
-				<h:selectOneMenu     value="#{reporteMBean.anio_reporte}"  style="border-width: 0px;"  required="true" label="AÑO">
-					
+				<h:selectOneMenu value="#{reporteMBean.anio_reporte}" style="border-width: 0px;" required="true" label="AÑO">
 					<f:selectItems value="#{reporteMBean.años}" />
-					<f:ajax />
+					<f:ajax listener="#{reporteMBean.carga_parametros}" render="msgs exportar" />
 				</h:selectOneMenu>
 				<br/>
 				<h:outputLabel value="Mes" styleClass="label" />
-				<h:selectOneMenu   value="#{reporteMBean.mes_reporte}"   style="border-width: 0px;" required="true" label="MES" >					
+				<h:selectOneMenu value="#{reporteMBean.mes_reporte}" style="border-width: 0px;" required="true" label="MES">					
 					<f:selectItem itemValue="1" itemLabel="#{message['mes.enero']}" />
 					<f:selectItem itemValue="2" itemLabel="#{message['mes.febrero']}" />
 					<f:selectItem itemValue="3" itemLabel="#{message['mes.marzo']}" />
@@ -58,13 +44,18 @@
 					<f:selectItem itemValue="10" itemLabel="#{message['mes.octubre']}" />
 					<f:selectItem itemValue="11" itemLabel="#{message['mes.noviembre']}" />
 					<f:selectItem itemValue="12" itemLabel="#{message['mes.diciembre']}" />
-					<f:ajax />
+					<f:ajax listener="#{reporteMBean.carga_parametros}" render="msgs exportar" />
 				</h:selectOneMenu>
 				<br/>
 				<br></br>
-				<h:commandLink  styleClass="ui-icon ui-icon-search" style="width:25;height: 25"  title="#{message['general.button.descargar']}"
-					   action="#{reporteMBean.carga_parametros}" >
-				</h:commandLink>
+				<p:commandButton
+					id="exportar"
+					disabled="#{!reporteMBean.existe}"
+					ajax="false"
+					value="EXPORTAR XLS"
+					title="#{message['general.button.descargar']}"
+					onclick="return exportarContrato(1);" >
+				</p:commandButton>
 				
 			</h:panelGrid>
 		</h:form>

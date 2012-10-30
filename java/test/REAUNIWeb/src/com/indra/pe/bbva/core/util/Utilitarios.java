@@ -112,20 +112,24 @@ public class Utilitarios {
                     try {
                         Method getPropiedad = clase.getMethod(getter);
 
-                        Object propiedad1 = getPropiedad.invoke(obj1);
-                        Object propiedad2 = getPropiedad.invoke(obj2);
-
-                        if (propiedad1 instanceof Comparable && propiedad2 instanceof Comparable) {
-                            Comparable prop1 = (Comparable) propiedad1;
-                            Comparable prop2 = (Comparable) propiedad2;
-                            return prop1.compareTo(prop2);
-                        }//CASO DE QUE NO SEA COMPARABLE  
-                        else {
-                            if (propiedad1.equals(propiedad2)) {
-                                return 0;
-                            } else {
-                                return 1;
-                            }
+                        if(getPropiedad != null){
+	                        Object propiedad1 = getPropiedad.invoke(obj1);
+	                        Object propiedad2 = getPropiedad.invoke(obj2);
+	
+	                        if(propiedad1 != null && propiedad2 != null ) {
+		                        if (propiedad1 instanceof Comparable && propiedad2 instanceof Comparable) {
+		                            Comparable prop1 = (Comparable) propiedad1;
+		                            Comparable prop2 = (Comparable) propiedad2;
+		                            return prop1.compareTo(prop2);
+		                        }//CASO DE QUE NO SEA COMPARABLE  
+		                        else {
+		                            if (propiedad1.equals(propiedad2)) {
+		                                return 0;
+		                            } else {
+		                                return 1;
+		                            }
+		                        }
+	                        }
                         }
                     } catch (Exception e) {
                         logger.error("Error en utilitario ", e);
@@ -224,7 +228,7 @@ public class Utilitarios {
         public static int obtenerMesActual() {
             Calendar calendario = Calendar.getInstance();
             calendario = Calendar.getInstance();
-            return calendario.get(Calendar.MONTH);
+            return calendario.get(Calendar.MONTH) + 1;
         }
 
         public static int obtenerDiaActual() {
