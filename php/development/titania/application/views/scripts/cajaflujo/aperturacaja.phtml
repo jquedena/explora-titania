@@ -3,31 +3,41 @@
         <label>Aperturar Caja</label>
     </div>
     <br/>
-    <table class="ui-tablecontent">
-        <tr>
-            <td>Cajero</td>
-            <td><input style="width: 85px;" type="text" id="txtnrocaja" name="txtnrocaja" ></input></td>
-        </tr>
-        <tr>
-            <td>Nombre Cajero</td>		
-            <td><input style="width: 85px;" type="text" id="txtnomcajero" name="txtnomcajero" ></input></td>
-        </tr>
-        <tr>
-            <td>Monto Inicial</td>		
-            <td><input style="width: 85px;" type="text" id="txtmtinicial" name="txtmtinicial" ></input></td>
-        </tr>
-        <tr>
-            <td>Local</td>		
-            <td><select id="cbolocal"></select></td>
-        </tr>
-        <tr>
-            <td>Observacion</td>		
-            <td><textarea id="txtobserv"></textarea></td>
-        </tr>
-        <tr>
-            <td align="center" colspan="2">
-                <button id="btnaperturar" name="btnaperturar">Aperturar Caja</button>
-            </td>
-        </tr>
+    <div id="divmsj">
+	    <table class="ui-tablecontent">
+	    	<tr>
+	            <td>Fecha</td>		
+	            <td><input style="width: 85px;" type="text" id="txtfecha" name="txtfecha" class="ui-text" ></input></td>
+	        </tr>
+	        <tr>
+	            <td>Cajero</td>
+	            <td>
+	            	<input style="width: 85px;" type="text" id="txtnrocaja" name="txtnrocaja" class="ui-text"></input>
+	            	<input type="hidden" id="hddnrocaja" name="hddnrocaja" ></input>
+	            	<input type="hidden" id="hddidapercaja" name="hddidapercaja" ></input>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>Nombre Cajero</td>		
+	            <td><input style="width: 250px;" type="text" id="txtnomcajero" name="txtnomcajero" class="ui-text"></input></td>
+	        </tr>
+	        <tr>
+	            <td>Monto Inicial</td>		
+	            <td><input style="width: 85px;" type="text" id="txtmtinicial" name="txtmtinicial" class="ui-text"></input></td>
+	        </tr>
+	        <tr>
+	            <td>Local</td>		
+	            <td><select id="cbolocal"></select></td>
+	        </tr>
+	        <tr>
+	            <td>Observacion</td>		
+	            <td><textarea id="txtobserv" class="ui-text"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td align="center" colspan="2">
+	                <button id="btnaperturar" name="btnaperturar">Aperturar Caja</button>
+	            </td>
+	        </tr>
     </table>
+    </div>
 </div>

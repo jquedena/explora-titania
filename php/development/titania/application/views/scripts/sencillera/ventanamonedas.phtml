@@ -1,9 +1,9 @@
-<div align="center" class="ui-panelLayout-main">
+<div align="center" class="ui-panelLayout-main" >
 <!--<form id="frmcajero">-->
 	<input type="hidden" id="hdid_apert" name="hdid_apert">
 	<input type="hidden" id="hdid_cajero" name="hdid_cajero">
 	<input type="hidden" id="hdaccion" name="hdid_estado">
-	<table style="width: 90%" border="0">
+	<table style="width: 450px" border="0">
 		<tr>
 			<td><label for="txtnom_cajero">Cajero </label></td>
 			<td><input type="text" name="txtnom_cajero" id="txtnom_cajero"   class="ui-text"  readonly="readonly"/></td>
@@ -19,7 +19,10 @@
 	
 <!-- </form>-->
 <form id="frmtblmonedas">
-	<table id="tbl_monedas" class="ui-widget ui-widget-content ui-corner-all ui-table-body" style="padding: 1px;">
+<table border ="0">
+	<tr>
+		<td>
+			<table id="tbl_monedas" class="ui-widget ui-widget-content ui-corner-all ui-table-body" style="padding: 1px;">
 		<thead class="ui-widget ui-widget-header ui-title2">
 			<tr class="ui-widget-header">
 				<th width="200px">Denominacion</th>
@@ -41,6 +44,17 @@
 			</tr>
 		</tfoot>
 	</table>
+		</td>
+		<td>
+			<div id="obscerrarcaja" style="display: none;">
+				<textarea id="txtobs" name="txtobs">
+			
+				</textarea>
+			</div>
+		</td>
+	</tr>
+</table>
+	
 </form>
 </div>
 

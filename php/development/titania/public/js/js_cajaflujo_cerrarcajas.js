@@ -23,9 +23,20 @@ buscarapertcajxfecha = function(_fecha) {
         $("#panelResultapertcaj").html(requestData);
         records = $("#ctblResultapertcaj").val();
         actualizarGrid("tblResultapertcaj", optionapertcaja, bindkeys);
+        //
     };
 
-    procesarConsultaSubProceso('registrar', parameters, proceso);        
+    procesarConsultaSubProceso('registrar', parameters, proceso);
+    
+    /*Graficos*/
+    _post2 = $.post(path + "cajaflujo/graficocajeros/", "fecha1="+_fecha+"&fecha2="+_fecha);
+    _post2.success(function(requestData){
+        openDialogInfo(requestData, 400, 150);
+    //$('#result').html(requestData);
+    });
+	
+    _post2.error(postError);
+    
 };
      	//NroCaja| MontoIngreso|RecibosValidos|RecibosAnulados|MontoEntrega|Entregado|Diferencia|Estado
 optionapertcaja = {
@@ -179,7 +190,7 @@ $(function(){
 		 });
     */
     
-	$('#btnhabilitar').on('click',function(){habilitarCaja();})
+	//$('#btnhabilitar').on('click',function(){habilitarCaja();})
     inicializarGrid("tblResultapertcaj", optionapertcaja);
 	buscarapertcajxfecha($('#txtdia').val());
 	
