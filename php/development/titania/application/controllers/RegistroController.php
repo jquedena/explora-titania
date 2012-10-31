@@ -31,6 +31,8 @@ class RegistroController extends Zend_Controller_Action {
                 $this->view->cidpers = $rows[0][0];
                 $this->view->vnombre = $rows[0][1];
                 $this->view->vdirecc = $rows[0][2];
+                
+                $this->_request->setParam('cidpers', $rows[0][0]);
             } else {
                 $this->view->cidpers = $this->_request->getParam('cidpers');
                 $this->view->vnombre = $this->_request->getParam('crazsoc');

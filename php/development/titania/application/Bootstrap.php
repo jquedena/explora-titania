@@ -10,7 +10,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $options = $this->getOptions();
 
         $frontController = Zend_Controller_Front::getInstance();
-        $frontController->registerPlugin(new Application_Plugin_Intercepor(Zend_Auth::getInstance(), $options['blackList'], $options['executeController'], $options['executeView'] ));
+        $frontController->registerPlugin(new Application_Plugin_Intercepor(Zend_Auth::getInstance(), $options));
 
         $moduleLoder = new Zend_Application_Module_Autoloader(array('namespace' => '', 'basePath' => APPLICATION_PATH ));
         return $moduleLoder;
