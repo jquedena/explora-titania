@@ -72,28 +72,29 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
     }
 
     public function postDispatch(Zend_Controller_Request_Abstract $request) {
-        if ($request->getControllerName() != 'jqgrid') {
-            $controller = $request->getControllerName();
-            $parameters = $request->getParams();
-            $rows = null;
-            
-            echo "<!-- ";
-            
-            print_r($parameters);
-            
+    	$controllerInvalid = array('jqgrid', 'panel');
+    	$controller = $request->getControllerName();
+    	$parameters = $request->getParams();
+    	$rows = null;
+    	
+        if (!in_array($controller, $controllerInvalid)) {
             foreach ($this->_parametersObserver as $key => $value) {
                 $eval = explode('.', $value );
                 if($eval[0] == $controller) {
                     $param = $parameters[$eval[1]];
                     if (isset($param)) {
-                        echo "Entro...".$eval[1];
                         $dataSet = new Zend_Session_Namespace($controller.$eval[1]);
                         $rows = $dataSet->data;
                         
                         if(is_array($rows)) {
-                            echo "Entro...".$param;
                             if(!in_array($param, $rows)) {
-                                $rows[] = $param;
+                                if(count($rows) < 5) {
+                                    $rows[] = $param;
+                                }
+                                for($i = count($rows) - 1; $i > 0 ; $i--){
+                                    $rows[$i] = $rows[$i - 1];
+                                }
+                                $rows[0] = $param;
                             }
                         } else {
                             $rows = array($param);
@@ -102,11 +103,13 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
                     }
                 }
             }
-                        
-            print_r($eval);
-            print_r($rows);
-            echo " -->";
+
+            $body .= "\n";
+            $body .= "<script type='text/javascript'>\n";
+            // $body .= "\talert('postDispatch() called')\n";
+            $body .= "</script>\n";
+            
+            $this->getResponse()->appendBody($body);
         }
     }
-
 }

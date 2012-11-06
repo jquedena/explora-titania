@@ -47,8 +47,8 @@
         <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/ckeditor/es.js?t=C6HH5UF"></script>
         <script type="text/javascript">
             var path="<?php echo $this->util()->getPath(); ?>index.php/",
-                pathImage="<?php echo $this->util()->getPath(); ?>img/"
-                imageInit="<?php echo $this->util()->getImage("alumnos0.jpg"); ?>";
+            pathImage="<?php echo $this->util()->getPath(); ?>img/"
+            imageInit="<?php echo $this->util()->getImage("alumnos0.jpg"); ?>";
 
             $.jgrid.no_legacy_api = true; 
             $.jgrid.useJSON = true; 
@@ -79,28 +79,39 @@
     <body>
         <table style="width: 100%; height: 100%; padding: 0px; margin: 0px;" cellspacing="0" cellpadding="0">
             <tr>
-            	<td style="background: url('<?php echo $this->util()->getImage("main-bg.gif"); ?>'); width: 10px;" rowspan="8">&nbsp;</td>
-                <td style="width: <?php echo $this->util()->getWidthLayout(); ?>; height: 42px; border-right: 1px solid #000; border-left: 1px solid #000;">
+                <td style="background: url('<?php echo $this->util()->getImage("main-bg.gif"); ?>'); width: 10px;" rowspan="4">&nbsp;</td>
+                <td style="width: <?php echo $this->util()->getWidthLayout(); ?>; height: 42px; border-left: 1px solid #000;">
                     <?php echo $this->render("northView.phtml"); ?>
                 </td>
-                <td style="background: url('<?php echo $this->util()->getImage("main-bg.gif"); ?>');" rowspan="8">&nbsp;</td>
+                <td style="background: url('<?php echo $this->util()->getImage("main-bg.gif"); ?>');border-right: 1px solid #000;" valign="top">
+                    <table class="barTitle" style="padding: 0px; margin: 0px; width: 100%;" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td class="right">&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
             <tr>
-                <td style="height: 30px; border-right: 1px solid #000; border-left: 1px solid #000;vertical-align: middle;">
+                <td style="height: 30px; border-right: 1px solid #000; border-left: 1px solid #000;vertical-align: middle;" colspan="2">
                     <?php echo $this->render("menuView.phtml"); ?>
                 </td>
             </tr>
             <tr>
-                <td style="height: 100%; border-right: 1px solid #000; border-left: 1px solid #000; vertical-align: top;">
+                <td style="height: 100%; border-left: 1px solid #000; vertical-align: top;">
                     <div id="west" align="center">
                         <?php echo $this->layout()->content; ?>
                     </div>
                 </td>
+                <td>
+                    qq
+                </td>
             </tr>
             <tr>
-                <td id="south" class="ui-state-default" style="width: <?php echo $this->util()->getWidthLayout(); ?>; height: 30px;">
+                <td id="south" class="ui-state-default" style="height: 30px; border-right: 0px">
                     <?php echo $this->render("southView.phtml"); ?>
                 </td>
+                <td style="height: 30px; border-left: 0px" class="ui-state-default">&nbsp;</td>
             </tr>
         </table>
         <?php echo $this->render("jqCargando.phtml"); ?>
