@@ -35,7 +35,8 @@ body {
     height: 42px;
     text-align: center;
 }
-#south {
+#south,
+.footer {
     width: 100%;
     height: 25px;
     line-height: 25px;
@@ -77,33 +78,33 @@ body {
 }
 
 /* Barra Titulo */
-#barTitle {
+.barTitle {
     width: 100%;
     height: 42px;
 }
-#barTitle tr td{
+.barTitle tr td{
     height: 42px;
     background: #fff url("../img/tab_b.png") repeat-x;
 }
-#barTitle tr td.left{
+.barTitle tr td.left{
     height: 42px;
     width: 30px;
     background: #fff url("../img/tab_l.png") repeat-x;
 }
-#barTitle tr td.right{
+.barTitle tr td.right{
     height: 42px;
     width: 30px;
     background: #fff url("../img/tab_r.png") repeat-x;
 }
-#barTitle tr td.center{
+.barTitle tr td.center{
     height: 42px;
     background: #fff url("../img/tab_m.png") repeat-x;
     color: #fff;
 }
-#barTitle tr td.center a,
-#barTitle tr td.center a:active,
-#barTitle tr td.center a:hover,
-#barTitle tr td.center a:visited{
+.barTitle tr td.center a,
+.barTitle tr td.center a:active,
+.barTitle tr td.center a:hover,
+.barTitle tr td.center a:visited{
     color: #fff;
     font-weight: bold;
     text-decoration: none;
@@ -200,11 +201,6 @@ input.ui-text-highlight {
     text-align: right;
     padding-right: 2px;
 }
-#south {
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
-}
-
 #jqDialogCargando table{
     padding: 5px;	
 }
