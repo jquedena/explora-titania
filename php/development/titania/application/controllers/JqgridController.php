@@ -73,7 +73,7 @@ class JqgridController extends Zend_Controller_Action {
             $responce->page = $page;
             $responce->total = $total_pages;
             $responce->records = $count;
-
+			//$limit2= ($count-$start > $limit ? $limit : $count-$start);
             $i = 0;
             for ($i = $start; $i < $count; $i++) {
                 $row = $rows[$i];

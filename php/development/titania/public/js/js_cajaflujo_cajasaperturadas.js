@@ -30,20 +30,28 @@ buscarapertcajxfecha = function(_fecha) {
      	//NroCaja| MontoIngreso|RecibosValidos|RecibosAnulados|MontoEntrega|Entregado|Diferencia|Estado
 optionapertcaja = {
     height: 200,
-    width: 800,
-    colNames: ["Cajero","ccajero", "ciduser","cnumini","cnumfin","nestado","Estado","dfecpro","vusernm"
-               ,"idsigma","Monto Ingreso","Recibos Validos", "Recibos Anulados", "Monto a Entrega", "Monto Entregado", "Diferencia"],
+    width: 1000,
+    colNames: ["Cajero","Id","ccajero", "ciduser","cnumini","cnumfin","nestado","Estado","dfecpro","vusernm"
+               ,"Monto Ingreso","Recibos Validos", "Recibos Anulados", "Monto a Entrega", "Monto Entregado", "Diferencia"],
     colModel: [
         {name:'nccajusuario', index:'nccajusuario',width:100,align: 'left'},
+        {name:'idsigma', index:'idsigma',width:50,hidden:false,align:"right"
+        	,formatter: function (cellvalue, options, rowObject) {
+        		//return cellvalue;
+        		if (cellvalue=='---')
+        			return '';
+        		else
+        			return parseInt(cellvalue,10);
+            }
+        },
         {name:'ccajero', index:'ccajero',width:100,align: 'center',hidden:true},
         {name:'ciduser', index:'ciduser',width:100,hidden:true},
-        {name:'cnumini', index:'cnumini',width:100,hidden:true},
-        {name:'cnumfin', index:'cnumfin',width:100,hidden:true},
+        {name:'cnumini', index:'cnumini',width:100,hidden:false},
+        {name:'cnumfin', index:'cnumfin',width:100,hidden:false},
         {name:'nestado', index:'nestado',width:100,hidden:true},
         {name:'nnestado', index:'nnestado', width:90,align:"right"},//Estado
         {name:'dfecpro', index:'dfecpro',width:100,hidden:true},
         {name:'vusernm', index:'vusernm',width:100,hidden:true},
-        {name:'idsigma', index:'idsigma',width:100,hidden:true},
         {name:'nmonape', index:'nmonape', width:90,align: 'right'},//Monto de Apertura
         {name:'nmonval', index:'nmonval', width:90,align:"right"},//Recibos Validos
         {name:'nmonanu', index:'nmonanu', width:90,align:"right"},//Recibos Anulados

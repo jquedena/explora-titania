@@ -64,12 +64,13 @@ class sencilleraController extends Zend_Controller_Action {
     		$val[] = array('txtfech_proc', $date, 'val');
     		$val[] = array('txtnom_cajero', $codcajero.' - '.$nomcajero, 'val');
     		$val[] = array('hdid_apert', $idapertura, 'val');
+    		$val[] = array('txtsenccodapert',intval($idapertura), 'val');
     		$val[] = array('hdid_cajero', $codcajero, 'val');
     		$val[] = array('hdaccion', $accion, 'val');
     		$val[] = array('mt_totals',$mt_totals,'html');
        		
-    		$js[] = array('$("#txtfech_proc").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
-    		$js[] = array('$("#txtfech_proc").datepicker("option", "dateFormat", "yy-mm-dd");');
+    		//$js[] = array('$("#txtfech_proc").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
+    		//$js[] = array('$("#txtfech_proc").datepicker("option", "dateFormat", "yy-mm-dd");');
     		$js[] = array('mouseHover("tbl_monedas");');
     		$js[] = array('$(".mt_cant").on("keyup",sumary_totals);');
     		$js[] = array("$('#btnprocsencillero').button({ icons: {secondary:'ui-icon-disk'} })");

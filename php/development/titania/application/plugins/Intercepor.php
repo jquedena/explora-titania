@@ -104,12 +104,12 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
                 }
             }
 
-            $body .= "\n";
-            $body .= "<script type='text/javascript'>\n";
+            //$body .= "\n";
+            //$body .= "<script type='text/javascript'>\n";
             // $body .= "\talert('postDispatch() called')\n";
-            $body .= "</script>\n";
+            //$body .= "</script>\n";
             
-            $this->getResponse()->appendBody($body);
+            //$this->getResponse()->appendBody($body);
         }
     }
 }
