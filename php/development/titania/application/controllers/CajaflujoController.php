@@ -94,12 +94,15 @@ class CajaflujoController extends Zend_Controller_Action {
 			$ctrl[] = array('txtnrocaja', true);
 			$ctrl[] = array('txtfecha', true);
 
+			
+				
 			$val[] = array('txtnrocaja', $nrocaja.' - '.$ddatosuserlog->userlogin, 'val');
 			$val[] = array('txtfecha', $date, 'val');
 			$val[] = array('hddnrocaja', $nrocaja, 'val');
 			$val[] = array('txtnomcajero', $nomCajero, 'val');
 			$val[] = array('txtmtinicial', $nmonApe, 'val');
 			$val[] = array('hddidapercaja', $idpertCaja, 'val');
+			$val[] = array('txtcodapert', intval($idpertCaja), 'val');
 
 
 			$func->IniciaScript();
@@ -224,7 +227,7 @@ class CajaflujoController extends Zend_Controller_Action {
 			$val[] = array('txtmtinicial', $nmonApe, 'val');
 			$val[] = array('txtmtcobrado', $nmonVal, 'val');
 			$val[] = array('hddidapercaja', $idpertCaja, 'val');
-
+			$val[] = array('txtcodapert', intval($idpertCaja), 'val');
 
 			$func->IniciaScript();
 			$func->PintarEvento($evt);
