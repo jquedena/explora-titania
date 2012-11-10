@@ -103,15 +103,15 @@
                         <?php echo $this->layout()->content; ?>
                     </div>
                 </td>
-                <td>
-                    qq
+                <td style="border-right: 1px solid #000;">
+                	<div id="layoutPanel"></div>
                 </td>
             </tr>
             <tr>
                 <td id="south" class="ui-state-default" style="height: 30px; border-right: 0px">
                     <?php echo $this->render("southView.phtml"); ?>
                 </td>
-                <td style="height: 30px; border-left: 0px" class="ui-state-default">&nbsp;</td>
+                <td style="height: 30px; border-left: 0px; border-right: 1px solid #000;" class="ui-state-default">&nbsp;</td>
             </tr>
         </table>
         <?php echo $this->render("jqCargando.phtml"); ?>

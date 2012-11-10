@@ -11,14 +11,21 @@
                         <td style="width: 75px;font-weight: bold;"><div id="lblCodigo"><?php echo $this->mperson; ?></div></td>
                         <td style="width: 60px; text-align: right; padding-right: 4px;">Nombre:</td>
                         <td style="font-weight: bold;" colspan="2"><div id="lblNombre"><?php echo $this->vnombre; ?></div></td>
-                        <td style="width: 90px;" align="right" rowspan="3"><div class="ui-widget"><?php echo $this->util()->getPeriodos(); ?></div></td>
+                        <td style="width: 110px;" align="right" rowspan="3">
+                        	<div class="ui-widget" style="text-align: center;">
+                        		<!-- ?php echo $this->util()->getPeriodos(); ? -->
+                        		Declaraci&oacute;n Nro.
+                        		<br/>
+                        		<div style="font-weight: bold;"><?php echo $this->mpredio["vnrodoc"]; ?></div>
+                        	</div>
+                        </td>
                     </tr><tr>
                         <td style="text-align: right; padding-right: 4px;" colspan="3">Direcci&oacute;n Fiscal:</td>
                         <td style="font-weight: bold;" colspan="2"><div id="lblDireccionFiscal"><?php echo $this->vdirecf; ?></div></td>
                     </tr><tr>
                         <td>Predio:</td>
                         <td style="font-weight: bold;"><div id="lblPredio"><div id="lblPredio"><?php echo $this->mpredio["ccodpre"]; ?></div></div></td>
-                        <td style="text-align: right; padding-right: 4px;">Direcci&oacute;n</td>
+                        <td style="text-align: right; padding-right: 4px;">Direcci&oacute;n:</td>
                         <td style="font-weight: bold;"><div id="lblDireccion"><?php echo $this->mpredio["vdirpre"]; ?></div></td>
                         <td style="width: 30px;"><button id="btnBuscarDireccion" style="line-height: 25px;height: 25px;" title="Buscar predio" /></td>
                     </tr>
@@ -128,16 +135,10 @@
             '% Area Com.',
             'Val. Area Com.',
             'Val. del Piso',
-            'dafecta',
             'idsigma',
             'dpredio',
             'cnitems',
             'cperiod',
-            'ctipdat',
-            'vnrodoc',
-            'dfecdoc',
-            'cmotivo',
-            'ctipdoc',
             'cmateri',
             'cconser',
             'cmurcol',
@@ -172,16 +173,10 @@
             {name: 'nporcom', index: 'nporcom', width: 100, formatter:'currency', align: 'right', editable: true}, // Porcentaje de area comun
             {name: 'nvalcom', index: 'nvalcom', width: 100, formatter:'currency', align: 'right'}, // Valor del area comun
             {name: 'nvalpis', index: 'nvalpis', width: 100, formatter:'currency', align: 'right'}, // Valor total del piso
-            {name: 'dafecta', index: 'dafecta', width: 30, hidden: true},  // Fecha desde donde se comienzan a generar los tributos
             {name: 'idsigma', index: 'idsigma', width: 30, hidden: true}, // Identificador de la construccion del predio
             {name: 'dpredio', index: 'dpredio', width: 30, hidden: true}, // Identificador del predio
             {name: 'cnitems', index: 'cnitems', width: 30, hidden: true}, // Nro de orden de la construccion
             {name: 'cperiod', index: 'cperiod', width: 30, hidden: true}, // Ejercicio de la declaracion jurada
-            {name: 'ctipdat', index: 'ctipdat', width: 30, hidden: true}, // Tipo de ficha (1 = declaracion jurada // 2 = acta de inspeccion)
-            {name: 'vnrodoc', index: 'vnrodoc', width: 30, hidden: true}, // Nro de declaracion jurada
-            {name: 'dfecdoc', index: 'dfecdoc', width: 30, hidden: true}, // Fecha de la declaracion jurada
-            {name: 'cmotivo', index: 'cmotivo', width: 30, hidden: true}, // Motivo de la declaracion jurada
-            {name: 'ctipdoc', index: 'ctipdoc', width: 30, hidden: true}, // Tipo de documento con el que se realiza la declaracion jurada
             {name: 'cmateri', index: 'cmateri', width: 30, hidden: true},
             {name: 'cconser', index: 'cconser', width: 30, hidden: true},
             {name: 'cmurcol', index: 'cmurcol', width: 30, hidden: true},
@@ -461,7 +456,7 @@
             // $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEditarPiso);
             // $("#tblInstalacion").jqGrid('navSeparatorAdd','#ptblInstalacion');
             // $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEliminarPiso);
-        })
+        });
     };
     
     config = {

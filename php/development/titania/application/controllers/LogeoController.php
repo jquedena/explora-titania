@@ -64,9 +64,9 @@ class LogeoController extends Zend_Controller_Action implements Zend_Auth_Adapte
 						$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');				
 						$ddatosuserlog->cidpers = $datos[0][0];	
 						$ddatosuserlog->nompers = $datos[0][1];
-						$ddatosuserlog->userlogin = $datos[0][2];	
-						$ddatosuserlog->arealogin = $datos[0][3];			
-						$ddatosuserlog->codcajero = $datos[0][4];	 
+						$ddatosuserlog->userlogin = $datos[0][2];
+						$ddatosuserlog->arealogin = $datos[0][3];
+						$ddatosuserlog->codcajero = $datos[0][4];
 			
 						echo '<script language=\"JavaScript\">window.open(\''.$url.'index.php\', \'_self\')</script>';
 					}else{

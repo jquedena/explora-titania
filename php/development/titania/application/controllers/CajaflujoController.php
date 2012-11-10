@@ -63,7 +63,7 @@ class CajaflujoController extends Zend_Controller_Action {
 			
 		$nombrestore = '"public".obt_mconten';
 		$parametros [0] = '';
-		$parametros [1] = '1000000319';
+		$parametros [1] = '1000000346';
 		$datosLocales = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
 		for ($i=0;count($datosLocales)>$i;$i++){
 			if ($datosLocales[$i][0] != $datosLocales[$i][2])
