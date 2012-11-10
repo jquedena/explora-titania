@@ -9,6 +9,7 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
     private $_blackList = null;
     private $_executeController = null;
     private $_executeView = null;
+    private $_parametersObserverController = null;
     private $_parametersObserver = null;
 
     public function __construct(Zend_Auth $auth, array $options) {
@@ -21,6 +22,7 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
         $this->_executeController = $options['executeController'];
         $this->_executeView = $options['executeView'];
         $this->_parametersObserver = $options['parametersObserver'];
+        $this->_parametersObserverController = $options['parametersObserverController'];
     }
 
     public function preDispatch(Zend_Controller_Request_Abstract $request) {
@@ -72,12 +74,11 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
     }
 
     public function postDispatch(Zend_Controller_Request_Abstract $request) {
-    	$controllerInvalid = array('jqgrid', 'panel');
     	$controller = $request->getControllerName();
     	$parameters = $request->getParams();
     	$rows = null;
     	
-        if (!in_array($controller, $controllerInvalid)) {
+        if (in_array($controller, $this->_parametersObserverController)) {
             foreach ($this->_parametersObserver as $key => $value) {
                 $eval = explode('.', $value );
                 if($eval[0] == $controller) {
@@ -104,12 +105,14 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
                 }
             }
 
-            //$body .= "\n";
-            //$body .= "<script type='text/javascript'>\n";
-            // $body .= "\talert('postDispatch() called')\n";
-            //$body .= "</script>\n";
+            $body  = "\n";
+            $body .= "<script type='text/javascript'>\n";
+            $body .= "\t$(document).ready(function(){";
+            $body .= "\t\talert('postDispatch() called')\n";
+            $body .= "\t});\n";
+            $body .= "</script>\n";
             
-            //$this->getResponse()->appendBody($body);
+            $this->getResponse()->appendBody($body);
         }
     }
 }
