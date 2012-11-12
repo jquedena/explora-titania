@@ -1,3 +1,71 @@
-<div align="center" class="ui-widget ui-widget-content ui-corner-all" style="width: 99%;margin: 3px;">
-    
+<div class="ui-widget ui-widget-content ui-corner-all" style="width: 95%;margin: 3px;">
+	<div align="center" class="ui-widget ui-state-default ui-corner-top ui-title">
+    	<label>Vista Previa</label>
+	</div>
+	<div id="panelSesionPersona">
+		<table class="ui-table-panelLayout" style="width: 90%; height: 100%; font-size: 90%;">
+			<tr>
+				<td colspan="2" align="center">
+					<img style="width: 150px; height: 170px; border: 1px solid #000;" src="<?php echo $this->util()->getPhoto($this->mperson['cidpers']); ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td>C&oacute;digo:</td>
+				<td style="text-align: right;font-weight: bold;">
+					<?php echo $this->mperson['cidpers'] ?>
+					<input id="mhresum" name="mhresum" type="hidden" value="<?php echo $this->mperson['mhresum'] ?>" />
+					<input id="vnrodoc" name="vnrodoc" type="hidden" value="<?php echo $this->mperson['vnrodoc'] ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td>Contribuyente:</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: right;font-weight: bold;"><?php echo $this->mperson['crazsoc'] ?></td>
+			</tr>
+			<tr>
+				<td>Declaraci&oacute;n Jurada:</td>
+				<td style="text-align: right;font-weight: bold;"><?php echo $this->mperson['vnrodoc'] ?></td>
+			</tr>
+			<tr>
+				<td>Presentada el:</td>
+				<td style="text-align: right;font-weight: bold;"><?php echo $this->mperson['dfecdoc'] ?></td>
+			</tr>
+			<tr>
+				<td>Motivo:</td>
+				<td style="text-align: right;font-weight: bold;"><?php echo $this->mperson['vmotivo'] ?></td>
+			</tr>
+			<tr>
+				<td>Predios registrados:</td>
+				<td style="text-align: right;font-weight: bold;"><?php echo $this->mperson['ntotpre'] ?></td>
+			</tr>
+			<tr>
+				<td>Comercios registrados:</td>
+				<td style="text-align: right;font-weight: bold;"><?php echo $this->mperson['ntotcom'] ?></td>
+			</tr>
+			<tr>
+				<td>Base Imponible:</td>
+				<td style="text-align: right;font-weight: bold;"><?php echo $this->mperson['nbaseim'] ?></td>
+			</tr>
+			<tr>
+				<td>Impuesto Predial:</td>
+				<td style="text-align: right;font-weight: bold;"><?php echo $this->mperson['nimpanu'] ?></td>
+			</tr>
+			<tr>
+				<td>En proceso de fiscalidaci&oacute;n:</td>
+				<td style="text-align: right;font-weight: bold;"><?php echo $this->mperson['vprofis'] ?></td>
+			</tr>
+			<tr>
+				<td>Tramites en proceso:</td>
+				<td style="text-align: right;font-weight: bold;"><?php echo $this->mperson['vprotra'] ?></td>
+			</tr>
+			<tr>
+				<td>Ultimo pago:</td>
+				<td style="text-align: right;font-weight: bold;">
+					<?php echo $this->mperson['dfecpag'] ?>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>

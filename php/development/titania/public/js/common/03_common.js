@@ -6,8 +6,13 @@ postError = function(requestData, errMessage, errNumber){
     }
 };
 
-function procesarConsultaSubProceso(source, parameters, fnc) {
-    _post = $.post(path + "jqgrid/" + source, parameters);	
+function procesarConsultaSubProceso(source, parameters, fnc, dataType) {
+	if(dataType != null || dataType != undefined) {
+		_post = $.post(path + "jqgrid/" + source, parameters, function(request){}, dataType);
+	}
+	else {
+		_post = $.post(path + "jqgrid/" + source, parameters);
+	}
     _post.success(fnc);
     _post.error(postError);
 }
@@ -26,42 +31,30 @@ function procesarProcedimiento(idPanel, idx, _options, parameters, bindkeys, nav
     });
 }
 
-function actualizarGrid(id, _options, bindkeys, navGrid){
-    _url = path + "jqgrid/paginar?name=" + id;
-    options = $.extend({
-        url: _url,
-        datatype: "json",
-        rowNum: 30,
-        rownumbers: true,
-        recordtext: "{0} - {1} de {2} elementos",
-        emptyrecords: 'No hay resultados',
-        pgtext: 'Pag: {0} de {1}',
-        pager: "#p" + id,
-        viewrecords: true,
-        loadonce: true,
-        shrinkToFit: false,
-        loadError : function(xhr,st,err) {
-            alert("Type: "+st+"; Response: "+ xhr.status + " " + xhr.statusText);
-            alert(err);
-        }
-    }, _options);
-    idx = "#" + id;
-    $(idx).jqGrid(options);
-    $(idx).jqGrid('setFrozenColumns');
-    if(bindkeys != undefined || bindkeys != null) {
-        $(idx).jqGrid('bindKeys', bindkeys);
-    }
-    if(navGrid != undefined || navGrid != null) {
-        navGrid();
-    }
+function procesarProcedimientoJSON(idPanel, idx, _options, parameters, bindkeys, navGrid) {
+	html  = "<table id=" + idx + "></table>";
+	html += "<div id=p" + idx + "></div>";
+	html += "<input type='hidden' id='c" + idx + "' name='c" + idx + "' value='' />";                                  
+                                    
+	$("#" + idPanel).html(html);
+    procesarConsultaSubProceso('registrar', parameters, function(requestData){
+    	$("#c" + idx).val(requestData.length);
+    	_options = $.extend(_options, {
+    		datatype: "local",
+    		data: requestData
+    	});
+        reloadJQGrid(idx, _options, bindkeys, navGrid);
+    });
 }
 
-function inicializarGrid(id, _options, bindkeys, navGrid){
+function reloadJQGrid(id, _options, bindkeys, navGrid){
     options = $.extend({
-        scroll: 1,
+        // scroll: 1,
+    	// loadComplete: function (data){},
+    	height: 250,
         data: [],
         datatype: "local",
-        rowNum: 30,
+        rowNum: 10,
         rownumbers: true,
         recordtext: "{0} - {1} de {2} elementos",
         emptyrecords: 'No hay resultados',
@@ -69,9 +62,13 @@ function inicializarGrid(id, _options, bindkeys, navGrid){
         pager: "#p" + id,
         viewrecords: true,
         shrinkToFit: false,
-        loadonce: true
+        loadonce: true,
+        scrollOffset: 1,		
+		subGrid: false,
+		footerrow: false
     }, _options);
     idx = "#" + id;
+    // console.log(options);
     $(idx).jqGrid(options);
     $(idx).jqGrid('setFrozenColumns');
     if(bindkeys != undefined || bindkeys != null) {
@@ -80,6 +77,19 @@ function inicializarGrid(id, _options, bindkeys, navGrid){
     if(navGrid != undefined || navGrid != null) {
         navGrid();
     };
+}
+
+function actualizarGrid(id, _options, bindkeys, navGrid){
+	_url = path + "jqgrid/paginar?name=" + id;
+    options = $.extend({
+        url: _url,
+        datatype: "json",
+    }, _options);
+	reloadJQGrid(id, options, bindkeys, navGrid)
+}
+
+function inicializarGrid(id, _options, bindkeys, navGrid){
+	reloadJQGrid(id, _options, bindkeys, navGrid)
 }
 
 function contenidocomboContenedor(selectId, idsigma){
@@ -283,5 +293,5 @@ $(function(){
     });
     themeTextBox();
     themeComboBox();
-// alert($.browser.msie);
+    // alert($.browser.msie);
 });

@@ -47,8 +47,9 @@
         <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/ckeditor/es.js?t=C6HH5UF"></script>
         <script type="text/javascript">
             var path="<?php echo $this->util()->getPath(); ?>index.php/",
-            pathImage="<?php echo $this->util()->getPath(); ?>img/"
-            imageInit="<?php echo $this->util()->getImage("alumnos0.jpg"); ?>";
+	            pathImage="<?php echo $this->util()->getPath(); ?>img/",
+	            imageInit="<?php echo $this->util()->getImage("alumnos0.jpg"); ?>",
+	            ajaxDialog=true;
 
             $.jgrid.no_legacy_api = true; 
             $.jgrid.useJSON = true; 
@@ -60,14 +61,25 @@
                     cache: false
                 });
             });
+
+			
 			
             $(document).ready(function(){
                 $(document).ajaxStart(function(){
-                    $('#jqDialogCargando').dialog('open');
+                    if(ajaxDialog) {
+                    	$('#jqDialogCargando').dialog('open');
+                    } else {
+                    	$('#jqCargando').css({"display": "inline"});
+                    }
                 });
 				
                 $(document).ajaxStop(function(){
-                    $('#jqDialogCargando').dialog('close');
+                	if(ajaxDialog) {
+                    	$('#jqDialogCargando').dialog('close');
+                	} else {
+	                	$('#jqCargando').css({"display": "none"});
+                	}
+                	ajaxDialog = true;
                 });
             });
 
@@ -93,8 +105,20 @@
                 </td>
             </tr>
             <tr>
-                <td style="height: 30px; border-right: 1px solid #000; border-left: 1px solid #000;vertical-align: middle;" colspan="2">
-                    <?php echo $this->render("menuView.phtml"); ?>
+                <td class="ui-widget-header" style="height: 30px; border-right: 1px solid #000; border-left: 1px solid #000;vertical-align: middle;" colspan="2">
+                    <table style="width: 100%;">
+                    	<tr>
+                    		<td><?php echo $this->render("menuView.phtml"); ?></td>
+                    		<td style="width: 70px;">
+                    			<table id="jqCargando" style="display: none;">
+                    				<tr>
+                    					<td><img src="<?php echo $this->util()->getImage("loading.gif"); ?>" dir="ltr" width="25px"/></td>
+                    					<td>&nbsp;&nbsp;Cargando...</td>
+                    				</tr>
+                    			</table>
+                    		</td>
+                    	</tr>
+                    </table>
                 </td>
             </tr>
             <tr>
@@ -103,8 +127,8 @@
                         <?php echo $this->layout()->content; ?>
                     </div>
                 </td>
-                <td style="border-right: 1px solid #000;">
-                	<div id="layoutPanel"></div>
+                <td style="border-right: 1px solid #000;" valign="top" align="center">
+                	<div id="layoutPanelInformativo"></div>
                 </td>
             </tr>
             <tr>
