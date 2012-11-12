@@ -81,9 +81,9 @@ class CajaflujoController extends Zend_Controller_Action {
 
 			$func->PintarValor($val);
 		}else{
-			$nomCajero =$datosCajero[0][11];
-			$nmonApe =$datosCajero[0][5];
-			$idpertCaja =$datosCajero[0][12];
+			$nomCajero =$datosCajero[0][16];//nombre completo del cajero
+			$nmonApe =$datosCajero[0][10];//monto apert
+			$idpertCaja =$datosCajero[0][1];//idapertura caja
 
 			//$arrayestado = array(array('1', 'HABILITADO'), array('0', 'DESHABILITADO'));
 			$val[] = array('cbolocal', $func->ContenidoCombo($cboLocales, ''), 'html');
@@ -207,13 +207,17 @@ class CajaflujoController extends Zend_Controller_Action {
 
 			$func->PintarValor($val);
 		}else{
-			$nomCajero =$datosCajero[0][11];
-			$nmonApe =$datosCajero[0][5];
-			$nmonVal=$datosCajero[0][6];
-			$idpertCaja =$datosCajero[0][12];
-
-
-
+			$nomCajero =$datosCajero[0][16];
+			$nmonApe =$datosCajero[0][10];
+			$nmonVal=$datosCajero[0][11];
+			$nmonentregar=$datosCajero[0][13];
+			
+			$idpertCaja =$datosCajero[0][1];
+			
+			$nroinicial =$datosCajero[0][4];
+			$nrofinal =$datosCajero[0][5];
+			
+			
 			$evt[] = array("btncerrarcaja", "click", "ventanaCerrarCaja();");
 
 			$ctrl[] = array('txtnrocaja', true);
@@ -224,11 +228,15 @@ class CajaflujoController extends Zend_Controller_Action {
 			$val[] = array('txtfecha', $date, 'val');
 			$val[] = array('hddnrocaja', $nrocaja, 'val');
 			$val[] = array('txtnomcajero', $nomCajero, 'val');
-			$val[] = array('txtmtinicial', $nmonApe, 'val');
-			$val[] = array('txtmtcobrado', $nmonVal, 'val');
+			$val[] = array('txtmtinicial', 'S/.'.$nmonApe, 'val');
+			$val[] = array('txtmtcobrado', 'S/.'.$nmonVal, 'val');
+			$val[] = array('txtmtentregar', 'S/.'.$nmonentregar, 'val');
 			$val[] = array('hddidapercaja', $idpertCaja, 'val');
 			$val[] = array('txtcodapert', intval($idpertCaja), 'val');
-
+			
+			$val[] = array('txtnroini', $nroinicial, 'val');
+			$val[] = array('txtnrofinal', $nrofinal, 'val');
+			
 			$func->IniciaScript();
 			$func->PintarEvento($evt);
 			$func->ComponenteSoloLectura($ctrl);
@@ -372,10 +380,10 @@ class CajaflujoController extends Zend_Controller_Action {
 		$this->view->util()->registerScriptJSControllerAction($this->getRequest());
 	}
 	public function graficocajerosAction(){
+		$this->_helper->layout->disableLayout();
+		$this->_helper->viewRenderer->setNoRender();
 		$this->_helper->getHelper('ajaxContext')->initContext();
 		if ($this->getRequest()->isXmlHttpRequest()) {
-			$this->_helper->viewRenderer->setNoRender();
-			$this->_helper->layout->disableLayout();
 			$url = $this->view->util()->getPath();
 			// Graficas
 			$vfecha1 = $this->_request->getPost('fecha1');

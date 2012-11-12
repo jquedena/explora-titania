@@ -91,7 +91,21 @@ function actualizarGrid(id, _options, bindkeys, navGrid){
 function inicializarGrid(id, _options, bindkeys, navGrid){
 	reloadJQGrid(id, _options, bindkeys, navGrid)
 }
-
+function contenidocomboContenedorjqGrid(idsigma){
+	var optionsjq = {};
+   	optionsjq.value ="9999999999:Seleccionar";
+   	optionsjq.defaultValue="9999999999";
+   	
+    _post = $.post(path + "util/combocontenedor", {"idsigma": idsigma}, function(request){
+	    	$.each(request, function(i , columns){
+	            var value = columns[0];
+	            var label = columns[1];		
+	            optionsjq.value +=';' + value + ':' + label;
+	        });	
+    	}, 'json');
+    _post.error(postError);
+    return optionsjq;
+}
 function contenidocomboContenedor(selectId, idsigma){
     _post = $.post(path + "util/combocontenedor", {"idsigma": idsigma}, function(request){
         $(selectId).html(contenidocombo(request));
@@ -240,10 +254,13 @@ function themeTextBox(selector) {
 }
 function themeComboBox(selector) {
     if(selector == undefined || selector == null) {
-        selector = "select";
+        //selector = "select";
+    	selector = 'select:not(".notcombobox")';
     }
-    $(selector).combobox();
-    $(selector).each(function(){
+    
+    _selector = $(selector);
+    _selector.combobox();
+    _selector.each(function(){
         var id = $(this).attr("id").replace('cbo', '#txt');        
         $(id).bind("focus", function(){
             $(this).toggleClass("ui-combobox-input-highlight");
