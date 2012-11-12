@@ -108,7 +108,7 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
             $body  = "\n";
             $body .= "<script type='text/javascript'>\n";
             $body .= "\t$(document).ready(function(){";
-            $body .= "\t\talert('postDispatch() called')\n";
+            $body .= "\t\tconsole.log('postDispatch() called')\n";
             $body .= "\t});\n";
             $body .= "</script>\n";
             

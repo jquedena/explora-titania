@@ -1,10 +1,15 @@
-verContribuyentePredio = function(rowid) {   
-    if(rowid == undefined || rowid == null) {
-        parameters = {"name": "tblResult"};
+verContribuyentePredio = function(rowid) {  
+    if(typeof rowid == 'object') {
+        parameters = rowid[0];
     } else {
         parameters = $(this).getRowData(rowid);
     }
     
+    parameters = $.extend(parameters, {
+    	mhresum: $("#mhresum").val(),
+    	vnrodoc: $("#vnrodoc").val()
+    });
+
     _post = $.post(path + "registro/listarpredio", parameters);
     _post.error(postError);
     _post.success(function(request){
@@ -12,19 +17,34 @@ verContribuyentePredio = function(rowid) {
     });
 };
 
+verDetalle = function(rowid) {
+	row = $("#tblResult").jqGrid('getRowData', rowid);
+	ajaxDialog = false;
+	panelPersona(row);
+};
+
+gridCompleteTblResult = function(){
+	var ids = $("#tblResult").jqGrid('getDataIDs');
+	for(var i=0; i < ids.length; i++){ 
+		id = ids[i]; 
+		bt = "<a style='height:20px;width:20px;' class='btnGrid' href='javascript: void(0);' onclick=\"verDetalle('"+id+"');\"><img src='" + pathImage + "find.png'/></a>";
+		$("#tblResult").jqGrid('setRowData', ids[i], {modedit: bt});
+	}
+}
+
 optionContribuyente = {
-    height: 290,
+    // height: 290,
+	// gridComplete: gridCompleteTblResult,
+	// hoverrows: 0,
     width: 1000,
-    colNames: ["C\u00F3digo", "Administrado", "Direcci\u00F3n Fiscal"],
+    colNames: [/*"", */"C\u00F3digo", "Administrado", "Direcci\u00F3n Fiscal"],
     colModel: [
+        // {name:'modedit', index:'modedit', width:22, align: 'center'},
         {name:'cidpers', index:'cidpers', width:80, align: 'center'},
         {name:'crazsoc', index:'crazsoc', width:420},
         {name:'direccf', index:'direccf', width:420} ],
     caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
-    /* onSelectRow: function(id) {
-        row = $(this).getRowData(id);
-        console.log(row);
-    },*/
+    onSelectRow: verDetalle,
     ondblClickRow: verContribuyentePredio
 };
 bindkeysContribuyente = {"onEnter": verContribuyentePredio};
@@ -67,7 +87,7 @@ optionViaPredio = {
         'Direcci\u00F3n Fiscal'],
     colModel: [
         {name: 'mperson', index:'mperson', width: 70, align: 'center', frozen: true},
-	{name: 'vnombre', index:'vnombre', width: 250, frozen: true},
+        {name: 'vnombre', index:'vnombre', width: 250, frozen: true},
         {name: 'ccodpre', index:'ccodpre', width: 70, align: 'center', frozen: true},
         {name: 'tnumero', index:'tnumero', width: 450}, // , frozen: true
         {name: 'cusogen', index:'cusogen', width: 250},
@@ -133,6 +153,7 @@ buscarContribuyente = function() {
     parameters = {
         "name": "tblResult",
         "procedure": "public.buscar_persona",
+        "print": "true",
         "parameters": '{' +
         '"p_nvar1":"' + $("#c_codigocontrib").val().toUpperCase() + '",' +
         '"p_nvar2":"' + $("#c_nombrecontrib").val().toUpperCase() + '",' +
@@ -143,10 +164,14 @@ buscarContribuyente = function() {
     };
 
     proceso = function(requestData){
-        $("#panelResult").html(requestData);
-        records = $("#ctblResult").val();
+    	$("#panelResult").html('<table id="tblResult"></table><div id="ptblResult"></div><input type="hidden" id="ctblResult" name="ctblResult" value="" />');
+    	records = requestData.length;
+    	options = $.extend(optionContribuyente, {
+			data: requestData,
+	        datatype: "local"
+    	});
         if(records == 0) {
-            inicializarGrid("tblResult", optionContribuyente);
+            inicializarGrid("tblResult", options);
             buttons = {
                 "Aceptar": function(){
                     closeDialog("jqDialogInfo");
@@ -155,13 +180,13 @@ buscarContribuyente = function() {
             }
             openDialogInfo("No existen contribuyentes con los criterios de busqueda ingresados.", 380, 150, buttons);
         } else if(records > 1) {
-            actualizarGrid("tblResult", optionContribuyente, bindkeysContribuyente);
+        	inicializarGrid("tblResult", options, bindkeysContribuyente);
         } else {
-            verContribuyentePredio();
+            verContribuyentePredio(requestData);
         }
     };
 
-    procesarConsultaSubProceso('registrar', parameters, proceso);
+    procesarConsultaSubProceso('registrar', parameters, proceso, 'json');
 };
 
 $(function(){

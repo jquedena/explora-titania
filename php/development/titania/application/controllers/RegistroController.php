@@ -37,6 +37,20 @@ class RegistroController extends Zend_Controller_Action {
                 $this->view->cidpers = $this->_request->getParam('cidpers');
                 $this->view->vnombre = $this->_request->getParam('crazsoc');
                 $this->view->vdirecc = $this->_request->getParam('direccf');
+                
+                $mhresum = $this->_request->getParam('mhresum');
+                if (isset($mhresum)) {
+	                $this->view->mhresum = $this->_request->getParam('mhresum');
+	                $this->view->vnrodoc = $this->_request->getParam('vnrodoc');
+                } else {
+                	$parameters[] = $this->view->cidpers;
+                	$dataAdapter = new Model_DataAdapter();
+                	$rows = $dataAdapter->executeAssocQuery("pl_function.panel_persona", $parameters);
+                	if(count($rows) == 1) {
+                		$this->view->mhresum = $rows[0]['mhresum'];
+                		$this->view->vnrodoc = $rows[0]['vnrodoc'];
+                	}
+                }
             }
         }
     }

@@ -12,13 +12,20 @@ class JqgridController extends Zend_Controller_Action {
         if ($this->getRequest()->isXmlHttpRequest()) {
             $name = $this->_request->getParam('name');
             $procedure = $this->_request->getParam('procedure');
+            $print = $this->_request->getParam('print');
             $parameters = json_decode($this->_request->getParam('parameters'), true);
-
             $dataAdapter = new Model_DataAdapter();
-            $records = $dataAdapter->saveQuery($name, $procedure, $parameters);
-
-            $this->view->name = $name;
-            $this->view->records = $records;
+            
+            if($print == 'true') {
+            	$rows = $dataAdapter->executeAssocQuery($procedure, $parameters);
+            	$this->_helper->viewRenderer->setNoRender();
+            	echo $this->_helper->json($rows);
+            } else {
+            	$records = $dataAdapter->saveQuery($name, $procedure, $parameters);
+            	
+            	$this->view->name = $name;
+            	$this->view->records = $records;
+            }
         }
     }
 
