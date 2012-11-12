@@ -1,45 +1,50 @@
-<div class="ui-widget ui-widget-content ui-corner-all" style="width: 50%;margin: 3px;">
+<div class="ui-widget ui-widget-content ui-corner-all" style="width: 90%;margin: 3px;">
     <div class="ui-widget ui-state-default ui-corner-top ui-title">
         <label>Cerrar Caja</label>
     </div>
     <br/>
     <div id="divmsj">
-	    <table class="ui-tablecontent">
+	    <table class="ui-tablecontent" border="0" width="60%">
 	    	<tr>
-	            <td>Id</td>		
-	            <td><input style="width: 85px;text-align: right;" type="text" id="txtcodapert" name="txtcodapert" class="ui-text" readonly></input></td>
-	        </tr>
-	    	<tr>
-	            <td>Fecha</td>		
-	            <td><input style="width: 85px;" type="text" id="txtfecha" name="txtfecha" class="ui-text" ></input></td>
-	        </tr>
-	        <tr>
-	            <td>Cajero</td>
-	            <td>
-	            	<input style="width: 85px;" type="text" id="txtnrocaja" name="txtnrocaja" class="ui-text"></input>
+	            <td colspan="2">
+	            	<label>Id &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input style="width: 85px;text-align: right;" type="text" id="txtcodapert" name="txtcodapert" class="ui-text" readonly></input>
 	            	<input type="hidden" id="hddnrocaja" name="hddnrocaja" ></input>
 	            	<input type="hidden" id="hddidapercaja" name="hddidapercaja" ></input>
 	            	<input type="hidden" id="hddnomcaj" name="hddnomcaj" ></input>
-	            </td>
+	            </td>		
 	        </tr>
 	        <tr>
-	            <td>Nombre Cajero</td>		
-	            <td><input style="width: 250px;" type="text" id="txtnomcajero" name="txtnomcajero" class="ui-text" readonly></input></td>
+	        	<td colspan="2">Nombre Cajero&nbsp;&nbsp;&nbsp;
+	            <input style="width: 280px;" type="text" id="txtnomcajero" name="txtnomcajero" class="ui-text" readonly></input></td>
+	        </tr>
+	    	<tr>
+	            <td>Fecha &nbsp;&nbsp;<input style="width: 85px;" type="text" id="txtfecha" name="txtfecha" class="ui-text" ></input></td>		
+	            <td>Cajero &nbsp;&nbsp;<input style="width: 85px;" type="text" id="txtnrocaja" name="txtnrocaja" class="ui-text"></input></td>
 	        </tr>
 	        <tr>
-	            <td>Monto Inicial</td>		
-	            <td><input style="width: 85px;" type="text" id="txtmtinicial" name="txtmtinicial" class="ui-text" readonly> </input></td>
+	            <td>Inicial &nbsp;&nbsp;&nbsp;<input style="width: 85px;" type="text" id="txtnroini" name="txtnroini" class="ui-text" readonly></input></td>
+	            <td>Final &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="width: 85px;" type="text" id="txtnrofinal" name="txtnrofinal" class="ui-text" readonly></input></td>
 	        </tr>
 	        <tr>
-	            <td>Monto Cobrado</td>		
-	            <td><input style="width: 85px;" type="text" id="txtmtcobrado" name="txtmtcobrado" class="ui-text" readonly></input></td>
+	        	<td colspan="2">
+		        	<div >
+		        		<table border="0" >
+		        			<tr>
+					            <td>Monto Inicial </td>		
+					            <td><input style="width: 85px;text-align: right;" type="text" id="txtmtinicial" name="txtmtinicial" class="ui-text" readonly> </input></td>
+					        </tr>
+					        <tr>
+					            <td>Monto Cobrado</td>		
+					            <td><input style="width: 85px;text-align: right;" type="text" id="txtmtcobrado" name="txtmtcobrado" class="ui-text" readonly></input></td>
+					        </tr>
+					        <tr>
+					            <td>Monto a Entregar</td>		
+					            <td><input style="width: 85px;text-align: right;" type="text" id="txtmtentregar" name="txtmtentregar" class="ui-text" readonly></input></td>
+					        </tr>	
+		        		</table>
+		        	</div>
+	        	</td>
 	        </tr>
-	        <!-- 
-	        <tr>
-	            <td>Observacion</td>		
-	            <td><textarea id="txtobserv" class="ui-text"></textarea></td>
-	        </tr>
-	         -->
 	        <tr>
 	            <td align="center" colspan="2">
 	                <button id="btncerrarcaja" name="btncerrarcaja">Cerrar Caja</button>

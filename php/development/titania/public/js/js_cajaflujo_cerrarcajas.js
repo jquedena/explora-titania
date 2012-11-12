@@ -40,55 +40,63 @@ buscarapertcajxfecha = function(_fecha) {
 };
      	//NroCaja| MontoIngreso|RecibosValidos|RecibosAnulados|MontoEntrega|Entregado|Diferencia|Estado
 optionapertcaja = {
-    height: 200,
-    width: 800,
-    colNames: ["Cajero","ccajero", "ciduser","cnumini","cnumfin","nestado","Estado","dfecpro","vusernm"
-               ,"idsigma","Monto Ingreso","Recibos Validos", "Recibos Anulados", "Monto a Entrega", "Monto Entregado", "Diferencia"],
-    colModel: [
-        {name:'nccajusuario', index:'nccajusuario',width:100,align: 'left'},
-        {name:'ccajero', index:'ccajero',width:100,align: 'center',hidden:true},
-        {name:'ciduser', index:'ciduser',width:100,hidden:true},
-        {name:'cnumini', index:'cnumini',width:100,hidden:true},
-        {name:'cnumfin', index:'cnumfin',width:100,hidden:true},
-        {name:'nestado', index:'nestado',width:100,hidden:true},
-        {name:'nnestado', index:'nnestado', width:90,align:"right"},//Estado
-        {name:'dfecpro', index:'dfecpro',width:100,hidden:true},
-        {name:'vusernm', index:'vusernm',width:100,hidden:true},
-        {name:'idsigma', index:'idsigma',width:100,hidden:true},
-        {name:'nmonape', index:'nmonape', width:90,align: 'right'},//Monto de Apertura
-        {name:'nmonval', index:'nmonval', width:90,align:"right"},//Recibos Validos
-        {name:'nmonanu', index:'nmonanu', width:90,align:"right"},//Recibos Anulados
-        {name:'nmonaentreg', index:'nmonaentreg', width:90,align:"right"},//Monto a Entregar
-        {name:'nmonent', index:'nmonent', width:90,align:"right"},//Monto Entregado
-        {name:'nmondif', index:'nmondif', width:90,align:"right"}//Diferencia
-        ],
-    caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda"
-/*,
-    afterInsertRow: function(rowid, aData){
-    	switch (aData.nestado) {
-    		case '1':
-    			//jQuery("#tblResultuit").jqGrid('setCell',rowid,'idsigma','',{color:'green'});
-    		break;
-    		case '0':
-    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'idsigma','',{color:'red'});
-    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'cperiod','',{color:'red'});
-    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'ctiptri','',{color:'red'});
-    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'mvaluit','',{color:'red'});
-    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'nimpmin','',{color:'red'});
-    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'nimpmax','',{color:'red'});
-    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'ncosemi','',{color:'red'});
-    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'ncosadi','',{color:'red'});
-    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'nestado','',{color:'red'});
-    		break;
-    		
-    	}
-    }*/
-    /* onSelectRow: function(id) {
-        row = $(this).getRowData(id);
-        console.log(row);
-    },*/
-    //ondblClickRow: xviewuit
-};
+		height: 370,
+	    width: 1000,
+	    colNames: ["Cajero","Id","ccajero", "ciduser","Inicio","Fin","nestado","Estado","dfecpro","vusernm"
+	               ,"M.Ingreso","Rec Validos", "Rec. Anulados", "M. a Entregar", "M.Entregado", "Diferencia"],
+	    colModel: [
+	        {name:'nccajusuario', index:'nccajusuario',width:220,align: 'left'},
+	        {name:'idsigma', index:'idsigma',width:30,hidden:false,align:"center"
+	        	,formatter: function (cellvalue, options, rowObject) {
+	        		//return cellvalue;
+	        		if (cellvalue=='---')
+	        			return '';
+	        		else
+	        			return parseInt(cellvalue,10);
+	            }
+	        },
+	        {name:'ccajero', index:'ccajero',width:100,align: 'center',hidden:true},
+	        {name:'ciduser', index:'ciduser',width:100,hidden:true},
+	        {name:'cnumini', index:'cnumini',width:75,hidden:false,align:"center"},
+	        {name:'cnumfin', index:'cnumfin',width:75,hidden:false,align:"center"},
+	        {name:'nestado', index:'nestado',width:40,hidden:true},
+	        {name:'nnestado', index:'nnestado', width:60,align:"right"},//Estado
+	        {name:'dfecpro', index:'dfecpro',width:100,hidden:true},
+	        {name:'vusernm', index:'vusernm',width:100,hidden:true},
+	        {name:'nmonape', index:'nmonape', width:70,align: 'right'},//Monto de Apertura
+	        {name:'nmonval', index:'nmonval', width:70,align:"right"},//Recibos Validos
+	        {name:'nmonanu', index:'nmonanu', width:90,align:"right"},//Recibos Anulados
+	        {name:'nmonaentreg', index:'nmonaentreg', width:80,align:"right"},//Monto a Entregar
+	        {name:'nmonent', index:'nmonent', width:75,align:"right"},//Monto Entregado
+	        {name:'nmondif', index:'nmondif', width:70,align:"right"}//Diferencia
+	        ],
+	    caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda"
+	/*,
+	    afterInsertRow: function(rowid, aData){
+	    	switch (aData.nestado) {
+	    		case '1':
+	    			//jQuery("#tblResultuit").jqGrid('setCell',rowid,'idsigma','',{color:'green'});
+	    		break;
+	    		case '0':
+	    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'idsigma','',{color:'red'});
+	    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'cperiod','',{color:'red'});
+	    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'ctiptri','',{color:'red'});
+	    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'mvaluit','',{color:'red'});
+	    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'nimpmin','',{color:'red'});
+	    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'nimpmax','',{color:'red'});
+	    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'ncosemi','',{color:'red'});
+	    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'ncosadi','',{color:'red'});
+	    			jQuery("#tblResultuit").jqGrid('setCell',rowid,'nestado','',{color:'red'});
+	    		break;
+	    		
+	    	}
+	    }*/
+	    /* onSelectRow: function(id) {
+	        row = $(this).getRowData(id);
+	        console.log(row);
+	    },*/
+	    //ondblClickRow: xviewuit
+	};
 
 habilitarCaja = function(){
 	var id = $("#tblResultapertcaj").jqGrid('getGridParam','selrow');

@@ -29,13 +29,13 @@ buscarapertcajxfecha = function(_fecha) {
 };
      	//NroCaja| MontoIngreso|RecibosValidos|RecibosAnulados|MontoEntrega|Entregado|Diferencia|Estado
 optionapertcaja = {
-    height: 200,
+    height: 370,
     width: 1000,
-    colNames: ["Cajero","Id","ccajero", "ciduser","cnumini","cnumfin","nestado","Estado","dfecpro","vusernm"
-               ,"Monto Ingreso","Recibos Validos", "Recibos Anulados", "Monto a Entrega", "Monto Entregado", "Diferencia"],
+    colNames: ["Cajero","Id","ccajero", "ciduser","Inicio","Fin","nestado","Estado","dfecpro","vusernm"
+               ,"M.Ingreso","Rec Validos", "Rec. Anulados", "M. a Entregar", "M.Entregado", "Diferencia"],
     colModel: [
-        {name:'nccajusuario', index:'nccajusuario',width:100,align: 'left'},
-        {name:'idsigma', index:'idsigma',width:50,hidden:false,align:"right"
+        {name:'nccajusuario', index:'nccajusuario',width:220,align: 'left'},
+        {name:'idsigma', index:'idsigma',width:30,hidden:false,align:"center"
         	,formatter: function (cellvalue, options, rowObject) {
         		//return cellvalue;
         		if (cellvalue=='---')
@@ -46,18 +46,18 @@ optionapertcaja = {
         },
         {name:'ccajero', index:'ccajero',width:100,align: 'center',hidden:true},
         {name:'ciduser', index:'ciduser',width:100,hidden:true},
-        {name:'cnumini', index:'cnumini',width:100,hidden:false},
-        {name:'cnumfin', index:'cnumfin',width:100,hidden:false},
-        {name:'nestado', index:'nestado',width:100,hidden:true},
-        {name:'nnestado', index:'nnestado', width:90,align:"right"},//Estado
+        {name:'cnumini', index:'cnumini',width:75,hidden:false,align:"center"},
+        {name:'cnumfin', index:'cnumfin',width:75,hidden:false,align:"center"},
+        {name:'nestado', index:'nestado',width:40,hidden:true},
+        {name:'nnestado', index:'nnestado', width:60,align:"right"},//Estado
         {name:'dfecpro', index:'dfecpro',width:100,hidden:true},
         {name:'vusernm', index:'vusernm',width:100,hidden:true},
-        {name:'nmonape', index:'nmonape', width:90,align: 'right'},//Monto de Apertura
-        {name:'nmonval', index:'nmonval', width:90,align:"right"},//Recibos Validos
+        {name:'nmonape', index:'nmonape', width:70,align: 'right'},//Monto de Apertura
+        {name:'nmonval', index:'nmonval', width:70,align:"right"},//Recibos Validos
         {name:'nmonanu', index:'nmonanu', width:90,align:"right"},//Recibos Anulados
-        {name:'nmonaentreg', index:'nmonaentreg', width:90,align:"right"},//Monto a Entregar
-        {name:'nmonent', index:'nmonent', width:90,align:"right"},//Monto Entregado
-        {name:'nmondif', index:'nmondif', width:90,align:"right"}//Diferencia
+        {name:'nmonaentreg', index:'nmonaentreg', width:80,align:"right"},//Monto a Entregar
+        {name:'nmonent', index:'nmonent', width:75,align:"right"},//Monto Entregado
+        {name:'nmondif', index:'nmondif', width:70,align:"right"}//Diferencia
         ],
     caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda"
 /*,

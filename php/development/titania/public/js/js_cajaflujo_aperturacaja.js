@@ -6,8 +6,11 @@ function aperturarcaja(){
     var vlocal ='';
     	vlocal = $('#cbolocal').val();
     	vnrocaja = $('#hddnrocaja').val();
-        obs =$('#txtobserv').val();
+        //obs =$('#txtobserv').val();
         
+        var oEditor = CKEDITOR.instances['txtobserv']
+        var obs = oEditor.getData();
+        obs=escape(obs);
         dat = {
                 "vnrocaja":vnrocaja,
                 "vfecha":vfecha,
@@ -21,7 +24,21 @@ function aperturarcaja(){
     	
         _post.error(postError);
 }
-
+$(function(){
+	var config = {
+	        skin:'v2'
+	        , toolbar: [
+	            ['Bold','Italic','Underline','-','NumberedList','BulletedList','-','Outdent','Indent','-','Undo','Redo','-','HorizontalRule','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','TextColor','BGColor'],
+	            ['UIColor']
+	        ]
+	    };
+	
+	    var hEd = CKEDITOR.instances['txtobserv'];
+	    if (hEd) {
+	        CKEDITOR.remove(hEd);
+	    }
+CKEDITOR.replace('txtobserv', config);
+});
 /*function aperturarcaja(vaccion){
     var vnrocaja='';
     var vfecha='';

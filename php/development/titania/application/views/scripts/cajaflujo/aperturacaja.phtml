@@ -1,4 +1,4 @@
-<div class="ui-widget ui-widget-content ui-corner-all" style="width: 50%;margin: 3px;">
+<div class="ui-widget ui-widget-content ui-corner-all" style="width: 90%;margin: 3px;">
     <div class="ui-widget ui-state-default ui-corner-top ui-title">
         <label>Aperturar Caja</label>
     </div>
@@ -8,10 +8,12 @@
 	    	<tr>
 	            <td>Id</td>		
 	            <td><input style="width: 85px;text-align: right;" type="text" id="txtcodapert" name="txtcodapert" class="ui-text" readonly></input></td>
+		        <td >Observacion</td>		
 	        </tr>
 	    	<tr>
 	            <td>Fecha</td>		
 	            <td><input style="width: 85px;" type="text" id="txtfecha" name="txtfecha" class="ui-text" readonly></input></td>
+	            <td rowspan="5" ><textarea id="txtobserv" class="ui-text"></textarea></td>
 	        </tr>
 	        <tr>
 	            <td>Cajero</td>
@@ -30,15 +32,11 @@
 	            <td><input style="width: 85px;" type="text" id="txtmtinicial" name="txtmtinicial" class="ui-text" readonly></input></td>
 	        </tr>
 	        <tr>
-	            <td>Local</td>		
-	            <td><select id="cbolocal"></select></td>
+	            <td valign="top">Local</td>		
+	            <td valign="top"><select id="cbolocal" style="width: 200px;"></select></td>
 	        </tr>
 	        <tr>
-	            <td>Observacion</td>		
-	            <td><textarea id="txtobserv" class="ui-text"></textarea></td>
-	        </tr>
-	        <tr>
-	            <td align="center" colspan="2">
+	            <td align="center" colspan="4">
 	                <button id="btnaperturar" name="btnaperturar">Aperturar Caja</button>
 	            </td>
 	        </tr>
