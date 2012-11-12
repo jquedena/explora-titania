@@ -88,8 +88,7 @@ optionregreajust = {
         {name:'cperiod', index:'cperiod', width:90,editable: true, align: 'center', frozen: true,edittype:"select"
         	,editoptions:anios},// periodo
         {name:'ctiping', index:'ctiping', width:90,editable: true},//hidden:true},// tipo de ingreso 273=ip 0278=AM
-        {name:'cnromes', index:'cnromes', width:90,editable: true, align: 'center',edittype:"select"
-        	,editoptions:vmeses},//Mes
+        {name:'cnromes', index:'cnromes', width:90,editable: true, align: 'center',edittype:"select",editoptions:vmeses},//Mes
         
         {name:'nmontim', index:'nmontim', width:90,editable: true,align:"right",editoptions:{
         	dataInit:function(el){

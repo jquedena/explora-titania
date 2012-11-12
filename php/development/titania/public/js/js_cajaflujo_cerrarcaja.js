@@ -62,8 +62,8 @@ guardarsencillero = function(){
     
     var oEditor = CKEDITOR.instances['txtobs']
     var vobs = oEditor.getData();
-
     vobs=escape(vobs);	
+    
     _post = $.post(path + "sencillera/guardarsencillero/", frmtblmonedas+"&vhdid_apert="+vhdid_apert+"&vhdid_cajero="+vhdid_cajero+"&vtxtfech_proc="+vtxtfech_proc+"&vhdid_estado="+vhdid_estado+"&vhdaccion="+vhdaccion+"&vobs="+vobs);
     _post.success(function(requestData){
         openDialogInfo(requestData, 400, 150);

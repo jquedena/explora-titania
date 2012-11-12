@@ -106,6 +106,7 @@ class PagosdiversosController extends Zend_Controller_Action {
 				$val[1] = array("cidpers",$cidpers, "html");
 				$val[2] = array("nompers",$nompers, "html");
 				$val[3] = array("cbconceptos",$func->ContenidoCombo($cbo, $cbo[0][0]), "html");
+				//$val[3] = array("cbconceptos",$func->ContenidoCombo($cbo, '9999999999'), "html");
 				$val[4] = array("busqxcodconcepto","","focus");
 				$func->PintarValor($val);
 				
@@ -120,11 +121,13 @@ class PagosdiversosController extends Zend_Controller_Action {
 				$evt[6] = array("busqxcodconcepto", "change", $cadtempo);
 				$evt[7] = array("busqxnomconcepto", "change",$cadtempo2);
 				$evt[8] = array('glosaconcepto','keypress','if(event.keyCode == 13){return false;}');
+				
+				$fn[] = array("MostrarDetalleConceptoPagosDiversos();");
 				$func->PintarEvento($evt);
 				
 				$din[0]=array("montoconcepto");
 				$func->CampoDinero($din);
-				
+				$func->EjecutarFuncion($fn);
 			} // Fin del else para los datos enviados
 		}else{
 			$val[0] = array("show", "No tienes privilegios de cajero para este modulo", "html");
@@ -202,7 +205,9 @@ class PagosdiversosController extends Zend_Controller_Action {
 						$cadbusq = strtoupper($datos[$i][1]);
 					}
 					
-					if(ereg($valor,$cadbusq)){
+					//if(ereg($valor,$cadbusq)){
+					if(preg_match('/'.$valor.'/', $cadbusq)){
+					//preg_match('/'.$patron.'/', $cadena_texto);
 						$b++;
 						if(strlen($datos[$i][1])>90){
 							$descrip = substr($datos[$i][1],0,89).'...';

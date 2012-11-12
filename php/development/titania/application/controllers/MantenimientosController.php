@@ -995,4 +995,8 @@ class MantenimientosController extends Zend_Controller_Action {
 			print_r($tabla);
 		}
 	}
+	public function mcajaAction(){
+		$this->view->util()->registerScriptJSControllerAction($this->getRequest());
+	}
+	public function mcajasaveAction(){}
 }
