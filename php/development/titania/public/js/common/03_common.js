@@ -91,7 +91,7 @@ function actualizarGrid(id, _options, bindkeys, navGrid){
 function inicializarGrid(id, _options, bindkeys, navGrid){
 	reloadJQGrid(id, _options, bindkeys, navGrid)
 }
-function contenidocomboContenedorjqGrid(idsigma){
+function contenidocomboContenedorjqGrid(selector,idsigma){
 	var optionsjq = {};
    	optionsjq.value ="9999999999:Seleccionar";
    	optionsjq.defaultValue="9999999999";
