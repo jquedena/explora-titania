@@ -102,12 +102,12 @@ var tipos ={value:"" +
 
 optionCentroPoblado = {
 	editurl: "centrpobsave",	
-    height: 290,
-    width: 700,
+    height: 400,
+    width: 800,
     colNames: ["Codigo","Tipo",  "codcen","Nombre","Zona","Nombre Completo","Desde","Hasta","Estado"  ],
     colModel: [
         {name:'mpoblad', index:'mpoblad', frozen:true,editable: true,width:80 ,editoptions:{readonly:true,size:10}},       
-        {name:'ctippob', index:'ctippob', editable: true, width:50, align: 'center',frozen: true,edittype:"select",editoptions:tipos},
+        {name:'ctippob', index:'ctippob', editable: true, width:50, align: 'center',frozen: false,edittype:"select",editoptions:tipos},
         {name:'ccodcen', index:'ccodcen', width:50, hidden: true},
         {name:'vnompob', index:'vnompob', editable: true, width:150} ,
         {name:'cidzona', index:'cidzona', editable: true, width:50, align: 'center',frozen: true,edittype:"select",editoptions:zona},

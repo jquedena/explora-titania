@@ -73,8 +73,8 @@ var tipos ={value:"" +
 
 optionVias = {
 	editurl: "viassave",
-    height: 290,
-    width: 600,
+    height: 400,
+    width: 800,
     colNames: ["Codigo", "Tipo Via", "Via","Tipo Centro","Nombre Via","Desde","Hasta" ,"Estado" ],
     colModel: [
                
