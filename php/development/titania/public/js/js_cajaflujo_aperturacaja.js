@@ -10,7 +10,7 @@ function aperturarcaja(){
         
         var oEditor = CKEDITOR.instances['txtobserv']
         var obs = oEditor.getData();
-        obs=escape(obs);
+        //obs=escape(obs);
         dat = {
                 "vnrocaja":vnrocaja,
                 "vfecha":vfecha,
@@ -38,6 +38,9 @@ $(function(){
 	        CKEDITOR.remove(hEd);
 	    }
 CKEDITOR.replace('txtobserv', config);
+
+$('#txtlocal').attr("readonly","");
+$("#linklocal").button("option", "disabled", true);
 });
 /*function aperturarcaja(vaccion){
     var vnrocaja='';

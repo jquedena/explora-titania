@@ -13,7 +13,7 @@
 	    	<tr>
 	            <td>Fecha</td>		
 	            <td><input style="width: 85px;" type="text" id="txtfecha" name="txtfecha" class="ui-text" readonly></input></td>
-	            <td rowspan="5" ><textarea id="txtobserv" class="ui-text"></textarea></td>
+	            <td rowspan="5" ><textarea id="txtobserv" class="ui-text"><?php echo $this->observ; ?></textarea></td>
 	        </tr>
 	        <tr>
 	            <td>Cajero</td>
@@ -33,7 +33,7 @@
 	        </tr>
 	        <tr>
 	            <td valign="top">Local</td>		
-	            <td valign="top"><select id="cbolocal" style="width: 200px;"></select></td>
+	            <td valign="top"><select id="cbolocal" style="width: 200px;" disabled></select></td>
 	        </tr>
 	        <tr>
 	            <td align="center" colspan="4">
