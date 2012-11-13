@@ -4,7 +4,7 @@
  * CajaduplicadosrecibosController
  * 
  * @author
- * @version 
+ * @version  
  */
 
 require_once 'Zend/Controller/Action.php';
