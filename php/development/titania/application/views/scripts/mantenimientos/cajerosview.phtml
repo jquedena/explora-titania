@@ -1,0 +1,136 @@
+<br/><br/>
+<table border="0">	
+	<tr>
+		<td colspan="4">
+			 <input type="hidden" id="idsigma" name="idsigma">
+		</td>
+	</tr>
+	<tr>
+		<td>Usuario</td>
+		<td>
+			<input type="text" id="usuario" name="usuario" class="ui-text"  size="15px">
+			<input type="hidden" id="ciduser" name="ciduser">
+		</td>
+		<td>Nombre Usuario</td>
+		<td>
+			<input type="text" id="nomusuario" name="nomusuario" class="ui-text" size="50px" readonly>
+			<input type="hidden" id="cidpers" name="cidpers">
+		</td>
+	</tr>
+	<tr>
+		<td>Nro Caja</td>
+		<td>
+			<input type="text" id="cnrocaja" name="cnrocaja" class="ui-text"  size="15px">
+			<input type="hidden" id="idsigmamcaja" name="idsigmamcaja">
+		</td>
+		<td>Agencia</td>
+		<td>
+			<input type="text" id="dlocal" name="dlocal" class="ui-text"  size="30px" readonly>
+			<input type="hidden" id="cidlocal" name="cidlocal">
+			<input type="hidden" id="ccodcos" name="ccodcos">
+		</td>
+	</tr>
+	<tr>
+		<td>Fecha Inicio</td>
+		<td>
+			<input type="text" id="dfecini" name="dfecini" class="ui-text" size="15px">
+		</td>
+		<td>Fecha Fin</td>
+		<td>
+			<input type="text" id="dfecfin" name="dfecfin" class="ui-text" size="15px">
+		</td>
+	</tr>
+	<tr>
+		<td>Estado</td>
+		<td colspan="3">
+			<input type="checkbox" id="nestado" name="nestado" value="1" class="ui-text">
+		</td>
+	</tr>
+</table>
+<button id="btnguardar">Guardar</button>
+<button id="btnregresar">Regresar</button>
+<br/><br/>
+
+
+<style>
+    .ui-autocomplete {
+        max-height: 218px;
+        overflow-y: auto;
+        /* prevent horizontal scrollbar */
+        overflow-x: hidden;
+        /* add padding to account for vertical scrollbar */
+        padding-right: 8px;
+    }
+
+    /* IE 6 doesn't support max-height
+    * we use height instead, but this forces the menu to always be this tall
+    */
+    * html .ui-autocomplete {
+        height: 218px;
+    }
+</style>
+<script type="text/javascript">
+    var jsoncajas = <?php echo json_encode($this->mcajas); ?>;
+    var _jsonusu = <?php echo json_encode($this->musuari); ?>;
+    console.log(jsoncajas);
+    console.log(_jsonusu);
+    $("#cnrocaja").autocompleteCategory({
+        delay: 0,
+        source: jsoncajas,
+        minLength: 2,
+        select: function(event, ui) {
+        	console.log(ui.item);
+            //ccodvia = ui.item.ccodvia;
+        	$('#dlocal').val(ui.item.dlocal);
+        	$('#cidlocal').val(ui.item.cidlocal);
+        	$('#idsigmamcaja').val(ui.item.idsigmamcaja);
+        },
+        change: function(event, ui) {
+            if(ui.item) {
+                //ccodvia = ui.item.ccodvia;
+            	console.log(ui.item);
+            	$('#dlocal').val(ui.item.dlocal);
+            	$('#cidlocal').val(ui.item.cidlocal);
+            	$('#idsigmamcaja').val(ui.item.idsigmamcaja);
+            } else {
+                
+                console.log($(this).val());
+                if($(this).val().length > 0) {
+                    openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
+                }
+            }
+        }
+    });
+    $("#usuario").autocompleteCategory({
+        delay: 0,
+        source: _jsonusu,
+        minLength: 2,
+        select: function(event, ui) {
+        	console.log(ui.item);
+            //ccodvia = ui.item.ccodvia;
+        	$('#ciduser').val(ui.item._cidusuario);
+        	$('#nomusuario').val(ui.item._nombrepers);
+        	$('#ccodcos').val(ui.item._cidarea);
+        	$('#cidpers').val(ui.item._cidpers);
+        },
+        change: function(event, ui) {
+            if(ui.item) {
+                //ccodvia = ui.item.ccodvia;
+            	console.log(ui.item);
+            	$('#ciduser').val(ui.item._cidusuario);
+            	$('#nomusuario').val(ui.item._nombrepers);
+            	$('#ccodcos').val(ui.item._cidarea);
+            	$('#cidpers').val(ui.item._cidpers);
+            } else {
+                
+                console.log($(this).val());
+                if($(this).val().length > 0) {
+                    openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
+                }
+            }
+        }
+    });
+   
+    
+
+</script>

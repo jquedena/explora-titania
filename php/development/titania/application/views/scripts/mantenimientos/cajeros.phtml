@@ -1,21 +1,22 @@
-<div id="panelbusqueda" align="center" class="ui-widget ui-widget-content ui-corner-all "  style="width: 700px;margin: 3px;">
+
+<div id="panelbusqueda" align="center" class="ui-widget ui-widget-content ui-corner-all "  style="width: 1000px;margin: 3px;">
     <div class="ui-widget ui-state-default ui-corner-top ui-title">
-        <label>Cajas</label>
+        <label>Cajeros</label>
     </div>
+    <div id="dvbusqueda">
     <table border="0" width="650px">
 		<tr>
-            <td width="50px">Nro Caja</td>
+            <td width="50px"></td>
             <td colspan="3">
-           		 <input type="text" id="txtnrocaja" class="ui-text" style="text-align: right;width: 100px;	"/>
             </td>
             <td rowspan="2" align="center">
             	<button id="btnbuscar">Buscar</button>
+            	<button id="btnnuevo">Nuevo</button>
             </td>
         </tr>
         <tr>
-            <td width="50px">Local</td>
+            <td width="50px"></td>
             <td>
-           		 <select id="cbolocal" style="width: 200px;"></select>
             </td>
             <td width="50px">Estado</td>
             <td>
@@ -23,10 +24,13 @@
             </td>
         </tr>
     </table>
+    </div>
+    <div id="dvaccion"></div>
 </div>
-<div id="panelResultmcaja">
-	<table id="tblResultmcaja"></table>
-	<div id="ptblResultmcaja"></div>
+<div id="panelResultmcajero">
+	<table id="tblResultmcajero"></table>
+	<div id="ptblResultmcajero"></div>
 </div>
-<div id="dvjson"></div>
+
+
 <!-- --------------------------------------------------------------------------------------------------------------------	 -->

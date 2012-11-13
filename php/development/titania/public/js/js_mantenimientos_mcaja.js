@@ -10,13 +10,18 @@ buscarmcaja = function() {
     }else{
     	
     }*/
-  
+	var vnrocaja = $('#txtnrocaja').val();
+	var vobjnrocaja = $('#txtnrocaja');
+	if(trim(vnrocaja).length > 0){
+		vnrocaja = LPad(vnrocaja, 4, '0');
+    }
+	vobjnrocaja.val(vnrocaja);
     parameters = {
         "name": "tblResultmcaja",
         "procedure": "tesoreria.buscar_cajas",
         "parameters": '{' +
         '"p_idsigma":"",' +
-        '"p_cnrocaja":"' + $('#txtnrocaja').val() + '",' +
+        '"p_cnrocaja":"' + vnrocaja + '",' +
         '"p_cidlocal":"' + $('#cbolocal').val() + '",' +
         '"p_nestado":"' + $('#cboestado').val() + '"' +
         '}'
@@ -48,13 +53,18 @@ buscarmcaja = function() {
 };
  
 var vlocales = {value:"9999999999:Seleccionar" +
+	";1000000347:ATENCION AL CIUDADANO" +
 	";1000000348:LOMAS DE ZAPALLAL" +
-	";1000000349:DAVID" +
+	";1000000349:LA ENSENADA" +
+	";1000000399:SAN JUAN" +
+	";1000000400:MICAELA BASTIDAS" +
+	";1000000401:MALECON CHILLON" +
+	";1000000402:SANTA ROSA" +
 	"", defaultValue:'9999999999'};
 
 optionmcaja = {
     height: 290,
-    width: 1000,
+    width: 700,
     editurl: "mcajasave",
     colNames: ["C\u00F3digo", "Nro Caja","cidlocal", "Local", "Estado", "drstado", "vusernm", "vhostnm", "vdatetm"],
     colModel: [
@@ -75,23 +85,19 @@ optionmcaja = {
 
 };
 $(function(){
+	//contenidocomboContenedorjqGrid(vlocales,'1000000346');
 	$('#btnbuscar').click(function(){buscarmcaja();});
 	contenidocomboContenedor('#cbolocal', '1000000346');
-	rows = [["1","Activo"],["0","Inactivo"]];	
+	rows = [["1","ACTIVO"],["0","INACTIVO"]];	
 	$('#cboestado').html(contenidocombo(rows));
-	$('#cboestado').val("1");
-	$('#txtestado').val("Activo");
-	vlocales = contenidocomboContenedorjqGrid('1000000346');
-	alert(vlocales.value);
+	
     //$("#txtlocal").attr("maxlength", 4);
-    /*
-    $('#txtlocal').keyup(function(e) {
+    
+    $('#txtnrocaja').keyup(function(e) {
     	if(e.keyCode == 13) {
-    		if ($('#txtlocal').val()==''){
     			buscarmcaja();
-    		}
     	}
-    });*/
+    });
 	/*$("#txtlocal").bind("autocompletechange", function(event, ui) {
         if(ui.item) {
         	buscarmcaja();
