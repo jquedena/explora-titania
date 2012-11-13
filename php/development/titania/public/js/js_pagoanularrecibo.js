@@ -26,7 +26,7 @@ okConfirmacion1=function(){
 	
 	var oEditor = CKEDITOR.instances['txtobs']
     var obs = oEditor.getData();
-    obs=escape(obs);
+    //obs=escape(obs);
 	$.ajax({
 	 	dataType: "html",
 	 	type: "POST",

@@ -84,9 +84,11 @@ class CajaflujoController extends Zend_Controller_Action {
 			$nomCajero =$datosCajero[0][16];//nombre completo del cajero
 			$nmonApe =$datosCajero[0][10];//monto apert
 			$idpertCaja =$datosCajero[0][1];//idapertura caja
-
+			$cidlocal = $datosCajero[0][17];//codigo de agencia
+			$observ = $datosCajero[0][19]; #observacion
+			$this->view->observ = $observ;
 			//$arrayestado = array(array('1', 'HABILITADO'), array('0', 'DESHABILITADO'));
-			$val[] = array('cbolocal', $func->ContenidoCombo($cboLocales, ''), 'html');
+			$val[] = array('cbolocal', $func->ContenidoCombo($cboLocales, $cidlocal), 'html');
 
 
 			$evt[] = array("btnaperturar", "click", "aperturarcaja();");
@@ -103,7 +105,7 @@ class CajaflujoController extends Zend_Controller_Action {
 			$val[] = array('txtmtinicial', $nmonApe, 'val');
 			$val[] = array('hddidapercaja', $idpertCaja, 'val');
 			$val[] = array('txtcodapert', intval($idpertCaja), 'val');
-
+			//$val[] = array('observ', $observ, 'html');
 
 			$func->IniciaScript();
 			$func->PintarEvento($evt);
