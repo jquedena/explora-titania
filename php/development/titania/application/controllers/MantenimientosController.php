@@ -447,8 +447,8 @@ class MantenimientosController extends Zend_Controller_Action {
 				$val[] = array('departamen', $vdpto, 'val');
 				$val[] = array('manzana', $vmanzan, 'val');
 				$val[] = array('lote', $vlote, 'val');
-				$val[] = array('ref', str_replace('"', '', str_replace('º', '', $vreferen)), 'val');
-				// echo str_replace('NÂº','Nro',$vreferen);
+				$val[] = array('ref', str_replace('"', '', str_replace('�', '', $vreferen)), 'val');
+				// echo str_replace('Nº','Nro',$vreferen);
 
 				echo "<textarea>" . $vreferen . "</textarea>";
 				$val[] = array("ds_observacion", $vobserv, 'html');
@@ -572,71 +572,176 @@ class MantenimientosController extends Zend_Controller_Action {
 
 	}
 
-	public function arancelAction() {
-		$this->view->util()->registerScriptJSControllerAction($this->getRequest());
-		$pintar = new Libreria_Pintar();
-		$fechAct = date("Y");
+ public function arancelAction() {
+        $this->view->util()->registerScriptJSControllerAction($this->getRequest());
+        $pintar = new Libreria_Pintar();
+        $fechAct = date("Y");
 
-		for ($i = 1990; $i <= $fechAct; ++$i) {
-			$cboanos[$i] = array($i, $i);
+        for ($i = 1990; $i <= $fechAct; ++$i) {
+            $cboanos[$i] = array($i, $i);
+        }
+
+        $val[] = array('cboanios', $pintar->ContenidoCombo($cboanos, '9999999999'), 'html');
+       
+     
+        $pintar->PintarValor($val);
+     
+    }
+    
+    
+	private function centr($conceptos) {
+		$items = null;
+		for($i=0; $i<count($conceptos); $i++){
+			
+			$codigo = $conceptos[$i][0];
+		
+			$items[$i]=array($codigo, $conceptos[$i][5]);
 		}
-
-		$val[] = array('cboanios', $pintar->ContenidoCombo($cboanos, '9999999999'), 'html');
-		$evt[] = array('btningresar', 'click', '$("#manttarancel" ).dialog( "open" );');
-		$fn[] = array('$(function() {
-				$( "#dialog:ui-dialog" ).dialog( "destroy" );
-				$( "#manttarancel" ).dialog({
-				resizable: false,
-				height:500,
-				width:500,
-				modal: true,
-				autoOpen:false,
-				draggable:false,
-				buttons: {
-				Guardar: function(){$( this ).dialog( "close" );}
-				,Cerrar: function(){$( this ).dialog( "close" );}
+		return $items;
 	}
-	});
-	});');
-		$evt[] = array('btnbuscarvia', 'click', '$("#busqvias" ).dialog( "open" );');
-
-		$fn[] = array('$(function() {
-				$( "#dialog:ui-dialog" ).dialog( "destroy" );
-				$( "#busqvias" ).dialog({
-				resizable: false,
-				height:500,
-				width:600,
-				modal: true,
-				autoOpen:false,
-				draggable:false,
-				buttons: {
-				Cerrar: function(){$( this ).dialog( "close" );}
+	
+	
+	private function vias($conceptos) {
+		$items = null;
+		for($i=0; $i<count($conceptos); $i++){
+			
+			$codigo = $conceptos[$i][0];
+		
+			$items[$i]=array($codigo, $conceptos[$i][4]);
+		}
+		return $items;
 	}
-	});
-	});');
+    
+    public function arancelviewAction(){
+    	  $this->_helper->getHelper('ajaxContext')->initContext();
+        if ($this->getRequest()->isXmlHttpRequest()) {
+            $this->_helper->layout->disableLayout();
+            $name = $this->_request->getParam('name');
+            $action = $this->_request->getPost('action');
+            $idsigma=$this->_request->getPost('idsigma');
+            $mpoblad=$this->_request->getPost('mpoblad');
+            $tnompob=$this->_request->getPost('tnompob');
+            $mviadis=$this->_request->getPost('mviadis');
+            $tnomvia=$this->_request->getPost('tnomvia');	
+	        $nladvia=$this->_request->getPost('nladvia');
+	        $ncuaini=$this->_request->getPost('ncuaini');
+	        $ncuafin=$this->_request->getPost('ncuafin');
+	        $narance=$this->_request->getPost('narance');
+	        $nfacbar=$this->_request->getPost('nfacbar');
+	        $cperiod=$this->_request->getPost('cperiod');
+            $nestado=$this->_request->getPost('nestado');
+            
+            
+        $pintar = new Libreria_Pintar();
+         
+		$val[]=array('idsigma',$idsigma,'val');
+        
+        $fechAct = date("Y");
 
-		$evt[] = array('btnbuscarcentrpoblado', 'click', '$("#busqcentrpobl" ).dialog( "open" );');
+        for ($i = 1990; $i <= $fechAct; ++$i) {
+            $cboanos[$i] = array($i, $i);
+        }
+        
+        $val[] = array('cboanios', $pintar->ContenidoCombo($cboanos, '9999999999'), 'html');
+        
+        $val[] = array('cboanios', $cperiod,'val');
+        
 
-		$fn[] = array('$(function() {
-				$( "#dialog:ui-dialog" ).dialog( "destroy" );
-				$( "#busqcentrpobl" ).dialog({
-				resizable: false,
-				height:500,
-				width:600,
-				modal: true,
-				autoOpen:false,
-				draggable:false,
-				buttons: {
-				Cerrar: function(){$( this ).dialog( "close" );}
-	}
-	});
-	});');
+         $nombrestore = 'registro.contrpob';
+		 $arraydatos[0]= "01";
+		 $cn = new Model_DataAdapter();
+		 $datoscpd = $cn->ejec_store_procedura_sql($nombrestore,$arraydatos);
+				
+		 $cbo = $this->centr($datoscpd);
+         $val[] = array("cbocentrpob",$pintar->ContenidoCombo($cbo, $cbo[0][0]), "html");
+        
+         
+          $nombrestore2 = 'registro.mostrarvias';
+		 $arraydatos2[0]= "01";
+		 $cn2= new Model_DataAdapter();
+		 $datoscpd2 = $cn2->ejec_store_procedura_sql($nombrestore2,$arraydatos2);
+				
+		 $cbo2 = $this->vias($datoscpd2);
+         $val[] = array("cbovia",$pintar->ContenidoCombo($cbo2, $cbo2[0][0]), "html");
+           
+         $val[] = array("cbocentrpob",$mpoblad, "val");
+         
+         $val[] = array("cbovia",$mviadis, "val");
+         
+                  
+         $val[]=array('txtnlado',$nladvia,'val');
+         
+         $val[]=array('txtarancel',$narance,'val');
+         
+       	 $val[]=array('txtcuadraini',$ncuaini,'val');
+       	 
+       	 
+       	  $val[]=array('txtcuadrafin',$ncuafin,'val');
+       	 
+       	  $val[]=array('txtfacbarr',$nfacbar ,'val');
+       	 
+         
+         $cboestado[]=array('0','Inactivo');
+         $cboestado[]=array('1','Activo');
+         
+          $val[] = array('cboestado', $pintar->ContenidoCombo($cboestado, '1'), 'html');
+         
+        //$pintar->PintarEvento($evt);
+       // $pintar->EjecutarFuncion($fn);        
+        
+        
+        $pintar->PintarValor($val);
+        }       
+        	
+    }
+    
+    	public function arancelsaveAction(){
+		 
+		$this->_helper->layout->disableLayout();
+		$this->_helper->viewRenderer->setNoRender();
+		$this->_helper->getHelper('ajaxContext')->initContext();
+			if ($this->getRequest()->isXmlHttpRequest()) {
+			
+			$idsigma=$this->_request->getPost('idsigma');
+            $mpoblad=$this->_request->getPost('mpoblad');         
+            $mviadis=$this->_request->getPost('mviadis');          
+	        $nladvia=$this->_request->getPost('nladvia');
+	        $ncuaini=$this->_request->getPost('ncuaini');
+	        $ncuafin=$this->_request->getPost('ncuafin');
+	        $narance=$this->_request->getPost('narance');
+	        $nfacbar=$this->_request->getPost('nfacbar');
+	        $cperiod=$this->_request->getPost('cperiod');
+            $nestado=$this->_request->getPost('nestado');
+                   
+            
+			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+			$userlogin = $ddatosuserlog->userlogin;
+			$cn = new Model_DataAdapter ();
+			$nombrestore = '"registro".guardarmarance';
+			$parametros [0] = $idsigma;
+			$parametros [1] = $mpoblad;
+			$parametros [2] = $mviadis;
+			$parametros [3] = $nladvia;
+			$parametros [4] = $ncuaini;
+			$parametros [5] = $ncuafin;
+			$parametros [6] = $narance;
+			$parametros [7] = $nfacbar;
+			$parametros [8] = $cperiod;
+			$parametros [9] = $nestado;
+			$parametros [10] = $this->view->util()->getHost();
+			$parametros [11] = $userlogin;
 
-		$pintar->PintarValor($val);
-		$pintar->PintarEvento($evt);
-		$pintar->EjecutarFuncion($fn);
-	}
+			$datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+			if ($datos[0][0] == '1') {
 
+			} else {
+				header("Status: 400 Error al Guardar intentelo en otro momento o contacte al adminsitrador");
+			}
+            
+            
+			
+			}
+		}
 	public function viasAction() {
 		$this->view->util()->registerScriptJSControllerAction($this->getRequest());
 
@@ -993,143 +1098,6 @@ class MantenimientosController extends Zend_Controller_Action {
 			$parametros [10] = $p_vusernm;
 			$tabla = $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
 			print_r($tabla);
-		}
-	}
-	public function mcajaAction(){
-		$this->view->util()->registerScriptJSControllerAction($this->getRequest());
-	}
-	public function mcajasaveAction(){
-		$this->_helper->layout->disableLayout();
-		$this->_helper->viewRenderer->setNoRender();
-		$this->_helper->getHelper('ajaxContext')->initContext();
-		if ($this->getRequest()->isXmlHttpRequest()) {
-			$idsigma = $this->_request->getPost('idsigma');
-			$cnrocaja = $this->_request->getPost('cnrocaja');
-			$dlocal = $this->_request->getPost('dlocal');
-			$nestado = $this->_request->getPost('nestado');
-			$oper = $this->_request->getPost('oper'); // add	edit del
-			$id = $this->_request->getPost('id');
-			//tesoreria.guardarmcaja(
-					/*p_idsigma character varying, 
-					p_cnrocaja character varying, 
-					p_cidlocal character varying, 
-					p_nestado character varying, 
-					p_vusernm character varying, 
-					p_vhostnm character varying, 
-					p_ref refcursor)*/
-		
-			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
-			$userlogin = $ddatosuserlog->userlogin;
-			$cn = new Model_DataAdapter ();
-			$nombrestore = 'tesoreria.guardarmcaja';
-			$parametros [0] = $idsigma;
-			$parametros [1] = $cnrocaja;
-			$parametros [2] = $dlocal;
-			$parametros [3] = $nestado;
-			$parametros [4] = $userlogin;
-			$parametros [5] = $this->view->util()->getHost();
-		
-			$datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
-			
-			if ($datos[0][0] == '1') {
-				//header("Status: 400 Error al guardar".print_r($datos));
-			} else {
-				header("Status: 400 Error al Guardar intentelo en otro momento o contacte al adminsitrador");
-				//header("Status: 400 $idsigma|$cnrocaja|$dlocal|$nestado|$oper|$id");
-			}
-		}
-	}
-	public function cajerosAction(){
-		$this->view->util()->registerScriptJSControllerAction($this->getRequest());
-	}
-	public function cajerosviewAction(){
-		//$this->view->util()->registerScriptJSControllerAction($this->getRequest());
-		if ($this->getRequest()->isXmlHttpRequest()) {
-			$this->_helper->getHelper('ajaxContext')->initContext();
-			$this->_helper->layout->disableLayout();
-			$dataAdapter = new Model_DataAdapter();
-			$parameters[] = "";
-			$parameters[] = "";
-			$parameters[] = "";
-			$parameters[] = "1";
-			$datoscajas = $dataAdapter->ejec_store_procedura_sql("tesoreria.buscar_cajas", $parameters);
-			
-			/*seguridad.buscar_usuario(
-					p_cidusuario character varying DEFAULT ''::character varying, 
-					p_usuario character varying DEFAULT ''::character varying, 
-					p_cidpers character varying DEFAULT ''::character varying, 
-					p_cidarea character varying DEFAULT ''::character varying, 
-					p_estado character varying DEFAULT ''::character varying,
-					p_tipousuario*/
-			$parametersu[] = "";//p_cidusuario
-			$parametersu[] = "";//p_usuario
-			$parametersu[] = "";//p_cidpers
-			$parametersu[] = "";//p_cidarea
-			$parametersu[] = "1";//p_estado
-			$parametersu[] = "U";//p_tipousuario
-			$datosusuarios = $dataAdapter->ejec_store_procedura_sql("seguridad.buscar_usuario", $parametersu);
-			
-			$arrmusu = array();
-			for ($i = 0; $i < count($datosusuarios); $i++) {
-				$arrmusu[] = array("category"=>"","label"=>$datosusuarios[$i][5],"_cidusuario"=>$datosusuarios[$i][0],"_cidarea"=>$datosusuarios[$i][1],"_cidpers"=>$datosusuarios[$i][2],"_nombrepers"=>$datosusuarios[$i][3],"_usuario"=>$datosusuarios[$i][5]);
-			}
-			//print_r($arrmusu);
-			$this->view->musuari = $arrmusu;
-			
-			
-			$arrmcajas = array();
-			for ($i = 0; $i < count($datoscajas); $i++) {
-				$arrmcajas[] = array("category"=>"","label"=>$datoscajas[$i][1],"idsigmamcaja"=>$datoscajas[$i][0],"cnrocaja"=>$datoscajas[$i][1],"cidlocal"=>$datoscajas[$i][2],"dlocal"=>$datoscajas[$i][3]);
-			}
-			$this->view->mcajas = $arrmcajas;
-		}
-	}
-	public function cajerossaveAction(){
-		//$this->view->util()->registerScriptJSControllerAction($this->getRequest());
-		if ($this->getRequest()->isXmlHttpRequest()) {
-			$this->_helper->layout->disableLayout();
-		$this->_helper->viewRenderer->setNoRender();
-		$this->_helper->getHelper('ajaxContext')->initContext();
-		$idsigma = $this->_request->getPost('idsigma');
-		$usuario = $this->_request->getPost('usuario');
-		$ciduser = $this->_request->getPost('ciduser');
-		$nomusuario = $this->_request->getPost('nomusuario');
-		$cidpers = $this->_request->getPost('cidpers');
-		$cnrocaja = $this->_request->getPost('cnrocaja');
-		$idsigmamcaja = $this->_request->getPost('idsigmamcaja');
-		$dlocal = $this->_request->getPost('dlocal');
-		$cidlocal = $this->_request->getPost('cidlocal');
-		$ccodcos = $this->_request->getPost('ccodcos');
-		$dfecini = $this->_request->getPost('dfecini');
-		$dfecfin = $this->_request->getPost('dfecfin');
-		$nestado = $this->_request->getPost('nestado');
-
-		$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
-		$userlogin = $ddatosuserlog->userlogin;
-		$dataAdapter = new Model_DataAdapter();
-		$parametersu[] = $idsigma;//
-		$parametersu[] = $ciduser;//
-		$parametersu[] = $cnrocaja;//
-		$parametersu[] = $ccodcos;//
-		$parametersu[] = $dfecini;//
-		$parametersu[] = $dfecfin;//
-		$parametersu[] ='1';
-		$parametersu[] =$userlogin;
-		$parametersu[] =$this->view->util()->getHost();
-		
-		$datosresult = $dataAdapter->ejec_store_procedura_sql("tesoreria.guardarmcajero", $parametersu);
-		echo $datosresult[0][1];
-		//if ($datosresult[0][0]=='1') 
-		/*tesoreria.guardarmcajero(
-						p_idsigma character varying, 
-						p_ciduser character varying, 
-						p_ccajero character varying, 
-						p_ccodcos character varying,
-						p_dfecini character varying,
-						p_dfecfin character varying,						
-						p_nestado character varying, 
-						p_vusernm character varying, 
-						p_vhostnm character varying, */
 		}
 	}
 }
