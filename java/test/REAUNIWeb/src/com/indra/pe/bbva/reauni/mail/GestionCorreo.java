@@ -171,7 +171,11 @@ public class GestionCorreo {
 		+ " de recepción por más de " + dias + " días.<br>"
 		+ " Saludos Cordiales,<br> " + " DESARROLLO COMERCIAL");
 
-		beanCorreo.setListaTo(email);
+		if(SessionHelper.getModoDebug()) {
+			beanCorreo.setListaTo(SessionHelper.getEmailDebug());
+		} else {
+			beanCorreo.setListaTo(email);
+		}
 		beanCorreo.setFileName(GestionCorreo.CONTRATO_NO_RECEPCIONADOS);
 		beanCorreo.setMensajeAdjuntoExcel(FormatoMensajeCorreo.formatoCorreoResumen(contratos, Constantes.CABECERA_REPORTE_GESTION_FILES, "RecepcionNoFiles"));
 		if (ApplicationHelper.obtenerParametroPorId(1052L) != null) {
@@ -198,7 +202,11 @@ public class GestionCorreo {
 					+ " datos para los fines que crean pertinentes.<br>"
 					+ " Saludos Cordiales,<br>" + " DESARROLLO COMERCIAL ");
 
-		beanCorreo.setListaTo(listaCorreos);
+		if(SessionHelper.getModoDebug()) {
+			beanCorreo.setListaTo(SessionHelper.getEmailDebug());
+		} else {
+			beanCorreo.setListaTo(listaCorreos);
+		}
 		beanCorreo.setMensajeAdjuntoExcel(FormatoMensajeCorreo.formatoCorreoResumen("unificacion", lista_unificacion, Constantes.CABECERA_REPORTE_UNIFICACION));
 		beanCorreo.setMensajeAdjuntoExcel2(FormatoMensajeCorreo.formatoCorreoResumen("reasignacion", lista_reasignacion, Constantes.CABECERA_REPORTE_REASIGNACION));
 
@@ -233,7 +241,11 @@ public class GestionCorreo {
 		+ Utilitarios.Fecha.obtenerDescripcionMes(Integer.parseInt(mes)) + ".<br>" + " Saludos Cordiales,<br>"
 		+ " DESARROLLO COMERCIAL");
 		
-		beanCorreo.setListaTo(email);
+		if(SessionHelper.getModoDebug()) {
+			beanCorreo.setListaTo(SessionHelper.getEmailDebug());
+		} else {
+			beanCorreo.setListaTo(email);
+		}
 		beanCorreo.setMensajeAdjuntoExcel(FormatoMensajeCorreo.formatoCorreoResumen(contratos, Constantes.CABECERA_REPORTE_GESTION_FILES, "RecepcionFiles"));
 		if (ApplicationHelper.obtenerParametroPorId(1052L) != null) {
 			String email_auditoria = ApplicationHelper.obtenerParametroPorId(1052L).getValorCadena();

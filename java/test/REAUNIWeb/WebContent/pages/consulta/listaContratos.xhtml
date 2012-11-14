@@ -43,6 +43,7 @@
 					<td>
 						<h:selectOneMenu converter="parametroConvert" value="#{consultaMBean.contratoDto.estadoDto}">
 							<f:selectItems value="#{consultaMBean.listaEstados}" var="p" itemLabel="#{p.descripcion}" itemValue="#{p}" />
+							<f:ajax />
 						</h:selectOneMenu>
 					</td>
 					<td style="width: 25px;">&nbsp;</td>
