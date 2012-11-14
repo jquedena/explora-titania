@@ -10,6 +10,7 @@ xsavemantemcajero = function(){
 }
 
 limpiarobjetos = function(){
+	$('input').removeAttr('readonly');
 	$('#idsigma').val("");
 	$('#usuario').val("");
 	$('#ciduser').val("");
@@ -46,17 +47,20 @@ viewmcajero= function(_parameters){
 		 				$('#dvbusqueda').show();
 		 				$('#dvaccion').hide();
 		 				$('#panelResultmcajero').show();
+		 				buscarmcajero();
 	 				}
 		 			);
-		 $("#dfecini,#dfecfin").datepicker({
-			 dateFormat : "dd-mm-yy",
-			 changeMonth:true,
-			 changeYear:true,
-			 showOn: "button",
-			 buttonImage: jQuery.scriptPath + "img/calendar.gif",
-			 buttonImageOnly: true
-			 });
-		 if(_parameters.action=='update'){
+		 if (_parameters.action!='delete'){
+			 $("#dfecini,#dfecfin").datepicker({
+				 dateFormat : "dd-mm-yy",
+				 changeMonth:true,
+				 changeYear:true,
+				 showOn: "button",
+				 buttonImage: jQuery.scriptPath + "img/calendar.gif",
+				 buttonImageOnly: true
+				 });
+		 }
+		 if(_parameters.action=='update' || _parameters.action=='delete'){
 			 limpiarobjetos();
 			$('#idsigma').val(_parameters.idsigma);
 			$('#usuario').val(_parameters.usuario);
@@ -72,7 +76,12 @@ viewmcajero= function(_parameters){
 			$('#ccodcos').val(_parameters.ccodcos);
 			$('#dfecini').val(_parameters.dfecini);
 			$('#dfecfin').val(_parameters.dfecfin);
-			$('#nestado').attr('checked', _parameters.nestado);
+			checkval = (_parameters.nestado==0 ? false : true);
+			$('#nestado').attr('checked', checkval);
+			if (_parameters.action=='delete'){
+				$('input').attr('readonly', 'readonly');
+				$('#nestado').attr('checked', false);
+			}
 		 }else if(_parameters.action=='insert'){
 			 limpiarobjetos();
 		 }
@@ -104,6 +113,16 @@ xmanteNewmcajero=function(){
 	//console.log(row);
 	
 	viewmcajero(row)
+}
+xmanteDelmcajero = function(){
+	var id = $("#tblResultmcajero").jqGrid('getGridParam','selrow');
+	if (id)	{
+		var row = jQuery("#tblResultmcajero").jqGrid('getRowData',id);
+		row.action='delete';
+		viewmcajero(row);
+	}else 
+		openDialogInfo("Seleccionar Fila", 300, 130); 
+	
 }
 
 bindkeysmcajero = {"onEnter": xmanteUpdatemcajero};
@@ -145,7 +164,7 @@ optionmcajero = {
         {name:'idsigma', index:'idsigma', width:80,editable: true, align: 'center', frozen: true,editoptions:{readonly:true,size:10}},
         {name:'ciduser', index:'ciduser', width:90,editable: true, align: 'center',hidden:true},
         {name:'usuario', index:'usuario', width:90,editable: true,hidden:false},
-        {name:'idsigmaperson', index:'idsigmaperson', width:90,editable: true,hidden:false},
+        {name:'idsigmaperson', index:'idsigmaperson', width:90,editable: true,hidden:true},
         {name:'nomusuario', index:'nomusuario', width:260,editable: true, align: 'left'},
         
         {name:'idsigmamcaja', index:'idsigmamcaja', width:80,editable: true,hidden:true},
@@ -173,6 +192,7 @@ $(function(){
 	//contenidocomboContenedorjqGrid(vlocales,'1000000346');
 	$('#btnbuscar').click(function(){buscarmcajero();});
 	$('#btnnuevo').click(function(){xmanteNewmcajero();});
+	$('#btndeshabilitar').click(function(){xmanteDelmcajero();});
 	contenidocomboContenedor('#cbolocal', '1000000346');
 	rows = [["1","ACTIVO"],["0","INACTIVO"]];	
 	$('#cboestado').html(contenidocombo(rows));
