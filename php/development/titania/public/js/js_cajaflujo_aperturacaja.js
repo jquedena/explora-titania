@@ -38,7 +38,6 @@ $(function(){
 	        CKEDITOR.remove(hEd);
 	    }
 CKEDITOR.replace('txtobserv', config);
-
 $('#txtlocal').attr("readonly","");
 $("#linklocal").button("option", "disabled", true);
 });

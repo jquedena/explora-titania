@@ -1100,4 +1100,146 @@ class MantenimientosController extends Zend_Controller_Action {
 			print_r($tabla);
 		}
 	}
+	
+	public function mcajaAction(){
+		$this->view->util()->registerScriptJSControllerAction($this->getRequest());
+	}
+	public function mcajasaveAction(){
+		$this->_helper->layout->disableLayout();
+		$this->_helper->viewRenderer->setNoRender();
+		$this->_helper->getHelper('ajaxContext')->initContext();
+		if ($this->getRequest()->isXmlHttpRequest()) {
+			$idsigma = $this->_request->getPost('idsigma');
+			$cnrocaja = $this->_request->getPost('cnrocaja');
+			$dlocal = $this->_request->getPost('dlocal');
+			$nestado = $this->_request->getPost('nestado');
+			$oper = $this->_request->getPost('oper'); // add	edit del
+			$id = $this->_request->getPost('id');
+			//tesoreria.guardarmcaja(
+					/*p_idsigma character varying, 
+					p_cnrocaja character varying, 
+					p_cidlocal character varying, 
+					p_nestado character varying, 
+					p_vusernm character varying, 
+					p_vhostnm character varying, 
+					p_ref refcursor)*/
+		
+			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+			$userlogin = $ddatosuserlog->userlogin;
+			$cn = new Model_DataAdapter ();
+			$nombrestore = 'tesoreria.guardarmcaja';
+			$parametros [0] = $idsigma;
+			$parametros [1] = $cnrocaja;
+			$parametros [2] = $dlocal;
+			$parametros [3] = $nestado;
+			$parametros [4] = $userlogin;
+			$parametros [5] = $this->view->util()->getHost();
+		
+			$datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+			
+			if ($datos[0][0] == '1') {
+				//header("Status: 400 Error al guardar".print_r($datos));
+			} else {
+				header("Status: 400 Error al Guardar intentelo en otro momento o contacte al adminsitrador");
+				//header("Status: 400 $idsigma|$cnrocaja|$dlocal|$nestado|$oper|$id");
+			}
+		}
+	}
+	public function cajerosAction(){
+		$this->view->util()->registerScriptJSControllerAction($this->getRequest());
+	}
+	public function cajerosviewAction(){
+		//$this->view->util()->registerScriptJSControllerAction($this->getRequest());
+		if ($this->getRequest()->isXmlHttpRequest()) {
+			$this->_helper->getHelper('ajaxContext')->initContext();
+			$this->_helper->layout->disableLayout();
+			$dataAdapter = new Model_DataAdapter();
+			$parameters[] = "";
+			$parameters[] = "";
+			$parameters[] = "";
+			$parameters[] = "1";
+			$datoscajas = $dataAdapter->ejec_store_procedura_sql("tesoreria.buscar_cajas", $parameters);
+			
+			/*seguridad.buscar_usuario(
+					p_cidusuario character varying DEFAULT ''::character varying, 
+					p_usuario character varying DEFAULT ''::character varying, 
+					p_cidpers character varying DEFAULT ''::character varying, 
+					p_cidarea character varying DEFAULT ''::character varying, 
+					p_estado character varying DEFAULT ''::character varying,
+					p_tipousuario*/
+			$parametersu[] = "";//p_cidusuario
+			$parametersu[] = "";//p_usuario
+			$parametersu[] = "";//p_cidpers
+			$parametersu[] = "";//p_cidarea
+			$parametersu[] = "1";//p_estado
+			$parametersu[] = "U";//p_tipousuario
+			$datosusuarios = $dataAdapter->ejec_store_procedura_sql("seguridad.buscar_usuario", $parametersu);
+			
+			$arrmusu = array();
+			for ($i = 0; $i < count($datosusuarios); $i++) {
+				$arrmusu[] = array("category"=>"","label"=>$datosusuarios[$i][5],"_cidusuario"=>$datosusuarios[$i][0],"_cidarea"=>$datosusuarios[$i][1],"_cidpers"=>$datosusuarios[$i][2],"_nombrepers"=>$datosusuarios[$i][3],"_usuario"=>$datosusuarios[$i][5]);
+			}
+			//print_r($arrmusu);
+			$this->view->musuari = $arrmusu;
+			
+			
+			$arrmcajas = array();
+			for ($i = 0; $i < count($datoscajas); $i++) {
+				$arrmcajas[] = array("category"=>"","label"=>$datoscajas[$i][1],"idsigmamcaja"=>$datoscajas[$i][0],"cnrocaja"=>$datoscajas[$i][1],"cidlocal"=>$datoscajas[$i][2],"dlocal"=>$datoscajas[$i][3]);
+			}
+			$this->view->mcajas = $arrmcajas;
+		}
+	}
+	public function cajerossaveAction(){
+		//$this->view->util()->registerScriptJSControllerAction($this->getRequest());
+		if ($this->getRequest()->isXmlHttpRequest()) {
+			$this->_helper->layout->disableLayout();
+			$this->_helper->viewRenderer->setNoRender();
+			$this->_helper->getHelper('ajaxContext')->initContext();
+			$idsigma = $this->_request->getPost('idsigma');
+			$usuario = $this->_request->getPost('usuario');
+			$ciduser = $this->_request->getPost('ciduser');
+			$nomusuario = $this->_request->getPost('nomusuario');
+			$cidpers = $this->_request->getPost('cidpers');
+			$cnrocaja = $this->_request->getPost('cnrocaja');
+			$idsigmamcaja = $this->_request->getPost('idsigmamcaja');
+			$dlocal = $this->_request->getPost('dlocal');
+			$cidlocal = $this->_request->getPost('cidlocal');
+			$ccodcos = $this->_request->getPost('ccodcos');
+			$dfecini = $this->_request->getPost('dfecini');
+			$dfecfin = $this->_request->getPost('dfecfin');
+			$nestado = $this->_request->getPost('nestado');
+			
+			if ($nestado==''){
+				$nestado='0';
+			}
+			
+			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+			$userlogin = $ddatosuserlog->userlogin;
+			$dataAdapter = new Model_DataAdapter();
+			$parametersu[] = $idsigma;//
+			$parametersu[] = $ciduser;//
+			$parametersu[] = $cnrocaja;//
+			$parametersu[] = $ccodcos;//
+			$parametersu[] = $dfecini;//
+			$parametersu[] = $dfecfin;//
+			$parametersu[] = $nestado;
+			$parametersu[] = $userlogin;
+			$parametersu[] = $this->view->util()->getHost();
+			
+			$datosresult = $dataAdapter->ejec_store_procedura_sql("tesoreria.guardarmcajero", $parametersu);
+			echo $datosresult[0][1];
+			//if ($datosresult[0][0]=='1') 
+			/*tesoreria.guardarmcajero(
+				p_idsigma character varying, 
+				p_ciduser character varying, 
+				p_ccajero character varying, 
+				p_ccodcos character varying,
+				p_dfecini character varying,
+				p_dfecfin character varying,						
+				p_nestado character varying, 
+				p_vusernm character varying, 
+				p_vhostnm character varying, */
+		}
+	}
 }

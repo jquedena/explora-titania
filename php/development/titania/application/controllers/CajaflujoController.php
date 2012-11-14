@@ -399,13 +399,19 @@ class CajaflujoController extends Zend_Controller_Action {
 			$cadgrafcancelado = '';
 			$cadgrafanulado = '';
 			$cadgrafdatospie = '';
+			$montorecaudado=0.00;
+			$montoanulado=0.00;
 			for ($i = 0; $i < count($datosgraf); $i++) {
 				$cadgrafcategorias .="<category label='" . $datosgraf[$i][1] . "'/>";
 				$cadgrafcancelado .="<set value='" . $datosgraf[$i][2] . "' />";
 				$cadgrafanulado .="<set value='" . $datosgraf[$i][3] . "' />";
 				$cadgrafdatospie .="<set label='" . $datosgraf[$i][1] . "' value='" . $datosgraf[$i][2] . "'/>";
+				$montorecaudado+= $datosgraf[$i][2];
+				$montoanulado+= $datosgraf[$i][3];
 			}
-			
+			$montorecaudado	=	number_format($montorecaudado, 2, '.', ',');
+			$montoanulado	=	number_format($montoanulado, 2, '.', ',');
+			$htmltotales ="<b>Monto Recaudado  S/. $montorecaudado &nbsp;&nbsp;&nbsp;&nbsp; Monto Anulado  S/. $montoanulado<b>";
 			if (count($datosgraf) > 0) {
 				$cadgrafbarras = "<script >
 				var chart = new FusionCharts('" . $url . "graf/MSColumn3D.swf', 'ChartbarrasId', '690', '500', '0', '0');
@@ -421,6 +427,8 @@ class CajaflujoController extends Zend_Controller_Action {
 				var chartpie = new FusionCharts('" . $url . "graf/Pie3D.swf', 'ChartpieId', '690', '300', '0', '0');
 				chartpie.setDataXML(\"<chart palette='1' caption='Monto por cajeros' numberPrefix='S/.' decimals='2' formatNumberScale='0'  enableSmartLabels='1' enableRotation='1' bgColor='99CCFF,FFFFFF' bgAlpha='40,100' bgRatio='0,100' bgAngle='360' showBorder='1' startingAngle='70'>" . $cadgrafdatospie . "</chart>\");
 				chartpie.render(\"chartdivpie\");
+				
+				$('#totalrecaudado').html('".$htmltotales."');
 				</script>";
 			
 				echo $cadgrafbarras . $cadgrafpie;

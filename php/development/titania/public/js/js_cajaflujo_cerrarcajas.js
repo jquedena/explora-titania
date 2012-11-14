@@ -85,20 +85,20 @@ optionapertcaja = {
 	};
 
 optioncajasagruplocal = {
-		height: 370,
+		height: 150,
 	    width: 1000,
 	    colNames: ["Cod Agencia","Agencia"
 	               ,"M.Ingreso","Rec Validos", "Rec. Anulados", "M. a Entregar", "M.Entregado", "Diferencia"],
 	    colModel: [
-	        {name:'cidlocal', index:'cidlocal',width:80,align: 'left'},
+	        {name:'cidlocal', index:'cidlocal',width:80,align: 'left',hidden:true},
 	        {name:'dlocal', index:'dlocal',width:270,align: 'left'},
 	        
-	        {name:'nmonape', index:'nmonape', width:100,align: 'right'},//Monto de Apertura
-	        {name:'nmonval', index:'nmonval', width:100,align:"right"},//Recibos Validos
-	        {name:'nmonanu', index:'nmonanu', width:100,align:"right"},//Recibos Anulados
+	        {name:'nmonape', index:'nmonape', width:113,align: 'right'},//Monto de Apertura
+	        {name:'nmonval', index:'nmonval', width:113,align:"right"},//Recibos Validos
+	        {name:'nmonanu', index:'nmonanu', width:113,align:"right"},//Recibos Anulados
 	        {name:'nmonaentreg', index:'nmonaentreg', width:100,align:"right"},//Monto a Entregar
-	        {name:'nmonent', index:'nmonent', width:90,align:"right"},//Monto Entregado
-	        {name:'nmondif', index:'nmondif', width:90,align:"right"}//Diferencia
+	        {name:'nmonent', index:'nmonent', width:103,align:"right"},//Monto Entregado
+	        {name:'nmondif', index:'nmondif', width:105,align:"right"}//Diferencia
 	        ],
 	    caption: "&nbsp;&nbsp;&nbsp;Totales por Agencia"
 	};
