@@ -22,7 +22,7 @@ public class AplicacionMBean {
 	private static Logger logger = Logger.getLogger(AplicacionMBean.class);
 	private String numeroRegistros;
 	private String formatoFecha = "dd/MM/yyyy";
-	private String formatoFechaHora = "dd/MM/yyyy hh:mm";
+	private String formatoFechaHora = "dd/MM/yyyy HH:mm";
 	private String formatoMontos = "##########.00";
 	private TimeZone timeZone;
     private List<CatalogoParametroDto> listaCatalogos;

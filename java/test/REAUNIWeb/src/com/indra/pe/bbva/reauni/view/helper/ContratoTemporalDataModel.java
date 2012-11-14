@@ -29,7 +29,12 @@ public class ContratoTemporalDataModel extends ListDataModel<ContratoTemporalDto
 
 	@Override
 	public Object getRowKey(ContratoTemporalDto arg0) {
-		return arg0.getCodigoContrato();
+		if(arg0 != null) {
+			return arg0.getCodigoContrato();
+		} else {
+			return "";
+		}
+		
 	}
 
 }

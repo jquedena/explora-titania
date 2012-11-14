@@ -450,7 +450,7 @@ public class SolicitudMBean extends GenericMBean {
 		// if (this.dto.getCodigoCliente()!=null && this.dto.getCodigoCliente().length()>=6 && this.dto.getCodigoCliente().length()<=8) {
 			try {
 				ReaUniDatosClienteRs host = null;
-				host = obtenerDatosClienteHost(this.dto.getCodigoCliente(), "P007395"); // sessionMBean.getRegistro() "P007395"
+				host = obtenerDatosClienteHost(this.dto.getCodigoCliente(), sessionMBean.getRegistro()); // "P007395"
 				
 				if (host != null) {
 					if (host.getData() != null 
@@ -598,8 +598,18 @@ public class SolicitudMBean extends GenericMBean {
 	
 	// Reasignamos o Unificamos los contratos seleccionados a la solicitud
 	public void grabarContratos(ActionEvent ae) {
+		boolean mrx;
 		if (this.listaContratosTemporalSelected != null) {
 			try {
+				if(this.dto == null
+						|| this.dto.getId() == null
+						|| this.dto.getCodigoCliente() == null
+						|| this.dto.getOficinaReceptorDto() == null
+						|| this.dto.getOficinaReceptorDto().getCodOficina() == null){
+					showWarning("EXISTEN DATOS INVALIDOS EN LA SOLICITUD.");
+					return;
+				}
+								
 				if (this.dto.getListaOficinasSolicitud() == null)
 					this.dto.setListaOficinasSolicitud(new ArrayList<OficinaSolicitudDto>());
 
@@ -607,7 +617,12 @@ public class SolicitudMBean extends GenericMBean {
 				
 				for (ContratoTemporalDto ct : this.listaContratosTemporalSelected) {
 					
-					boolean mrx =bo.puedeCrearNuevaSolicitud(this.dto.getCodigoCliente(), this.dto.getOficinaReceptorDto().getCodOficina(), ct.getOficina(), this.dto.getId());
+					if(ct != null) {
+						mrx = bo.puedeCrearNuevaSolicitud(this.dto.getCodigoCliente(), this.dto.getOficinaReceptorDto().getCodOficina(), ct.getOficina(), this.dto.getId());
+					} else {
+						showWarning("DATOS DEL CONTRATO INVALIDO");
+						return;
+					}
 					
 					if (mrx) {
 						listaRemover.add(new ContratoTemporalDto(ct.getCodigoContrato()));
@@ -1316,6 +1331,11 @@ public class SolicitudMBean extends GenericMBean {
 
 	private boolean validar() {
 		boolean retorno = true;
+		
+		if (this.dto.getCodigoCliente() == null || this.dto.getCodigoCliente().length()==0 ) {
+			showError("CODIGO DE CLIENTE NO INGRESADO");
+			retorno = false;
+		}
 		
 		if (this.dto.getNombreCliente() == null || this.dto.getNombreCliente().length()==0 ) {
 			showError("CLIENTE NO HA SIDO VALIDADO");
