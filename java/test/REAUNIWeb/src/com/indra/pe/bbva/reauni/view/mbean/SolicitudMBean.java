@@ -57,6 +57,7 @@ public class SolicitudMBean extends GenericMBean {
 
 	private SolicitudDto dto;
 	
+	private String cliente;
 	private List<SolicitudDto> lista;
 	private List<ParametroDto> tiposSolicitud;
 	private List<ParametroDto> estadosSolicitud;
@@ -462,6 +463,8 @@ public class SolicitudMBean extends GenericMBean {
 							&& !host.getData().getCodigoSegmento().equals("")
 							&& host.getData().getCodigoOficina() != null
 							&& !host.getData().getCodigoOficina().equals("")) {
+						
+						this.cliente = this.dto.getCodigoCliente();
 						this.dto.setCodigoSolicitud(autogenerarCodigoSolicitud());
 						this.dto.setNombreCliente(host.getData().getNombres() + " " + host.getData().getPaterno() + " " + host.getData().getMaterno());
 						
@@ -600,7 +603,7 @@ public class SolicitudMBean extends GenericMBean {
 	public void grabarContratos(ActionEvent ae) {
 		boolean mrx;
 		if (this.listaContratosTemporalSelected != null) {
-			try {
+			try {				
 				if(this.dto == null
 						|| this.dto.getId() == null
 						|| this.dto.getCodigoCliente() == null
@@ -1337,6 +1340,11 @@ public class SolicitudMBean extends GenericMBean {
 			retorno = false;
 		}
 		
+		if (!this.cliente.equalsIgnoreCase(this.dto.getCodigoCliente())){
+			showError("EL CODIGO DE CLIENTE ES DIFERENTE AL OBTENIDO EN LA CONSULTA");
+			retorno = false;
+		}
+		
 		if (this.dto.getNombreCliente() == null || this.dto.getNombreCliente().length()==0 ) {
 			showError("CLIENTE NO HA SIDO VALIDADO");
 			retorno = false;
@@ -1884,5 +1892,13 @@ public class SolicitudMBean extends GenericMBean {
 
 	public void getStatus(Boolean status) {
 		this.status = status;
+	}
+
+	public String getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(String cliente) {
+		this.cliente = cliente;
 	}
 }
