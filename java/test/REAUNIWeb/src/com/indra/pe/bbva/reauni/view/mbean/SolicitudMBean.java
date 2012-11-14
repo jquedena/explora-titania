@@ -57,7 +57,7 @@ public class SolicitudMBean extends GenericMBean {
 
 	private SolicitudDto dto;
 	
-	private String cliente;
+	private String cliente = "";
 	private List<SolicitudDto> lista;
 	private List<ParametroDto> tiposSolicitud;
 	private List<ParametroDto> estadosSolicitud;
@@ -256,6 +256,7 @@ public class SolicitudMBean extends GenericMBean {
 		try {
 			this.status = Boolean.FALSE;
 			this.dto = this.bo.obtener(this.dto.getId());
+			this.cliente = this.dto.getCodigoCliente();
 			this.aplicaAjusteBonificacion = (this.dto.getTipoDeclaracion().length() > 0);
 			
 			for (OficinaSolicitudDto os : this.dto.getListaOficinasSolicitud()) {				
@@ -452,6 +453,7 @@ public class SolicitudMBean extends GenericMBean {
 			try {
 				ReaUniDatosClienteRs host = null;
 				host = obtenerDatosClienteHost(this.dto.getCodigoCliente(), sessionMBean.getRegistro()); // "P007395"
+				this.cliente = this.dto.getCodigoCliente();
 				
 				if (host != null) {
 					if (host.getData() != null 
@@ -464,7 +466,6 @@ public class SolicitudMBean extends GenericMBean {
 							&& host.getData().getCodigoOficina() != null
 							&& !host.getData().getCodigoOficina().equals("")) {
 						
-						this.cliente = this.dto.getCodigoCliente();
 						this.dto.setCodigoSolicitud(autogenerarCodigoSolicitud());
 						this.dto.setNombreCliente(host.getData().getNombres() + " " + host.getData().getPaterno() + " " + host.getData().getMaterno());
 						
@@ -1299,6 +1300,7 @@ public class SolicitudMBean extends GenericMBean {
 					logger.error("", ex);
 					to = null;
 				}
+				
 			} else if (this.sessionMBean.getAccion() == Constantes.Form.EDITAR) {
 				try {
 					this.dto.setUsuarioModificacion(sessionMBean.getRegistro());
@@ -1338,28 +1340,19 @@ public class SolicitudMBean extends GenericMBean {
 		if (this.dto.getCodigoCliente() == null || this.dto.getCodigoCliente().length()==0 ) {
 			showError("CODIGO DE CLIENTE NO INGRESADO");
 			retorno = false;
-		}
-		
-		if (!this.cliente.equalsIgnoreCase(this.dto.getCodigoCliente())){
+		} else if (this.cliente != null && !this.cliente.equalsIgnoreCase(this.dto.getCodigoCliente())){
 			showError("EL CODIGO DE CLIENTE ES DIFERENTE AL OBTENIDO EN LA CONSULTA");
 			retorno = false;
-		}
-		
-		if (this.dto.getNombreCliente() == null || this.dto.getNombreCliente().length()==0 ) {
+		} else if (this.dto.getNombreCliente() == null || this.dto.getNombreCliente().length()==0 ) {
 			showError("CLIENTE NO HA SIDO VALIDADO");
 			retorno = false;
-		}
-		if (this.dto.getCodigoSolicitud() == null || this.dto.getCodigoSolicitud().length()==0 ) {
+		} else if (this.dto.getCodigoSolicitud() == null || this.dto.getCodigoSolicitud().length()==0 ) {
 			showError("EL CODIGO DE LA SOLICITUD NO ES VÁLIDO");
 			retorno = false;
-		}
-
-		if (this.dto.getOficinaReceptorDto() == null) {
+		} else if (this.dto.getOficinaReceptorDto() == null) {
 			showError("LA OFICINA DEL RECEPTOR ES OBLIGATORIO.");
 			retorno = false;
-		}
-
-		if (this.dto.getGestorReceptorDto() == null) {
+		} else if (this.dto.getGestorReceptorDto() == null) {
 			showError("EL GESTOR DEL RECEPTOR ES OBLIGATORIO.");
 			retorno = false;
 		}
@@ -1892,13 +1885,5 @@ public class SolicitudMBean extends GenericMBean {
 
 	public void getStatus(Boolean status) {
 		this.status = status;
-	}
-
-	public String getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(String cliente) {
-		this.cliente = cliente;
 	}
 }
