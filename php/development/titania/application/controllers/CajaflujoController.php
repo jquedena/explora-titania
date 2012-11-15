@@ -564,5 +564,55 @@ class CajaflujoController extends Zend_Controller_Action {
 		echo "<br/>";
 		echo "<b style='font-size: 115%;'>" . $this->_request->getParam('mensaje') . "</b>";
 	}
+	
+	public function cajacambiarestadoAction(){
+		$this->_helper->viewRenderer->setNoRender();
+		$this->_helper->layout->disableLayout();
+		$this->_helper->getHelper('ajaxContext')->initContext();
+		if ($this->getRequest()->isXmlHttpRequest()) {
 
+			$url = $this->view->util()->getPath();
+
+		$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+
+
+			$vccajero = $this->_request->getPost('ccajero');
+			$vfechapro = $this->_request->getPost('fecha');
+			$vidsigmaapert = $this->_request->getPost('idsigmaapert');
+			$vestado = $this->_request->getPost('estado');
+
+			$cestado = "";
+			$vmsg="";
+			if($vestado=="2"){//cerrado
+				$cestado ="3";//cerrado para el dia
+			}
+			if($vestado=="3"){//cerrado para el dia
+				$cestado ="2";//cerrado
+			}
+			if($cestado==""){
+				$vmsg="La Caja no esta cerrada ,tampoco esta cerrada para el dia";	
+			}else{
+				$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+				$vusernm = $ddatosuserlog->userlogin;
+				$vhostnm=$this->view->util()->getHost();
+	
+				$cn = new Model_DataAdapter();
+				$store = "tesoreria.cambiarestadocaja";
+				$parameter[] = $vccajero;
+				$parameter[] = $vfechapro;
+				$parameter[] = $vidsigmaapert;
+				$parameter[] = $cestado;
+				$parameter[] = $vusernm ;//605
+				$parameter[] = $vhostnm;
+				$datos = $cn->ejec_store_procedura_sql($store, $parameter);
+				if($datos[0][0]=="1"){
+					$vmsg= $datos[0][1];
+				}else{
+					$vmsg = "Error";
+				}
+			}
+			echo $vmsg;
+
+		}
+	}
 }

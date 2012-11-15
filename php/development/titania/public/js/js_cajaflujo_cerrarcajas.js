@@ -102,7 +102,48 @@ optioncajasagruplocal = {
 	        ],
 	    caption: "&nbsp;&nbsp;&nbsp;Totales por Agencia"
 	};
+okConfirmacion1=function(){
+	var id = $("#tblResultapertcaj").jqGrid('getGridParam','selrow');
+	if (id){
+		var row = jQuery("#tblResultapertcaj").jqGrid('getRowData',id);
+		//alert(row.idsigmaapert);
+		parmt={	
+			"estado":row.nestado,
+			"ccajero":row.ccajero,
+			"idsigmaapert":row.idsigmaapert,
+			"fecha":$('#fechaorg').val()
+			};
+		$('#jqDialogConfirmacion1').dialog('close');
+		_post2 = $.post(path + "cajaflujo/cajacambiarestado/", parmt);
+		_post2.success(function(requestData){			
+			openDialogInfo(requestData, 400, 150);
+			buscarapertcajxfecha($('#fechaorg').val());
+		});
+		_post2.error(postError);
 
+	}else{
+		openDialogInfo("Seleccionar Fila", 300, 130);
+	}
+}
+cancelConfirmacion1=function(){
+	$('#jqDialogConfirmacion1').dialog('close');
+}
+cerrardia = function(){
+	var id = $("#tblResultapertcaj").jqGrid('getGridParam','selrow');
+	if (id){
+		var row = jQuery("#tblResultapertcaj").jqGrid('getRowData',id);
+		if(row.nestado==2){// 2 : cerrado 3 : cerrado el dia
+			openDialogConfirm1("Cierre de dia para la caja "+row.ccajero+"?", 300, 130)
+		}else if(row.nestado==3){//3 : cerrado el dia
+			openDialogConfirm1("Desea revertir el cierre de la caja "+row.ccajero+"?", 300, 130)
+		}else{
+			openDialogInfo('La Caja Seleccionada esta en el estado "'+row.nnestado+'"', 300, 130);
+		}
+	} else { 
+		openDialogInfo("Seleccionar Fila", 300, 130);
+	}
+
+}
 $(function(){
     inicializarGrid("tblResultapertcaj", optionapertcaja);
     inicializarGrid("tblResultapertcajtotales", optioncajasagruplocal);
@@ -111,4 +152,7 @@ $(function(){
 		buscarapertcajxfecha();
 	});
 	
+	$("#btncerrardia").on('click',function(event){
+		cerrardia();
+	});
 });
