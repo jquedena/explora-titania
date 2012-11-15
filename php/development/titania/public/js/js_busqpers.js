@@ -67,8 +67,45 @@ function getOptionsFromForm(){
 	return opt;
 }
 
+cambioTipoBusqueda = function(event, ui) {
+    if(ui.item) {
+        var valor = ui.item.option.value
+        	, html = ""
+        	, control = "";
+        
+        $('#div_rsbusqpers').html('');
+        
+        if(valor == '0'){
+        	// por codido de persona
+        	control = "#txtcidper";
+        	html = '<input class="ui-text" type="text" id="txtcidper" name="txtcidper" value="" maxlength="10" size="30" '+ 
+        		'onkeypress="if(event.keyCode < 48 || event.keyCode > 57){event.returnValue = false;} if(event.keyCode == 13){Buscar();}" >';
+        }else if(valor == '1'){
+        	// por nombres
+        	control = "#txtapepat";
+        	html = '<table><tr><td align="left">Apellido Paterno:</td><td><input class="ui-text" name="txtapepat" type="text" id="txtapepat" size="30" maxlength="20" onkeypress="if(event.keyCode == 13){Buscar();}" /></td></tr>'+
+    			'<tr><td align="left">Apellido Materno:</td><td><input class="ui-text" name="txtapemat" type="text" id="txtapemat" size="30" maxlength="20" onkeypress="if(event.keyCode == 13){Buscar();}" /></td></tr>'+
+    			'<tr><td align="left">Nombres:</td><td><input class="ui-text" name="txtnombres" type="text" id="txtnombres" size="30" maxlength="20" onkeypress="if(event.keyCode == 13){Buscar();}" /></td></tr>'+
+    			'<tr><td colspan="2" align="left"></td></tr></table>';
+        }else if(valor == '2'){
+        	// por dni
+        	control = "#txtdni";
+        	html = '<input class="ui-text" name="txtdni" type="text" id="txtdni" size="30" maxlength="8" '+
+        		'onkeypress="if(event.keyCode < 48 || event.keyCode > 57){event.returnValue = false;} if(event.keyCode == 13){Buscar();}" />';
+        }
+        
+        $('#div_nivelbusqpers').html(html);
+        themeTextBox('#div_nivelbusqpers input');
+        $(control).focus();
+        
+        
+    } else {
+        openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
+    }
+};
+
 function carg_campos_busqpers(){
-    var valor = $("#cbnivelbusqpers").val();
+    var valor = $("#cbonivelbusqpers").val();
     var html = "";
     var control = "";
     
@@ -77,19 +114,19 @@ function carg_campos_busqpers(){
     if(valor == '0'){
     	// por codido de persona
     	control = "#txtcidper";
-    	html = '<input type="text" id="txtcidper" name="txtcidper" value="" maxlength="10" size="30" '+ 
+    	html = '<input class="ui-text" type="text" id="txtcidper" name="txtcidper" value="" maxlength="10" size="30" '+ 
     		'onkeypress="if(event.keyCode < 48 || event.keyCode > 57){event.returnValue = false;} if(event.keyCode == 13){Buscar();}" >';
     }else if(valor == '1'){
     	// por nombres
     	control = "#txtapepat";
-    	html = '<table><tr><td align="left">Apellido Paterno:</td><td><input name="txtapepat" type="text" id="txtapepat" size="30" maxlength="20" onkeypress="if(event.keyCode == 13){Buscar();}" /></td></tr>'+
-			'<tr><td align="left">Apellido Materno:</td><td><input name="txtapemat" type="text" id="txtapemat" size="30" maxlength="20" onkeypress="if(event.keyCode == 13){Buscar();}" /></td></tr>'+
-			'<tr><td align="left">Nombres:</td><td><input name="txtnombres" type="text" id="txtnombres" size="30" maxlength="20" onkeypress="if(event.keyCode == 13){Buscar();}" /></td></tr>'+
+    	html = '<table><tr><td align="left">Apellido Paterno:</td><td><input class="ui-text" name="txtapepat" type="text" id="txtapepat" size="30" maxlength="20" onkeypress="if(event.keyCode == 13){Buscar();}" /></td></tr>'+
+			'<tr><td align="left">Apellido Materno:</td><td><input class="ui-text" name="txtapemat" type="text" id="txtapemat" size="30" maxlength="20" onkeypress="if(event.keyCode == 13){Buscar();}" /></td></tr>'+
+			'<tr><td align="left">Nombres:</td><td><input class="ui-text" name="txtnombres" type="text" id="txtnombres" size="30" maxlength="20" onkeypress="if(event.keyCode == 13){Buscar();}" /></td></tr>'+
 			'<tr><td colspan="2" align="left"></td></tr></table>';
     }else if(valor == '2'){
     	// por dni
     	control = "#txtdni";
-    	html = '<input name="txtdni" type="text" id="txtdni" size="30" maxlength="8" '+
+    	html = '<input class="ui-text" name="txtdni" type="text" id="txtdni" size="30" maxlength="8" '+
     		'onkeypress="if(event.keyCode < 48 || event.keyCode > 57){event.returnValue = false;} if(event.keyCode == 13){Buscar();}" />';
     }
     
@@ -164,7 +201,7 @@ function BuscarPerxApeNom(){
 
 function Buscar(){
 	var parameters = {};
-    var index = $("#cbnivelbusqpers").val();
+    var index = $("#cbonivelbusqpers").val();
     
     if(index == '0'){
     	// por codido de persona
@@ -189,3 +226,7 @@ function Buscar(){
 	
 	_post.error(postError);
 }
+
+$(document).ready(function(){
+	$("#txtnivelbusqpers").bind("autocompleteselect", cambioTipoBusqueda);
+});
