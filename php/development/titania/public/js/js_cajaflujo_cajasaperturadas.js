@@ -92,6 +92,11 @@ habilitarCaja = function(){
 	if (id)	{
 		
 		var row = jQuery("#tblResultapertcaj").jqGrid('getRowData',id);
+		
+		if(row.nestado=='3'){// cerrado para el dia
+			openDialogInfo("La Caja esta Cerrada para el dia de hoy y no se puede volver a habilitar", 400, 130);
+			return false;
+		}
 		dat = {
         "p_cnrcaja":row.ccajero,
         "p_ciduser":row.ciduser,
