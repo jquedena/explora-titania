@@ -1242,4 +1242,42 @@ class MantenimientosController extends Zend_Controller_Action {
 				p_vhostnm character varying, */
 		}
 	}
+	
+	public function paramfraccAction(){
+	    $this->view->util()->registerScriptJSControllerAction($this->getRequest());
+		$pintar= new Libreria_Pintar();
+
+		
+		$js[]=array('$( "#txtporimpofracct" ).autoNumeric();');
+		$js[]=array('$( "#txtmontdetert" ).autoNumeric();');
+		
+		$js[]=array('$("#txtporimpofracctipjur").autoNumeric();');
+		$js[]=array('$("#txtmontdeterttipjur").autoNumeric();');
+		
+		$js[]=array('$("#txtporimpofracctipnorm").autoNumeric();');
+		$js[]=array('$("#txtmontdeterttipnorm").autoNumeric();');
+		
+			
+		$js[] = array('$("#txtfechdoc").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
+		$js[] = array('$("#txtfechdoc").datepicker("option", "dateFormat", "yy-mm-dd");');
+	
+		
+		
+		$js[] = array('$("#txtfechmod").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
+		$js[] = array('$("#txtfechmod").datepicker("option", "dateFormat", "yy-mm-dd");');
+	
+		$evt[]=array('opcion1','click','verificaropparam();');
+		$evt[]=array('opcion2','click','verificaropparam();');
+		$evt[]=array('opcion3','click','verificaropparam();');
+		
+		$pintar->PintarEvento($evt);
+		$pintar->EjecutarFuncion($js);
+		
+		
+		
+		
+		
+		
+		
+	}
 }
