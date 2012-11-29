@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="/plantillas/plantillaPrincipal.xhtml">
+	<ui:define name="contenido">
+		<h:outputText value="ENVIAR CONTRATOS PROCESADOS" styleClass="tituloPantalla" />
+		<p:separator />
+		<h:form id="frmPrincipal" styleClass="txtCampo label">
+			<h:panelGrid columns="8">
+				<h:outputLabel for="fechaInicio" value="#{message['solicitud.fecha.inicio']}" styleClass="label"/>
+				<p:calendar id="fechaInicio"
+					value="#{consultaContratosProcesadosMBean.fechaInicio}"
+					showOn="button"
+					pattern="#{aplicacionMBean.formatoFecha}"
+					locale="es"
+					label="#{message['solicitud.fecha.inicio']}">
+					<p:ajax event="dateSelect" listener="#{consultaContratosProcesadosMBean.listenerAsignarFechaInicio}" />
+				</p:calendar>
+				<p:spacer width="15px"/>
+				
+				<h:outputLabel for="fechaHasta" value="#{message['solicitud.fecha.hasta']}" styleClass="label"/>
+				<p:calendar id="fechaHasta"
+					value="#{consultaContratosProcesadosMBean.fechaFin}"
+					showOn="button"
+					pattern="#{aplicacionMBean.formatoFecha}"
+					locale="es"
+					label="#{message['solicitud.fecha.hasta']}">
+					<p:ajax event="dateSelect" listener="#{consultaContratosProcesadosMBean.listenerAsignarFechaHasta}" />
+				</p:calendar>
+				<p:spacer width="15px"/>
+				
+				<p:commandButton image="ui-icon ui-icon-search"
+					value="ENVIAR"
+					title="#{message['general.button.buscar.filtro.tip']}"
+					immediate="true" update="tblPrincipal"
+					actionListener="#{consultaContratosProcesadosMBean.enviar}">
+					<f:ajax render="tblPrincipal" />
+				</p:commandButton>				
+			</h:panelGrid>
+
+			<h:panelGrid>
+			</h:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -365,7 +365,7 @@ public class SolicitudMBean extends GenericMBean {
 	public void cambioCliente() {
 		// SelectEvent event
 		if(this.dto.getCodigoCliente() != null) {
-			logger.info("Cliente ->" + this.dto.getCodigoCliente());
+			// logger.info("Cliente ->" + this.dto.getCodigoCliente());
 		} else {
 			logger.info("Cliente invalido");
 		}

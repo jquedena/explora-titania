@@ -90,4 +90,18 @@ public class Constantes {
 		"Cod. Terr. Receptor|Nom. Terr. Receptor|Cod. Ofic. Receptora|Nom. Ofic. Receptora|" +
 		"Cod. Gestor Receptor|Nom. Gestor Receptor|Cod. Producto|Nom. Producto|" +
 		"Ajuste|Total Activo|Total Pasivo";
+
+	public static final String CABECERA_REPORTE_PROCESADO_UNIFICACION = 
+		"Fecha Solicitud|Fecha Procesamiento|Código Central|Nro. Contrato|Fecha de Apertura"+
+		"|Cod. Territorio Cedente|Nom. Territorio Cedente|Cod. Oficina Cedente|Nom. Oficina Cedente"+
+		"|Cod. Territorio Receptor|Nom. Territorio Receptor|Cod. Oficina Receptora|Nom. Oficina Receptora"+
+		"|Cod. Gestor Receptor|Nom. Gestor Receptor|Cod. Producto|Nom. Producto"+
+		"|Bonificación|Moneda|Ajuste 50%|Total Activo|Total Pasivo";
+
+	public static final String CABECERA_REPORTE_PROCESADO_REASIGNACION = 
+		"Fecha Solicitud|Fecha Procesamiento|Código Central|Nro. Contrato|Fecha de Apertura"+
+		"|Cod. Territorio Cedente|Nom. Territorio Cedente|Cod. Oficina Cedente|Nom. Oficina Cedente"+
+		"|Cod. Territorio Receptor|Nom. Territorio Receptor|Cod. Oficina Receptora|Nom. Oficina Receptora"+
+		"|Cod. Gestor Receptor|Nom. Gestor Receptor|Cod. Producto|Nom. Producto"+
+		"|Ajuste|Moneda|Total Activo|Total Pasivo";
 }
