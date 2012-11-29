@@ -9,6 +9,10 @@
 
 <ui:composition template="/plantillas/plantillaPrincipal.xhtml">
 	<ui:define name="contenido">
+		<p:dialog modal="true" widgetVar="statusDialog" header="Cargando..."
+			draggable="false" closable="false">
+			<p:graphicImage value="/recursos/design/ajaxloadingbar.gif" />
+		</p:dialog>
 		<h:outputText value="ENVIAR CONTRATOS PROCESADOS" styleClass="tituloPantalla" />
 		<p:separator />
 		<h:form id="frmPrincipal" styleClass="txtCampo label">
@@ -38,13 +42,50 @@
 				<p:commandButton image="ui-icon ui-icon-search"
 					value="ENVIAR"
 					title="#{message['general.button.buscar.filtro.tip']}"
-					immediate="true" update="tblPrincipal"
-					actionListener="#{consultaContratosProcesadosMBean.enviar}">
-					<f:ajax render="tblPrincipal" />
-				</p:commandButton>				
+					immediate="true" update="tblContratos"
+					actionListener="#{consultaContratosProcesadosMBean.enviar}"
+					onstart="statusDialog.show();" onsuccess="statusDialog.hide();" />				
 			</h:panelGrid>
 
 			<h:panelGrid>
+				<p:dataGrid id="tblContratos"
+					value="#{consultaContratosProcesadosMBean.listaEmail}"
+					styleClass="valueColTable" var="dto"
+					emptyMessage="#{message['general.table.sinRegistros']}"
+					rowsPerPageTemplate="10,20,30,40,50" paginator="true"
+					rows="#{sessionMBean.cantidadRegistros}" widgetVar="widTable"
+					style="width: 100%">
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="REGISTRO" />
+						</f:facet>
+						<h:outputText value="#{dto.registro}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="TERRITORIO" />
+						</f:facet>
+						<h:outputText value="#{dto.desTerritorio}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="DESTINATARIO" />
+						</f:facet>
+						<h:outputText value="#{dto.nombre}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="EMAIL" />
+						</f:facet>
+						<h:outputText value="#{dto.email}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="PROCESADO" />
+						</f:facet>
+						<h:outputText value="#{dto.nroContratos}" />
+					</p:column>
+				</p:dataGrid>
 			</h:panelGrid>
 
 		</h:form>
