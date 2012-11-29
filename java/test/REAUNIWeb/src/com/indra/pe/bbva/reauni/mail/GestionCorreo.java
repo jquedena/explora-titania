@@ -233,6 +233,50 @@ public class GestionCorreo {
 		return beanCorreo;
 	}
 
+	public Correo obtenerCorreoContratoProcesado(String listaCorreos
+			, String dia
+			, List lista_unificacion
+			, List lista_reasignacion) {
+		Correo beanCorreo = new Correo();
+		beanCorreo.setAsunto("Contratos Procesados del " + dia + " ");
+		beanCorreo.setMensaje("Estimados Sres,<br>"
+					+ " Se adjunta los reportes de la segmentación realizada del "
+					+ dia
+					+ ". Ahí se detallan todos los contratos procesados con sus respectivos "
+					+ "datos para los fines que crean pertinentes.<br>"
+					+ "Saludos Cordiales,<br><b>OPERACIONES CENTRALIZADAS</b>");
+		
+		if(SessionHelper.getModoDebug()) {
+			beanCorreo.setListaTo(SessionHelper.getEmailDebug());
+		} else {
+			beanCorreo.setListaTo(listaCorreos);
+		}
+		beanCorreo.setMensajeAdjuntoExcel(FormatoMensajeCorreo.formatoCorreoResumen("unificacion", lista_unificacion, Constantes.CABECERA_REPORTE_PROCESADO_UNIFICACION));
+		beanCorreo.setMensajeAdjuntoExcel2(FormatoMensajeCorreo.formatoCorreoResumen("reasignacion", lista_reasignacion, Constantes.CABECERA_REPORTE_PROCESADO_REASIGNACION));
+
+		// Envio de email a auditoria si es que existiera registrada en la bd
+		String listaCC = "";
+		String email;
+		
+		if (ApplicationHelper.obtenerParametroPorId(1052L) != null) {
+			email = ApplicationHelper.obtenerParametroPorId(1052L).getValorCadena();
+			if (email != null && !email.equals("")) {
+				listaCC += email; // Auditoria
+			}
+		}
+		if (ApplicationHelper.obtenerParametroPorId(1055L) != null) {
+			email = ApplicationHelper.obtenerParametroPorId(1055L).getValorCadena();
+			if (email != null && !email.equals("")) {
+				if(listaCC.length() > 0) listaCC += ","; 
+				listaCC += email; // Operaciones
+			}
+		}
+		
+		beanCorreo.setListaCc(listaCC);
+		
+		return beanCorreo;
+	}
+	
 	public Correo obtenerCorreoRecepcionFile(List<Object[]> contratos, String mes, String email) {
 		Correo beanCorreo = new Correo();
 		beanCorreo.setAsunto(" Recepción de Files por Oficina");

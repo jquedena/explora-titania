@@ -17,7 +17,7 @@ import com.indra.pe.bbva.reauni.model.entidad.SolicitudDto;
 import com.indra.pe.bbva.reauni.view.helper.ApplicationHelper;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class AvisoProcesamientoCorreo   extends Thread  {
+public class AvisoProcesamientoCorreo extends Thread  {
 
 	protected static String REASIGNACION = "1007";
 	protected static String UNIFICACION = "1006";

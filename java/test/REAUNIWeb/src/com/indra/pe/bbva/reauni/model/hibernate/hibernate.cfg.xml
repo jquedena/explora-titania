@@ -32,6 +32,7 @@
         <mapping class="com.indra.pe.bbva.reauni.model.entidad.ContratoTemporalDto"/>
         <mapping class="com.indra.pe.bbva.reauni.model.entidad.EjecucionProcesoDto"/>
         <mapping class="com.indra.pe.bbva.reauni.model.entidad.AvisoSilencioAdministrativoDto"/>
+        <mapping class="com.indra.pe.bbva.reauni.model.entidad.LogEMailDto"/>
      </session-factory>
      
 </hibernate-configuration>

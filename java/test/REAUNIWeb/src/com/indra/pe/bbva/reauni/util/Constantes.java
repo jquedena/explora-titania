@@ -65,8 +65,7 @@ public class Constantes {
 		
 		public static final String URL_LISTA_CONTRATO = "/pages/consulta/listaContratos.xhtml";
 		public static final String URL_LISTA_CONTRATO_FILE = "/pages/consulta/listaContratosFile.xhtml";
-		
-		
+		public static final String URL_LISTA_CONTRATO_PROCESADO = "/pages/consulta/listaContratosProcesados.xhtml";
 	}
 	
 	public static class Rol{
