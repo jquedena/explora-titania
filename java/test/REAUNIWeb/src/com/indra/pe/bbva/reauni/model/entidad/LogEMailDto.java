@@ -45,6 +45,12 @@ public class LogEMailDto implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEnvio;
 
+    @Column(name = "COD_TERRITORIO")
+    private String codTerritorio;
+    
+    @Column(name = "DES_TERRITORIO")
+    private String desTerritorio;
+    
 	public Long getId() {
 		return id;
 	}
@@ -99,5 +105,21 @@ public class LogEMailDto implements Serializable {
 
 	public void setFechaEnvio(Date fechaEnvio) {
 		this.fechaEnvio = fechaEnvio;
+	}
+
+	public String getCodTerritorio() {
+		return codTerritorio;
+	}
+
+	public void setCodTerritorio(String codTerritorio) {
+		this.codTerritorio = codTerritorio;
+	}
+
+	public String getDesTerritorio() {
+		return desTerritorio;
+	}
+
+	public void setDesTerritorio(String desTerritorio) {
+		this.desTerritorio = desTerritorio;
 	}
 }

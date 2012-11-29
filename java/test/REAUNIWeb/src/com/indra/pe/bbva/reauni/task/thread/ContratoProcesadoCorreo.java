@@ -132,9 +132,12 @@ public class ContratoProcesadoCorreo extends Thread  {
 		LogEMailDto logEMail = null;
 		List<Object[]> listaSolicitudes = null;
 		
-		query += "select email, registro, nombres, count(1) nro_contratos from ( select i.email, c.codigo_contrato, i.registro, i.nombres || ' ' || i.apellido_paterno || ' ' || i.apellido_materno nombres ";
+		query += "select email, registro, nombres, count(1) nro_contratos, cod_territorio, des_territorio ";
+		query += "from ( select i.email, c.codigo_contrato, i.registro, i.nombres || ' ' || i.apellido_paterno || ' ' || i.apellido_materno nombres, t.cod_territorio, t.des_territorio ";
 		query += "from reauni.treauni_solicitud s ";
 		query += "inner join reauni.treauni_oficina_solicitud os on os.solicitud=s.id ";
+		query += "inner join reauni.vreauni_oficina of on os.codigo_oficina=of.cod_oficina ";
+		query += "inner join reauni.vreauni_territorio t on of.cod_territorio=t.cod_territorio ";
 		query += "inner join reauni.treauni_oficina_involucrado oi on os.id=oi.oficina_solicitud ";
 		query += "inner join reauni.treauni_involucrado i on oi.involucrado=i.id and i.cargo in('CH1', 'CH6') "; 
 		query += "inner join reauni.treauni_contrato c on c.oficina_solicitud=os.id and c.estado=1035 ";
@@ -143,7 +146,7 @@ public class ContratoProcesadoCorreo extends Thread  {
 			query += "c.fecha_estado>=to_date('" + formatDateTime.format(fechaInicio) + " 00:00', 'dd/MM/yyyy HH24:mi') and ";
 			query += "c.fecha_estado<=to_date('" + formatDateTime.format(fechaFin) + " 23:59', 'dd/MM/yyyy HH24:mi') ";
 		}
-		query += "group by i.email, c.codigo_contrato, i.registro, i.nombres || ' ' || i.apellido_paterno || ' ' || i.apellido_materno) z group by email, registro, nombres";
+		query += "group by i.email, c.codigo_contrato, i.registro, i.nombres || ' ' || i.apellido_paterno || ' ' || i.apellido_materno, t.cod_territorio, t.des_territorio) z group by email, registro, nombres, cod_territorio, des_territorio";
 		
 		try {
 			listaSolicitudes = getDaoTarea().ejecutarSQL(query);
@@ -161,6 +164,8 @@ public class ContratoProcesadoCorreo extends Thread  {
 						logEMail.setNroContratos(BigDecimal.valueOf(Double.parseDouble(_email[3].toString())));
 						logEMail.setEstado(BigDecimal.ONE);
 						logEMail.setFechaEnvio(new Date());
+						logEMail.setCodTerritorio(_email[4].toString());
+						logEMail.setDesTerritorio(_email[5].toString());
 						getDaoLog().save(logEMail);
 						listaEmail.add(logEMail);
 					} catch(Exception ex) {
