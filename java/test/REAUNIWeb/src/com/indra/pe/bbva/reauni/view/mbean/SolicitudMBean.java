@@ -926,7 +926,8 @@ public class SolicitudMBean extends GenericMBean {
 		consultaMBean.cambiarEstadoSolicitudSegunContratos(s);
 	}
 	
-	private void actualizarEstadoRechazoAprobacion (SolicitudDto solicitudDto, Date now) {		
+	private void actualizarEstadoRechazoAprobacion (SolicitudDto solicitudDto, Date now) {
+		EstadoSolicitudDto es = new EstadoSolicitudDto();
 		Long estadoSolicitud = 1016L; // En evaluacion		
 		Boolean estReceptora = null;
 		Boolean estCedente = null;
@@ -982,7 +983,6 @@ public class SolicitudMBean extends GenericMBean {
 			//Enviamos correo si y solo sí se aprueba o se rechaza la solicitud
 			if (estadoSolicitud.equals(1017L) || estadoSolicitud.equals(1018L)) {
 				try {					
-					EstadoSolicitudDto es = new EstadoSolicitudDto();
 					es.setEstadoDto(ApplicationHelper.obtenerParametroPorId(estadoSolicitud));
 					es.setFecha(Utilitarios.Fecha.obtenerFechaActualDate());
 					es.setSolicitudDto(this.dto);
@@ -1005,7 +1005,8 @@ public class SolicitudMBean extends GenericMBean {
 				
 				try {
 					this.dto = this.bo.obtener(this.dto.getId());
-					gestionCorreo.lanzarTipoCorreo(solicitudDto, TipoCorreoEnum.RECHAZO_APROBACION, null, now);
+					this.dto.getListaEstados().add(es);
+					gestionCorreo.lanzarTipoCorreo(this.dto, TipoCorreoEnum.RECHAZO_APROBACION, null, now);
 					showMessage("SOLICITUD EVALUADA DE MANERA SATISFACTORIA");
 				} catch (Exception e) {
 					logger.error("", e);
@@ -1352,7 +1353,7 @@ public class SolicitudMBean extends GenericMBean {
 		} else if (this.dto.getOficinaReceptorDto() == null) {
 			showError("LA OFICINA DEL RECEPTOR ES OBLIGATORIO.");
 			retorno = false;
-		} else if (this.dto.getGestorReceptorDto() == null) {
+		} else if (this.dto.getGestorReceptor() == null || this.dto.getGestorReceptor().length() == 0) {
 			showError("EL GESTOR DEL RECEPTOR ES OBLIGATORIO.");
 			retorno = false;
 		}

@@ -18,7 +18,7 @@ import com.indra.pe.bbva.reauni.model.entidad.LogEMailDto;
 import com.indra.pe.bbva.reauni.model.entidad.SolicitudDto;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class ContratoProcesadoCorreo extends Thread  {
+public class ContratoProcesadoCorreo {
 
 	protected static String REASIGNACION = "1007";
 	protected static String UNIFICACION = "1006";
@@ -32,14 +32,15 @@ public class ContratoProcesadoCorreo extends Thread  {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private List<LogEMailDto> listaEmail;
+	private int nroContratos;
 	
 	public ContratoProcesadoCorreo(Date fechaInicio, Date fechaFin) {
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
+		this.listaEmail = new ArrayList<LogEMailDto>();
 	}
 	
-	@Override
-	public void run() {
+	public List<LogEMailDto> enviarContratos() {
 		try{
 			CorreoElectronico correoElectronico = new CorreoElectronico();
 
@@ -79,6 +80,8 @@ public class ContratoProcesadoCorreo extends Thread  {
 		} catch(Exception e) {
 			logger.error("ContratoProcesadoCorreo", e);
 		}
+		
+		return listaEmail;
 	}
 	
 	private List<Object> obtenerListado(String tipo){
@@ -103,8 +106,7 @@ public class ContratoProcesadoCorreo extends Thread  {
 			"|| '|' || a.nom_gestor" +
 			"|| '|' || a.producto" +
 			"|| '|' || a.des_producto" +
-			"|| '|' || a.ajuste_bonificacion" +
-			"|| '|' || a.moneda_importe";
+			"|| '|' || a.ajuste_bonificacion";
 		if(tipo == ContratoProcesadoCorreo.UNIFICACION) {
 			query += "|| '|' || a.ajuste_50";
 		}
@@ -113,8 +115,8 @@ public class ContratoProcesadoCorreo extends Thread  {
 			"from reauni.vreauni_contrato_procesado a where ";
 		query += "a.tipo=" + tipo + " and ";
 		if(fechaInicio != null && fechaFin != null) {
-			query += "a.fecha_estado>=to_date('" + formatDateTime.format(fechaInicio) + " 00:00', 'dd/MM/yyyy HH24:mi') and ";
-			query += "a.fecha_estado<=to_date('" + formatDateTime.format(fechaFin) + " 23:59', 'dd/MM/yyyy HH24:mi') ";
+			query += "to_date(a.fecha_estado, 'dd/mm/yyyy')>=to_date('" + formatDateTime.format(fechaInicio) + " 00:00', 'dd/MM/yyyy HH24:mi') and ";
+			query += "to_date(a.fecha_estado, 'dd/mm/yyyy')<=to_date('" + formatDateTime.format(fechaFin) + " 23:59', 'dd/MM/yyyy HH24:mi') ";
 		}
 		
 		try {
@@ -131,13 +133,14 @@ public class ContratoProcesadoCorreo extends Thread  {
 		String query = "";
 		LogEMailDto logEMail = null;
 		List<Object[]> listaSolicitudes = null;
+		List<Object> listaContratos = null;
 		
-		query += "select email, registro, nombres, count(1) nro_contratos, cod_territorio, des_territorio ";
-		query += "from ( select i.email, c.codigo_contrato, i.registro, i.nombres || ' ' || i.apellido_paterno || ' ' || i.apellido_materno nombres, t.cod_territorio, t.des_territorio ";
+		query += "select count(1) nro_contratos ";
+		query += "from ( select c.codigo_contrato ";
 		query += "from reauni.treauni_solicitud s ";
 		query += "inner join reauni.treauni_oficina_solicitud os on os.solicitud=s.id ";
-		query += "inner join reauni.vreauni_oficina of on os.codigo_oficina=of.cod_oficina ";
-		query += "inner join reauni.vreauni_territorio t on of.cod_territorio=t.cod_territorio ";
+		query += "inner join reauni.vreauni_oficina ofx on os.codigo_oficina=ofx.cod_oficina ";
+		query += "inner join reauni.vreauni_territorio t on ofx.cod_territorio=t.cod_territorio ";
 		query += "inner join reauni.treauni_oficina_involucrado oi on os.id=oi.oficina_solicitud ";
 		query += "inner join reauni.treauni_involucrado i on oi.involucrado=i.id and i.cargo in('CH1', 'CH6') "; 
 		query += "inner join reauni.treauni_contrato c on c.oficina_solicitud=os.id and c.estado=1035 ";
@@ -146,7 +149,36 @@ public class ContratoProcesadoCorreo extends Thread  {
 			query += "c.fecha_estado>=to_date('" + formatDateTime.format(fechaInicio) + " 00:00', 'dd/MM/yyyy HH24:mi') and ";
 			query += "c.fecha_estado<=to_date('" + formatDateTime.format(fechaFin) + " 23:59', 'dd/MM/yyyy HH24:mi') ";
 		}
-		query += "group by i.email, c.codigo_contrato, i.registro, i.nombres || ' ' || i.apellido_paterno || ' ' || i.apellido_materno, t.cod_territorio, t.des_territorio) z group by email, registro, nombres, cod_territorio, des_territorio";
+		query += "group by c.codigo_contrato) z";
+		
+		try {
+			listaContratos = getDaoTarea().ejecutarSQL(query);
+			if(listaContratos != null && listaContratos.size() > 0) {
+				nroContratos = Integer.parseInt(listaContratos.get(0).toString());
+			}
+		} catch (DAOException e) {
+			logger.error("SQL :: " + query, e);
+		} catch (NumberFormatException e) {
+			logger.error("SQL :: Resultado invalido", e);
+			nroContratos = 0;
+		}
+		
+		query = "";
+		query += "select email, registro, nombres, count(1) nro_contratos, cod_territorio, des_territorio ";
+		query += "from ( select i.email, c.codigo_contrato, i.registro, i.nombres || ' ' || i.apellido_paterno || ' ' || i.apellido_materno nombres, t.cod_territorio, i.descripcion_cargo || '-' || t.des_territorio des_territorio ";
+		query += "from reauni.treauni_solicitud s ";
+		query += "inner join reauni.treauni_oficina_solicitud os on os.solicitud=s.id ";
+		query += "inner join reauni.vreauni_oficina ofx on os.codigo_oficina=ofx.cod_oficina ";
+		query += "inner join reauni.vreauni_territorio t on ofx.cod_territorio=t.cod_territorio ";
+		query += "inner join reauni.treauni_oficina_involucrado oi on os.id=oi.oficina_solicitud ";
+		query += "inner join reauni.treauni_involucrado i on oi.involucrado=i.id and i.cargo in('CH1', 'CH6') "; 
+		query += "inner join reauni.treauni_contrato c on c.oficina_solicitud=os.id and c.estado=1035 ";
+		query += "where i.cargo in('CH1', 'CH6') and ";
+		if(fechaInicio != null && fechaFin != null) {
+			query += "c.fecha_estado>=to_date('" + formatDateTime.format(fechaInicio) + " 00:00', 'dd/MM/yyyy HH24:mi') and ";
+			query += "c.fecha_estado<=to_date('" + formatDateTime.format(fechaFin) + " 23:59', 'dd/MM/yyyy HH24:mi') ";
+		}
+		query += "group by i.email, c.codigo_contrato, i.registro, i.nombres || ' ' || i.apellido_paterno || ' ' || i.apellido_materno, t.cod_territorio, i.descripcion_cargo || '-' || t.des_territorio) z group by email, registro, nombres, cod_territorio, des_territorio";
 		
 		try {
 			listaSolicitudes = getDaoTarea().ejecutarSQL(query);
@@ -161,7 +193,7 @@ public class ContratoProcesadoCorreo extends Thread  {
 						logEMail.setEmail(_email[0].toString());
 						logEMail.setRegistro(_email[1].toString());
 						logEMail.setNombre(_email[2].toString());
-						logEMail.setNroContratos(BigDecimal.valueOf(Double.parseDouble(_email[3].toString())));
+						logEMail.setNroContratos(Long.valueOf(_email[3].toString()));
 						logEMail.setEstado(BigDecimal.ONE);
 						logEMail.setFechaEnvio(new Date());
 						logEMail.setCodTerritorio(_email[4].toString());
@@ -203,5 +235,13 @@ public class ContratoProcesadoCorreo extends Thread  {
 
 	public List<LogEMailDto> getListaEmail() {
 		return listaEmail;
+	}
+
+	public int getNroContratos() {
+		return nroContratos;
+	}
+
+	public void setNroContratos(int nroContratos) {
+		this.nroContratos = nroContratos;
 	}
 }

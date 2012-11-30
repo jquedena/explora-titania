@@ -115,7 +115,7 @@
 						immediate="false"
 						onstart="statusDialog.show();"
 						onsuccess="statusDialog.hide();"
-						update="pgEvaluacionesSolicitud"
+						update="pgEvaluacionesSolicitud tblEstados"
 						style="float: rigth" action="#{solicitudMBean.grabarEvaluacion}">
 							<f:setPropertyActionListener value="#{solicitudInvolucradoDto}" target="#{solicitudMBean.oficinaInvolucradoDto}" />
 							<f:setPropertyActionListener value="#{oficinaSolicitudDto}" target="#{solicitudMBean.oficinaSolicitudDto}" />

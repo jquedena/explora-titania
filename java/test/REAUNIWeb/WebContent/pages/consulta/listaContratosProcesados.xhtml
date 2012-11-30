@@ -42,19 +42,22 @@
 				<p:commandButton image="ui-icon ui-icon-search"
 					value="ENVIAR"
 					title="#{message['general.button.buscar.filtro.tip']}"
-					immediate="true" update="tblContratos"
+					immediate="true" update="tblContratos txtNro"
 					actionListener="#{consultaContratosProcesadosMBean.enviar}"
 					onstart="statusDialog.show();" onsuccess="statusDialog.hide();" />				
 			</h:panelGrid>
 
 			<h:panelGrid>
-				<p:dataGrid id="tblContratos"
+				<p:dataTable id="tblContratos"
 					value="#{consultaContratosProcesadosMBean.listaEmail}"
 					styleClass="valueColTable" var="dto"
 					emptyMessage="#{message['general.table.sinRegistros']}"
 					rowsPerPageTemplate="10,20,30,40,50" paginator="true"
 					rows="#{sessionMBean.cantidadRegistros}" widgetVar="widTable"
 					style="width: 100%">
+					<f:facet name="header">
+						<h:outputText value="GERENTES INFORMADOS" />
+					</f:facet>
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="REGISTRO" />
@@ -85,7 +88,14 @@
 						</f:facet>
 						<h:outputText value="#{dto.nroContratos}" />
 					</p:column>
-				</p:dataGrid>
+				</p:dataTable>
+				<br/>
+				<b><h:outputText style="font-weight: bold;" value="RESUMEN DE ENVIO"/></b>
+				<br/>
+				<p:outputPanel>
+					<h:outputText value="NRO. DE REGISTROS PROCESADOS "/>
+					<h:outputText id="txtNro" value="#{consultaContratosProcesadosMBean.nroContratos}"/>
+				</p:outputPanel>
 			</h:panelGrid>
 
 		</h:form>

@@ -192,6 +192,7 @@
 									<f:selectItems value="#{solicitudMBean.listaGestores}" var="dto"
 										itemLabel="#{dto.codGestor} - #{dto.perfilGestor} - #{dto.nomGestor}"
 										itemValue="#{dto}" />
+									<f:ajax />
 								</h:selectOneMenu>
 							</h:panelGrid>
 						</h:panelGrid>

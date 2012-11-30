@@ -205,6 +205,7 @@ public class ConsultaMBean extends GenericMBean {
 					s.setFechaModificacion(Utilitarios.Fecha.obtenerFechaActualDate());
 					s.setUsuarioModificacion(this.sessionMBean.getRegistro());
 					this.solicitudBo.editar(s);
+					s.getListaEstados().add(es); // TODO: Parche
 				} catch (ServiceException e) {
 					logger.error(e);
 				}
@@ -229,6 +230,7 @@ public class ConsultaMBean extends GenericMBean {
 					s.setFechaModificacion(Utilitarios.Fecha.obtenerFechaActualDate());
 					s.setUsuarioModificacion(this.sessionMBean.getRegistro());
 					this.solicitudBo.editar(s);
+					s.getListaEstados().add(es); // TODO: Parche
 				} catch (ServiceException e) {
 					logger.error(e);
 				}

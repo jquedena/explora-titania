@@ -306,6 +306,7 @@ public class GestionCorreo {
 		int temp = 0;
 		String codTerr = "";
 		String codOfic = "";
+		String tmpOfic = "";
 		StringBuffer aux1 = new StringBuffer();
 		StringBuffer aux2 = new StringBuffer();
 		Map<String, String> listaTerritorios = new LinkedHashMap<String, String>();
@@ -332,7 +333,7 @@ public class GestionCorreo {
 						aux1.append(")");
 						
 						aux2 = new StringBuffer();
-						if(oi.getPerfil().equalsIgnoreCase("GTE") || oi.getPerfil().equalsIgnoreCase("GR")) {
+						if(oi.getPerfil().equalsIgnoreCase("JPN") || oi.getPerfil().equalsIgnoreCase("GTE") || oi.getPerfil().equalsIgnoreCase("GR")) {
 							aux2.append(os.getOficinaDto().getTerritorioDto().getCodTerritorio());
 						} else {
 							if(os.getTipoOficinaDto().getId().compareTo(1032L) == 0) {
@@ -408,7 +409,11 @@ public class GestionCorreo {
 			}
 			
 			for(Map.Entry<String, String> k1 : listaOficina.entrySet()) {
-				if((k1.getKey().indexOf(codTerr) > -1) && ((temp == 0 && k1.getKey().indexOf("1032") > -1) || temp == 1)) {
+				if(k1.getKey().indexOf("1032") > -1) {
+					tmpOfic = k1.getValue();
+				}
+				
+				if((k1.getKey().indexOf(codTerr) > -1) && ((temp == 0 && k1.getKey().indexOf("1032") > -1) || (temp == 1 && k1.getValue().indexOf(tmpOfic) == -1) )) {
 					if(temp == 0) {
 						aux1.append(" - ");
 					}
