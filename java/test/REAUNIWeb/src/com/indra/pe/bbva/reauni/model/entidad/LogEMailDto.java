@@ -36,7 +36,7 @@ public class LogEMailDto implements Serializable {
     private String nombre;
     
     @Column(name = "NRO_CONTRATOS")
-    private BigDecimal nroContratos;
+    private Long nroContratos;
     
     @Column(name = "ESTADO")
     private BigDecimal estado;
@@ -83,11 +83,11 @@ public class LogEMailDto implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public BigDecimal getNroContratos() {
+	public Long getNroContratos() {
 		return nroContratos;
 	}
 
-	public void setNroContratos(BigDecimal nroContratos) {
+	public void setNroContratos(Long nroContratos) {
 		this.nroContratos = nroContratos;
 	}
 
