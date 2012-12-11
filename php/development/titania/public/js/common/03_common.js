@@ -68,7 +68,6 @@ function reloadJQGrid(id, _options, bindkeys, navGrid){
 		footerrow: false
     }, _options);
     idx = "#" + id;
-    // console.log(options);
     $(idx).jqGrid(options);
     $(idx).jqGrid('setFrozenColumns');
     if(bindkeys != undefined || bindkeys != null) {
@@ -141,25 +140,34 @@ function closeDialog(id) {
     $('#'+id).dialog('close');
 }
 
-function openDialogData1(url, data, width, height, title) {
-    var _post = $.post(path + url, data);
-	
+openDialogData = function(url, data, width, height, title, id) {
+	var _post;
     if(url != undefined) {
+    	_post = $.post(path + url, data);
         _post.success(function(requestData){
-            $("#jqDialog1").html(requestData);
+            $(id).html(requestData);
 			
-            if(width != undefined) $('#jqDialog1').dialog('option', 'width', width);
-            if(height != undefined) $('#jqDialog1').dialog('option', 'height', height);
-            if(title != undefined) $('#jqDialog1').dialog('option', 'title', title);
-            $('#jqDialog1').dialog('open');
+            if(width != undefined) $(id).dialog('option', 'width', width);
+            if(height != undefined) $(id).dialog('option', 'height', height);
+            if(title != undefined) $(id).dialog('option', 'title', title);
+            $(id).dialog('open');
         });
 		
         _post.error(postError);	
     }
+}
+
+function openDialogData1(url, data, width, height, title) {
+	openDialogData(url, data, width, height, title, '#jqDialog1');
+}
+
+function openDialogData2(url, data, width, height, title) {
+	openDialogData(url, data, width, height, title, '#jqDialog2');
 }
 
 function openDialog1(url, width, height, title) {
-    var _post = $.post(path + url);
+	openDialogData(url, {}, width, height, title, '#jqDialog1');
+    /*var _post = $.post(path + url);
 	
     if(url != undefined) {
         _post.success(function(requestData){
@@ -172,24 +180,11 @@ function openDialog1(url, width, height, title) {
         });
 		
         _post.error(postError);	
-    }
+    }*/
 }
 
 function openDialog2(url, width, height, title) {	
-    var _post = $.post(path + url);
-	
-    if(url != undefined) {
-        _post.success(function(requestData){
-            $("#jqDialog2").html(requestData);
-			
-            if(width != undefined) $('#jqDialog2').dialog('option', 'width', width);
-            if(height != undefined) $('#jqDialog2').dialog('option', 'height', height);
-            if(title != undefined) $('#jqDialog2').dialog('option', 'title', title);
-            $('#jqDialog2').dialog('open');
-        });
-		
-        _post.error(postError);	
-    }
+	openDialogData(url, {}, width, height, title, '#jqDialog2');
 }
 
 function openDialogConfirm1(contenido, width, height) {

@@ -13,7 +13,7 @@
         </style>
 
         <link href="<?php echo $this->util()->getPath(); ?>js/ckeditor/skins/v2/editor.css?t=C6HH5UF" rel="stylesheet" type="text/css" />
-        <link href="<?php echo $this->util()->getPath(); ?>theme/green_explora/jquery-ui.css" rel="stylesheet" type="text/css" id="jquery_theme_link" />
+        <link href="<?php echo $this->util()->getPath(); ?>theme/<?php echo $this->util()->getTheme();?>/jquery-ui.css" rel="stylesheet" type="text/css" id="jquery_theme_link" />
         <?php echo $this->util()->getStyle(); ?>
         <link href="<?php echo $this->util()->getImage("refbar.ico"); ?>" rel="shortcut icon" type="image/x-icon" />
         <link href="<?php echo $this->util()->getImage("refbar.ico"); ?>" rel="icon" type="image/x-icon" />
@@ -62,8 +62,6 @@
                 });
             });
 
-			
-			
             $(document).ready(function(){
                 $(document).ajaxStart(function(){
                     if(ajaxDialog) {

@@ -26,7 +26,14 @@
 			</tr>
 			<tr>
 				<td>Declaraci&oacute;n Jurada:</td>
-				<td style="text-align: right;font-weight: bold;"><?php echo $this->mperson['vnrodoc'] ?></td>
+				<td style="text-align: right;font-weight: bold;">
+					<table>
+						<tr>
+							<td><?php echo $this->mperson['vnrodoc'] ?></td>
+							<td><button title="Ver declaraci&oacute;n" style="line-height: 25px;height: 25px;" id="btnVerDeclaracion"></button></td>
+						</tr>
+					</table>
+				</td>
 			</tr>
 			<tr>
 				<td>Presentada el:</td>
@@ -69,3 +76,13 @@
 		</table>
 	</div>
 </div>
+<script type="text/javascript">
+$(function(){
+	$("#btnVerDeclaracion").button({
+	    text: false,
+	    icons: {primary:'ui-icon-search'}
+	}).bind("click", function(){
+	    openDialogData1("registro/listardeclaracion", {}, "750", "516", "Declaraciones Juradas");
+	});
+});
+</script>

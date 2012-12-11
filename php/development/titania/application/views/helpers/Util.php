@@ -9,6 +9,10 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
         return $this;
     }
 
+    public function getTheme() {
+    	return "green_explora";
+    }
+    
     public function getTitle() {
         return "Titania - Municipalidad de Puente Piedra";
     }
@@ -30,7 +34,8 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
     }
 
     public function getHost() {
-        return str_replace(":" . $_SERVER["SERVER_PORT"], "", $_SERVER["HTTP_HOST"]);
+        // return str_replace(":" . $_SERVER["SERVER_PORT"], "", $_SERVER["HTTP_HOST"]);
+    	return $_SERVER["HTTP_HOST"];
     }
 
     public function getPath() {

@@ -82,7 +82,7 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
             foreach ($this->_parametersObserver as $key => $value) {
                 $eval = explode('.', $value );
                 if($eval[0] == $controller) {
-                    $param = $parameters[$eval[1]];
+                    $param = @$parameters[$eval[1]];
                     if (isset($param)) {
                         $dataSet = new Zend_Session_Namespace($controller.$eval[1]);
                         $rows = $dataSet->data;
