@@ -27,7 +27,7 @@
                         <td style="font-weight: bold;"><div id="lblPredio"><div id="lblPredio"><?php echo $this->mpredio["ccodpre"]; ?></div></div></td>
                         <td style="text-align: right; padding-right: 4px;">Direcci&oacute;n:</td>
                         <td style="font-weight: bold;"><div id="lblDireccion"><?php echo $this->mpredio["vdirpre"]; ?></div></td>
-                        <td style="width: 30px;"><button id="btnBuscarDireccion" style="line-height: 25px;height: 25px;" title="Buscar predio" /></td>
+                        <td style="width: 30px;"><button id="btnBuscarDireccion" style="line-height: 25px;height: 25px;" title="Buscar predio" ></button></td>
                     </tr>
                 </table>
             </div>
@@ -70,6 +70,7 @@
     <tr>
         <td colspan="2" style="padding-top: 3px;">
             <div id="panelControl" align="right" class="ui-widget ui-widget-content ui-corner-bottom" style="width: 100%;">
+            	<button id="btnValorPredio">Valores del predio</button>
                 <button id="btnEditarPredio">Editar</button>
                 <button id="btnGrabarPredio">Grabar</button>
                 <button id="btnCancelarPredio">Cancelar</button>
@@ -326,8 +327,6 @@
         } else {
             CKEDITOR.replace('txtObservacionInafectacion', config);
         }
-        
-        
     };
     
     cambioTipoPredio = function(event, ui) {
@@ -339,7 +338,6 @@
             $("#tabPredioRustico").css({"display" : display});
             
             contenidocomboContenedor("#cboTipoPredioUrbano", (bVisible ? "1000000209": "1000000202"));
-            
         } else {
             openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
         }
@@ -439,6 +437,13 @@
         }).bind('click', function(){
             location.href = path + "registro";
         });
+
+        $("#btnValorPredio").button({
+            icons: {primary:'ui-icon-calculator'}
+        }).bind('click', function(){
+            // location.href = path + "registro";
+            alert('ver valores del predio');
+        });
         
         actualizarGrid("tblPiso", optionPiso, null, function(){
             $("#tblPiso").jqGrid('navGrid', '#ptblPiso', {edit:true, add:true, del:true, search:false, refresh:false});
@@ -471,9 +476,10 @@
     $(function(){
         loadVerDetalle();
     });
-
+</script>
+<!-- 
     /*
 jQuery("#custbut").jqGrid('navButtonAdd','#pcustbut',{caption:"Edit", onClickButton:function(){ var gsr = jQuery("#custbut").jqGrid('getGridParam','selrow'); if(gsr){ jQuery("#custbut").jqGrid('GridToForm',gsr,"#order"); } else { alert("Please select Row") } } });
 jQuery("#savedata").click(function(){ var invid = jQuery("#invid").val(); if(invid) { jQuery("#custbut").jqGrid('FormToGrid',invid,"#order"); } });
      */
-</script>
+-->

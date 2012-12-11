@@ -1,20 +1,36 @@
+idTimeOut = 0; 
+
+timeContribuyentePredio = function(rowid) {
+	parameters = $.extend(rowid, {
+    	mhresum: $("#mhresum").val(),
+    	vnrodoc: $("#vnrodoc").val()
+    });
+	
+	if($("#mhresum").val() == undefined || $("#mhresum").val() == null){
+    	panelPersona(parameters);
+    	idTimeOut = setTimeout(timeContribuyentePredio, 200, parameters);
+    } else {
+        _post = $.post(path + "registro/listarpredio", parameters);
+        _post.error(postError);
+        _post.success(function(request){
+            $("#panelRegistro").html(request);
+        });    	
+    }
+}
+
 verContribuyentePredio = function(rowid) {  
     if(typeof rowid == 'object') {
         parameters = rowid[0];
     } else {
         parameters = $(this).getRowData(rowid);
     }
-    
-    parameters = $.extend(parameters, {
-    	mhresum: $("#mhresum").val(),
-    	vnrodoc: $("#vnrodoc").val()
-    });
 
-    _post = $.post(path + "registro/listarpredio", parameters);
-    _post.error(postError);
-    _post.success(function(request){
-        $("#panelRegistro").html(request);
-    });
+    if($("#mhresum").val() == undefined || $("#mhresum").val() == null){
+    	panelPersona(parameters);
+    	idTimeOut = setTimeout(timeContribuyentePredio, 200, parameters);
+    }
+    
+    timeContribuyentePredio(parameters);
 };
 
 verDetalle = function(rowid) {

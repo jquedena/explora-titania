@@ -99,4 +99,12 @@ class RegistroController extends Zend_Controller_Action {
             $this->_helper->layout->disableLayout();
         }
     }
+    
+    public function listardeclaracionAction() {
+    	$this->_helper->getHelper('ajaxContext')->initContext();
+    	
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+    	}
+    }
 }

@@ -72,29 +72,21 @@
 <script type="text/javascript">
     var jsoncajas = <?php echo json_encode($this->mcajas); ?>;
     var _jsonusu = <?php echo json_encode($this->musuari); ?>;
-    console.log(jsoncajas);
-    console.log(_jsonusu);
     $("#cnrocaja").autocompleteCategory({
         delay: 0,
         source: jsoncajas,
         minLength: 2,
         select: function(event, ui) {
-        	console.log(ui.item);
-            //ccodvia = ui.item.ccodvia;
         	$('#dlocal').val(ui.item.dlocal);
         	$('#cidlocal').val(ui.item.cidlocal);
         	$('#idsigmamcaja').val(ui.item.idsigmamcaja);
         },
         change: function(event, ui) {
             if(ui.item) {
-                //ccodvia = ui.item.ccodvia;
-            	console.log(ui.item);
             	$('#dlocal').val(ui.item.dlocal);
             	$('#cidlocal').val(ui.item.cidlocal);
             	$('#idsigmamcaja').val(ui.item.idsigmamcaja);
             } else {
-                
-                console.log($(this).val());
                 if($(this).val().length > 0) {
                     openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
                 }
@@ -106,8 +98,6 @@
         source: _jsonusu,
         minLength: 2,
         select: function(event, ui) {
-        	console.log(ui.item);
-            //ccodvia = ui.item.ccodvia;
         	$('#ciduser').val(ui.item._cidusuario);
         	$('#nomusuario').val(ui.item._nombrepers);
         	$('#ccodcos').val(ui.item._cidarea);
@@ -115,15 +105,11 @@
         },
         change: function(event, ui) {
             if(ui.item) {
-                //ccodvia = ui.item.ccodvia;
-            	console.log(ui.item);
             	$('#ciduser').val(ui.item._cidusuario);
             	$('#nomusuario').val(ui.item._nombrepers);
             	$('#ccodcos').val(ui.item._cidarea);
             	$('#cidpers').val(ui.item._cidpers);
             } else {
-                
-                console.log($(this).val());
                 if($(this).val().length > 0) {
                     openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
                 }

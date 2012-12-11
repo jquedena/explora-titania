@@ -22,7 +22,24 @@ class PanelController extends Zend_Controller_Action {
     		
     		$dataAdapter = new Model_DataAdapter();
     		$rows = $dataAdapter->executeAssocQuery("pl_function.panel_persona", $parameters);
-    		$this->view->mperson = $rows[0];
+    		if($rows != null) {
+    			$this->view->mperson = $rows[0];
+    		} else {
+    			$this->view->mperson = array(
+    				'cidpers' => $this->view->cidpers,
+    				'crazsoc' => $this->view->vnombre,
+    				'vnrodoc' => 'No existe informaci&oacute;n',
+    				'dfecdoc' => '',
+    				'vmotivo' => '',
+    				'ntotpre' => '0',
+    				'ntotcom' => '0',
+    				'nbaseim' => '0.00',
+    				'nimpanu' => '0.00',
+    				'vprofis' => 'No',
+    				'vprotra' => 'No',
+    				'dfecpag' => '',
+    			);
+    		}    		
     	}
     }
     
