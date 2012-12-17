@@ -1,3 +1,5 @@
+
+<input type="hidden" id="txtidsigma"/>
 	<div class="ui-widget ui-widget-content ui-corner-all" style="width: 99%;margin: 3px;">
 	<div class="ui-widget ui-state-default ui-corner-top ui-title">
 		<label>Parametros de Recaudaci&oacute;n</label>
@@ -32,31 +34,6 @@
 			<td>	 <input id="txtmontdetert" >	</td>
 		</tr>
 		
-		<tr> 
-		<td> <input name="option" type="radio" id="opcion3" >Con monto minimo de cuota inicial de acuerdo al tipo de Contribuyente</td>
-		</tr>
-		<tr>
-		<td><b>-Personas Jur&iacute;dica: </b></td>
-		</tr>
-		<tr>
-			<td>  Porcentaje del Importe Fraccionado(%):</td>
-			<td>  <input id="txtporimpofracctipjur"  ></td>
-		</tr>
-		<tr>
-			<td>	  Monto Determinado(S/.):	</td>
-			<td>	 <input id="txtmontdeterttipjur" >	</td>
-		</tr>
-		<tr>
-		<td><b>-Resto de Contribuyentes: </b></td>
-		</tr>
-		<tr>
-			<td>  Porcentaje del Importe Fraccionado(%):</td>
-			<td>  <input id="txtporimpofracctipnorm"  ></td>
-		</tr>
-		<tr>
-			<td>	  Monto Determinado(S/.):	</td>
-			<td>	 <input id="txtmontdeterttipnorm" >	</td>
-		</tr>
 		</table>
 	
 	 
@@ -76,11 +53,11 @@
 		<td><input id="txtnrodoc" /></td>
 		<td><input id="txtfechdoc"></td>
 		</tr>	
+
 		<tr>
-		<td colspan="3">Datos acerca de la &uacute;ltima modificacion de los parametros. </td>		
-		</tr>
-		<tr>
-		<td>Usuario:&nbsp;<input id="txtusuario" ReadOnly/> </td><td>Fecha:<input id="txtfechmod"></td>		
+			<td colspan="4" align="center">
+			<button id="btngrabar">Grabar</button>&nbsp;<button id="btncancelar">Cancelar</button>
+			</td>
 		</tr>
 		
 		</table>
@@ -88,6 +65,8 @@
 
 </div>
 
+
+<span id="locategrid" class="visibility:false;"></span>
 
 
 

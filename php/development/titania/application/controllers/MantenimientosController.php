@@ -1257,27 +1257,67 @@ class MantenimientosController extends Zend_Controller_Action {
 		$js[]=array('$("#txtporimpofracctipnorm").autoNumeric();');
 		$js[]=array('$("#txtmontdeterttipnorm").autoNumeric();');
 		
-			
+		$valor[]=array(0,'ORDENANZA');
+
+		$val[]=array('cbocoddoc',$pintar->ContenidoCombo($valor,'0'),'html');
+		
+		
+		
 		$js[] = array('$("#txtfechdoc").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
-		$js[] = array('$("#txtfechdoc").datepicker("option", "dateFormat", "yy-mm-dd");');
+		//$js[] = array('$("#txtfechdoc").datepicker("option", "dateFormat", "yy-mm-dd");');
 	
 		
 		
-		$js[] = array('$("#txtfechmod").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
-		$js[] = array('$("#txtfechmod").datepicker("option", "dateFormat", "yy-mm-dd");');
 	
 		$evt[]=array('opcion1','click','verificaropparam();');
 		$evt[]=array('opcion2','click','verificaropparam();');
-		$evt[]=array('opcion3','click','verificaropparam();');
+		//$evt[]=array('opcion3','click','verificaropparam();');
 		
+			$cn = new Model_DataAdapter ();
+			$nombrestore = '"recaudacion".paramrec';
+			$parametros [0] = '0000000001';
+			$tabla = $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+		//print_r($tabla);
+
+		$val[]=array('txtidsigma',$tabla[0][0],'val');
+		$val[]=array('txtporimpofracct',$tabla[0][4],'val');
+		$val[]=array('txtmontdetert',$tabla[0][3],'val');
+		$val[]=array('txtnrodoc',$tabla[0][6],'val');
+		$val[]=array('txtfechdoc',substr($tabla[0][7],0,10),'val');
+		
+		
+		$evt[]=array('btngrabar','click','manttcentrpob();');
+		
+		$pintar->PintarValor($val);
 		$pintar->PintarEvento($evt);
 		$pintar->EjecutarFuncion($js);
+			
 		
-		
-		
-		
-		
-		
-		
+	}
+	
+	function paramrecsaveAction(){
+		    if ($this->getRequest()->isXmlHttpRequest()) {
+			$this->_helper->layout->disableLayout();
+			$this->_helper->viewRenderer->setNoRender();
+			$this->_helper->getHelper('ajaxContext')->initContext();
+			$p_idsigma= $this->_request->getPost('p_idsigma');
+			$p_ncantidad= $this->_request->getPost('p_ncantidad');
+			$p_nporcentaje= $this->_request->getPost('p_nporcentaje');
+			$p_codigo_doc= $this->_request->getPost('p_codigo_doc');
+			$p_cresolucion= $this->_request->getPost('p_cresolucion');
+			$p_dfec_resol= $this->_request->getPost('p_dfec_resol');
+			
+			$dataAdapter = new Model_DataAdapter();
+			$parametersu[] = $p_idsigma;//
+			$parametersu[] = $p_ncantidad;//
+			$parametersu[] = $p_nporcentaje;//
+			$parametersu[] = $p_codigo_doc;//
+			$parametersu[] = $p_cresolucion;//
+			$parametersu[] = $p_dfec_resol;//
+
+			
+			$datosresult = $dataAdapter->ejec_store_procedura_sql("recaudacion.grabarparamrec", $parametersu);
+			
+				}
 	}
 }
