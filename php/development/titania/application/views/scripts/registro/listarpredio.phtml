@@ -30,11 +30,13 @@
 <script type="text/javascript">
     verPredio = function(rowid, iRow, iCol, e) {
         row = $("#tblListaPredio").jqGrid('getRowData', rowid);
+        console.log(row);
         parameters = {
             "mperson": $("#lblCodigo").text(),
             "vnombre": $("#lblNombre").text(),
             "vdirecf": $("#lblDireccion").text(),
-            "mpredio": row.mpredio
+            "mpredio": row.mpredio,
+            "mhresum": row.mhresum
         };
         _post = $.post(path + "registro/verpredio", parameters);
         _post.error(postError);
@@ -59,10 +61,11 @@
             'dnumero',
             'ddepart',
             'dmanzan',
-            'dnlotes'],
+            'dnlotes',
+            'mhresum'],
         colModel: [{name: 'ccodpre', index:'ccodpre', width: 80}, /* , frozen: true */
             {name: 'tnumero', index:'tnumero', width: 450},
-            {name: 'cusogen', index:'cusogen', width: 250},
+            {name: 'vusogen', index:'vusogen', width: 250},
             {name: 'nvalpre', index:'nvalpre', width: 100, formatter:'currency', align: 'right'},
             {name: 'nvalafe', index:'nvalafe', width: 100, formatter:'currency', align: 'right'},
             {name: 'dfecadq', index:'dfecadq', width: 80, formatter:'date', formatoptions: {srcformat:"Y-m-d", newformat:"d-M-Y"}, align: 'center'},
@@ -74,7 +77,8 @@
             {name: 'dnumero', index:'dnumero', width: 1, hidden: true},
             {name: 'ddepart', index:'ddepart', width: 1, hidden: true},
             {name: 'dmanzan', index:'dmanzan', width: 1, hidden: true},
-            {name: 'dnlotes', index:'dnlotes', width: 1, hidden: true}],
+            {name: 'dnlotes', index:'dnlotes', width: 1, hidden: true},
+            {name: 'mhresum', index:'mhresum', width: 1, hidden: true}],
         caption: "&nbsp;&nbsp;&nbsp;Predios Registrados",
         ondblClickRow: verPredio,
         onSelectRow: function(id) {

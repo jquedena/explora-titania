@@ -1,0 +1,303 @@
+<div id="panelLayoutValorPredio" align="center" style="width: 1000px;margin: 3px;">
+    <table>
+    	<tr>
+    		<td>
+    			<div id="panelValorPredio">
+					<table id="tblValorPredio"></table>
+					<div id="ptblValorPredio"></div>
+					<input type="hidden" id="ctblValorPredio" name="ctblValorPredio" value="" />
+				</div>
+    		</td>
+    	</tr>
+    	<tr id="cellRustico">
+    		<td>
+    			<div id="panelValorRustico">
+					<table id="tblValorRustico"></table>
+					<div id="ptblValorRustico"></div>
+					<input type="hidden" id="ctblValorRustico" name="ctblValorRustico" value="" />
+				</div>
+    		</td>
+    	</tr>    	
+    	<tr>
+    		<td>
+    			<div id="panelValorConstruccion">
+					<table id="tblValorConstruccion"></table>
+					<div id="ptblValorConstruccion"></div>
+					<input type="hidden" id="ctblValorConstruccion" name="ctblValorConstruccion" value="" />
+				</div>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td>
+    			<div id="panelValorInstalacion">
+					<table id="tblValorInstalacion"></table>
+					<div id="ptblValorInstalacion"></div>
+					<input type="hidden" id="ctblValorInstalacion" name="ctblValorInstalacion" value="" />
+				</div>
+    		</td>
+    	</tr>
+    </table>
+</div>
+<script type="text/javascript">
+configurarValorPredio = function(dataJSON) { 
+	bindkeys = null;
+	navGrid = null;
+	parameters = {};
+	options = {data: dataJSON,
+		width: 990,
+		height: "auto",
+		colNames: ['Periodo'
+		   	, 'Area Terr.'
+		   	, 'Arancel'
+		   	, 'V. Terreno'
+		   	, 'V. Construcci\u00F3n'
+		   	, 'V. Instalaci\u00F3n'
+			, 'Base Imponible'
+			, '% Afecto'
+		   	, 'Autovaluo'
+		   	, 'mhresum'
+		   	, 'mpredio'
+		   	, 'dpredio'],
+		colModel: [
+			{name: "cperiod", index: "cperiod", width: 100, align: "center"},
+			{name: "nterren", index: "nterren", width: 100, align: "right"},
+			{name: "narance", index: "narance", width: 100, align: "right"},
+			{name: "nvalter", index: "nvalter", width: 100, align: "right"},
+			{name: "nvalpis", index: "nvalpis", width: 100, align: "right"},
+			{name: "nvalins", index: "nvalins", width: 100, align: "right"},
+			{name: "nvalpre", index: "nvalpre", width: 100, align: "right"},
+			{name: "nporafe", index: "nporafe", width: 100, align: "right"},
+			{name: "nvalafe", index: "nvalafe", width: 100, align: "right"},
+			{name: "mhresum", index: "mhresum", width: 100, align: "right", hidden: true},
+			{name: "mpredio", index: "mpredio", width: 100, align: "right", hidden: true},
+			{name: "dpredio", index: "dpredio", width: 100, align: "right", hidden: true}
+		],
+		caption: "&nbsp;&nbsp;&nbsp;Valorizaci\u00F3n del Predio",
+	};
+	idPanel = "panelValorPredio";
+	idx = "tblValorPredio";
+
+	if(dataJSON != undefined && dataJSON.length > 0){
+		procesarJSON(idPanel, idx, options, bindkeys, navGrid);
+	} else {
+		$("#panelValorPredio").css({display: "none"});
+	}
+};
+
+configurarValorPiso = function(dataJSON) { 
+	bindkeys = null;
+	navGrid = null;
+	parameters = {};
+	options = {data: dataJSON,
+		width: 990,
+		height: "auto",
+		colNames: [
+            'Nivel',
+            'Antig.',
+            'cmescon',
+            'canocon',
+            'Mat.',
+            'Est.',
+            'Mu',
+            'Te',
+            'Pi',
+            'Pv',
+            'Rv',
+            'Ba',
+            'In',
+            'Area Con.',
+            'V. Unit. m2',
+            'Inc. 5%',
+            '% Depr',
+            'Depr.',
+            'V. Unit. Depr.',
+            'Area Com.',
+            '% Area Com.',
+            'Val. Area Com.',
+            'Val. del Piso',
+            'idsigma',
+            'dpredio',
+            'cnitems',
+            'cperiod',
+            'cmateri',
+            'cconser',
+            'cmurcol',
+            'ctechos',
+            'cmpisos',
+            'cpueven',
+            'crevest',
+            'cbanios',
+            'celectr'
+        ],
+        colModel: [
+            {name: 'cnumpis', index: 'cnumpis', width: 65, align: 'center'}, // Nro de piso
+            {name: 'nantigu', index: 'nantigu', width: 65, align: 'center'}, // Antiguedad
+            {name: 'cmescon', index: 'cmescon', width: 30, hidden: true}, // Mes de la construccion
+            {name: 'canocon', index: 'canocon', width: 30, hidden: true}, // Periodo de Construccion
+            {name: 'vmateri', index: 'vmateri', width: 40, align: 'center', hidden: true}, // Material
+            {name: 'vconser', index: 'vconser', width: 40, align: 'center', hidden: true}, // Estado de conservacion
+            {name: 'vmurcol', index: 'vmurcol', width: 40, align: 'center', hidden: true}, // Muros y columnas
+            {name: 'vtechos', index: 'vtechos', width: 40, align: 'center', hidden: true}, // Techos
+            {name: 'vmpisos', index: 'vmpisos', width: 40, align: 'center', hidden: true}, // Pisos
+            {name: 'vpueven', index: 'vpueven', width: 40, align: 'center', hidden: true}, // Puertas y ventanas
+            {name: 'vrevest', index: 'vrevest', width: 40, align: 'center', hidden: true}, // Revestimientos
+            {name: 'vbanios', index: 'vbanios', width: 40, align: 'center', hidden: true}, // Sanitarios
+            {name: 'velectr', index: 'velectr', width: 40, align: 'center', hidden: true}, // Instalaciones electricas
+            {name: 'narecon', index: 'narecon', width: 100, formatter:'currency', align: 'right', editable: true}, // Area construida
+            {name: 'nvaluni', index: 'nvaluni', width: 100, formatter:'currency', align: 'right'}, // Valor unitario
+            {name: 'nincrem', index: 'nincrem', width: 100, formatter:'currency', align: 'right'}, // Incremento
+            {name: 'npordep', index: 'npordep', width: 100, formatter:'currency', align: 'right'}, // Porcentaje de depreciacion
+            {name: 'ndepred', index: 'ndepred', width: 100, formatter:'currency', align: 'right'}, // Depreciacion
+            {name: 'nvalare', index: 'nvalare', width: 100, formatter:'currency', align: 'right'}, // Valor unitario depreciado del area construida
+            {name: 'narecom', index: 'narecom', width: 100, formatter:'currency', align: 'right'}, // Area comun
+            {name: 'nporcom', index: 'nporcom', width: 100, formatter:'currency', align: 'right'}, // Porcentaje de area comun
+            {name: 'nvalcom', index: 'nvalcom', width: 100, formatter:'currency', align: 'right'}, // Valor del area comun
+            {name: 'nvalpis', index: 'nvalpis', width: 100, formatter:'currency', align: 'right'}, // Valor total del piso
+            {name: 'idsigma', index: 'idsigma', width: 30, hidden: true}, // Identificador de la construccion del predio
+            {name: 'dpredio', index: 'dpredio', width: 30, hidden: true}, // Identificador del predio
+            {name: 'cnitems', index: 'cnitems', width: 30, hidden: true}, // Nro de orden de la construccion
+            {name: 'cperiod', index: 'cperiod', width: 30, hidden: true}, // Ejercicio de la declaracion jurada
+            {name: 'cmateri', index: 'cmateri', width: 30, hidden: true},
+            {name: 'cconser', index: 'cconser', width: 30, hidden: true},
+            {name: 'cmurcol', index: 'cmurcol', width: 30, hidden: true},
+            {name: 'ctechos', index: 'ctechos', width: 30, hidden: true},
+            {name: 'cmpisos', index: 'cmpisos', width: 30, hidden: true},
+            {name: 'cpueven', index: 'cpueven', width: 30, hidden: true},
+            {name: 'crevest', index: 'crevest', width: 30, hidden: true},
+            {name: 'cbanios', index: 'cbanios', width: 30, hidden: true},
+            {name: 'celectr', index: 'celectr', width: 30, hidden: true}
+        ],
+		caption: "&nbsp;&nbsp;&nbsp;Valorizaci\u00F3n de los Pisos",
+	};
+	idPanel = "panelValorConstruccion";
+	idx = "tblValorConstruccion";
+
+	if(dataJSON != undefined && dataJSON.length > 0){
+		procesarJSON(idPanel, idx, options, bindkeys, navGrid);
+	} else {
+		$("#panelValorConstruccion").css({display: "none"});
+	}
+};
+
+configurarValorRustico = function(dataJSON) { 
+	bindkeys = null;
+	navGrid = null;
+	parameters = {};
+	options = {data: dataJSON,
+		width: 990,
+		height: "auto",
+		colNames: ['Periodo'
+		   	, 'Area Terr.'
+		   	, 'Arancel'
+		   	, 'V. Terreno'
+		   	, 'V. Construcci\u00F3n'
+		   	, 'V. Instalaci\u00F3n'
+			, 'Base Imponible'
+			, '% Afecto'
+		   	, 'Autovaluo'
+		   	, 'mhresum'
+		   	, 'mpredio'
+		   	, 'dpredio'],
+		colModel: [
+			{name: "cperiod", index: "cperiod", width: 100, align: "center"},
+			{name: "nterren", index: "nterren", width: 100, align: "right"},
+			{name: "narance", index: "narance", width: 100, align: "right"},
+			{name: "nvalter", index: "nvalter", width: 100, align: "right"},
+			{name: "nvalpis", index: "nvalpis", width: 100, align: "right"},
+			{name: "nvalins", index: "nvalins", width: 100, align: "right"},
+			{name: "nvalpre", index: "nvalpre", width: 100, align: "right"},
+			{name: "nporafe", index: "nporafe", width: 100, align: "right"},
+			{name: "nvalafe", index: "nvalafe", width: 100, align: "right"},
+			{name: "mhresum", index: "mhresum", width: 100, align: "right", hidden: true},
+			{name: "mpredio", index: "mpredio", width: 100, align: "right", hidden: true},
+			{name: "dpredio", index: "dpredio", width: 100, align: "right", hidden: true}
+		],
+		caption: "&nbsp;&nbsp;&nbsp;Detalle de Valorizaci\u00F3n del Predio R\u00FAstico",
+	};
+	idPanel = "panelValorRustico";
+	idx = "tblValorRustico";
+
+	if(dataJSON != undefined && dataJSON.length > 0){
+		procesarJSON(idPanel, idx, options, bindkeys, navGrid);
+	} else {
+		$("#panelValorRustico").css({display: "none"});
+	}
+};
+
+configurarValorInstalacion = function(dataJSON) { 
+	bindkeys = null;
+	navGrid = null;
+	parameters = {};
+	options = {data: dataJSON,
+		width: 990,
+		height: "auto",
+		colNames: [
+            'idsigma',
+            'dpredio',
+            'cnitems',
+            'cperiod',
+            'ctipdat',
+            'vnrodoc',
+            'dfecdoc',
+            'cmotivo',
+            'ctipdoc',
+            'Nivel',
+            'Antig.',
+            'canocon',
+            'Altura',
+            'Ancho',
+            'Largo',
+            'ctipint',
+            'Descripci\u00F3n',
+            'Val. Inst.',
+            'dafecta'
+        ],
+        colModel: [
+            {name: "idsigma", index: "idsigma", width: 30, hidden: true}, // Identificador de la instalacion del predio
+            {name: "dpredio", index: "dpredio", width: 30, hidden: true}, // Identificador del predio
+            {name: "cnitems", index: "cnitems", width: 30, hidden: true}, // Nro de orden de la construccion
+            {name: "cperiod", index: "cperiod", width: 30, hidden: true}, // Ejercicio de la declaracion jurada
+            {name: "ctipdat", index: "ctipdat", width: 30, hidden: true}, // Tipo de ficha (1 = declaracion jurada // 2 = acta de inspeccion)
+            {name: "vnrodoc", index: "vnrodoc", width: 30, hidden: true}, // Nro de declaracion jurada
+            {name: "dfecdoc", index: "dfecdoc", width: 30, hidden: true}, // Fecha de la declaracion jurada
+            {name: "cmotivo", index: "cmotivo", width: 30, hidden: true}, // Motivo de la declaracion jurada
+            {name: "ctipdoc", index: "ctipdoc", width: 30, hidden: true}, // Tipo de documento con el que se realiza la declaracion jurada
+            {name: "cnumpis", index: "cnumpis", width: 65, align: "center"}, // Nro de piso
+            {name: "nantigu", index: "nantigu", width: 65, align: "center"}, // Antiguedad
+            {name: "canocon", index: "canocon", width: 30, hidden: true}, // Periodo de Construccion
+            {name: "nvalanc", index: "nvalanc", width: 30, hidden: true}, // Ancho de la instalacion
+            {name: "nvalalt", index: "nvalalt", width: 30, hidden: true}, // Altura de la instalacion
+            {name: "nvallar", index: "nvallar", width: 30, hidden: true}, // Largo de la instalacion
+            {name: "ctipint", index: "ctipint", width: 30, hidden: true}, // Tipo de instalacion
+            {name: "vdesint", index: "vdesint", width: 250, hidden: true}, // Descripcion de la instalacion
+            {name: "nvalins", index: "nvalins", width: 150, align: "right", editable: true}, // Valor de la instalacion
+            {name: "dafecta", index: "dafecta", width: 30, hidden: true}  // Fecha desde donde se comienzan a generar los tributos
+        ],
+		caption: "&nbsp;&nbsp;&nbsp;Valorizaci\u00F3n de las Instalaciones",
+	};
+	idPanel = "panelValorInstalacion";
+	idx = "tblValorInstalacion";
+	
+	if(dataJSON != undefined && dataJSON.length > 0){
+		procesarJSON(idPanel, idx, options, bindkeys, navGrid);
+	} else {
+		$("#panelValorInstalacion").css({display: "none"});
+	}
+};
+
+$(document).ready(function(){
+	parameters = {
+		mpredio: "<?php echo $this->mpredio;?>",
+		mhresum: "<?php echo $this->mhresum;?>"
+	};
+	_post = $.post(path + "registro/prediovalor", parameters);
+	_post.success(function(data){
+		configurarValorPredio(data.valorpredio);
+		configurarValorRustico([]);
+		configurarValorPiso(data.valorconstruccion);
+		configurarValorInstalacion(data.valorinstalacion); 
+	});
+	_post.error(postError);
+});
+
+</script>
