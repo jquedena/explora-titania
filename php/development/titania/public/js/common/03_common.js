@@ -31,6 +31,15 @@ function procesarProcedimiento(idPanel, idx, _options, parameters, bindkeys, nav
     });
 }
 
+function procesarJSON(idPanel, idx, _options, bindkeys, navGrid) {
+	html  = "<table id=" + idx + "></table>";
+	html += "<div id=p" + idx + "></div>";
+	html += "<input type='hidden' id='c" + idx + "' name='c" + idx + "' value='' />";                                  
+                                    
+	$("#" + idPanel).html(html);
+    reloadJQGrid(idx, _options, bindkeys, navGrid);
+}
+
 function procesarProcedimientoJSON(idPanel, idx, _options, parameters, bindkeys, navGrid) {
 	html  = "<table id=" + idx + "></table>";
 	html += "<div id=p" + idx + "></div>";
@@ -84,11 +93,11 @@ function actualizarGrid(id, _options, bindkeys, navGrid){
         url: _url,
         datatype: "json",
     }, _options);
-	reloadJQGrid(id, options, bindkeys, navGrid)
+	reloadJQGrid(id, options, bindkeys, navGrid);
 }
 
 function inicializarGrid(id, _options, bindkeys, navGrid){
-	reloadJQGrid(id, _options, bindkeys, navGrid)
+	reloadJQGrid(id, _options, bindkeys, navGrid);
 }
 function contenidocomboContenedorjqGrid(selector,idsigma){
 	var optionsjq = {};
@@ -155,7 +164,7 @@ openDialogData = function(url, data, width, height, title, id) {
 		
         _post.error(postError);	
     }
-}
+};
 
 function openDialogData1(url, data, width, height, title) {
 	openDialogData(url, data, width, height, title, '#jqDialog1');
@@ -284,7 +293,7 @@ $.browser = {
             values[i++] = $( this).val();
         });
         return values;
-    }
+    };
 })(jQuery);
 
 $(function(){

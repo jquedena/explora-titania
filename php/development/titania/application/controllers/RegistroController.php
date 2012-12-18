@@ -65,12 +65,13 @@ class RegistroController extends Zend_Controller_Action {
             $this->view->vnombre = $this->_request->getParam('vnombre');
             $this->view->vdirecf = $this->_request->getParam('vdirecf');
             $parameters[] = $this->_request->getParam('mpredio');
-
+            $parameters[] = $this->_request->getParam('mhresum'); 
+            $parameters[] = 'max';
+            
             $dataAdapter = new Model_DataAdapter();
             $rows = $dataAdapter->executeAssocQuery("pl_function.ver_predio", $parameters);
             $this->view->mpredio = $rows[0];
-            
-            $parameters = array($rows[0]["dpredio"]);
+            $parameters = array($rows[0]["dpredio"], 'max');
             $dataAdapter->saveQuery("tblPiso", "pl_function.listar_construccion", $parameters);
             $dataAdapter->saveQuery("tblInstalacion", "pl_function.listar_instalacion", $parameters);
         }
@@ -106,5 +107,34 @@ class RegistroController extends Zend_Controller_Action {
     	if ($this->getRequest()->isXmlHttpRequest()) {
     		$this->_helper->layout->disableLayout();
     	}
+    }
+    
+    public function listarprediovalorAction() {
+    	$this->view->mpredio = $this->_request->getParam('mpredio');
+    	$this->view->mhresum = $this->_request->getParam('mhresum');
+    }
+    
+    public function prediovalorAction() {
+    	$this->_helper->layout->disableLayout();
+    	$this->_helper->viewRenderer->setNoRender();
+    		
+    	$dataAdapter = new Model_DataAdapter();
+    		
+    	/*
+    	-- select pl_function.panel_persona('0000000158','ref_cursor');
+    	-- select pl_function.listar_predios('0000000471', '0000000158','ref_cursor');
+    	-- select pl_function.listar_construccion('0000000628', 'ref_cursor');
+    	-- select pl_function.listar_instalacion('0000000628', 'ref_cursor');
+    	*/
+    	$parameters[] = $this->_request->getParam('mpredio');
+    	$parameters[] = $this->_request->getParam('mhresum');
+    	$parameters[] = '-1';
+    	
+    	$data['valorpredio'] = $dataAdapter->executeAssocQuery("pl_function.ver_predio", $parameters);
+    	// $data['valorconstruccion'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
+    	// $data['valorinstalacion'] = $dataAdapter->executeAssocQuery("pl_function.listar_instalacion", $parameters);
+    	// $rows['valorrustico'] = $dataAdapter->ejec_store_procedura_sql($function);
+    		
+    	echo $this->_helper->json($data);
     }
 }
