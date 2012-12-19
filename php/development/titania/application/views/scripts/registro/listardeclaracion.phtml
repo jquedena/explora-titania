@@ -1,65 +1,104 @@
-<table style="width: 100%">
-	<tr>
-		<td>Total de declaraciones registradas</td>
-		<td align="right">
-			<button title="Anterior" style="line-height: 25px;height: 25px;" id="btnAntes"></button>
-			<button title="Siguiente" style="line-height: 25px;height: 25px;" id="btnSiguiente"></button>
-		</td>
-	</tr>
+<table border=1>
+<tr>
+	<td><div id="Panellistadeclaraciones" style="margin-top: 5px;"></div></td>
+	<td></td>
+</tr>
+<tr>
+	<td colspan=2><div id="PanelDetalleDeclaracion"></div></td>
+</tr>
 </table>
-<div id="accordionDeclaracion" style="height: 400px; margin-top: 5px;">
-	<?php for($i = 0; $i < 3; $i++) { ?>
-	<h3><a href="#">Declaraci&oacute;n Nro.: </a></h3>
-	<div style="margin-top: 2px;">
-		<table class="ui-table-panelLayout" style="margin: 2px; padding: 2px;">
-		    <tr>
-		        <td colspan="2" style="text-align: right;font-weight: bold;">La modificaci&oacute;n de esta declaraci&oacute;n entra en vigencia a partir del a&ntilde;o:</td>
-		        <td><input class="ui-text" style="width: 80px; text-align: center;" id="dtpFechaVigencia"/></td>
-		    </tr>
-		    <tr>
-		        <td colspan="3"><hr/></td>
-		    </tr>
-		    <tr>
-		        <td style="text-align: right;width: 150px">Declaraci&oacute;n Jurada:</td>
-		        <td><input class="ui-text" style="width: 100px"></td>
-		        <td>&nbsp;</td>
-		    </tr>
-		    <tr>
-		        <td style="text-align: right">Fecha:</td>
-		        <td><input class="ui-text" style="width: 80px; text-align: center;" id="dtpFechaDeclaracion"/></td>
-		        <td>&nbsp;</td>
-		    </tr>
-		    <tr>
-		        <td style="text-align: right">Motivo:</td>
-		        <td id="cellMotivo"><select style="width: 240px;" id="cboMotivo"><?php echo $this->util()->getComboContenedor('1000000004', null); ?></select></td>
-		        <td>&nbsp;</td>
-		    </tr>
-		    <tr>
-		        <td style="text-align: right;vertical-align: top;">Observaci&oacute;n:</td>
-		        <td colspan="2"><textarea class="ui-text" class="jquery_ckeditor" cols="80" id="txtObservacion" name="txtObservacion" rows="10"></textarea></td>
-		    </tr>
-		</table>
-	</div>
-	<?php } ?>
-</div>
+
 <script type="text/javascript">
-$(function(){
-	$("#tabsDetalleDeclaracion").tabs();
-	$("#accordionDeclaracion").accordion({
-		autoHeight: false,
-		navigation: true
-	});
-	$("#btnAntes").button({
-	    text: false,
-	    icons: {primary:'ui-icon-triangle-1-s'}
-	}).bind("click", function(){
-	    alert('anterior');
-	});
-	$("#btnSiguiente").button({
-	    text: false,
-	    icons: {primary:'ui-icon-triangle-1-n'}
-	}).bind("click", function(){
-		alert('siguiente');
-	});
+
+buscarDetalle = function(id) {
+	row = $(this).getRowData(id);
+	        
+    parameters = {
+        "name": "tblDetalleDeclaracion",
+        "procedure": "pl_function.listar_predios",
+        "print": "true",
+        "parameters": '{' +
+        '"p_mhresum":"' + row.mhresum + '",' +
+        '"p_cidpers":"' + row.cidpers + '"' +
+        '}'
+    };
+
+    ajaxDialog = false;
+    procesarProcedimientoJSON("PanelDetalleDeclaracion", "tblDetalleDeclaracion", optionPredio, parameters, bindkeysPredio);
+};
+
+optionPredio = {
+        height: 150,
+        width: 450,
+        colNames: [
+			'Codigo',
+			'Direccion',
+			'Uso'
+        ],
+        colModel: [
+				{name: 'ccodpre', index:'ccodpre', width: 80}, /* , frozen: true */
+				{name: 'tnumero', index:'tnumero', width: 260},
+				{name: 'vusogen', index:'vusogen', width: 100}
+               ],
+		caption: "&nbsp;&nbsp;&nbsp;",
+		
+       onSelectRow: function(id) {
+	       row = $(this).getRowData(id);
+	     
+	       console.log(row);
+
+         
+        }
+    };
+
+//Listar las declaraciones
+optionDeclaraciones = {
+        height: 150,
+        width: 400,
+        colNames: [
+            'Nro. Doc.',
+            'dfecdoc',
+            'Motivo',
+            'Fec. Registro',
+            'Observaci\u00F3n',
+            'Cod. Persona'
+        ],
+        colModel: [
+                   {name: 'vnrodoc', index:'vnrodoc', width: 80, align: 'center'},
+                   {name: 'dfecdoc', index:'dfecdoc', width: 100},
+                   {name: 'vmotivo', index:'vmotivo', width: 100},
+                   {name: 'mhresum', index:'mhresum', width: 100, hidden: true},
+                   {name: 'vobserv', index:'vobserv', width: 100, hidden: true},
+                   {name: 'cidpers', index:'cidpers', width: 100, hidden: true}
+               ],
+		caption: "&nbsp;&nbsp;&nbsp;",
+       	onSelectRow: buscarDetalle
+    };
+    
+	listarDeclaracion = function() {
+		parameters = {
+		"name": "tblListarDeclaracion",
+		"print": "true",
+		"procedure": "pl_function.listar_declaraciones",
+		"parameters": '{' +
+		'"p_cidpers":"<?php echo $this->cidpers; ?>"' +
+		'}'
+		};	
+		
+		procesar = function(requestData){
+			options = $.extend(optionDeclaraciones, {
+				data: requestData,
+				datatype: "local"
+			});
+			procesarJSON("Panellistadeclaraciones", "tblListaDeclaracion", optionDeclaraciones, null, null);
+		};
+
+		procesarConsultaSubProceso("registrar", parameters, procesar, 'json');
+		
+	};
+
+$(document).ready(function(){
+	listarDeclaracion();
 });
+
 </script>
