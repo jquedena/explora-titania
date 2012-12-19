@@ -82,7 +82,7 @@ $(function(){
 	    text: false,
 	    icons: {primary:'ui-icon-search'}
 	}).bind("click", function(){
-	    openDialogData1("registro/listardeclaracion", {}, "750", "516", "Declaraciones Juradas");
+	    openDialogData1("registro/listardeclaracion", {cidpers: "<?php echo $this->mperson['cidpers'] ?>"}, "750", "516", "Declaraciones Juradas");
 	});
 });
 </script>
