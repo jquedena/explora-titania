@@ -77,6 +77,7 @@ class JqgridController extends Zend_Controller_Action {
             if (!$sidx)
                 $sidx = 1;
 
+            $responce = new Model_JQGridResponce();
             $responce->page = $page;
             $responce->total = $total_pages;
             $responce->records = $count;
