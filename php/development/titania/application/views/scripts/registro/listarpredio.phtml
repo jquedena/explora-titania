@@ -30,13 +30,13 @@
 <script type="text/javascript">
     verPredio = function(rowid, iRow, iCol, e) {
         row = $("#tblListaPredio").jqGrid('getRowData', rowid);
-        console.log(row);
         parameters = {
             "mperson": $("#lblCodigo").text(),
             "vnombre": $("#lblNombre").text(),
             "vdirecf": $("#lblDireccion").text(),
             "mpredio": row.mpredio,
-            "mhresum": row.mhresum
+            "mhresum": row.mhresum,
+            "cperiod": 'max'
         };
         _post = $.post(path + "registro/verpredio", parameters);
         _post.error(postError);
