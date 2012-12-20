@@ -107,8 +107,8 @@ class RegistroController extends Zend_Controller_Action {
     }
     
     public function listardeclaracionAction() {
+        $this->view->cidpers = $this->_request->getParam('cidpers');
     	$this->_helper->getHelper('ajaxContext')->initContext();
-    	
     	if ($this->getRequest()->isXmlHttpRequest()) {
     		$this->_helper->layout->disableLayout();
     	}
@@ -135,5 +135,13 @@ class RegistroController extends Zend_Controller_Action {
     	$data['resumensaldo'] = $dataAdapter->executeAssocQuery("pl_function.resumen_saldo_personal", $parameters);
     		
     	echo $this->_helper->json($data);
+    }
+    
+    public function verpisoAction() {
+    	$this->_helper->getHelper('ajaxContext')->initContext();
+    
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+    	}
     }
 }
