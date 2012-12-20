@@ -1,0 +1,94 @@
+<div id="formPiso" class="ui-widget ui-state-default ui-corner-top ui-title">
+	<table>
+		<tr>
+			<td width="200" align="center" colspan=2>Caracteristicas</td>
+			<td width="200" align="center" colspan=2>Areas</td>
+		</tr>
+		<tr>
+			<td width="140">Nivel&nbsp;</td>
+			<td width="120"><input id="txt_pisonivel" style="width:100" value="" /></td>
+			<td width="140">Area Construida</td>
+			<td width="100"><input id="txt_pisoarecon" style="width:100" value="" /></td>
+		</tr>
+		<tr>
+			<td width="140">A&ntilde;o&nbsp;</td>
+			<td width="120"><input id="txt_pisoanocon" style="width:100" value="" /></td>
+			<td width="140">Val. Unit. x m2</td>
+			<td width="100"><input id="txt_pisovaluni" style="width:100" value="" /></td>
+		</tr>
+		<tr>
+			<td width="140">Mes&nbsp;</td>
+			<td width="120"><input id="txt_pisomescon" style="width:100" value="" /></td>
+			<td width="140">% Incremento</td>
+			<td width="100"><input id="txt_pisoincrem" style="width:100" value="" /></td>
+		</tr>
+		<tr>
+			<td width="140">Materiales&nbsp;</td>
+			<td width="120"><select id="cb_pisomaterial" style="width:100;padding:2px"></select></td>
+			<td width="140">% Depreciacion</td>
+			<td width="100"><input id="txt_pisopordep" style="width:100" value="" /></td>
+		</tr>
+		<tr>
+			<td width="140">Estado</td>
+			<td width="120"><select id="cb_pisoestado" style="width:100;padding:2px"></select></td>
+			<td width="140">Val. Depreciado</td>
+			<td width="100"><input id="txt_pisodepred" style="width:100" value="" /></td>
+		</tr>
+		<tr>
+			<td width="140">Muro y Columas</td>
+			<td width="120"><select id="cb_pisomuro" style="width:100;padding:2px"></select></td>
+			<td width="140">Val. Unit. Depreciado</td>
+			<td width="100"><input id="txt_pisovalare" style="width:100" value="" /></td>
+		</tr>
+		<tr>
+			<td width="140">Techo</td>
+			<td width="120"><select id="cb_pisotecho" style="width:100;padding:2px"></select></td>
+			<td width="140">Area Comun</td>
+			<td width="100"><input id="txt_pisoarecom" style="width:100" value="" /></td>
+		</tr>
+		<tr> 
+			<td width="140">Pisos</td>
+			<td width="120"><select id="cb_pisopisos" style="width:100;padding:2px"></select></td>
+			<td width="140">% Area Comun</td>
+			<td width="100"><input id="txt_pisoporcom" style="width:100" value="" /></td>
+		</tr>
+		<tr>
+			<td width="140">Puertas y Ventanas</td>
+			<td width="120"><select id="cb_pisopuertavetana" style="width:100;padding:2px"></select></td>
+			<td width="140">Val. Area Com.</td>		
+			<td width="100"><input id="txt_pisovalcom" style="width:100" value="" /></td>
+		</tr>
+		<tr>
+			<td width="140">Revestimiento</td>
+			<td width="120"><select id="cb_pisorevestimiento" style="width:100;padding:2px"></select></td>
+			<td width="140">Val. del Predio</td>
+			<td width="100"></td>
+		</tr>
+		<tr>
+			<td width="140">Ba&ntilde;os</td>
+			<td width="120"><select id="cb_pisobanio" style="width:100;padding:2px"></select></td>
+		</tr>
+		<tr>
+			<td width="140">Instalaciones Electricas y Sanitarias</td>
+			<td width="120"><select id="cb_pisoinstalaciones" style="width:100;padding:2px"></select></td>
+		</tr>
+		<tr>
+			<td><input type="button" id="btnguardar" name="guardar" value="Continuar Operaci&oacute;n"/></td>
+		</tr>
+	</table>
+</div>
+<script type="text/javascript">
+	isValid = true;
+	validar = function(){
+		$("#formPiso").find("input").each(function(){
+			if($(this).val().length ==0){
+				isValid = false;
+	            return;
+	        }
+		});
+		
+		if(!isValid){
+		   openDialogWarning("Los campos deben estar llenos.", 380, 150);	
+		}
+	};
+</script>

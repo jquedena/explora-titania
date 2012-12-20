@@ -4,5 +4,5 @@ panelPersona = function(parameters) {
     _post.success(function(request){  	
         $("#layoutPanelInformativo").html(request);
     });
-}
+};
 
