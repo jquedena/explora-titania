@@ -1,6 +1,6 @@
 * {
     font-size: 100%;
-    font-family: Sans, Tahoma, Lucida Grande, Lucida Sans, Arial, sans-serif;
+    font-family: Arail, Sans, Tahoma, Lucida Grande, Lucida Sans, Arial, sans-serif;
     letter-spacing: .03em;
 }
 
@@ -11,7 +11,7 @@ html, body {
     height: 100%;
 }
 body {
-    font-size: 0.7em;
+    font-size: 10px;
     scrollbar-face-color: #094FA4; 
     scrollbar-shadow-color: #DEEBF5; 
     scrollbar-highlight-color: #DEEBF5; 

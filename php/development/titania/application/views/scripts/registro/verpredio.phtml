@@ -1,3 +1,5 @@
+<input type="hidden" id="_mhresum" value="<?php echo $this->p_mhresum; ?>" />
+<input type="hidden" id="_mpredio" value="<?php echo $this->p_mpredio; ?>" />
 <table border="0" cellpadding="0"  cellspacing="0" style="width: 1000px;margin: 3px;">
     <tr>
         <td colspan="2">
@@ -13,10 +15,11 @@
                         <td style="font-weight: bold;" colspan="2"><div id="lblNombre"><?php echo $this->vnombre; ?></div></td>
                         <td style="width: 110px;" align="right" rowspan="3">
                         	<div class="ui-widget" style="text-align: center;">
-                        		<!-- ?php echo $this->util()->getPeriodos(); ? -->
                         		Declaraci&oacute;n Nro.
                         		<br/>
                         		<div style="font-weight: bold;"><?php echo $this->mpredio["vnrodoc"]; ?></div>
+                        		<br/>
+                        		<?php echo $this->util()->getPeriodos(); ?>
                         	</div>
                         </td>
                     </tr><tr>
@@ -81,12 +84,29 @@
 <div id="panelDetallePredio">
     <div id="tabsDetallePredio" style="width: 995px; margin: 3px;">
         <ul>
+            <li id="tabPredioUbicacion"><a href="#predioUbicacion">Ubicaci&oacute;n</a></li>
             <li id="tabPredioDescripcion"><a href="#predioDescripcion">Descripci&oacute;n</a></li>
             <li id="tabPredioRustico"<?php echo ($this->mpredio["ctippre"]!='1000000091'? ' style="display:none;"': '')?>><a href="#predioRustico">Rustico</a></li>
             <li id="tabPredioPiso"><a href="#predioPiso">Pisos</a></li>
             <li id="tabPredioInstalacion"><a href="#predioInstalacion">Instalaci&oacute;n</a></li>    
             <li id="tabPredioInafectacion"><a href="#predioInafectacion">Inafectaci&oacute;n y Exoneraci&oacute;n</a></li>
         </ul>
+        <div style="overflow-y: auto; overflow-x: hidden; height:310px; padding: 2px;" id="predioUbicacion">
+            <table>
+            	<tr>
+            		<td style="width: 400px;">
+            			Direcci&oacute;n: <input id="direccionMapa" type="text" value="" title="Ingrese la direcci&oacute;n para buscar" />
+            			<img src=""/>
+            		</td>
+            		<td>
+            			<!-- Longitud --><input type="hidden" id="longitud" value="-11.866663">
+            			<!-- Latitud --><input type="hidden" id="latitud" value="-77.077125">
+            			<!-- Zoom --><input type="hidden" id="zoom" value="17" >
+						<div id="map" style="width:400px; height: 280px; margin-top: 10px; border: 1px solid #000;"></div>
+            		</td>
+            	</tr>
+            </table>
+        </div>
         <div style="overflow-y: auto; overflow-x: hidden; height:310px; padding: 2px;" id="predioDescripcion">
             <?php echo $this->render("registro/verpredio/descripcion.php"); ?>
         </div>
@@ -105,6 +125,83 @@
     </div>
 </div>
 <script type="text/javascript">
+/*
+ var contentString = '<div id="content">' +
+	'<h1 id="firstHeading" class="firstHeading">{0}</h1>' +
+	'<div id="bodyContent">' +
+	'<p><b>Direcci' + String.fromCharCode(243) + 'n: </b> {1} ' +
+	'</div>' +
+	'</div>';
+ */
+
+	var map = null,
+		image = pathImage + '../img/casa.png',
+		markersArray = [],
+		mapOptions = null,
+		geocoder = new google.maps.Geocoder();
+
+	clearOverlays = function() {
+		if (markersArray.length>0)
+			markersArray[0].setMap(null);
+		markersArray.length = 0;
+	};
+ 
+	placeMarker = function(location) {
+		var lat = location.lat();
+		var lng = location.lng();
+  
+		$('#longitud').val(lat);
+		$('#latitud').val(lng);
+		$("#zoom").val(map.getZoom());
+  
+		clearOverlays();
+		var marker = new google.maps.Marker({
+			map: map,
+			draggable: true,
+			animation: google.maps.Animation.DROP,
+			icon: image,
+			title: "Municipalidad de Puente Piedra",
+			position: location
+		});
+
+		/*
+  		var _content = "Mensaje de Prueba";
+  		var infoWindow = new google.maps.InfoWindow({content: _content});
+  		infoWindow.open(map, marker);
+		*/
+  		
+		google.maps.event.addListener(marker, 'click', function(){
+			if (marker.getAnimation() != null)
+				marker.setAnimation(null);
+			else 
+				marker.setAnimation(google.maps.Animation.BOUNCE);
+		});
+
+		markersArray.push(marker);
+	};
+
+	initMap = function(){
+		clearOverlays();
+		map = new google.maps.Map(document.getElementById("map"),mapOptions);
+		var marker = new google.maps.Marker({
+			map: map,
+			draggable: true,
+			animation: google.maps.Animation.DROP,
+			icon: image,
+			title: "Municipalidad de Puente Piedra",
+			position: new google.maps.LatLng($('#longitud').val(), $('#latitud').val())
+		});
+
+		/*
+		var _content = "Mensaje de Prueba";
+		var infoWindow = new google.maps.InfoWindow({content: _content});
+		infoWindow.open(map, marker);
+      	*/
+      	
+		google.maps.event.addListener(map, 'click', function(event) {placeMarker(event.latLng);});
+		markersArray.push(marker);
+	};
+
     tabs = null;
     jsonPredio = <?php echo json_encode($this->mpredio); ?>;
     
@@ -112,9 +209,10 @@
         height: 200,
         width: 990,
         rowNum: 10,
+        rownumbers: false,
         colNames: [
-            'Nivel',
-            'Antig.',
+            'Niv',
+            'Ant',
             'cmescon',
             'canocon',
             'Mat.',
@@ -151,29 +249,29 @@
             'celectr'
         ],
         colModel: [
-            {name: 'cnumpis', index: 'cnumpis', width: 65, align: 'center', editable: true}, // Nro de piso
-            {name: 'nantigu', index: 'nantigu', width: 65, align: 'center', editable: true}, // Antiguedad
+            {name: 'cnumpis', index: 'cnumpis', width: 35, align: 'center', editable: true}, // Nro de piso
+            {name: 'nantigu', index: 'nantigu', width: 35, align: 'center', editable: true}, // Antiguedad
             {name: 'cmescon', index: 'cmescon', width: 30, hidden: true}, // Mes de la construccion
             {name: 'canocon', index: 'canocon', width: 30, hidden: true}, // Periodo de Construccion
             {name: 'vmateri', index: 'vmateri', width: 40, align: 'center', editable: true}, // Material
             {name: 'vconser', index: 'vconser', width: 40, align: 'center', editable: true}, // Estado de conservacion
             {name: 'vmurcol', index: 'vmurcol', width: 40, align: 'center', editable: true}, // Muros y columnas
             {name: 'vtechos', index: 'vtechos', width: 40, align: 'center', editable: true}, // Techos
-            {name: 'vmpisos', index: 'vmpisos', width: 40, align: 'center', editable: true}, // Pisos
-            {name: 'vpueven', index: 'vpueven', width: 40, align: 'center', editable: true}, // Puertas y ventanas
-            {name: 'vrevest', index: 'vrevest', width: 40, align: 'center', editable: true}, // Revestimientos
-            {name: 'vbanios', index: 'vbanios', width: 40, align: 'center', editable: true}, // Sanitarios
-            {name: 'velectr', index: 'velectr', width: 40, align: 'center', editable: true}, // Instalaciones electricas
-            {name: 'narecon', index: 'narecon', width: 100, formatter:'currency', align: 'right', editable: true}, // Area construida
-            {name: 'nvaluni', index: 'nvaluni', width: 100, formatter:'currency', align: 'right'}, // Valor unitario
-            {name: 'nincrem', index: 'nincrem', width: 100, formatter:'currency', align: 'right'}, // Incremento
-            {name: 'npordep', index: 'npordep', width: 100, formatter:'currency', align: 'right'}, // Porcentaje de depreciacion
-            {name: 'ndepred', index: 'ndepred', width: 100, formatter:'currency', align: 'right'}, // Depreciacion
-            {name: 'nvalare', index: 'nvalare', width: 100, formatter:'currency', align: 'right'}, // Valor unitario depreciado del area construida
-            {name: 'narecom', index: 'narecom', width: 100, formatter:'currency', align: 'right', editable: true}, // Area comun
-            {name: 'nporcom', index: 'nporcom', width: 100, formatter:'currency', align: 'right', editable: true}, // Porcentaje de area comun
-            {name: 'nvalcom', index: 'nvalcom', width: 100, formatter:'currency', align: 'right'}, // Valor del area comun
-            {name: 'nvalpis', index: 'nvalpis', width: 100, formatter:'currency', align: 'right'}, // Valor total del piso
+            {name: 'vmpisos', index: 'vmpisos', width: 40, align: 'center', editable: true, hidden: true}, // Pisos
+            {name: 'vpueven', index: 'vpueven', width: 40, align: 'center', editable: true, hidden: true}, // Puertas y ventanas
+            {name: 'vrevest', index: 'vrevest', width: 40, align: 'center', editable: true, hidden: true}, // Revestimientos
+            {name: 'vbanios', index: 'vbanios', width: 40, align: 'center', editable: true, hidden: true}, // Sanitarios
+            {name: 'velectr', index: 'velectr', width: 40, align: 'center', editable: true, hidden: true}, // Instalaciones electricas
+            {name: 'narecon', index: 'narecon', width: 50, formatter:'currency', align: 'right', editable: true}, // Area construida
+            {name: 'nvaluni', index: 'nvaluni', width: 80, formatter:'currency', align: 'right'}, // Valor unitario
+            {name: 'nincrem', index: 'nincrem', width: 50, formatter:'currency', align: 'right'}, // Incremento
+            {name: 'npordep', index: 'npordep', width: 50, formatter:'currency', align: 'right'}, // Porcentaje de depreciacion
+            {name: 'ndepred', index: 'ndepred', width: 50, formatter:'currency', align: 'right'}, // Depreciacion
+            {name: 'nvalare', index: 'nvalare', width: 80, formatter:'currency', align: 'right'}, // Valor unitario depreciado del area construida
+            {name: 'narecom', index: 'narecom', width: 80, formatter:'currency', align: 'right', editable: true}, // Area comun
+            {name: 'nporcom', index: 'nporcom', width: 80, formatter:'currency', align: 'right', editable: true}, // Porcentaje de area comun
+            {name: 'nvalcom', index: 'nvalcom', width: 80, formatter:'currency', align: 'right'}, // Valor del area comun
+            {name: 'nvalpis', index: 'nvalpis', width: 80, formatter:'currency', align: 'right'}, // Valor total del piso
             {name: 'idsigma', index: 'idsigma', width: 30, hidden: true}, // Identificador de la construccion del predio
             {name: 'dpredio', index: 'dpredio', width: 30, hidden: true}, // Identificador del predio
             {name: 'cnitems', index: 'cnitems', width: 30, hidden: true}, // Nro de orden de la construccion
@@ -189,9 +287,6 @@
             {name: 'celectr', index: 'celectr', width: 30, hidden: true}
         ],
         caption: "&nbsp;&nbsp;&nbsp;Pisos",
-        // footerrow : true,
-        // userDataOnFooter : true,
-        // altRows : true,
         ondblClickRow: function(rowid, iRow, iCol, e) {
             row = $(this).getRowData(rowid);
             console.log(row)
@@ -361,6 +456,26 @@
         }
     };
 
+	cambioPeriodo = function(event, ui) {
+		if(ui.item) {
+	        parameters = {
+	            "mperson": $("#lblCodigo").text(),
+	            "vnombre": $("#lblNombre").text(),
+	            "vdirecf": $("#lblDireccion").text(),
+	            "mpredio": $("#_mpredio").val(),
+	            "mhresum": $("#_mhresum").val(),
+	            "cperiod": ui.item.option.value
+	        };
+	        _post = $.post(path + "registro/verpredio", parameters);
+	        _post.error(postError);
+	        _post.success(function(request){
+	            $("#panelRegistro").html(request);
+	        });
+		} else {
+			openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
+		}
+    };
+    
     loadVerDetalle = function(){
         tabs = $("#tabsDetallePredio").tabs();
 
@@ -396,6 +511,8 @@
         $("#txtCondicion").bind("autocompletechange", cambioCondicion);
 
         $("#txtPeriodo").attr("maxlength", 4);
+        $("#txtPeriodo").bind("autocompleteselect", cambioPeriodo);
+        $("#txtPeriodo").bind("autocompletechange", cambioPeriodo);
 
         $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto").datepicker({
             dateFormat: "dd/mm/yy",
@@ -476,6 +593,16 @@
     $(function(){
         loadVerDetalle();
     });
+
+    $(document).ready(function(){
+    	mapOptions = {
+    		zoom: parseInt($('#zoom').val(), 10),
+    		mapTypeId: google.maps.MapTypeId.ROADMAP,
+			center: new google.maps.LatLng($('#longitud').val(), $('#latitud').val())
+		};
+
+    	initMap();
+	});
 </script>
 <!-- 
     /*
