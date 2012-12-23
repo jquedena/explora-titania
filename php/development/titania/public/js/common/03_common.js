@@ -176,20 +176,6 @@ function openDialogData2(url, data, width, height, title) {
 
 function openDialog1(url, width, height, title) {
 	openDialogData(url, {}, width, height, title, '#jqDialog1');
-    /*var _post = $.post(path + url);
-	
-    if(url != undefined) {
-        _post.success(function(requestData){
-            $("#jqDialog1").html(requestData);
-			
-            if(width != undefined) $('#jqDialog1').dialog('option', 'width', width);
-            if(height != undefined) $('#jqDialog1').dialog('option', 'height', height);
-            if(title != undefined) $('#jqDialog1').dialog('option', 'title', title);
-            $('#jqDialog1').dialog('open');
-        });
-		
-        _post.error(postError);	
-    }*/
 }
 
 function openDialog2(url, width, height, title) {	
@@ -275,6 +261,7 @@ function themeComboBox(selector) {
     });
 }
 
+/*
 var userAgent = navigator.userAgent.toLowerCase();
 $.browser = {
     version: (userAgent.match( /.+(?:rv|it|ra|ie|me)[\/: ]([\d.]+)/ ) || [])[1],
@@ -284,6 +271,7 @@ $.browser = {
     msie: /msie/.test( userAgent ) && !/opera/.test( userAgent ),
     mozilla: /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent )
 };
+*/
 
 (function($) {
     $.fn.getCheckboxValues = function(){
@@ -314,5 +302,21 @@ $(function(){
     });
     themeTextBox();
     themeComboBox();
-    // alert($.browser.msie);
+	
+	var brw = new Browser();
+	console.log('fullName: ' + brw.fullName);
+	console.log('name: ' + brw.name);
+	console.log('fullVersion: ' + brw.fullVersion);
+	console.log('version: ' + brw.version);
+	console.log('platform: ' + brw.platform);
+	console.log('mobile: ' + brw.mobile);
+	console.log('resolution: ' + brw.width + 'x' + brw.height);
+	
+	console.log('availWidth: ' + screen.availWidth);
+	console.log('width: ' + screen.width);
+	console.log('availHeight: ' + screen.availHeight);
+	console.log('height: ' + screen.height);
+	
+	window.moveTo(screen.width - screen.availWidth, screen.height - screen.availHeight);
+	window.resizeTo(screen.availWidth + screen.availWidth - screen.width, screen.availHeight + screen.availHeight - screen.height);
 });
