@@ -94,8 +94,8 @@
         <div style="overflow-y: auto; overflow-x: hidden; height:310px; padding: 2px;" id="predioUbicacion">
             <table>
             	<tr>
-            		<td style="width: 400px;">
-            			Direcci&oacute;n: <input id="direccionMapa" type="text" value="" title="Ingrese la direcci&oacute;n para buscar" />
+            		<td style="width: 400px;" valign="top">
+            			Direcci&oacute;n: <input  class="ui-text" style="width: 90%;" id="direccionXY" type="text" value="" title="Ingrese la direcci&oacute;n para buscar" />
             			<img src=""/>
             		</td>
             		<td>
@@ -204,6 +204,35 @@
 
     tabs = null;
     jsonPredio = <?php echo json_encode($this->mpredio); ?>;
+
+	verPiso = function(rowid, iRow, iCol, e) {
+        row = $(this).getRowData(rowid);
+        openDialogDataFunction1("registro/verpiso", {}, "750", "496", "Detalle del piso", function() {
+            console.log(row);
+            $("#txt_pisonivel").val(row.cnumpis);
+    		$("#txt_pisoanocon").val(row.canocon);
+            $("#txt_pisomescon").val(row.cmescon);
+    		$("#txt_pisomaterial").val(row.vmateri);       
+    		$("#txt_pisoestado").val(row.vconser);
+    		$("#txt_pisomuro").val(row.vmurcol);       
+    		$("#txt_pisotecho").val(row.vtechos);
+    		$("#txt_pisopisos").val(row.vmpisos);     
+    		$("#txt_pisopuertavetana").val(row.vpueven);
+    		$("#txt_pisorevestimiento").val(row.vrevest);       
+    		$("#txt_pisobanio").val(row.vbanios);
+    		$("#txt_pisoinstalaciones").val(row.velectr);        
+    		$("#txt_pisoarecon").val(row.narecon);
+    		$("#txt_pisovaluni").val(row.nvaluni);
+    		$("#txt_pisoincrem").val(row.nincrem);
+    		$("#txt_pisopordep").val(row.npordep);      
+    		$("#txt_pisodepred").val(row.ndepred);
+    		$("#txt_pisovalare").val(row.nvalare);      
+    		$("#txt_pisoarecom").val(row.narecom);
+    		$("#txt_pisoporcom").val(row.nporcom);
+    		$("#txt_pisovalcom").val(row.nvalcom);
+    		$("#txt_valpre").val(row.nvalpis); 
+		});
+    }
     
     optionPiso = {
         height: 200,
@@ -287,10 +316,7 @@
             {name: 'celectr', index: 'celectr', width: 30, hidden: true}
         ],
         caption: "&nbsp;&nbsp;&nbsp;Pisos",
-        ondblClickRow: function(rowid, iRow, iCol, e) {
-            row = $(this).getRowData(rowid);
-            console.log(row)
-        }
+        ondblClickRow: verPiso
     };
 
     btnInsertarPiso = {
@@ -594,11 +620,52 @@
         loadVerDetalle();
     });
 
-    $(document).ready(function(){
+    $(document).ready(function() {
+    	$("#direccionXY").autocomplete({          
+			source: function(request, response) {
+				if (geocoder == null){
+					geocoder = new google.maps.Geocoder();
+				} 
+				geocoder.geocode( {'address': request.term }, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						var searchLoc = results[0].geometry.location;
+						var lat = results[0].geometry.location.lat();
+						var lng = results[0].geometry.location.lng();
+						var latlng = new google.maps.LatLng(lat, lng);
+						var bounds = results[0].geometry.bounds;
+
+						geocoder.geocode({'latLng': latlng}, function(results1, status1) {
+							if (status1 == google.maps.GeocoderStatus.OK) {
+								if (results1[1]) {
+									response($.map(results1, function(loc) {
+										return {
+											label  : loc.formatted_address,
+											value  : loc.formatted_address,
+											bounds   : loc.geometry.bounds
+										}
+									}));
+								}
+							}
+						});
+					}
+				});
+			},
+			select: function(event,ui){
+				var pos = ui.item.position;
+				var lct = ui.item.locType;
+				var bounds = ui.item.bounds;
+
+				if (bounds){
+					map.fitBounds(bounds);
+				}
+			}
+		});
+        
     	mapOptions = {
     		zoom: parseInt($('#zoom').val(), 10),
     		mapTypeId: google.maps.MapTypeId.ROADMAP,
 			center: new google.maps.LatLng($('#longitud').val(), $('#latitud').val())
+		
 		};
 
     	initMap();
