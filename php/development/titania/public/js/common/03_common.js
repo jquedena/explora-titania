@@ -149,13 +149,17 @@ function closeDialog(id) {
     $('#'+id).dialog('close');
 }
 
-openDialogData = function(url, data, width, height, title, id) {
+openDialogData = function(url, data, width, height, title, id, fnc) {
 	var _post;
     if(url != undefined) {
     	_post = $.post(path + url, data);
         _post.success(function(requestData){
             $(id).html(requestData);
 			
+            if(fnc != undefined && fnc != null && fnc != false) {
+            	fnc();
+            }
+            
             if(width != undefined) $(id).dialog('option', 'width', width);
             if(height != undefined) $(id).dialog('option', 'height', height);
             if(title != undefined) $(id).dialog('option', 'title', title);
@@ -166,20 +170,24 @@ openDialogData = function(url, data, width, height, title, id) {
     }
 };
 
+function openDialogDataFunction1(url, data, width, height, title, fnc) {
+	openDialogData(url, data, width, height, title, '#jqDialog1', fnc);
+}
+
 function openDialogData1(url, data, width, height, title) {
-	openDialogData(url, data, width, height, title, '#jqDialog1');
+	openDialogData(url, data, width, height, title, '#jqDialog1', null);
 }
 
 function openDialogData2(url, data, width, height, title) {
-	openDialogData(url, data, width, height, title, '#jqDialog2');
+	openDialogData(url, data, width, height, title, '#jqDialog2', null);
 }
 
 function openDialog1(url, width, height, title) {
-	openDialogData(url, {}, width, height, title, '#jqDialog1');
+	openDialogData(url, {}, width, height, title, '#jqDialog1', null);
 }
 
 function openDialog2(url, width, height, title) {	
-	openDialogData(url, {}, width, height, title, '#jqDialog2');
+	openDialogData(url, {}, width, height, title, '#jqDialog2', null);
 }
 
 function openDialogConfirm1(contenido, width, height) {

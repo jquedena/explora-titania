@@ -6,27 +6,27 @@
 		</tr>
 		<tr>
 			<td width="140">Nivel&nbsp;</td>
-			<td width="120"><input id="txt_pisonivel" style="width:100" value="" /></td>
+			<td width="120"><input id="txt_pisonivel" style="width:100; padding:2px" value="" /></td>
 			<td width="140">Area Construida</td>
-			<td width="100"><input id="txt_pisoarecon" style="width:100" value="" /></td>
+			<td width="100"><input id="txt_pisoarecon" style="width:100; padding:2px" value="" /></td>
 		</tr>
 		<tr>
 			<td width="140">A&ntilde;o&nbsp;</td>
-			<td width="120"><input id="txt_pisoanocon" style="width:100" value="" /></td>
+			<td width="120"><input id="txt_pisoanocon" style="width:100; padding:2px" value="" /></td>
 			<td width="140">Val. Unit. x m2</td>
-			<td width="100"><input id="txt_pisovaluni" style="width:100" value="" /></td>
+			<td width="100"><input id="txt_pisovaluni" style="width:100; padding:2px" value="" /></td>
 		</tr>
 		<tr>
 			<td width="140">Mes&nbsp;</td>
-			<td width="120"><input id="txt_pisomescon" style="width:100" value="" /></td>
+			<td width="120"><input id="txt_pisomescon" style="width:100; padding:2px" value="" /></td>
 			<td width="140">% Incremento</td>
-			<td width="100"><input id="txt_pisoincrem" style="width:100" value="" /></td>
+			<td width="100"><input id="txt_pisoincrem" style="width:100; padding:2px" value="" /></td>
 		</tr>
 		<tr>
 			<td width="140">Materiales&nbsp;</td>
 			<td width="120"><input id="txt_pisomaterial" style="width:100;padding:2px"/></td>
 			<td width="140">% Depreciacion</td>
-			<td width="100"><input id="txt_pisopordep" style="width:100" value="" /></td>
+			<td width="100"><input id="txt_pisopordep" style="width:100; padding:2px" value="" /></td>
 		</tr>
 		<tr>
 			<td width="140">Estado</td>
@@ -62,7 +62,7 @@
 			<td width="140">Revestimiento</td>
 			<td width="120"><input id="txt_pisorevestimiento" style="width:100;padding:2px"/></td>
 			<td width="140">Val. del Predio</td>
-			<td width="100"></td>
+			<td width="120"><input id="txt_valpre" style="width:100;padding:2px"/>
 		</tr>
 		<tr>
 			<td width="140">Ba&ntilde;os</td>
@@ -73,7 +73,7 @@
 			<td width="120"><input id="txt_pisoinstalaciones" style="width:100;padding:2px"/></td>
 		</tr>
 		<tr>
-			<td><input type="button" id="btnguardar" name="guardar" value="Continuar Operaci&oacute;n"/></td>
+			<td><input type="button" id="btnguardar" name="guardar" value="Aceptar y cancelar"/></td>
 		</tr>
 	</table>
 </div>
@@ -91,4 +91,37 @@
 		   openDialogWarning("Los campos deben estar llenos.", 380, 150);	
 		}
 	};
-</script>
+
+
+	</script>
+<!--  
+	ondblClickRow: function(rowid, iRow, iCol, e) {
+        row = $(this).getRowData(rowid);
+        
+        	$("#txt_pisonive").val(row.cnumpis);
+    		$("#txt_pisoanocon").val(row.canocon);
+            $("#txt_pisomescon").val(row.cmescon);
+    		$("#txt_pisomaterial").val(row.vmateri);       
+    		$("#txt_pisoestado").val(row.vconser);
+    		$("#txt_pisomuro").val(row.vmurcol);       
+    		$("#txt_pisotecho").val(row.vtechos);
+    		$("#txt_pisopisos").val(row.vmpisos);     
+    		$("#txt_pisopuertavetana").val(row.vpueven);
+    		$("#txt_pisorevestimiento").val(row.verevest) ;       
+    		$("#txt_pisobanio").val(row.vbanios);
+    		$("#txt_pisoinstalacione").val(row.electr);        
+    		$("#txt_pisoarecon").val(row.narecon);
+    		$("#txt_pisovaluni").val(row.nvaluni);
+    		$("#txt_pisoincrem").val(row.nincrem);
+    		$("#txt_pisopordep").val(row.npordep);      
+    		$("#txt_pisodepred").val(row.ndepred);
+    		$("#txt_pisovalare").val(row.nvalare);      
+    		$("#txt_pisoarecom").val(row.narecom);
+    		$("#txt_pisoporcom").val(row.nporcom);
+    		$("#txt_pisovalcom").val(row.nvalcom);
+    		$("#txt_valpre ").val(row.nvalpis);   
+		       
+    }
+
+	
+-->
