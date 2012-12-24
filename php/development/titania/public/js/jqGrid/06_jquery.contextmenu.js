@@ -18,7 +18,7 @@
 
 (function($) {
 
- 	var menu, shadow, content, hash, currentTarget;
+  var menu = false, shadow = false, content = false, hash = [], currentTarget = false;
   var defaults = {
     menuStyle: {
       listStyle: 'none',

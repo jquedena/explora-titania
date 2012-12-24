@@ -136,7 +136,7 @@ jQuery.tableDnD = {
                     }
                     return false;
                 });
-			})
+			});
 		} else {
 			// For backwards compatibility, we add the event to the whole row
 	        var rows = jQuery("tr", table); // get all the rows as a wrapped set
@@ -167,7 +167,7 @@ jQuery.tableDnD = {
 			if (this.tableDnDConfig) {
 				jQuery.tableDnD.makeDraggable(this);
 			}
-		})
+		});
 	},
 
     /** Get the mouse coordinates from the event (allowing for browser differences) */
@@ -372,7 +372,7 @@ jQuery.tableDnD = {
         return result;
     }
 
-}
+};
 
 jQuery.fn.extend(
 	{

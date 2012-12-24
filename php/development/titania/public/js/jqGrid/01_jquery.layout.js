@@ -1460,5 +1460,5 @@ return{
     cssHeight:cssH
 };
 
-}
+};
 })(jQuery);

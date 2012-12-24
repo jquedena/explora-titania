@@ -17,6 +17,7 @@
 
 <script type="text/javascript">
 
+	isGridComplete = false;
 	buscarDetalle = function(id) {
 		row = $(this).getRowData(id);
 	
@@ -33,10 +34,32 @@
 	    };
 
 	    optionPredio.caption = "&nbsp;&nbsp;&nbsp;Predios Registrados en la Declaraci\u00F3n Nro. " + row.vnrodoc;
-	    ajaxDialog = false;
+	    ajaxDialog = isGridComplete;
 	    procesarProcedimientoJSON("PanelDetalleDeclaracion", "tblDetalleDeclaracion", optionPredio, parameters, bindkeysPredio);
+	    isGridComplete = false;
 	};
 
+	verPredioDeclaracion = function(rowid, iRow, iCol, e) {
+        row = $(this).getRowData(rowid);
+		
+		parameters = {
+            "mperson": $("#lblCodigo").text(),
+            "vnombre": $("#lblNombre").text(),
+            "vdirecf": $("#lblDireccion").text(),
+            "mpredio": row.mpredio,
+            "mhresum": row.mhresum,
+            "cperiod": 'max'
+        };
+		
+		closeDialog('jqDialog1');
+		
+        _post = $.post(path + "registro/verpredio", parameters);
+        _post.error(postError);
+        _post.success(function(request){
+            $("#panelRegistro").html(request);
+        });
+	};
+	
 	optionPredio = {
         height: 140,
         width: 715,
@@ -50,29 +73,7 @@
 			{name: 'mpredio', index:'mpredio', width: 180}
 		],
 		caption: "&nbsp;&nbsp;&nbsp;Predios Registrados en la Declaraci\u00F3n Nro. ",
-        onSelectRow: function(id) {
-	       row = $(this).getRowData(id);
-        },
-		ondblClickRow: function(rowid, iRow, iCol, e) {
-            row = $(this).getRowData(rowid);
-			
-			parameters = {
-	            "mperson": $("#lblCodigo").text(),
-	            "vnombre": $("#lblNombre").text(),
-	            "vdirecf": $("#lblDireccion").text(),
-	            "mpredio": row.mpredio,
-	            "mhresum": row.mhresum,
-	            "cperiod": 'max'
-	        };
-			
-			closeDialog('jqDialog1');
-			
-	        _post = $.post(path + "registro/verpredio", parameters);
-	        _post.error(postError);
-	        _post.success(function(request){
-	            $("#panelRegistro").html(request);
-	        });
-		}
+		ondblClickRow: verPredioDeclaracion
     };
 
 	optionDeclaraciones = {
@@ -112,36 +113,17 @@
 		procesar = function(requestData){
 			options = $.extend(optionDeclaraciones, {
 				data: requestData,
-				datatype: "local"
-			});
-			procesarJSON("Panellistadeclaraciones", "tblListaDeclaracion", optionDeclaraciones, null, null);
-			row = $("#tblListaDeclaracion").jqGrid('getRowData', 1);
-			$("#tblListaDeclaracion").jqGrid('setSelection', row.vnrodoc);
-		};
-	
-		procesarConsultaSubProceso("registrar", parameters, procesar, 'json');
-
-	};
-
-	listarobservacion = function() {
-		parameters = {
-		"name": "tblListarDobservacion",
-		"print": "true",
-		"procedure": "pl_function.listar_declaraciones",
-		"parameters": '{' +
-		'"p_cidpers":"<?php echo $this->cidpers; ?>"' +
-		'}'
-		};	
-		
-		processobv = function(requestData){
-			options = $.extend(optionDeclaraciones, {
-				data: requestData,
-				datatype: "local"
+				datatype: "local",
+				gridComplete: function(){
+					isGridComplete = true;
+					$("#tblListaDeclaracion").jqGrid('setSelection', 1, true);
+				}
 			});
 			procesarJSON("Panellistadeclaraciones", "tblListaDeclaracion", optionDeclaraciones, null, null);
 		};
 	
 		procesarConsultaSubProceso("registrar", parameters, procesar, 'json');
+
 	};
 
 	$(document).ready(function(){

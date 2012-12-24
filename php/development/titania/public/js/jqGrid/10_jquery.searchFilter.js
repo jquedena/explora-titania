@@ -573,9 +573,9 @@ jQuery.fn.searchFilter = function(fields, options) {
                     if (o) {
                         o.selectedIndex = dataindex;
                     }
-					return true
+					return true;
                 } else {
-					return false
+					return false;
 				}
             }; // end of this.setFilter fn
         } // end of if fields != null
@@ -609,14 +609,14 @@ jQuery.fn.searchFilter.defaults = {
      * DESCRIPTION: the function that will be called when the user clicks Reset
      * INPUT TYPE:  JS object if stringResult is false, otherwise is JSON string
      */
-    onReset: function(data) { alert("Reset Clicked. Data Returned: " + data) },
+    onReset: function(data) { alert("Reset Clicked. Data Returned: " + data); },
 
     /*
      * FUNCTION
      * DESCRIPTION: the function that will be called when the user clicks Search
      * INPUT TYPE:  JS object if stringResult is false, otherwise is JSON string
      */
-    onSearch: function(data) { alert("Search Clicked. Data Returned: " + data) },
+    onSearch: function(data) { alert("Search Clicked. Data Returned: " + data); },
 
     /*
      * FUNCTION

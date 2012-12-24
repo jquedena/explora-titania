@@ -1,7 +1,7 @@
 ;(function($){
 /**
  * jqGrid Spanish Translation
- * Traduccion jqGrid en Español por Yamil Bracho
+ * Traduccion jqGrid en Espa\u00F1ol por Yamil Bracho
  * Traduccion corregida y ampliada por Faserline, S.L. 
  * http://www.faserline.com
  * Dual licensed under the MIT and GPL licenses:
@@ -14,13 +14,13 @@ $.extend($.jgrid,{
 		recordtext: "Mostrando {0} - {1} de {2}",
 	    emptyrecords: "Sin registros que mostrar",
 		loadtext: "Cargando...",
-		pgtext : "Página {0} de {1}"
+		pgtext : "P\u00E1gina {0} de {1}"
 	},
 	search : {
 	    caption: "Búsqueda...",
 	    Find: "Buscar",
 	    Reset: "Limpiar",
-	    odata : ['igual ', 'no igual a', 'menor que', 'menor o igual que','mayor que','mayor o igual a', 'empiece por','no empiece por','está en','no está en','termina por','no termina por','contiene','no contiene'],
+	    odata : ['igual ', 'no igual a', 'menor que', 'menor o igual que','mayor que','mayor o igual a', 'empiece por','no empiece por','est\u00E1 en','no est\u00E1 en','termina por','no termina por','contiene','no contiene'],
 	    groupOps: [	{ op: "AND", text: "todo" },	{ op: "OR",  text: "cualquier" }	],
 		matchText: " match",
 		rulesText: " reglas"
@@ -40,14 +40,14 @@ $.extend($.jgrid,{
 	        number:"Introduzca un número",
 	        minValue:"El valor debe ser mayor o igual a ",
 	        maxValue:"El valor debe ser menor o igual a ",
-	        email: "no es una dirección de correo válida",
+	        email: "no es una direcci\u00F3n de correo v\u00E1lida",
 	        integer: "Introduzca un valor entero",
 			date: "Introduza una fecha correcta ",
-			url: "no es una URL válida. Prefijo requerido ('http://' or 'https://')",
-			nodefined : " no está definido.",
+			url: "no es una URL v\u00E1lida. Prefijo requerido ('http://' or 'https://')",
+			nodefined : " no est\u00E1 definido.",
 			novalue : " valor de retorno es requerido.",
-			customarray : "La función personalizada debe devolver un array.",
-			customfcheck : "La función personalizada debe estar presente en el caso de validación personalizada."
+			customarray : "La funci\u00F3n personalizada debe devolver un array.",
+			customfcheck : "La funci\u00F3n personalizada debe estar presente en el caso de validación personalizada."
 		}
 	},
 	view : {
@@ -68,7 +68,7 @@ $.extend($.jgrid,{
 	    deltext: " ",
 	    deltitle: "Eliminar fila seleccionada",
 	    searchtext: " ",
-	    searchtitle: "Buscar información",
+	    searchtitle: "Buscar informaci\u00F3n",
 	    refreshtext: "",
 	    refreshtitle: "Recargar datos",
 	    alertcap: "Aviso",
@@ -101,7 +101,9 @@ $.extend($.jgrid,{
 				"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
 			],
 			AmPm : ["am","pm","AM","PM"],
-			S: function (j) {return j < 11 || j > 13 ? ['st', 'nd', 'rd', 'th'][Math.min((j - 1) % 10, 3)] : 'th'},
+			S: function (j) {
+				return ((j < 11 || j > 13) ? ['st', 'nd', 'rd', 'th'][Math.min((j - 1) % 10, 3)] : 'th');
+			},
 			srcformat: 'Y-m-d',
 			newformat: 'd-m-Y',
 			masks : {
