@@ -221,7 +221,7 @@ $.jgrid.extend({
 						if(this.stype == 'select') {
 							if ( soptions.dataUrl !== undefined) {}
 							else {
-								var eov;
+								var eov = false;
 								if(soptions.value) {
 									eov = soptions.value;
 								} else if(this.editoptions) {
@@ -308,7 +308,7 @@ $.jgrid.extend({
 	},
 	// methods taken from grid.custom.
 	updateGridRows : function (data, rowidname, jsonreader) {
-		var nm, success=false, title;
+		var nm = false, success=false, title;
 		this.each(function(){
 			var t = this, vl, ind, srow, sid;
 			if(!t.grid) {return false;}
@@ -481,7 +481,7 @@ $.jgrid.extend({
 				});
 				var sd =  j>0 ? true : false;
                 $.extend(gr.p.postData,sdata);
-				var saveurl;
+				var saveurl = false;
 				if(self.p.url) {
 					saveurl = $(gr).jqGrid("getGridParam",'url');
 					$(gr).jqGrid("setGridParam",{url:self.p.url});
@@ -500,7 +500,7 @@ $.jgrid.extend({
 					if(!this.stype){this.stype='text';}
 					switch (this.stype) {
 						case 'select' :
-							var v1;
+							var v1 = false;
 							$("select[name="+nm+"] option",self).each(function (i){
                                 if(i===0) { this.selected = true; }
 								if ($(this).text() == v) {
@@ -546,7 +546,7 @@ $.jgrid.extend({
 				});
 				var sd =  j>0 ? true : false;
                 $.extend(gr.p.postData,sdata);
-				var saveurl;
+				var saveurl = false;
 				if(self.p.url) {
 					saveurl = $(gr).jqGrid("getGridParam",'url');
 					$(gr).jqGrid("setGridParam",{url:self.p.url});
@@ -555,7 +555,7 @@ $.jgrid.extend({
 				if(saveurl) {$(gr).jqGrid("setGridParam",{url:saveurl});}
 				if($.isFunction(self.p.afterClear)){self.p.afterClear();}
 			};
-			var tbl;
+			var tbl = false;
 			var formFill = function(){
 				var tr = document.createElement("tr");
 				var tr1, sb, cb,tl,td;
