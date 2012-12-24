@@ -1,13 +1,13 @@
 <input type="hidden" id="_mhresum" value="<?php echo $this->p_mhresum; ?>" />
 <input type="hidden" id="_mpredio" value="<?php echo $this->p_mpredio; ?>" />
-<table border="0" cellpadding="0"  cellspacing="0" style="width: 1000px;margin: 3px;">
+<table style="width: 1000px;margin: 3px;">
     <tr>
         <td colspan="2">
             <div id="panelContribuyente" align="center" class="ui-widget ui-widget-content ui-corner-top" style="width: 100%;">
                 <div class="ui-widget ui-state-default ui-corner-top ui-title">
                     <label>Registro de Declaraci&oacute;n Jurada</label>
                 </div>
-                <table border="0" class="ui-table-panelLayout">
+                <table class="ui-table-panelLayout">
                     <tr>
                         <td style="width: 40px;">C&oacute;digo:</td>
                         <td style="width: 75px;font-weight: bold;"><div id="lblCodigo"><?php echo $this->mperson; ?></div></td>
@@ -39,7 +39,7 @@
     <tr>
         <td style="padding-top: 3px;padding-right: 3px;">
             <div id="panelValor" align="center" class="ui-widget ui-widget-content" style="width: 100%;height: 100%;">
-                <table border="0" align="center" class="ui-table-panelLayout" style="width: 470px;">
+                <table align="center" class="ui-table-panelLayout" style="width: 470px;">
                     <tr>
                         <td style="width: 55px; text-align: center;">Arancel</td>
                         <td style="width: 100px; text-align: center;">V. Terreno</td>
@@ -58,8 +58,8 @@
             </div>
         </td>
         <td style="padding-top: 3px;padding-left: 2px;">
-            <div id="panelUsuario" align="center" class="ui-widget ui-widget-content" style="width: 100%;height: 100%">
-                <table border="0" align="center" class="ui-table-panelLayout" style="width: 470px;">
+            <div id="panelUsuario" align="center" class="ui-widget ui-widget-content" style="width: 100%;height: 100%;">
+                <table align="center"  class="ui-table-panelLayout" style="width: 470px;">
                     <tr>
                         <td>Modificado por <b><span id="lblUsuario"><?php echo $this->mpredio["vusernm"]; ?></span></b> el <b><span id="lblFechaModificacion"><?php echo $this->mpredio["ddatetm"]; ?></span></b></td>
                     </tr>
@@ -92,13 +92,23 @@
             <li id="tabPredioInafectacion"><a href="#predioInafectacion">Inafectaci&oacute;n y Exoneraci&oacute;n</a></li>
         </ul>
         <div style="overflow-y: auto; overflow-x: hidden; height:310px; padding: 2px;" id="predioUbicacion">
-            <table>
+            <table style="width: 100%;">
             	<tr>
-            		<td style="width: 400px;" valign="top">
-            			Direcci&oacute;n: <input  class="ui-text" style="width: 90%;" id="direccionXY" type="text" value="" title="Ingrese la direcci&oacute;n para buscar" />
-            			<img src=""/>
+            		<td valign="top">
+            			<table style="width: 100%;">
+            				<tr>
+            					<td>Direcci&oacute;n: </td>
+            					<td style="width: 85%;"><input class="ui-text" style="width: 100%;" id="direccionXY" type="text" value="" title="Ingrese la direcci&oacute;n para buscar" /></td>
+            				</tr>
+            				<tr>
+            					<td colspan="2">
+            						<img src=""/>
+            						<input type="button" id="btnGaleria" value="Ver Galeria">
+            					<td>
+            				</tr>
+            			</table>
             		</td>
-            		<td>
+            		<td style="width: 420px;">
             			<!-- Longitud --><input type="hidden" id="longitud" value="-11.866663">
             			<!-- Latitud --><input type="hidden" id="latitud" value="-77.077125">
             			<!-- Zoom --><input type="hidden" id="zoom" value="17" >
@@ -206,33 +216,38 @@
     jsonPredio = <?php echo json_encode($this->mpredio); ?>;
 
 	verPiso = function(rowid, iRow, iCol, e) {
-        row = $(this).getRowData(rowid);
+		if(rowid != undefined && rowid != null && rowid != false ) {
+			row = $("#tblPiso").jqGrid('getRowData', rowid);
+		} else {
+			row = undefined;
+		}
         openDialogDataFunction1("registro/verpiso", {}, "750", "496", "Detalle del piso", function() {
-            console.log(row);
-            $("#txt_pisonivel").val(row.cnumpis);
-    		$("#txt_pisoanocon").val(row.canocon);
-            $("#txt_pisomescon").val(row.cmescon);
-    		$("#txt_pisomaterial").val(row.vmateri);       
-    		$("#txt_pisoestado").val(row.vconser);
-    		$("#txt_pisomuro").val(row.vmurcol);       
-    		$("#txt_pisotecho").val(row.vtechos);
-    		$("#txt_pisopisos").val(row.vmpisos);     
-    		$("#txt_pisopuertaventana").val(row.vpueven);
-    		$("#txt_pisorevestimiento").val(row.vrevest);       
-    		$("#txt_pisobanio").val(row.vbanios);
-    		$("#txt_pisoinstalaciones").val(row.velectr);        
-    		$("#txt_pisoarecon").val(row.narecon);
-    		$("#txt_pisovaluni").val(row.nvaluni);
-    		$("#txt_pisoincrem").val(row.nincrem);
-    		$("#txt_pisopordep").val(row.npordep);      
-    		$("#txt_pisodepred").val(row.ndepred);
-    		$("#txt_pisovalare").val(row.nvalare);      
-    		$("#txt_pisoarecom").val(row.narecom);
-    		$("#txt_pisoporcom").val(row.nporcom);
-    		$("#txt_pisovalcom").val(row.nvalcom);
-    		$("#txt_valpre").val(row.nvalpis); 
+            if(row != undefined) {
+                $("#txt_pisonivel").val(row.cnumpis);
+        		$("#txt_pisoanocon").val(row.canocon);
+                $("#txt_pisomescon").val(row.cmescon);
+        		$("#txt_pisomaterial").val(row.vmateri);       
+        		$("#txt_pisoestado").val(row.vconser);
+        		$("#txt_pisomuro").val(row.vmurcol);       
+        		$("#txt_pisotecho").val(row.vtechos);
+        		$("#txt_pisopisos").val(row.vmpisos);     
+        		$("#txt_pisopuertaventana").val(row.vpueven);
+        		$("#txt_pisorevestimiento").val(row.vrevest);       
+        		$("#txt_pisobanio").val(row.vbanios);
+        		$("#txt_pisoinstalaciones").val(row.velectr);        
+        		$("#txt_pisoarecon").val(row.narecon);
+        		$("#txt_pisovaluni").val(row.nvaluni);
+        		$("#txt_pisoincrem").val(row.nincrem);
+        		$("#txt_pisopordep").val(row.npordep);      
+        		$("#txt_pisodepred").val(row.ndepred);
+        		$("#txt_pisovalare").val(row.nvalare);      
+        		$("#txt_pisoarecom").val(row.narecom);
+        		$("#txt_pisoporcom").val(row.nporcom);
+        		$("#txt_pisovalcom").val(row.nvalcom);
+        		$("#txt_valpre").val(row.nvalpis);
+            }  
 		});
-    }
+    };
     
     optionPiso = {
         height: 200,
@@ -275,7 +290,16 @@
             'cpueven',
             'crevest',
             'cbanios',
-            'celectr'
+            'celectr',
+            'dmateri',
+            'dconser',
+            'dmurcol',
+            'dtechos',
+            'dmpisos',
+            'dpueven',
+            'drevest',
+            'dbanios',
+            'delectr'
         ],
         colModel: [
             {name: 'cnumpis', index: 'cnumpis', width: 35, align: 'center', editable: true}, // Nro de piso
@@ -313,36 +337,38 @@
             {name: 'cpueven', index: 'cpueven', width: 30, hidden: true},
             {name: 'crevest', index: 'crevest', width: 30, hidden: true},
             {name: 'cbanios', index: 'cbanios', width: 30, hidden: true},
-            {name: 'celectr', index: 'celectr', width: 30, hidden: true}
+            {name: 'celectr', index: 'celectr', width: 30, hidden: true},
+            {name: 'dmateri', index: 'dmateri', width: 30, hidden: true},
+            {name: 'dconser', index: 'dconser', width: 30, hidden: true},
+            {name: 'dmurcol', index: 'dmurcol', width: 30, hidden: true},
+            {name: 'dtechos', index: 'dtechos', width: 30, hidden: true},
+            {name: 'dmpisos', index: 'dmpisos', width: 30, hidden: true},
+            {name: 'dpueven', index: 'dpueven', width: 30, hidden: true},
+            {name: 'drevest', index: 'drevest', width: 30, hidden: true},
+            {name: 'dbanios', index: 'dbanios', width: 30, hidden: true},
+            {name: 'delectr', index: 'delectr', width: 30, hidden: true}
         ],
         caption: "&nbsp;&nbsp;&nbsp;Pisos",
         ondblClickRow: verPiso
     };
 
     btnInsertarPiso = {
-        caption: "Insertar",
-        title: "Insertar la construcci\u00F3n",
+        caption: "Agregar&nbsp;&nbsp;",
+        title: "Agrega un nuevo nivel al predio",
         buttonicon: "ui-icon-plus",
         onClickButton:function(){
-            var gsr = $("#tblPiso").jqGrid('getGridParam','selrow');
-            if(gsr){
-                console.log(gsr);
-                // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
-            } else { 
-                alert("Please select Row") 
-            } 
+        	verPiso();
         } 
     };
 
     btnEditarPiso = {
         caption: "Editar",
-        title: "Editar la construcci\u00F3n",
+        title: "Editar el nivel seleccionado",
         buttonicon: "ui-icon-pencil",
         onClickButton:function(){
             var gsr = $("#tblPiso").jqGrid('getGridParam','selrow');
             if(gsr){
-                console.log(gsr);
-                // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
+                verPiso(gsr, -1, -1, null);
             } else { 
                 openDialogWarning("Seleccione la fila a editar.", 380, 150);
             } 
@@ -412,7 +438,7 @@
         caption: "&nbsp;&nbsp;&nbsp;Instalaci\u00F3n",
         ondblClickRow: function(rowid, iRow, iCol, e) {
             row = $(this).getRowData(rowid);
-            console.log(row)
+            console.log(row);
         }
     };
     
@@ -589,12 +615,12 @@
         });
         
         actualizarGrid("tblPiso", optionPiso, null, function(){
-            $("#tblPiso").jqGrid('navGrid', '#ptblPiso', {edit:true, add:true, del:true, search:false, refresh:false});
-            // $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnInsertarPiso);
-            // $("#tblPiso").jqGrid('navSeparatorAdd','#ptblPiso');
-            // $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnEditarPiso);
-            // $("#tblPiso").jqGrid('navSeparatorAdd','#ptblPiso');
-            // $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnEliminarPiso);
+            $("#tblPiso").jqGrid('navGrid', '#ptblPiso', {edit:false, add:false, del:false, search:false, refresh:false});
+            $("#tblPiso").jqGrid('navButtonAdd', '#ptblPiso', btnInsertarPiso);
+            $("#tblPiso").jqGrid('navSeparatorAdd','#ptblPiso');
+            $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnEditarPiso);
+            $("#tblPiso").jqGrid('navSeparatorAdd','#ptblPiso');
+            $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnEliminarPiso);
         });
     
         actualizarGrid("tblInstalacion", optionInstalacion, null, function(){
@@ -628,11 +654,11 @@
 				} 
 				geocoder.geocode( {'address': request.term }, function(results, status) {
 					if (status == google.maps.GeocoderStatus.OK) {
-						var searchLoc = results[0].geometry.location;
+						// var searchLoc = results[0].geometry.location;
 						var lat = results[0].geometry.location.lat();
 						var lng = results[0].geometry.location.lng();
 						var latlng = new google.maps.LatLng(lat, lng);
-						var bounds = results[0].geometry.bounds;
+						// var bounds = results[0].geometry.bounds;
 
 						geocoder.geocode({'latLng': latlng}, function(results1, status1) {
 							if (status1 == google.maps.GeocoderStatus.OK) {
@@ -642,7 +668,7 @@
 											label  : loc.formatted_address,
 											value  : loc.formatted_address,
 											bounds   : loc.geometry.bounds
-										}
+										};
 									}));
 								}
 							}
@@ -651,8 +677,8 @@
 				});
 			},
 			select: function(event,ui){
-				var pos = ui.item.position;
-				var lct = ui.item.locType;
+				// var pos = ui.item.position;
+				// var lct = ui.item.locType;
 				var bounds = ui.item.bounds;
 
 				if (bounds){
