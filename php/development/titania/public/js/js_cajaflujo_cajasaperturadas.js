@@ -1,6 +1,5 @@
 xview = function(){
-	
-}
+};
 
 bindkeys = {"onEnter": xview};
 buscarapertcajxfecha = function(_fecha) {
@@ -140,10 +139,10 @@ habilitarCaja = function(){
 		openDialogInfo("Seleccionar Fila", 300, 130);
 		}
     
-}
+};
 sumary_totals = function(){
 	
-    textbox = $(this)
+    textbox = $(this);
     tdparent = textbox.parent();
     trparent = tdparent.parent();
 	
@@ -160,7 +159,7 @@ sumary_totals = function(){
         mt_totals= mt_totals + $(this).val()*1;
     });
     $('#mt_totals').html(mt_totals);
-}
+};
 guardarsencillero = function(){
 
     frmtblmonedas = $("#tbl_monedas").find("select, textarea, input,hidden").serialize();
@@ -177,7 +176,7 @@ guardarsencillero = function(){
     });
 	
     _post.error(postError);
-}
+};
 
 
 $(function(){
@@ -192,7 +191,7 @@ $(function(){
 		 });
     */
     
-	$('#btnhabilitar').on('click',function(){habilitarCaja();})
+	$('#btnhabilitar').on('click',function(){habilitarCaja();});
     inicializarGrid("tblResultapertcaj", optionapertcaja);
 	buscarapertcajxfecha($('#txtdia').val());
 	

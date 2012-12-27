@@ -215,8 +215,45 @@
     tabs = null;
     jsonPredio = <?php echo json_encode($this->mpredio); ?>;
 
+
+ 
+ verInstalacion = function(rowid, iRow, iCol, e) {
+		if(rowid != undefined && rowid != null && rowid !== false ) {
+			row = $("#tblInstalacion").jqGrid('getRowData', rowid);
+		} else {
+			row = undefined;
+		}
+        openDialogDataFunction1("registro/verinstalacion", {}, "750", "496", "Detalle de la Instalacion", function() {
+            if(row != undefined) {
+                $("#txt_instdpredio").val(row.dpredio);
+        		$("#txt_instcnitems").val(row.cnitems);
+                $("#txt_instcperiod").val(row.cperiod);
+        		$("#txt_instctipdat").val(row.ctipdat);       
+        		$("#txt_instvnrodoc").val(row.vnrodoc);
+        		$("#txt_instdfecdoc").val(row.dfecdoc);       
+        		$("#txt_instcmotivo").val(row.cmotivo);
+        		$("#txt_instctipdoc").val(row.ctipdoc);     
+        		$("#txt_instcnumpis").val(row.cnumpis);
+        		$("#txt_instnantigu").val(row.nantigu);       
+        		$("#txt_instcanocon").val(row.canocon);
+
+        		$("#txt_instnvalanc").val(row.nvalanc);   
+        		$("#txt_instnvalalt").val(row.nvalalt);     
+        		$("#txt_instnvallar").val(row.nvallar);     
+        		$("#txt_instctipint").val(row.ctipint);     
+        		$("#txt_instvdesint").val(row.vdesint);     
+        		$("#txt_instnvalins").val(row.nvalins);          
+        		$("#txt_instdafecta").val(row.dafecta);     
+
+            }  
+		});
+    };
+    
+
+    
 	verPiso = function(rowid, iRow, iCol, e) {
-		if(rowid != undefined && rowid != null && rowid != false ) {
+		debugger
+		if(rowid != undefined && rowid != null && rowid !== false ) {
 			row = $("#tblPiso").jqGrid('getRowData', rowid);
 		} else {
 			row = undefined;
@@ -436,10 +473,12 @@
             {name: "dafecta", index: "dafecta", width: 30, hidden: true}  // Fecha desde donde se comienzan a generar los tributos
         ],
         caption: "&nbsp;&nbsp;&nbsp;Instalaci\u00F3n",
-        ondblClickRow: function(rowid, iRow, iCol, e) {
+        ondblClickRow: verInstalacion
+
+        /*   function(rowid, iRow, iCol, e) {
             row = $(this).getRowData(rowid);
             console.log(row);
-        }
+        }*/
     };
     
     habilitarComponenteDetalle = function(disabled){

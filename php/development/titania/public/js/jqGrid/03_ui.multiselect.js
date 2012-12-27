@@ -120,9 +120,9 @@ $.widget("ui.multiselect", {
 		this.count = 0;
 
 		var that = this;
-		var items = $(options.map(function(i) {
-	      var item = that._getOptionNode(this).appendTo(this.selected ? that.selectedList : that.availableList).show();
-
+		// var items = 
+		$(options.map(function(i) {
+	    	var item = that._getOptionNode(this).appendTo(this.selected ? that.selectedList : that.availableList).show();
 			if (this.selected) that.count += 1;
 			that._applyItemState(item, this.selected);
 			item.data('idx', i);
@@ -242,7 +242,8 @@ $.widget("ui.multiselect", {
 	_registerAddEvents: function(elements) {
 		var that = this;
 		elements.click(function() {
-			var item = that._setSelected($(this).parent(), true);
+			// var item = 
+			that._setSelected($(this).parent(), true);
 			that.count += 1;
 			that._updateCount();
 			return false;
