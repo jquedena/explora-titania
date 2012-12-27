@@ -215,14 +215,13 @@
     tabs = null;
     jsonPredio = <?php echo json_encode($this->mpredio); ?>;
 
-
- 
- verInstalacion = function(rowid, iRow, iCol, e) {
+ 	verInstalacion = function(rowid, iRow, iCol, e) {
 		if(rowid != undefined && rowid != null && rowid !== false ) {
 			row = $("#tblInstalacion").jqGrid('getRowData', rowid);
 		} else {
 			row = undefined;
 		}
+		
         openDialogDataFunction1("registro/verinstalacion", {}, "750", "496", "Detalle de la Instalacion", function() {
             if(row != undefined) {
                 $("#txt_instdpredio").val(row.dpredio);
@@ -236,7 +235,6 @@
         		$("#txt_instcnumpis").val(row.cnumpis);
         		$("#txt_instnantigu").val(row.nantigu);       
         		$("#txt_instcanocon").val(row.canocon);
-
         		$("#txt_instnvalanc").val(row.nvalanc);   
         		$("#txt_instnvalalt").val(row.nvalalt);     
         		$("#txt_instnvallar").val(row.nvallar);     
@@ -249,10 +247,7 @@
 		});
     };
     
-
-    
 	verPiso = function(rowid, iRow, iCol, e) {
-		debugger
 		if(rowid != undefined && rowid != null && rowid !== false ) {
 			row = $("#tblPiso").jqGrid('getRowData', rowid);
 		} else {
@@ -285,6 +280,34 @@
             }  
 		});
     };
+
+    gridCompletePiso = function(){        
+    	var ids = $("#tblPiso").jqGrid('getDataIDs');
+    	
+    	for(var i=0; i < ids.length; i++) { 
+        	var row = $("#tblPiso").jqGrid('getRowData', ids[i]);
+        	$("#tblPiso").jqGrid('setRowData', ids[i], {
+            	xmateri: "<div>"+row.vmateri+row.vconser+"</div>",
+            	xcaract: "<div>"+row.vmurcol+row.vtechos+row.vmpisos+row.vpueven+row.vrevest+row.vbanios+row.velectr+"</div>"
+            });
+    	} 
+    };
+
+    selectPiso = function(id) {
+        row = $("#tblPiso").jqGrid('getRowData', id);
+        $.notty({
+            content: 'Muros y Columnas: <b>' + row.vmurcol + "</b><p>" + row.dmurcol + "</p><br/>"
+            	+ 'Techo: <b>' + row.vtechos + "</b><p>" + row.dtechos + "</p><br/>"
+            	+ 'Piso: <b>' + row.vmpisos + "</b><p>" + row.dmpisos + "</p><br/>"
+            	+ 'Puertas y Ventanas: <b>' + row.vpueven + "</b><p>" + row.dpueven + "</p><br/>"
+            	+ 'Revestimientos: <b>' + row.vrevest + "</b><p>" + row.drevest + "</p><br/>"
+            	+ 'Ba&ntilde;os: <b>' + row.vbanios + "</b><p>" + row.dbanios + "</p><br/>"
+            	+ 'Instalaciones: <b>' + row.velectr + "</b><p>" + row.delectr + "</p>",
+            title: 'Detalle del Nivel ' + row.cnumpis,
+        	// timeout: 5000,
+        	showTime: false
+        });
+    };
     
     optionPiso = {
         height: 200,
@@ -296,6 +319,8 @@
             'Ant',
             'cmescon',
             'canocon',
+            'M. E.',
+            'Caract.',
             'Mat.',
             'Est.',
             'Mu',
@@ -339,27 +364,29 @@
             'delectr'
         ],
         colModel: [
-            {name: 'cnumpis', index: 'cnumpis', width: 35, align: 'center', editable: true}, // Nro de piso
-            {name: 'nantigu', index: 'nantigu', width: 35, align: 'center', editable: true}, // Antiguedad
+            {name: 'cnumpis', index: 'cnumpis', width: 35, align: 'center'}, // Nro de piso
+            {name: 'nantigu', index: 'nantigu', width: 35, align: 'center'}, // Antiguedad
             {name: 'cmescon', index: 'cmescon', width: 30, hidden: true}, // Mes de la construccion
             {name: 'canocon', index: 'canocon', width: 30, hidden: true}, // Periodo de Construccion
-            {name: 'vmateri', index: 'vmateri', width: 40, align: 'center', editable: true}, // Material
-            {name: 'vconser', index: 'vconser', width: 40, align: 'center', editable: true}, // Estado de conservacion
-            {name: 'vmurcol', index: 'vmurcol', width: 40, align: 'center', editable: true}, // Muros y columnas
-            {name: 'vtechos', index: 'vtechos', width: 40, align: 'center', editable: true}, // Techos
-            {name: 'vmpisos', index: 'vmpisos', width: 40, align: 'center', editable: true, hidden: true}, // Pisos
-            {name: 'vpueven', index: 'vpueven', width: 40, align: 'center', editable: true, hidden: true}, // Puertas y ventanas
-            {name: 'vrevest', index: 'vrevest', width: 40, align: 'center', editable: true, hidden: true}, // Revestimientos
-            {name: 'vbanios', index: 'vbanios', width: 40, align: 'center', editable: true, hidden: true}, // Sanitarios
-            {name: 'velectr', index: 'velectr', width: 40, align: 'center', editable: true, hidden: true}, // Instalaciones electricas
-            {name: 'narecon', index: 'narecon', width: 50, formatter:'currency', align: 'right', editable: true}, // Area construida
+            {name: 'xmateri', index: 'xmateri', width: 35, align: 'center'}, // Material : Campo Calculado
+            {name: 'xcaract', index: 'xcaract', width: 65, align: 'center'}, // Caracteristicas : Campo Calculado
+            {name: 'vmateri', index: 'vmateri', width: 40, align: 'center', hidden: true}, // Material
+            {name: 'vconser', index: 'vconser', width: 40, align: 'center', hidden: true}, // Estado de conservacion
+            {name: 'vmurcol', index: 'vmurcol', width: 40, align: 'center', hidden: true}, // Muros y columnas
+            {name: 'vtechos', index: 'vtechos', width: 40, align: 'center', hidden: true}, // Techos
+            {name: 'vmpisos', index: 'vmpisos', width: 40, align: 'center', hidden: true}, // Pisos
+            {name: 'vpueven', index: 'vpueven', width: 40, align: 'center', hidden: true}, // Puertas y ventanas
+            {name: 'vrevest', index: 'vrevest', width: 40, align: 'center', hidden: true}, // Revestimientos
+            {name: 'vbanios', index: 'vbanios', width: 40, align: 'center', hidden: true}, // Sanitarios
+            {name: 'velectr', index: 'velectr', width: 40, align: 'center', hidden: true}, // Instalaciones electricas
+            {name: 'narecon', index: 'narecon', width: 55, formatter:'currency', align: 'right'}, // Area construida
             {name: 'nvaluni', index: 'nvaluni', width: 80, formatter:'currency', align: 'right'}, // Valor unitario
             {name: 'nincrem', index: 'nincrem', width: 50, formatter:'currency', align: 'right'}, // Incremento
             {name: 'npordep', index: 'npordep', width: 50, formatter:'currency', align: 'right'}, // Porcentaje de depreciacion
             {name: 'ndepred', index: 'ndepred', width: 50, formatter:'currency', align: 'right'}, // Depreciacion
             {name: 'nvalare', index: 'nvalare', width: 80, formatter:'currency', align: 'right'}, // Valor unitario depreciado del area construida
-            {name: 'narecom', index: 'narecom', width: 80, formatter:'currency', align: 'right', editable: true}, // Area comun
-            {name: 'nporcom', index: 'nporcom', width: 80, formatter:'currency', align: 'right', editable: true}, // Porcentaje de area comun
+            {name: 'narecom', index: 'narecom', width: 80, formatter:'currency', align: 'right'}, // Area comun
+            {name: 'nporcom', index: 'nporcom', width: 80, formatter:'currency', align: 'right'}, // Porcentaje de area comun
             {name: 'nvalcom', index: 'nvalcom', width: 80, formatter:'currency', align: 'right'}, // Valor del area comun
             {name: 'nvalpis', index: 'nvalpis', width: 80, formatter:'currency', align: 'right'}, // Valor total del piso
             {name: 'idsigma', index: 'idsigma', width: 30, hidden: true}, // Identificador de la construccion del predio
@@ -386,7 +413,9 @@
             {name: 'delectr', index: 'delectr', width: 30, hidden: true}
         ],
         caption: "&nbsp;&nbsp;&nbsp;Pisos",
-        ondblClickRow: verPiso
+        gridComplete: gridCompletePiso,
+        ondblClickRow: verPiso,
+        onSelectRow: selectPiso
     };
 
     btnInsertarPiso = {
@@ -399,7 +428,7 @@
     };
 
     btnEditarPiso = {
-        caption: "Editar",
+        caption: "Editar&nbsp;&nbsp;",
         title: "Editar el nivel seleccionado",
         buttonicon: "ui-icon-pencil",
         onClickButton:function(){
@@ -461,24 +490,19 @@
             {name: "dfecdoc", index: "dfecdoc", width: 30, hidden: true}, // Fecha de la declaracion jurada
             {name: "cmotivo", index: "cmotivo", width: 30, hidden: true}, // Motivo de la declaracion jurada
             {name: "ctipdoc", index: "ctipdoc", width: 30, hidden: true}, // Tipo de documento con el que se realiza la declaracion jurada
-            {name: "cnumpis", index: "cnumpis", width: 65, align: "center", editable: true}, // Nro de piso
-            {name: "nantigu", index: "nantigu", width: 65, align: "center", editable: true}, // Antiguedad
+            {name: "cnumpis", index: "cnumpis", width: 65, align: "center"}, // Nro de piso
+            {name: "nantigu", index: "nantigu", width: 65, align: "center"}, // Antiguedad
             {name: "canocon", index: "canocon", width: 30, hidden: true}, // Periodo de Construccion
             {name: "nvalanc", index: "nvalanc", width: 30, hidden: true}, // Ancho de la instalacion
             {name: "nvalalt", index: "nvalalt", width: 30, hidden: true}, // Altura de la instalacion
             {name: "nvallar", index: "nvallar", width: 30, hidden: true}, // Largo de la instalacion
             {name: "ctipint", index: "ctipint", width: 30, hidden: true}, // Tipo de instalacion
-            {name: "vdesint", index: "vdesint", width: 250, editable: true}, // Descripcion de la instalacion
-            {name: "nvalins", index: "nvalins", width: 150, align: "right", editable: true}, // Valor de la instalacion
+            {name: "vdesint", index: "vdesint", width: 250}, // Descripcion de la instalacion
+            {name: "nvalins", index: "nvalins", width: 150, align: "right"}, // Valor de la instalacion
             {name: "dafecta", index: "dafecta", width: 30, hidden: true}  // Fecha desde donde se comienzan a generar los tributos
         ],
         caption: "&nbsp;&nbsp;&nbsp;Instalaci\u00F3n",
         ondblClickRow: verInstalacion
-
-        /*   function(rowid, iRow, iCol, e) {
-            row = $(this).getRowData(rowid);
-            console.log(row);
-        }*/
     };
     
     habilitarComponenteDetalle = function(disabled){
