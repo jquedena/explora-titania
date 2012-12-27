@@ -16,7 +16,7 @@ timeContribuyentePredio = function(rowid) {
             $("#panelRegistro").html(request);
         });    	
     }
-}
+};
 
 verContribuyentePredio = function(rowid) {  
     if(typeof rowid == 'object') {
@@ -46,7 +46,7 @@ gridCompleteTblResult = function(){
 		bt = "<a style='height:20px;width:20px;' class='btnGrid' href='javascript: void(0);' onclick=\"verDetalle('"+id+"');\"><img src='" + pathImage + "find.png'/></a>";
 		$("#tblResult").jqGrid('setRowData', ids[i], {modedit: bt});
 	}
-}
+};
 
 optionContribuyente = {
     // height: 290,
@@ -152,7 +152,7 @@ buscarPredio = function() {
                     closeDialog("jqDialogInfo");
                     $('#c_codigocontrib').focus();
                 }
-            }
+            };
             openDialogInfo("No existen predios con los criterios de busqueda ingresados.", 380, 150, buttons);
         } else if(records > 1) {
             actualizarGrid("tblResult", optionViaPredio, bindkeysViaPredio);
@@ -193,7 +193,7 @@ buscarContribuyente = function() {
                     closeDialog("jqDialogInfo");
                     $('#c_codigocontrib').focus();
                 }
-            }
+            };
             openDialogInfo("No existen contribuyentes con los criterios de busqueda ingresados.", 380, 150, buttons);
         } else if(records > 1) {
         	inicializarGrid("tblResult", options, bindkeysContribuyente);

@@ -58,7 +58,7 @@ function pageselectCallback(page_index, jq){
 function getOptionsFromForm(){
 	var opt = {callback: pageselectCallback};
 	$("input:hidden").each(function(){opt[this.name] = this.className.match(/numeric/) ? parseInt(this.value) : this.value;});
-	var htmlspecialchars ={ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;'}
+	var htmlspecialchars ={ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;'};
 		$.each(htmlspecialchars, function(k,v){
 			opt.prev_text = opt.prev_text.replace(k,v);
 			opt.next_text = opt.next_text.replace(k,v);

@@ -74,7 +74,8 @@ function reloadJQGrid(id, _options, bindkeys, navGrid){
         loadonce: true,
         scrollOffset: 1,		
 		subGrid: false,
-		footerrow: false
+		footerrow: false,
+		sortable: false
     }, _options);
     idx = "#" + id;
     $(idx).jqGrid(options);
