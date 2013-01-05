@@ -328,4 +328,6 @@ $(function(){
 	
 	window.moveTo(screen.width - screen.availWidth, screen.height - screen.availHeight);
 	window.resizeTo(screen.availWidth + screen.availWidth - screen.width, screen.availHeight + screen.availHeight - screen.height);
+	
+	console.log("#west.height: " + $("#west").css("height"));
 });
