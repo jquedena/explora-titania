@@ -47,17 +47,13 @@
         <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/ckeditor/es.js?t=C6HH5UF"></script>
         <script type="text/javascript">
             var path="<?php echo $this->util()->getPath(); ?>index.php/",
-                pathImage="<?php echo $this->util()->getPath(); ?>img/",
-                imageInit="<?php echo $this->util()->getImage("alumnos0.jpg"); ?>";
+                pathImage="<?php echo $this->util()->getPath(); ?>img/";
 
             $.jgrid.no_legacy_api = true; 
             $.jgrid.useJSON = true; 
 
             jQuery(document).ready(function () {
                 jQuery.scriptPath = "<?php echo $this->util()->getPath(); ?>";
-                // jQuery.struts2_jquery.local = "es";
-                // jQuery.struts2_jquery.gridLocal = "es";
-                // jQuery.struts2_jquery.timeLocal = "en";
                 jQuery.ajaxSettings.traditional = true;
                 jQuery.ajaxSetup({
                     cache: false
@@ -94,8 +90,8 @@
                 </td>
             </tr>
             <tr>
-                <td style="height: 100%; border-right: 1px solid #000; border-left: 1px solid #000; vertical-align: top;">
-                    <div id="west" align="center">
+                <td align="center" style=" height: 100%; border-right: 1px solid #000; border-left: 1px solid #000; vertical-align: top;">
+                    <div id="west">
                         <?php echo $this->layout()->content; ?>
                     </div>
                 </td>
