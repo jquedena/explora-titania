@@ -1244,10 +1244,13 @@ class MantenimientosController extends Zend_Controller_Action {
 	}
 	
 	public function paramfraccAction(){
-	    $this->view->util()->registerScriptJSControllerAction($this->getRequest());
+		 $this->view->util()->registerScriptJSControllerAction($this->getRequest());
+		$this->_helper->layout->disableLayout();	   
 		$pintar= new Libreria_Pintar();
 
+		$js[]=array('themeTextBox(); themeComboBox();');
 		
+						
 		$js[]=array('$( "#txtporimpofracct" ).autoNumeric();');
 		$js[]=array('$( "#txtmontdetert" ).autoNumeric();');
 		
@@ -1260,23 +1263,15 @@ class MantenimientosController extends Zend_Controller_Action {
 		$valor[]=array(0,'ORDENANZA');
 
 		$val[]=array('cbocoddoc',$pintar->ContenidoCombo($valor,'0'),'html');
-		
-		
-		
+			
 		$js[] = array('$("#txtfechdoc").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
-		//$js[] = array('$("#txtfechdoc").datepicker("option", "dateFormat", "yy-mm-dd");');
-	
 		
+		$evt[]=array('opcion1','click',' if($("#opcion1").is(\':checked\')) {$( "#txtporimpofracct" ).val(0);$( "#txtmontdetert" ).val(0);};');
 		
-	
-		$evt[]=array('opcion1','click','verificaropparam();');
-		$evt[]=array('opcion2','click','verificaropparam();');
-		//$evt[]=array('opcion3','click','verificaropparam();');
-		
-			$cn = new Model_DataAdapter ();
-			$nombrestore = '"recaudacion".paramrec';
-			$parametros [0] = '0000000001';
-			$tabla = $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+		$cn = new Model_DataAdapter ();
+		$nombrestore = '"recaudacion".paramrec';
+		$parametros [0] = '0000000001';
+		$tabla = $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
 		//print_r($tabla);
 
 		$val[]=array('txtidsigma',$tabla[0][0],'val');
@@ -1286,8 +1281,38 @@ class MantenimientosController extends Zend_Controller_Action {
 		$val[]=array('txtfechdoc',substr($tabla[0][7],0,10),'val');
 		
 		
-		$evt[]=array('btngrabar','click','manttcentrpob();');
-		
+		$evt[]=array('btngrabar','click','
+		var p_idsigma=$("#txtidsigma").val();
+ 		var p_ncantidad=$("#txtmontdetert").val();
+ 		var p_nporcentaje=$("#txtporimpofracct").val();
+ 		var p_codigo_doc=$("#cbocoddoc").val();
+ 		var p_cresolucion=$("#txtnrodoc").val();
+ 		var p_dfec_resol=$("#txtfechdoc").val(); 	
+
+		$.ajax( {
+			dataType : "html",
+			type : "POST",
+			url : path + "/mantenimientos/paramrecsave/",
+			data :  "p_idsigma="+p_idsigma+
+					 "&p_ncantidad="+p_ncantidad+
+					 "&p_nporcentaje="+p_nporcentaje+
+					 "&p_codigo_doc="+p_codigo_doc+
+					 "&p_cresolucion="+p_cresolucion+
+					 "&p_dfec_resol="+p_dfec_resol,
+			beforeSend : function(data) {
+				$(\'#locategrid\').html(\'Procesando...\');
+			},
+			success : function(requestData) {
+				$("#locategrid").html(requestData);
+			},
+			error : function(requestData, strError, strTipoError) {
+				$("#locategrid").html("Error " + strTipoError + \': \' + strError);
+			},
+			complete : function(requestData, exito) {
+				window.location.reload();
+			}
+		});');
+				
 		$pintar->PintarValor($val);
 		$pintar->PintarEvento($evt);
 		$pintar->EjecutarFuncion($js);
@@ -1295,7 +1320,7 @@ class MantenimientosController extends Zend_Controller_Action {
 		
 	}
 	
-	function paramrecsaveAction(){
+	public  function paramrecsaveAction(){
 		    if ($this->getRequest()->isXmlHttpRequest()) {
 			$this->_helper->layout->disableLayout();
 			$this->_helper->viewRenderer->setNoRender();
@@ -1318,6 +1343,269 @@ class MantenimientosController extends Zend_Controller_Action {
 			
 			$datosresult = $dataAdapter->ejec_store_procedura_sql("recaudacion.grabarparamrec", $parametersu);
 			
-				}
+	     }
 	}
+
+		public function paramfracmontominAction(){
+			$this->view->util()->registerScriptJSControllerAction($this->getRequest());
+			$this->_helper->layout->disableLayout();			
+			$pintar= new Libreria_Pintar();
+	
+			$js[]=array('themeTextBox(); themeComboBox();');
+						
+			$js[]=array('$( "#txtporimpofracct2" ).autoNumeric();');
+			$js[]=array('$( "#txtmontdetert2" ).autoNumeric();');
+			
+			$js[]=array('$("#txtporimpofracctipjur2").autoNumeric();');
+			$js[]=array('$("#txtmontdeterttipjur2").autoNumeric();');
+			
+			$js[]=array('$("#txtporimpofracctipnorm2").autoNumeric();');
+			$js[]=array('$("#txtmontdeterttipnorm2").autoNumeric();');
+			
+			$valor[]=array(0,'ORDENANZA');
+	
+			$val[]=array('cbocoddoc2',$pintar->ContenidoCombo($valor,'0'),'html');
+			
+			
+			
+			$js[] = array('$("#txtfechdoc2").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
+			//$js[] = array('$("#txtfechdoc").datepicker("option", "dateFormat", "yy-mm-dd");');
+		
+			
+			
+		
+			$evt[]=array('opcion21','click',' if($("#opcion21").is(\':checked\')) {
+			$( "#txtporimpofracc2t" ).val(0);
+			$( "#txtmontdetert2" ).val(0);
+	 		}');
+			//$evt[]=array('opcion22','click','verificaropparam2();');
+			//$evt[]=array('opcion3','click','verificaropparam();');
+			
+			$cn = new Model_DataAdapter ();
+			$nombrestore = '"recaudacion".paramrec';
+			$parametros [0] = '0000000002';
+			$tabla = $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+			//print_r($tabla);
+	
+			$val[]=array('txtidsigma2',$tabla[0][0],'val');
+			$val[]=array('txtporimpofracct2',$tabla[0][4],'val');
+			$val[]=array('txtmontdetert2',$tabla[0][3],'val');
+			$val[]=array('txtnrodoc2',$tabla[0][6],'val');
+			$val[]=array('txtfechdoc2',substr($tabla[0][7],0,10),'val');
+			
+			
+			$evt[]=array('btngrabar2','click',' var p_idsigma=$("#txtidsigma2").val();
+			 var p_ncantidad=$("#txtmontdetert2").val();
+			 var p_nporcentaje=0;
+			 var p_codigo_doc=$("#cbocoddoc2").val();
+			 var p_cresolucion=$("#txtnrodoc2").val();
+			 var p_dfec_resol=$("#txtfechdoc2").val();
+				 
+				
+			
+			$.ajax( {
+				dataType : "html",
+				type : "POST",
+				url : path + "/mantenimientos/paramrecsave/",
+				data :  "p_idsigma="+p_idsigma+
+						 "&p_ncantidad="+p_ncantidad+
+						 "&p_nporcentaje="+p_nporcentaje+
+						 "&p_codigo_doc="+p_codigo_doc+
+						 "&p_cresolucion="+p_cresolucion+
+						 "&p_dfec_resol="+p_dfec_resol,
+				beforeSend : function(data) {
+					$(\'#locategrid2\').html(\'Procesando...\');
+				},
+				success : function(requestData) {
+					$("#locategrid2").html(requestData);
+				},
+				error : function(requestData, strError, strTipoError) {
+					$("#locategrid2").html("Error " + strTipoError + \': \' + strError);
+				},
+				complete : function(requestData, exito) {
+					window.location.reload();
+				}
+			});');
+						
+			$pintar->PintarValor($val);
+			$pintar->PintarEvento($evt);
+			$pintar->EjecutarFuncion($js);
+		}
+		
+		public function paramfracuotasAction(){
+				$this->view->util()->registerScriptJSControllerAction($this->getRequest());
+				$this->_helper->layout->disableLayout();				
+				$pintar= new Libreria_Pintar();
+		
+				$js[]=array('themeTextBox(); themeComboBox();');
+				
+				$js[]=array('$( "#txtporimpofracct3" ).autoNumeric();');
+				$js[]=array('$( "#txtmontdetert3" ).autoNumeric();');
+				
+				$js[]=array('$("#txtporimpofracctipjur3").autoNumeric();');
+				$js[]=array('$("#txtmontdeterttipjur3").autoNumeric();');
+				
+				$js[]=array('$("#txtporimpofracctipnorm3").autoNumeric();');
+				$js[]=array('$("#txtmontdeterttipnorm3").autoNumeric();');
+				
+				$valor[]=array(0,'ORDENANZA');
+		
+				$val[]=array('cbocoddoc3',$pintar->ContenidoCombo($valor,'0'),'html');
+				
+				
+				
+				$js[] = array('$("#txtfechdoc3").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
+				//$js[] = array('$("#txtfechdoc").datepicker("option", "dateFormat", "yy-mm-dd");');
+			
+				
+				
+			
+				$evt[]=array('opcion31','click',' if($("#opcion31").is(\':checked\')) {
+						$( "#txtporimpofracct3" ).val(0);
+						$( "#txtmontdetert3" ).val(0);
+				 };');
+				//$evt[]=array('opcion32','click','verificaropparam3();');
+				//$evt[]=array('opcion3','click','verificaropparam();');
+				
+					$cn = new Model_DataAdapter ();
+					$nombrestore = '"recaudacion".paramrec';
+					$parametros [0] = '0000000003';
+					$tabla = $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+				//print_r($tabla);
+		
+				$val[]=array('txtidsigma3',$tabla[0][0],'val');
+				$val[]=array('txtporimpofracct3',$tabla[0][4],'val');
+				$val[]=array('txtmontdetert3',$tabla[0][3],'val');
+				$val[]=array('txtnrodoc3',$tabla[0][6],'val');
+				$val[]=array('txtfechdoc3',substr($tabla[0][7],0,10),'val');
+				
+				
+				$evt[]=array('btngrabar3','click',' var p_idsigma=$("#txtidsigma3").val();
+				 var p_ncantidad=$("#txtmontdetert3").val();
+				 var p_nporcentaje=0
+				 var p_codigo_doc=$("#cbocoddoc3").val();
+				 var p_cresolucion=$("#txtnrodoc3").val();
+				 var p_dfec_resol=$("#txtfechdoc3").val();									
+				
+				$.ajax( {
+					dataType : "html",
+					type : "POST",
+					url : path + "/mantenimientos/paramrecsave/",
+					data :  "p_idsigma="+p_idsigma+
+							 "&p_ncantidad="+p_ncantidad+
+							 "&p_nporcentaje="+p_nporcentaje+
+							 "&p_codigo_doc="+p_codigo_doc+
+							 "&p_cresolucion="+p_cresolucion+
+							 "&p_dfec_resol="+p_dfec_resol,
+					beforeSend : function(data) {
+						$(\'#locategrid3\').html(\'Procesando...\');
+					},
+					success : function(requestData) {
+						$("#locategrid3").html(requestData);
+					},
+					error : function(requestData, strError, strTipoError) {
+						$("#locategrid3").html("Error " + strTipoError + \': \' + strError);
+					},
+					complete : function(requestData, exito) {
+						window.location.reload();
+					}
+				});');
+				
+				$pintar->PintarValor($val);
+				$pintar->PintarEvento($evt);
+				$pintar->EjecutarFuncion($js);
+		}
+		
+		public function  paramfracuotasatrasadasAction(){
+				$this->view->util()->registerScriptJSControllerAction($this->getRequest());
+				$this->_helper->layout->disableLayout();				
+				$pintar= new Libreria_Pintar();
+			
+				$js[]=array('themeTextBox(); themeComboBox();');
+				
+				$js[]=array('$( "#txtporimpofracct4" ).autoNumeric();');
+				$js[]=array('$( "#txtmontdetert4" ).autoNumeric();');
+				
+				$js[]=array('$("#txtporimpofracctipjur4").autoNumeric();');
+				$js[]=array('$("#txtmontdeterttipjur4").autoNumeric();');
+				
+				$js[]=array('$("#txtporimpofracctipnorm4").autoNumeric();');
+				$js[]=array('$("#txtmontdeterttipnorm4").autoNumeric();');
+				
+				$valor[]=array(0,'ORDENANZA');
+		
+				$val[]=array('cbocoddoc4',$pintar->ContenidoCombo($valor,'0'),'html');
+				
+				
+				
+				$js[] = array('$("#txtfechdoc4").datepicker({showOn: "button", buttonImage: jQuery.scriptPath + "img/calendar.gif",	buttonImageOnly: true});');
+				//$js[] = array('$("#txtfechdoc").datepicker("option", "dateFormat", "yy-mm-dd");');
+			
+				
+				
+			
+				$evt[]=array('opcion41','click','verificaropparam4();');
+				$evt[]=array('opcion42','click','verificaropparam4();');
+				//$evt[]=array('opcion3','click','verificaropparam();');
+				
+					$cn = new Model_DataAdapter ();
+					$nombrestore = '"recaudacion".paramrec';
+					$parametros [0] = '0000000005';
+					$tabla = $datos = $cn->ejec_store_procedura_sql($nombrestore, $parametros);
+				//print_r($tabla);
+		
+				$val[]=array('txtidsigma4',$tabla[0][0],'val');
+				$val[]=array('txtporimpofracct4',$tabla[0][4],'val');
+				$val[]=array('txtmontdetert4',$tabla[0][3],'val');
+				$val[]=array('txtnrodoc4',$tabla[0][6],'val');
+				$val[]=array('txtfechdoc4',substr($tabla[0][7],0,10),'val');
+				
+				
+				$evt[]=array('btngrabar4','click','var p_idsigma=$("#txtidsigma4").val();
+ 				var p_ncantidad=$("#txtmontdetert4").val();
+ 				var p_nporcentaje=0;
+ 				var p_codigo_doc=$("#cbocoddoc4").val();
+ 				var p_cresolucion=$("#txtnrodoc4").val();
+ 				var p_dfec_resol=$("#txtfechdoc4").val();
+				$.ajax( {
+					dataType : "html",
+					type : "POST",
+					url : path + "/mantenimientos/paramrecsave/",
+					data :  "p_idsigma="+p_idsigma+
+							 "&p_ncantidad="+p_ncantidad+
+							 "&p_nporcentaje="+p_nporcentaje+
+							 "&p_codigo_doc="+p_codigo_doc+
+							 "&p_cresolucion="+p_cresolucion+
+							 "&p_dfec_resol="+p_dfec_resol,
+					beforeSend : function(data) {
+						$("#locategrid4").html("Procesando...");
+					},
+					success : function(requestData) {
+						$("#locategrid4").html(requestData);
+					},
+					error : function(requestData, strError, strTipoError) {
+						$("#locategrid4").html("Error " + strTipoError + ": " + strError);
+					},
+					complete : function(requestData, exito) {
+						//window.location.reload();
+					}
+				});	');
+				
+				$pintar->PintarValor($val);
+				$pintar->PintarEvento($evt);
+				$pintar->EjecutarFuncion($js);
+			
+		}
+		
+		public function paramfracAction(){
+			
+			$pintar=new Libreria_Pintar();
+			
+			$fun[]=array('$( "#tabs" ).tabs();');
+			
+			$pintar->EjecutarFuncion($fun);
+			
+			
+		}
+		
 }
