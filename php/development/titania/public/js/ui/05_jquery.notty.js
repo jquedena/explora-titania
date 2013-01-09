@@ -24,6 +24,8 @@
                 id:"nottys"
             }).appendTo(document.body)
         };
+        
+        container.html("");
         notty = $("<div>");
         notty.addClass("notty pop");
         hide = $("<div>", {
@@ -35,7 +37,6 @@
             }
         });
         hide.addClass("hide");
-        // hide.html("Hide notification");
         hide.html("Cerrar");
         if (settings.img != undefined){
             image = $("<div>", {
