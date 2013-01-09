@@ -304,7 +304,7 @@
             	+ 'Ba&ntilde;os: <b>' + row.vbanios + "</b><p>" + row.dbanios + "</p><br/>"
             	+ 'Instalaciones: <b>' + row.velectr + "</b><p>" + row.delectr + "</p>",
             title: 'Detalle del Nivel ' + row.cnumpis,
-        	// timeout: 5000,
+        	timeout: 9000,
         	showTime: false
         });
     };
@@ -414,7 +414,6 @@
         ],
         caption: "&nbsp;&nbsp;&nbsp;Pisos",
         gridComplete: gridCompletePiso,
-        ondblClickRow: verPiso,
         onSelectRow: selectPiso
     };
 
