@@ -1544,8 +1544,8 @@ class MantenimientosController extends Zend_Controller_Action {
 				
 				
 			
-				$evt[]=array('opcion41','click','verificaropparam4();');
-				$evt[]=array('opcion42','click','verificaropparam4();');
+				//$evt[]=array('opcion41','click','verificaropparam4();');
+				//$evt[]=array('opcion42','click','verificaropparam4();');
 				//$evt[]=array('opcion3','click','verificaropparam();');
 				
 					$cn = new Model_DataAdapter ();
@@ -1587,7 +1587,7 @@ class MantenimientosController extends Zend_Controller_Action {
 						$("#locategrid4").html("Error " + strTipoError + ": " + strError);
 					},
 					complete : function(requestData, exito) {
-						//window.location.reload();
+						window.location.reload();
 					}
 				});	');
 				
