@@ -1,6 +1,6 @@
 var optionsLine = {
 	chart : {renderTo : 'container'},
-	title : {text : 'Visitas Realizadas'},
+	title : {text : '<b>Visitas Realizadas</b>'},
 	subtitle : {text : ''},
 	xAxis : {
 		type : 'datetime',
@@ -46,7 +46,8 @@ var optionsLine = {
 	legend : {
 		align : 'left',
 		verticalAlign : 'top',
-		y : 20,
+		y : 5,
+		x : 10,
 		floating : true,
 		borderWidth : 0
 	},
@@ -82,9 +83,7 @@ var optionsLine = {
 	series : [ {
 		name : 'A recaudaci\u00F3n',
 		lineWidth : 4,
-		marker : {
-			radius : 4
-		}
+		marker : {radius : 4}
 	}, {
 		name : 'A tesoreria'
 	} ]
