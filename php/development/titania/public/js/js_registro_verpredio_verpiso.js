@@ -4,7 +4,7 @@ verPiso = function(rowid, iRow, iCol, e) {
 	} else {
 		row = undefined;
 	}
-    openDialogDataFunction1("registro/verpiso", {}, "750", "496", "Detalle del piso", function() {
+    openDialogDataFunction1("registro/verpiso", {}, "750", "450", "Detalle del piso", function() {
         if(row != undefined) {
             $("#txt_pisonivel").val(row.cnumpis);
     		$("#txt_pisoanocon").val(row.canocon);
@@ -28,6 +28,7 @@ verPiso = function(rowid, iRow, iCol, e) {
     		$("#txt_pisoporcom").val(row.nporcom);
     		$("#txt_pisovalcom").val(row.nvalcom);
     		$("#txt_valpre").val(row.nvalpis);
+    		
         }  
 	});
 };
