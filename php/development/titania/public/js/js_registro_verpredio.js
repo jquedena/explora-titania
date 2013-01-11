@@ -64,21 +64,26 @@ cambioCondicion = function(event, ui) {
     }
 };
 
+var periodoSel = ''; 
+
 cambioPeriodo = function(event, ui) {
 	if(ui.item) {
-        parameters = {
-            "mperson": $("#lblCodigo").text(),
-            "vnombre": $("#lblNombre").text(),
-            "vdirecf": $("#lblDireccion").text(),
-            "mpredio": $("#_mpredio").val(),
-            "mhresum": $("#_mhresum").val(),
-            "cperiod": ui.item.option.value
-        };
-        _post = $.post(path + "registro/verpredio", parameters);
-        _post.error(postError);
-        _post.success(function(request){
-            $("#panelRegistro").html(request);
-        });
+		if(periodoSel != ui.item.option.value) {
+	        parameters = {
+	            "mperson": $("#lblCodigo").text(),
+	            "vnombre": $("#lblNombre").text(),
+	            "vdirecf": $("#lblDireccion").text(),
+	            "mpredio": $("#_mpredio").val(),
+	            "mhresum": $("#_mhresum").val(),
+	            "cperiod": ui.item.option.value
+	        };
+	        _post = $.post(path + "registro/verpredio", parameters);
+	        _post.error(postError);
+	        _post.success(function(request){
+	            $("#panelRegistro").html(request);
+	        });
+		}
+        periodoSel = ui.item.option.value;
 	} else {
 		openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
 	}
@@ -121,7 +126,8 @@ loadVerDetalle = function(){
     $("#txtPeriodo").attr("maxlength", 4);
     $("#txtPeriodo").bind("autocompleteselect", cambioPeriodo);
     $("#txtPeriodo").bind("autocompletechange", cambioPeriodo);
-
+    periodoSel = $("#txtPeriodo").val();
+    
     $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto").datepicker({
         dateFormat: "dd/mm/yy",
         showOn: "button",

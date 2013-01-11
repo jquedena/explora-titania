@@ -164,7 +164,26 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
         
         return $result;
     }
-        
+
+    public function getPeriodosDeclarado($mhresum, $selected) {
+    	$parameters[] = $mhresum;
+    	$dataAdapter = new Model_DataAdapter();
+    	$rows = $dataAdapter->ejec_store_procedura_sql("pl_function.listar_periodo", $parameters);
+    	$result = "<select id='cboPeriodo' style='width: 60px;'>";
+    	if(count($rows) > 0) {
+	    	foreach($rows as $k => $v) {
+	    		if ($v[0] == $selected) {
+	    			$result .= "<option value=\"" . $v[0] . "\" selected=\"selected\">" . $v[0] . "</option>";
+	    		} else {
+	    			$result .= "<option value=\"" . $v[0] . "\">" . $v[0] . "</option>";
+	    		}
+	    	}
+    	}
+    	$result .= "\n</select>";
+    
+    	return $result;
+    }
+    
     public function getComboContenedor($idsigma, $selected) {
         $procedure = 'public.obtener_tabla';
         $parameters[0] = $idsigma;
