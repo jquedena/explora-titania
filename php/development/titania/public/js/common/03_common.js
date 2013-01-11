@@ -100,6 +100,7 @@ function actualizarGrid(id, _options, bindkeys, navGrid){
 function inicializarGrid(id, _options, bindkeys, navGrid){
 	reloadJQGrid(id, _options, bindkeys, navGrid);
 }
+
 function contenidocomboContenedorjqGrid(selector,idsigma){
 	var optionsjq = {};
    	optionsjq.value ="9999999999:Seleccionar";
@@ -115,6 +116,7 @@ function contenidocomboContenedorjqGrid(selector,idsigma){
     _post.error(postError);
     return optionsjq;
 }
+
 function contenidocomboContenedor(selectId, idsigma){
     _post = $.post(path + "util/combocontenedor", {"idsigma": idsigma}, function(request){
         $(selectId).html(contenidocombo(request));

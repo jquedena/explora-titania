@@ -1,99 +1,127 @@
 <div id="formPiso">
-		<div class="ui-widget ui-state-default ui-corner-top ui-title">
-        	<table >
-                 <tr>
-					<td width="400" align="center" colspan=2><label>Caracter&iacute;sticas</label></td>
-					<td width="400" align="center" colspan=2><label>&Aacute;reas</label></td>
-				</tr>  
-			</table> 
-        </div>
-	<table border="0"  cellspacing="5" style="margin: 3px;">
-		<tr>
-			<td width="140">&nbsp;Nivel&nbsp;</td>
-			<td width="35" ><input id="txt_pisonivel" class="ui-text" style="width: 30px; padding:2px;text-align:center; " value="" /></td>
-			<td width="120"><div></div></td>
-			<td width="140">&nbsp;&nbsp;Area Construida</td>
-			<td width="100"><input id="txt_pisoarecon" class="ui-text ui-text-numeric"  style="width:100; padding:2px" value="" /></td>
-		</tr>
-		<tr>
-			<td width="140">&nbsp;A&ntilde;o&nbsp;</td>
-			<td width="35"><input id="txt_pisoanocon"  class="ui-text" style="width:30px; padding:2px;text-align:center; " value="" /></td>
-		<td width="120"><div></div></td>
-			<td width="140">&nbsp;&nbsp;Val. Unit. x m2</td>
-			<td width="100"><input id="txt_pisovaluni" class="ui-text ui-text-numeric"   style="width:100; padding:2px" value="" /></td>
-		</tr>
-		<tr>
-			<td width="140">&nbsp;Mes&nbsp;</td>
-			<td width="35"><input id="txt_pisomescon"  class="ui-text" style="width:30px; padding:2px;text-align:center; " value="" /></td>
-			<td width="120"><div></div></td>
-			<td width="140">&nbsp;&nbsp;% Incremento</td>
-			<td width="100"><input id="txt_pisoincrem" class="ui-text ui-text-numeric"  style="width:100; padding:2px" value="" /></td>
-		</tr>
-		<tr>
-			<td width="140">&nbsp;Materiales&nbsp;</td>
-			<td width="35"><input id="txt_pisomaterial"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
-			<td width="120"><div id="dtxt_pisomaterial"></div></td>
-			<td width="140">&nbsp;&nbsp;% Depreciacion</td>
-			<td width="100"><input id="txt_pisopordep" class="ui-text ui-text-numeric"  style="width:100; padding:2px" value="" /></td>
-		</tr>
-		<tr>
-			<td width="140">&nbsp;Estado</td>
-			<td width="35"><input id="txt_pisoestado"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
-			<td width="120"><div id="dtxt_pisoestado" ></div></td>
-			<td width="140">&nbsp;&nbsp;Val. Depreciado</td>
-			<td width="100"><input id="txt_pisodepred" class="ui-text ui-text-numeric"  style="width:100" value="" /></td>
-		</tr>
-		<tr>
-			<td width="140">&nbsp;Muro y Columas</td>
-			<td width="35"><input id="txt_pisomuro"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
-			<td width="120"><div id="dtxt_pisomuro" ></div></td>
-			<td width="140">&nbsp;&nbsp;Val. Unit. Depreciado</td>
-			<td width="100"><input id="txt_pisovalare" class="ui-text ui-text-numeric"  style="width:100" value="" /></td>
-		</tr>
-		<tr>
-			<td width="140">&nbsp;Techo</td>
-			<td width="35"><input id="txt_pisotecho"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
-			<td width="120"><div id="dtxt_pisotecho" ></div></td>
-			<td width="140">&nbsp;&nbsp;Area Comun</td>
-			<td width="100"><input id="txt_pisoarecom" class="ui-text ui-text-numeric"  style="width:100" value="" /></td>
-		</tr>
-		<tr> 
-			<td width="140">&nbsp;Pisos</td>
-			<td width="35"><input id="txt_pisopisos"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
-			<td width="120"><div id="dtxt_pisopisos"></div></td>
-			<td width="140">&nbsp;&nbsp;% Area Comun</td>
-			<td width="100"><input id="txt_pisoporcom" class="ui-text ui-text-numeric"  style="width:100" value="" /></td>
-		</tr>
-		<tr>
-			<td width="140">&nbsp;Puertas y Ventanas</td>
-			<td width="35"><input id="txt_pisopuertaventana"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
-			<td width="120"><div id="dtxt_pisopuertaventana"></div></td>
-			<td width="140">&nbsp;&nbsp;Val. Area Com.</td>		
-			<td width="100"><input id="txt_pisovalcom" class="ui-text ui-text-numeric"  style="width:100" value="" /></td>
-		</tr>
-		<tr>
-			<td width="140">&nbsp;Revestimiento</td>
-			<td width="35"><input id="txt_pisorevestimiento"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
-			<td width="120"><div id="dtxt_pisorevestimiento" ></div></td>
-			<td width="140">&nbsp;&nbsp;Val. del Predio</td>
-			<td width="120"><input id="txt_valpre" class="ui-text ui-text-numeric"  style="width:100;padding:2px"/>
-		</tr>
-		<tr>
-			<td width="140">&nbsp;Ba&ntilde;os</td>
-			<td width="35"><input id="txt_pisobanio"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
-			<td width="120"><div id="dtxt_pisobanio"></div></td>
-		</tr>
-		<tr>
-			<td width="140">&nbsp;Instalaciones Electricas y &nbsp;Sanitarias</td>
-			<td width="35"><input id="txt_pisoinstalaciones"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
-			<td width="120"><div id="dtxt_pisoinstalaciones"></div></td>
-		</tr>
-		<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-			<td align="right" ><input  type="button" id="btnguardar" name="guardar" value="Aceptar"/></td>
-			<td align="right" ><input type="button" id="btncancelar" name="cancelar" value="Cancelar"/></td>
+	<table >
+		 <tr>
+			<td width="495" align="center">
+				<div class="ui-widget ui-state-default ui-corner-top ui-title">
+					<label>Caracter&iacute;sticas</label>
+				</div>
+				<div class="ui-widget-content ui-corner-bottom">
+					<table border="0"  cellspacing="5" style="margin: 3px;">
+						<tr>
+							<td width="150">Nivel</td>
+							<td width="35" ><input id="txt_pisonivel" class="ui-text" style="width: 30px; padding:2px;text-align:center; " value="" /></td>
+							<td width="300">&nbsp;</td>
+						</tr>
+						<tr>
+							<td>A&ntilde;o</td>
+							<td><input id="txt_pisoanocon"  class="ui-text" style="width:30px; padding:2px;text-align:center; " value="" /></td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>Mes</td>
+							<td><input id="txt_pisomescon"  class="ui-text" style="width:30px; padding:2px;text-align:center; " value="" /></td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>Materiales</td>
+							<td><input id="txt_pisomaterial"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
+							<td><div style="width: 295px; text-align: justify;" id="dtxt_pisomaterial"></div></td>
+						</tr>
+						<tr>
+							<td>Estado</td>
+							<td><input id="txt_pisoestado"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
+							<td><div style="width: 295px; text-align: justify;" id="dtxt_pisoestado" ></div></td>
+						</tr>
+						<tr>
+							<td>Muro y Columas</td>
+							<td><input id="txt_pisomuro"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
+							<td><div style="width: 295px; text-align: justify;" id="dtxt_pisomuro" ></div></td>
+						</tr>
+						<tr>
+							<td>Techo</td>
+							<td><input id="txt_pisotecho"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
+							<td><div style="width: 295px; text-align: justify;" id="dtxt_pisotecho" ></div></td>
+						</tr>
+						<tr> 
+							<td>Pisos</td>
+							<td><input id="txt_pisopisos"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
+							<td><div style="width: 295px; text-align: justify;" id="dtxt_pisopisos"></div></td>
+						</tr>
+						<tr>
+							<td>Puertas y Ventanas</td>
+							<td><input id="txt_pisopuertaventana"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
+							<td><div style="width: 295px; text-align: justify;" id="dtxt_pisopuertaventana"></div></td>
+						</tr>
+						<tr>
+							<td>Revestimiento</td>
+							<td><input id="txt_pisorevestimiento"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
+							<td><div style="width: 295px; text-align: justify;" id="dtxt_pisorevestimiento" ></div></td>
+						</tr>
+						<tr>
+							<td>Ba&ntilde;os</td>
+							<td><input id="txt_pisobanio"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
+							<td><div style="width: 295px; text-align: justify;" id="dtxt_pisobanio"></div></td>
+						</tr>
+						<tr>
+							<td>Instalaciones Electricas y &nbsp;Sanitarias</td>
+							<td><input id="txt_pisoinstalaciones"  class="ui-text" style="width:30px;padding:2px;text-align:center; "/></td>
+							<td><div style="width: 295px; text-align: justify;" id="dtxt_pisoinstalaciones"></div></td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td width="280" align="center" valign='top'>
+				<div class="ui-widget ui-state-default ui-corner-top ui-title">
+					<label>&Aacute;reas</label>
+				</div>
+				<div class="ui-widget-content ui-corner-bottom">
+					<table align="center" border="0" cellspacing="5" style="margin: 3px;">
+						<tr>
+							<td width="140">Area Construida</td>
+							<td width="100"><input id="txt_pisoarecon" class="ui-text ui-text-numeric"  style="width:80px; padding:2px" value="" /></td>
+						</tr>
+						<tr>
+							<td width="140">Val. Unit. x m2</td>
+							<td width="100"><input id="txt_pisovaluni" class="ui-text ui-text-numeric"   style="width:80px; padding:2px" value="" /></td>
+						</tr>
+						<tr>		
+							<td width="140">% Incremento</td>
+							<td width="100"><input id="txt_pisoincrem" class="ui-text ui-text-numeric"  style="width:80px; padding:2px" value="" /></td>
+						</tr>
+						<tr>
+							<td width="140">% Depreciacion</td>
+							<td width="100"><input id="txt_pisopordep" class="ui-text ui-text-numeric"  style="width:80px; padding:2px" value="" /></td>
+						</tr>
+						<tr>
+							<td width="140">Val. Depreciado</td>
+							<td width="100"><input id="txt_pisodepred" class="ui-text ui-text-numeric"  style="width:80px" value="" /></td>
+						</tr>
+						<tr>
+							<td width="140">Val. Unit. Depreciado</td>
+							<td width="100"><input id="txt_pisovalare" class="ui-text ui-text-numeric"  style="width:80px" value="" /></td>
+						</tr>
+						<tr>
+							<td width="140">Area Com&uacute;n</td>
+							<td width="100"><input id="txt_pisoarecom" class="ui-text ui-text-numeric"  style="width:80px" value="" /></td>
+						</tr>
+						<tr> 
+							<td width="140">% Area Com&uacute;n</td>
+							<td width="100"><input id="txt_pisoporcom" class="ui-text ui-text-numeric"  style="width:80px" value="" /></td>
+						</tr>
+						<tr>
+							<td width="140">Val. Area Com.</td>		
+							<td width="100"><input id="txt_pisovalcom" class="ui-text ui-text-numeric"  style="width:80px" value="" /></td>
+						</tr>
+						<tr>
+							<td width="140">Val. del Predio</td>
+							<td width="120"><input id="txt_valpre" class="ui-text ui-text-numeric"  style="width:80px;padding:2px"/>
+						</tr>
+					</table>
+				</div>
+				<br/>
+				<br/>
+				<input  type="button" id="btnguardar" name="guardar" value="Aceptar"/>&nbsp;&nbsp;<input type="button" id="btncancelar" name="cancelar" value="Cancelar"/>
+			</td>
 		</tr>
 	</table>
 </div>
@@ -112,28 +140,7 @@
 		}
 	};
 
-//Autocomplete...
-var projects = [
-	{
-		value: "a",
-		label: "a",
-		desc: "the write less, do more, JavaScript library",
-		icon: "jquery_32x32.png"
-	},
-	{
-		value: "b",
-		label: "b",
-		desc: "the official user interface library for jQuery",
-		icon: "jqueryui_32x32.png"
-	},
-	{
-		value: "c",
-		label: "c",
-		desc: "a pure-JavaScript CSS selector engine",
-		icon: "sizzlejs_32x32.png"
-	}
-];
-
+	//Autocomplete...
 	autocompletar = function(id, data) {
 		$(id).autocomplete({
 			minLength: 0,
@@ -151,48 +158,32 @@ var projects = [
 				.appendTo(ul);
 		};
 	};
+	
+	_post = $.post(path + "registro/verpisocaracteristicas", {}, function(data){
+		autocompletar("#txt_pisomaterial", data.material);
+		autocompletar("#txt_pisoestado", data.estado);
+		autocompletar("#txt_pisomuro", data.muro);
+		autocompletar("#txt_pisotecho", data.techo);
+		autocompletar("#txt_pisopisos", data.piso);
+		autocompletar("#txt_pisopuertaventana", data.puerta);
+		autocompletar("#txt_pisorevestimiento", data.revestimiento);
+		autocompletar("#txt_pisobanio", data.banio);
+		autocompletar("#txt_pisoinstalaciones", data.instalacion);
+	}, 'json');
+    _post.error(postError);
+	
 
-	$(function() {
-		autocompletar("#txt_pisomaterial", projects);
-		autocompletar("#txt_pisoestado", projects);
-		autocompletar("#txt_pisomuro", projects);
-		autocompletar("#txt_pisotecho", projects);
-		autocompletar("#txt_pisopisos", projects);
-		autocompletar("#txt_pisopuertaventana", projects);
-		autocompletar("#txt_pisorevestimiento", projects);
-		autocompletar("#txt_pisobanio", projects);
-		autocompletar("#txt_pisoinstalaciones", projects);
+	$("#btnguardar").button({
+		icons: {primary:'ui-icon-disk'}
+	}).bind('click', function(){
+		closeDialog('jqDialog1');
 	});
 
-	 $("#btnguardar").button({
-         icons: {primary:'ui-icon-disk'}
-     }).bind('click', function(){
-     //    habilitarComponenteDetalle(false);
-    	 closeDialog('jqDialog1');
-     });
 
+	$("#btncancelar").button({
+		icons: {primary:'ui-icon-pencil'}
+	}).bind('click', function(){
+		closeDialog('jqDialog1');
+	});
+</script>
 
-	 $("#btncancelar").button({
-         icons: {primary:'ui-icon-pencil'}
-     }).bind('click', function(){
-    	 closeDialog('jqDialog1');
-    	 //  habilitarComponenteDetalle(false);
-     });
-
-	 /*
-	 btnEliminarPiso = {
-		        caption: "Eliminar",
-		        title: "Eliminar la construcci\u00F3n",
-		        buttonicon: "ui-icon-trash",
-		        onClickButton:function(){
-		            var gsr = $("#tblPiso").jqGrid('getGridParam','selrow');
-		            if(gsr){
-		                console.log(gsr);
-		                // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
-		            } else { 
-		                openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
-		            } ;
-		        } ;
-		    };
-		*/
-	</script>
