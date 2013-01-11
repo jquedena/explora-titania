@@ -66,6 +66,7 @@ class RegistroController extends Zend_Controller_Action {
             $this->view->vdirecf = $this->_request->getParam('vdirecf');
             $this->view->p_mhresum = $this->_request->getParam('mhresum');
             $this->view->p_mpredio = $this->_request->getParam('mpredio');
+            $this->view->p_cperiod = $this->_request->getParam('cperiod');
             
             $parameters[] = $this->_request->getParam('mpredio');
             $parameters[] = $this->_request->getParam('mhresum'); 
@@ -144,6 +145,7 @@ class RegistroController extends Zend_Controller_Action {
     		$this->_helper->layout->disableLayout();
     	}
     }
+    
     public function verinstalacionAction() {
     	$this->_helper->getHelper('ajaxContext')->initContext();
     
@@ -152,4 +154,11 @@ class RegistroController extends Zend_Controller_Action {
     	}
     }
    
+    public function impresionAction() {
+    	$this->_helper->getHelper('ajaxContext')->initContext();
+    
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+    	}
+    }
 }

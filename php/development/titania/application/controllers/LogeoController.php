@@ -35,10 +35,11 @@ class LogeoController extends Zend_Controller_Action implements Zend_Auth_Adapte
 		if ($this->getRequest()->isXmlHttpRequest()) {
 			
 			$url = $this->view->util()->getPath();
-
+						
 			$user = trim($this->_request->getPost('user'));
 			$pass = trim($this->_request->getPost('pass'));
-			$nivel = $this->_request->getPost('nivel'); // aun no se usa!! pero igual lo pongo xD!
+			$local = trim($this->_request->getPost('cboLocal'));
+			$nivel = $this->_request->getPost('nivel'); // Aun no se usa!! pero igual lo pongo xD!
 
 			if($user == '' || $user == null || $pass == '' || $pass == null){
 				echo 'Ingresar Usuario y/o Contrase&ntilde;a';
@@ -67,6 +68,7 @@ class LogeoController extends Zend_Controller_Action implements Zend_Auth_Adapte
 						$ddatosuserlog->userlogin = $datos[0][2];
 						$ddatosuserlog->arealogin = $datos[0][3];
 						$ddatosuserlog->codcajero = $datos[0][4];
+						$ddatosuserlog->idlocal = $local;
 			
 						echo '<script language=\"JavaScript\">window.open(\''.$url.'index.php\', \'_self\')</script>';
 					}else{
