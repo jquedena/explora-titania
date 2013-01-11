@@ -1,18 +1,3 @@
-$.extend($.fn.fmatter , {
-    usoIconoFmatter : function(cellvalue, options, rowdata) {
-    	console.log(rowdata);
-    	console.log(options);
-	    return '<img src="'+cellvalue+'" />';
-	}
-});
-
-$.extend($.fn.fmatter.usoIconoFmatter , {
-    unformat : function(cellvalue, options) {
-    	console.log(options);
-	    return $('img', cellvalue).attr('src');
-	}
-});
-
 habilitarComponenteDetalle = function(disabled){
     $(".ui-text, .ui-combobox-input").attr("disabled", disabled);
     $(".ui-text, .ui-combobox-input").toggleClass("ui-state-disabled-text");

@@ -1,90 +1,73 @@
 var optionsLine = {
-	chart : {renderTo : 'container'},
-	title : {text : '<b>Visitas Realizadas</b>'},
-	subtitle : {text : ''},
-	xAxis : {
-		type : 'datetime',
-		tickInterval : 7 * 24 * 3600 * 1000, // one week
-		tickWidth : 0,
-		gridLineWidth : 1,
-		labels : {
-			align : 'left',
-			x : 3,
-			y : -3
-		}
-	},
-	yAxis : [ { // left y axis
-		title : {
-			text : null
-		},
-		labels : {
-			align : 'left',
-			x : 3,
-			y : 16,
-			formatter : function() {
-				return Highcharts.numberFormat(this.value, 0);
-			}
-		},
-		showFirstLabel : false
-	}, { // right y axis
-		linkedTo : 0,
-		gridLineWidth : 0,
-		opposite : true,
-		title : {
-			text : null
-		},
-		labels : {
-			align : 'right',
-			x : -3,
-			y : 16,
-			formatter : function() {
-				return Highcharts.numberFormat(this.value, 0);
-			}
-		},
-		showFirstLabel : false
-	} ],
-	legend : {
-		align : 'left',
-		verticalAlign : 'top',
-		y : 5,
-		x : 10,
-		floating : true,
-		borderWidth : 0
-	},
-	tooltip : {
-		shared : true,
-		crosshairs : true
-	},
-	plotOptions : {
-		series : {
-			cursor : 'pointer',
-			point : {
-				events : {
-					click : function() {
-						hs.htmlExpand(null, {
-							pageOrigin : {
-								x : this.pageX,
-								y : this.pageY
-							},
-							headingText : this.series.name,
-							maincontentText : Highcharts.dateFormat(
-									'%A, %b %e, %Y', this.x)
-									+ ':<br/> ' + this.y + ' visitas',
-							width : 200
-						});
-					}
-				}
-			},
-			marker : {
-				lineWidth : 1
-			}
-		}
-	},
-	series : [ {
-		name : 'A recaudaci\u00F3n',
-		lineWidth : 4,
-		marker : {radius : 4}
-	}, {
-		name : 'A tesoreria'
-	} ]
+    chart: {
+        renderTo: 'container',
+        type: 'scatter',
+        zoomType: 'xy'
+    },
+    title: {
+        text: 'Visitas Realizadas'
+    },
+    subtitle: {
+        text: false
+    },
+    xAxis: {
+        title: {
+            enabled: true,
+            text: 'Semana'
+        },
+        startOnTick: true,
+        endOnTick: true,
+        showLastLabel: true
+    },
+    yAxis: {
+        title: {
+            text: 'Horas'
+        }
+    },
+    tooltip: {
+        formatter: function() {
+                return ''+
+                this.x +' cm, '+ this.y +' kg';
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'left',
+        verticalAlign: 'top',
+        x: 100,
+        y: 70,
+        floating: true,
+        backgroundColor: '#FFFFFF',
+        borderWidth: 1
+    },
+    plotOptions: {
+        scatter: {
+            marker: {
+                radius: 5,
+                states: {
+                    hover: {
+                        enabled: true,
+                        lineColor: 'rgb(100,100,100)'
+                    }
+                }
+            },
+            states: {
+                hover: {
+                    marker: {
+                        enabled: false
+                    }
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Recaudacion',
+        color: 'rgba(223, 83, 83, .5)',
+        data: [[1, 1], [2, 1], [3,1]]
+
+    }, {
+        name: 'Tesoreria',
+        color: 'rgba(119, 152, 191, .5)',
+        data: [[1, 0]]
+    }]
 };

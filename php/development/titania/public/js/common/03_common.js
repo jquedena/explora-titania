@@ -1,3 +1,14 @@
+imageFormat = function(cellvalue, options, rowdata) {
+	console.log(rowdata);
+	console.log(options);
+    return '<img src="' + pathImage + cellvalue + '" />';
+};
+
+imageUnFormat = function(cellvalue, options) {
+	console.log(options);
+    return $('img', cellvalue).attr('src');
+};
+
 postError = function(requestData, errMessage, errNumber){
     if(errNumber == '') {
         openDialogError("No se puede determinar el error.");
@@ -64,7 +75,7 @@ function reloadJQGrid(id, _options, bindkeys, navGrid){
         data: [],
         datatype: "local",
         rowNum: 10,
-        rownumbers: true,
+        rownumbers: false,
         recordtext: "{0} - {1} de {2} elementos",
         emptyrecords: 'No hay resultados',
         pgtext: 'Pag: {0} de {1}',
