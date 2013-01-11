@@ -4,7 +4,7 @@ verPiso = function(rowid, iRow, iCol, e) {
 	} else {
 		row = undefined;
 	}
-    openDialogDataFunction1("registro/verpiso", {}, "750", "450", "Detalle del piso", function() {
+    openDialogDataFunction1("registro/verpiso", {}, "750", "482", "Detalle del piso", function() {
         if(row != undefined) {
             $("#txt_pisonivel").val(row.cnumpis);
     		$("#txt_pisoanocon").val(row.canocon);
@@ -28,6 +28,17 @@ verPiso = function(rowid, iRow, iCol, e) {
     		$("#txt_pisoporcom").val(row.nporcom);
     		$("#txt_pisovalcom").val(row.nvalcom);
     		$("#txt_valpre").val(row.nvalpis);
+    		
+    		$("#dtxt_pisoano").html(row.nantigu  + ' A&Ntilde;OS DE ANTIGUEDAD');
+    		$("#dtxt_pisomaterial").html(row.dmateri);
+    		$("#dtxt_pisoestado").html(row.dconser);
+    		$("#dtxt_pisomuro").html(row.dmurcol);
+    		$("#dtxt_pisotecho").html(row.dtechos);
+    		$("#dtxt_pisopisos").html(row.dmpisos);
+    		$("#dtxt_pisopuertaventana").html(row.dpueven);
+    		$("#dtxt_pisorevestimiento").html(row.drevest);
+    		$("#dtxt_pisobanio").html(row.dbanios);
+    		$("#dtxt_pisoinstalaciones").html(row.delectr);
     		
         }  
 	});
