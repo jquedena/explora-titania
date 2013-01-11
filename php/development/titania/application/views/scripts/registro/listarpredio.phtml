@@ -27,7 +27,7 @@
     <table id="tblListaPredio"></table>
     <div id="tblListaPredio"></div>
 </div>
-<div id="container" style="min-width: 400px; height: 220px; margin: 0 auto"></div>
+<div id="container" style="min-width: 400px; height: 150px; margin: 0 auto"></div>
 <script type="text/javascript">
     verPredio = function(rowid, iRow, iCol, e) {
         row = $("#tblListaPredio").jqGrid('getRowData', rowid);
@@ -48,15 +48,16 @@
     
     optionPredio = {
         width: 1000,
-        height: 125,
+        height: 210,
         colNames: ['C\u00F3digo',
             'Direcci\u00F3n',
+            'Uso',
             'Uso',
             'Valor del Predio',
             'Valor Afecto',
             'Adquirido',
             'Nro. de Doc.',
-            '% Prop.',
+            '%',
             'mpredio',
             'tnompob',
             'tnomvia',
@@ -65,14 +66,15 @@
             'dmanzan',
             'dnlotes',
             'mhresum'],
-        colModel: [{name: 'ccodpre', index:'ccodpre', width: 80}, /* , frozen: true */
+        colModel: [{name: 'ccodpre', index:'ccodpre', width: 70, align:'center'},
             {name: 'tnumero', index:'tnumero', width: 450},
-            {name: 'vusogen', index:'vusogen', width: 250},
-            {name: 'nvalpre', index:'nvalpre', width: 100, formatter:'currency', align: 'right'},
-            {name: 'nvalafe', index:'nvalafe', width: 100, formatter:'currency', align: 'right'},
-            {name: 'dfecadq', index:'dfecadq', width: 80, formatter:'date', formatoptions: {srcformat:"Y-m-d", newformat:"d-M-Y"}, align: 'center'},
-            {name: 'vnrodoc', index:'vnrodoc', width: 80, align: 'center'},
-            {name: 'nporcen', index:'nporcen', width: 60, align: 'right'},
+            {name: 'vusogen', index:'vusogen', width: 250, hidden: true},
+            {name: 'viconos', index:'viconos', width: 55, formatter:imageFormat, unformat:imageUnFormat, align:'center'},
+            {name: 'nvalpre', index:'nvalpre', width: 95, formatter:'currency', align: 'right'},
+            {name: 'nvalafe', index:'nvalafe', width: 95, formatter:'currency', align: 'right'},
+            {name: 'dfecadq', index:'dfecadq', width: 75, formatter:'date', formatoptions: {srcformat:"Y-m-d", newformat:"d/m/Y"}, align: 'center'},
+            {name: 'vnrodoc', index:'vnrodoc', width: 75, align: 'center'},
+            {name: 'nporcen', index:'nporcen', width: 45, align: 'right'},
             {name: 'mpredio', index:'mpredio', width: 1, hidden: true},
             {name: 'tnompob', index:'tnompob', width: 1, hidden: true},
             {name: 'tnomvia', index:'tnomvia', width: 1, hidden: true},
@@ -126,16 +128,24 @@
     
     $(document).ready(function() {
 		optionsLine.series[0].data = [
-			['01/05/2012', 1],
-			['30/06/2012', 1],
-			['04/07/2012', 1],
-			['21/08/2012', 1]
+			['01/05/2012', 0],
+			['03/05/2012', 0],
+			['05/05/2012', 1],
+			['10/05/2012', 0],
+			['15/05/2012', 0],
+			['16/05/2012', 0],
+			['18/05/2012', 0],
+			['21/05/2012', 1]
 		];
 		optionsLine.series[1].data = [
 			['01/05/2012', 1],
-			['30/06/2012', 2],
-			['04/07/2012', 1],
-			['21/08/2012', 3]
+			['03/05/2012', 1],
+			['05/05/2012', 1],
+			['10/05/2012', 0],
+			['15/05/2012', 0],
+			['16/05/2012', -1],
+			['18/05/2012', 0],
+			['21/05/2012', 1]
 		];
 
 		chart = new Highcharts.Chart(optionsLine);
