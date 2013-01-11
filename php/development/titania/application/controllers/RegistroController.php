@@ -182,4 +182,14 @@ class RegistroController extends Zend_Controller_Action {
     		$this->_helper->layout->disableLayout();
     	}
     }
+    
+    public function verlinderoAction() {
+    	$this->_helper->getHelper('ajaxContext')->initContext();
+    
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+    	}
+    }
+    
+    
 }
