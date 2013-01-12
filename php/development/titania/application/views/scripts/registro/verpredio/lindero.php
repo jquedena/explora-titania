@@ -6,31 +6,32 @@
 	};
 
 	optionPrediocolindante = {
-		data:[
-			{ccardin:'Norte',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'},
-			{ccardin:'Sur',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'},
-			{ccardin:'Este',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'},
-			{ccardin:'Oeste',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'}
-		],
-        height: 140,
-        width: 900,
-        rowNum: 5,
-        rownumbers: false,
-        colNames: [
-            'Cardinal',
-            'CodPropiedad',          
-            'Ubicacion',
-            'DPropie',
-            'mpredio'
-        ],
-        colModel: [
-                   {name: 'ccardin', index:'vnrodoc', width: 75, align: 'center', editable: true},
-                   {name: 'cpropie', index:'vmotivo', width: 238, editable: true},    
-                   {name: 'cubicac', index:'dfecdoc', width: 80, align: 'center', editable: true},
-                   {name: 'dpropie', index:'mhresum', width: 100, editable: true},
-                   {name: 'mpredio', index:'vobserv', width: 100, editable: true}
-               ],
-       
+			data:[
+					{ccardin:'Norte',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'},
+					{ccardin:'Sur',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'},
+					{ccardin:'Este',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'},
+					{ccardin:'Oeste',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'}
+				],
+		        height: 140,
+		        width: 900,
+		        rowNum: 5,
+		        rownumbers: false,
+		        colNames: [
+		            'Cardinal',
+		            'CodPropiedad',          
+		            'Ubicacion',
+		            'DPropie',
+		            'mpredio'
+		        ],
+		        colModel: [
+		                   {name: 'ccardin', index:'vnrodoc', width: 75, align: 'center', editable: true},
+		                   {name: 'cpropie', index:'vmotivo', width: 238, editable: true},    
+		                   {name: 'cubicac', index:'dfecdoc', width: 80, align: 'center', editable: true},
+		                   {name: 'dpropie', index:'mhresum', width: 100, editable: true},
+		                   {name: 'mpredio', index:'vobserv', width: 100, editable: true}
+		               ],
+		       
+			
 		caption: "&nbsp;&nbsp;&nbsp;Predio Colindante",
        	onSelectRow: function(id) {
             row = $(this).getRowData(id);;
