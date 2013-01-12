@@ -1,12 +1,10 @@
 <div id="panelPredioColindante"></div>
 <script>
-verlindero = function() {
-    openDialogDataFunction1("registro/verlindero", {}, "750", "482", "Detalle del Lindero",null);
-};
+	verlindero = function() {
+	    openDialogDataFunction1("registro/verlindero", {}, "750", "482", "Detalle del Lindero",null);
+	};
 
-
-
-optionPrediocolindante = {
+	optionPrediocolindante = {
 		data:[
 			{ccardin:'Norte',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'},
 			{ccardin:'Sur',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'},
@@ -43,7 +41,8 @@ optionPrediocolindante = {
         title: "Agrega un nuevo nivel al predio",
         buttonicon: "ui-icon-plus",
         onClickButton:function(){
-        	verlindero();
+    		verlindero();
+        	
         } 
     };
 
