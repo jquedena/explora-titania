@@ -1,0 +1,83 @@
+
+<div id="formRustico">
+<!--  <table>
+	<td><select style="width: 240px;" id="cboMotivo"><?php echo $this->util()->getComboContenedor('1000000004', null); ?></select>&nbsp;
+	&nbsp;<select style="width: 240px;" id="cboMotivo"><?php echo $this->util()->getComboContenedor('1000000004', null); ?></select></td>
+	</tr>
+</table>-->
+	<table >
+		 <tr align="center">
+			<td width="310">
+				<div class="ui-widget ui-state-default ui-corner-top ui-title">
+					<label></label>
+				</div>
+				<div class="ui-widget-content ui-corner-bottom">
+					<table cellspacing="5" style="margin: 3px; class="ui-table-panelLayout"">
+					<tr>
+							<td width="100px">Clasificacion</td>
+							<td width="35" ><select style="width: 150px;" id="cboClasificacion"><?php echo $this->util()->getComboContenedor('1000000326', null); ?></select></td>
+						</tr>
+						<tr>
+					
+							<td>Categoria</td>
+							<td width="35" ><select style="width: 150px;" id="cbo>Categoria"><?php echo $this->util()->getComboContenedor('1000000319', null); ?></select></td>
+						</tr>
+						<tr>
+							<td>Arancel</td>
+							<td><input id="txtArancel" class="ui-text" style="width:70px; padding:2px;text-align:left;" value="" /></td>
+						</tr>
+					<tr>
+							<td>Hectareas</td>
+							<td><input id="txt_Hectareas" class="ui-text" style="width:70px;padding:2px;text-align:left;"/></td>
+						</tr>
+						<tr>
+							<td>Total</td>
+							<td><input id="txt_Total" class="ui-text" disabled="disabled" style="width:70px; padding:2px;text-align:left;" value="" /></td>
+							<td>&nbsp;</td>
+						</tr>
+					<!--	<tr>
+					 	<td>MPropie</td>
+							<td><input id="txt_mpropie" class="ui-text" style="width:30px;padding:2px;text-align:center;"/></td>
+						</tr> -->	
+						<tr>
+							<td colspan="2" align="right"><input  type="button" id="btnguardar" name="guardar" value="Aceptar"/>&nbsp;&nbsp;<input type="button" id="btncancelar" name="cancelar" value="Cancelar"/></td>
+						</tr>
+					</table>
+				</div>
+			</td>
+
+		</tr>
+	</table>
+</div>
+<script type="text/javascript">
+
+	isValid = true;
+	validar = function(){
+		$("#formRustico").find("input").each(function(){
+			if($(this).val().length ==0){
+				isValid = false;
+	            return;
+	        }
+		});
+		
+		if(!isValid){
+		   openDialogWarning("Los campos deben estar llenos.", 380, 150);	
+		}
+	};
+
+	$("#btnguardar").button({
+		icons: {primary:'ui-icon-disk'}
+	}).bind('click', function(){
+		openDialogWarning("Los datos han sido guardados.", 380, 150);
+		closeDialog('jqDialog1');
+	});
+
+	$("#btncancelar").button({
+		icons: {primary:'ui-icon-pencil'}
+	}).bind('click', function(){
+		closeDialog('jqDialog1');
+	});
+
+</script>
+
+
