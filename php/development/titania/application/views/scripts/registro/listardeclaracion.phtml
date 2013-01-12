@@ -64,13 +64,14 @@
         height: 140,
         width: 715,
         rowNum: 5,
-        colNames: ['Predio', 'Direcci\u00F3n', 'Uso', 'mhresum', 'mpredio'],
+        colNames: ['Predio', 'Direcci\u00F3n', 'Uso', 'Uso', 'mhresum', 'mpredio'],
         colModel: [
 			{name: 'ccodpre', index:'ccodpre', width: 75, align: 'center'},
-			{name: 'tnumero', index:'tnumero', width: 415},
-			{name: 'vusogen', index:'vusogen', width: 180},
-			{name: 'mhresum', index:'mhresum', width: 180},
-			{name: 'mpredio', index:'mpredio', width: 180}
+			{name: 'tnumero', index:'tnumero', width: 550},
+			{name: 'vusogen', index:'vusogen', width: 30, hidden: true},
+			{name: 'viconos', index:'viconos', width: 55, formatter:imageFormat, unformat:imageUnFormat, align:'center'},
+			{name: 'mhresum', index:'mhresum', width: 180, hidden: true},
+			{name: 'mpredio', index:'mpredio', width: 180, hidden: true}
 		],
 		caption: "&nbsp;&nbsp;&nbsp;Predios Registrados en la Declaraci\u00F3n Nro. ",
 		ondblClickRow: verPredioDeclaracion

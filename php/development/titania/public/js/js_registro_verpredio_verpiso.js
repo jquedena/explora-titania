@@ -4,7 +4,7 @@ verPiso = function(rowid, iRow, iCol, e) {
 	} else {
 		row = undefined;
 	}
-    openDialogDataFunction1("registro/verpiso", {}, "750", "482", "Detalle del piso", function() {
+    openDialogDataFunction1("registro/verpiso", {}, "750", "505", "Detalle del piso", function() {
         if(row != undefined) {
             $("#txt_pisonivel").val(row.cnumpis);
     		$("#txt_pisoanocon").val(row.canocon);
@@ -45,15 +45,22 @@ verPiso = function(rowid, iRow, iCol, e) {
 };
 
 gridCompletePiso = function(){        
-	var ids = $("#tblPiso").jqGrid('getDataIDs');
+	var row, ids = $("#tblPiso").jqGrid('getDataIDs');
 	
 	for(var i=0; i < ids.length; i++) { 
-    	var row = $("#tblPiso").jqGrid('getRowData', ids[i]);
+    	row = $("#tblPiso").jqGrid('getRowData', ids[i]);
     	$("#tblPiso").jqGrid('setRowData', ids[i], {
         	xmateri: "<div>"+row.vmateri+row.vconser+"</div>",
         	xcaract: "<div>"+row.vmurcol+row.vtechos+row.vmpisos+row.vpueven+row.vrevest+row.vbanios+row.velectr+"</div>"
         });
-	} 
+	}
+	
+	var _rows = $("#tblPiso").find(".jqgrow");
+    for (var i = 0; i < _rows.length; i++) {
+    	if(parseInt(_rows[i].childNodes[0].textContent) >= 5) {
+    		_rows[i].attributes["class"].value += " nivel5";
+    	}
+    }
 };
 
 selectPiso = function(id) {
