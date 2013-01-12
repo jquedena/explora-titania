@@ -16,11 +16,13 @@ class PanelController extends Zend_Controller_Action {
     	if ($this->getRequest()->isXmlHttpRequest()) {
     		$this->_helper->layout->disableLayout();
     		
+    		$dataAdapter = new Model_DataAdapter();
+    		
     		$this->view->cidpers = $this->_request->getParam('cidpers');
     		$this->view->vnombre = $this->_request->getParam('crazsoc');
+    		
     		$parameters[] = $this->view->cidpers;
     		
-    		$dataAdapter = new Model_DataAdapter();
     		$rows = $dataAdapter->executeAssocQuery("pl_function.panel_persona", $parameters);
     		if($rows != null) {
     			$this->view->mperson = $rows[0];
@@ -39,7 +41,21 @@ class PanelController extends Zend_Controller_Action {
     				'vprotra' => 'No',
     				'dfecpag' => '',
     			);
-    		}    		
+    		}
+    		
+    		$rows = $dataAdapter->executeAssocQuery("pl_function.resumen_saldo_personal", $parameters);
+    		if($rows != null) {
+    			$this->view->msaldos = $rows[0];
+    		} else {
+    			$this->view->msaldos = array(
+    					'cidpers' => '',
+    					'ntotals' => '',
+    					'npendie' => '',
+    					'ncancel' => '',
+    					'nporcen' => '',
+    					'vindica' => 'ff0000.png'
+    			);
+    		}
     	}
     }
     

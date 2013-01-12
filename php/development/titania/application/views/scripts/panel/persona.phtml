@@ -67,24 +67,24 @@
 		<table class="ui-table-panelLayout" style="width: 90%; height: 100%; font-size: 90%;">
 			<tr>
 				<td rowspan="7" align="center" valign="top">
-					<img style="" src="<?php echo $this->util()->getImage("00ff00.png"); ?>">
+					<img style="" src="<?php echo $this->util()->getImage($this->msaldos['vindica']); ?>">
 				</td>
 				<td>Ultimo pago:&nbsp;<b><?php echo $this->mperson['dfecpag'] ?></b></td>
 			</tr>
 			<tr>
-				<td>Emitido:&nbsp;<b>S/.1,000.00</b></td>
+				<td>Emitido:&nbsp;<b>S/. <?php echo $this->msaldos['ntotals']?></b></td>
 			</tr>
 			<tr>
-				<td>Cobrado:&nbsp;<b>S/.800.00</b></td>
+				<td>Cobrado:&nbsp;<b>S/. <?php echo $this->msaldos['ntotals']?></b></td>
 			</tr>
 			<tr>
-				<td>Saldo:&nbsp;<b>S/.200.00</b></td>
+				<td>Saldo:&nbsp;<b>S/. <?php echo $this->msaldos['npendie']?></b></td>
 			</tr>
 			<tr>
-				<td>Saldo con beneficio:&nbsp;<b>S/.200.00</b></td>
+				<td>Saldo con beneficio:&nbsp;<b>S/. <?php echo $this->msaldos['npendie']?></b></td>
 			</tr>
 			<tr>
-				<td>Porcentaje:&nbsp;<b>20.00%</b></td>
+				<td>Porcentaje:&nbsp;<b><?php echo $this->msaldos['ncancel']?>%</b></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>

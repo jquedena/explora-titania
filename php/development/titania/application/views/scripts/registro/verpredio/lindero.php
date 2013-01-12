@@ -1,7 +1,8 @@
 <div id="panelPredioColindante"></div>
 <script>
 	verlindero = function() {
-	    openDialogDataFunction1("registro/verlindero", {}, "750", "482", "Detalle del Lindero",null);
+	    openDialogDataFunction1("registro/verlindero", {}, "485", "300", "Detalle del Lindero",null );
+   
 	};
 
 	optionPrediocolindante = {
@@ -32,7 +33,7 @@
        
 		caption: "&nbsp;&nbsp;&nbsp;Predio Colindante",
        	onSelectRow: function(id) {
-            row = $(this).getRowData(id);
+            row = $(this).getRowData(id);;
         }
     };
 
@@ -51,6 +52,8 @@
         title: "Editar el nivel seleccionado",
         buttonicon: "ui-icon-pencil",
         onClickButton:function(){
+            
+        	openDialogWarning("Seleccione la fila a editar.", 380, 150);
         } 
     };
     
@@ -59,6 +62,7 @@
         title: "Eliminar la construcci\u00F3n",
         buttonicon: "ui-icon-trash",
         onClickButton:function(){
+        	openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
         }
     };
     

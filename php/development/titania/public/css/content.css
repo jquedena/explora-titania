@@ -248,3 +248,8 @@ table.ui-table-panelLayout tr td{
 * html .ui-autocomplete {
     height: 118px;
 }
+
+.nivel5 {
+	font-weight: bold;
+	color: #f00;
+}

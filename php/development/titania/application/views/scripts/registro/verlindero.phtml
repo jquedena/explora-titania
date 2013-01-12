@@ -1,33 +1,37 @@
 <div id="formLindero">
-	<table>
-		 <tr>
-			<td width="380"  align="center">
+	<table >
+		 <tr align="center">
+			<td width="310">
 				<div class="ui-widget ui-state-default ui-corner-top ui-title">
-					<label>Arancel</label>
+					<label>Linderos</label>
 				</div>
 				<div class="ui-widget-content ui-corner-bottom">
-					<table cellspacing="5" style="margin: 3px;">
+					<table cellspacing="5" style="margin: 3px; class="ui-table-panelLayout"">
+					<tr>
+							<td width="150">Tipo de Lindero</td>
+							<td width="35" ><select style="width: 150px;" id="cboTipLindero"><?php echo $this->util()->getComboContenedor('1000000411', null); ?></select></td>
+						</tr>
 						<tr>
-							<td width="150">Cardinal</td>
-							<td width="35" ><select style="width: 240px;" id="cboCardinal"><?php echo $this->util()->getComboContenedor('1000000415', null); ?></select></td>
+							<td width="150">Punto Cardinal</td>
+							<td width="35" ><select style="width: 150px;" id="cboCardinal"><?php echo $this->util()->getComboContenedor('1000000415', null); ?></select></td>
 						</tr>
 						<tr>
 							<td>Cod. Propiedad</td>
-							<td><input id="txtcodproie" class="ui-text" style="width:30px; padding:2px;text-align:center;" value="" /></td>
+							<td><input id="txtcodproie" class="ui-text" style="width:350px; padding:2px;text-align:left;" value="" /></td>
 						</tr>
-						<tr>
+					<tr>
 							<td>Ubicacion</td>
-							<td><input id="txt_ubicacion" class="ui-text" style="width:30px;padding:2px;text-align:center;"/></td>
+							<td><input id="txt_ubicacion" class="ui-text" style="width:350px;padding:2px;text-align:left;"/></td>
 						</tr>
 						<tr>
-							<td>DPropie</td>
-							<td><input id="txt_dpropie" class="ui-text" style="width:30px; padding:2px;text-align:center;" value="" /></td>
+							<td>Contribuyente</td>
+							<td><input id="txt_dpropie" class="ui-text" style="width:100px; padding:2px;text-align:left;" value="" /></td>
 							<td>&nbsp;</td>
 						</tr>
-						<tr>
-							<td>MPropie</td>
+					<!--	<tr>
+					 	<td>MPropie</td>
 							<td><input id="txt_mpropie" class="ui-text" style="width:30px;padding:2px;text-align:center;"/></td>
-						</tr>
+						</tr> -->	
 						<tr>
 							<td colspan="2" align="right"><input  type="button" id="btnguardar" name="guardar" value="Aceptar"/>&nbsp;&nbsp;<input type="button" id="btncancelar" name="cancelar" value="Cancelar"/></td>
 						</tr>
@@ -56,6 +60,7 @@
 	$("#btnguardar").button({
 		icons: {primary:'ui-icon-disk'}
 	}).bind('click', function(){
+		openDialogWarning("Los datos han sido guardados.", 380, 150);
 		closeDialog('jqDialog1');
 	});
 
