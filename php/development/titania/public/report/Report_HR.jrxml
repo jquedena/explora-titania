@@ -205,10 +205,6 @@ WHERE
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{c_idsigma}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="60" y="3" width="70" height="64"/>
-				<imageExpression><![CDATA["E:\\programas\\Escudo_municipalidad_lima.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>
