@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Rport_PU" language="groovy" pageWidth="595" pageHeight="421" orientation="Landscape" columnWidth="591" leftMargin="2" rightMargin="2" topMargin="2" bottomMargin="2">
-	<property name="ireport.zoom" value="1.2100000000000126"/>
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="41"/>
+	<property name="ireport.y" value="0"/>
 	<subDataset name="dataset1"/>
 	<parameter name="p_dpredio" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -25,15 +25,12 @@
 		, a.cconser, a.cmurcol, a.ctechos, a.cmpisos
 		, a.cpueven, a.crevest, a.cbanios, a.celectr
 		, a.idsigma, a.dpredio, a.cnitems, k.cperiod
-
-
-,o.idsigma as codcontri
-,o.vnombre|| ' ' ||  o.vpatern|| ' ' || o.vmatern as NombreContri,ctipper, o.nestado, o.ntipers, o.ntipper, o.cubigeo, o.cdenomi, o.vdirecc,
+        ,o.idsigma as codcontri
+        ,o.vnombre|| ' ' ||  o.vpatern|| ' ' || o.vmatern as NombreContri,ctipper, o.nestado, o.ntipers, o.ntipper, o.cubigeo, o.cdenomi, o.vdirecc,
        o.vnumero, o.vlote, o.vmanzan, o.vdpto, o.vreferen, o.ctipdoc, o.vnrodoc, o.dfecnac,
        o.csexo,o.dfecinic, o.cestciv,o.ctelfij, o.ctelmov, o.vcorreo,
        o.vobserv,p.*, q.vnombre as NombreCP,n.cclasif as clasificacion
        ,r.vdescri as TipoPredio,s.vdescri as CondicPre,t.vdescri as EstaPredio, u.vdescri as UsoPredio,n.nporcen,v.*,n.nterren as AreaTerreno,n.narecom as AreaComun,w.vnrodoc as CodigoPU
-
 	from registro.mconstr a
 	inner join public.mconten b on a.cmurcol=b.idsigma
 		inner join public.mconten c on a.ctechos=c.idsigma
@@ -53,12 +50,9 @@
 		inner join public.mconten r on n.ctippre=r.idsigma
 		inner join public.mconten s on n.ccondic=s.idsigma
 		inner join public.mconten t on n.cestado=t.idsigma
-
 		inner join public.mconten u on n.cusogen=u.idsigma
 		inner join registro.vpredio v on n.idsigma=v.dpredio
-
-inner join registro.mhresum w on n.mhresum=w.idsigma
-
+        inner join registro.mhresum w on n.mhresum=w.idsigma
 	where a.dpredio=$P{p_dpredio} and k.cperiod=(select max(bx.cperiod) from registro.mconstr ax inner join registro.dconstr bx on ax.idsigma=bx.mconstr where ax.dpredio= $P{p_dpredio})
 	order by a.cnumpis;]]>
 	</queryString>
@@ -185,37 +179,37 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="68" splitType="Stretch">
-			<staticText>
-				<reportElement x="158" y="10" width="244" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+		<band height="49" splitType="Stretch">
+			<textField>
+				<reportElement x="158" y="10" width="244" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[IMPUESTO PREDIAL 2012]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA["IMPUESTO PREDIAL " + $F{cperiod}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="484" y="-2" width="100" height="22"/>
+				<reportElement x="484" y="9" width="100" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
+					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PU]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="484" y="20" width="100" height="20"/>
+				<reportElement x="484" y="23" width="100" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[( Predio Urbano )]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="158" y="30" width="244" height="20"/>
+				<reportElement x="158" y="25" width="244" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<text><![CDATA[ACTUALIZACIÓN DE VALORES DEL PREDIO]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="484" y="40" width="100" height="13"/>
+				<reportElement x="484" y="36" width="100" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
@@ -224,15 +218,247 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 		</band>
 	</title>
 	<pageHeader>
-		<band height="184" splitType="Stretch">
+		<band height="120" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Transparent" x="116" y="10" width="473" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
 			<staticText>
-				<reportElement x="1" y="10" width="114" height="20"/>
+				<reportElement mode="Transparent" x="24" y="100" width="29" height="20" backcolor="#CCCCCC"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ANTIG. AÑOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="78" y="100" width="22" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="2" y="100" width="22" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PISO]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="183" y="100" width="75" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font size="6" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["VALOR UNITARIO
+POR <sup>M2</sup>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="258" y="100" width="57" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INCREMENTO
+5%(*)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="315" y="110" width="34" height="10" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="349" y="110" width="46" height="10" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[S/.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="315" y="100" width="80" height="10" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEPRECIACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="395" y="100" width="62" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR UNITARIO DEPRECIADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="515" y="100" width="74" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR DE CONSTRUCCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="457" y="100" width="58" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AREA
+CONSTRUIDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="100" y="100" width="23" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="123" y="100" width="60" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CATEGORIAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="53" y="100" width="25" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="36" width="100" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+					<paragraph leftIndent="3" rightIndent="3"/>
+				</textElement>
+				<text><![CDATA[UBICACION DEL PREDIO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="216" y="36" width="221" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrecp}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="116" y="22" width="473" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="116" y="36" width="473" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="10" width="114" height="12"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
@@ -240,13 +466,13 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<text><![CDATA[DOCUMENTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="54" width="114" height="20"/>
+				<reportElement x="2" y="36" width="114" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
@@ -254,13 +480,13 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<text><![CDATA[CODIGO PREDIAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="108" width="87" height="20"/>
+				<reportElement x="2" y="62" width="87" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
@@ -268,13 +494,13 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<text><![CDATA[COND. PROPIEDAD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="88" y="108" width="129" height="20"/>
+				<reportElement x="89" y="62" width="129" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
@@ -282,13 +508,13 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<text><![CDATA[EST. CONTRUCCION]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="217" y="108" width="97" height="20"/>
+				<reportElement x="218" y="62" width="97" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
@@ -296,27 +522,27 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<text><![CDATA[TIPO PREDIO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="314" y="108" width="122" height="20"/>
+				<reportElement x="315" y="62" width="122" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
+					<font fontName="SansSerif" size="7"/>
 				</textElement>
 				<text><![CDATA[USO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="436" y="108" width="81" height="20"/>
+				<reportElement x="437" y="62" width="81" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
@@ -324,13 +550,13 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<text><![CDATA[REGIMEN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="517" y="108" width="71" height="20"/>
+				<reportElement x="518" y="62" width="71" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
@@ -338,13 +564,13 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<text><![CDATA[% CONDOMINANTE]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="1" y="30" width="114" height="20"/>
+				<reportElement x="2" y="22" width="114" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
@@ -353,79 +579,22 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<textFieldExpression><![CDATA[$F{vnrodoc}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="1" y="74" width="114" height="20"/>
+				<reportElement x="2" y="48" width="114" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{dpredio}]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement x="115" y="10" width="473" height="20"/>
-			</rectangle>
-			<staticText>
-				<reportElement x="115" y="10" width="158" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font size="7"/>
-					<paragraph leftIndent="3" rightIndent="3"/>
-				</textElement>
-				<text><![CDATA[APELLIDOS Y NOMBRES O RAZON SOCIAL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="382" y="10" width="100" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[CODIGO CONTRIBUYENTE:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="484" y="10" width="100" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font size="7" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{codcontri}]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement x="115" y="30" width="473" height="20"/>
-			</rectangle>
-			<textField>
-				<reportElement x="115" y="30" width="209" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font size="7" isBold="true"/>
-					<paragraph leftIndent="3" rightIndent="3"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombrecontri}]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement x="115" y="54" width="473" height="20"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="115" y="74" width="473" height="20"/>
-			</rectangle>
-			<staticText>
-				<reportElement x="115" y="54" width="100" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font size="7"/>
-					<paragraph leftIndent="3" rightIndent="3"/>
-				</textElement>
-				<text><![CDATA[UBICACION DEL PREDIO:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="215" y="54" width="100" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font size="7" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombrecp}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ccodpre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="115" y="74" width="100" height="20"/>
+				<reportElement x="116" y="48" width="469" height="12"/>
 				<textElement verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 					<paragraph leftIndent="3" rightIndent="3"/>
@@ -433,21 +602,13 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<textFieldExpression><![CDATA[$F{vdirpre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="454" y="54" width="135" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="7" isBold="true"/>
-					<paragraph leftIndent="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA['Via: '+$F{mviadis}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="1" y="128" width="87" height="20"/>
+				<reportElement x="2" y="74" width="87" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
@@ -455,13 +616,13 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<textFieldExpression><![CDATA[$F{condicpre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="88" y="128" width="129" height="20"/>
+				<reportElement x="89" y="74" width="129" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
@@ -469,13 +630,13 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<textFieldExpression><![CDATA[$F{estapredio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="217" y="128" width="97" height="20"/>
+				<reportElement x="218" y="74" width="97" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
@@ -483,13 +644,13 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<textFieldExpression><![CDATA[$F{tipopredio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="314" y="128" width="122" height="20"/>
+				<reportElement x="315" y="74" width="122" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
@@ -497,13 +658,13 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<textFieldExpression><![CDATA[$F{usopredio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="517" y="128" width="71" height="20"/>
+				<reportElement x="518" y="74" width="71" height="12"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
@@ -511,308 +672,172 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<textFieldExpression><![CDATA[$F{nporcen}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="164" width="588" height="20"/>
+				<reportElement x="2" y="88" width="588" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9" isBold="true"/>
+					<font fontName="SansSerif" size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DATOS DE LA CONSTRUCCION]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="437" y="74" width="81" height="12"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["regimen"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="116" y="10" width="158" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+					<paragraph leftIndent="3" rightIndent="3"/>
+				</textElement>
+				<text><![CDATA[APELLIDOS Y NOMBRES O RAZON SOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="449" y="10" width="102" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[CODIGO CONTRIBUYENTE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="546" y="10" width="39" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codcontri}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="22" width="469" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+					<paragraph leftIndent="3" rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrecontri}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="116" y="48" width="473" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="529" y="36" width="22" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[VIA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="546" y="36" width="39" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mviadis}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
-	<columnHeader>
-		<band height="27" splitType="Stretch">
-			<staticText>
-				<reportElement mode="Opaque" x="24" y="1" width="29" height="26" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[ANTIG. AÑOS]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="78" y="1" width="22" height="26" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[MAT]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="2" y="1" width="22" height="26" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[PISO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="183" y="1" width="75" height="26" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[VALOR UNITARIO POR M2]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="258" y="1" width="57" height="26" backcolor="#CCCCCC"/>
-				<box bottomPadding="0">
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[5%(*) INCREMENTO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="316" y="14" width="33" height="13" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[%]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="349" y="14" width="46" height="13" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[S/.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="315" y="1" width="80" height="13" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[DEPRECIACION]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="395" y="1" width="62" height="26" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[VALOR UNITARIO DEPRECIADO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="513" y="1" width="74" height="26" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[VALOR DE CONSTRUCCION]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="457" y="1" width="56" height="26" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[AREA CONSTRUIDA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="100" y="1" width="23" height="26" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[EST]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="123" y="1" width="60" height="26" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[CATEGORIAS]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="53" y="1" width="25" height="26" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[CLAS]]></text>
-			</staticText>
-		</band>
-	</columnHeader>
 	<detail>
-		<band height="14" splitType="Stretch">
+		<band height="10" splitType="Stretch">
 			<textField>
-				<reportElement positionType="Float" x="24" y="0" width="29" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement positionType="Float" x="24" y="0" width="29" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nantigu}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="2" y="0" width="22" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement positionType="Float" x="2" y="0" width="22" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vmpisos}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.000">
-				<reportElement positionType="Float" x="183" y="0" width="75" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement positionType="Float" x="183" y="0" width="75" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Right">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nvaluni}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="258" y="0" width="57" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement positionType="Float" x="258" y="0" width="57" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Right">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nincrem}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="78" y="0" width="22" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement positionType="Float" x="78" y="0" width="22" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vmateri}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="100" y="0" width="23" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement positionType="Float" x="100" y="0" width="23" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cconser}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="123" y="0" width="60" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement positionType="Float" x="123" y="0" width="60" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
@@ -820,41 +845,41 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<textFieldExpression><![CDATA[$F{vmurcol}+$F{vtechos}+$F{vmpisos}+$F{vpueven}+$F{vrevest}+$F{vbanios}+$F{velectr}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="53" y="0" width="25" height="13"/>
+				<reportElement x="53" y="0" width="25" height="10"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{clasificacion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0">
-				<reportElement positionType="Float" x="316" y="0" width="33" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement positionType="Float" x="315" y="0" width="34" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{npordep}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.000">
-				<reportElement positionType="Float" x="349" y="0" width="46" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement positionType="Float" x="349" y="0" width="46" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
@@ -863,13 +888,13 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<textFieldExpression><![CDATA[$F{ndepred}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.000">
-				<reportElement positionType="Float" x="395" y="0" width="62" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement positionType="Float" x="395" y="0" width="62" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
@@ -878,28 +903,28 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<textFieldExpression><![CDATA[$F{nvalare}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.000">
-				<reportElement x="513" y="0" width="74" height="13"/>
+				<reportElement x="515" y="0" width="74" height="10"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Right">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
 					<paragraph rightIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nvalpis}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00">
-				<reportElement x="457" y="0" width="56" height="13"/>
+				<reportElement x="457" y="0" width="58" height="10"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
@@ -914,23 +939,36 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 	</pageFooter>
 	<summary>
 		<band height="176" splitType="Stretch">
+			<rectangle>
+				<reportElement x="201" y="39" width="208" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
 			<textField pattern="###0.000">
-				<reportElement x="514" y="14" width="73" height="20"/>
+				<reportElement x="514" y="14" width="73" height="10"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="7"/>
+					<font size="7" isBold="true"/>
 					<paragraph rightIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{TotVConst}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="416" y="14" width="98" height="20"/>
+				<reportElement x="417" y="14" width="97" height="10"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
 					<paragraph rightIndent="3"/>
@@ -938,7 +976,14 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<text><![CDATA[Valor Total de la Construcción]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="416" y="34" width="98" height="20"/>
+				<reportElement x="417" y="24" width="97" height="10"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
 					<paragraph rightIndent="3"/>
@@ -946,7 +991,14 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<text><![CDATA[Área Común Construida]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="416" y="54" width="98" height="20"/>
+				<reportElement x="417" y="34" width="97" height="10"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
 					<paragraph rightIndent="3"/>
@@ -954,7 +1006,14 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<text><![CDATA[Otras Instalaciones]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="416" y="74" width="98" height="20"/>
+				<reportElement x="417" y="44" width="97" height="10"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
 					<paragraph rightIndent="3"/>
@@ -962,7 +1021,14 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<text><![CDATA[Valor del Terreno]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="416" y="114" width="98" height="20"/>
+				<reportElement x="417" y="64" width="97" height="10"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
 					<paragraph rightIndent="3"/>
@@ -970,98 +1036,107 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<text><![CDATA[% del Autovaluo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="416" y="94" width="98" height="20"/>
+				<reportElement x="417" y="54" width="97" height="10"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
 					<paragraph rightIndent="3"/>
 				</textElement>
 				<text><![CDATA[Autovaluo]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="514" y="34" width="73" height="20"/>
+			<textField pattern="###0.000" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="514" y="24" width="73" height="10" forecolor="#000000"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Static text]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[0.00]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="1" y="21" width="66" height="13"/>
+				<reportElement x="2" y="21" width="88" height="13"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="6" isItalic="true" isUnderline="false"/>
+					<font size="5" isBold="true" isItalic="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[CLASIFICACIÓN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="67" y="21" width="48" height="13"/>
+				<reportElement x="90" y="21" width="42" height="13"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="6" isItalic="true" isUnderline="false"/>
+					<font size="5" isBold="true" isItalic="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[MATERIAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="115" y="21" width="71" height="13"/>
+				<reportElement x="132" y="21" width="60" height="13"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="6" isItalic="true" isUnderline="false"/>
+					<font size="5" isBold="true" isItalic="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[EST. CONSTRUCIÓN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="1" y="34" width="66" height="72"/>
+				<reportElement stretchType="RelativeToBandHeight" x="2" y="34" width="88" height="32"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement verticalAlignment="Top">
-					<font size="6" isBold="false"/>
+					<font size="5" isBold="false"/>
 					<paragraph leftIndent="3"/>
 				</textElement>
 				<text><![CDATA[1. CASA HABITACIÓN
 2. TIENDA DEPÓSITO ALMACÉN
 3. EDIFICIO (PREDIO EN EDIFICIO)
-4. CLÍNICA, HOSPITAL, CINE, INDUSTRIA, TALLER]]></text>
+4. CLÍNICA, HOSPITAL, CINE,
+    INDUSTRIA, TALLER]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="67" y="34" width="48" height="72"/>
+				<reportElement stretchType="RelativeToBandHeight" x="90" y="34" width="42" height="32"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement verticalAlignment="Top">
-					<font size="6" isBold="false"/>
+					<font size="5" isBold="false"/>
 					<paragraph leftIndent="3"/>
 				</textElement>
 				<text><![CDATA[1. CONCRETO
@@ -1069,16 +1144,16 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 3. ADOBE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="115" y="34" width="71" height="72"/>
+				<reportElement stretchType="RelativeToBandHeight" x="132" y="34" width="60" height="32"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement verticalAlignment="Top">
-					<font size="6" isBold="false"/>
+					<font size="5" isBold="false"/>
 					<paragraph leftIndent="3"/>
 				</textElement>
 				<text><![CDATA[1. MUY BUENO
@@ -1087,9 +1162,6 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 4. MALO
 ]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement x="194" y="1" width="208" height="15"/>
-			</rectangle>
 			<staticText>
 				<reportElement x="215" y="1" width="87" height="15"/>
 				<textElement verticalAlignment="Middle">
@@ -1098,24 +1170,24 @@ inner join registro.mhresum w on n.mhresum=w.idsigma
 				<text><![CDATA[Total área construida (m2) :]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="194" y="59" width="230" height="34"/>
+				<reportElement x="338" y="106" width="230" height="34"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="194" y="61" width="230" height="15"/>
+				<reportElement x="338" y="108" width="230" height="15"/>
 				<textElement verticalAlignment="Top">
 					<font size="7"/>
 				</textElement>
 				<text><![CDATA[Área del Terreno (m2)  Área Común Terreno (m2)  Valor Arancel por m2]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="194" y="76" width="224" height="15"/>
+				<reportElement x="338" y="123" width="224" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[(                             +                                 ) X]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="230" y="41" width="148" height="18"/>
+				<reportElement x="374" y="88" width="148" height="18"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="7" isBold="true"/>
 				</textElement>
@@ -1174,83 +1246,91 @@ Tabla de Depreciación Resolución Ministerial N° 126-2007-Vivienda]]></text>
 				<textElement>
 					<font size="7"/>
 				</textElement>
-				<text><![CDATA[(*) SOLO PARA PREDIOS UBIVADOS A PARTIR DE 5TO PISO     (**) VALORES ESTIMADOS]]></text>
+				<text><![CDATA[(*) SOLO PARA PREDIOS UBIVADOS A PARTIR DE 5TO PISO
+(**) VALORES ESTIMADOS]]></text>
 			</staticText>
 			<textField pattern="###0.00">
-				<reportElement x="356" y="77" width="57" height="13"/>
+				<reportElement x="500" y="124" width="57" height="13"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{narance}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00">
-				<reportElement x="514" y="54" width="73" height="20"/>
+				<reportElement x="514" y="34" width="73" height="10"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="7"/>
+					<font size="7" isBold="true"/>
 					<paragraph rightIndent="3"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nvalins}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00">
-				<reportElement x="196" y="77" width="65" height="13"/>
+				<reportElement x="201" y="77" width="65" height="13"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textElement textAlignment="Center">
 					<font size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{areaterreno}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00">
-				<reportElement x="277" y="76" width="56" height="13"/>
+				<reportElement x="421" y="123" width="56" height="13"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{areacomun}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="514" y="74" width="73" height="20"/>
+				<reportElement x="514" y="44" width="73" height="10"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="7"/>
+					<font size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nvalter}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="514" y="94" width="73" height="20"/>
+				<reportElement x="514" y="54" width="73" height="10"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="7"/>
+					<font size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{TotVConst}+$F{nvalter}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="514" y="114" width="73" height="20"/>
+				<reportElement x="514" y="64" width="73" height="10"/>
 				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="7"/>
+					<font size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{TotVConst}+$F{nvalter}]]></textFieldExpression>
 			</textField>
@@ -1261,6 +1341,12 @@ Tabla de Depreciación Resolución Ministerial N° 126-2007-Vivienda]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{Area_Const}]]></textFieldExpression>
 			</textField>
+			<componentElement>
+				<reportElement x="302" y="27" width="100" height="39"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code39" drawText="false" checksumRequired="false" barHeight="150">
+					<jr:codeExpression><![CDATA[$F{ccodpre}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
 		</band>
 	</summary>
 </jasperReport>
