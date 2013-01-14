@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Report_HR" language="groovy" printOrder="Horizontal" pageWidth="595" pageHeight="421" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.9487171000000083"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="12"/>
 	<property name="ireport.y" value="0"/>
 	<subDataset name="dataset1"/>
 	<parameter name="p_mhresum" class="java.lang.String">
@@ -132,13 +132,6 @@ WHERE
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[DOMICILIO FISCAL :]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="249" y="23" width="117" height="20"/>
-				<textElement textAlignment="Center">
-					<font size="6"/>
-				</textElement>
-				<text><![CDATA[DECRETO LEGISLATIVO NRO.776 HOJA DE ACTUALIZACION DE VAORES]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="205" y="67" width="234" height="15"/>
