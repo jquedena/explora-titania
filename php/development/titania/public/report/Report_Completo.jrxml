@@ -12,9 +12,12 @@
 	<parameter name="p_mperson" class="java.lang.String">
 		<defaultValueExpression><![CDATA["0000000158"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="p_ccodpre" class="java.lang.String">
+		<defaultValueExpression><![CDATA["-1"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[select * from pl_select.listar_predios($P{p_mhresum}, $P{p_cperiod}, $P{p_mperson})
-order by vnrodoc desc, cperiod desc, ccodpre;]]>
+		<![CDATA[select * from pl_select.listar_predios($P{p_mhresum}, $P{p_cperiod}, $P{p_ccodpre}, $P{p_mperson})
+order by vnrodoc desc, cperiod desc, ctiprep, ccodpre;]]>
 	</queryString>
 	<field name="ccodpre" class="java.lang.String"/>
 	<field name="tnumero" class="java.lang.String"/>
@@ -79,26 +82,24 @@ order by vnrodoc desc, cperiod desc, ccodpre;]]>
 	<field name="vclasif" class="java.lang.String"/>
 	<field name="ccodvia" class="java.lang.String"/>
 	<field name="ncomter" class="java.math.BigDecimal"/>
+	<field name="direccf" class="java.lang.String"/>
 	<field name="ctiprep" class="java.lang.Integer"/>
-	<variable name="tarecon" class="java.math.BigDecimal" resetType="Group" resetGroup="vnrodoc+ccodpre+cperiod" calculation="Sum">
+	<field name="vtiprep" class="java.lang.String"/>
+	<field name="vdesrep" class="java.lang.String"/>
+	<field name="vinstal" class="java.lang.String"/>
+	<field name="ninstal" class="java.math.BigDecimal"/>
+	<field name="codpre2" class="java.lang.String"/>
+	<variable name="narecon_sum" class="java.math.BigDecimal" resetType="Group" resetGroup="vnrodoc+cperiod+ccodpre" calculation="Sum">
 		<variableExpression><![CDATA[$F{narecon}]]></variableExpression>
 		<initialValueExpression><![CDATA[]]></initialValueExpression>
 	</variable>
-	<group name="ctiprep" isStartNewPage="true">
-		<groupExpression><![CDATA[$F{ctiprep}]]></groupExpression>
+	<variable name="ccodpre_count" class="java.lang.Integer" resetType="Group" resetGroup="vnrodoc+ctiprep" calculation="Count">
+		<variableExpression><![CDATA[$F{ccodpre}]]></variableExpression>
+	</variable>
+	<group name="vnrodoc+ctiprep" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{vnrodoc}+$F{ctiprep}]]></groupExpression>
 		<groupHeader>
-			<band/>
-		</groupHeader>
-		<groupFooter>
-			<band height="104"/>
-		</groupFooter>
-	</group>
-	<group name="vnrodoc+ccodpre+cperiod" isStartNewPage="true">
-		<groupExpression><![CDATA[$F{vnrodoc}+$F{ccodpre}+$F{cperiod}]]></groupExpression>
-		<groupHeader>
-			<band height="142" splitType="Stretch">
-				<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2) ||
-$F{ctiprep} == new Integer(3)]]></printWhenExpression>
+			<band height="66">
 				<textField>
 					<reportElement x="173" y="20" width="244" height="16"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
@@ -106,20 +107,20 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					</textElement>
 					<textFieldExpression><![CDATA["IMPUESTO PREDIAL " + $F{cperiod}]]></textFieldExpression>
 				</textField>
-				<staticText>
+				<textField>
 					<reportElement x="484" y="20" width="100" height="16"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 						<font size="12" isBold="true"/>
 					</textElement>
-					<text><![CDATA[PU]]></text>
-				</staticText>
-				<staticText>
+					<textFieldExpression><![CDATA[$F{vtiprep}]]></textFieldExpression>
+				</textField>
+				<textField>
 					<reportElement x="484" y="34" width="100" height="12"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 						<font size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[( Predio Urbano )]]></text>
-				</staticText>
+					<textFieldExpression><![CDATA["( " + $F{vdesrep} + " )"]]></textFieldExpression>
+				</textField>
 				<textField>
 					<reportElement x="484" y="44" width="100" height="12"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -127,26 +128,60 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					</textElement>
 					<textFieldExpression><![CDATA['Nro. '+$F{vnrodoc}]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="173" y="36" width="244" height="8"/>
+					<textElement textAlignment="Center">
+						<font size="6" isBold="false"/>
+					</textElement>
+					<text><![CDATA[DECRETO LEGISLATIVO NRO.776 HOJA DE ACTUALIZACION DE VALORES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="16" y="34" width="148" height="20"/>
+					<textElement textAlignment="Center">
+						<font size="5"/>
+					</textElement>
+					<text><![CDATA[GERENCIA DE ADMINISTRACIÓN TRIBUTARIA
+SUB GERENCIA DE REGISTRO Y ORIENTACIÓN
+AL CONTRIBUYETE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="16" y="22" width="148" height="12"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MUNICIPALIDAD DE PUENTE PIEDRA]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="vnrodoc+cperiod+ccodpre" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{vnrodoc}+$F{cperiod}+$F{ccodpre}]]></groupExpression>
+		<groupHeader>
+			<band height="77" splitType="Stretch">
+				<printWhenExpression><![CDATA[$F{ctiprep} != new Integer(1)]]></printWhenExpression>
 				<rectangle>
-					<reportElement mode="Transparent" x="116" y="104" width="468" height="12"/>
+					<reportElement mode="Transparent" x="116" y="39" width="468" height="12"/>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
 				</rectangle>
 				<rectangle>
-					<reportElement mode="Transparent" x="116" y="92" width="468" height="12"/>
+					<reportElement mode="Transparent" x="116" y="27" width="468" height="12"/>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
 				</rectangle>
 				<rectangle>
-					<reportElement mode="Transparent" x="116" y="66" width="468" height="12"/>
+					<reportElement mode="Transparent" x="116" y="1" width="468" height="12"/>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
 				</rectangle>
 				<staticText>
-					<reportElement x="116" y="92" width="95" height="12"/>
+					<reportElement x="116" y="27" width="95" height="12"/>
 					<textElement verticalAlignment="Middle">
 						<font size="6"/>
 						<paragraph leftIndent="3" rightIndent="3"/>
@@ -154,20 +189,20 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[UBICACION DEL PREDIO:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="206" y="92" width="312" height="12"/>
+					<reportElement x="206" y="27" width="312" height="12"/>
 					<textElement verticalAlignment="Middle">
 						<font size="7" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{tnompob}]]></textFieldExpression>
 				</textField>
 				<rectangle>
-					<reportElement mode="Transparent" x="116" y="78" width="468" height="12"/>
+					<reportElement mode="Transparent" x="116" y="13" width="468" height="12"/>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
 				</rectangle>
 				<staticText>
-					<reportElement x="9" y="66" width="107" height="12"/>
+					<reportElement x="9" y="1" width="107" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -181,7 +216,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[DOCUMENTO]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="9" y="92" width="107" height="12"/>
+					<reportElement x="9" y="27" width="107" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -195,7 +230,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[CODIGO PREDIAL]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="9" y="118" width="87" height="12"/>
+					<reportElement x="9" y="53" width="87" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -209,7 +244,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[COND. PROPIEDAD]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="96" y="118" width="122" height="12"/>
+					<reportElement x="96" y="53" width="122" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -223,7 +258,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[EST. CONTRUCCION]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="218" y="118" width="97" height="12"/>
+					<reportElement x="218" y="53" width="97" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -237,7 +272,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[TIPO PREDIO]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="315" y="118" width="122" height="12"/>
+					<reportElement x="315" y="53" width="122" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -251,7 +286,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[USO]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="437" y="118" width="81" height="12"/>
+					<reportElement x="437" y="53" width="81" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -265,7 +300,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[REGIMEN]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="518" y="118" width="66" height="12"/>
+					<reportElement x="518" y="53" width="66" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -279,7 +314,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[% CONDOMINANTE]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="9" y="78" width="107" height="12"/>
+					<reportElement x="9" y="13" width="107" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -291,10 +326,10 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 						<font size="7" isBold="true"/>
 						<paragraph leftIndent="3"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{vnrodoc}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{ptipdoc} + " - " +$F{pnrodoc}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="9" y="104" width="107" height="12"/>
+					<reportElement x="9" y="39" width="107" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -309,7 +344,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<textFieldExpression><![CDATA[$F{ccodpre}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="116" y="104" width="469" height="12"/>
+					<reportElement x="116" y="39" width="469" height="12"/>
 					<textElement verticalAlignment="Middle">
 						<font size="7" isBold="true"/>
 						<paragraph leftIndent="3" rightIndent="3"/>
@@ -317,7 +352,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<textFieldExpression><![CDATA[$F{vdirpre}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="9" y="130" width="87" height="12"/>
+					<reportElement x="9" y="65" width="87" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -331,7 +366,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<textFieldExpression><![CDATA[$F{vcondic}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="96" y="130" width="122" height="12"/>
+					<reportElement x="96" y="65" width="122" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -345,7 +380,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<textFieldExpression><![CDATA[$F{vestado}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="218" y="130" width="97" height="12"/>
+					<reportElement x="218" y="65" width="97" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -359,7 +394,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<textFieldExpression><![CDATA[$F{vsubtip}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="315" y="130" width="122" height="12"/>
+					<reportElement x="315" y="65" width="122" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -373,7 +408,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<textFieldExpression><![CDATA[$F{vusogen}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="518" y="130" width="66" height="12"/>
+					<reportElement x="518" y="65" width="66" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -387,7 +422,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<textFieldExpression><![CDATA[$F{nporcen}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="437" y="130" width="81" height="12"/>
+					<reportElement x="437" y="65" width="81" height="12"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -401,7 +436,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<textFieldExpression><![CDATA["EXONERADO"+$F{vregime}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="116" y="66" width="158" height="12"/>
+					<reportElement x="116" y="1" width="158" height="12"/>
 					<textElement verticalAlignment="Middle">
 						<font size="6"/>
 						<paragraph leftIndent="3" rightIndent="3"/>
@@ -409,21 +444,21 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[APELLIDOS Y NOMBRES O RAZON SOCIAL]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="445" y="66" width="102" height="12"/>
+					<reportElement x="445" y="1" width="102" height="12"/>
 					<textElement verticalAlignment="Middle">
 						<font size="6"/>
 					</textElement>
 					<text><![CDATA[CODIGO CONTRIBUYENTE:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="542" y="66" width="39" height="12"/>
+					<reportElement x="542" y="1" width="39" height="12"/>
 					<textElement verticalAlignment="Middle">
 						<font size="7" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{mperson}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="116" y="78" width="469" height="12"/>
+					<reportElement x="116" y="13" width="469" height="12"/>
 					<textElement verticalAlignment="Middle">
 						<font size="7" isBold="true"/>
 						<paragraph leftIndent="3" rightIndent="3"/>
@@ -431,26 +466,19 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<textFieldExpression><![CDATA[$F{vnombre}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="525" y="92" width="22" height="12"/>
+					<reportElement x="525" y="27" width="22" height="12"/>
 					<textElement verticalAlignment="Middle">
 						<font size="7"/>
 					</textElement>
 					<text><![CDATA[VIA:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="542" y="92" width="39" height="12"/>
+					<reportElement x="542" y="27" width="39" height="12"/>
 					<textElement verticalAlignment="Middle">
 						<font size="7" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{ccodvia}]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement x="173" y="36" width="244" height="10"/>
-					<textElement textAlignment="Center">
-						<font size="7" isBold="false"/>
-					</textElement>
-					<text><![CDATA[DECRETO LEGISLATIVO NRO.776 HOJA DE ACTUALIZACION DE VALORES]]></text>
-				</staticText>
 			</band>
 			<band height="32">
 				<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
@@ -664,6 +692,135 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 			<band height="30">
 				<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(3)]]></printWhenExpression>
 			</band>
+			<band height="84">
+				<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(1)]]></printWhenExpression>
+				<staticText>
+					<reportElement mode="Transparent" x="9" y="74" width="89" height="10" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CODIGO PREDIAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="98" y="74" width="335" height="10" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[UBICACION DEL PREDIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="433" y="74" width="52" height="10" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[% COND.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="485" y="74" width="100" height="10" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[AUTOVALUO]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="84" y="37" width="497" height="20"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{direccf}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="9" y="37" width="75" height="10"/>
+					<textElement verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<text><![CDATA[DOMICILIO FISCAL :]]></text>
+				</staticText>
+				<textField evaluationTime="Report">
+					<reportElement x="100" y="59" width="33" height="10"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{ccodpre_count}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="68" y="25" width="75" height="10"/>
+					<textElement verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ptipdoc} + " - " +$F{pnrodoc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="9" y="1" width="115" height="10"/>
+					<textElement verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<text><![CDATA[CODIGO DEL CONTRIBUYENTE :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="9" y="25" width="58" height="10"/>
+					<textElement verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<text><![CDATA[DOCUMENTO :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="164" y="13" width="417" height="10"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vnombre}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="124" y="1" width="100" height="10"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mperson}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="9" y="59" width="90" height="10"/>
+					<textElement verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<text><![CDATA[PREDIOS DECLARADOS :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="9" y="13" width="155" height="10"/>
+					<textElement verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<text><![CDATA[APELLIDOS Y NOMBRES O RAZON SOCIAL :]]></text>
+				</staticText>
+			</band>
 		</groupHeader>
 		<groupFooter>
 			<band/>
@@ -862,20 +1019,66 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 				<textFieldExpression><![CDATA[$F{narecon}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="22">
-			<staticText>
-				<reportElement x="153" y="12" width="100" height="10"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[ccodpre]]></text>
-			</staticText>
+		<band height="10">
+			<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(1)]]></printWhenExpression>
 			<textField>
-				<reportElement x="253" y="12" width="100" height="10"/>
-				<textElement>
+				<reportElement x="433" y="0" width="52" height="10"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nporcen}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="0" width="335" height="10"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tnumero}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="485" y="0" width="100" height="10"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7"/>
+					<paragraph rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nvalpre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9" y="0" width="89" height="10"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ccodpre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{codpre2}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -883,8 +1086,7 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 		<band height="96" splitType="Stretch">
 			<frame>
 				<reportElement x="9" y="0" width="576" height="96">
-					<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2) ||
-$F{ctiprep} == new Integer(3)]]></printWhenExpression>
+					<printWhenExpression><![CDATA[$F{ctiprep} != new Integer(1)]]></printWhenExpression>
 				</reportElement>
 				<textField pattern="#,##0.00">
 					<reportElement x="502" y="0" width="73" height="10"/>
@@ -902,7 +1104,9 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<textFieldExpression><![CDATA[$F{nvalpis}]]></textFieldExpression>
 				</textField>
 				<textField pattern="###0.00">
-					<reportElement x="231" y="30" width="42" height="10"/>
+					<reportElement x="231" y="30" width="42" height="10">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<box>
 						<pen lineWidth="0.0"/>
 						<topPen lineWidth="0.0"/>
@@ -916,7 +1120,9 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<textFieldExpression><![CDATA[$F{nterren}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="226" y="30" width="5" height="10"/>
+					<reportElement x="226" y="30" width="5" height="10">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="7" isBold="true"/>
 					</textElement>
@@ -930,14 +1136,18 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[FECHA DE EMISION:]]></text>
 				</staticText>
 				<textField pattern="###0.00">
-					<reportElement x="279" y="30" width="42" height="10"/>
+					<reportElement x="279" y="30" width="42" height="10">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="7" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{ncomter}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="225" y="12" width="154" height="9"/>
+					<reportElement x="225" y="12" width="154" height="9">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<box>
 						<pen lineWidth="0.0"/>
 						<topPen lineWidth="0.0"/>
@@ -981,7 +1191,9 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[Valor del Terreno]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="89" y="11" width="42" height="13"/>
+					<reportElement x="89" y="11" width="42" height="13">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -995,7 +1207,9 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[MATERIAL]]></text>
 				</staticText>
 				<staticText>
-					<reportElement stretchType="RelativeToBandHeight" x="89" y="24" width="42" height="32"/>
+					<reportElement stretchType="RelativeToBandHeight" x="89" y="24" width="42" height="32">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -1012,7 +1226,9 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 3. ADOBE]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="131" y="11" width="60" height="13"/>
+					<reportElement x="131" y="11" width="60" height="13">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -1026,7 +1242,9 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[EST. CONSTRUCIÓN]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="1" y="58" width="165" height="14"/>
+					<reportElement x="1" y="58" width="165" height="14">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<textElement>
 						<font size="5"/>
 					</textElement>
@@ -1049,7 +1267,9 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[Valor Total de la Construcción]]></text>
 				</staticText>
 				<textField pattern="###0.00">
-					<reportElement x="332" y="30" width="42" height="10"/>
+					<reportElement x="332" y="30" width="42" height="10">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="7" isBold="true"/>
 					</textElement>
@@ -1071,7 +1291,9 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[Autovaluo]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Transparent" x="278" y="22" width="45" height="10" forecolor="#000000" backcolor="#FFFFFF"/>
+					<reportElement mode="Transparent" x="278" y="22" width="45" height="10" forecolor="#000000" backcolor="#FFFFFF">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
 						<font fontName="SansSerif" size="5" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 						<paragraph lineSpacing="Single"/>
@@ -1079,7 +1301,9 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<text><![CDATA[Área Común (m2)]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Transparent" x="331" y="22" width="45" height="10" forecolor="#000000" backcolor="#FFFFFF"/>
+					<reportElement mode="Transparent" x="331" y="22" width="45" height="10" forecolor="#000000" backcolor="#FFFFFF">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
 						<font fontName="SansSerif" size="5" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 						<paragraph lineSpacing="Single"/>
@@ -1102,7 +1326,9 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<textFieldExpression><![CDATA[$F{nvalins}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="228" y="2" width="87" height="9"/>
+					<reportElement x="228" y="2" width="87" height="9">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<textElement verticalAlignment="Middle">
 						<font size="7"/>
 					</textElement>
@@ -1139,14 +1365,18 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					<textFieldExpression><![CDATA[$F{nvalter}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="322" y="30" width="10" height="10"/>
+					<reportElement x="322" y="30" width="10" height="10">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="7" isBold="true"/>
 					</textElement>
 					<text><![CDATA[) x]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="230" y="22" width="45" height="10"/>
+					<reportElement x="230" y="22" width="45" height="10">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="5" isBold="true"/>
 					</textElement>
@@ -1166,7 +1396,9 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 					</jr:barbecue>
 				</componentElement>
 				<staticText>
-					<reportElement x="1" y="74" width="275" height="20"/>
+					<reportElement x="1" y="74" width="275" height="20">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -1182,14 +1414,18 @@ $F{ctiprep} == new Integer(3)]]></printWhenExpression>
 Tabla de Depreciación Resolución Ministerial N° 126-2007-Vivienda]]></text>
 				</staticText>
 				<textField pattern="#,##0.00">
-					<reportElement x="316" y="2" width="60" height="9"/>
+					<reportElement x="316" y="2" width="60" height="9">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font size="7"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$V{tarecon}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$V{narecon_sum}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement stretchType="RelativeToBandHeight" x="1" y="24" width="88" height="32"/>
+					<reportElement stretchType="RelativeToBandHeight" x="1" y="24" width="88" height="32">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -1223,7 +1459,9 @@ Tabla de Depreciación Resolución Ministerial N° 126-2007-Vivienda]]></text>
 					<text><![CDATA[Área Común Construida]]></text>
 				</staticText>
 				<rectangle>
-					<reportElement mode="Transparent" x="225" y="2" width="154" height="9"/>
+					<reportElement mode="Transparent" x="225" y="2" width="154" height="9">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
@@ -1244,7 +1482,9 @@ Tabla de Depreciación Resolución Ministerial N° 126-2007-Vivienda]]></text>
 					<textFieldExpression><![CDATA[$F{nvalpre}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="1" y="11" width="88" height="13"/>
+					<reportElement x="1" y="11" width="88" height="13">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -1258,7 +1498,9 @@ Tabla de Depreciación Resolución Ministerial N° 126-2007-Vivienda]]></text>
 					<text><![CDATA[CLASIFICACIÓN]]></text>
 				</staticText>
 				<staticText>
-					<reportElement stretchType="RelativeToBandHeight" x="131" y="24" width="60" height="32"/>
+					<reportElement stretchType="RelativeToBandHeight" x="131" y="24" width="60" height="32">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -1307,13 +1549,17 @@ Tabla de Depreciación Resolución Ministerial N° 126-2007-Vivienda]]></text>
 					<textFieldExpression><![CDATA[0.00]]></textFieldExpression>
 				</textField>
 				<rectangle>
-					<reportElement mode="Transparent" x="225" y="21" width="154" height="20"/>
+					<reportElement mode="Transparent" x="225" y="21" width="154" height="20">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
 				</rectangle>
 				<staticText>
-					<reportElement x="274" y="30" width="5" height="10"/>
+					<reportElement x="274" y="30" width="5" height="10">
+						<printWhenExpression><![CDATA[$F{ctiprep} == new Integer(2)]]></printWhenExpression>
+					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="7" isBold="true"/>
 					</textElement>
