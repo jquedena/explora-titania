@@ -27,7 +27,7 @@
     <table id="tblListaPredio"></table>
     <div id="tblListaPredio"></div>
 </div>
-<div id="container" style="min-width: 400px; height: 150px; margin: 0 auto"></div>
+<div id="container" style="display: none; min-width: 400px; height: 150px; margin: 0 auto"></div>
 <script type="text/javascript">
     verPredio = function(rowid, iRow, iCol, e) {
         row = $("#tblListaPredio").jqGrid('getRowData', rowid);
@@ -48,7 +48,7 @@
     
     optionPredio = {
         width: 1000,
-        height: 210,
+        height: 350,
         colNames: ['Predio',
             'Direcci\u00F3n',
             'Uso',
@@ -148,7 +148,7 @@
 			['21/05/2012', 1]
 		];
 
-		chart = new Highcharts.Chart(optionsLine);
+		// chart = new Highcharts.Chart(optionsLine);
 	});
 
 </script>
