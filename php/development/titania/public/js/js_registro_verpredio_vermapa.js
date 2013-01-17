@@ -11,7 +11,7 @@ var map = null,
 	image = pathImage + '../img/casa.png',
 		markersArray = [],
 		mapOptions = null,
-		geocoder = new google.maps.Geocoder();
+		geocoder = null;
 
 	clearOverlays = function() {
 		if (markersArray.length>0)
@@ -24,8 +24,8 @@ var map = null,
 		var lng = location.lng();
   
 		$('#longitud').val(lat);
-	$('#latitud').val(lng);
-	$("#zoom").val(map.getZoom());
+		$('#latitud').val(lng);
+		$("#zoom").val(map.getZoom());
   
 		clearOverlays();
 		var marker = new google.maps.Marker({
@@ -74,53 +74,3 @@ initMap = function(){
 	google.maps.event.addListener(map, 'click', function(event) {placeMarker(event.latLng);});
 	markersArray.push(marker);
 };
-
-$(document).ready(function() {
-	$("#direccionXY").autocomplete({          
-		source: function(request, response) {
-			if (geocoder == null){
-				geocoder = new google.maps.Geocoder();
-			} 
-			geocoder.geocode( {'address': request.term }, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					// var searchLoc = results[0].geometry.location;
-					// var bounds = results[0].geometry.bounds;
-					var lat = results[0].geometry.location.lat();
-					var lng = results[0].geometry.location.lng();
-					var latlng = new google.maps.LatLng(lat, lng);
-
-					geocoder.geocode({'latLng': latlng}, function(results1, status1) {
-						if (status1 == google.maps.GeocoderStatus.OK) {
-							if (results1[1]) {
-								response($.map(results1, function(loc) {
-									return {
-										label  : loc.formatted_address,
-										value  : loc.formatted_address,
-										bounds   : loc.geometry.bounds
-									};
-								}));
-							}
-						}
-					});
-				}
-			});
-		},
-		select: function(event,ui){
-			// var pos = ui.item.position;
-			// var lct = ui.item.locType;
-			var bounds = ui.item.bounds;
-
-			if (bounds){
-				map.fitBounds(bounds);
-			}
-		}
-	});
-	
-	mapOptions = {
-    		zoom: parseInt($('#zoom').val(), 10),
-    		mapTypeId: google.maps.MapTypeId.ROADMAP,
-			center: new google.maps.LatLng($('#longitud').val(), $('#latitud').val())
-		};
-
-    initMap();
-});

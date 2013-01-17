@@ -81,6 +81,19 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
         return $script;
     }
 
+    public function isMap() {
+    	$session = new Zend_Session_Namespace("map");
+    	
+    	if($session->data) {
+    		$script = "<script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=false\"></script>";
+    		$session->data = false;
+    	} else {
+    		$script = "";
+    	}
+    	    	
+    	return $script;
+    }
+    
     public function registerScriptJSController(Zend_Controller_Request_Abstract $request) {
         $controller = $request->getControllerName();
         $script = "\t\t<script type='text/javascript' src='" . $this->getPath() . "js/js_" . $controller . ".js'/></script>\n";
