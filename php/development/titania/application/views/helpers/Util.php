@@ -70,6 +70,16 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
     	return $file;
     }
     
+    public function getPhotosType($image) {
+    	$file = $_SERVER['DOCUMENT_ROOT']."/titania/public/fotos/".$image;
+    	if(file_exists($file)) {
+    		$file = $this->getPath() . "fotos/$image";
+    	} else {
+    		$file = $this->getPath() . "fotos/0000000000.png";
+    	}
+    	return $file;
+    }
+    
     public function getScript($pathJS) {
         $script = "\n";
         $files = $this->readFile($pathJS, $this->getPath());
