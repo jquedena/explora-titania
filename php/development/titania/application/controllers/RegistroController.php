@@ -82,6 +82,8 @@ class RegistroController extends Zend_Controller_Action {
 	            $dataAdapter->saveQuery("tblPiso", "pl_function.listar_construccion", $parameters);
 	            $dataAdapter->saveQuery("tblInstalacion", "pl_function.listar_instalacion", $parameters);
 	            $dataAdapter->saveQuery("tblLindero", "pl_function.listar_lindero", $parameters);
+	            
+	            $dataAdapter->saveQuery("tblRustico", "pl_function.listar_caracteristica_rustico", $parameters);
             }
         }
     }

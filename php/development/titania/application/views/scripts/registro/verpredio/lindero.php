@@ -10,14 +10,14 @@
 
 	optionLindero = {
 		height: 140,
-		width: 900,
+		width: 950,
 		rowNum: 5,
 		colNames: [
 			'Cardinal',
 			'Tipo',
 			'Predio',          
 			'Ubicaci\u00F3n',
-			'C\u00F3d. Contribuyente',
+			'Contribuyente',
 			'Nombres y Apellidos',
 			'idsigma',
 			'cptocar',
@@ -25,12 +25,12 @@
 			'dpredio'
 		],
 		colModel: [
-			{name: "vptocar", index: "vptocar", width: 55},
-			{name: "vtiplin", index: "vtiplin", width: 40},
-			{name: "ccodpre", index: "ccodpre", width: 50 },
-			{name: "vdirecc", index: "vdirecc", width: 250},
-			{name: "mperson", index: "mperson", width: 60},
-			{name: "vnombre", index: "vnombre", width: 90},
+			{name: "vptocar", index: "vptocar", width: 70, align: 'center'},
+			{name: "vtiplin", index: "vtiplin", width: 60, align: 'center'},
+			{name: "ccodpre", index: "ccodpre", width: 75, align: 'center' },
+			{name: "vdirecc", index: "vdirecc", width: 350, align: 'left'},
+			{name: "mperson", index: "mperson", width: 100, align: 'center'},
+			{name: "vnombre", index: "vnombre", width: 200, align: 'left'},
 			{name: "idsigma", index: "idsigma", hidden: true},
 			{name: "cptocar", index: "cptocar", hidden: true},
 			{name: "ctiplin", index: "ctiplin", hidden: true},

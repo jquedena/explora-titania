@@ -202,6 +202,17 @@ loadVerDetalle = function(){
         $("#tblLindero").jqGrid('navSeparatorAdd','#ptblLindero');
         $("#tblLindero").jqGrid('navButtonAdd','#ptblLindero', btnEliminarColindante);
     });
+    
+    actualizarGrid("tblRustico", optionRustico, null, function(){
+        $("#tblRustico").jqGrid('navGrid', '#ptblRustico', {edit:false, add:false, del:false, search:false, refresh:false});
+        $("#tblRustico").jqGrid('navButtonAdd', '#ptblRustico', btnInsertarRustico);
+        $("#tblRustico").jqGrid('navSeparatorAdd','#ptblRustico');
+        $("#tblRustico").jqGrid('navButtonAdd','#ptblRustico', btnEditarRustico);
+        $("#tblRustico").jqGrid('navSeparatorAdd','#ptblRustico');
+        $("#tblRustico").jqGrid('navButtonAdd','#ptblRustico', btnEliminarRustico);
+    });
+    
+    
 };
 
 config = {
