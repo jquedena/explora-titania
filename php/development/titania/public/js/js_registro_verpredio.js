@@ -193,6 +193,15 @@ loadVerDetalle = function(){
         // $("#tblInstalacion").jqGrid('navSeparatorAdd','#ptblInstalacion');
         // $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEliminarPiso);
     });
+    
+    actualizarGrid("tblLindero", optionLindero, null, function(){
+        $("#tblLindero").jqGrid('navGrid', '#ptblLindero', {edit:false, add:false, del:false, search:false, refresh:false});
+        $("#tblLindero").jqGrid('navButtonAdd', '#ptblLindero', btnInsertarColindante);
+        $("#tblLindero").jqGrid('navSeparatorAdd','#ptblLindero');
+        $("#tblLindero").jqGrid('navButtonAdd','#ptblLindero', btnEditarColindante);
+        $("#tblLindero").jqGrid('navSeparatorAdd','#ptblLindero');
+        $("#tblLindero").jqGrid('navButtonAdd','#ptblLindero', btnEliminarColindante);
+    });
 };
 
 config = {

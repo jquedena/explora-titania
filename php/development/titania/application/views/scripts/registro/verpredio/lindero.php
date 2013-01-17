@@ -1,38 +1,42 @@
-<div id="panelPredioColindante"></div>
+<div id="panelLindero">
+    <table id="tblLindero"></table>
+    <div id="ptblLindero"></div>
+</div>
 <script>
 	verlindero = function() {
 	    openDialogDataFunction1("registro/verlindero", {}, "485", "300", "Detalle del Lindero",null );
    
 	};
 
-	optionPrediocolindante = {
-			data:[
-					{ccardin:'Norte',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'},
-					{ccardin:'Sur',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'},
-					{ccardin:'Este',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'},
-					{ccardin:'Oeste',cpropie:'bbbbb',cubicac:'aaaaa',dpropie:'ccccc',mpredio:'ddddd'}
-				],
-		        height: 140,
-		        width: 900,
-		        rowNum: 5,
-		        rownumbers: false,
-		        colNames: [
-		            'Cardinal',
-		            'CodPropiedad',          
-		            'Ubicacion',
-		            'DPropie',
-		            'mpredio'
-		        ],
-		        colModel: [
-		                   {name: 'ccardin', index:'vnrodoc', width: 75, align: 'center', editable: true},
-		                   {name: 'cpropie', index:'vmotivo', width: 238, editable: true},    
-		                   {name: 'cubicac', index:'dfecdoc', width: 80, align: 'center', editable: true},
-		                   {name: 'dpropie', index:'mhresum', width: 100, editable: true},
-		                   {name: 'mpredio', index:'vobserv', width: 100, editable: true}
-		               ],
-		       
-			
-		caption: "&nbsp;&nbsp;&nbsp;Predio Colindante",
+	optionLindero = {
+		height: 140,
+		width: 900,
+		rowNum: 5,
+		colNames: [
+			'Cardinal',
+			'Tipo',
+			'Predio',          
+			'Ubicaci\u00F3n',
+			'C\u00F3d. Contribuyente',
+			'Nombres y Apellidos',
+			'idsigma',
+			'cptocar',
+			'ctiplin',
+			'dpredio'
+		],
+		colModel: [
+			{name: "vptocar", index: "vptocar", width: 55},
+			{name: "vtiplin", index: "vtiplin", width: 40},
+			{name: "ccodpre", index: "ccodpre", width: 50 },
+			{name: "vdirecc", index: "vdirecc", width: 250},
+			{name: "mperson", index: "mperson", width: 60},
+			{name: "vnombre", index: "vnombre", width: 90},
+			{name: "idsigma", index: "idsigma", hidden: true},
+			{name: "cptocar", index: "cptocar", hidden: true},
+			{name: "ctiplin", index: "ctiplin", hidden: true},
+			{name: "dpredio", index: "dpredio", hidden: true}
+		],	
+		caption: "&nbsp;&nbsp;&nbsp;Linderos",
        	onSelectRow: function(id) {
             row = $(this).getRowData(id);;
         }
@@ -44,7 +48,6 @@
         buttonicon: "ui-icon-plus",
         onClickButton:function(){
     		verlindero();
-        	
         } 
     };
 
@@ -53,7 +56,6 @@
         title: "Editar el nivel seleccionado",
         buttonicon: "ui-icon-pencil",
         onClickButton:function(){
-            
         	openDialogWarning("Seleccione la fila a editar.", 380, 150);
         } 
     };
@@ -66,20 +68,4 @@
         	openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
         }
     };
-    
-	listaLinderos = function() {         	
-		procesarJSON("panelPredioColindante", "tblLindero", optionPrediocolindante, null, function(){
-	        $("#tblLindero").jqGrid('navGrid', '#ptblLindero', {edit:false, add:false, del:false, search:false, refresh:false});
-	        $("#tblLindero").jqGrid('navButtonAdd', '#ptblLindero', btnInsertarColindante);
-	        $("#tblLindero").jqGrid('navSeparatorAdd','#ptblLindero');
-	        $("#tblLindero").jqGrid('navButtonAdd','#ptblLindero', btnEditarColindante);
-	        $("#tblLindero").jqGrid('navSeparatorAdd','#ptblLindero');
-	        $("#tblLindero").jqGrid('navButtonAdd','#ptblLindero', btnEliminarColindante);
-	    });
-	};
-
-	$(document).ready(function(){
-		listaLinderos();
-
-	});
 </script> 
