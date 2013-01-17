@@ -182,6 +182,13 @@ loadVerDetalle = function(){
         // location.href = path + "registro";
     	window.open(pathReport+"reporte=Report_Completo&opt=p_mhresum^" + $("#_mhresum").val() + "|p_cperiod^-1|p_ccodpre^-1|p_mperson^" + $("#lblCodigo").html(), '_blank');
     });
+
+    $("#btnGaleria").button({
+        icons: {primary:'ui-icon-search'}
+    }).bind('click', function(){
+        // location.href = path + "registro";
+    	// window.open(pathReport+"reporte=Report_Completo&opt=p_mhresum^" + $("#_mhresum").val() + "|p_cperiod^-1|p_ccodpre^-1|p_mperson^" + $("#lblCodigo").html(), '_blank');
+    });
     
     actualizarGrid("tblPiso", optionPiso, null, function(){
         $("#tblPiso").jqGrid('navGrid', '#ptblPiso', {edit:false, add:false, del:false, search:false, refresh:false});
