@@ -1,37 +1,45 @@
-<div id="panelRustico"></div>
+<div id="panelRustico">
+    <table id="tblRustico"></table>
+    <div id="ptblRustico"></div>
+</div>
 <script>
 	verarancel = function() {
    openDialogDataFunction1("registro/verrustico", {}, "350", "300", "Detalle del Arancel",null );
    
 	};
 
-	optionPredioArancel = {
-			data:[
-					{dclasif:'xxxxx',mclasif:'aaaaa',dcatego:'bbbbb',mcatego:'ccccc',marance:'ddddd',nhectar:25,ntotals:150},
-					{dclasif:'xxxxx',mclasif:'aaaaa',dcatego:'bbbbb',mcatego:'ccccc',marance:'ddddd',nhectar:25,ntotals:150},
-					{dclasif:'xxxxx',mclasif:'aaaaa',dcatego:'bbbbb',mcatego:'ccccc',marance:'ddddd',nhectar:25,ntotals:150},
-					{dclasif:'xxxxx',mclasif:'aaaaa',dcatego:'bbbbb',mcatego:'ccccc',marance:'ddddd',nhectar:25,ntotals:150}
-						],
-		        height: 140,
-		        width: 600,
+	optionRustico = {
+			    height: 140,
+		        width: 800,
 		        rowNum: 5,
 		        colNames: [
-		            'dCalsificacion',
-		            'mClasificacion',
-		            'dCategoria',
-		            'mCategoria',
-		            'narance',
-		            'nhectar',
-		            'ntotals'
+		            'Calsificaci\u00F3n',
+		            'Categor\u00EDa',
+		            'Arancel',
+		            'Hect\u00E1rea',
+		            'Total',
+	                'idsigma',
+	                'mrustic',
+	                'cclasif',
+	                'ccatego',
+	                'dpredio',
+	                'nestado',
+	                'cperiod'
 		        ],
 		        colModel: [
-		                   {name: 'dclasif', index:'vnrodoc', width: 75, hidden: true, align: 'center'},
-		                   {name: 'mclasif', index:'dfecdoc', width: 80, align: 'center'},
-		                   {name: 'dcatego', index:'vmotivo', width: 238, hidden: true},
-		                   {name: 'mcatego', index:'mhresum', width: 100},
-		                   {name: 'marance', index:'vobserv', width: 100},
-		                   {name: 'nhectar', index:'vobserv', width: 100},
-		                   {name: 'ntotals', index:'vobserv', width: 100}
+		                   {name: 'vclasif', index:'vclasif', width: 230},
+		                   {name: 'vcatego', index:'vcatego', width: 150},
+		                   {name: 'narance', index:'narance', width: 100},
+		                   {name: 'nhectar', index:'nhectar', width: 100},
+		                   {name: 'nvalrus', index:'nvalrus', width: 100},
+		                   {name: 'idsigma', index:'idsigma', width: 100, hidden: true},
+		                   {name: 'mrustic', index:'mrustic', width: 100, hidden: true},
+		                   {name: 'cclasif', index:'cclasif', width: 100, hidden: true},
+		                   {name: 'ccatego', index:'ccatego', width: 100, hidden: true},
+		                   {name: 'dpredio', index:'dpredio', width: 100, hidden: true},
+		                   {name: 'nestado', index:'nestado', width: 100, hidden: true},
+		                   {name: 'cperiod', index:'cperiod', width: 100, hidden: true}
+		                  
 		               ],
 		caption: "&nbsp;&nbsp;&nbsp;Arancel",
        	onSelectRow: function(id) {
@@ -68,19 +76,5 @@
         }
     };
     
-	listaArancel = function() {         	
-		procesarJSON("panelRustico", "tblRustico", optionPredioArancel, null, function(){
-	        $("#tblRustico").jqGrid('navGrid', '#ptblRustico', {edit:false, add:false, del:false, search:false, refresh:false});
-	        $("#tblRustico").jqGrid('navButtonAdd', '#ptblRustico', btnInsertarRustico);
-	        $("#tblRustico").jqGrid('navSeparatorAdd','#ptblRustico');
-	        $("#tblRustico").jqGrid('navButtonAdd','#ptblRustico', btnEditarRustico);
-	        $("#tblRustico").jqGrid('navSeparatorAdd','#ptblRustico');
-	        $("#tblRustico").jqGrid('navButtonAdd','#ptblRustico', btnEliminarRustico);
-	    });
-	};
 
-	$(document).ready(function(){
-		listaArancel();
-
-	});
 </script> 
