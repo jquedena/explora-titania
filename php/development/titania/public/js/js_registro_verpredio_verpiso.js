@@ -216,11 +216,29 @@ btnEliminarPiso = {
     buttonicon: "ui-icon-trash",
     onClickButton:function(){
         var gsr = $("#tblPiso").jqGrid('getGridParam','selrow');
+        indexRow = $("#ctblPiso").val();
         if(gsr){
+        	if(confirm("Seguro de eliminar")){
+        		if($("#tblPiso").jqGrid('delRowData', gsr)) {
+        			$("#ctblPiso").val(indexRow - 1);
+        		} else {
+        			alert('Error no se pudo eliminar');
+        		}
+        	}
             console.log(gsr);
             // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
         } else { 
             openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
         } 
     } 
+};
+
+btnGuardar = function() {
+	indexRow = $("#ctblPiso").val();
+	if($("#tblPiso").jqGrid('addRowData', indexRow, {cnumpis: '02'})) {
+		$("#ctblPiso").val(indexRow + 1);
+	} else {
+		alert('Error no se pudo agregar');
+	}
+	// console.log($("#tblPiso").jqGrid('getRowData'));
 };
