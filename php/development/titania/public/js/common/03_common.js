@@ -163,7 +163,7 @@ function closeDialog(id) {
     $('#'+id).dialog('close');
 }
 
-openDialogData = function(url, data, width, height, title, id, fnc) {
+openDialogData = function(url, data, width, height, title, id, fnc, buttons) {
 	var _post;
     if(url != undefined) {
     	_post = $.post(path + url, data);
@@ -177,6 +177,7 @@ openDialogData = function(url, data, width, height, title, id, fnc) {
             if(width != undefined) $(id).dialog('option', 'width', width);
             if(height != undefined) $(id).dialog('option', 'height', height);
             if(title != undefined) $(id).dialog('option', 'title', title);
+            if(buttons != undefined) $(id).dialog('option', 'buttons', buttons);
             $(id).dialog('open');
         });
 		
@@ -184,24 +185,24 @@ openDialogData = function(url, data, width, height, title, id, fnc) {
     }
 };
 
-function openDialogDataFunction1(url, data, width, height, title, fnc) {
-	openDialogData(url, data, width, height, title, '#jqDialog1', fnc);
+function openDialogDataFunction1(url, data, width, height, title, fnc, buttons) {
+	openDialogData(url, data, width, height, title, '#jqDialog1', fnc, buttons);
 }
 
 function openDialogData1(url, data, width, height, title) {
-	openDialogData(url, data, width, height, title, '#jqDialog1', null);
+	openDialogData(url, data, width, height, title, '#jqDialog1', null, null);
 }
 
 function openDialogData2(url, data, width, height, title) {
-	openDialogData(url, data, width, height, title, '#jqDialog2', null);
+	openDialogData(url, data, width, height, title, '#jqDialog2', null, null);
 }
 
 function openDialog1(url, width, height, title) {
-	openDialogData(url, {}, width, height, title, '#jqDialog1', null);
+	openDialogData(url, {}, width, height, title, '#jqDialog1', null, null);
 }
 
 function openDialog2(url, width, height, title) {	
-	openDialogData(url, {}, width, height, title, '#jqDialog2', null);
+	openDialogData(url, {}, width, height, title, '#jqDialog2', null, null);
 }
 
 function openDialogConfirm1(contenido, width, height) {
