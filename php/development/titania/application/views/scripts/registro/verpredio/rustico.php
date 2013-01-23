@@ -3,9 +3,23 @@
     <div id="ptblRustico"></div>
 </div>
 <script>
-	verarancel = function() {
-   openDialogDataFunction1("registro/verrustico", {}, "350", "300", "Detalle del Arancel",null );
-   
+	verarancel = function(rowid, iRow, iCol, e) {
+		if(rowid != undefined && rowid != null && rowid !== false ) {
+			row = $("#tblRustico").jqGrid('getRowData', rowid);
+		} else {
+			row = undefined;
+		}
+   openDialogDataFunction1("registro/verrustico", {}, "350", "300", "Detalle del Arancel", function() {
+   	   	
+   	if(row != undefined) {
+            $("#cboClasificacion").val(row.cclasif);
+   			$("#cboCategoria").val(row.ccatego);
+         	$("#txtArancel").val(row.narance);
+   			$("#txt_Hectareas").val(row.nhectar);       
+   			$("#txt_Total").val(row.nvalrus);
+
+       }  
+	});
 	};
 
 	optionRustico = {
@@ -42,9 +56,7 @@
 		                  
 		               ],
 		caption: "&nbsp;&nbsp;&nbsp;Arancel",
-       	onSelectRow: function(id) {
-            row = $(this).getRowData(id);;
-        }
+       	
     };
 
 	btnInsertarRustico = {
@@ -54,7 +66,7 @@
         onClickButton:function(){
         	verarancel();
         	
-        } 
+        }
     };
 
     btnEditarRustico = {
@@ -62,19 +74,37 @@
         title: "Editar el nivel seleccionado",
         buttonicon: "ui-icon-pencil",
         onClickButton:function(){
-            
-        	openDialogWarning("Seleccione la fila a editar.", 380, 150);
-        } 
+            var gsr = $("#tblRustico").jqGrid('getGridParam','selrow');
+            if(gsr){
+            	verarancel(gsr, -1, -1, null);
+            } else { 
+                openDialogWarning("Seleccione la fila a editar.", 380, 150);
+            } ;
+        }
     };
     
     btnEliminarRustico = {
-        caption: "Eliminar",
-        title: "Eliminar la construcci\u00F3n",
-        buttonicon: "ui-icon-trash",
-        onClickButton:function(){
-        	openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
-        }
-    };
+    		  caption: "Eliminar",
+    		    title: "Eliminar la construcci\u00F3n",
+    		    buttonicon: "ui-icon-trash",
+    		    onClickButton:function(){
+    		        var gsr = $("#tblRustico").jqGrid('getGridParam','selrow');
+    		        indexRow = $("#ctblRustico").val();
+    		        if(gsr){
+    		        	if(confirm("Seguro de eliminar")){
+    		        		if($("#tblRustico").jqGrid('delRowData', gsr)) {
+    		        			$("#ctblRustico").val(indexRow - 1);
+    		        		} else {
+    		        			alert('Error no se pudo eliminar');
+    		        		}
+    		        	}
+    		            console.log(gsr);
+    		            // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
+    		        } else { 
+    		            openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
+    		        } 
+    		    } 
+    		};
     
 
 </script> 
