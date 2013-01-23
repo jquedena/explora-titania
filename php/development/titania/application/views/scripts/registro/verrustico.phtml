@@ -1,10 +1,5 @@
-
 <div id="formRustico">
-<!--  <table>
-	<td><select style="width: 240px;" id="cboMotivo"><?php echo $this->util()->getComboContenedor('1000000004', null); ?></select>&nbsp;
-	&nbsp;<select style="width: 240px;" id="cboMotivo"><?php echo $this->util()->getComboContenedor('1000000004', null); ?></select></td>
-	</tr>
-</table>-->
+
 	<table >
 		 <tr align="center">
 			<td width="310">
@@ -13,14 +8,14 @@
 				</div>
 				<div class="ui-widget-content ui-corner-bottom">
 					<table cellspacing="5" style="margin: 3px; class="ui-table-panelLayout"">
-					<tr>
+						<tr>
 							<td width="100px">Clasificacion</td>
 							<td width="35" ><select style="width: 150px;" id="cboClasificacion"><?php echo $this->util()->getComboContenedor('1000000326', null); ?></select></td>
 						</tr>
 						<tr>
 					
 							<td>Categoria</td>
-							<td width="35" ><select style="width: 150px;" id="cbo>Categoria"><?php echo $this->util()->getComboContenedor('1000000319', null); ?></select></td>
+							<td width="35" ><select style="width: 150px;" id="cboCategoria"><?php echo $this->util()->getComboContenedor('1000000319', null); ?></select></td>
 						</tr>
 						<tr>
 							<td>Arancel</td>
@@ -32,7 +27,7 @@
 						</tr>
 						<tr>
 							<td>Total</td>
-							<td><input id="txt_Total" class="ui-text" disabled="disabled" style="width:70px; padding:2px;text-align:left;" value="" /></td>
+							<td><input id="txt_Total" class="ui-text"  style="width:70px; padding:2px;text-align:left;" value="" /></td>
 							<td>&nbsp;</td>
 						</tr>
 					<!--	<tr>
@@ -51,25 +46,25 @@
 </div>
 <script type="text/javascript">
 
-	isValid = true;
-	validar = function(){
+	
+
+	$("#btnguardar").button({
+		icons: {primary:'ui-icon-disk'}
+	}).bind('click', function(){
+		isValid = true;
 		$("#formRustico").find("input").each(function(){
 			if($(this).val().length ==0){
 				isValid = false;
 	            return;
 	        }
 		});
-		
 		if(!isValid){
 		   openDialogWarning("Los campos deben estar llenos.", 380, 150);	
-		}
-	};
-
-	$("#btnguardar").button({
-		icons: {primary:'ui-icon-disk'}
-	}).bind('click', function(){
-		openDialogWarning("Los datos han sido guardados.", 380, 150);
-		closeDialog('jqDialog1');
+		}else{
+			GuardaRustico();
+			//openDialogWarning("Los datos han sido guardados.", 380, 150);
+			closeDialog('jqDialog1');
+			}
 	});
 
 	$("#btncancelar").button({
@@ -78,6 +73,29 @@
 		closeDialog('jqDialog1');
 	});
 
+	GuardaRustico= function() {
+		indexRow = $("#ctblRustico").val();
+		row = {
+				vclasif: $('#cboClasificacion option:selected').text(),
+		        vcatego: $('#cboCategoria  option:selected').text(),
+		        narance: $("#txtArancel").val(),
+		        nhectar: $("#txt_Hectareas").val(),
+		        nvalrus: $("#txt_Total").val(),
+		        idsigma: '01',
+		        mrustic: '01',
+		        cclasif: $("#cboClasificacion").val(),
+		        ccatego: $("#cboCategoria").val(),
+		        dpredio: '01',
+		        nestado: '01',
+		        cperiod: '01'
+		};
+		if($("#tblRustico").jqGrid('addRowData', indexRow,row)) {
+			$("#ctblRustico").val(indexRow + 1);
+		} else {
+			alert('Error no se pudo agregar');
+		}
+	};
 </script>
+
 
 

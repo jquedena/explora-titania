@@ -17,9 +17,9 @@
 						</tr>
 						<tr>
 							<td>Cod. Propiedad</td>
-							<td><input id="txtcodproie" class="ui-text" style="width:350px; padding:2px;text-align:left;" value="" /></td>
+							<td><input id="txtcodpropie" class="ui-text" style="width:350px; padding:2px;text-align:left;" value="" /></td>
 						</tr>
-					<tr>
+						<tr>
 							<td>Ubicacion</td>
 							<td><input id="txt_ubicacion" class="ui-text" style="width:350px;padding:2px;text-align:left;"/></td>
 						</tr>
@@ -38,30 +38,30 @@
 					</table>
 				</div>
 			</td>
-
 		</tr>
 	</table>
 </div>
 <script type="text/javascript">
-	isValid = true;
-	validar = function(){
+
+
+	$("#btnguardar").button({
+		icons: {primary:'ui-icon-disk'}
+	}).bind('click', function(){
+		isValid = true;
 		$("#formLindero").find("input").each(function(){
 			if($(this).val().length ==0){
 				isValid = false;
 	            return;
 	        }
 		});
-		
 		if(!isValid){
 		   openDialogWarning("Los campos deben estar llenos.", 380, 150);	
-		}
-	};
-
-	$("#btnguardar").button({
-		icons: {primary:'ui-icon-disk'}
-	}).bind('click', function(){
-		openDialogWarning("Los datos han sido guardados.", 380, 150);
-		closeDialog('jqDialog1');
+		}else{
+			GuardaLindero();
+			// openDialogWarning("Los datos han sido guardados.", 380, 150);
+			closeDialog('jqDialog1');
+			}
+		
 	});
 
 	$("#btncancelar").button({
@@ -69,4 +69,27 @@
 	}).bind('click', function(){
 		closeDialog('jqDialog1');
 	});
+
+	GuardaLindero= function() {
+		indexRow = $("#ctblLindero").val();
+		row = {
+				vptocar: $('#cboTipLindero option:selected').text(), // $('#cboTipLindero").text();
+				vtiplin: $('#cboCardinal option:selected').text(),
+				ccodpre: $("#txtcodpropie").val(),
+				vdirecc: $("#txt_ubicacion").val(),
+				mperson: $("#txt_dpropie").val(),
+				vnombre: 'GOMEZ OSORIO, IGNACIO',
+				idsigma: '',
+				cptocar: $("#cboCardinal").val(),
+				ctiplin: $("#cboTipLindero").val(),
+				dpredio: ''
+		};
+
+		if($("#tblLindero").jqGrid('addRowData', indexRow, row)) {
+			$("#ctblLindero").val(indexRow + 1);
+		} else {
+			alert('Error no se pudo agregar');
+		}
+	};
+		
 </script>

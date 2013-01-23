@@ -232,13 +232,3 @@ btnEliminarPiso = {
         } 
     } 
 };
-
-btnGuardar = function() {
-	indexRow = $("#ctblPiso").val();
-	if($("#tblPiso").jqGrid('addRowData', indexRow, {cnumpis: '02'})) {
-		$("#ctblPiso").val(indexRow + 1);
-	} else {
-		alert('Error no se pudo agregar');
-	}
-	// console.log($("#tblPiso").jqGrid('getRowData'));
-};

@@ -7,13 +7,14 @@ class RegistroController extends Zend_Controller_Action {
     public function init() {
     	$this->_helper->layout()->setLayout('layoutwithpanel');
     	$map = new Zend_Session_Namespace("map");
-    	$map->data = true;
+    	$map->data = false;
     }
 
     public function indexAction() {
         $this->view->util()->registerScriptJSControllerAction($this->getRequest());
 
-        $parameters[] = date("Y");
+        // TODO: Para pruebas
+        $parameters[] = date("Y") -1;
         $dataAdapter = new Model_DataAdapter();
         $rows = $dataAdapter->executeAssocQuery("pl_function.listar_vias", $parameters);
         $this->view->mviascp = $rows;

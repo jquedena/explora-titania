@@ -3,11 +3,27 @@
     <div id="ptblLindero"></div>
 </div>
 <script>
-	verlindero = function() {
-	    openDialogDataFunction1("registro/verlindero", {}, "485", "300", "Detalle del Lindero",null );
-   
-	};
+	verlindero = function(rowid, iRow, iCol, e) {
+		if(rowid != undefined && rowid != null && rowid !== false ) {
+			row = $("#tblLindero").jqGrid('getRowData', rowid);
+		} else {
+			row = undefined;
+		}
 
+		console.log(row);
+		
+	    openDialogDataFunction1("registro/verlindero", {}, "485", "300", "Detalle del Lindero", function() {
+
+	    	if(row != undefined) {
+		        $("#cboTipLindero").val(row.ctiplin);
+		   		$("#cboCardinal").val(row.cptocar);
+		        $("#txtcodpropie").val(row.ccodpre);
+		   		$("#txt_ubicacion").val(row.vdirecc);       
+		   		$("#txt_dpropie").val(row.mperson);
+	   }  
+	});  
+	};
+		
 	optionLindero = {
 		height: 140,
 		width: 950,
@@ -31,15 +47,13 @@
 			{name: "vdirecc", index: "vdirecc", width: 350, align: 'left'},
 			{name: "mperson", index: "mperson", width: 100, align: 'center'},
 			{name: "vnombre", index: "vnombre", width: 200, align: 'left'},
-			{name: "idsigma", index: "idsigma", hidden: true},
-			{name: "cptocar", index: "cptocar", hidden: true},
-			{name: "ctiplin", index: "ctiplin", hidden: true},
-			{name: "dpredio", index: "dpredio", hidden: true}
+			{name: "idsigma", index: "idsigma", hidden:true},
+			{name: "cptocar", index: "cptocar", hidden:true},
+			{name: "ctiplin", index: "ctiplin", hidden:true},
+			{name: "dpredio", index: "dpredio", hidden:true}
 		],	
 		caption: "&nbsp;&nbsp;&nbsp;Linderos",
-       	onSelectRow: function(id) {
-            row = $(this).getRowData(id);;
-        }
+       	
     };
 
 	btnInsertarColindante = {
@@ -56,16 +70,35 @@
         title: "Editar el nivel seleccionado",
         buttonicon: "ui-icon-pencil",
         onClickButton:function(){
-        	openDialogWarning("Seleccione la fila a editar.", 380, 150);
-        } 
-    };
+	        var gsr = $("#tblLindero").jqGrid('getGridParam','selrow');
+	        if(gsr){
+	        	verlindero(gsr, -1, -1, null);
+	        } else { 
+	            openDialogWarning("Seleccione la fila a editar.", 380, 150);
+	        } 
+	    } 
+	};
     
     btnEliminarColindante = {
-        caption: "Eliminar",
-        title: "Eliminar la construcci\u00F3n",
-        buttonicon: "ui-icon-trash",
-        onClickButton:function(){
-        	openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
-        }
-    };
+    		  caption: "Eliminar",
+    		    title: "Eliminar la construcci\u00F3n",
+    		    buttonicon: "ui-icon-trash",
+    		    onClickButton:function(){
+    		        var gsr = $("#tblLindero").jqGrid('getGridParam','selrow');
+    		        indexRow = $("#ctblLindero").val();
+    		        if(gsr){
+    		        	if(confirm("Seguro de eliminar")){
+    		        		if($("#tblLindero").jqGrid('delRowData', gsr)) {
+    		        			$("#ctblLindero").val(indexRow - 1);
+    		        		} else {
+    		        			alert('Error no se pudo eliminar');
+    		        		}
+    		        	}
+    		            console.log(gsr);
+    		            // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
+    		        } else { 
+    		            openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
+    		        } 
+    		    } 
+    		};
 </script> 

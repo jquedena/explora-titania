@@ -5,29 +5,30 @@ verInstalacion = function(rowid, iRow, iCol, e) {
 		row = undefined;
 	}
 	
-    openDialogDataFunction1("registro/verinstalacion", {}, "750", "496", "Detalle de la Instalacion", function() {
-        if(row != undefined) {
-            $("#txt_instdpredio").val(row.dpredio);
-    		$("#txt_instcnitems").val(row.cnitems);
-            $("#txt_instcperiod").val(row.cperiod);
-    		$("#txt_instctipdat").val(row.ctipdat);       
-    		$("#txt_instvnrodoc").val(row.vnrodoc);
-    		$("#txt_instdfecdoc").val(row.dfecdoc);       
-    		$("#txt_instcmotivo").val(row.cmotivo);
-    		$("#txt_instctipdoc").val(row.ctipdoc);     
-    		$("#txt_instcnumpis").val(row.cnumpis);
-    		$("#txt_instnantigu").val(row.nantigu);       
-    		$("#txt_instcanocon").val(row.canocon);
-    		$("#txt_instnvalanc").val(row.nvalanc);   
-    		$("#txt_instnvalalt").val(row.nvalalt);     
-    		$("#txt_instnvallar").val(row.nvallar);     
-    		$("#txt_instctipint").val(row.ctipint);     
-    		$("#txt_instvdesint").val(row.vdesint);     
-    		$("#txt_instnvalins").val(row.nvalins);          
-    		$("#txt_instdafecta").val(row.dafecta);     
+    openDialogDataFunction1("registro/verinstalacion", {}, "600", "400", "Detalle de la Instalacion", function() {
+    	if(row != undefined) {
+	        $("#txt_instdpredio").val(row.dpredio);
+	   		$("#txt_instcnitems").val(row.cnitems);
+	        $("#txt_instcperiod").val(row.cperiod);
+	   		$("#txt_instctipdat").val(row.ctipdat);       
+	   		$("#txt_instvnrodoc").val(row.vnrodoc);
+	   		$("#txt_instdfecdoc").val(row.dfecdoc);       
+	   		$("#txt_instcmotivo").val(row.cmotivo);
+	   		$("#txt_instctipdoc").val(row.ctipdoc);     
+	   		$("#txt_instcnumpis").val(row.cnumpis);
+	   		$("#txt_instnantigu").val(row.nantigu);       
+	   		$("#txt_instcanocon").val(row.canocon);
+	   		$("#txt_instnvalanc").val(row.nvalanc);   
+	   		$("#txt_instnvalalt").val(row.nvalalt);     
+	   		$("#txt_instnvallar").val(row.nvallar);     
+	   		$("#txt_instctipint").val(row.ctipint);     
+	   		$("#txt_instvdesint").val(row.vdesint);     
+	   		$("#txt_instnvalins").val(row.nvalins);          
+	   		$("#txt_instdafecta").val(row.dafecta);     
 
-        }  
-	});
+   }  
+});
+
 };
 
 optionInstalacion = {height: 200,
@@ -78,3 +79,49 @@ optionInstalacion = {height: 200,
     caption: "&nbsp;&nbsp;&nbsp;Instalaci\u00F3n",
     ondblClickRow: verInstalacion
 };
+
+	btnInsertarInstalacion = {
+	    caption: "Agregar&nbsp;&nbsp;",
+	    title: "Agrega un nuevo nivel al predio",
+	    buttonicon: "ui-icon-plus",
+	    onClickButton:function(){
+	    	verInstalacion();
+	    } 
+	};
+
+	btnEditarInstalacion = {
+	    caption: "Editar&nbsp;&nbsp;",
+	    title: "Editar el nivel seleccionado",
+	    buttonicon: "ui-icon-pencil",
+	    onClickButton:function(){
+	        var gsr = $("#tblInstalacion").jqGrid('getGridParam','selrow');
+	        if(gsr){
+	        	verInstalacion(gsr, -1, -1, null);
+	        } else { 
+	            openDialogWarning("Seleccione la fila a editar.", 380, 150);
+	        } 
+	    } 
+	};
+	    
+	btnEliminarInstalacion = {
+	    caption: "Eliminar",
+	    title: "Eliminar la construcci\u00F3n",
+	    buttonicon: "ui-icon-trash",
+	    onClickButton:function(){
+	        var gsr = $("#tblInstalacion").jqGrid('getGridParam','selrow');
+	        indexRow = $("#ctblInstalacion").val();
+	        if(gsr){
+	        	if(confirm("Seguro de eliminar")){
+	        		if($("#tblInstalacion").jqGrid('delRowData', gsr)) {
+	        			$("#ctblInstalacion").val(indexRow - 1);
+	        		} else {
+	        			alert('Error no se pudo eliminar');
+	        		}
+	        	}
+	            console.log(gsr);
+	            // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
+	        } else { 
+	            openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
+	        } 
+	    } 
+	};
