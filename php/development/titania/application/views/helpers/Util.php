@@ -61,7 +61,7 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
     }
 
     public function getPhoto($image) {
-    	$file = $_SERVER['DOCUMENT_ROOT']."/titania/public/fotos/".$image.".png";
+    	$file = getcwd()."/fotos/".$image.".png";
     	if(file_exists($file)) {
     		$file = $this->getPath() . "fotos/$image.png";
     	} else {
@@ -71,7 +71,8 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
     }
     
     public function getPhotosType($image) {
-    	$file = $_SERVER['DOCUMENT_ROOT']."/titania/public/fotos/".$image;
+    	$file = getcwd()."/fotos/".$image;
+    	
     	if(file_exists($file)) {
     		$file = $this->getPath() . "fotos/$image";
     	} else {
