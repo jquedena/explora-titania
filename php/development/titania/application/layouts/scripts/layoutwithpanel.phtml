@@ -12,18 +12,18 @@
             }
         </style>
 
-        <link href="<?php echo $this->util()->getPath(); ?>js/ckeditor/skins/v2/editor.css?t=C6HH5UF" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->util()->getPath(); ?>js/app/ckeditor/skins/v2/editor.css?t=C6HH5UF" rel="stylesheet" type="text/css" />
         <link href="<?php echo $this->util()->getPath(); ?>theme/<?php echo $this->util()->getTheme();?>/jquery-ui.css" rel="stylesheet" type="text/css" id="jquery_theme_link" />
         <?php echo $this->util()->getStyle(); ?>
         <link href="<?php echo $this->util()->getImage("refbar.ico"); ?>" rel="shortcut icon" type="image/x-icon" />
         <link href="<?php echo $this->util()->getImage("refbar.ico"); ?>" rel="icon" type="image/x-icon" />
 
         <?php
-        echo $this->util()->getScript("js/ui");
-        echo $this->util()->getScript("js/common");
-        echo $this->util()->getScript("js/jqGrid");
-        echo $this->util()->getScript("js/tree");
-        echo $this->util()->getScript("js/graf");
+        echo $this->util()->getScript("js/app/ui");
+        echo $this->util()->getScript("js/app/common");
+        echo $this->util()->getScript("js/app/jqGrid");
+        echo $this->util()->getScript("js/app/tree");
+        echo $this->util()->getScript("js/app/graf");
 
         $controller = $this->util()->getScriptJSController();
         $controllerAction = $this->util()->getScriptJSControllerAction();
@@ -43,10 +43,10 @@
         ?>
         
         <?php echo $this->util()->isMap(); ?>        
-        <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/highcharts/highcharts.js"></script>
-        <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/ckeditor/ckeditor.js?t=C6HH5UF"></script>
-        <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/ckeditor/adapterJQuery.js?t=C6HH5UF"></script>
-        <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/ckeditor/es.js?t=C6HH5UF"></script>
+        <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/app/highcharts/highcharts.js"></script>
+        <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/app/ckeditor/ckeditor.js?t=C6HH5UF"></script>
+        <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/app/ckeditor/adapterJQuery.js?t=C6HH5UF"></script>
+        <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/app/ckeditor/es.js?t=C6HH5UF"></script>
         <script type="text/javascript">
             var path="<?php echo $this->util()->getPath(); ?>index.php/",
 	            pathImage="<?php echo $this->util()->getPath(); ?>img/",
