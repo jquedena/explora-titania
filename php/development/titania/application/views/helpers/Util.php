@@ -116,7 +116,7 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
     public function registerScriptJSControllerAction(Zend_Controller_Request_Abstract $request) {
         $controller = $request->getControllerName();
         $action = $request->getActionName();
-        $script = "\t\t<script type='text/javascript' src='" . $this->getPath() . "js/js_" . $controller . "_" . $action . ".js'/></script>\n";
+        $script = "\t\t<script type='text/javascript' src='" . $this->getPath() . "js/" . $controller . "/" . $action . ".js'/></script>\n";
         $session = new Zend_Session_Namespace("scriptControllerAction");
         $session->data = $script;
         return $script;

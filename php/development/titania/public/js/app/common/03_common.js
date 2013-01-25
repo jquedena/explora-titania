@@ -1,11 +1,8 @@
 imageFormat = function(cellvalue, options, rowdata) {
-	console.log(rowdata);
-	console.log(options);
     return '<img src="' + pathImage + cellvalue + '" />';
 };
 
 imageUnFormat = function(cellvalue, options) {
-	console.log(options);
     return $('img', cellvalue).attr('src');
 };
 
@@ -267,7 +264,6 @@ function themeTextBox(selector) {
 }
 function themeComboBox(selector) {
     if(selector == undefined || selector == null) {
-        //selector = "select";
     	selector = 'select:not(".notcombobox")';
     }
     
@@ -283,18 +279,6 @@ function themeComboBox(selector) {
         }); 
     });
 }
-
-/*
-var userAgent = navigator.userAgent.toLowerCase();
-$.browser = {
-    version: (userAgent.match( /.+(?:rv|it|ra|ie|me)[\/: ]([\d.]+)/ ) || [])[1],
-    chrome: /chrome/.test( userAgent ),
-    safari: /webkit/.test( userAgent ) && !/chrome/.test( userAgent ),
-    opera: /opera/.test( userAgent ),
-    msie: /msie/.test( userAgent ) && !/opera/.test( userAgent ),
-    mozilla: /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent )
-};
-*/
 
 (function($) {
     $.fn.getCheckboxValues = function(){
@@ -313,19 +297,23 @@ $(function(){
         showSpeed: 1,
         flyOut: true
     });
+    
     $("#itemMenu2").menuBar({
         content: $("#itemMenu2").next().html(),
         showSpeed: 1,
         flyOut: true
     });
+    
     $("#itemMenu3").menuBar({
         content: $("#itemMenu3").next().html(),
         showSpeed: 1,
         flyOut: true
     });
+    
     themeTextBox();
     themeComboBox();
 	
+	/*
 	var brw = new Browser();
 	console.log('fullName: ' + brw.fullName);
 	console.log('name: ' + brw.name);
@@ -334,14 +322,13 @@ $(function(){
 	console.log('platform: ' + brw.platform);
 	console.log('mobile: ' + brw.mobile);
 	console.log('resolution: ' + brw.width + 'x' + brw.height);
-	
 	console.log('availWidth: ' + screen.availWidth);
 	console.log('width: ' + screen.width);
 	console.log('availHeight: ' + screen.availHeight);
 	console.log('height: ' + screen.height);
-	
+	*/
 	window.moveTo(screen.width - screen.availWidth, screen.height - screen.availHeight);
 	window.resizeTo(screen.availWidth + screen.availWidth - screen.width, screen.availHeight + screen.availHeight - screen.height);
 	
-	console.log("#west.height: " + $("#west").css("height"));
+	// console.log("#west.height: " + $("#west").css("height"));
 });
