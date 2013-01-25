@@ -1,13 +1,13 @@
-<div id="forminstalacion">
+<div id="forminstalacion" align="center">
 	<table>
 		 <tr>
-			<td width="365"  align="center">
+			<td width="450"  align="center" valign='top'>
 				<div class="ui-widget ui-state-default ui-corner-top ui-title">
-					<label>Caracter&iacute;sticas</label>
+					<label>Descripci&oacute;n de la Instalaci&oacute;n</label>
 				</div>
 				<div class="ui-widget-content ui-corner-bottom">
 					<table align="left" cellspacing="5" style="margin: 3px;">
-						<tr>
+						<!--  <tr>
 							<td width="140">&nbsp;Cod. Predio&nbsp;</td>
 							<td width="35" ><input id="txt_instdpredio" class="ui-text" style="width: 100px; padding:2px;text-align:center; " value="" /></td>
 						<tr>
@@ -32,20 +32,20 @@
 						<tr> 
 							<td width="140">&nbsp;Tip. Documento</td>
 							<td width="35"><input id="txt_instctipdoc"  class="ui-text" style="width:100px;padding:2px;text-align:center; "/></td>
-						</tr>
+						</tr>-->
 						<tr>
 							<td width="140">&nbsp;Nro. Pisos</td>
-							<td width="35"><input id="txt_instcnumpis"  class="ui-text" style="width:100px;padding:2px;text-align:center; "/></td>
+							<td width="35"><input id="txt_instcnumpis"  maxlength="2" class="ui-text ui-text-numeric" style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
 						<tr>
 							<td width="140">&nbsp;Antiguedad</td>
-							<td width="35"><input id="txt_instnantigu"  class="ui-text" style="width:100px;padding:2px;text-align:center; "/></td>
+							<td width="35"><input id="txt_instnantigu"  maxlength="3" class="ui-text ui-text-numeric"  style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
 						<tr>
 							<td width="140">&nbsp;A&ntilde;o Construcci&oacute;n</td>
-							<td width="35"><input id="txt_instcanocon"  class="ui-text" style="width:100px;padding:2px;text-align:center; "/></td>
+							<td width="35"><input id="txt_instcanocon"  class="ui-text"  maxlength="4" style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
-					</table>
+					<!-- </table>
 				</div>
 			</td>
 			<td width="365" align="center" valign='top'>
@@ -53,46 +53,42 @@
 					<label>Descripci&oacute;n</label>
 				</div>
 				<div class="ui-widget-content ui-corner-bottom">
-					<table align="left" cellspacing="5" style="margin: 3px;">
+					<table align="left" cellspacing="5" style="margin: 3px;"> -->
 						<tr>
 							<td width="140">&nbsp;&nbsp;Ancho Instalaci&oacute;n</td>
-							<td width="35"><input id="txt_instnvalanc"  class="ui-text" style="width:100px;padding:2px;text-align:center; "/></td>
+							<td width="35"><input id="txt_instnvalanc" class="ui-text ui-text-numeric" style="width:50px;padding:2px; "/></td>
 						</tr>
 						<tr>
 							<td width="140">&nbsp;&nbsp;Altura Instalaci&oacute;n</td>
-							<td width="35"><input id="txt_instnvalalt" class="ui-text ui-text-numeric"   style="width:100px; padding:2px" value="" /></td>
+							<td width="35"><input id="txt_instnvalalt" class="ui-text ui-text-numeric"   style="width:50px; padding:2px" value="" /></td>
 						</tr>
 						<tr>
 							<td width="140">&nbsp;&nbsp;Largo Instalaci&oacute;n</td>
-							<td width="35"><input id="txt_instnvallar" class="ui-text ui-text-numeric"  style="width:100px; padding:2px" value="" /></td>
+							<td width="35"><input id="txt_instnvallar" class="ui-text ui-text-numeric"  style="width:50px; padding:2px" value="" /></td>
 						</tr>
 						<tr>
 							<td width="140">&nbsp;&nbsp;Unidad de Medida</td>
-							<td width="35"><input id="txt_instctipint" class="ui-text ui-text-numeric"  style="width:100px; padding:2px" value="" /></td>
+							<td width="35"><input id="txt_instctipint" class="ui-text ui-text-numeric"  style="width:50px; padding:2px" value="" /></td>
 						</tr>
 						<tr>
 							<td width="140">&nbsp;&nbsp;Descripci&oacute;n inst.</td>
-							<td width="35"><input id="txt_instvdesint" class="ui-text ui-text-numeric"  style="width:100px" value="" /></td>
+							<td width="35"><input id="txt_instvdesint" class="ui-text"  style="width:300px" value="" /></td>
 						</tr>
 						<tr>
 							<td width="140">&nbsp;&nbsp;Val. Instalaci&oacute;n</td>
-							<td width="35"><input id="txt_instnvalins" class="ui-text ui-text-numeric"  style="width:100px" value="" /></td>
+							<td width="35"><input id="txt_instnvalins" class="ui-text ui-text-numeric"  style="width:50px" value="" /></td>
+						</tr>
+						<tr>
+							<td width="450" colspan="2" align="right"><input  type="button" id="btnguardar" name="guardar" value="Aceptar"/>&nbsp;&nbsp;<input type="button" id="btncancelar" name="cancelar" value="Cancelar"/></td>
 						</tr>
 					</table>
 				</div>
-				<br/>
-				<br/>
-				<div align="right">
-					<input  type="button" id="btnguardar" name="guardar" value="Aceptar"/>&nbsp;&nbsp;<input type="button" id="btncancelar" name="cancelar" value="Cancelar"/>
-				</div>
+				
 			</td>
 		</tr>
 	</table>
 </div>
-		
-		
-		
-	
+
 
 <script>
 

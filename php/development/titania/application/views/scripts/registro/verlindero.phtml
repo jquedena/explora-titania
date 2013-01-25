@@ -17,7 +17,7 @@
 						</tr>
 						<tr>
 							<td>Cod. Propiedad</td>
-							<td><input id="txtcodpropie" class="ui-text" style="width:350px; padding:2px;text-align:left;" value="" /></td>
+							<td><input id="txtcodpropie" class="ui-text" maxlength="10" style="width:70px; padding:2px;text-align:right;" value="" onkeypress="return validarnumeros(event);" /></td>
 						</tr>
 						<tr>
 							<td>Ubicacion</td>
@@ -25,13 +25,13 @@
 						</tr>
 						<tr>
 							<td>Contribuyente</td>
-							<td><input id="txt_dpropie" class="ui-text" style="width:100px; padding:2px;text-align:left;" value="" /></td>
+							<td><input id="txt_dpropie" class="ui-text" maxlength="10" style="width:70px; padding:2px;text-align:right;" value="" onkeypress="return validarnumeros(event);"/></td>
 							<td>&nbsp;</td>
 						</tr>
-					<!--	<tr>
-					 	<td>MPropie</td>
-							<td><input id="txt_mpropie" class="ui-text" style="width:30px;padding:2px;text-align:center;"/></td>
-						</tr> -->	
+						<tr>
+					 	<td>Nombre Propietario</td>
+							<td><input id="txt_mpropie" class="ui-text" style="width:250px;padding:2px;"/></td>
+						</tr> 
 						<tr>
 							<td colspan="2" align="right"><input  type="button" id="btnguardar" name="guardar" value="Aceptar"/>&nbsp;&nbsp;<input type="button" id="btncancelar" name="cancelar" value="Cancelar"/></td>
 						</tr>
@@ -43,6 +43,92 @@
 </div>
 <script type="text/javascript">
 
+var Contrib = [
+	{
+		value: "1",
+		label: "0000000189",
+		desc: "PALOMINO MOLINA, TEOBALDO",
+		icon: "jquery_32x32.png"
+	},
+	{
+		value: "b",
+		label: "0000000248",
+		desc: "MALCA VERA, UBALDO",
+		icon: "jqueryui_32x32.png"
+	},
+	{
+		value: "3",
+		label: "0000000354",
+		desc: "BUENO ARIZA, NESTOR",
+		icon: "sizzlejs_32x32.png"
+	},
+	{
+		value: "4",
+		label: "0000000158",
+		desc: "GOMEZ OSORIO, IGNACIO",
+		icon: "sizzlejs_32x32.png"
+	}
+];
+
+var Pred = [
+	{
+		value: "1",
+		label: "0000000148",
+		desc: "AA.HH. CERRO LAS ANIMAS MZ.V1 LOTE 01",
+		icon: "jquery_32x32.png"
+	},
+	{
+		value: "b",
+		label: "0000000176",
+		desc: "ZONA TARAPACA MZ.F LOTE 05",
+		icon: "jqueryui_32x32.png"
+	},
+	{
+		value: "3",
+		label: "0000000253",
+		desc: "AA.HH. LA ENSENADA DE CHILLON MZ.J LOTE 15",
+		icon: "sizzlejs_32x32.png"
+	},
+	{
+		value: "4",
+		label: "0000000179",
+		desc: "ASOC.VIV. ROSA LUZ II ETAPA MZ.B LOTE 16",
+		icon: "sizzlejs_32x32.png"
+	}
+];
+
+
+	autocompletar = function(id, data,llenar) {
+		$(id).autocomplete({
+			minLength: 0,
+			source: data,
+			select: function( event, ui ) {
+				$(this).val(ui.item.label);
+				$(llenar).val(ui.item.desc);
+
+				return false;
+			}
+		}).data("autocomplete")._renderItem = function(ul, item) {
+			return $("<li></li>")
+				.data("item.autocomplete", item)
+				.append("<a><b>" + item.label + "</b><br>" + item.desc + "</a>")
+				.appendTo(ul);
+		};
+	};
+
+	$(function() {
+		autocompletar("#txt_dpropie", Contrib ,"#txt_mpropie");
+		autocompletar("#txtcodpropie", Pred ,"#txt_ubicacion");
+	/*	autocompletar("#txt_pisomuro", projects);
+		autocompletar("#txt_pisotecho", projects);
+		autocompletar("#txt_pisopisos", projects);
+		autocompletar("#txt_pisopuertaventana", projects);
+		autocompletar("#txt_pisorevestimiento", projects);
+		autocompletar("#txt_pisobanio", projects);
+		autocompletar("#txt_pisoinstalaciones", projects);*/
+	});
+
+//........................................................................................
 
 	$("#btnguardar").button({
 		icons: {primary:'ui-icon-disk'}
@@ -73,12 +159,12 @@
 	GuardaLindero= function() {
 		indexRow = $("#ctblLindero").val();
 		row = {
-				vptocar: $('#cboTipLindero option:selected').text(), // $('#cboTipLindero").text();
-				vtiplin: $('#cboCardinal option:selected').text(),
+				vptocar: $('#cboCardinal option:selected').text(), // $('#cboTipLindero").text();
+				vtiplin: $('#cboTipLindero option:selected').text(),
 				ccodpre: $("#txtcodpropie").val(),
 				vdirecc: $("#txt_ubicacion").val(),
 				mperson: $("#txt_dpropie").val(),
-				vnombre: 'GOMEZ OSORIO, IGNACIO',
+				vnombre: $("#txt_mpropie").val(),
 				idsigma: '',
 				cptocar: $("#cboCardinal").val(),
 				ctiplin: $("#cboTipLindero").val(),

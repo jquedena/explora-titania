@@ -5,7 +5,7 @@ verInstalacion = function(rowid, iRow, iCol, e) {
 		row = undefined;
 	}
 	
-    openDialogDataFunction1("registro/verinstalacion", {}, "600", "400", "Detalle de la Instalacion", function() {
+    openDialogDataFunction1("registro/verinstalacion", {}, "480", "400", "Detalle de la Instalacion", function() {
     	if(row != undefined) {
 	        $("#txt_instdpredio").val(row.dpredio);
 	   		$("#txt_instcnitems").val(row.cnitems);
@@ -125,3 +125,5 @@ optionInstalacion = {height: 200,
 	        } 
 	    } 
 	};
+
+
