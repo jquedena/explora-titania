@@ -76,25 +76,28 @@
 	GuardaRustico= function() {
 		indexRow = $("#ctblRustico").val();
 		row = {
-				vclasif: $('#cboClasificacion option:selected').text(),
-		        vcatego: $('#cboCategoria  option:selected').text(),
-		        narance: $("#txtArancel").val(),
-		        nhectar: $("#txt_Hectareas").val(),
-		        nvalrus: $("#txt_Total").val(),
-		        idsigma: '01',
-		        mrustic: '01',
-		        cclasif: $("#cboClasificacion").val(),
-		        ccatego: $("#cboCategoria").val(),
-		        dpredio: '01',
-		        nestado: '01',
-		        cperiod: '01'
-		};
+
+			vclasif: $('#cboClasificacion option:selected').text(),
+		      	vcatego: $('#cboCategoria option:selected').text(),
+		       narance: $("#txtArancel").val(),
+		       nhectar: $("#txt_Hectareas").val(),
+		       nvalrus: $("#txt_Total").val(),
+		       idsigma: '01',
+		       mrustic: '01',
+		       cclasif: $("#cboClasificacion").val(),
+		       ccatego: $("#cboCategoria").val(),
+		       dpredio: '01',
+		       nestado: '01',
+		       cperiod: '01'
+		}
+console.log();
 		if($("#tblRustico").jqGrid('addRowData', indexRow,row)) {
 			$("#ctblRustico").val(indexRow + 1);
 		} else {
 			alert('Error no se pudo agregar');
 		}
 	};
+console.log();
 </script>
 
 

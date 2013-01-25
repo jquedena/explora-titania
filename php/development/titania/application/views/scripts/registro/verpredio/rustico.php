@@ -12,33 +12,33 @@
    openDialogDataFunction1("registro/verrustico", {}, "350", "300", "Detalle del Arancel", function() {
    	   	
    	if(row != undefined) {
-            $("#cboClasificacion").val(row.cclasif);
-   			$("#cboCategoria").val(row.ccatego);
+           	$("#cboClasificacion").val(row.cclasif);
+   		$("#cboCategoria").val(row.ccatego);
          	$("#txtArancel").val(row.narance);
-   			$("#txt_Hectareas").val(row.nhectar);       
-   			$("#txt_Total").val(row.nvalrus);
+   		$("#txt_Hectareas").val(row.nhectar);       
+   		$("#txt_Total").val(row.nvalrus);
 
        }  
 	});
 	};
 
 	optionRustico = {
-			    height: 140,
+			 height: 140,
 		        width: 800,
 		        rowNum: 5,
 		        colNames: [
-		            'Calsificaci\u00F3n',
-		            'Categor\u00EDa',
-		            'Arancel',
-		            'Hect\u00E1rea',
-		            'Total',
-	                'idsigma',
-	                'mrustic',
-	                'cclasif',
-	                'ccatego',
-	                'dpredio',
-	                'nestado',
-	                'cperiod'
+		          	'Calsificaci\u00F3n',
+		         	'Categor\u00EDa',
+		        	'Arancel',
+		       	'Hect\u00E1rea',
+		          	'Total',
+	               	'idsigma',
+	                	'mrustic',
+	              	'cclasif',
+	             		'ccatego',
+	              	'dpredio',
+	              	'nestado',
+	              	'cperiod'
 		        ],
 		        colModel: [
 		                   {name: 'vclasif', index:'vclasif', width: 230},
@@ -107,4 +107,4 @@
     		};
     
 
-</script> 
+</script> </script> 

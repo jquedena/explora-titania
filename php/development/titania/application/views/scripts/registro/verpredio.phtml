@@ -104,9 +104,8 @@
             					<td style="width: 85%;"><input class="ui-text" style="width: 100%;" id="direccionXY" type="text" value="" title="Ingrese la direcci&oacute;n para buscar" /></td>
             				</tr>
             				<tr>
-            					<td colspan="2" align="center">
-            						<img style="width:400px; height: 240px;" src="<?php echo $this->util()->getPhotosType('15013504001001.jpg'); ?>"/>
-            						<br/>
+            					<td colspan="2">
+            						<img src=""/>
             						<input type="button" id="btnGaleria" value="Ver Galeria">
             					<td>
             				</tr>
@@ -142,10 +141,10 @@
     </div>
 </div>
 
-<script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/registro/js_registro_verpredio_verinstalacion.js"></script>
-<script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/registro/js_registro_verpredio_verpiso.js"></script>
-<script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/registro/js_registro_verpredio.js"></script>
-<script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/registro/js_registro_verpredio_vermapa.js"></script>
+<script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/js_registro_verpredio_verinstalacion.js"></script>
+<script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/js_registro_verpredio_verpiso.js"></script>
+<script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/js_registro_verpredio.js"></script>
+<script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/js_registro_verpredio_vermapa.js"></script>
 <script type="text/javascript">
     tabs = null;
     jsonPredio = <?php echo json_encode($this->mpredio); ?>;
@@ -154,8 +153,7 @@
         loadVerDetalle();
     });
 
-    /*
-    $(document).ready(function() {
+    /*$(document).ready(function() {
     	$("#direccionXY").autocomplete({          
     		source: function(request, response) {
     			if (geocoder == null){

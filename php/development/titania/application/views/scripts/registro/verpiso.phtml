@@ -9,16 +9,15 @@
 					<table cellspacing="5" style="margin: 3px;">
 						<tr>
 							<td width="150">Nivel</td>
-							<td width="35"><input id="txt_pisonivel"
-								class="ui-text ui-text-numeric"
-								style="width: 30px; font-size: 9px; padding: 2px; text-align: center;"
-								value="" /></td>
+							<td width="35"><input id="txt_pisonivel" maxlength="2" class="ui-text ui-text-numeric"
+								style="width: 30px; padding: 2px; text-align: center;"
+								value="" onkeypress="return validarnumeros(event);"/></td>
 							<td width="300">&nbsp;</td>
 						</tr>
 						<tr>
 							<td>A&ntilde;os de Construcci&oacute;n</td>
-							<td><input id="txt_pisoanocon" class="ui-text"
-								style="width: 30px; padding: 2px; text-align: center;" value="" /></td>
+							<td><input id="txt_pisoanocon" maxlength="4" class="ui-text"
+								style="width: 30px; padding: 2px; text-align: center;" value="" onkeypress="return validarnumeros(event);"/></td>
 							<td><div
 									style="width: 295px; text-align: justify; font-size: 9px;"
 									id="dtxt_pisoano"></div></td>
@@ -26,62 +25,62 @@
 						<tr>
 							<td>Mes</td>
 							<td><input id="txt_pisomescon" class="ui-text"
-								style="width: 30px; padding: 2px; text-align: center; font-size: 9px;"
+								style="width: 30px; padding: 2px; text-align: center; "
 								value="" /></td>
 							<td>&nbsp;</td>
 						</tr>
 						<tr>
 							<td>Materiales</td>
-							<td><input id="txt_pisomaterial" class="ui-text"
-								style="width: 30px; padding: 2px; text-align: center;" /></td>
+							<td><input id="txt_pisomaterial" maxlength="1" class="ui-text"
+								style="width: 30px; padding: 2px; text-align: center;" onkeypress="return validarnumeros(event);"/></td>
 							<td><div
 									style="width: 295px; text-align: justify; font-size: 9px;"
 									id="dtxt_pisomaterial"></div></td>
 						</tr>
 						<tr>
 							<td>Estado</td>
-							<td><input id="txt_pisoestado" class="ui-text"
-								style="width: 30px; padding: 2px; text-align: center;" /></td>
+							<td><input id="txt_pisoestado" maxlength="1" class="ui-text"
+								style="width: 30px; padding: 2px; text-align: center;" onkeypress="return validarnumeros(event);"/></td>
 							<td><div
 									style="width: 295px; text-align: justify; font-size: 9px;"
 									id="dtxt_pisoestado"></div></td>
 						</tr>
 						<tr>
 							<td>Muro y Columas</td>
-							<td><input id="txt_pisomuro" class="ui-text"
-								style="width: 30px; padding: 2px; text-align: center;" /></td>
-							<td><div
+							<td><input id="txt_pisomuro" maxlength="1" class="ui-text"
+								style="width: 30px; padding: 2px; text-align: center;" onkeypress="return validarletras(event);"/></td>
+							<td><div 
 									style="width: 295px; text-align: justify; font-size: 9px;"
 									id="dtxt_pisomuro"></div></td>
 						</tr>
 						<tr>
 							<td>Techo</td>
-							<td><input id="txt_pisotecho" class="ui-text"
-								style="width: 30px; padding: 2px; text-align: center;" /></td>
+							<td><input id="txt_pisotecho" maxlength="1" class="ui-text"
+								style="width: 30px; padding: 2px; text-align: center;" onkeypress="return validarletras(event);"/></td>
 							<td><div
 									style="width: 295px; text-align: justify; font-size: 9px;"
 									id="dtxt_pisotecho"></div></td>
 						</tr>
 						<tr>
 							<td>Pisos</td>
-							<td><input id="txt_pisopisos" class="ui-text"
-								style="width: 30px; padding: 2px; text-align: center;" /></td>
+							<td><input id="txt_pisopisos" maxlength="1" class="ui-text"
+								style="width: 30px; padding: 2px; text-align: center;" onkeypress="return validarletras(event);"/></td>
 							<td><div
 									style="width: 295px; text-align: justify; font-size: 9px;"
 									id="dtxt_pisopisos"></div></td>
 						</tr>
 						<tr>
 							<td>Puertas y Ventanas</td>
-							<td><input id="txt_pisopuertaventana" class="ui-text"
-								style="width: 30px; padding: 2px; text-align: center;" /></td>
+							<td><input id="txt_pisopuertaventana" maxlength="1" class="ui-text"
+								style="width: 30px; padding: 2px; text-align: center;" onkeypress="return validarletras(event);"/></td>
 							<td><div
 									style="width: 295px; text-align: justify; font-size: 9px;"
 									id="dtxt_pisopuertaventana"></div></td>
 						</tr>
 						<tr>
 							<td>Revestimiento</td>
-							<td><input id="txt_pisorevestimiento" class="ui-text"
-								style="width: 30px; padding: 2px; text-align: center;" /></td>
+							<td><input id="txt_pisorevestimiento" maxlength="1" class="ui-text"
+								style="width: 30px; padding: 2px; text-align: center;" onkeypress="return validarletras(event);"/></td>
 							<td><div
 									style="width: 295px; text-align: justify; font-size: 9px;"
 									id="dtxt_pisorevestimiento"></div></td>
@@ -89,18 +88,17 @@
 
 						<tr>
 							<td>Ba&ntilde;os</td>
-							<td><input id="txt_pisobanio" class="ui-text"
-								style="width: 30px; padding: 2px; text-align: center;" /></td>
+							<td><input id="txt_pisobanio" maxlength="1" class="ui-text"
+								style="width: 30px; padding: 2px; text-align: center;" onkeypress="return validarletras(event);"/></td>
 							<td><div
 									style="width: 295px; text-align: justify; font-size: 9px;"
 									id="dtxt_pisobanio"></div></td>
 						</tr>
 						<tr>
 							<td>Instalaciones Electricas y &nbsp;Sanitarias</td>
-							<td><input id="txt_pisoinstalaciones" class="ui-text"
-								style="width: 30px; padding: 2px; text-align: center;" /></td>
-							<td><div
-									style="width: 295px; text-align: justify; font-size: 9px;"
+							<td><input id="txt_pisoinstalaciones" maxlength="1" class="ui-text"
+								style="width: 30px; padding: 2px; text-align: center;" onkeypress="return validarletras(event);"/></td>
+							<td><div style="width: 295px; text-align: justify; font-size: 9px;"
 									id="dtxt_pisoinstalaciones"></div></td>
 						</tr>
 					</table>
@@ -116,56 +114,56 @@
 							<td width="140">Area Construida</td>
 							<td width="100"><input id="txt_pisoarecon"
 								class="ui-text ui-text-numeric"
-								style="width: 80px; padding: 2px" value="" /></td>
+								style="width: 80px; padding: 2px" value="" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
 						<tr>
 							<td width="140">Val. Unit. x m2</td>
 							<td width="100"><input id="txt_pisovaluni"
 								class="ui-text ui-text-numeric"
-								style="width: 80px; padding: 2px" value="" /></td>
+								style="width: 80px; padding: 2px" value="" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
 						<tr>
 							<td width="140">% Incremento</td>
 							<td width="100"><input id="txt_pisoincrem"
 								class="ui-text ui-text-numeric"
-								style="width: 80px; padding: 2px" value="" /></td>
+								style="width: 80px; padding: 2px" value="" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
 						<tr>
 							<td width="140">% Depreciacion</td>
 							<td width="100"><input id="txt_pisopordep"
 								class="ui-text ui-text-numeric"
-								style="width: 80px; padding: 2px" value="" /></td>
+								style="width: 80px; padding: 2px" value="" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
 						<tr>
 							<td width="140">Val. Depreciado</td>
 							<td width="100"><input id="txt_pisodepred"
-								class="ui-text ui-text-numeric" style="width: 80px" value="" /></td>
+								class="ui-text ui-text-numeric" style="width: 80px" value="" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
 						<tr>
 							<td width="140">Val. Unit. Depreciado</td>
 							<td width="100"><input id="txt_pisovalare"
-								class="ui-text ui-text-numeric" style="width: 80px" value="" /></td>
+								class="ui-text ui-text-numeric" style="width: 80px" value="" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
 						<tr>
 							<td width="140">Area Com&uacute;n</td>
 							<td width="100"><input id="txt_pisoarecom"
-								class="ui-text ui-text-numeric" style="width: 80px" value="" /></td>
+								class="ui-text ui-text-numeric" style="width: 80px" value="" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
 						<tr>
 							<td width="140">% Area Com&uacute;n</td>
 							<td width="100"><input id="txt_pisoporcom"
-								class="ui-text ui-text-numeric" style="width: 80px" value="" /></td>
+								class="ui-text ui-text-numeric" style="width: 80px" value="" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
 						<tr>
 							<td width="140">Val. Area Com.</td>
 							<td width="100"><input id="txt_pisovalcom"
-								class="ui-text ui-text-numeric" style="width: 80px" value="" /></td>
+								class="ui-text ui-text-numeric" style="width: 80px" value="" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
 						<tr>
 							<td width="140">Val. del Predio</td>
-							<td width="120"><input id="txt_valpre"
+							<td width="120"><input id="txt_valpre" 
 								class="ui-text ui-text-numeric"
-								style="width: 80px; padding: 2px" />
+								style="width: 80px; padding: 2px" onkeypress="return validarnumeros(event);"/>
 						</tr>
 					</table>
 				</div> <br /> <br /> <input type="button" id="btnguardar" name="guardar"
@@ -270,6 +268,9 @@
 			}
 		// console.log($("#tblPiso").jqGrid('getRowData'));
 	};
+
+
+
 </script>
 
 
