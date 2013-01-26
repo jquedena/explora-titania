@@ -191,6 +191,7 @@ class RegistroController extends Zend_Controller_Action {
     
     public function verlinderoAction() {
     	$this->_helper->getHelper('ajaxContext')->initContext();
+    	$this->view->cidpers = $this->_request->getParam('cidpers');
     
     	if ($this->getRequest()->isXmlHttpRequest()) {
     		$this->_helper->layout->disableLayout();

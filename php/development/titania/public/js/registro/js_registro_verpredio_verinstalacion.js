@@ -104,7 +104,7 @@ optionInstalacion = {height: 200,
 	};
 	    
 	btnEliminarInstalacion = {
-	    caption: "Eliminar&nbsp;&nbsp;",
+	    caption: "Eliminar",
 	    title: "Eliminar la construcci\u00F3n",
 	    buttonicon: "ui-icon-trash",
 	    onClickButton:function(){
@@ -125,5 +125,6 @@ optionInstalacion = {height: 200,
 	        } 
 	    } 
 	};
+
 
 

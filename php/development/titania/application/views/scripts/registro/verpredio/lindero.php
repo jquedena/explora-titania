@@ -25,8 +25,8 @@
 	};
 		
 	optionLindero = {
-		height: 140,
-		width: 950,
+		height: 200,
+		width: 990,
 		rowNum: 5,
 		colNames: [
 			'Cardinal',
@@ -66,7 +66,7 @@
     };
 
     btnEditarColindante = {
-        caption: "Editar",
+        caption: "Editar&nbsp;&nbsp;",
         title: "Editar el nivel seleccionado",
         buttonicon: "ui-icon-pencil",
         onClickButton:function(){
@@ -80,7 +80,7 @@
 	};
     
     btnEliminarColindante = {
-    		  caption: "Eliminar",
+    		  caption: "Eliminar&nbsp;&nbsp;",
     		    title: "Eliminar la construcci\u00F3n",
     		    buttonicon: "ui-icon-trash",
     		    onClickButton:function(){

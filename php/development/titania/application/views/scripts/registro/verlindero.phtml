@@ -33,7 +33,7 @@
 							<td><input id="txt_mpropie" class="ui-text" style="width:250px;padding:2px;"/></td>
 						</tr> 
 						<tr>
-							<td colspan="2" align="right"><input  type="button" id="btnguardar" name="guardar" value="Aceptar"/>&nbsp;&nbsp;<input type="button" id="btncancelar" name="cancelar" value="Cancelar"/></td>
+							<td colspan="2" align="right"><button id="btnguardar">Aceptar</button>&nbsp;&nbsp;<button id="btncancelar">Cancelar</button></td>
 						</tr>
 					</table>
 				</div>
@@ -51,7 +51,7 @@ var Contrib = [
 		icon: "jquery_32x32.png"
 	},
 	{
-		value: "b",
+		value: "2",
 		label: "0000000248",
 		desc: "MALCA VERA, UBALDO",
 		icon: "jqueryui_32x32.png"
@@ -78,7 +78,7 @@ var Pred = [
 		icon: "jquery_32x32.png"
 	},
 	{
-		value: "b",
+		value: "2",
 		label: "0000000176",
 		desc: "ZONA TARAPACA MZ.F LOTE 05",
 		icon: "jqueryui_32x32.png"
@@ -98,7 +98,7 @@ var Pred = [
 ];
 
 
-	autocompletar = function(id, data,llenar) {
+	autocompletarporcod = function(id, data,llenar) {
 		$(id).autocomplete({
 			minLength: 0,
 			source: data,
@@ -116,9 +116,31 @@ var Pred = [
 		};
 	};
 
+	autocompletarpordesc = function(id, data,llenar) {
+		$(id).autocomplete({
+			minLength: 0,
+			source: data,
+			select: function( event, ui ) {
+				$(this).val(ui.item.desc);
+				$(llenar).val(ui.item.label);
+
+				return false;
+			}
+		}).data("autocomplete")._renderItem = function(ul, item) {
+			return $("<li></li>")
+				.data("item.autocomplete", item)
+				.append("<a><b>" + item.desc + "</b><br>" + item.label + "</a>")
+				.appendTo(ul);
+		};
+	};
+	
+
 	$(function() {
-		autocompletar("#txt_dpropie", Contrib ,"#txt_mpropie");
-		autocompletar("#txtcodpropie", Pred ,"#txt_ubicacion");
+		autocompletarporcod("#txt_dpropie", Contrib ,"#txt_mpropie");
+		autocompletarporcod("#txtcodpropie", Pred ,"#txt_ubicacion");
+
+		autocompletarpordesc("#txt_mpropie", Contrib ,"#txt_dpropie");
+		autocompletarpordesc("#txt_ubicacion", Pred ,"#txtcodpropie");
 	/*	autocompletar("#txt_pisomuro", projects);
 		autocompletar("#txt_pisotecho", projects);
 		autocompletar("#txt_pisopisos", projects);
@@ -168,7 +190,7 @@ var Pred = [
 				idsigma: '',
 				cptocar: $("#cboCardinal").val(),
 				ctiplin: $("#cboTipLindero").val(),
-				dpredio: ''
+				dpredio: '<?php echo $this->cidpers; ?>'
 		};
 
 		if($("#tblLindero").jqGrid('addRowData', indexRow, row)) {
