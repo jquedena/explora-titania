@@ -12,9 +12,9 @@
    openDialogDataFunction1("registro/verrustico", {}, "350", "300", "Detalle del Arancel", function() {
    	   	
    	if(row != undefined) {
-           	$("#cboClasificacion").val(row.cclasif);
+        $("#cboClasificacionRustico").val(row.cclasif);
    		$("#cboCategoria").val(row.ccatego);
-         	$("#txtArancel").val(row.narance);
+        $("#txtArancel").val(row.narance);
    		$("#txt_Hectareas").val(row.nhectar);       
    		$("#txt_Total").val(row.nvalrus);
 
@@ -65,7 +65,6 @@
         buttonicon: "ui-icon-plus",
         onClickButton:function(){
         	verarancel();
-        	
         }
     };
 
