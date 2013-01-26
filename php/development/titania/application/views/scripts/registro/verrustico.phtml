@@ -7,10 +7,10 @@
 					<label></label>
 				</div>
 				<div class="ui-widget-content ui-corner-bottom">
-					<table cellspacing="5" style="margin: 3px; class="ui-table-panelLayout"">
+					<table cellspacing="5" style="margin: 3px;" class="ui-table-panelLayout">
 						<tr>
 							<td width="100px">Clasificacion</td>
-							<td width="35" ><select style="width: 150px;" id="cboClasificacion"><?php echo $this->util()->getComboContenedor('1000000326', null); ?></select></td>
+							<td width="35" ><select style="width: 150px;" id="cboClasificacionRustico"><?php echo $this->util()->getComboContenedor('1000000326', null); ?></select></td>
 						</tr>
 						<tr>
 					
@@ -19,35 +19,29 @@
 						</tr>
 						<tr>
 							<td>Arancel</td>
-							<td><input id="txtArancel" class="ui-text" style="width:70px; padding:2px;text-align:left;" value="" /></td>
+							<td><input id="txtArancel" class="ui-text" style="width:70px;" value="" /></td>
 						</tr>
-					<tr>
+						<tr>
 							<td>Hectareas</td>
-							<td><input id="txt_Hectareas" class="ui-text" style="width:70px;padding:2px;text-align:left;"/></td>
+							<td><input id="txt_Hectareas" class="ui-text" style="width:70px;"/></td>
 						</tr>
 						<tr>
 							<td>Total</td>
-							<td><input id="txt_Total" class="ui-text"  style="width:70px; padding:2px;text-align:left;" value="" /></td>
+							<td><input id="txt_Total" class="ui-text"  style="width:70px;" value="" /></td>
 							<td>&nbsp;</td>
-						</tr>
-					<!--	<tr>
-					 	<td>MPropie</td>
-							<td><input id="txt_mpropie" class="ui-text" style="width:30px;padding:2px;text-align:center;"/></td>
-						</tr> -->	
+						</tr>	
 						<tr>
-							<td colspan="2" align="right"><input  type="button" id="btnguardar" name="guardar" value="Aceptar"/>&nbsp;&nbsp;<input type="button" id="btncancelar" name="cancelar" value="Cancelar"/></td>
+							<td colspan="2" align="right">
+								<button id="btnguardar">Aceptar</button>&nbsp;&nbsp;<input type="button" id="btncancelar" name="cancelar" value="Cancelar"/>
+							</td>
 						</tr>
 					</table>
 				</div>
 			</td>
-
 		</tr>
 	</table>
 </div>
 <script type="text/javascript">
-
-	
-
 	$("#btnguardar").button({
 		icons: {primary:'ui-icon-disk'}
 	}).bind('click', function(){
@@ -75,29 +69,28 @@
 
 	GuardaRustico= function() {
 		indexRow = $("#ctblRustico").val();
+		debugger
 		row = {
-
-			vclasif: $('#cboClasificacion option:selected').text(),
-		      	vcatego: $('#cboCategoria option:selected').text(),
-		       narance: $("#txtArancel").val(),
-		       nhectar: $("#txt_Hectareas").val(),
-		       nvalrus: $("#txt_Total").val(),
-		       idsigma: '01',
-		       mrustic: '01',
-		       cclasif: $("#cboClasificacion").val(),
-		       ccatego: $("#cboCategoria").val(),
-		       dpredio: '01',
-		       nestado: '01',
-		       cperiod: '01'
-		}
-console.log();
+			vclasif: $('#cboClasificacionRustico option:selected').text(),
+			vcatego: $('#cboCategoria option:selected').text(),
+			narance: $("#txtArancel").val(),
+			nhectar: $("#txt_Hectareas").val(),
+      		nvalrus: $("#txt_Total").val(),
+      		idsigma: '01',
+      		mrustic: '01',
+      		cclasif: $("#cboClasificacionRustico").val(),
+      		ccatego: $("#cboCategoria").val(),
+      		dpredio: '01',
+      		nestado: '1',
+      		cperiod: '01'
+		};
+		console.log(row);
 		if($("#tblRustico").jqGrid('addRowData', indexRow,row)) {
 			$("#ctblRustico").val(indexRow + 1);
 		} else {
 			alert('Error no se pudo agregar');
 		}
 	};
-console.log();
 </script>
 
 
