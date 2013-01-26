@@ -23,8 +23,8 @@
 	};
 
 	optionRustico = {
-			 height: 140,
-		        width: 800,
+			 height: 200,
+		        width: 990,
 		        rowNum: 5,
 		        colNames: [
 		          	'Calsificaci\u00F3n',
@@ -41,7 +41,7 @@
 	              	'cperiod'
 		        ],
 		        colModel: [
-		                   {name: 'vclasif', index:'vclasif', width: 230},
+		                   {name: 'vclasif', index:'vclasif', width: 320},
 		                   {name: 'vcatego', index:'vcatego', width: 150},
 		                   {name: 'narance', index:'narance', width: 100},
 		                   {name: 'nhectar', index:'nhectar', width: 100},
@@ -53,7 +53,6 @@
 		                   {name: 'dpredio', index:'dpredio', width: 100, hidden: true},
 		                   {name: 'nestado', index:'nestado', width: 100, hidden: true},
 		                   {name: 'cperiod', index:'cperiod', width: 100, hidden: true}
-		                  
 		               ],
 		caption: "&nbsp;&nbsp;&nbsp;Arancel",
        	
@@ -69,7 +68,7 @@
     };
 
     btnEditarRustico = {
-        caption: "Editar",
+        caption: "Editar&nbsp;&nbsp;",
         title: "Editar el nivel seleccionado",
         buttonicon: "ui-icon-pencil",
         onClickButton:function(){
@@ -83,7 +82,7 @@
     };
     
     btnEliminarRustico = {
-    		  caption: "Eliminar",
+    		  caption: "Eliminar&nbsp;&nbsp;",
     		    title: "Eliminar la construcci\u00F3n",
     		    buttonicon: "ui-icon-trash",
     		    onClickButton:function(){

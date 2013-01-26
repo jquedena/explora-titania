@@ -201,11 +201,11 @@ loadVerDetalle = function(){
 
     actualizarGrid("tblInstalacion", optionInstalacion, null, function(){
         $("#tblInstalacion").jqGrid('navGrid', '#ptblInstalacion', {edit:false, add:false, del:false, search:false, refresh:false});
-        $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnInsertarPiso);
+        $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnInsertarInstalacion);
         $("#tblInstalacion").jqGrid('navSeparatorAdd','#ptblInstalacion');
-        $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEditarPiso);
+        $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEditarInstalacion);
         $("#tblInstalacion").jqGrid('navSeparatorAdd','#ptblInstalacion');
-        $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEliminarPiso);
+        $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEliminarInstalacion);
     });
     
     actualizarGrid("tblLindero", optionLindero, null, function(){
