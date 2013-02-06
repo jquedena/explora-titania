@@ -10,6 +10,7 @@
 						<!--  <tr>
 							<td width="140">&nbsp;Cod. Predio&nbsp;</td>
 							<td width="35" ><input id="txt_instdpredio" class="ui-text" style="width: 100px; padding:2px;text-align:center; " value="" /></td>
+							<td width="35" ><select style="width: 150px;" id="cboinstctipint"><?php echo $this->util()->getComboContenedor('1000000439', null); ?></select></td>
 						<tr>
 							<td width="140">&nbsp;Orden de Construcci&oacute;n&nbsp;</td>
 							<td width="35"><input id="txt_instcnitems"  class="ui-text" style="width:100px; padding:2px;text-align:center; " value="" /></td>
@@ -35,7 +36,7 @@
 						</tr>-->
 						<tr>
 							<td width="140">&nbsp;Nro. Pisos</td>
-							<td width="35"><input id="txt_instcnumpis"  maxlength="2" class="ui-text ui-text-numeric" style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/></td>
+							<td width="35"><input id="txt_instcnumpis"  maxlength="2" class="ui-text ui-text-numeric" style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/>&nbsp;&nbsp;<select id="cb_tipoinstalacion" style="width:190px;padding:2px"><?php echo $this->util()->getComboContenedor('1000000443', null); ?></select></td>
 						</tr>
 						<tr>
 							<td width="140">&nbsp;Antiguedad</td>
@@ -55,6 +56,10 @@
 				<div class="ui-widget-content ui-corner-bottom">
 					<table align="left" cellspacing="5" style="margin: 3px;"> -->
 						<tr>
+							<td width="140">&nbsp;&nbsp;Unidad de Medida</td>
+							<td width="35" ><select style="width: 150px;" id="cboinstctipint"><?php echo $this->util()->getComboContenedor('1000000439', null); ?></select></td>
+						</tr>
+						<tr>
 							<td width="140">&nbsp;&nbsp;Ancho Instalaci&oacute;n</td>
 							<td width="35"><input id="txt_instnvalanc" class="ui-text ui-text-numeric" style="width:50px;padding:2px; "/></td>
 						</tr>
@@ -67,10 +72,6 @@
 							<td width="35"><input id="txt_instnvallar" class="ui-text ui-text-numeric"  style="width:50px; padding:2px" value="" /></td>
 						</tr>
 						<tr>
-							<td width="140">&nbsp;&nbsp;Unidad de Medida</td>
-							<td width="35"><input id="txt_instctipint" class="ui-text ui-text-numeric"  style="width:50px; padding:2px" value="" /></td>
-						</tr>
-						<tr>
 							<td width="140">&nbsp;&nbsp;Descripci&oacute;n inst.</td>
 							<td width="35"><input id="txt_instvdesint" class="ui-text"  style="width:300px" value="" /></td>
 						</tr>
@@ -79,7 +80,7 @@
 							<td width="35"><input id="txt_instnvalins" class="ui-text ui-text-numeric"  style="width:50px" value="" /></td>
 						</tr>
 						<tr>
-							<td width="450" colspan="2" align="right"><button id="btnguardar">Aceptar</button>&nbsp;&nbsp;<button id="btncancelar">Cancelar</button></td>
+							<td width="450" colspan="2" align="right"><input  type="button" id="btnguardar" name="guardar" value="Aceptar"/>&nbsp;&nbsp;<input type="button" id="btncancelar" name="cancelar" value="Cancelar"/></td>
 						</tr>
 					</table>
 				</div>
@@ -137,7 +138,7 @@
 		    		nvalanc:$("#txt_instnvalanc").val(),  
 		    		nvalalt:$("#txt_instnvalalt").val(),   
 		    		nvallar:$("#txt_instnvallar").val(),  
-		    		ctipint:$("#txt_instctipint").val(), 
+		    		//ctipint:$("#txt_instctipint").val(), 
 		    		vdesint:$("#txt_instvdesint").val(),
 		    		nvalins:$("#txt_instnvalins").val(),    
 		    		dafecta:''
