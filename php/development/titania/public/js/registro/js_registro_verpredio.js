@@ -128,7 +128,7 @@ loadVerDetalle = function(){
     $("#txtPeriodo").bind("autocompletechange", cambioPeriodo);
     periodoSel = $("#txtPeriodo").val();
     
-    $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto").datepicker({
+    $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto, #txt_inicioinafecto, #txt_fininafecto").datepicker({
         dateFormat: "dd/mm/yy",
         showOn: "button",
         buttonImage: pathImage + "calendar.gif",
@@ -225,7 +225,10 @@ loadVerDetalle = function(){
         $("#tblRustico").jqGrid('navSeparatorAdd','#ptblRustico');
         $("#tblRustico").jqGrid('navButtonAdd','#ptblRustico', btnEliminarRustico);
     });
-    
+    actualizarGrid("tblDatosTributo", optionTributo, null,function(){
+        $("#tblDatosTributo").jqGrid('navGrid', '#ptblDatosTributo', {edit:false, add:false, del:false, search:false, refresh:false});
+       
+    });
     
 };
 

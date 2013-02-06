@@ -1,6 +1,6 @@
 <table class="ui-table-panelLayout">
     <tr>
-        <td style="text-align:right">Inafectaci&oacute;n y Exoneraci&oacute;n:</td><td><select id="cb_tipoinafecto" style="width:190px;padding:2px"></select></td>
+        <td style="text-align:right">Inafectaci&oacute;n y Exoneraci&oacute;n:</td><td><select id="cb_tipoinafecto" style="width:190px;padding:2px"><?php echo $this->util()->getComboContenedor('1000000455', null); ?></select></td>
         <td>Observaci&oacute;n:</td>
     </tr>
     <tr>
@@ -24,23 +24,42 @@
     </tr>
     <tr>
         <td style="text-align:right" valign="top">Tributos:</td>
-        <td valign="top">
-            <table>
-                <tr>
-                    <td>IP:</td>
-                    <td>LP:</td>
-                    <td>RB:</td>
-                    <td>PJ:</td>
-                    <td>SG:</td>
-                </tr>
-                <tr>
-                    <td><input class="ui-text" id="txt_inafectoip" style="width:40px" value="" /></td>
-                    <td><input class="ui-text" id="txt_inafectolp" style="width:40px" value="" /></td>
-                    <td><input class="ui-text" id="txt_inafectorb" style="width:40px" value="" /></td>
-                    <td><input class="ui-text" id="txt_inafectopj" style="width:40px" value="" /></td>
-                    <td><input class="ui-text" id="txt_inafectosg" style="width:40px" value="" /></td>
-                </tr>
-            </table>
-        </td>
+	</tr>
+	<tr>
+		<td align="right" colspan="2">
+			<div id="panelTributo">
+   				<table id="tblDatosTributo"></table>
+    				<div id="ptblDatosTributo"></div>
+			</div>
+		</td>
     </tr>
 </table>
+<script type="text/javascript">
+
+var mydata = [
+		{id:"11.00",invdate:"11.00",name:"11.00",amount:"11.00",tax:"11.00"},
+		{id:"12.00",invdate:"12.00",name:"12.00",amount:"12.00",tax:"12.00"}
+		];
+optionTributo= {
+	data: mydata,
+	datatype: "local",
+	height: 50,
+   	colNames:['IP','LP', 'RB', 'PJ','SG'],
+   	colModel:[
+   		{name:'id',index:'id', width:60,align:"right"},
+   		{name:'invdate',index:'invdate', width:60,align:"right"},
+   		{name:'name',index:'name', width:60,align:"right"},
+   		{name:'amount',index:'amount', width:60,align:"right"},
+   		{name:'tax',index:'tax', width:60,align:"right"}		
+   	],
+   	pager: '#pager',
+  	caption: "Descripcion de Tributos"
+};
+</script>
+
+
+
+
+
+
+
