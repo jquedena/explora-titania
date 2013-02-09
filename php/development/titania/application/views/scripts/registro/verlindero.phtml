@@ -32,6 +32,9 @@
 					 	<td>Nombre Propietario</td>
 							<td><input id="txt_mpropie" class="ui-text" style="width:250px;padding:2px;"/></td>
 						</tr> 
+						<td>idsigma</td>
+							<td><input id="txt_idsigma" class="ui-text" style="width:250px;padding:2px;"/></td>
+						</tr> 
 						<tr>
 							<td colspan="2" align="right"><button id="btnguardar">Aceptar</button>&nbsp;&nbsp;<button id="btncancelar">Cancelar</button></td>
 						</tr>
@@ -180,24 +183,40 @@ var Pred = [
 
 	GuardaLindero= function() {
 		indexRow = $("#ctblLindero").val();
-		row = {
+		row = {};
+		gsr = $("#tblLindero").jqGrid('getGridParam','selrow');
+		if(gsr){
+			row = $("#tblLindero").jqGrid('getRowData', gsr);
+		}
+		row = $.extend(row, {
 				vptocar: $('#cboCardinal option:selected').text(), // $('#cboTipLindero").text();
 				vtiplin: $('#cboTipLindero option:selected').text(),
 				ccodpre: $("#txtcodpropie").val(),
 				vdirecc: $("#txt_ubicacion").val(),
 				mperson: $("#txt_dpropie").val(),
 				vnombre: $("#txt_mpropie").val(),
-				idsigma: '',
 				cptocar: $("#cboCardinal").val(),
 				ctiplin: $("#cboTipLindero").val(),
-				dpredio: '',
-		};
+				idsigma: $("#txt_idsigma").val(),
+				dpredio: '' // Falta setear
+		});
+		
+		console.log(row);
 
-		if($("#tblLindero").jqGrid('addRowData', indexRow, row)) {
-			$("#ctblLindero").val(indexRow + 1);
+		if(parseInt(row.idsigma) != -1) {
+			debugger
+			if(!$("#tblLindero").jqGrid('setRowData', indexRow, row)) {
+				alert('Error no se pudo editar');
+			}
 		} else {
-			alert('Error no se pudo agregar');
+			if($("#tblLindero").jqGrid('addRowData', indexRow, row)) {
+				$("#ctblLindero").val(indexRow + 1);
+			} else {
+				alert('Error no se pudo agregar');
+			}
 		}
+
+		// $("#tblLindero").trigger('reloadGrid');
 	};
 		
 </script>
