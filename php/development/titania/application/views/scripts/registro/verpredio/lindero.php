@@ -9,9 +9,6 @@
 		} else {
 			row = undefined;
 		}
-
-		console.log(row);
-		
 	    openDialogDataFunction1("registro/verlindero", {}, "485", "300", "Detalle del Lindero", function() {
 
 	    	if(row != undefined) {
@@ -20,6 +17,8 @@
 		        $("#txtcodpropie").val(row.ccodpre);
 		   		$("#txt_ubicacion").val(row.vdirecc);       
 		   		$("#txt_dpropie").val(row.mperson);
+		   		$("#txt_mpropie").val(row.vnombre);
+		   		$("#txt_idsigma").val(row.idsigma);
 	   }  
 	});  
 	};
@@ -94,8 +93,6 @@
     		        			alert('Error no se pudo eliminar');
     		        		}
     		        	}
-    		            console.log(gsr);
-    		            // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
     		        } else { 
     		            openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
     		        } 
