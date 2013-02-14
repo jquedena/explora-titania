@@ -184,10 +184,21 @@ var Pred = [
 	GuardaLindero= function() {
 		indexRow = $("#ctblLindero").val();
 		row = {};
+
+		ids = $("#tblLindero").jqGrid('getDataIDs');
+		
+		for(var i=0; i < ids.length; i++) {
+			console.log(ids[i]); 
+		}
+
+		
 		gsr = $("#tblLindero").jqGrid('getGridParam','selrow');
 		if(gsr){
 			row = $("#tblLindero").jqGrid('getRowData', gsr);
 		}
+
+		console.log('EE->'+gsr);
+				
 		row = $.extend(row, {
 				vptocar: $('#cboCardinal option:selected').text(), // $('#cboTipLindero").text();
 				vtiplin: $('#cboTipLindero option:selected').text(),
@@ -204,7 +215,7 @@ var Pred = [
 		console.log(row);
 
 		if(parseInt(row.idsigma) != -1) {
-			debugger
+			// debugger
 			if(!$("#tblLindero").jqGrid('setRowData', indexRow, row)) {
 				alert('Error no se pudo editar');
 			}
