@@ -3,7 +3,11 @@ create or replace function pl_function.guardar_mpredio(p_text varchar)
 returns int
 as
 $body$
+declare
+	ids numeric(18, 0) := 0;
 begin
+	select coalesce(max(idsigma)::numeric(18, 0), 0) into ids from registro.mpredio;
+	
 	with new_values(idsigma, mviadis, dnumero, dinteri, dletras, ddepart, destaci, ddeposi,
 		drefere, dmanzan, dnlotes, ccatast, cplanos, ctipmer, dnummer, cdiscat, 
 		czoncat, cmzacat, cseccat, cltecat, cundcat, dbloque, dseccio, dunidad, 
@@ -36,7 +40,7 @@ begin
 		czoncat, cmzacat, cseccat, cltecat, cundcat, dbloque, dseccio, dunidad, 
 		mpoblad, vdirpre, nestado, ccodpre, ctippre, idanexo, ccodcuc, vhostnm, 
 		vusernm, ddatetm, nlatitu, nlongit, nzoom
-	) select idsigma, mviadis, dnumero, dinteri, dletras, ddepart, destaci, ddeposi,
+	) select rpad((row_number() over(order by idsigma) + ids)::varchar, 10, '0') idsigma, mviadis, dnumero, dinteri, dletras, ddepart, destaci, ddeposi,
 		drefere, dmanzan, dnlotes, ccatast, cplanos, ctipmer, dnummer, cdiscat, 
 		czoncat, cmzacat, cseccat, cltecat, cundcat, dbloque, dseccio, dunidad, 
 		mpoblad, vdirpre, nestado, ccodpre, ctippre, idanexo, ccodcuc, vhostnm, 
