@@ -1,0 +1,21 @@
+armar tu arreglo
+
+$.post(action, parametro).success(data){
+	if data.error=1
+	procesarJSON data.tabla
+}
+
+// php
+Action
+recibir el parametro
+
+crear estructara solicitada por el procedimiento
+llamas al procedimiento executeSelect
+
+if row[0][0] = 1
+	llamas al procedimiento de la tabla executeAssocQuery
+	data['tabla']=rows;
+	data['error']=1;
+	echo $this->_helper->json(data);
+else
+	data['error']='mensaje de error';

@@ -213,8 +213,9 @@ var Pred = [
 		});
 		
 		console.log(row);
-
-		if(parseInt(row.idsigma) != -1) {
+		
+		
+		if(parseInt(row.idsigma) > -1) {
 			// debugger
 			if(!$("#tblLindero").jqGrid('setRowData', indexRow, row)) {
 				alert('Error no se pudo editar');
