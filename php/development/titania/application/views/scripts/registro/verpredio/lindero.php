@@ -37,7 +37,8 @@
 			'idsigma',
 			'cptocar',
 			'ctiplin',
-			'dpredio'
+			'dpredio',
+			'ddatetm'
 		],
 		colModel: [
 			{name: "vptocar", index: "vptocar", width: 70, align: 'center'},
@@ -49,7 +50,8 @@
 			{name: "idsigma", index: "idsigma", hidden:true},
 			{name: "cptocar", index: "cptocar", hidden:true},
 			{name: "ctiplin", index: "ctiplin", hidden:true},
-			{name: "dpredio", index: "dpredio", hidden:true}
+			{name: "dpredio", index: "dpredio", hidden:true},
+			{name: "ddatetm", index: "ddatetm", hidden:true}
 		],	
 		caption: "&nbsp;&nbsp;&nbsp;Linderos",
        	

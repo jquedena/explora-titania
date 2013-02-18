@@ -1,5 +1,8 @@
 <div id="formLindero">
 	<table >
+		<tr>
+		  <td><input id="idsigma" type="hidden" value="-1"/> </td>
+		</tr>
 		 <tr align="center">
 			<td width="310">
 				<div class="ui-widget ui-state-default ui-corner-top ui-title">
@@ -31,7 +34,8 @@
 						<tr>
 					 	<td>Nombre Propietario</td>
 							<td><input id="txt_mpropie" class="ui-text" style="width:250px;padding:2px;"/></td>
-						</tr> 
+						</tr>
+						<tr>
 						<td>idsigma</td>
 							<td><input id="txt_idsigma" class="ui-text" style="width:250px;padding:2px;"/></td>
 						</tr> 
@@ -45,6 +49,7 @@
 	</table>
 </div>
 <script type="text/javascript">
+
 
 var Contrib = [
 	{
@@ -165,13 +170,13 @@ var Pred = [
 	            return;
 	        }
 		});
-		if(!isValid){
-		   openDialogWarning("Los campos deben estar llenos.", 380, 150);	
-		}else{
+	//	if(!isValid){
+	//	   openDialogWarning("Los campos deben estar llenos.", 380, 150);	
+	//	}else{
 			GuardaLindero();
 			// openDialogWarning("Los datos han sido guardados.", 380, 150);
 			closeDialog('jqDialog1');
-			}
+	//		}
 		
 	});
 
@@ -181,8 +186,13 @@ var Pred = [
 		closeDialog('jqDialog1');
 	});
 
+
+
+	
 	GuardaLindero= function() {
+	
 		indexRow = $("#ctblLindero").val();
+			
 		row = {};
 
 		ids = $("#tblLindero").jqGrid('getDataIDs');
@@ -209,7 +219,8 @@ var Pred = [
 				cptocar: $("#cboCardinal").val(),
 				ctiplin: $("#cboTipLindero").val(),
 				idsigma: $("#txt_idsigma").val(),
-				dpredio: '' // Falta setear
+				dpredio: '0000000001', // Falta setear
+				ddatetm: '2013-05-14 20:00:00'
 		});
 		
 		console.log(row);
@@ -228,7 +239,18 @@ var Pred = [
 			}
 		}
 
-		// $("#tblLindero").trigger('reloadGrid');
+
+	
+
+
+		//	echo json_encode(row, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
+
+
+	
+	//		executeSelect(pl_function.guardar_mlindero, $parameters = null);
 	};
-		
+
+
+
+
 </script>

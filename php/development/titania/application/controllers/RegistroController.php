@@ -194,9 +194,11 @@ class RegistroController extends Zend_Controller_Action {
     	
     	if ($this->getRequest()->isXmlHttpRequest()) {
     		$this->_helper->layout->disableLayout();
+    		
     	}
     }
     
+
     public function verrusticoAction() {
     	$this->_helper->getHelper('ajaxContext')->initContext();
     
@@ -205,4 +207,54 @@ class RegistroController extends Zend_Controller_Action {
     	}
     }
     
+    public function linderoAction() {
+    	$this->_helper->getHelper('ajaxContext')->initContext();
+    	 
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+
+    		$idsigma = $this->_request->getPost('idsigma');
+    		$cptocar = $this->_request->getPost('cptocar');
+    		$ctiplin = $this->_request->getPost('ctiplin');
+    		$ccodpre = $this->_request->getPost('ccodpre');
+    		$vdirecc = $this->_request->getPost('vdirecc');
+    		$mperson = $this->_request->getPost('mperson');
+    		$dpredio = $this->_request->getPost('dpredio');
+    		$ddatetm = $this->_request->getPost('ddatetm');
+    		
+    		$this->view->p_cperiod = $this->_request->getParam('dpredio');
+    		$this->view->p_cperiod = $this->_request->getParam('cperiod');
+    		
+    		$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+    		$userlogin = $ddatosuserlog->userlogin;
+    		$cn = new Model_DataAdapter ();
+    		
+    		$nombrestore = '"pl_function".guardar_mlindero';
+    		$parametros [0] = $idsigma;
+    		$parametros [1] = $cptocar;
+    		$parametros [2] = $ctiplin;
+    		$parametros [3] = $ccodpre;
+    		$parametros [4] = $vdirecc;
+    		$parametros [5] = $mperson;
+    		$parametros [6] = $dpredio;
+    		$parametros [7] = $userlogin;
+    		$parametros [8] = $this->view->util()->getHost();;
+    		$parametros [9] = $ddatetm;
+    		
+    		$datos = $cn->executeSelect($nombrestore, $parametros);
+    		echo json_encode($datos);
+    		if ($datos[0][0] == '1') {
+
+	   			$parameters[] = $this->_request->getParam('dpredio');
+    			$parameters[] = $this->_request->getParam('cperiod');
+
+    			$cn->executeAssocQuery("pl_function.listar_lindero", $parameters);
+    		} else {
+    			header("Error al Guardar");
+    		}
+    		
+    		
+    		
+    	}
+    }
 }
