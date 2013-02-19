@@ -210,7 +210,7 @@ class RegistroController extends Zend_Controller_Action {
     public function linderoAction() {
     	$this->_helper->getHelper('ajaxContext')->initContext();
     	 
-    	if ($this->getRequest()->isXmlHttpRequest()) {
+   	if ($this->getRequest()->isXmlHttpRequest()) {
     		$this->_helper->layout->disableLayout();
 
     		$idsigma = $this->_request->getPost('idsigma');
@@ -230,19 +230,22 @@ class RegistroController extends Zend_Controller_Action {
     		$cn = new Model_DataAdapter ();
     		
     		$nombrestore = '"pl_function".guardar_mlindero';
-    		$parametros [0] = $idsigma;
-    		$parametros [1] = $cptocar;
-    		$parametros [2] = $ctiplin;
-    		$parametros [3] = $ccodpre;
-    		$parametros [4] = $vdirecc;
-    		$parametros [5] = $mperson;
-    		$parametros [6] = $dpredio;
-    		$parametros [7] = $userlogin;
-    		$parametros [8] = $this->view->util()->getHost();;
-    		$parametros [9] = $ddatetm;
+    		$parametros [] = $idsigma;
+    		$parametros [] = $cptocar;
+    		$parametros [] = $ctiplin;
+    		$parametros [] = $ccodpre;
+    		$parametros [] = $vdirecc;
+    		$parametros [] = $mperson;
+    		$parametros [] = $dpredio;
+    		$parametros [] = $userlogin;
+    		$parametros [] = $this->view->util()->getHost();;
+    		$parametros [] = $ddatetm;
     		
-    		$datos = $cn->executeSelect($nombrestore, $parametros);
-    		echo json_encode($datos);
+    	
+
+    		$datos = $cn->executeSelect($nombrestore, $parametros);}
+    		console.log($datos);
+    		echo $datos[0][1];
     		if ($datos[0][0] == '1') {
 
 	   			$parameters[] = $this->_request->getParam('dpredio');
@@ -250,7 +253,7 @@ class RegistroController extends Zend_Controller_Action {
 
     			$cn->executeAssocQuery("pl_function.listar_lindero", $parameters);
     		} else {
-    			header("Error al Guardar");
+    			alert("Error al Guardar");
     		}
     		
     		

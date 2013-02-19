@@ -170,13 +170,13 @@ var Pred = [
 	            return;
 	        }
 		});
-	//	if(!isValid){
-	//	   openDialogWarning("Los campos deben estar llenos.", 380, 150);	
-	//	}else{
+		if(!isValid){
+		   openDialogWarning("Los campos deben estar llenos.", 380, 150);	
+		}else{
 			GuardaLindero();
 			// openDialogWarning("Los datos han sido guardados.", 380, 150);
 			closeDialog('jqDialog1');
-	//		}
+			}
 		
 	});
 
@@ -207,7 +207,7 @@ var Pred = [
 			row = $("#tblLindero").jqGrid('getRowData', gsr);
 		}
 
-		console.log('EE->'+gsr);
+			console.log('EE->'+gsr);
 				
 		row = $.extend(row, {
 				vptocar: $('#cboCardinal option:selected').text(), // $('#cboTipLindero").text();
@@ -239,18 +239,54 @@ var Pred = [
 			}
 		}
 
-
-	
-
-
 		//	echo json_encode(row, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
 
-
-	
-	//		executeSelect(pl_function.guardar_mlindero, $parameters = null);
+	//$n=	executeSelect(pl_function.guardar_mlindero, $parameters = null);
+	//console.log($n);
 	};
 
+	function guardar(){
+		var vptocar= $('#cboCardinal option:selected').text(); // $('#cboTipLindero").text();
+		var vtiplin= $('#cboTipLindero option:selected').text();
+		var ccodpre= $("#txtcodpropie").val();
+		var vdirecc= $("#txt_ubicacion").val();
+		var mperson= $("#txt_dpropie").val();
+		var vnombre= $("#txt_mpropie").val();
+		var cptocar= $("#cboCardinal").val();
+		var ctiplin= $("#cboTipLindero").val();
+		var idsigma= $("#txt_idsigma").val();
+		var dpredio= '0000000001'; // Falta setear
+		var ddatetm= '2013-05-14 20:00:00';
 
 
+	    $.ajax({
+	        dataType: "html",
+	        type: "POST",
+	        url: path + "registro/guardarlindero/", // Ruta donde se encuentra nuestro action que procesa la peticion XmlHttpRequest
+	        data: "idsigma="+idsigma
+	        +"&cptocar="+cptocar
+	        +"&ctiplin="+ctiplin
+	        +"&ccodpre="+ccodpre
+	        +"&vdirecc="+vdirecc
+	        +"&mperson="+mperson
+	        +"&dpredio="+dpredio
+	        +"&vusernm="+vusernm
+	        +"&vhostnm="+vhostnm
+	        +"&ddatetm="+ddatetm,
+	        
+	        success: function(requestData){ 	//Llamada exitosa
+	            $("#div_mensaje").html(requestData);
+	        },		
+	        error: function(requestData, errNumber, errMessage){
+	            if(errNumber == '') {
+	                openDialogError("No se puede determinar el error.");
+	            } else {
+	                openDialogError(errNumber +': ' + errMessage);
+	            }
+	        }
+	    });
+		
+	}
+*/
 
 </script>
