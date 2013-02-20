@@ -208,56 +208,22 @@ class RegistroController extends Zend_Controller_Action {
     }
     
     public function linderoAction() {
-    	$this->_helper->getHelper('ajaxContext')->initContext();
-    	 
-   	if ($this->getRequest()->isXmlHttpRequest()) {
+        	$this->_helper->getHelper('ajaxContext')->initContext();
+    
+    	if ($this->getRequest()->isXmlHttpRequest()) {
     		$this->_helper->layout->disableLayout();
-
-    		$idsigma = $this->_request->getPost('idsigma');
-    		$cptocar = $this->_request->getPost('cptocar');
-    		$ctiplin = $this->_request->getPost('ctiplin');
-    		$ccodpre = $this->_request->getPost('ccodpre');
-    		$vdirecc = $this->_request->getPost('vdirecc');
-    		$mperson = $this->_request->getPost('mperson');
-    		$dpredio = $this->_request->getPost('dpredio');
-    		$ddatetm = $this->_request->getPost('ddatetm');
-    		
-    		$this->view->p_cperiod = $this->_request->getParam('dpredio');
-    		$this->view->p_cperiod = $this->_request->getParam('cperiod');
-    		
-    		$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
-    		$userlogin = $ddatosuserlog->userlogin;
-    		$cn = new Model_DataAdapter ();
-    		
-    		$nombrestore = '"pl_function".guardar_mlindero';
-    		$parametros [] = $idsigma;
-    		$parametros [] = $cptocar;
-    		$parametros [] = $ctiplin;
-    		$parametros [] = $ccodpre;
-    		$parametros [] = $vdirecc;
-    		$parametros [] = $mperson;
-    		$parametros [] = $dpredio;
-    		$parametros [] = $userlogin;
-    		$parametros [] = $this->view->util()->getHost();;
-    		$parametros [] = $ddatetm;
-    		
-    	
-
-    		$datos = $cn->executeSelect($nombrestore, $parametros);}
-    		console.log($datos);
-    		echo $datos[0][1];
-    		if ($datos[0][0] == '1') {
-
-	   			$parameters[] = $this->_request->getParam('dpredio');
-    			$parameters[] = $this->_request->getParam('cperiod');
-
-    			$cn->executeAssocQuery("pl_function.listar_lindero", $parameters);
-    		} else {
-    			alert("Error al Guardar");
-    		}
-    		
-    		
-    		
     	}
     }
-}
+    
+    public function guardarlinderoAction() {
+    	$this->_helper->getHelper('ajaxContext')->initContext();
+    
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+    		 
+    		$row = $_REQUEST['row'];
+    		echo $row->ctiplin;
+    		//echo $this->_helper->json($row['vptocar']);
+    	}
+    }
+}  

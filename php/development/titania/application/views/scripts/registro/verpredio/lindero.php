@@ -8,8 +8,9 @@
 			row = $("#tblLindero").jqGrid('getRowData', rowid);
 		} else {
 			row = undefined;
+			
 		}
-	    openDialogDataFunction1("registro/verlindero", {}, "485", "300", "Detalle del Lindero", function() {
+	    openDialogDataFunction1("registro/verlindero", {}, "500", "350", "Detalle del Lindero", function() {
 
 	    	if(row != undefined) {
 		        $("#cboTipLindero").val(row.ctiplin);
@@ -19,7 +20,9 @@
 		   		$("#txt_dpropie").val(row.mperson);
 		   		$("#txt_mpropie").val(row.vnombre);
 		   		$("#txt_idsigma").val(row.idsigma);
-	   }  
+	   		} else {
+	   			$("#txt_idsigma").val('-1'); 
+	   			} 
 	});  
 	};
 		
@@ -37,8 +40,7 @@
 			'idsigma',
 			'cptocar',
 			'ctiplin',
-			'dpredio',
-			'ddatetm'
+			'dpredio'
 		],
 		colModel: [
 			{name: "vptocar", index: "vptocar", width: 70, align: 'center'},
@@ -50,8 +52,7 @@
 			{name: "idsigma", index: "idsigma", hidden:true},
 			{name: "cptocar", index: "cptocar", hidden:true},
 			{name: "ctiplin", index: "ctiplin", hidden:true},
-			{name: "dpredio", index: "dpredio", hidden:true},
-			{name: "ddatetm", index: "ddatetm", hidden:true}
+			{name: "dpredio", index: "dpredio", hidden:true}
 		],	
 		caption: "&nbsp;&nbsp;&nbsp;Linderos",
        	

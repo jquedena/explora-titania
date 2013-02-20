@@ -236,30 +236,32 @@ btnEliminarPiso = {
 btnGuardar = function() {
 	indexRow = $("#ctblPiso").val();
 	
-		if($("#tblPiso").jqGrid('addRowData', indexRow, {
-														cnumpis:$("#txt_pisonivel").val(),
-														nantigu:$("#txt_pisoanocon").val(),
-														cmescon:$("#txt_pisomescon").val(),
-														vmateri:$("#txt_pisomaterial").val(),       
-														vconser:$("#txt_pisoestado").val(),
-														vmurcol:$("#txt_pisomuro").val(),     
-														vtechos:$("#txt_pisotecho").val(),
-														vmpisos:$("#txt_pisopisos").val(),    
-														vpueven:$("#txt_pisopuertaventana").val(),
-														vrevest:$("#txt_pisorevestimiento").val(),      
-														vbanios:$("#txt_pisobanio").val(),
-														velectr:$("#txt_pisoinstalaciones").val(),       
-														narecon:$("#txt_pisoarecon").val(),
-														nvaluni:$("#txt_pisovaluni").val(),
-														nincrem:$("#txt_pisoincrem").val(),
-														npordep:$("#txt_pisopordep").val(),      
-														ndepred:$("#txt_pisodepred").val(),
-														nvalare:$("#txt_pisovalare").val(),      
-														narecom:$("#txt_pisoarecom").val(),
-														nporcom:$("#txt_pisoporcom").val(),
-														nvalcom:$("#txt_pisovalcom").val(),
-														nvalpis:$("#txt_valpre").val()
-		})) {
+	row={
+			cnumpis:$("#txt_pisonivel").val(),
+			nantigu:$("#txt_pisoanocon").val(),
+			cmescon:$("#txt_pisomescon").val(),
+			vmateri:$("#txt_pisomaterial").val(),       
+			vconser:$("#txt_pisoestado").val(),
+			vmurcol:$("#txt_pisomuro").val(),     
+			vtechos:$("#txt_pisotecho").val(),
+			vmpisos:$("#txt_pisopisos").val(),    
+			vpueven:$("#txt_pisopuertaventana").val(),
+			vrevest:$("#txt_pisorevestimiento").val(),      
+			vbanios:$("#txt_pisobanio").val(),
+			velectr:$("#txt_pisoinstalaciones").val(),       
+			narecon:$("#txt_pisoarecon").val(),
+			nvaluni:$("#txt_pisovaluni").val(),
+			nincrem:$("#txt_pisoincrem").val(),
+			npordep:$("#txt_pisopordep").val(),      
+			ndepred:$("#txt_pisodepred").val(),
+			nvalare:$("#txt_pisovalare").val(),      
+			narecom:$("#txt_pisoarecom").val(),
+			nporcom:$("#txt_pisoporcom").val(),
+			nvalcom:$("#txt_pisovalcom").val(),
+			nvalpis:$("#txt_valpre").val()
+};
+	
+		if($("#tblPiso").jqGrid('addRowData', indexRow, row)) {
 			$("#ctblPiso").val(indexRow + 1);
 		} else {
 			alert('Error no se pudo agregar');

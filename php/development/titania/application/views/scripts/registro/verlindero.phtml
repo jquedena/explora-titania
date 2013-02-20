@@ -1,8 +1,5 @@
 <div id="formLindero">
 	<table >
-		<tr>
-		  <td><input id="idsigma" type="hidden" value="-1"/> </td>
-		</tr>
 		 <tr align="center">
 			<td width="310">
 				<div class="ui-widget ui-state-default ui-corner-top ui-title">
@@ -34,10 +31,10 @@
 						<tr>
 					 	<td>Nombre Propietario</td>
 							<td><input id="txt_mpropie" class="ui-text" style="width:250px;padding:2px;"/></td>
-						</tr>
+						</tr> 
 						<tr>
-						<td>idsigma</td>
-							<td><input id="txt_idsigma" class="ui-text" style="width:250px;padding:2px;"/></td>
+							<td></td>
+							<td><input id="txt_idsigma" type="hidden" class="ui-text" style="width:250px;padding:2px;"/></td>
 						</tr> 
 						<tr>
 							<td colspan="2" align="right"><button id="btnguardar">Aceptar</button>&nbsp;&nbsp;<button id="btncancelar">Cancelar</button></td>
@@ -49,7 +46,6 @@
 	</table>
 </div>
 <script type="text/javascript">
-
 
 var Contrib = [
 	{
@@ -186,28 +182,15 @@ var Pred = [
 		closeDialog('jqDialog1');
 	});
 
-
-
-	
 	GuardaLindero= function() {
-	
 		indexRow = $("#ctblLindero").val();
-			
 		row = {};
-
 		ids = $("#tblLindero").jqGrid('getDataIDs');
+		gsr = $("#tblLindero").jqGrid('getGridParam', 'selrow');
 		
-		for(var i=0; i < ids.length; i++) {
-			console.log(ids[i]); 
-		}
-
-		
-		gsr = $("#tblLindero").jqGrid('getGridParam','selrow');
 		if(gsr){
 			row = $("#tblLindero").jqGrid('getRowData', gsr);
 		}
-
-			console.log('EE->'+gsr);
 				
 		row = $.extend(row, {
 				vptocar: $('#cboCardinal option:selected').text(), // $('#cboTipLindero").text();
@@ -219,13 +202,18 @@ var Pred = [
 				cptocar: $("#cboCardinal").val(),
 				ctiplin: $("#cboTipLindero").val(),
 				idsigma: $("#txt_idsigma").val(),
-				dpredio: '0000000001', // Falta setear
-				ddatetm: '2013-05-14 20:00:00'
+				dpredio: $("#_dpredio").val()
 		});
 		
 		console.log(row);
+		parameters = {'row': row};
 		
-		
+		_post = $.post(path + "registro/guardarlindero", parameters);
+	    _post.success(function(data){
+		    console.log(data);
+		});
+	    _post.error(postError);
+		/*
 		if(parseInt(row.idsigma) > -1) {
 			// debugger
 			if(!$("#tblLindero").jqGrid('setRowData', indexRow, row)) {
@@ -238,55 +226,8 @@ var Pred = [
 				alert('Error no se pudo agregar');
 			}
 		}
-
-		//	echo json_encode(row, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
-
-	//$n=	executeSelect(pl_function.guardar_mlindero, $parameters = null);
-	//console.log($n);
+		*/
+		// $("#tblLindero").trigger('reloadGrid');
 	};
-
-	function guardar(){
-		var vptocar= $('#cboCardinal option:selected').text(); // $('#cboTipLindero").text();
-		var vtiplin= $('#cboTipLindero option:selected').text();
-		var ccodpre= $("#txtcodpropie").val();
-		var vdirecc= $("#txt_ubicacion").val();
-		var mperson= $("#txt_dpropie").val();
-		var vnombre= $("#txt_mpropie").val();
-		var cptocar= $("#cboCardinal").val();
-		var ctiplin= $("#cboTipLindero").val();
-		var idsigma= $("#txt_idsigma").val();
-		var dpredio= '0000000001'; // Falta setear
-		var ddatetm= '2013-05-14 20:00:00';
-
-
-	    $.ajax({
-	        dataType: "html",
-	        type: "POST",
-	        url: path + "registro/guardarlindero/", // Ruta donde se encuentra nuestro action que procesa la peticion XmlHttpRequest
-	        data: "idsigma="+idsigma
-	        +"&cptocar="+cptocar
-	        +"&ctiplin="+ctiplin
-	        +"&ccodpre="+ccodpre
-	        +"&vdirecc="+vdirecc
-	        +"&mperson="+mperson
-	        +"&dpredio="+dpredio
-	        +"&vusernm="+vusernm
-	        +"&vhostnm="+vhostnm
-	        +"&ddatetm="+ddatetm,
-	        
-	        success: function(requestData){ 	//Llamada exitosa
-	            $("#div_mensaje").html(requestData);
-	        },		
-	        error: function(requestData, errNumber, errMessage){
-	            if(errNumber == '') {
-	                openDialogError("No se puede determinar el error.");
-	            } else {
-	                openDialogError(errNumber +': ' + errMessage);
-	            }
-	        }
-	    });
 		
-	}
-*/
-
 </script>
