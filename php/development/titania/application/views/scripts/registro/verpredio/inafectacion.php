@@ -1,6 +1,6 @@
 <table class="ui-table-panelLayout">
     <tr>
-        <td style="text-align:right">Inafectaci&oacute;n y Exoneraci&oacute;n:</td><td><select id="cb_tipoinafecto" style="width:190px;padding:2px"><?php echo $this->util()->getComboContenedor('1000000455', null); ?></select></td>
+        <td style="text-align:right">Inafectaci&oacute;n y Exoneraci&oacute;n:</td><td><select id="cb_tipoinafecto" style="width:190px;padding:2px"><?php echo $this->util()->getComboContenedor('1000000424', null); ?></select></td>
         <td>Observaci&oacute;n:</td>
     </tr>
     <tr>
