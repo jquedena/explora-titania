@@ -17,8 +17,12 @@
         $("#txtArancel").val(row.narance);
    		$("#txt_Hectareas").val(row.nhectar);       
    		$("#txt_Total").val(row.nvalrus);
-
-       }  
+   		$("#_mrustic").val(row.mrustic);
+   		$("#txtidsigma").val(row.idsigma);
+   	  }  else {
+   		$("#_mrustic").val('11');
+   		$("#txtidsigma").val('-1');
+   	   	  }
 	});
 	};
 
@@ -45,14 +49,14 @@
 		                   {name: 'vcatego', index:'vcatego', width: 150},
 		                   {name: 'narance', index:'narance', width: 100},
 		                   {name: 'nhectar', index:'nhectar', width: 100},
-		                   {name: 'nvalrus', index:'nvalrus', width: 100},
-		                   {name: 'idsigma', index:'idsigma', width: 100, hidden: true},
-		                   {name: 'mrustic', index:'mrustic', width: 100, hidden: true},
-		                   {name: 'cclasif', index:'cclasif', width: 100, hidden: true},
-		                   {name: 'ccatego', index:'ccatego', width: 100, hidden: true},
-		                   {name: 'dpredio', index:'dpredio', width: 100, hidden: true},
-		                   {name: 'nestado', index:'nestado', width: 100, hidden: true},
-		                   {name: 'cperiod', index:'cperiod', width: 100, hidden: true}
+		                   {name: 'nvalrus', index:'nvalrus', width: 100},//Hiden
+		                   {name: 'idsigma', index:'idsigma', width: 100},
+		                   {name: 'mrustic', index:'mrustic', width: 100},
+		                   {name: 'cclasif', index:'cclasif', width: 100},
+		                   {name: 'ccatego', index:'ccatego', width: 100},
+		                   {name: 'dpredio', index:'dpredio', width: 100},
+		                   {name: 'nestado', index:'nestado', width: 100},
+		                   {name: 'cperiod', index:'cperiod', width: 100}
 		               ],
 		caption: "&nbsp;&nbsp;&nbsp;Arancel",
        	
@@ -105,4 +109,4 @@
     		};
     
 
-</script> </script> 
+</script>

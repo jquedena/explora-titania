@@ -9,6 +9,9 @@
 				<div class="ui-widget-content ui-corner-bottom">
 					<table cellspacing="5" style="margin: 3px;" class="ui-table-panelLayout">
 						<tr>
+						  <td><input type="hidden" name="txtidsigma" id="txtidsigma" value="" /></td>
+						</tr>
+						<tr>
 							<td width="100px">Clasificacion</td>
 							<td width="35" ><select style="width: 150px;" id="cboClasificacionRustico"><?php echo $this->util()->getComboContenedor('1000000326', null); ?></select></td>
 						</tr>
@@ -35,6 +38,9 @@
 								<button id="btnguardar">Aceptar</button>&nbsp;&nbsp;<button id="btncancelar">Cancelar</button>
 							</td>
 						</tr>
+						<tr>
+						  <td><input type="hidden" name="_mrustic" id="_mrustic" value="" /></td>
+						</tr>
 					</table>
 				</div>
 			</td>
@@ -42,6 +48,7 @@
 	</table>
 </div>
 <script type="text/javascript">
+
 	$("#btnguardar").button({
 		icons: {primary:'ui-icon-disk'}
 	}).bind('click', function(){
@@ -69,28 +76,73 @@
 
 	GuardaRustico= function() {
 		indexRow = $("#ctblRustico").val();
-		debugger
+	//	debugger
 		row = {
 			vclasif: $('#cboClasificacionRustico option:selected').text(),
 			vcatego: $('#cboCategoria option:selected').text(),
 			narance: $("#txtArancel").val(),
 			nhectar: $("#txt_Hectareas").val(),
       		nvalrus: $("#txt_Total").val(),
-      		idsigma: '01',
+      		idsigma: $("#txtidsigma").val(),//"0000000009"
       		mrustic: '01',
       		cclasif: $("#cboClasificacionRustico").val(),
       		ccatego: $("#cboCategoria").val(),
-      		dpredio: '01',
+      		dpredio: $("#_dpredio").val(),
       		nestado: '1',
-      		cperiod: '01'
+      		cperiod: $("#txtPeriodo").val()
 		};
 		console.log(row);
+
 		if($("#tblRustico").jqGrid('addRowData', indexRow,row)) {
 			$("#ctblRustico").val(indexRow + 1);
 		} else {
 			alert('Error no se pudo agregar');
 		}
 	};
+/*
+	GuardaRustico= function() {
+		indexRow = $("#ctblRustico").val();
+		row = {};
+		ids = $("#tblRustico").jqGrid('getDataIDs');
+		gsr = $("#tblRustico").jqGrid('getGridParam', 'selrow');
+		
+		if(gsr){
+			row = $("#tblRustico").jqGrid('getRowData', gsr);
+		}
+				
+		row = $.extend(row, {
+			vclasif: $('#cboClasificacionRustico option:selected').text(),
+			vcatego: $('#cboCategoria option:selected').text(),
+			narance: $("#txtArancel").val(),
+			nhectar: $("#txt_Hectareas").val(),
+      		nvalrus: $("#txt_Total").val(),
+      		idsigma: $("#txtidsigma").val(),//"0000000009"
+      		mrustic: '22',
+      		cclasif: $("#cboClasificacionRustico").val(),
+      		ccatego: $("#cboCategoria").val(),
+      		dpredio: $("#_dpredio").val(),
+      		nestado: '1',
+      		cperiod: $("#txtPeriodo").val()
+		});
+		console.log(row);
+		
+		_post = $.post(path + "registro/guardarrustico", row);
+	    _post.success(function(data){
+	    	optionRustico = $.extend(optionRustico, {data: data.data});
+	    	procesarJSON("panelRustico", "tblRustico", optionRustico, null, function(){
+	            $("#tblRustico").jqGrid('navGrid', '#ptblRustico', {edit:false, add:false, del:false, search:false, refresh:false});
+	            $("#tblRustico").jqGrid('navButtonAdd', '#ptblRustico', btnInsertarRustico);
+	            $("#tblRustico").jqGrid('navSeparatorAdd','#ptblRustico');
+	            $("#tblRustico").jqGrid('navButtonAdd','#ptblRustico', btnEditarRustico);
+	            $("#tblRustico").jqGrid('navSeparatorAdd','#ptblRustico');
+	            $("#tblRustico").jqGrid('navButtonAdd','#ptblRustico', btnEliminarRustico);
+	        });
+		});
+	    _post.error(postError);
+	};*/
+
+
+	
 </script>
 
 

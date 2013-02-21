@@ -25,8 +25,10 @@ verInstalacion = function(rowid, iRow, iCol, e) {
 	   		$("#txt_instvdesint").val(row.vdesint);     
 	   		$("#txt_instnvalins").val(row.nvalins);          
 	   		$("#txt_instdafecta").val(row.dafecta);     
-
-   }  
+   }  else {
+	   $("#txt_idsigma").val('-1');  
+	   
+   		}
 });
 
 };
