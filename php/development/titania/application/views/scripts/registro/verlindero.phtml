@@ -202,32 +202,23 @@ var Pred = [
 				cptocar: $("#cboCardinal").val(),
 				ctiplin: $("#cboTipLindero").val(),
 				idsigma: $("#txt_idsigma").val(),
-				dpredio: $("#_dpredio").val()
+				dpredio: $("#_dpredio").val(),
+				cperiod: $("#txtPeriodo").val()
 		});
 		
-		console.log(row);
-		parameters = {'row': row};
-		
-		_post = $.post(path + "registro/guardarlindero", parameters);
+		_post = $.post(path + "registro/guardarlindero", row);
 	    _post.success(function(data){
-		    console.log(data);
+	    	optionLindero = $.extend(optionLindero, {data: data.data});
+	    	procesarJSON("panelLindero", "tblLindero", optionLindero, null, function(){
+	            $("#tblLindero").jqGrid('navGrid', '#ptblLindero', {edit:false, add:false, del:false, search:false, refresh:false});
+	            $("#tblLindero").jqGrid('navButtonAdd', '#ptblLindero', btnInsertarColindante);
+	            $("#tblLindero").jqGrid('navSeparatorAdd','#ptblLindero');
+	            $("#tblLindero").jqGrid('navButtonAdd','#ptblLindero', btnEditarColindante);
+	            $("#tblLindero").jqGrid('navSeparatorAdd','#ptblLindero');
+	            $("#tblLindero").jqGrid('navButtonAdd','#ptblLindero', btnEliminarColindante);
+	        });
 		});
 	    _post.error(postError);
-		/*
-		if(parseInt(row.idsigma) > -1) {
-			// debugger
-			if(!$("#tblLindero").jqGrid('setRowData', indexRow, row)) {
-				alert('Error no se pudo editar');
-			}
-		} else {
-			if($("#tblLindero").jqGrid('addRowData', indexRow, row)) {
-				$("#ctblLindero").val(indexRow + 1);
-			} else {
-				alert('Error no se pudo agregar');
-			}
-		}
-		*/
-		// $("#tblLindero").trigger('reloadGrid');
 	};
 		
 </script>

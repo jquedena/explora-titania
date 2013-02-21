@@ -68,6 +68,7 @@ class LogeoController extends Zend_Controller_Action implements Zend_Auth_Adapte
 						$ddatosuserlog->userlogin = $datos[0][2];
 						$ddatosuserlog->arealogin = $datos[0][3];
 						$ddatosuserlog->codcajero = $datos[0][4];
+						$ddatosuserlog->vhostnm = 'TEST';
 						$ddatosuserlog->idlocal = $local;
 			
 						echo '<script language=\"JavaScript\">window.open(\''.$url.'index.php\', \'_self\')</script>';
