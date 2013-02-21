@@ -83,7 +83,6 @@ class RegistroController extends Zend_Controller_Action {
 	            $dataAdapter->saveQuery("tblPiso", "pl_function.listar_construccion", $parameters);
 	            $dataAdapter->saveQuery("tblInstalacion", "pl_function.listar_instalacion", $parameters);
 	            $dataAdapter->saveQuery("tblLindero", "pl_function.listar_lindero", $parameters);
-	            
 	            $dataAdapter->saveQuery("tblRustico", "pl_function.listar_caracteristica_rustico", $parameters);
             }
         }
@@ -194,7 +193,6 @@ class RegistroController extends Zend_Controller_Action {
     	
     	if ($this->getRequest()->isXmlHttpRequest()) {
     		$this->_helper->layout->disableLayout();
-    		
     	}
     }
     
@@ -220,10 +218,49 @@ class RegistroController extends Zend_Controller_Action {
     
     	if ($this->getRequest()->isXmlHttpRequest()) {
     		$this->_helper->layout->disableLayout();
-    		 
-    		$row = $_REQUEST['row'];
-    		echo $row->ctiplin;
-    		//echo $this->_helper->json($row['vptocar']);
+
+    		$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+    		$coduser = $ddatosuserlog->cidpers;
+    		$vhostnm = $ddatosuserlog->vhostnm;
+    		
+    		/*
+    		idsigma character varying,
+    		cptocar character varying,
+    		ctiplin character varying,
+    		ccodpre character varying,
+    		vdirecc character varying,
+    		mperson character varying,
+    		dpredio character varying,
+    		vusernm character varying,
+    		vhostnm character varying,
+    		ddatetm timestamp without time zone
+    		*/
+    		
+			$row = $_POST['idsigma'].','
+				.$_POST['cptocar'].','
+				.$_POST['ctiplin'].','
+				.$_POST['ccodpre'].','
+				.$_POST['vdirecc'].','
+				.$_POST['mperson'].','
+				.$_POST['dpredio'].','
+				.$coduser.','
+				.$vhostnm.',';
+					
+			$parameters[] = $row;
+			$dataAdapter = new Model_DataAdapter();
+    		$rows = $dataAdapter->executeSelect("pl_function.guardar_mlindero", $parameters);
+			
+    		if($rows[0][0] == 1) {
+    			$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
+
+    			$data['error'] = "";
+    			$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_lindero", $parameters);
+    		} else {
+    			$data['error'] = "Error al actualizar";
+    			$data['data'] = "";
+    		}
+    		
+    		$this->_helper->json($data);
     	}
     }
 }  

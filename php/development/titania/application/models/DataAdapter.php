@@ -153,7 +153,7 @@ class Model_DataAdapter {
             $_parameters = '';
             if (count($parameters) > 0) {
                 $_parameters = implode("','", $parameters);
-                $_parameters = "'" . $_parameters . "',";
+                $_parameters = "'" . $_parameters . "'";
             }
 
             $_query = "select * from " . $function . "(" . $_parameters . ");";

@@ -112,7 +112,7 @@ class Application_Plugin_Intercepor extends Zend_Controller_Plugin_Abstract {
             $body .= "\t});\n";
             $body .= "</script>\n";
             
-            $this->getResponse()->appendBody($body);
+            // $this->getResponse()->appendBody($body);
         }
     }
 }
