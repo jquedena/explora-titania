@@ -7,18 +7,10 @@
 				</div>
 				<div class="ui-widget-content ui-corner-bottom">
 					<table align="left" cellspacing="5" style="margin: 3px;">
-						<!--  <tr>
-							<td width="140">&nbsp;Cod. Predio&nbsp;</td>
-							<td width="35" ><input id="txt_instdpredio" class="ui-text" style="width: 100px; padding:2px;text-align:center; " value="" /></td>
-							<td width="35" ><select style="width: 150px;" id="cboinstctipint"><?php echo $this->util()->getComboContenedor('1000000439', null); ?></select></td>
 						<tr>
-							<td width="140">&nbsp;Orden de Construcci&oacute;n&nbsp;</td>
-							<td width="35"><input id="txt_instcnitems"  class="ui-text" style="width:100px; padding:2px;text-align:center; " value="" /></td>
-						<tr>
-							<td width="140">&nbsp;Decl. Jurada&nbsp;</td>
-							<td width="35"><input id="txt_instcperiod"  class="ui-text" style="width:100px; padding:2px;text-align:center; " value="" /></td>
-						<tr>
-							<td width="140">&nbsp;Tipo de Ficha&nbsp;</td>
+							<td width="35"><input id="txt_idsigma" type="hidden" class="ui-text" value="" /></td>
+						</tr>
+					<!--		<td width="140">&nbsp;Tipo de Ficha&nbsp;</td>
 							<td width="35"><input id="txt_instctipdat"  class="ui-text" style="width:100px;padding:2px;text-align:center; "/></td>
 						<tr>
 							<td width="140">&nbsp;Nro. Decl. Jurada</td>
@@ -119,13 +111,13 @@
     	 closeDialog('jqDialog1');
     	 //  habilitarComponenteDetalle(false);
      });
-
+/*
 	 GuardaInstalacion= function() {
 		 indexRow = $("#ctblInstalacion").val();
 			row = {
 					idsigma:'01',
 					dpredio:$("#txt_instdpredio").val(),
-		    		cnitems:$("#txt_instcnitems").val(),
+		    		cnitems:$("#_dpredio").val(),
 		            cperiod:$("#txt_instcperiod").val(),
 		    		ctipdat:$("#txt_instctipdat").val(),      
 		    		vnrodoc:$("#txt_instvnrodoc").val(),
@@ -138,10 +130,11 @@
 		    		nvalanc:$("#txt_instnvalanc").val(),  
 		    		nvalalt:$("#txt_instnvalalt").val(),   
 		    		nvallar:$("#txt_instnvallar").val(),  
-		    		//ctipint:$("#txt_instctipint").val(), 
+		    	  //ctipint:$("#txt_instctipint").val(), 
 		    		vdesint:$("#txt_instvdesint").val(),
 		    		nvalins:$("#txt_instnvalins").val(),    
 		    		dafecta:''
+  		
 			};
 			if($("#tblInstalacion").jqGrid('addRowData', indexRow,row)) {
 				$("#ctblInstalacion").val(indexRow + 1);
@@ -149,4 +142,92 @@
 				alert('Error no se pudo agregar');
 			}
 		};
+
+
+*/
+
+
+		GuardaInstalacion= function() {
+			indexRow = $("#ctblInstalacion").val();
+			row = {};
+			ids = $("#tblInstalacion").jqGrid('getDataIDs');
+			gsr = $("#tblInstalacion").jqGrid('getGridParam', 'selrow');
+			
+			if(gsr){
+				row = $("#tblInstalacion").jqGrid('getRowData', gsr);
+			}
+
+			row = $.extend(row, {
+ /*Modelo
+				 - idsigm
+				 - dpredio
+				 - cnumpis
+				 - canocon
+				 - ctipins
+				 - nvalanc
+				 - nvalalt
+				 - nvallar
+				 - ctipint
+				 - vdesint
+				 
+				  cmateri
+				  cconser
+				  cmurcol
+				  ctechos
+				  cmpisos
+				  cpueven
+				  crevest
+				  cbanios
+				  celectr
+				  
+				  narecom
+				  nporcom
+				  nestado
+				  vhostnm
+				  vusernm
+				  ddatetm
+				  */
+						idsigma:$("#txt_idsigma").val(),
+						dpredio:$("#_dpredio").val(),
+			    		cnumpis:$("#txt_instcnumpis").val(),
+			    		canocon:$("#txt_instcanocon").val(),
+			    		ctipint:$("#cb_tipoinstalacion").val(),
+			    		nvalanc:$("#txt_instnvalanc").val(),  
+			    		nvalalt:$("#txt_instnvalalt").val(),   
+			    		nvallar:$("#txt_instnvallar").val(),
+			    		vdesint:$("#txt_instvdesint").val(),
+						//					
+						cnitems:'03',
+			            cperiod:$("#txt_instcperiod").val(),
+			    		ctipdat:$("#txt_instctipdat").val(),      
+			    		vnrodoc:$("#txt_instvnrodoc").val(),
+			    		dfecdoc:$("#txt_instdfecdoc").val(),      
+			    		cmotivo:$("#txt_instcmotivo").val(),
+			    		ctipdoc:$("#txt_instctipdoc").val(),    
+			    		nantigu:$("#txt_instnantigu").val(),      
+
+			    	  //ctipint:$("#txt_instctipint").val(), 
+
+			    		nvalins:$("#txt_instnvalins").val(), 
+
+			    		ctipint:$("#cboinstctipint").val(),
+			    		dafecta:''
+			});
+			console.log(row);
+						/*
+							_post = $.post(path + "registro/guardarinstalacion", row);
+						    _post.success(function(data){
+						    	optionInstalacion = $.extend(optionInstalacion, {data: data.data});
+						    	procesarJSON("panelInstalacion", "tblInstalacion", optionInstalacion, null, function(){
+						            $("#tblInstalacion").jqGrid('navGrid', '#ptblInstalacion', {edit:false, add:false, del:false, search:false, refresh:false});
+						            $("#tblInstalacion").jqGrid('navButtonAdd', '#ptblInstalacion', btnInsertarInstalacion);
+						            $("#tblInstalacion").jqGrid('navSeparatorAdd','#ptblInstalacion');
+						            $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEditarInstalacion);
+						            $("#tblInstalacion").jqGrid('navSeparatorAdd','#ptblInstalacion');
+						            $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEliminarInstalacion);
+						        });
+							});
+						    _post.error(postError); */
+};
+
 	</script>
