@@ -335,7 +335,8 @@ class RegistroController extends Zend_Controller_Action {
     				.$_POST['nestado'].','
     				.$vhostnm.','
     				.$coduser.','
-    				.$_POST['narecon'].',';
+    				.'fecha'.','
+    				.$_POST['narecon'];
     		 echo $row;
     		$parameters[] = $row;
     		$dataAdapter = new Model_DataAdapter();
@@ -357,7 +358,7 @@ class RegistroController extends Zend_Controller_Action {
 
 	
 	
-	/*
+
 	public function guardarinstalacionAction() {
 		$this->_helper->getHelper('ajaxContext')->initContext();
 	
@@ -367,60 +368,42 @@ class RegistroController extends Zend_Controller_Action {
 			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
 			$coduser = $ddatosuserlog->cidpers;
 			$vhostnm = $ddatosuserlog->vhostnm;
-			
-			   --Faltan--
-			  cmateri character varying(10) NOT NULL, -- Material
-			  cconser character varying(10) NOT NULL, -- Estado de conservacion
-			  cmurcol character varying(10) NOT NULL, -- Muros y columnas
-			  ctechos character varying(10) NOT NULL, -- Techos
-			  cmpisos character varying(10) NOT NULL, -- Pisos
-			  cpueven character varying(10) NOT NULL, -- Puertas y ventanas
-			  crevest character varying(10) NOT NULL, -- Revestimientos
-			  cbanios character varying(10) NOT NULL, -- Sanitarios
-			  celectr character varying(10) NOT NULL, -- Instalaciones electricas
-			  
-			  narecom numeric(10,5) NOT NULL, -- Area comun
-			  nporcom numeric(10,5) NOT NULL, -- Porcentaje de area comun
-			  nestado integer NOT NULL, -- Estado del registro
-			  vhostnm character varying(25) NOT NULL, -- Estacion
-			  vusernm character varying(25) NOT NULL, -- Usuario
-			  ddatetm timestamp without time zone NOT NULL, -- Fecha de Registro
 
-	
 			$row = $_POST['idsigma'].','
 					.$_POST['dpredio'].','
 					.$_POST['cnumpis'].','
 					.$_POST['canocon'].','
-					.$_POST['ctipins'].','
+					.'0000000001'.',' //INSTALACION-
 					.$_POST['nvalanc'].','
 					.$_POST['nvalalt'].','
 					.$_POST['nvallar'].','
+					.$_POST['ctipint'].','		
 					.$_POST['vdesint'].','
-					.$_POST[''].','
-					.$_POST[''].','
-					.$_POST[''].','
-					.$_POST[''].','
-					.$_POST[''].','
-					.$_POST[''].','
-					.$_POST[''].','
-					.$_POST[''].','
-					.$_POST[''].','
-					.$_POST[''].','
-					.$_POST[''].','
-					.$_POST[''].','
-					.$_POST[''].','
+					.'0'.',' //cmateri
+					.'0'.',' //cconser
+					.'0'.',' //cmurcol
+					.'0'.',' //ctechos
+					.'0'.',' //cmpisos
+					.'0'.',' //cpueven
+					.'0'.',' //crevest
+					.'0'.',' //cbanios
+					.'0'.',' //celectr
+					.'0'.',' //narecom
+					.'0'.',' //nporcom
+					.'1'.',' //nestado
+					.$vhostnm.','
 					.$coduser.','
-					.$vhostnm.',';
-				
+					.'fecha'; //fecha
+			echo $row ;
 			$parameters[] = $row;
 			$dataAdapter = new Model_DataAdapter();
-			$rows = $dataAdapter->executeSelect("pl_function.guardar_mlindero", $parameters);
-				
+			$rows = $dataAdapter->executeSelect("pl_function.guardar_minstal", $parameters);
+			echo $rows ;	
 			if($rows[0][0] == 1) {
 				$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
 	
 				$data['error'] = "";
-				$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_lindero", $parameters);
+				$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_instalacion", $parameters);
 			} else {
 				$data['error'] = "Error al actualizar";
 				$data['data'] = "";
@@ -429,7 +412,7 @@ class RegistroController extends Zend_Controller_Action {
 			$this->_helper->json($data);
 		}
 	}
-	*/
+
 
 }  
 

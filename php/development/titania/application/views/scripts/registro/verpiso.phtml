@@ -1,16 +1,16 @@
 <div id="formPiso">
 	<table>
 		<tr>
-			<td><input id="txt_idsigma"  value=""/></td>			
-			<td><input id="txt_cdmaterial"  value=""/></td>
-			<td><input id="txt_cdestado" value=""/></td>
-			<td><input id="txt_cdmuro" value=""/></td>
-			<td><input id="txt_cdtecho"  value=""/></td>
-			<td><input id="txt_cdpisos"  value=""/></td>
-			<td><input id="txt_cdpuertaventana"  value=""/></td>
-			<td><input id="txt_cdrevestimiento"  value=""/></td>
-			<td><input id="txt_cdbanio"  value=""/></td>
-			<td><input id="txt_cdinstalaciones"  value=""/></td>					
+			<td><input id="txt_idsigma" type="hidden" value=""/></td>			
+			<td><input id="txt_cdmaterial"  type="hidden" value=""/></td>
+			<td><input id="txt_cdestado" type="hidden" value=""/></td>
+			<td><input id="txt_cdmuro"  type="hidden"value=""/></td>
+			<td><input id="txt_cdtecho"  type="hidden" value=""/></td>
+			<td><input id="txt_cdpisos"  type="hidden" value=""/></td>
+			<td><input id="txt_cdpuertaventana"  type="hidden" value=""/></td>
+			<td><input id="txt_cdrevestimiento"  type="hidden" value=""/></td>
+			<td><input id="txt_cdbanio"  type="hidden" value=""/></td>
+			<td><input id="txt_cdinstalaciones"  type="hidden" value=""/></td>					
 		</tr>
 		<tr>
 			<td width="495" align="center">
@@ -37,9 +37,9 @@
 						</tr>
 						<tr>
 							<td>Mes</td>
-							<td><input id="txt_pisomescon" class="ui-text"
+							<td><input id="txt_pisomescon" class="ui-text" maxlength="2"
 								style="width: 30px; padding: 2px; text-align: center; "
-								value="" /></td>
+								value="" onkeypress="return validarnumeros(event);" /></td>
 							<td>&nbsp;</td>
 						</tr>
 						<tr>
@@ -293,24 +293,18 @@
 				nestado:'1'
 		});
 		console.log(row);
-			if($("#tblPiso").jqGrid('addRowData', indexRow,row)) {
-				$("#ctblPiso").val(indexRow + 1);
-			} else {
-				alert('Error no se pudo agregar');
-			}
-		// console.log($("#tblPiso").jqGrid('getRowData'));
-
+	
 		_post = $.post(path + "registro/guardarpiso", row);
 	    _post.success(function(data){
 	    	optionPiso = $.extend(optionPiso, {data: data.data});
-	   /* 	procesarJSON("panelPiso", "tblPiso", optionPiso, null, function(){
+	    	procesarJSON("panelPiso", "tblPiso", optionPiso, null, function(){
 	         $("#tblPiso").jqGrid('navGrid', '#ptblPiso', {edit:false, add:false, del:false, search:false, refresh:false});
 	            $("#tblPiso").jqGrid('navButtonAdd', '#ptblPiso', btnInsertarPiso);
 	            $("#tblPiso").jqGrid('navSeparatorAdd','#ptblPiso');
 	            $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnEditarPiso);
 	            $("#tblPiso").jqGrid('navSeparatorAdd','#ptblPiso');
 	            $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnEliminarPiso);
-	        });*/
+	        });
 		});
 	    _post.error(postError);
 	};
