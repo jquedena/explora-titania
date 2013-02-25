@@ -1,6 +1,6 @@
 habilitarComponenteDetalle = function(disabled){
     $(".ui-text, .ui-combobox-input").attr("disabled", disabled);
-    $(".ui-text, .ui-combobox-input").toggleClass("ui-state-disabled-text");
+    $(".ui-text, .ui-combobox-input").toggleClass("ui-text-disable");
     $(".ui-combobox a").button("option", "disabled", disabled);
     $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto").datepicker("option", "disabled", disabled);
     $("#btnGrabarPredio").button("option", "disabled", disabled);
@@ -8,16 +8,16 @@ habilitarComponenteDetalle = function(disabled){
     if($("#cboCondicion").val() == "1000000145"){
         $("#btnVerCondominante").button("option", "disabled", disabled);
         $("#nporcen").attr("disabled", disabled);
-        $("#nporcen").toggleClass("ui-state-disabled-text");
+        $("#nporcen").toggleClass("ui-text-disable");
     } else {
         if(!disabled) {
             $("#nporcen").attr("disabled", true);
-            $("#nporcen").toggleClass("ui-state-disabled-text"); 
+            $("#nporcen").toggleClass("ui-text-disable"); 
         }
     }
     
     $("#btnEditarPredio").button("option", "disabled", !disabled);
-    $("#txtPeriodo").toggleClass("ui-state-disabled-text");
+    $("#txtPeriodo").toggleClass("ui-text-disable");
 
     if(disabled) {
         $("#linkPeriodo").button("option", "disabled", false);
@@ -58,7 +58,7 @@ cambioCondicion = function(event, ui) {
         disable = !(ui.item.option.value == "1000000145");
         $("#btnVerCondominante").button("option", "disabled", disable);
         $("#nporcen").attr("disabled", disable);
-        $("#nporcen").toggleClass("ui-state-disabled-text");
+        $("#nporcen").toggleClass("ui-text-disable");
     } else {
         openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
     }
@@ -190,14 +190,16 @@ loadVerDetalle = function(){
     	// window.open(pathReport+"reporte=Report_Completo&opt=p_mhresum^" + $("#_mhresum").val() + "|p_cperiod^-1|p_ccodpre^-1|p_mperson^" + $("#lblCodigo").html(), '_blank');
     });
     
-    actualizarGrid("tblPiso", optionPiso, null, function(){
+    navPanelPiso = function() {
         $("#tblPiso").jqGrid('navGrid', '#ptblPiso', {edit:false, add:false, del:false, search:false, refresh:false});
         $("#tblPiso").jqGrid('navButtonAdd', '#ptblPiso', btnInsertarPiso);
         $("#tblPiso").jqGrid('navSeparatorAdd','#ptblPiso');
         $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnEditarPiso);
         $("#tblPiso").jqGrid('navSeparatorAdd','#ptblPiso');
         $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnEliminarPiso);
-    });
+    };
+    
+    actualizarGrid("tblPiso", optionPiso, null, navPanelPiso);
 
     actualizarGrid("tblInstalacion", optionInstalacion, null, function(){
         $("#tblInstalacion").jqGrid('navGrid', '#ptblInstalacion', {edit:false, add:false, del:false, search:false, refresh:false});

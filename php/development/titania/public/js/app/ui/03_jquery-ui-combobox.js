@@ -136,3 +136,16 @@
         }
     });
 })( jQuery );
+
+autocompletar = function(id, data, select) {
+	$(id).autocomplete({
+		minLength: 0,
+		source: data,
+		select: select
+	}).data("autocomplete")._renderItem = function(ul, item) {
+		return $("<li></li>")
+			.data("item.autocomplete", item)
+			.append("<a><b>" + item.label + "</b><br>" + item.desc + "</a>")
+			.appendTo(ul);
+	};
+};

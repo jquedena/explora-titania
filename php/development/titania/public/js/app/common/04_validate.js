@@ -4,13 +4,13 @@ var PATRON = {
     SOLO_NUMEROS_LETRAS: /\w/,
     NO_NUMEROS: /\D/,
     NUMERO_SIGNO: /[\w.-]/
-} 
+};
 
 function validar(e, patron) {
     tecla = (document.all) ? e.keyCode : e.which; 
-    if (tecla==8) return true; //Tecla de retroceso (para poder borrar) 
-    if (tecla==0) return true; //Tecla de tab
-    if (tecla==13) return true; //Tecla de enter
+    if (tecla==8) return true;  // Tecla de retroceso (para poder borrar) 
+    if (tecla==0) return true;  // Tecla de tab
+    if (tecla==13) return true; // Tecla de enter
     if (tecla==32) return true;
     te = String.fromCharCode(tecla); 
     return patron.test(te);
