@@ -158,15 +158,15 @@ class RegistroController extends Zend_Controller_Action {
     		$this->_helper->layout->disableLayout();
     
     		$dataAdapter = new Model_DataAdapter();
-    		$data['material'] = $dataAdapter->executeAssocQuery("pl_function.lista_caracteristica_piso", array('1000000161'));
-    		$data['estado'] = $dataAdapter->executeAssocQuery("pl_function.lista_caracteristica_piso", array('1000000149'));
-    		$data['banio'] = $dataAdapter->executeAssocQuery("pl_function.lista_caracteristica_piso", array('1000000283'));
-    		$data['muro'] = $dataAdapter->executeAssocQuery("pl_function.lista_caracteristica_piso", array('1000000228'));
-    		$data['piso'] = $dataAdapter->executeAssocQuery("pl_function.lista_caracteristica_piso", array('1000000250'));
-    		$data['puerta'] = $dataAdapter->executeAssocQuery("pl_function.lista_caracteristica_piso", array('1000000261'));
-    		$data['revestimiento'] = $dataAdapter->executeAssocQuery("pl_function.lista_caracteristica_piso", array('1000000272'));
-    		$data['techo'] = $dataAdapter->executeAssocQuery("pl_function.lista_caracteristica_piso", array('1000000239'));
-    		$data['instalacion'] = $dataAdapter->executeAssocQuery("pl_function.lista_caracteristica_piso", array('1000000294'));
+    		$data['material'] = $dataAdapter->executeAssocQuery("pl_function.listar_caracteristica_piso", array('1000000161'));
+    		$data['estado'] = $dataAdapter->executeAssocQuery("pl_function.listar_caracteristica_piso", array('1000000149'));
+    		$data['banio'] = $dataAdapter->executeAssocQuery("pl_function.listar_caracteristica_piso", array('1000000283'));
+    		$data['muro'] = $dataAdapter->executeAssocQuery("pl_function.listar_caracteristica_piso", array('1000000228'));
+    		$data['piso'] = $dataAdapter->executeAssocQuery("pl_function.listar_caracteristica_piso", array('1000000250'));
+    		$data['puerta'] = $dataAdapter->executeAssocQuery("pl_function.listar_caracteristica_piso", array('1000000261'));
+    		$data['revestimiento'] = $dataAdapter->executeAssocQuery("pl_function.listar_caracteristica_piso", array('1000000272'));
+    		$data['techo'] = $dataAdapter->executeAssocQuery("pl_function.listar_caracteristica_piso", array('1000000239'));
+    		$data['instalacion'] = $dataAdapter->executeAssocQuery("pl_function.listar_caracteristica_piso", array('1000000294'));
     
     		echo $this->_helper->json($data);
     	}

@@ -243,7 +243,8 @@
 	}
 	function autoCount(str, start, end){/* private function that counts the numeric characters to the left and right of the decimal point */
 		var chr = '';
-		var numCount = 0; 
+		var numCount = 0;
+		var j;
 		for (j = start; j < end; j++){
 			chr = str.charAt(j);
 			if (chr >= '0' && chr <= '9'){
@@ -264,6 +265,7 @@
 			else {
 				digitalGroup = /(\d)((\d{3}?)+)$/;
 			}
+			var k;
 			for (k = 0; k < io.aSign.length; k++){/* clears the currency or other symbols and space */
 				iv = iv.replace(io.aSign.charAt(k), '').replace("\u00A0",'');
 			}
