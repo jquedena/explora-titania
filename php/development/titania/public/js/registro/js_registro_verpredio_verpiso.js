@@ -4,6 +4,7 @@ verPiso = function(rowid, iRow, iCol, e) {
 	} else {
 		row = undefined;
 	}
+	
     openDialogDataFunction1("registro/verpiso", {}, "780", "595", "Detalle del piso", function() {
         if(row != undefined) {
             $("#txt_pisonivel").val(row.cnumpis);
@@ -29,7 +30,7 @@ verPiso = function(rowid, iRow, iCol, e) {
     		$("#txt_pisovalcom").val(row.nvalcom);
     		$("#txt_valpre").val(row.nvalpis);
     		$("#txt_idsigma").val(row.idsigma);
-    	
+
     		$("#txt_cdmaterial").val(row.cmateri);       
     		$("#txt_cdestado").val(row.cconser);
     		$("#txt_cdmuro").val(row.cmurcol);       
@@ -175,27 +176,27 @@ optionPiso = {
         {name: 'nvalcom', index: 'nvalcom', width: 80, formatter:'currency', align: 'right'}, // Valor del area comun
         {name: 'nvalpis', index: 'nvalpis', width: 80, formatter:'currency', align: 'right'}, // Valor total del piso
         {name: 'idsigma', index: 'idsigma', width: 30, hidden: true}, // Identificador de la construccion del predio
-        {name: 'dpredio', index: 'dpredio', width: 30}, // Identificador del predio
-        {name: 'cnitems', index: 'cnitems', width: 30}, // Nro de orden de la construccion
-        {name: 'cperiod', index: 'cperiod', width: 30}, // Ejercicio de la declaracion jurada
-        {name: 'cmateri', index: 'cmateri', width: 30},
-        {name: 'cconser', index: 'cconser', width: 30},
-        {name: 'cmurcol', index: 'cmurcol', width: 30},
-        {name: 'ctechos', index: 'ctechos', width: 30},
-        {name: 'cmpisos', index: 'cmpisos', width: 30},
-        {name: 'cpueven', index: 'cpueven', width: 30},
-        {name: 'crevest', index: 'crevest', width: 30},
-        {name: 'cbanios', index: 'cbanios', width: 30},
-        {name: 'celectr', index: 'celectr', width: 30},
-        {name: 'dmateri', index: 'dmateri', width: 30},
-        {name: 'dconser', index: 'dconser', width: 30},
-        {name: 'dmurcol', index: 'dmurcol', width: 30},
-        {name: 'dtechos', index: 'dtechos', width: 30},
-        {name: 'dmpisos', index: 'dmpisos', width: 30},
-        {name: 'dpueven', index: 'dpueven', width: 30},
-        {name: 'drevest', index: 'drevest', width: 30},
-        {name: 'dbanios', index: 'dbanios', width: 30},
-        {name: 'delectr', index: 'delectr', width: 30}
+        {name: 'dpredio', index: 'dpredio', width: 30, hidden: true}, // Identificador del predio
+        {name: 'cnitems', index: 'cnitems', width: 30, hidden: true}, // Nro de orden de la construccion
+        {name: 'cperiod', index: 'cperiod', width: 30, hidden: true}, // Ejercicio de la declaracion jurada
+        {name: 'cmateri', index: 'cmateri', width: 30, hidden: true},
+        {name: 'cconser', index: 'cconser', width: 30, hidden: true},
+        {name: 'cmurcol', index: 'cmurcol', width: 30, hidden: true},
+        {name: 'ctechos', index: 'ctechos', width: 30, hidden: true},
+        {name: 'cmpisos', index: 'cmpisos', width: 30, hidden: true},
+        {name: 'cpueven', index: 'cpueven', width: 30, hidden: true},
+        {name: 'crevest', index: 'crevest', width: 30, hidden: true},
+        {name: 'cbanios', index: 'cbanios', width: 30, hidden: true},
+        {name: 'celectr', index: 'celectr', width: 30, hidden: true},
+        {name: 'dmateri', index: 'dmateri', width: 30, hidden: true},
+        {name: 'dconser', index: 'dconser', width: 30, hidden: true},
+        {name: 'dmurcol', index: 'dmurcol', width: 30, hidden: true},
+        {name: 'dtechos', index: 'dtechos', width: 30, hidden: true},
+        {name: 'dmpisos', index: 'dmpisos', width: 30, hidden: true},
+        {name: 'dpueven', index: 'dpueven', width: 30, hidden: true},
+        {name: 'drevest', index: 'drevest', width: 30, hidden: true},
+        {name: 'dbanios', index: 'dbanios', width: 30, hidden: true},
+        {name: 'delectr', index: 'delectr', width: 30, hidden: true}
     ],
     caption: "&nbsp;&nbsp;&nbsp;Pisos",
     gridComplete: gridCompletePiso,
