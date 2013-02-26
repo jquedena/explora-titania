@@ -1,3 +1,11 @@
+validar = function() {
+	return true;
+};
+
+guardar = function() {
+	
+};
+
 selectAutocomplete = function( event, ui ) {
 	name = "#d" + $(this).attr("id");
 	$(name).html(ui.item.desc);
@@ -17,7 +25,7 @@ click_closeDialog = function() {
 	closeDialog('jqDialog1');
 };
 
-click_guardar = function(){
+click_guardar = function() {
 	/*isValid = true;
 		
 		$("#formPiso").find("input").each(function() {
