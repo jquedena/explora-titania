@@ -334,10 +334,9 @@ class RegistroController extends Zend_Controller_Action {
     				.$_POST['nporcom'].','
     				.$_POST['nestado'].','
     				.$vhostnm.','
-    				.$coduser.','
-    				.'fecha'.','
+    				.$coduser.',,'
     				.$_POST['narecon'];
-    		 echo $row;
+
     		$parameters[] = $row;
     		$dataAdapter = new Model_DataAdapter();
     		$rows = $dataAdapter->executeSelect("pl_function.guardar_mconstr", $parameters);
@@ -347,6 +346,7 @@ class RegistroController extends Zend_Controller_Action {
     
     			$data['error'] = "";
     			$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
+    			header("HTTP/1.0 500 Actualizo!!!");
     		} else {
     			$data['error'] = "Error al actualizar";
     			$data['data'] = "";

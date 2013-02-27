@@ -10,15 +10,15 @@ verPiso = function(rowid, iRow, iCol, e) {
             $("#txt_pisonivel").val(row.cnumpis);
     		$("#txt_pisoanocon").val(row.canocon);
             $("#txt_pisomescon").val(row.cmescon);
-    		$("#txt_pisomaterial").val(row.vmateri);       
-    		$("#txt_pisoestado").val(row.vconser);
-    		$("#txt_pisomuro").val(row.vmurcol);       
-    		$("#txt_pisotecho").val(row.vtechos);
-    		$("#txt_pisopisos").val(row.vmpisos);     
-    		$("#txt_pisopuertaventana").val(row.vpueven);
-    		$("#txt_pisorevestimiento").val(row.vrevest);       
-    		$("#txt_pisobanio").val(row.vbanios);
-    		$("#txt_pisoinstalaciones").val(row.velectr);        
+            $("#txt_cmateri").val(row.vmateri); $("#ctxt_cmateri").val(row.cmateri); $("#dtxt_cmateri").html(row.dmateri);
+    		$("#txt_cconser").val(row.vconser); $("#ctxt_cconser").val(row.cconser); $("#dtxt_cconser").html(row.dconser);
+    		$("#txt_cmurcol").val(row.vmurcol); $("#ctxt_cmurcol").val(row.cmurcol); $("#dtxt_cmurcol").html(row.dmurcol);       
+    		$("#txt_ctechos").val(row.vtechos); $("#ctxt_ctechos").val(row.ctechos); $("#dtxt_ctechos").html(row.dtechos);
+    		$("#txt_cmpisos").val(row.vmpisos); $("#ctxt_cmpisos").val(row.cmpisos); $("#dtxt_cmpisos").html(row.dmpisos);     
+    		$("#txt_cpueven").val(row.vpueven); $("#ctxt_cpueven").val(row.cpueven); $("#dtxt_cpueven").html(row.dpueven);
+    		$("#txt_crevest").val(row.vrevest); $("#ctxt_crevest").val(row.crevest); $("#dtxt_crevest").html(row.drevest);
+    		$("#txt_cbanios").val(row.vbanios); $("#ctxt_cbanios").val(row.cbanios); $("#dtxt_cbanios").html(row.dbanios);
+    		$("#txt_celectr").val(row.velectr); $("#ctxt_celectr").val(row.celectr); $("#dtxt_celectr").html(row.delectr);
     		$("#txt_pisoarecon").val(row.narecon);
     		$("#txt_pisovaluni").val(row.nvaluni);
     		$("#txt_pisoincrem").val(row.nincrem);
@@ -30,32 +30,9 @@ verPiso = function(rowid, iRow, iCol, e) {
     		$("#txt_pisovalcom").val(row.nvalcom);
     		$("#txt_valpre").val(row.nvalpis);
     		$("#txt_idsigma").val(row.idsigma);
-
-    		$("#txt_cdmaterial").val(row.cmateri);       
-    		$("#txt_cdestado").val(row.cconser);
-    		$("#txt_cdmuro").val(row.cmurcol);       
-    		$("#txt_cdtecho").val(row.ctechos);
-    		$("#txt_cdpisos").val(row.cmpisos);     
-    		$("#txt_cdpuertaventana").val(row.cpueven);
-    		$("#txt_cdrevestimiento").val(row.crevest);       
-    		$("#txt_cdbanio").val(row.cbanios);
-    		$("#txt_cdinstalaciones").val(row.celectr);  
-    		
     		$("#dtxt_pisoano").html(row.nantigu  + ' A&Ntilde;OS DE ANTIGUEDAD');
-    		$("#dtxt_pisomaterial").html(row.dmateri);
-    		$("#dtxt_pisoestado").html(row.dconser);
-    		$("#dtxt_pisomuro").html(row.dmurcol);
-    		$("#dtxt_pisotecho").html(row.dtechos);
-    		$("#dtxt_pisopisos").html(row.dmpisos);
-    		$("#dtxt_pisopuertaventana").html(row.dpueven);
-    		$("#dtxt_pisorevestimiento").html(row.drevest);
-    		$("#dtxt_pisobanio").html(row.dbanios);
-    		$("#dtxt_pisoinstalaciones").html(row.delectr);
-    		
         }  else {
         	$("#txt_idsigma").val('-1');
-        	
-        	
         }
 	});
 };
@@ -101,52 +78,18 @@ optionPiso = {
     rowNum: 10,
     rownumbers: false,
     colNames: [
-        'Niv',
-        'Ant',
-        'cmescon',
-        'canocon',
-        'M. E.',
-        'Caract.',
-        'Mat.',
-        'Est.',
-        'Mu',
-        'Te',
-        'Pi',
-        'Pv',
-        'Rv',
-        'Ba',
-        'In',
-        'Area Con.',
-        'V. Unit. m2',
-        'Inc. 5%',
-        '% Depr',
-        'Depr.',
-        'V. Unit. Depr.',
-        'Area Com.',
-        '% Area Com.',
-        'Val. Area Com.',
-        'Val. del Piso',
-        'idsigma',
-        'dpredio',
-        'cnitems',
-        'cperiod',
-        'cmateri',
-        'cconser',
-        'cmurcol',
-        'ctechos',
-        'cmpisos',
-        'cpueven',
-        'crevest',
-        'cbanios',
-        'celectr',
-        'dmateri',
-        'dconser',
-        'dmurcol',
-        'dtechos',
-        'dmpisos',
-        'dpueven',
-        'drevest',
-        'dbanios',
+        'Niv', 'Ant', 'cmescon', 'canocon',
+        'M. E.', 'Caract.', 'Mat.', 'Est.',
+        'Mu', 'Te', 'Pi', 'Pv',
+        'Rv', 'Ba', 'In', 'Area Con.',
+        'V. Unit. m2', 'Inc. 5%', '% Depr', 'Depr.',
+        'V. Unit. Depr.', 'Area Com.', '% Area Com.', 'Val. Area Com.',
+        'Val. del Piso', 'idsigma',
+        'dpredio', 'cnitems', 'cperiod', 'cmateri',
+        'cconser', 'cmurcol', 'ctechos', 'cmpisos',
+        'cpueven', 'crevest', 'cbanios', 'celectr',
+        'dmateri', 'dconser', 'dmurcol', 'dtechos',
+        'dmpisos', 'dpueven', 'drevest', 'dbanios',
         'delectr'
     ],
     colModel: [
