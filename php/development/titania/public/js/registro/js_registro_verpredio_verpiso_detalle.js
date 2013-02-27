@@ -3,12 +3,52 @@ validar = function() {
 };
 
 guardar = function() {
+	indexRow = $("#ctblPiso").val();
+	gsr = $("#tblPiso").jqGrid('getGridParam', 'selrow');
+	row = {};
 	
+	if(gsr){
+		row = $("#tblPiso").jqGrid('getRowData', gsr);
+	}
+	    
+	row = {
+			idsigma: $("#txt_idsigma").val(),
+			cnitems: $("#txt_idsigma").val(),
+			dpredio: $("#_dpredio").val(),
+			cnumpis: $("#txt_pisonivel").val(),
+			canocon: $("#txt_pisoanocon").val(),
+			cmescon: $("#txt_pisomescon").val(),
+			cmateri: $("#txt_cdmaterial").val(),       
+			cconser: $("#txt_cdestado").val(),
+			cmurcol: $("#txt_cdmuro").val(),     
+			ctechos: $("#txt_cdtecho").val(),
+			cmpisos: $("#txt_cdpisos").val(),    
+			cpueven: $("#txt_cdpuertaventana").val(),
+			crevest: $("#txt_cdrevestimiento").val(),      
+			cbanios: $("#txt_cdbanio").val(),
+			celectr: $("#txt_cdinstalaciones").val(),		
+			narecon: $("#txt_pisoarecon").val(),      
+			narecom: $("#txt_pisoarecom").val(),
+			nporcom: $("#txt_pisoporcom").val(),
+			nestado: '1'
+	};
+
+	console.log(row);
+	
+	_post = $.post(path + "registro/guardarpiso", row);
+    _post.success(function(data){
+    	optionPiso = $.extend(optionPiso, {data: data.data});
+    	procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
+	});
+    _post.error(postError);	
 };
 
 selectAutocomplete = function( event, ui ) {
-	name = "#d" + $(this).attr("id");
-	$(name).html(ui.item.desc);
+	desc = "#d" + $(this).attr("id");
+	idsm = "#c" + $(this).attr("id");
+	
+	$(idsm).val(ui.item.idsigma);
+	$(desc).html(ui.item.desc);
 	$(this).val(ui.item.label);
 	return false;
 };
@@ -26,6 +66,7 @@ click_closeDialog = function() {
 };
 
 click_guardar = function() {
+	guardar();
 	/*isValid = true;
 		
 		$("#formPiso").find("input").each(function() {
@@ -107,64 +148,6 @@ $("#btnguardar").button({
 
 	GuardarPiso = function() {
 
-		indexRow = $("#ctblPiso").val();
-		row = {};
-		ids = $("#tblPiso").jqGrid('getDataIDs');
-		gsr = $("#tblPiso").jqGrid('getGridParam', 'selrow');
 		
-		if(gsr){
-			row = $("#tblPiso").jqGrid('getRowData', gsr);
-		}
-		nro=jQuery("#tblPiso").getDataIDs().length;
-		console.log(nro);
-		indexRow = $("#ctblPiso").val();
-		var actual= new Date();
-	    var anyo= actual.getUTCFullYear();
-	    
-		row = $.extend(row, {
-				idsigma: $("#txt_idsigma").val(),
-				cnitems: '05',
-				cnitems: $("#txt_idsigma").val(),
-				dpredio: $("#_dpredio").val(),
-				cnumpis: $("#txt_pisonivel").val(),
-				canocon: $("#txt_pisoanocon").val(),
-				nantigu: anyo - $("#txt_pisoanocon").val(),
-				cmescon: $("#txt_pisomescon").val(),
-				cmateri: $("#txt_pisodmaterial").val(),       
-				cconser: $("#txt_pisodestado").val(),
-				cmurcol: $("#txt_pisodmuro").val(),     
-				ctechos: $("#txt_pisodtecho").val(),
-				cmpisos: $("#txt_pisodpisos").val(),    
-				cpueven: $("#txt_pisodpuertaventana").val(),
-				crevest: $("#txt_pisorevestimiento").val(),      
-				cbanios: $("#txt_pisodbanio").val(),
-				celectr: $("#txt_pisodinstalaciones").val(),       
-				narecon: $("#txt_pisoarecon").val(),
-				nvaluni: $("#txt_pisovaluni").val(),
-				nincrem: $("#txt_pisoincrem").val(),
-				npordep: $("#txt_pisopordep").val(),      
-				ndepred: $("#txt_pisodepred").val(),
-				nvalare: $("#txt_pisovalare").val(),      
-				narecom: $("#txt_pisoarecom").val(),
-				nporcom: $("#txt_pisoporcom").val(),
-				nvalcom: $("#txt_pisovalcom").val(),
-				nvalpis: $("#txt_valpre").val(),
-				nestado: '1'
-		});
-		console.log(row);
-	
-		_post = $.post(path + "registro/guardarpiso", row);
-	    _post.success(function(data){
-	    	optionPiso = $.extend(optionPiso, {data: data.data});
-	    	procesarJSON("panelPiso", "tblPiso", optionPiso, null, function(){
-	         $("#tblPiso").jqGrid('navGrid', '#ptblPiso', {edit:false, add:false, del:false, search:false, refresh:false});
-	            $("#tblPiso").jqGrid('navButtonAdd', '#ptblPiso', btnInsertarPiso);
-	            $("#tblPiso").jqGrid('navSeparatorAdd','#ptblPiso');
-	            $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnEditarPiso);
-	            $("#tblPiso").jqGrid('navSeparatorAdd','#ptblPiso');
-	            $("#tblPiso").jqGrid('navButtonAdd','#ptblPiso', btnEliminarPiso);
-	        });
-		});
-	    _post.error(postError);
 	};
 */
