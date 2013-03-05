@@ -30,7 +30,7 @@ verPiso = function(rowid, iRow, iCol, e) {
     		$("#txt_pisovalcom").val(row.nvalcom);
     		$("#txt_valpre").val(row.nvalpis);
     		$("#txt_idsigma").val(row.idsigma);
-    		$("#dtxt_pisoano").html(row.nantigu  + ' A&Ntilde;OS DE ANTIGUEDAD');
+    		$("#dtxt_pisoano").html(row.nantigu  + ' A\u00F1os de antiguedad');
         }  else {
         	$("#txt_idsigma").val('-1');
         }
@@ -42,9 +42,10 @@ gridCompletePiso = function(){
 	
 	for(var i=0; i < ids.length; i++) { 
     	row = $("#tblPiso").jqGrid('getRowData', ids[i]);
+    	console.log(row);
     	$("#tblPiso").jqGrid('setRowData', ids[i], {
         	xmateri: "<div>"+row.vmateri+row.vconser+"</div>",
-        	xcaract: "<div>"+row.vmurcol+row.vtechos+row.vmpisos+row.vpueven+row.vrevest+row.vbanios+row.velectr+"</div>"
+        	xconser: "<div>"+row.vmurcol+row.vtechos+row.vmpisos+row.vpueven+row.vrevest+row.vbanios+row.velectr+"</div>"
         });
 	}
 	
@@ -64,7 +65,7 @@ selectPiso = function(id) {
         	+ 'Piso: <b>' + row.vmpisos + "</b><p>" + row.dmpisos + "</p><br/>"
         	+ 'Puertas y Ventanas: <b>' + row.vpueven + "</b><p>" + row.dpueven + "</p><br/>"
         	+ 'Revestimientos: <b>' + row.vrevest + "</b><p>" + row.drevest + "</p><br/>"
-        	+ 'Ba&ntilde;os: <b>' + row.vbanios + "</b><p>" + row.dbanios + "</p><br/>"
+        	+ 'Ba\u00F1os: <b>' + row.vbanios + "</b><p>" + row.dbanios + "</p><br/>"
         	+ 'Instalaciones: <b>' + row.velectr + "</b><p>" + row.delectr + "</p>",
         title: 'Detalle del Nivel ' + row.cnumpis,
     	timeout: 9000,
@@ -78,19 +79,37 @@ optionPiso = {
     rowNum: 10,
     rownumbers: false,
     colNames: [
-        'Niv', 'Ant', 'cmescon', 'canocon',
-        'M. E.', 'Caract.', 'Mat.', 'Est.',
-        'Mu', 'Te', 'Pi', 'Pv',
-        'Rv', 'Ba', 'In', 'Area Con.',
-        'V. Unit. m2', 'Inc. 5%', '% Depr', 'Depr.',
-        'V. Unit. Depr.', 'Area Com.', '% Area Com.', 'Val. Area Com.',
-        'Val. del Piso', 'idsigma',
-        'dpredio', 'cnitems', 'cperiod', 'cmateri',
-        'cconser', 'cmurcol', 'ctechos', 'cmpisos',
-        'cpueven', 'crevest', 'cbanios', 'celectr',
-        'dmateri', 'dconser', 'dmurcol', 'dtechos',
-        'dmpisos', 'dpueven', 'drevest', 'dbanios',
-        'delectr'
+           'Niv'
+         , 'Ant.'
+         , 'cmescon'
+         , 'canocon'
+         , 'MyE'
+         , 'Caract.'
+         , 'Mat.'
+         , 'Est.'
+         , 'Mu'
+         , 'Te'
+         , 'Pi'
+         , 'Pv'
+         , 'Rv'
+         , 'Ba'
+         , 'In'
+         , 'Area Con.'
+         , 'V. Unit. m2'
+         , 'Inc. 5%'
+         , '% Depr'
+         , 'Depr.'
+         , 'V. Unit. Depr.'
+         , 'Area Com.'
+         , '% Area Com.'
+         , 'Val. Area Com.'
+         , 'Val. del Piso'
+         , 'cmateri', 'cconser', 'cmurcol', 'ctechos'
+         , 'cmpisos', 'cpueven', 'crevest', 'cbanios'
+         , 'celectr', 'idsigma', 'dpredio', 'cnitems'
+         , 'cperiod', 'dmateri', 'dconser', 'dmurcol'
+         , 'dtechos', 'dmpisos', 'dpueven', 'drevest'
+         , 'dbanios', 'delectr'
     ],
     colModel: [
         {name: 'cnumpis', index: 'cnumpis', width: 35, align: 'center'}, // Nro de piso
@@ -98,7 +117,7 @@ optionPiso = {
         {name: 'cmescon', index: 'cmescon', width: 30, hidden: true}, // Mes de la construccion
         {name: 'canocon', index: 'canocon', width: 30, hidden: true}, // Periodo de Construccion
         {name: 'xmateri', index: 'xmateri', width: 35, align: 'center'}, // Material : Campo Calculado
-        {name: 'xcaract', index: 'xcaract', width: 65, align: 'center'}, // Caracteristicas : Campo Calculado
+        {name: 'xconser', index: 'xconser', width: 65, align: 'center'}, // Caracteristicas : Campo Calculado
         {name: 'vmateri', index: 'vmateri', width: 40, align: 'center', hidden: true}, // Material
         {name: 'vconser', index: 'vconser', width: 40, align: 'center', hidden: true}, // Estado de conservacion
         {name: 'vmurcol', index: 'vmurcol', width: 40, align: 'center', hidden: true}, // Muros y columnas
@@ -118,19 +137,19 @@ optionPiso = {
         {name: 'nporcom', index: 'nporcom', width: 80, formatter:'currency', align: 'right'}, // Porcentaje de area comun
         {name: 'nvalcom', index: 'nvalcom', width: 80, formatter:'currency', align: 'right'}, // Valor del area comun
         {name: 'nvalpis', index: 'nvalpis', width: 80, formatter:'currency', align: 'right'}, // Valor total del piso
-        {name: 'idsigma', index: 'idsigma', width: 30, hidden: true}, // Identificador de la construccion del predio
-        {name: 'dpredio', index: 'dpredio', width: 30, hidden: true}, // Identificador del predio
-        {name: 'cnitems', index: 'cnitems', width: 30, hidden: true}, // Nro de orden de la construccion
-        {name: 'cperiod', index: 'cperiod', width: 30, hidden: true}, // Ejercicio de la declaracion jurada
-        {name: 'cmateri', index: 'cmateri', width: 30, hidden: true},
-        {name: 'cconser', index: 'cconser', width: 30, hidden: true},
-        {name: 'cmurcol', index: 'cmurcol', width: 30, hidden: true},
-        {name: 'ctechos', index: 'ctechos', width: 30, hidden: true},
+        {name: 'cmateri', index: 'cmateri', width: 30, hidden: true}, // Identificador de la construccion del predio
+        {name: 'cconser', index: 'cconser', width: 30, hidden: true}, // Identificador del predio
+        {name: 'cmurcol', index: 'cmurcol', width: 30, hidden: true}, // Nro de orden de la construccion
+        {name: 'ctechos', index: 'ctechos', width: 30, hidden: true}, // Ejercicio de la declaracion jurada
         {name: 'cmpisos', index: 'cmpisos', width: 30, hidden: true},
         {name: 'cpueven', index: 'cpueven', width: 30, hidden: true},
         {name: 'crevest', index: 'crevest', width: 30, hidden: true},
         {name: 'cbanios', index: 'cbanios', width: 30, hidden: true},
         {name: 'celectr', index: 'celectr', width: 30, hidden: true},
+        {name: 'idsigma', index: 'idsigma', width: 30, hidden: true},
+        {name: 'dpredio', index: 'dpredio', width: 30, hidden: true},
+        {name: 'cnitems', index: 'cnitems', width: 30, hidden: true},
+        {name: 'cperiod', index: 'cperiod', width: 30, hidden: true},
         {name: 'dmateri', index: 'dmateri', width: 30, hidden: true},
         {name: 'dconser', index: 'dconser', width: 30, hidden: true},
         {name: 'dmurcol', index: 'dmurcol', width: 30, hidden: true},
@@ -184,61 +203,8 @@ btnEliminarPiso = {
         			alert('Error no se pudo eliminar');
         		}
         	}
-            console.log(gsr);
-            // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
         } else { 
             openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
         } 
     } 
 };
-
-btnGuardar = function() {
-	indexRow = $("#ctblPiso").val();
-	
-	
-	nro=jQuery("#tblPiso").getDataIDs().length;
-	
-	var actual= new Date();
-    var anyo= actual.getUTCFullYear();
-
-	row={
-			idsigma: $("#txt_idsigma").val(),
-			cnitems:'05',
-			cnitems:$("#txt_idsigma").val(),
-			dpredio :$("#_dpredio").val(),
-			cnumpis:$("#txt_pisonivel").val(),
-			canocon:$("#txt_pisoanocon").val(),
-			nantigu: anyo-$("#txt_pisoanocon").val(),
-			cmescon:$("#txt_pisomescon").val(),
-			cmateri:$("#txt_pisodmaterial").val(),       
-			cconser:$("#txt_pisodestado").val(),
-			cmurcol:$("#txt_pisodmuro").val(),     
-			ctechos:$("#txt_pisodtecho").val(),
-			cmpisos:$("#txt_pisodpisos").val(),    
-			cpueven:$("#txt_pisodpuertaventana").val(),
-			crevest:$("#txt_pisorevestimiento").val(),      
-			cbanios:$("#txt_pisodbanio").val(),
-			celectr:$("#txt_pisodinstalaciones").val(),       
-			narecon:$("#txt_pisoarecon").val(),
-			nvaluni:$("#txt_pisovaluni").val(),
-			nincrem:$("#txt_pisoincrem").val(),
-			npordep:$("#txt_pisopordep").val(),      
-			ndepred:$("#txt_pisodepred").val(),
-			nvalare:$("#txt_pisovalare").val(),      
-			narecom:$("#txt_pisoarecom").val(),
-			nporcom:$("#txt_pisoporcom").val(),
-			nvalcom:$("#txt_pisovalcom").val(),
-			nvalpis:$("#txt_valpre").val(),
-			nestado:'1'
-};
-	console.log(row);
-		if($("#tblPiso").jqGrid('addRowData', indexRow, row)) {
-			$("#ctblPiso").val(indexRow + 1);
-		} else {
-			alert('Error no se pudo agregar');
-		}
-	// console.log($("#tblPiso").jqGrid('getRowData'));
-};
-
-
-

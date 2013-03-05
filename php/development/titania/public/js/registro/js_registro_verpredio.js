@@ -160,7 +160,11 @@ loadVerDetalle = function(){
         icons: {primary:'ui-icon-disk'},
         disabled: true
     }).bind('click', function(){
-        openDialogData1("registro/declaracion", {}, "700", "490", "Declaraci&oacute;n Jurada");
+    	parameters = {
+    		mperson: $("#lblCodigo").text(),
+    		mhresum: $("#_mhresum").val()
+    	};
+        openDialogData1("registro/declaracion", parameters, "700", "510", "Declaraci&oacute;n Jurada");
     });
 
     $("#btnCancelarPredio").button({

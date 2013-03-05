@@ -101,6 +101,9 @@ class RegistroController extends Zend_Controller_Action {
 
         if ($this->getRequest()->isXmlHttpRequest()) {
             $this->_helper->layout->disableLayout();
+            $this->view->mperson = $this->_request->getParam('mperson');
+            $this->view->mhresum = $this->_request->getParam('mhresum');
+            $this->view->cperiod = date("Y");
         }
     }
 
@@ -206,7 +209,7 @@ class RegistroController extends Zend_Controller_Action {
     }
     
     public function linderoAction() {
-        	$this->_helper->getHelper('ajaxContext')->initContext();
+        $this->_helper->getHelper('ajaxContext')->initContext();
     
     	if ($this->getRequest()->isXmlHttpRequest()) {
     		$this->_helper->layout->disableLayout();
@@ -222,19 +225,6 @@ class RegistroController extends Zend_Controller_Action {
     		$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
     		$coduser = $ddatosuserlog->cidpers;
     		$vhostnm = $ddatosuserlog->vhostnm;
-    		
-    		/*
-    		idsigma character varying,
-    		cptocar character varying,
-    		ctiplin character varying,
-    		ccodpre character varying,
-    		vdirecc character varying,
-    		mperson character varying,
-    		dpredio character varying,
-    		vusernm character varying,
-    		vhostnm character varying,
-    		ddatetm timestamp without time zone
-    		*/
     		
 			$row = $_POST['idsigma'].','
 				.$_POST['cptocar'].','
@@ -346,7 +336,6 @@ class RegistroController extends Zend_Controller_Action {
     
     			$data['error'] = "";
     			$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
-    			header("HTTP/1.0 500 Actualizo!!!");
     		} else {
     			$data['error'] = "Error al actualizar";
     			$data['data'] = "";
@@ -355,9 +344,6 @@ class RegistroController extends Zend_Controller_Action {
     		$this->_helper->json($data);
     	}
 	}  
-
-	
-	
 
 	public function guardarinstalacionAction() {
 		$this->_helper->getHelper('ajaxContext')->initContext();
@@ -398,7 +384,7 @@ class RegistroController extends Zend_Controller_Action {
 			$parameters[] = $row;
 			$dataAdapter = new Model_DataAdapter();
 			$rows = $dataAdapter->executeSelect("pl_function.guardar_minstal", $parameters);
-			echo $rows ;	
+	
 			if($rows[0][0] == 1) {
 				$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
 	
@@ -412,7 +398,65 @@ class RegistroController extends Zend_Controller_Action {
 			$this->_helper->json($data);
 		}
 	}
+	
+	public function guardarDeclaracion() {
+		/*
+		idsigma character varying(10) NOT NULL,
+		ctipdat character(10) NOT NULL,
+		vnrodoc character varying(50) NOT NULL,
+		dfecdoc timestamp without time zone NOT NULL,
+		cmotivo character(10) NOT NULL,
+		ctipdoc character(10) NOT NULL,
+		vnrodjj character varying(50) NOT NULL,
+		vobserv character varying(500) NOT NULL,
+		nestado integer NOT NULL,
+		vhostnm character varying(25) NOT NULL,
+		vusernm character varying(25) NOT NULL,
+		ddatetm timestamp without time zone NOT NULL,
+		cperini character(4) NOT NULL,
+		cperfin character(4) NOT NULL,
+		mperson character(10) NOT NULL,
+		*/
+		$this->_helper->getHelper('ajaxContext')->initContext();
+		
+		if ($this->getRequest()->isXmlHttpRequest()) {
+			$this->_helper->layout->disableLayout();		
 
-
+			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+			$coduser = $ddatosuserlog->cidpers;
+			$vhostnm = $ddatosuserlog->vhostnm;
+			
+			$row = $_POST["idsigma"].','.
+				   $_POST["ctipdat"].','.
+				   $_POST["vnrodoc"].','.
+				   $_POST["dfecdoc"].','.
+				   $_POST["cmotivo"].','.
+				   $_POST["ctipdoc"].','.
+				   $_POST["vnrodjj"].','.
+				   $_POST["vobserv"].','.
+				   $_POST["nestado"].','.
+				   $vhostnm.','.
+				   $coduser.',,'.
+				   $_POST["cperini"].','.
+				   $_POST["cperfin"].','.
+				   $_POST["mperson"];
+			
+			$parameters[] = $row;
+			$dataAdapter = new Model_DataAdapter();
+			$rows = $dataAdapter->executeSelect("pl_function.guardar_mhresum", $parameters);
+			 
+			if($rows[0][0] == 1) {
+				$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
+			
+				$data['error'] = "";
+				$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
+			} else {
+				$data['error'] = "Error al actualizar";
+				$data['data'] = "";
+			}
+			
+			$this->_helper->json($data);
+		}
+	}
 }  
 
