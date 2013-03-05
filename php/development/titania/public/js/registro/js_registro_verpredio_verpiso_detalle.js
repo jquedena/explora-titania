@@ -1,16 +1,26 @@
 validar = function() {
+	/*isValid = true;
+	
+	$("#formPiso").find("input").each(function() {
+		if($(this).val().length ==0) {
+			isValid = false;
+       		return;
+   		}
+	});
+	
+	if(!isValid) {
+			openDialogWarning("Los campos deben estar llenos.", 380, 150);	
+	} else {
+		GuardarPiso();
+		//openDialogWarning("Los datos han sido guardados.", 380, 150);
+		closeDialog('jqDialog1');
+	}*/
+
+// navPanelPiso()	
 	return true;
 };
 
 guardar = function() {
-	indexRow = $("#ctblPiso").val();
-	gsr = $("#tblPiso").jqGrid('getGridParam', 'selrow');
-	row = {};
-	
-	if(gsr){
-		row = $("#tblPiso").jqGrid('getRowData', gsr);
-	}
-	    
 	row = {
 			idsigma: $("#txt_idsigma").val(),
 			cnitems: $("#txt_idsigma").val(),
@@ -18,23 +28,22 @@ guardar = function() {
 			cnumpis: $("#txt_pisonivel").val(),
 			canocon: $("#txt_pisoanocon").val(),
 			cmescon: $("#txt_pisomescon").val(),
-			cmateri: $("#txt_cdmaterial").val(),       
-			cconser: $("#txt_cdestado").val(),
-			cmurcol: $("#txt_cdmuro").val(),     
-			ctechos: $("#txt_cdtecho").val(),
-			cmpisos: $("#txt_cdpisos").val(),    
-			cpueven: $("#txt_cdpuertaventana").val(),
-			crevest: $("#txt_cdrevestimiento").val(),      
-			cbanios: $("#txt_cdbanio").val(),
-			celectr: $("#txt_cdinstalaciones").val(),		
+			cmateri: $("#ctxt_cmateri").val(),       
+			cconser: $("#ctxt_cconser").val(),
+			cmurcol: $("#ctxt_cmurcol").val(),     
+			ctechos: $("#ctxt_ctechos").val(),
+			cmpisos: $("#ctxt_cmpisos").val(),    
+			cpueven: $("#ctxt_cpueven").val(),
+			crevest: $("#ctxt_crevest").val(),      
+			cbanios: $("#ctxt_cbanios").val(),
+			celectr: $("#ctxt_celectr").val(),		
 			narecon: $("#txt_pisoarecon").val(),      
 			narecom: $("#txt_pisoarecom").val(),
 			nporcom: $("#txt_pisoporcom").val(),
-			nestado: '1'
+			nestado: '1',
+			cperiod: $("#txtPeriodo").val(),
 	};
 
-	console.log(row);
-	
 	_post = $.post(path + "registro/guardarpiso", row);
     _post.success(function(data){
     	optionPiso = $.extend(optionPiso, {data: data.data});
@@ -66,25 +75,10 @@ click_closeDialog = function() {
 };
 
 click_guardar = function() {
-	guardar();
-	/*isValid = true;
-		
-		$("#formPiso").find("input").each(function() {
-			if($(this).val().length ==0) {
-				isValid = false;
-	       		return;
-	   		}
-		});
-		
-		if(!isValid) {
-				openDialogWarning("Los campos deben estar llenos.", 380, 150);	
-		} else {
-			GuardarPiso();
-			//openDialogWarning("Los datos han sido guardados.", 380, 150);
-			closeDialog('jqDialog1');
-		}*/
-	
-	// navPanelPiso()
+	if(validar()) {
+		guardar();
+	}
+	click_closeDialog();
 };
 
 
@@ -92,15 +86,15 @@ $(function() {
 	themeTextBox();
 	
 	_post = $.post(path + "registro/verpisocaracteristicas", {}, function(data){
-		autocompletar("#txt_pisomaterial", data.material, selectAutocomplete);
-		autocompletar("#txt_pisoestado", data.estado, selectAutocomplete);
-		autocompletar("#txt_pisomuro", data.muro, selectAutocomplete);
-		autocompletar("#txt_pisotecho", data.techo, selectAutocomplete);
-		autocompletar("#txt_pisopisos", data.piso, selectAutocomplete);
-		autocompletar("#txt_pisopuertaventana", data.puerta, selectAutocomplete);
-		autocompletar("#txt_pisorevestimiento", data.revestimiento, selectAutocomplete);
-		autocompletar("#txt_pisobanio", data.banio, selectAutocomplete);
-		autocompletar("#txt_pisoinstalaciones", data.instalacion, selectAutocomplete);
+		autocompletar("#txt_cmateri", data.material, selectAutocomplete);
+		autocompletar("#txt_cconser", data.estado, selectAutocomplete);
+		autocompletar("#txt_cmurcol", data.muro, selectAutocomplete);
+		autocompletar("#txt_ctechos", data.techo, selectAutocomplete);
+		autocompletar("#txt_cmpisos", data.piso, selectAutocomplete);
+		autocompletar("#txt_cpueven", data.puerta, selectAutocomplete);
+		autocompletar("#txt_crevest", data.revestimiento, selectAutocomplete);
+		autocompletar("#txt_cbanios", data.banio, selectAutocomplete);
+		autocompletar("#txt_celectr", data.instalacion, selectAutocomplete);
 	}, 'json');
     _post.error(postError);
 	

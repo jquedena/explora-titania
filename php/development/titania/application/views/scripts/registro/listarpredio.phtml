@@ -109,13 +109,21 @@
     $(function(){
         $("#btnRegistrarPredio").button({
             icons: {primary:'ui-icon-document'}
-        });
+        }).bind('click', function(){
+        	parameters = {
+            	mperson: $("#lblCodigo").text(),
+            	mhresum: "-1"
+            };
+			openDialogData1("registro/declaracion", parameters, "700", "510", "Declaraci&oacute;n Jurada");
+		});
+		
         $("#btnEditarPredio").button({
             icons: {primary:'ui-icon-pencil'}
         }).bind('click', function(){
             var rowId = $("#tblListaPredio").jqGrid('getGridParam','selrow');
             verPredio(rowId);
         });
+        
         $("#btnCancelarPredio").button({
             icons: {primary:'ui-icon-arrowreturnthick-1-w'}
         }).bind('click', function(){
@@ -125,31 +133,4 @@
         panelPersona({cidpers: $("#lblCodigo").html()});
         buscarPredio();
     });
-
-    /*
-    $(document).ready(function() {
-		optionsLine.series[0].data = [
-			['01/05/2012', 0],
-			['03/05/2012', 0],
-			['05/05/2012', 1],
-			['10/05/2012', 0],
-			['15/05/2012', 0],
-			['16/05/2012', 0],
-			['18/05/2012', 0],
-			['21/05/2012', 1]
-		];
-		optionsLine.series[1].data = [
-			['01/05/2012', 1],
-			['03/05/2012', 1],
-			['05/05/2012', 1],
-			['10/05/2012', 0],
-			['15/05/2012', 0],
-			['16/05/2012', -1],
-			['18/05/2012', 0],
-			['21/05/2012', 1]
-		];
-
-		// chart = new Highcharts.Chart(optionsLine);
-	});*/
-
 </script>

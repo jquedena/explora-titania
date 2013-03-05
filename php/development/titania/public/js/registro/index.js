@@ -24,7 +24,7 @@ verContribuyentePredio = function(rowid) {
     } else {
         parameters = $(this).getRowData(rowid);
     }
-
+    
     if($("#mhresum").val() == undefined || $("#mhresum").val() == null){
     	panelPersona(parameters);
     	idTimeOut = setTimeout(timeContribuyentePredio, 200, parameters);
@@ -49,13 +49,9 @@ gridCompleteTblResult = function(){
 };
 
 optionContribuyente = {
-    // height: 290,
-	// gridComplete: gridCompleteTblResult,
-	// hoverrows: 0,
     width: 1000,
-    colNames: [/*"", */"C\u00F3digo", "Administrado", "Direcci\u00F3n Fiscal"],
+    colNames: ["C\u00F3digo", "Administrado", "Direcci\u00F3n Fiscal"],
     colModel: [
-        // {name:'modedit', index:'modedit', width:22, align: 'center'},
         {name:'cidpers', index:'cidpers', width:80, align: 'center'},
         {name:'crazsoc', index:'crazsoc', width:420},
         {name:'direccf', index:'direccf', width:420} ],
@@ -121,10 +117,10 @@ optionViaPredio = {
         {name: 'dnlotes', index:'dnlotes', width: 1, hidden: true},
         {name: 'vdirecf', index:'vdirecf', width: 250, frozen: true}],
     caption: "&nbsp;&nbsp;&nbsp;Predios Registrados",
-    /*onSelectRow: function(id) {
+    onSelectRow: function(id) {
         row = $(this).getRowData(id);
         console.log(row);
-    },*/
+    },
     ondblClickRow: verViaPredio
 };
 bindkeysViaPredio = {"onEnter": verViaPredio};

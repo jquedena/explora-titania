@@ -1,3 +1,6 @@
+<input type="hidden" id="hdnIdDeclaracion" value="<?php echo $this->mhresum; ?>"/>
+<input type="hidden" id="hdnIdPersona" value="<?php echo $this->mperson; ?>"/>
+<input type="hidden" id="hdnAnioTermino" value="<?php echo $this->cperiod; ?>"/>
 <table class="ui-table-panelLayout">
     <tr>
         <td colspan="2" style="text-align: right;font-weight: bold;">La modificaci&oacute;n de esta declaraci&oacute;n entra en vigencia a partir del a&ntilde;o:</td>
@@ -8,7 +11,7 @@
     </tr>
     <tr>
         <td style="text-align: right;width: 130px">Declaraci&oacute;n Jurada:</td>
-        <td><input class="ui-text" style="width: 100px"></td>
+        <td><input class="ui-text" style="width: 100px" id="txtNroDeclaracion"></td>
         <td>&nbsp;</td>
     </tr>
     <tr>
@@ -40,7 +43,7 @@
                 ['Bold','Italic','Underline','-','NumberedList','BulletedList','-','Outdent','Indent','-','Undo','Redo','-','HorizontalRule','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','TextColor','BGColor'],
                 ['UIColor']
             ]
-        };
+        }, _cmotivo = "";
         
         var hEd = CKEDITOR.instances['txtObservacion'];
         if (hEd) {
@@ -60,6 +63,21 @@
         $("#btnAceptarDeclaracion").button({
             icons: {primary:'ui-icon-check'}
         }).bind("click", function(){
+            mhresum = {
+	        	idsigma: $("#hdnIdDeclaracion").val(),
+	        	ctipdat: "1000000002", /* Registro Tributario */
+	        	vnrodoc: $("#hdnId").val(),
+	        	dfecdoc: $("#dtpFechaDeclaracion").val(),
+	        	cmotivo: _cmotivo,
+	        	ctipdoc: "1000000021", /* Declaracion Jurada */
+	        	vnrodjj: $("#txtNroDeclaracion").val(),
+	        	vobserv: $("#txtObservacion").val(),
+	        	nestado: "1",
+	        	cperini: $("#dtpFechaVigencia").val(),
+	        	cperfin: $("#hdnAnioTermino").val(),
+	        	mperson: $("#hdnIdPersona").val()
+        	};
+        	console.log(mhresum);
             closeDialog("jqDialog1");
         });
         $("#btnCancelarDeclaracion").button({
