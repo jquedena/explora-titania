@@ -30,7 +30,7 @@ function cuotas(cuotainicial){
 	newcontent += '</tr>';
 	
 	
-	for(var i=0; i<nrocuotas; i++){	
+	for(var i=0; i<=nrocuotas; i++){	
 		
 		if (i==0){		
 		var cadcontentrow = '<tr>';		
