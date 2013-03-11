@@ -100,7 +100,7 @@ function actualizarGrid(id, _options, bindkeys, navGrid){
 	_url = path + "jqgrid/paginar?name=" + id;
     options = $.extend({
         url: _url,
-        datatype: "json",
+        datatype: "json"
     }, _options);
 	reloadJQGrid(id, options, bindkeys, navGrid);
 }
