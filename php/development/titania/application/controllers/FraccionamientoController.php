@@ -30,6 +30,8 @@ class FraccionamientoController extends Zend_Controller_Action {
 		$this->view->util()->registerScriptJSControllerAction($this->getRequest());
 		$pintar= new Libreria_Pintar();
 		
+		$evt[]=array('txtporcuotas','blur','inicial(1000);');
+		
 		$evt[]=array('txtcuotainicial','blur','cuotas();');
 		
 	    $pintar->PintarEvento($evt);
