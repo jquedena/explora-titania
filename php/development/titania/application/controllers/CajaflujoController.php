@@ -153,7 +153,11 @@ class CajaflujoController extends Zend_Controller_Action {
 			$arstore [6] = $vobs; # *
 			$arstore [7] = $vlocal; # *
 			$dt = $cn->ejec_store_procedura_sql($store, $arstore);
+			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+			$ddatosuserlog->cidapertura = $dt[0][2];
+			
 			echo "<h3>" . $dt[0][0] . "</h3>";
+			
 			//}
 			/*elseif ($vaccion == '2') {
 			 $Arcajas = explode(",", $vnrocaja);
