@@ -30,7 +30,7 @@ var map = null,
 		clearOverlays();
 		var marker = new google.maps.Marker({
 			map: map,
-			draggable: true,
+			// draggable: true,
 			animation: google.maps.Animation.DROP,
 			icon: image,
 			title: "Municipalidad de Puente Piedra",
@@ -58,7 +58,7 @@ initMap = function(){
 	map = new google.maps.Map(document.getElementById("map"),mapOptions);
 	var marker = new google.maps.Marker({
 		map: map,
-		draggable: true,
+		// draggable: true,
 		animation: google.maps.Animation.DROP,
 		icon: image,
 		title: "Municipalidad de Puente Piedra",

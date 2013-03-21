@@ -154,17 +154,70 @@ loadVerDetalle = function(){
         icons: {primary:'ui-icon-pencil'}
     }).bind('click', function(){
         habilitarComponenteDetalle(false);
+      
+        
     });
 
+    $("#btnFinalizar").button({
+    	icons: {primary:'ui-icon-stop'}
+    }).bind('click', function(){
+    	
+    });
+    
     $("#btnGrabarPredio").button({
         icons: {primary:'ui-icon-disk'},
         disabled: true
     }).bind('click', function(){
+    	habilitarComponenteDetalle(true);
+    	/*
     	parameters = {
     		mperson: $("#lblCodigo").text(),
     		mhresum: $("#_mhresum").val()
     	};
         openDialogData1("registro/declaracion", parameters, "700", "510", "Declaraci&oacute;n Jurada");
+        */
+    	
+
+        guardar = function() {
+        	row = { 
+        			idsigma: $("#_dpredio").val(),
+        			mpredio: $("#_mpredio").val(),
+        			ctippre: $("#cboTipoPredioUrbano").val(),
+        			cclasif: $("#cboClasificacion").val(),
+        			ccondic: $("#cboCondicion").val(),        			
+        			cestado: $("#cboEstado").val(),
+        			cusogen: $("#cboUso").val(),       
+        			cusoesp: $("#cboUsoEspecifico").val(),
+        			nporcen: $("#nporcen").val(),     
+        			ntertot: $("#ntotter").val(),
+        			nporter: $("#nporter").val(),    
+        			nterren: $("#nareter").val(),
+        			ncomtot: $("#ntotcom").val(),      
+        			nporcom: $("#nporcom").val(),
+        			narecom: $("#narecom").val(),		
+        			nporafe: 0,      
+        			dfecadq: "",
+        			dfecdes: "",
+        			dafecta: "", 
+        			nfrente: $("#nfronti").val(),
+        			ncanper: $("#nnrohab").val() ,
+        			ctippar: $("#cboParque").val(),
+        			vobserv:"",
+        			nestado:'1',
+        			mhresum:$("#_mhresum").val() 
+        			 
+        	};
+
+        	_post = $.post(path + "registro/guardardetalle", row);
+            _post.success(function(data){
+            	//optionPiso = $.extend(optionPiso, {data: data.data});
+            	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
+        	});
+            _post.error(postError);	
+        };
+        
+        guardar();
+        
     });
 
     $("#btnCancelarPredio").button({

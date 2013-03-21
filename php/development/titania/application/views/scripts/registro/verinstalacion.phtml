@@ -1,4 +1,3 @@
-
 	<div id="forminstalacion" align="center">
 	<table>
 		 <tr>
@@ -7,77 +6,50 @@
 					<label>Descripci&oacute;n de la Instalaci&oacute;n</label>
 				</div>
 				<div class="ui-widget-content ui-corner-bottom">
-					<table align="left" cellspacing="5" style="margin: 3px;">
+					<input id="txt_idsigma" type="hidden" value="" />
+					<table style="margin: 3px;">
 						<tr>
-							<td width="140"></td>
-							<td width="35"><input id="txt_idsigma" class="ui-text" value="" /></td>
-						</tr>
-						<!--	<td width="140">&nbsp;Decl. Jurada&nbsp;</td>
-							<td width="35"><input id="txt_instcperiod"  class="ui-text" style="width:100px; padding:2px;text-align:center; " value="" /></td>
-						<tr>
-							<td width="140">&nbsp;Tipo de Ficha&nbsp;</td>
-							<td width="35"><input id="txt_instctipdat"   style="width:100px;padding:2px;text-align:center; "/></td>
-						<tr>
-							<td width="140">&nbsp;Nro. Decl. Jurada</td>
-							<td width="35"><input id="txt_instvnrodoc"  class="ui-text" style="width:100px;padding:2px;text-align:center; "/></td>
-						<tr>
-							<td width="140">&nbsp;Fecha Decl. Jurada</td>
-							<td width="35"><input id="txt_instdfecdoc"  class="ui-text" style="width:100px;padding:2px;text-align:center; "/></td>
-						<tr>
-							<td width="140">&nbsp;Motivo</td>
-							<td width="35"><input id="txt_instcmotivo"  class="ui-text" style="width:100px;padding:2px;text-align:center; "/></td>
-						</tr>
-						<tr> 
-							<td width="140">&nbsp;Tip. Documento</td>
-							<td width="35"><input id="txt_instctipdoc"  class="ui-text" style="width:100px;padding:2px;text-align:center; "/></td>
-						</tr>-->
-						<tr>
-							<td width="140">&nbsp;Nro. Pisos</td>
-							<td width="35"><input id="txt_instcnumpis"  maxlength="2" class="ui-text ui-text-numeric" style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/>&nbsp;&nbsp;<select id="cb_tipoinstalacion" style="width:190px;padding:2px"><?php echo $this->util()->getComboContenedor('1000000443', null); ?></select></td>
+							<td width="140">Nro. Pisos</td>
+							<td width="35">
+								<input id="txt_instcnumpis"  maxlength="2" class="ui-text ui-text-numeric" style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/>
+							</td>
 						</tr>
 						<tr>
-							<td width="140">&nbsp;Antiguedad</td>
+							<td width="140">Antiguedad</td>
 							<td width="35"><input id="txt_instnantigu"  maxlength="3" class="ui-text ui-text-numeric"  style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
 						<tr>
-							<td width="140">&nbsp;A&ntilde;o Construcci&oacute;n</td>
+							<td width="140">A&ntilde;o Construcci&oacute;n</td>
 							<td width="35"><input id="txt_instcanocon"  class="ui-text"  maxlength="4" style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
-					<!-- </table>
-				</div>
-			</td>
-			<td width="365" align="center" valign='top'>
-				<div class="ui-widget ui-state-default ui-corner-top ui-title">
-					<label>Descripci&oacute;n</label>
-				</div>
-				<div class="ui-widget-content ui-corner-bottom">
-					<table align="left" cellspacing="5" style="margin: 3px;"> -->
 						<tr>
-							<td width="140">&nbsp;&nbsp;Unidad de Medida</td>
+							<td width="140">Unidad de Medida</td>
 							<td width="35" ><select style="width: 150px;" id="cboinstctipint"><?php echo $this->util()->getComboContenedor('1000000439', null); ?></select></td>
 						</tr>
 						<tr>
-							<td width="140">&nbsp;&nbsp;Ancho Instalaci&oacute;n</td>
+							<td width="140">Ancho</td>
 							<td width="35"><input id="txt_instnvalanc" class="ui-text ui-text-numeric" style="width:50px;padding:2px; "/></td>
 						</tr>
 						<tr>
-							<td width="140">&nbsp;&nbsp;Altura Instalaci&oacute;n</td>
+							<td width="140">Altura</td>
 							<td width="35"><input id="txt_instnvalalt" class="ui-text ui-text-numeric"   style="width:50px; padding:2px" value="" /></td>
 						</tr>
 						<tr>
-							<td width="140">&nbsp;&nbsp;Largo Instalaci&oacute;n</td>
+							<td width="140">Largo</td>
 							<td width="35"><input id="txt_instnvallar" class="ui-text ui-text-numeric"  style="width:50px; padding:2px" value="" /></td>
 						</tr>
 						<tr>
-							<td width="140">&nbsp;&nbsp;Descripci&oacute;n inst.</td>
+							<td width="140">Descripci&oacute;n</td>
 							<td width="35"><input id="txt_instvdesint" class="ui-text"  style="width:300px" value="" /></td>
 						</tr>
 						<tr>
-							<td width="140">&nbsp;&nbsp;Val. Instalaci&oacute;n</td>
+							<td width="140">Val. Instalaci&oacute;n</td>
 							<td width="35"><input id="txt_instnvalins" class="ui-text ui-text-numeric"  style="width:50px" value="" /></td>
 						</tr>
 						<tr>
-							<td width="450" colspan="2" align="right"><input  type="button" id="btnguardar" name="guardar" value="Aceptar"/>&nbsp;&nbsp;<input type="button" id="btncancelar" name="cancelar" value="Cancelar"/></td>
+							<td width="450" colspan="2" align="right">
+								<button id="btnguardar">Aceptar</button>&nbsp;&nbsp;<button id="btncancelar">Cancelar</button>
+							</td>
 						</tr>
 					</table>
 				</div>
@@ -87,7 +59,10 @@
 	</table>
 </div>
 
-
+<!-- 
+<select id="cb_tipoinstalacion" style="width:190px;padding:2px"><?php echo $this->util()->getComboContenedor('1000000443', null); ?></select>
+ -->
+ 
 <script>
 
 
