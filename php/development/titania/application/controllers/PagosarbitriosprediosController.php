@@ -348,7 +348,7 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 							
 							$ctiping = $datos [$i] [1];
 							$ctiprecval = $datos [$i] [2];
-							$codpredio = $datos [$i] [4] == '' ? 'No Especificado' : $datos [$i] [4];
+							$codpredio = ($datos [$i] [4] == '' ? 'No Especificado ' : $datos [$i] [4]);
 							$anio = $datos [$i] [5];
 							$perid = trim ( $datos [$i] [6] );
 							
@@ -356,7 +356,7 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 							
 							$estad = $datos [$i] [7];
 							
-							$descripctiping = (($datos[$i][24] == '')?'No Especificado':$datos[$i][24]);
+							$descripctiping = (($datos[$i][24] == '')?'No Especificado':$datos[$i][24]);# $datos[$i][24] es nulo U.u
 							
 							if ($dorden == '' || $dorden == null) {
 								$idhijos = 'R' . '|'; //identificador q es un registro de cobro
@@ -379,7 +379,7 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 								$idhijos .= $datos [$i] [1]; // ctiping	
 								$btnordparams = true;
 							}
-							if ($dorden == 'OK') {
+							if ($dorden == 'OK') { #ordenanza
 								$idhijos = 'R' . '|'; //identificador q es un registro de cobro
 								$idhijos .= $datos [$i] [0] . '|'; //idsigma de estcta 
 								$idhijos .= $datos [$i] [2] . '|'; //ctiprec
@@ -927,10 +927,10 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			$dfecha = explode ( " ", $datosfecha [0] [0] );
 			//echo $cadgrabacion;
 			$datos = explode ( "�", $cadgrabacion );
-			
+		
 			
 			$val[0]= array("txttotalcobrar",number_format( $datos [1], '2', '.', '' ),"val");
-			$val[1]= array("txttotalpagar",number_format( $datos [1], '2', '.', '' ),"val");
+			$val[1]= array("txttotalpagar",number_format($datos [1],'2','.',''),"val");
 			$val[2]= array("txtdevolucion","0.00","val");
 			$val[3]= array("hddata",$datos [0],"val");
 			$val[4]= array("fechrecibo",$dfecha [0],"val");
@@ -1039,7 +1039,7 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			            $contdetalle.= '<td width="100">'.$detallepago[$i][1].'</td>';
 			            $contdetalle.= '<td width="65" >'.$detallepago[$i][2].'</td>';
 			            $contdetalle.= '<td width="50" >'.$detallepago[$i][3].'</td>';
-			            $contdetalle.= '<td width="20"><img src="'.$url.'img/borrar.png" width="16"  height="16" onclick="borrardetallepago(\''.$detallepago[$i][0].'\',\''.$detallepago[$i][1].'\');"  style="cursor:pointer" /></td>';
+			            $contdetalle.= '<td width="20"><img src="'.$url.'img/b_drop.png" width="16"  height="16" onclick="borrardetallepago(\''.$detallepago[$i][0].'\',\''.$detallepago[$i][1].'\');"  style="cursor:pointer" /></td>';
 			            $contdetalle.= '</tr>';
 					}
 	            $contdetalle.= '</table>';	
@@ -1159,7 +1159,7 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 	                        <td width="100">'.$detallepago[$i][1].'</td>
 	                        <td width="65" >'.$detallepago[$i][2].'</td>
 	                        <td width="50" >'.$detallepago[$i][3].'</td>
-	                        <td width="20"><img src="'.$url.'img/borrar.png" width="16"  height="16"  onclick="borrardetallepago(\''.$detallepago[$i][0].'\',\''.$detallepago[$i][1].'\');" style="cursor:pointer" /></td>
+	                        <td width="20"><img src="'.$url.'img/b_drop.png" width="16" title="Borrar" height="16"  onclick="borrardetallepago(\''.$detallepago[$i][0].'\',\''.$detallepago[$i][1].'\');" style="cursor:pointer" /></td>
 	                      </tr>';
 			}
             $cont.= '</table>';
@@ -1216,7 +1216,7 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 	                        <td width="100">'.$detallepago[$i][1].'</td>
 	                        <td width="65" >'.$detallepago[$i][2].'</td>
 	                        <td width="50" >'.$detallepago[$i][3].'</td>
-	                        <td width="20"><img src="'.$url.'img/borrar.png" width="16"  height="16" onclick="borrardetallepago(\''.$detallepago[$i][0].'\',\''.$detallepago[$i][1].'\');" style="cursor:pointer" /></td>
+	                        <td width="20"><img src="'.$url.'img/b_drop.png" width="16"  title="Borrar" height="16" onclick="borrardetallepago(\''.$detallepago[$i][0].'\',\''.$detallepago[$i][1].'\');" style="cursor:pointer" /></td>
 	                      </tr>';
 			}
             $cont.= '</table>';

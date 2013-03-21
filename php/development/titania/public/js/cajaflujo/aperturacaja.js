@@ -8,7 +8,7 @@ function aperturarcaja(){
     	vnrocaja = $('#hddnrocaja').val();
         //obs =$('#txtobserv').val();
         
-        var oEditor = CKEDITOR.instances['txtobserv']
+        var oEditor = CKEDITOR.instances['txtobserv'];
         var obs = oEditor.getData();
         //obs=escape(obs);
         dat = {
