@@ -458,5 +458,108 @@ class RegistroController extends Zend_Controller_Action {
 			$this->_helper->json($data);
 		}
 	}
+		 
+	public function guardardetalleAction(){
+		/*
+		idsigma character varying(10) NOT NULL, -- Identificador de las caracteristicas del predio
+		mpredio character(10) NOT NULL, -- Identificador del predio
+		ctippre character(10) NOT NULL, -- Tipo de predio
+		cclasif character(10) NOT NULL, -- Clasificacion del predio
+		ccondic character(10) NOT NULL, -- Condicion del predio
+		cestado character(10) NOT NULL, -- Estado de construccion
+		cusogen character(10) NOT NULL, -- Uso generico
+		cusoesp character(10) NOT NULL, -- Uso especifico
+		nporcen numeric(10,2) NOT NULL, -- Porcentaje de condiminante
+		ntertot numeric(18,5) NOT NULL, -- Area total del terreno del predio
+		nporter numeric(10,2) NOT NULL, -- Porcentaje de area de terreno
+		nterren numeric(18,5) NOT NULL, -- Area total del terreno - Base para el calculo
+		ncomtot numeric(18,5) NOT NULL, -- Area comun total del predio
+		nporcom numeric(10,2) NOT NULL, -- Porcentaje de area comun
+		narecom numeric(18,5) NOT NULL, -- Area comun total - Base para el calculo
+		nporafe numeric(10,2) NOT NULL, -- Porcentaje afecto
+		dfecadq timestamp without time zone NOT NULL, -- Fecha de adquisición del predio
+		dfecdes timestamp without time zone, -- Fecha de descargo del predio
+		dafecta timestamp without time zone, -- Fecha desde donde se comienzan a generar los tributos
+		nfrente numeric(18,5) NOT NULL, -- Frontis del predio
+		ncanper integer NOT NULL, -- Cantidad de personas que habita el predio
+		ctippar character(10) NOT NULL, -- Tipo de parque
+		vobserv character varying(500) NOT NULL, -- Observaciones
+		nestado integer NOT NULL, -- Estado del registro
+		vhostnm character varying(25) NOT NULL, -- Estacion
+		vusernm character varying(25) NOT NULL, -- Usuario
+		ddatetm timestamp without time zone NOT NULL, -- Fecha de Registro
+		dfectra timestamp with time zone, -- Fecha de transferencia
+		cnotari character varying(100), -- Notaria donde se registra la transferencia
+  		ctiptra character varying(500), -- Tipo de transferencia
+  		cpartid character varying(50), -- Nro de partida de la transferencia
+  		csubtip character varying(10), -- Tipo de predio urbano o rustico
+  		cmotadq character varying(10), -- Motivo de adquisicion
+  		mhresum character(10) NOT NULL,
+		*/
+		
+		$this->_helper->getHelper('ajaxContext')->initContext();
+		
+		if ($this->getRequest()->isXmlHttpRequest()) {
+			$this->_helper->layout->disableLayout();
+		
+			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+			$coduser = $ddatosuserlog->cidpers;
+			$vhostnm = $ddatosuserlog->vhostnm;
+				
+			$row =  $_POST["idsigma"].','.
+					$_POST["mpredio"].','.
+					$_POST["ctippre"].','.
+					$_POST["cclasif"].','.
+					$_POST["ccondic"].','.				
+					$_POST["cestado"].','.
+					$_POST["cusogen"].','.
+					$_POST["cusoesp"].','.
+					$_POST["nporcen"].','.
+					$_POST["ntertot"].','.
+					$_POST["nporter"].','.
+					$_POST["nterren"].','.
+					$_POST["ncomtot"].','.
+					$_POST["nporcom"].','.
+					$_POST["narecom"].','.
+					$_POST["nporafe"].','.
+					$_POST["dfecdes"].','.
+					$_POST["dfecadq"].','.					
+					$_POST["dafecta"].','.
+					$_POST["nfrente"].','.					
+					$_POST["ncanper"].','.
+					$_POST["ctippar"].','.
+					$_POST["vobserv"].','.
+					$_POST["nestado"].','.
+					$vhostnm.','.
+				    $coduser.','.
+					date("y-m-d").','.
+					date("y-m-d").','.
+					"".','.
+					"".','.
+					"".','.
+					"".','.
+					"".','.
+					$_POST["mhresum"];
+				
+				
+			$parameters[] = $row;
+			$dataAdapter = new Model_DataAdapter();
+			$rows = $dataAdapter->executeSelect("pl_function.guardar_dpredio", $parameters);
+		
+			if($rows[0][0] == 1) {
+				//$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
+					
+				$data['error'] = "";
+				//$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
+			} else {
+				$data['error'] = "Error al actualizar";
+				$data['data'] = "";
+			}
+				
+			$this->_helper->json($data);
+		}
+			
+		
+	}
 }  
 

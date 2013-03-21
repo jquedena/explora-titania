@@ -12,11 +12,11 @@
                 </div>
                 <table class="ui-table-panelLayout">
                     <tr>
-                        <td style="padding-right: 4px;text-align: right;">Tipo de Predio:</td>
+                        <td style="padding-right: 4px;text-align: right;">Predio:</td>
                         <td><select style="width: 190px;" id="cboTipoPredio"><?php echo $this->util()->getComboContenedor('1000000089', $this->mpredio["ctippre"]); ?></select></td>
                     </tr>
                     <tr>
-                        <td style="padding-right: 4px;text-align: right;">Tipo de Predio Urbano:</td>
+                        <td style="padding-right: 4px;text-align: right;">Tipo:</td>
                         <td><select style="width: 190px;" id="cboTipoPredioUrbano"><?php echo $this->util()->getComboContenedor(($this->mpredio["ctippre"]=='1000000091'? '1000000209': '1000000202'), null); ?></select></td>
                     </tr>
                     <tr>
@@ -41,7 +41,7 @@
                             <table cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td style="padding-right: 2px;"><input class="ui-text ui-text-numeric" style="width: 75px" id="nporcen" value="<?php echo $this->mpredio["nporcen"]; ?>" /></td>
-                                    <td style="vertical-align: top;"><button id="btnVerCondominante" style="line-height: 20px;height: 20px;" title="Ver condominantes" /></td>
+                                    <td style="vertical-align: top;"><button id="btnVerCondominante" style="line-height: 20px; height: 20px;" title="Ver condominantes" /></td>
                                 </tr>
                             </table>
                         </td>
@@ -53,6 +53,12 @@
                     <tr>
                         <td style="padding-right: 4px;text-align: right;">Habitantes:</td>
                         <td><input class="ui-text ui-text-numeric" style="width: 75px" id="nnrohab" value="<?php echo $this->mpredio["ncanper"]; ?>" /></td>
+                    </tr>
+                    <tr>
+                    	<td colspan="2" align="right">
+                    		<button id="btnEditarPredio">Editar</button>
+                			<button id="btnGrabarPredio">Grabar</button>
+                    	</td>
                     </tr>
                 </table>
             </div>
