@@ -70,7 +70,7 @@ class LogeoController extends Zend_Controller_Action implements Zend_Auth_Adapte
 						$ddatosuserlog->codcajero = $datos[0][4];
 						$ddatosuserlog->vhostnm = 'TEST';
 						$ddatosuserlog->idlocal = $local;
-			
+						$ddatosuserlog->cidapertura = $datos[0][6];
 						echo '<script language=\"JavaScript\">window.open(\''.$url.'index.php\', \'_self\')</script>';
 					}else{
 						echo '<font color="#FF0000">Usuario Inactivo...</font>';

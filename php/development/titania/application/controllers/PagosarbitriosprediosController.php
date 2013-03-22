@@ -17,7 +17,9 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			$cidpers = $ddatosuserlog->cidpers;
 			$codcajero = $ddatosuserlog->codcajero;
 			$userlogin = $ddatosuserlog->userlogin;
-
+			
+			$cidapertura=$ddatosuserlog->cidapertura;
+			
 			
 			//convertimos la cadena en un array
 			$dat = explode( "~", $cad );
@@ -208,15 +210,19 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			$dcidpers = new Zend_Session_Namespace ( 'cidpers' );
 			$cidpers =  $dcidpers->data ;
 			
+			
+	
+			
 			$nombrestore = 'tesoreria.cobrar_arbitriospredios';
 			$arrayd[0] = $cidpers ;
 			$arrayd[1] = $nuevacadgrab ;
 			$arrayd[2] = $xmldetallepago ;
 			$arrayd[3] = '^' ;
 			$arrayd[4] = '|' ;
-			$arrayd[5] = $userlogin ;
-
+			$arrayd[5] = $codcajero;#$userlogin ;
+			$arrayd[6] = $cidapertura;
 			//echo $nuevacadgrab.'<br><br><br>';
+			
 			$cn = new Model_DataAdapter ();
 			$respd = $cn->ejec_store_procedura_sql ( $nombrestore, $arrayd );
 			
@@ -1261,11 +1267,17 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 	
 	public function imprimirrecibopagosarbitriosprediosAction() {
 		$this->_helper->layout->disableLayout ();
-		echo $this->view->util()->getScript("js/common"); 
+		 
 		$func = new Libreria_Pintar ();
 				
 		$nrorecibo = $this->_request->getParam ( 'nrorecibo', '' );
 		$txtduplicado = $this->_request->getParam ( 'duplicado', '' );
+		
+		//echo $this->util()->getScript("js/app/common");
+		echo $this->view->util()->getScript("js/app/ui");
+		#echo $this->view->util()->getScript("js/app/common");
+		
+		
 		
 		if (strlen ( $nrorecibo ) == 12) {
 			$nombrestore = 'tesoreria.imprimir_recibo_pagosarbitriospredios';

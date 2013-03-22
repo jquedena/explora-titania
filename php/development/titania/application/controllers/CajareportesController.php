@@ -38,7 +38,7 @@ class CajareportesController extends Zend_Controller_Action {
                 $meses [$i - 1] = array(str_pad($i, 2, "0", STR_PAD_LEFT), str_pad($i, 2, "0", STR_PAD_LEFT));
             }
             $ind = 0;
-            for ($i = 2005; $i < 2013; $i++) {
+            for ($i = 2005; $i < 2014; $i++) {
                 if (str_pad($i, 4, "0", STR_PAD_LEFT) == substr($datosfecha [0] [0], 0, 4)) {
                     $defa = $ind;
                 }
