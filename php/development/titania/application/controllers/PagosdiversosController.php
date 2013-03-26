@@ -340,7 +340,9 @@ class PagosdiversosController extends Zend_Controller_Action {
 				$cidpers = $ddatosuserlog->cidpers;
 				$codcajero = $ddatosuserlog->codcajero;
 				$userlogin = $ddatosuserlog->userlogin;
-					
+				$cidapertura=$ddatosuserlog->cidapertura;
+				
+				
 				$ddatacontri = new Zend_Session_Namespace('contribuyente');
 				$cidcontri = $ddatacontri->cidcontri;
 				$nomcontri = $ddatacontri->nomcontri ;
@@ -373,7 +375,7 @@ class PagosdiversosController extends Zend_Controller_Action {
 				$arraydatos[0]= $cad;
 				$arraydatos[1]= '~';
 				$arraydatos[2]= '^';
-					
+				$arraydatos[3]= $cidapertura;
 				$cn = new Model_DataAdapter();
 				$datos = $cn->ejec_store_procedura_sql($nombrestore,$arraydatos);
 					
@@ -414,7 +416,7 @@ class PagosdiversosController extends Zend_Controller_Action {
 		
 		$nrorecibo = $this->_request->getParam('nrorecibo','');
 		$txtduplicado = $this->_request->getParam('duplicado','');
-		
+		echo $this->view->util()->getScript("js/app/ui");
 		if(strlen($nrorecibo) == 12 ){
 			$nombrestore = 'tesoreria.imprimir_recibo_pagodiverso';
 			$arraydatos[0]= $nrorecibo;

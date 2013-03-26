@@ -53,7 +53,7 @@ class sencilleraController extends Zend_Controller_Action {
     				$bodytbl .= $datosdvalmon[$i][4] . '</td>'; //descripcion
     				$bodytbl .='<td align="right"><span id="mt_montorow">' . $datosdvalmon[$i][5] . '</span></td>'; //montos  
     				$bodytbl .='<td align="right"><input type="text" name="det[' . $row . '][vncantid]" style="width :50px;text-align: right;" onkeypress="return validarnumeros(event);" class="mt_cant ui-text" id="mt_cant" value="'.$datosdvalmon[$i][6].'" /></td>'; //cantidad
-    				$bodytbl .='<td align="right"><input type="text" name="det[' . $row . '][vntotals]" style="width :50px;text-align: right;" class="mt_total ui-text" id="mt_totalrow" name="mt_totalrow" value="'.$datosdvalmon[$i][7].'" readonly="readonly" /></td>'; //mt_total
+    				$bodytbl .='<td align="right"><input type="text" name="det[' . $row . '][vntotals]" style="width :50px;text-align: right;" class="mt_total ui-text ui-text-numeric ui-text-disable" id="mt_totalrow" name="mt_totalrow" value="'.$datosdvalmon[$i][7].'" disabled="disabled" /></td>'; //mt_total
     				$mt_totals += $datosdvalmon[$i][7];
     				$bodytbl .='</tr>';
     				$row++;

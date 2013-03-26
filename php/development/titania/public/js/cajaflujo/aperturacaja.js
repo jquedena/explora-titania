@@ -38,7 +38,8 @@ $(function(){
 	        CKEDITOR.remove(hEd);
 	    }
 CKEDITOR.replace('txtobserv', config);
-$('#txtlocal').attr("readonly","");
+$('#txtlocal').attr("disabled","disabled");
+$('#txtlocal').addClass("ui-text ui-text-disable");
 $("#linklocal").button("option", "disabled", true);
 });
 /*function aperturarcaja(vaccion){
