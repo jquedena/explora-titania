@@ -93,8 +93,8 @@ class CajaflujoController extends Zend_Controller_Action {
 
 			$evt[] = array("btnaperturar", "click", "aperturarcaja();");
 
-			$ctrl[] = array('txtnrocaja', true);
-			$ctrl[] = array('txtfecha', true);
+			//	$ctrl[] = array('txtnrocaja', true);
+			//$ctrl[] = array('txtfecha', true);
 
 			
 				
@@ -109,7 +109,7 @@ class CajaflujoController extends Zend_Controller_Action {
 
 			$func->IniciaScript();
 			$func->PintarEvento($evt);
-			$func->ComponenteSoloLectura($ctrl);
+			//$func->ComponenteSoloLectura($ctrl);
 			$func->PintarValor($val);
 			$func->FinScript();
 		}
