@@ -50,6 +50,7 @@ class CajaflujoController extends Zend_Controller_Action {
 		// substr($ddatosuserlog->codcajero, -2);
 		$nrocaja = substr($ddatosuserlog->codcajero, -2);
 		$ciduser = $ddatosuserlog->cidpers;
+		echo $ddatosuserlog->cidapertura;
 		$func = new Libreria_Pintar();
 		$cn = new Model_DataAdapter();
 			
@@ -134,6 +135,7 @@ class CajaflujoController extends Zend_Controller_Action {
 			$vhostnm=$this->view->util()->getHost();
 			$cn = new Model_DataAdapter();
 			$store = "tesoreria.aperturarcaja";
+			
 			/*tesoreria.aperturarcaja(
 			 * 		 p_cnrcaja character varying
 					, p_dfecpro character varying
@@ -142,7 +144,8 @@ class CajaflujoController extends Zend_Controller_Action {
 					, p_vhostnm character varying
 					, p_nestado character varying
 					, p_vobserv character varying
-					*/
+			*/
+			
 			// if ($vaccion == '1') {
 			$arstore [0] = $vnrocaja;//nro caja*
 			$arstore [1] = $vfecha; //fecha
@@ -153,8 +156,10 @@ class CajaflujoController extends Zend_Controller_Action {
 			$arstore [6] = $vobs; # *
 			$arstore [7] = $vlocal; # *
 			$dt = $cn->ejec_store_procedura_sql($store, $arstore);
-			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
-			$ddatosuserlog->cidapertura = $dt[0][2];
+			if ($dt[0][2]=='1'){
+				$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+				$ddatosuserlog->cidapertura = $dt[0][2];
+			}
 			
 			echo "<h3>" . $dt[0][0] . "</h3>";
 			
