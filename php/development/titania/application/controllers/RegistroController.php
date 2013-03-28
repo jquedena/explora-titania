@@ -561,5 +561,41 @@ class RegistroController extends Zend_Controller_Action {
 			
 		
 	}
+	
+	public function verprediomanttAction(){
+	
+		$pintar = new Libreria_Pintar();
+		
+		 $nombrestore = 'registro.mostrararancelanios';
+		 $arraydatos[0]= "2012";
+		 $cn = new Model_DataAdapter();
+		 $datoscpd = $cn->ejec_store_procedura_sql($nombrestore,$arraydatos);
+				
+		 $cbo = $this->centr($datoscpd);
+		
+		 //echo count($datoscpd);
+		 
+         $val[] = array("cbocentrpob",$pintar->ContenidoCombo($cbo, $cbo[0][0]), "html");
+              
+         //$val[] = array("cbocentrpob",$mpoblad, "val");
+         
+         //$val[] = array("cbovia",$mviadis, "val");
+         
+          $pintar->PintarValor($val);
+         
+		
+}
+
+private function centr($conceptos) {
+		$items = null;
+		
+		for($i=0; $i<count($conceptos); $i++){
+			
+			$codigo = $conceptos[$i][0];
+		
+			$items[$i]=array($codigo, $conceptos[$i][4]." - " . $conceptos[$i][2]);
+		}
+		return $items;
+	}		
 }  
 

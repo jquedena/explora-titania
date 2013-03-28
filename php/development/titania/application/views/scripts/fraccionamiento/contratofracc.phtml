@@ -1,0 +1,251 @@
+<b> 
+<table border="0" width="650"> 
+<tr>
+<td>
+	<fieldset>
+	<legend>Datos de la persona que celebra el contrato:</legend>
+	<table>
+		<tr>
+		<td>Nombre o razon social </td><td colspan="3">Doc.Identidad </td> 
+		</tr>
+		<tr>
+		<td><input id="cnombres_titular" style="width:250;"/> </td><td colspan="3"><select id="ctipdoc_titular" ></select>&nbsp;<input id="descdoc_titular" /> </td>
+		</tr>
+		<tr>
+		<td>Direcci&oacute;n</td><td>Distrito </td> <td>Telefono</td><td>Celular </td>
+		</tr>
+		<tr>
+		<td><input id="cdomicilio_titular" style="width:250;" /> </td><td> <select id="cdistrito_titular"></select> </td><td> <input id="ctelef_fijo_titular" /> </td><td><input id="ctelef_movil_titular"  /> </td>
+		 </tr>
+	</table>
+	</fieldset>
+	<br/>
+	 <fieldset>
+	  <legend>Datos del garante:</legend>
+	<table border="0">
+		<tr>
+		<td>Nombre o razon social </td><td colspan="2">Doc.Identidad </td>
+		</tr>
+		<tr>
+		<td><input id="cnombres_garante" /> </td><td colspan="2"><select id="ctipdoc_garante"></select>&nbsp;<input id="desdoc_garante" /> </td>
+		</tr>
+		<tr>
+		<td>Direcci&oacute;n</td><td>Distrito </td> <td>Telefono</td>
+		</tr>
+		<tr>
+		<td><input id="cdomicilio_garante" /> </td><td> <select id="cdistrito_garante" ></select> </td><td> <input id="ctelefono_garante"/> </td>
+		 </tr>
+	</table>
+	</fieldset>
+	<br/>
+	
+
+</td>
+<td valign="baseline">
+
+   <table border="0" width="200" >
+	<tr><td>Nro. Fraccionamiento </td> </tr>
+	<tr><td><label id="cnumfra" style="width:50;"  ></label>&nbsp;<label style="width:50;" id="canotra" ></label>  </td> </tr>
+	</table>
+	<br/>
+	<table align="center" border="0"  >
+	<tr>
+	<td><button id="btnfraccionar">Realizar <br/>Fraccionamiento</button> </td>
+	 </tr>
+	</table>
+	
+   
+
+	
+
+</td>
+</tr>	
+
+<tr>
+<td colspan="2">
+<table width="100%">
+	<tr>
+	<td  colspan="4"><div id="locategridresultestctacte" style="height:280px;height:280px;overflow:scroll;"></div></td><td><div><table><tr><td>Fecha Fraccionamiento:</td> </tr><tr><td><input id="txtfechfracc" ReadOnly /></td> </tr><tr><td>Nro.Cuotas:</td> </tr><tr><td><input id="txtnrocuotas2"/></td> </tr><tr><td>% Cuota Inicial:</td> </tr><tr><td><input id="txtporcuoini" /></td> </tr><tr><td>Cuota Inicial:</td> </tr><tr><td><input id="txtcuotainicial2"/></td> </tr> </table> </div> </td>
+	</tr>
+	<tr>
+	<td>Deuda Total Fraccionamiento:&nbsp;<input id="txtdeutotfracc" ReadOnly /></td><td></td><td>Total a Fracc.</td><td><input id="txttotalfracc"  ReadOnly /> </td>
+	</tr>
+	</table>
+</td>
+
+</tr>
+
+
+</table>	
+</b>
+
+<script type="text/javascript">
+
+function inicial(monto){
+	
+	var porinicial = $("#txtporcuoini").val();
+	// var inicial = $("#txtcuotainicial").val();
+  
+	var inicial=((monto*porinicial)/100);
+
+	
+	$("#txtcuotainicial2").val(Math.round(parseFloat(inicial*100))/100 );
+} 
+
+function cuotas(cuotainicial){
+	var totalfracc = $("#txttotalfracc").val();
+	 var nrocuotas = $("#txtnrocuotas2").val();
+	 var inicial = $("#txtcuotainicial2").val();
+	 
+	 var montofracc=totalfracc - inicial;
+	 
+	 //alert(montofracc);
+	 
+	 var cuotamonto;
+	 
+	 var amortizacion=montofracc;
+	 
+	 var montodescuento=0;
+	 
+	 var hoy = new Date();
+	 
+	 var interes;
+	 
+	 var Ui;
+	 
+	 var xAux;
+	 
+	 var R;
+	 
+	 var xInteFra;
+
+	 var totalfinal=0;
+	 
+	  interes = ((1.2 * 0.8)/100);
+	  
+	  //console.log(interes);
+	 
+	  Ui = 1 + interes;
+	 
+	  for(var i=1; i<nrocuotas; i++){
+			Ui = Ui * (1 + interes);		  
+	  }
+	  
+	  xAux = ( Ui - 1 ) / (interes * Ui);
+	  
+	   R  = Math.round(montofracc /xAux,2);
+	  
+	  
+   //  var luego = hoy.addDays(31);
+	 
+	newcontent =  '<table border="1" bordercolor="black" width="80%">';
+	newcontent += '<tr>';
+	//newcontent += '<th width="50px">Amortizacion</th>';
+	newcontent += '<th align="center" width="50px"><b>Cuota</b></th>';
+	newcontent += '<th align="center" width="80px"><b>Fecha de Vencimiento</b></th>';
+	newcontent += '<th align="center" width="50px"><b>Int.Fracc</b></th>';
+	newcontent += '<th align="center" width="50px"><b>Monto</b></th>';
+	newcontent += '<th align="center" width="50px"><b>Total</b></th>';
+	newcontent += '</tr>';
+	 
+	
+	for(var i=0; i<=nrocuotas; i++){	
+		
+		if (i==0){		
+		var cadcontentrow = '<tr>';		
+		//cadcontentrow += '<td align="center" width="50px">&nbsp;' +montofracc + '</td>';
+		cadcontentrow += '<td align="center" width="50px">&nbsp;' +i + '</td>';
+		cadcontentrow += '<td align="center" width="50px">&nbsp;' + hoy.getDate()+"/"+hoy.getMonth() + "/" + hoy.getFullYear() + '</td>';
+		cadcontentrow += '<td align="center" width="50px">&nbsp;' +0+'</td>';
+		cadcontentrow += '<td align="center" width="50px">&nbsp;' +inicial + '</td>';
+		cadcontentrow += '<td align="center" width="50px">&nbsp;' +(parseFloat(inicial)) + '</td>';
+		cadcontentrow += '</tr>';			
+		}
+		else{			
+		
+			  	xInteFra   = amortizacion * interes;
+			  	montodescuento = R - xInteFra;
+			
+			//montodescuento=montodescuento+cuotamonto;
+			
+			
+			//amortizacion=parseFloat(montofracc)- parseFloat(montodescuento);
+			
+			var cadcontentrow = '<tr>';		
+			//cadcontentrow += '<td align="center" width="50px">&nbsp;' +Math.round(amortizacion) + '</td>';
+			cadcontentrow += '<td align="center" width="50px">&nbsp;' +i + '</td>';
+			cadcontentrow += '<td align="center" width="50px">&nbsp;' + hoy.getDate()+"/"+ (hoy.getMonth()=='0' ? "12" : hoy.getMonth() ) + "/" + hoy.getFullYear() + '</td>';
+			cadcontentrow += '<td align="center" width="50px">&nbsp;' + Math.round(parseFloat(xInteFra)*100)/100 + '</td>';
+			cadcontentrow += '<td align="center" width="50px">&nbsp;'  +Math.round(parseFloat(montodescuento)*100)/100+ '</td>';
+			cadcontentrow += '<td align="center" width="50px">&nbsp;' +((parseFloat(R)*100)/100)+ '</td>';
+			cadcontentrow += '</tr>'; 
+			
+			 amortizacion = amortizacion - montodescuento;
+
+			 totalfinal = totalfinal + ((parseFloat(R)*100)/100) ;
+		}
+	
+		newcontent += cadcontentrow;	
+				
+		 hoy.setMonth(i+3);
+	}
+
+	newcontent += "</table>";
+	
+	$("#locategridresultestctacte").html(newcontent);
+
+	$("#txtdeutotfracc").val(totalfinal+(parseFloat(inicial)));
+	
+	return false;	
+}    
+
+$("#btnfraccionar").button({
+    icons: {primary:'ui-icon-document'}
+}).bind('click', function(){
+
+	 
+			
+			var p_idsigma = '';  
+			var p_cnumfra = '';
+			var p_canofra ='';
+			var p_cidpers = $("#txtnlado").val();
+			var p_ctipdoc_titular = $("#ctipdoc_titular").val();
+			var p_descdoc_titular = $("#descdoc_titular").val();
+			var p_cnombres_titular = $("#cnombres_titular").val();	
+			var p_cdomicilio_titular = $("#cdomicilio_titular").val();
+			var p_cdistrito_titular = $("#cdistrito_titular").val()
+			var p_ctelef_fijo_titular = $("#ctelef_fijo_titular").val();
+			var p_ctelef_movil_titular = $("#ctelef_movil_titular").val();
+			var p_ctipdoc_garante = $("#ctelef_movil_titular").val();  
+			var p_desdoc_garante = $("#ctelef_movil_titular").val(); 
+			var p_cnombres_garante = $("#cnombres_garante").val();
+			var p_cdomicilio_garante = $("#ctelef_movil_titular").val(); 
+			var p_cdistrito_garante = $("#ctelef_movil_titular").val(); 
+			var p_ctelefono_garante = $("#ctelef_movil_titular").val(); 
+			var p_tif_mensual = '';  
+			var p_tif_diario = '';  
+			var p_monto_deuda_total = '';  
+			var p_monto_cuota_inicial = '';  
+			var p_monto_deuda_regular = '';  
+			var p_numero_cuota = '';  
+		 
+						
+			var datos="p_idsigma="+p_idsigma+"&p_cnumfra="+p_cnumfra+"&p_canofra="+p_canofra+"&p_cidpers="+p_cidpers+
+			"&p_ctipdoc_titular="+p_ctipdoc_titular+"&p_descdoc_titular="+p_descdoc_titular+"&p_cnombres_titular="+p_cnombres_titular+"&p_cdomicilio_titular="+p_cdomicilio_titular+"&p_cdistrito_titular="+p_cdistrito_titular+
+			"&p_ctelef_fijo_titular="+p_ctelef_fijo_titular+"&p_ctipdoc_titular="+p_ctipdoc_titular+"&p_desdoc_garante="+p_desdoc_garante+"&p_cnombres_garant="+p_cnombres_garante+"&p_cdomicilio_garante="+p_cdomicilio_garante+
+			"&p_cdistrito_garante="+p_cdistrito_garante+"&p_ctelefono_garante="+p_ctelefono_garante
+			+ "&p_tif_mensual="+p_tif_mensual+
+			"&p_tif_diario="+p_tif_diario+"&p_monto_deuda_total="+p_monto_deuda_total+"&p_monto_cuota_inicial="+p_monto_cuota_inicial+"&p_monto_deuda_regular="+p_monto_deuda_regular+"&p_numero_cuota="+p_numero_cuota;
+			
+			console.log(datos);
+			//alert(datos);
+			_post = $.post(path + "fraccionamiento/grabarfracc", datos);
+			_post.success(function(request){
+				 openDialogInfo(request, 400, 150);
+				 location.reload();
+			});
+			
+			_post.error(postError);
+});
+</script>
+
