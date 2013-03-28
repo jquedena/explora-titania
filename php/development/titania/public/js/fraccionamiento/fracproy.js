@@ -58,7 +58,7 @@ function cuotas(cuotainicial){
 	newcontent += '<th width="50px">Cuota</th>';
 	newcontent += '<th width="50px">Fecha Vencimiento</th>';
 	newcontent += '<th width="50px">Int.Fracc</th>';
-	newcontent += '<th width="50px">Monto</th>'
+	newcontent += '<th width="50px">Monto</th>';
 	newcontent += '<th width="50px">Total</th>';
 	newcontent += '</tr>';
 	
@@ -70,9 +70,9 @@ function cuotas(cuotainicial){
 		cadcontentrow += '<td align="center" width="50px">&nbsp;' +montofracc + '</td>';
 		cadcontentrow += '<td align="center" width="50px">&nbsp;' +i + '</td>';
 		cadcontentrow += '<td align="center" width="50px">&nbsp;' + hoy.getDate()+"/"+hoy.getMonth() + "/" + hoy.getFullYear() + '</td>';
-		cadcontentrow += '<td align="center" width="50px">&nbsp;' +inicial+'</td>';
-		cadcontentrow += '<td align="center" width="50px">&nbsp;' +5.60 + '</td>';
-		cadcontentrow += '<td align="center" width="50px">&nbsp;' +(parseFloat(inicial)+parseFloat( 5.60)) + '</td>';
+		cadcontentrow += '<td align="center" width="50px">&nbsp;' +0+'</td>';
+		cadcontentrow += '<td align="center" width="50px">&nbsp;' +inicial + '</td>';
+		cadcontentrow += '<td align="center" width="50px">&nbsp;' +(parseFloat(inicial)) + '</td>';
 		cadcontentrow += '</tr>';			
 		}
 		else{			

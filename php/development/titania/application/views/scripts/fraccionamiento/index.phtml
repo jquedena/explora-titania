@@ -1,0 +1,119 @@
+<div id="panelRegistro">
+    <div align="center" class="ui-widget ui-widget-content ui-corner-all" style="width: 99%;margin: 3px;">
+        <div class="ui-widget ui-state-default ui-corner-top ui-title">
+            <label>Fraccionamiento</label>
+        </div>
+        <table class="ui-panelLayout-main" border="0" cellpadding="0" cellspacing="0">
+            <tr><td style="vertical-align: top;">
+                    <table style="width: 100%;" border="0">
+                        <tr>
+                            <td width="20">&nbsp;</td>
+                            <td width="100">C&oacute;digo:</td>
+                            <td width="10">&nbsp;</td>
+                            <td width="230">Nombre:</td>
+                            <td width="10">&nbsp;</td>
+                            <td width="230">Apellido Paterno:</td>
+                            <td width="10">&nbsp;</td>
+                            <td width="230" colspan="5">Apellido Materno:</td>
+                            <td width="20">&nbsp;</td>
+                            <td rowspan="5">
+                                <button id="btnbuscar" name="btnbuscar">Buscar</button>
+                                <!-- <button id="btncontri" name="btncontri">Contribuyente</button> -->
+                                <!-- <button id="btnestcta" name="btnestcta">Estado de Cuenta</button> -->
+                            </td>
+                        </tr>
+                        <tr id="panelContribuyente">
+                            <td width="20">&nbsp;</td>
+                            <td width="100"><input class="ui-text" id="c_codigocontrib" maxlength="10" style="width:90px" /></td>
+                            <td width="10">&nbsp;</td>
+                            <td width="180"><input class="ui-text pnl" id="c_nombrecontrib" style="width:100%" /></td>
+                            <td width="10">&nbsp;</td>
+                            <td width="180"><input class="ui-text pnl" id="c_apepatcontrib" style="width:100%" /></td>
+                            <td width="10">&nbsp;</td>
+                            <td width="180" colspan="5"><input class="ui-text pnl" id="c_apematcontrib" style="width:100%" /></td>
+                            <td width="20">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="13" height="8px"></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>C&oacute;digo Predial:</td>
+                            <td></td>
+                            <td>Centro Poblado:</td>
+                            <td>&nbsp;</td>
+                            <td>Via:</td>
+                            <td>&nbsp;</td>
+                            <td width="50">Nro:</td>
+                            <td width="10">&nbsp;</td>
+                            <td width="50">Mza:</td>
+                            <td width="10">&nbsp;</td>
+                            <td width="50">Lote:</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr id="panelPredio">
+                            <td>&nbsp;</td>
+                            <td><input class="ui-text" id="c_predial" maxlength="10" style="width:90px" /></td>
+                            <td></td>
+                            <td colspan="3"><input class="ui-text pnl" id="c_viacontrib" style="width:100%" /></td>
+                            <td>&nbsp;</td>
+                            <td width="50"><input class="ui-text pnl" id="c_nroviacontrib" style="width:100%" /></td>
+                            <td width="10">&nbsp;</td>
+                            <td width="50"><input class="ui-text pnl" id="c_mzacontrib" style="width:100%" /></td>
+                            <td width="10">&nbsp;</td>
+                            <td width="50"><input class="ui-text pnl" id="c_lotecontrib" style="width:100%" /></td>
+                            <td>&nbsp;</td>
+                        </tr>                        
+                        <tr>
+                            <td colspan="14" align="center">
+                                <br/>
+                                <div id="panelResult">
+                                    <table id="tblResult"></table>
+                                    <div id="ptblResult"></div>
+                                    <input type="hidden" id="ctblResult" name="ctblResult" value="" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td></tr>
+        </table>
+    </div>
+</div>
+<style>
+    .ui-autocomplete {
+        max-height: 218px;
+        overflow-y: auto;
+        /* prevent horizontal scrollbar */
+        overflow-x: hidden;
+        /* add padding to account for vertical scrollbar */
+        padding-right: 8px;
+    }
+
+    /* IE 6 doesn't support max-height
+    * we use height instead, but this forces the menu to always be this tall
+    */
+    * html .ui-autocomplete {
+        height: 218px;
+    }
+</style>
+<script type="text/javascript">
+    var jsonVias = <?php echo json_encode($this->mviascp); ?>,
+        ccodvia = '';
+    $("#c_viacontrib").autocompleteCategory({
+        delay: 0,
+        source: jsonVias,
+        minLength: 4,
+        select: function(event, ui) {
+            ccodvia = ui.item.ccodvia;
+        },
+        change: function(event, ui) {
+            if(ui.item) {
+                ccodvia = ui.item.ccodvia;
+            } else {
+                if($(this).val().length > 0) {
+                    openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
+                }
+            }
+        }
+    });
+</script>
