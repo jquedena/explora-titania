@@ -179,6 +179,16 @@ guardarsencillero = function(){
 };
 
 
+openreporteapertcierrecaja = function(tipo){
+	var id = $("#tblResultapertcaj").jqGrid('getGridParam','selrow');
+	if (id)	{
+		var row = jQuery("#tblResultapertcaj").jqGrid('getRowData',id);
+		alert(row.idsigma);
+
+	} else { 
+		openDialogInfo("Seleccionar Fila", 300, 130);
+	}
+};
 $(function(){
     /*
     $("#txtdia").datepicker({
@@ -199,4 +209,7 @@ $(function(){
 		buscarapertcajxfecha();
 	});
 	
+	$("#btnreport").on("click", function(event){
+		openreporteapertcierrecaja('1');
+	});
 });
