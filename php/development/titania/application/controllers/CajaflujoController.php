@@ -50,7 +50,7 @@ class CajaflujoController extends Zend_Controller_Action {
 		// substr($ddatosuserlog->codcajero, -2);
 		$nrocaja = substr($ddatosuserlog->codcajero, -2);
 		$ciduser = $ddatosuserlog->cidpers;
-		echo $ddatosuserlog->cidapertura;
+		#echo $ddatosuserlog->cidapertura;
 		$func = new Libreria_Pintar();
 		$cn = new Model_DataAdapter();
 			
