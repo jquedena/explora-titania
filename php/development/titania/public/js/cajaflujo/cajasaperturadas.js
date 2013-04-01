@@ -183,7 +183,7 @@ openreporteapertcierrecaja = function(tipo){
 	var id = $("#tblResultapertcaj").jqGrid('getGridParam','selrow');
 	if (id)	{
 		var row = jQuery("#tblResultapertcaj").jqGrid('getRowData',id);
-		alert(row.idsigma);
+				window.open(pathReport+"reporte=Apertura_Cierre_Caja&opt=P_CIDAPERTURACAJA^" + row.idsigma + "|P_CTIPOPE^1", '_blank');
 
 	} else { 
 		openDialogInfo("Seleccionar Fila", 300, 130);
