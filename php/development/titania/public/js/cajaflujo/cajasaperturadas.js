@@ -183,7 +183,11 @@ openreporteapertcierrecaja = function(tipo){
 	var id = $("#tblResultapertcaj").jqGrid('getGridParam','selrow');
 	if (id)	{
 		var row = jQuery("#tblResultapertcaj").jqGrid('getRowData',id);
-				window.open(pathReport+"reporte=Apertura_Cierre_Caja&opt=P_CIDAPERTURACAJA^" + row.idsigma + "|P_CTIPOPE^1", '_blank');
+		if(row.idsigma==''){
+			openDialogInfo("La Caja debe de estar Cerrada", 300, 130);
+			return
+		}
+				window.open(pathReport+"reporte=Apertura_Cierre_Caja&opt=P_CIDAPERTURACAJA^" + row.idsigma + "|P_CTIPOPE^"+tipo, '_blank');
 
 	} else { 
 		openDialogInfo("Seleccionar Fila", 300, 130);
