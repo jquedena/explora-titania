@@ -32,6 +32,17 @@ habilitarComponenteDetalle = function(disabled){
     }
 };
 
+function habilitab(tipo ){
+	  if (tipo==0){
+		  $( "#tabsDetallePredio" ).tabs( "option", "disabled", [ 1,2,3,4,5 ] );  
+	  }else{
+		 //$( "#tabsDetallePredio" ).tabs( "option", "enable", [ 1,2,3,4,5 ] );	
+		 $( "#tabsDetallePredio" ).tabs( "option", "disabled", false );
+		 // $( "#tabsDetallePredio" ).tabs( "enable");
+	  }
+	  
+}
+
 cambioTipoPredio = function(event, ui) {
     if(ui.item) {
         bVisible = (ui.item.option.value == "1000000091");
@@ -153,9 +164,15 @@ loadVerDetalle = function(){
     $("#btnEditarPredio").button({
         icons: {primary:'ui-icon-pencil'}
     }).bind('click', function(){
+    	
+    	    	
+    	
+    	
         habilitarComponenteDetalle(false);
-      
         
+        //$( "#tabsDetallePredio" ).tabs( "option", "disabled", [ 1,2,3,4,5 ] );
+        
+        habilitab(0);
     });
 
     $("#btnFinalizar").button({
@@ -169,6 +186,8 @@ loadVerDetalle = function(){
         disabled: true
     }).bind('click', function(){
     	habilitarComponenteDetalle(true);
+    	
+    	habilitab(1);
     	/*
     	parameters = {
     		mperson: $("#lblCodigo").text(),
@@ -257,15 +276,17 @@ loadVerDetalle = function(){
     };
     
     actualizarGrid("tblPiso", optionPiso, null, navPanelPiso);
+    
+    navPanelInstalacion = function (){
+    	 $("#tblInstalacion").jqGrid('navGrid', '#ptblInstalacion', {edit:false, add:false, del:false, search:false, refresh:false});
+         $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnInsertarInstalacion);
+         $("#tblInstalacion").jqGrid('navSeparatorAdd','#ptblInstalacion');
+         $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEditarInstalacion);
+         $("#tblInstalacion").jqGrid('navSeparatorAdd','#ptblInstalacion');
+         $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEliminarInstalacion);    	
+    };
 
-    actualizarGrid("tblInstalacion", optionInstalacion, null, function(){
-        $("#tblInstalacion").jqGrid('navGrid', '#ptblInstalacion', {edit:false, add:false, del:false, search:false, refresh:false});
-        $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnInsertarInstalacion);
-        $("#tblInstalacion").jqGrid('navSeparatorAdd','#ptblInstalacion');
-        $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEditarInstalacion);
-        $("#tblInstalacion").jqGrid('navSeparatorAdd','#ptblInstalacion');
-        $("#tblInstalacion").jqGrid('navButtonAdd','#ptblInstalacion', btnEliminarInstalacion);
-    });
+    actualizarGrid("tblInstalacion", optionInstalacion, null, navPanelInstalacion );
     
     actualizarGrid("tblLindero", optionLindero, null, function(){
         $("#tblLindero").jqGrid('navGrid', '#ptblLindero', {edit:false, add:false, del:false, search:false, refresh:false});

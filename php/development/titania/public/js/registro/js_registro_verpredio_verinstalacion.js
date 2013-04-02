@@ -36,19 +36,50 @@ verInstalacion = function(rowid, iRow, iCol, e) {
 
 };
 
+guardar = function() {
+	row = {
+			idsigma: $("#txt_idsigma").val(),
+			dpredio: $("#txt_instdpredio").val(),
+	  //	$("#txt_instcnitems").val(row.cnitems);
+			cperiod:$("#txt_instcperiod").val(),
+	  //	$("#txt_instctipdat").val(row.ctipdat);       
+	  //	$("#txt_instvnrodoc").val(row.vnrodoc);
+			dfecdoc:$("#txt_instdfecdoc").val(),       
+	  //	$("#txt_instcmotivo").val(row.cmotivo);
+	  //	$("#txt_instctipdoc").val(row.ctipdoc);     
+			cnumpis:$("#txt_instcnumpis").val(),
+			nantigu:$("#txt_instnantigu").val(),       
+			canocon:$("#txt_instcanocon").val(),
+			nvalanc:$("#txt_instnvalanc").val(),   
+			nvalalt:$("#txt_instnvalalt").val(),     
+			nvallar:$("#txt_instnvallar").val(),     
+			ctipint:$("#txt_instctipint").val(),     
+			vdesint:$("#txt_instvdesint").val(),     
+			nvalins:$("#txt_instnvalins").val(),  
+			ctipint:$("#cb_tipoinstalacion").val()
+	};
+
+	_post = $.post(path + "registro/guardarinstalacion", row);
+    _post.success(function(data){
+    	optionInstalacion = $.extend(optionInstalacion, {data: data.data});
+    	procesarJSON("panelInstalacion", "tblInstalacion", optionInstalacion, null, navPanelInstalacion);
+	});
+    _post.error(postError);	
+};
+
 optionInstalacion = {height: 200,
     width: 990,
     rowNum: 10,
     colNames: [
         'idsigma',
         'dpredio',
-        'cnitems',
-        'cperiod',
-        'ctipdat',
-        'vnrodoc',
-        'dfecdoc',
-        'cmotivo',
-        'ctipdoc',
+       // 'cnitems',
+       // 'cperiod',
+       // 'ctipdat',
+       // 'vnrodoc',
+       // 'dfecdoc',
+       // 'cmotivo',
+       // 'ctipdoc',
         'Nivel',
         'Antig.',
         'canocon',
@@ -57,19 +88,19 @@ optionInstalacion = {height: 200,
         'Largo',
         'ctipint',
         'Descripci\u00F3n',
-        'Val. Inst.',
-        'dafecta'
+        'Val. Inst.'
+       //  'dafecta'
     ],
     colModel:[
          {name: "idsigma", index: "idsigma", width: 30, hidden: true}, // Identificador de la instalacion del predio
          {name: "dpredio", index: "dpredio", width: 30, hidden: true}, // Identificador del predio
-         {name: "cnitems", index: "cnitems", width: 30, hidden: true}, // Nro de orden de la construccion
-         {name: "cperiod", index: "cperiod", width: 30, hidden: true}, // Ejercicio de la declaracion jurada
-         {name: "ctipdat", index: "ctipdat", width: 30, hidden: true}, // Tipo de ficha (1 = declaracion jurada // 2 = acta de inspeccion)
-         {name: "vnrodoc", index: "vnrodoc", width: 30, hidden: true}, // Nro de declaracion jurada
-         {name: "dfecdoc", index: "dfecdoc", width: 30, hidden: true}, // Fecha de la declaracion jurada
-         {name: "cmotivo", index: "cmotivo", width: 30, hidden: true}, // Motivo de la declaracion jurada
-         {name: "ctipdoc", index: "ctipdoc", width: 30, hidden: true}, // Tipo de documento con el que se realiza la declaracion jurada
+        // {name: "cnitems", index: "cnitems", width: 30, hidden: true}, // Nro de orden de la construccion
+        // {name: "cperiod", index: "cperiod", width: 30, hidden: true}, // Ejercicio de la declaracion jurada
+        // {name: "ctipdat", index: "ctipdat", width: 30, hidden: true}, // Tipo de ficha (1 = declaracion jurada // 2 = acta de inspeccion)
+        //  {name: "vnrodoc", index: "vnrodoc", width: 30, hidden: true}, // Nro de declaracion jurada
+        // {name: "dfecdoc", index: "dfecdoc", width: 30, hidden: true}, // Fecha de la declaracion jurada
+        // {name: "cmotivo", index: "cmotivo", width: 30, hidden: true}, // Motivo de la declaracion jurada
+        // {name: "ctipdoc", index: "ctipdoc", width: 30, hidden: true}, // Tipo de documento con el que se realiza la declaracion jurada
          {name: "cnumpis", index: "cnumpis", width: 65, align: "center"}, // Nro de piso
          {name: "nantigu", index: "nantigu", width: 65, align: "center"}, // Antiguedad
          {name: "canocon", index: "canocon", width: 30, hidden: true}, // Periodo de Construccion
@@ -79,7 +110,7 @@ optionInstalacion = {height: 200,
          {name: "ctipint", index: "ctipint", width: 30, hidden: true}, // Tipo de instalacion
          {name: "vdesint", index: "vdesint", width: 250}, // Descripcion de la instalacion
          {name: "nvalins", index: "nvalins", width: 150, align: "right"}, // Valor de la instalacion
-         {name: "dafecta", index: "dafecta", width: 30, hidden: true}  // Fecha desde donde se comienzan a generar los tributos
+        // {name: "dafecta", index: "dafecta", width: 30, hidden: true}  // Fecha desde donde se comienzan a generar los tributos
      ],
         
         

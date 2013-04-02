@@ -15,24 +15,42 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td style="text-align: right">Fecha:</td>
-        <td><input class="ui-text" style="width: 80px; text-align: center;" id="dtpFechaDeclaracion"/></td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td style="text-align: right">Motivo:</td>
-        <td id="cellMotivo"><select style="width: 240px;" id="cboMotivo"><?php echo $this->util()->getComboContenedor('1000000004', null); ?></select></td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td style="text-align: right;vertical-align: top;">Observaci&oacute;n:</td>
-        <td colspan="2"><textarea class="ui-text" class="jquery_ckeditor" cols="80" id="txtObservacion" name="txtObservacion" rows="10"></textarea></td>
-    </tr>
-    <tr>
-        <td colspan="3" style="text-align: right;">
-            <button id="btnAceptarDeclaracion">Aceptar</button>
-            <button id="btnCancelarDeclaracion">Cancelar</button>
-        </td>
+	    <td>
+	    	<div><table border="1">
+	    		<tr>
+	    		<td style="text-align: right">Fecha:</td>
+	        	<td><input class="ui-text" style="width: 80px; text-align: center;" id="dtpFechaDeclaracion"/></td>
+			        <td>&nbsp;</td>
+			    </tr>
+			    <tr>
+			        <td style="text-align: right">Motivo:</td>
+			        <td id="cellMotivo"><select style="width: 240px;" id="cboMotivo"><?php echo $this->util()->getComboContenedor('1000000004', null); ?></select></td>
+			        <td>&nbsp;</td>
+			    </tr>
+			    <tr>
+			        <td style="text-align: right;vertical-align: top;">Observaci&oacute;n:</td>
+			        <td colspan="2"><textarea class="ui-text" class="jquery_ckeditor" cols="80" id="txtObservacion" name="txtObservacion" rows="10"></textarea></td>
+			    </tr>
+			    <tr>
+			        <td colspan="3" style="text-align: right;">
+			            <button id="btnAceptarDeclaracion">Aceptar</button>
+			            <button id="btnCancelarDeclaracion">Cancelar</button>
+			        </td>
+			        </tr>
+			        </table>
+	         </div>  
+	      </td>
+	      <td>
+	     		<div><table border="1">
+	    		<tr>
+	    		<td>
+	    		</td>
+	    		</tr>
+	    		</table>
+	    		</div>
+	      
+	      </td>
+        
     </tr>
 </table>
 <script type="text/javascript">

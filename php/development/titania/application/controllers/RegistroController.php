@@ -7,7 +7,7 @@ class RegistroController extends Zend_Controller_Action {
     public function init() {
     	$this->_helper->layout()->setLayout('layoutwithpanel');
     	$map = new Zend_Session_Namespace("map");
-    	$map->data = false;
+    	$map->data = true;
     }
 
     public function indexAction() {
@@ -324,16 +324,54 @@ class RegistroController extends Zend_Controller_Action {
     				.$_POST['nporcom'].','
     				.$_POST['nestado'].','
     				.$vhostnm.','
-    				.$coduser.',,'
+    				.$coduser.','
+    				.date("y-m-d").','
     				.$_POST['narecon'];
 
     		$parameters[] = $row;
     		$dataAdapter = new Model_DataAdapter();
     		$rows = $dataAdapter->executeSelect("pl_function.guardar_mconstr", $parameters);
-    		 
+
+    		//print_r($rows);
+    		
     		if($rows[0][0] == 1) {
     			$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
-    
+    			
+    			$parameters2[0] =  $_POST['dpredio'];  				
+    			$parameters2[1] =  $_POST['cnumpis'];
+    			$parameters2[2] =  $_POST['canocon'];
+    			$parameters2[3] =  $_POST['cmescon'];
+    		
+
+    			$dataAdapter2 = new Model_DataAdapter();
+    			$rows2 = $dataAdapter2->executeSelect("pl_function.idsigma_mconstr", $parameters2);
+				
+    			//print_r($parameters2);
+    			//print_r($rows2);
+    			 
+    			$row3 =	$_POST['idsigma'].','
+    					.$rows2[0][0].','
+    					.$_POST['canocon'].','
+		    			.$_POST['nvaluni'].','
+						.$_POST['nincrem'].','
+						.$_POST['npordep'].','
+						.$_POST['ndepred'].','
+						.$_POST['nvalare'].','
+						.$_POST['nvalcom'].','
+						.$_POST['nvalpis'].','
+    					.$_POST['nestado'].','
+    					.$vhostnm.','
+    					.$coduser.',,'
+    					.$_POST["cperiod"]; 
+    					
+    			echo  	$row3;	
+    					
+    			$parameters3[] = $row3;
+    			$dataAdapter3 = new Model_DataAdapter();
+    			$rows3 = $dataAdapter3->executeSelect("pl_function.guardar_dconstr", $parameters3);
+    				
+    					
+    			
     			$data['error'] = "";
     			$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
     		} else {
@@ -379,7 +417,7 @@ class RegistroController extends Zend_Controller_Action {
 					.'1'.',' //nestado
 					.$vhostnm.','
 					.$coduser.','
-					.'fecha'; //fecha
+					.date("y-m-d"); //fecha
 			echo $row ;
 			$parameters[] = $row;
 			$dataAdapter = new Model_DataAdapter();
@@ -387,7 +425,38 @@ class RegistroController extends Zend_Controller_Action {
 	
 			if($rows[0][0] == 1) {
 				$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
-	
+				
+				$parameters2[0] =  $_POST['dpredio'];  				
+    			$parameters2[1] =  $_POST['cnumpis'];
+    			$parameters2[2] =  $_POST['canocon'];
+    			$parameters2[3] =  '0000000001';
+    		
+
+    			$dataAdapter2 = new Model_DataAdapter();
+    			$rows2 = $dataAdapter2->executeSelect("pl_function.idsigma_minstal", $parameters2);
+				
+    			$row3 =	$_POST['idsigma'].','
+    					.$rows2[0][0].','
+    					.$_POST['canocon'].','
+		    			.'1'.',' //.$_POST['nvaluni'].','
+						.'1'.','//.$_POST['nincrem'].','
+						.'1'.','//.$_POST['npordep'].','
+						.'1'.','//.$_POST['ndepred'].','
+						.'1'.','//.$_POST['nvalare'].','
+						.'1'.','//.$_POST['nvalcom'].','
+						.'1'.','//.$_POST['nvalins'].','
+    					.'1'.','//.$_POST['nestado'].','
+    					.$vhostnm.','
+    					.$coduser.',,'
+    					.$_POST["cperiod"]; 
+    					
+    			echo  	$row3;	
+    					
+    			$parameters3[] = $row3;
+    			$dataAdapter3 = new Model_DataAdapter();
+    			$rows3 = $dataAdapter3->executeSelect("pl_function.guardar_dinstal", $parameters3);
+    			
+    			
 				$data['error'] = "";
 				$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_instalacion", $parameters);
 			} else {
@@ -444,7 +513,8 @@ class RegistroController extends Zend_Controller_Action {
 			$parameters[] = $row;
 			$dataAdapter = new Model_DataAdapter();
 			$rows = $dataAdapter->executeSelect("pl_function.guardar_mhresum", $parameters);
-			 
+			
+					
 			if($rows[0][0] == 1) {
 				$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
 			
@@ -562,40 +632,138 @@ class RegistroController extends Zend_Controller_Action {
 		
 	}
 	
-	public function verprediomanttAction(){
-	
-		$pintar = new Libreria_Pintar();
-		
-		 $nombrestore = 'registro.mostrararancelanios';
-		 $arraydatos[0]= "2012";
-		 $cn = new Model_DataAdapter();
-		 $datoscpd = $cn->ejec_store_procedura_sql($nombrestore,$arraydatos);
-				
-		 $cbo = $this->centr($datoscpd);
-		
-		 //echo count($datoscpd);
-		 
-         $val[] = array("cbocentrpob",$pintar->ContenidoCombo($cbo, $cbo[0][0]), "html");
-              
-         //$val[] = array("cbocentrpob",$mpoblad, "val");
-         
-         //$val[] = array("cbovia",$mviadis, "val");
-         
-          $pintar->PintarValor($val);
-         
-		
-}
+	public function prediomantenAction(){
 
-private function centr($conceptos) {
-		$items = null;
+	    $this->view->util()->registerScriptJSControllerAction($this->getRequest());
+				        
+    
 		
-		for($i=0; $i<count($conceptos); $i++){
-			
-			$codigo = $conceptos[$i][0];
+	}
+	
+	public function verprediomanttAction(){
+	$this->_helper->getHelper('ajaxContext')->initContext();
+    
+        if ($this->getRequest()->isXmlHttpRequest()) {
+            $this->_helper->layout->disableLayout();
+
+            $pintar = new Libreria_Pintar();
+            $parameters[] = date("Y") -1;
+
+            $dataAdapter = new Model_DataAdapter();
+            $rows = $dataAdapter->executeAssocQuery("pl_function.listar_vias", $parameters);
+            $this->view->mviascp = $rows;            
+        
+
+     }
+    }
+
+     public function guardarmpredioAction(){
+          /*
+          idsigma character(10) NOT NULL, -- Identificador del predio
+          mviadis character(10) NOT NULL, -- Codigo de la via
+          dnumero character varying(25) NOT NULL, -- Numero
+          dinteri character varying(25) NOT NULL, -- Interior
+          dletras character varying(25) NOT NULL, -- Letra
+          ddepart character varying(25) NOT NULL, -- Departamento
+          destaci character varying(25) NOT NULL, -- Estacionamiento
+          ddeposi character varying(25) NOT NULL, -- Deposito
+          drefere character varying(100) NOT NULL, -- Referencia
+          dmanzan character varying(25) NOT NULL, -- Manzana
+          dnlotes character varying(25) NOT NULL, -- Lote
+          ccatast character varying(25) NOT NULL, -- Codigo Catastral
+          cplanos character varying(4) NOT NULL, -- Ubicacion en el plano
+          ctipmer character varying(1) NOT NULL, -- Tipo de Mercado
+          dnummer character varying(10) NOT NULL, -- Nro de puesto dentro del mercado
+          cdiscat character varying(25) NOT NULL, -- Distrito Catastral
+          czoncat character varying(25) NOT NULL, -- Zona Catastral
+          cmzacat character varying(25) NOT NULL, -- Manzana Catastral
+          cseccat character varying(25) NOT NULL, -- Sector Catastral
+          cltecat character varying(25) NOT NULL, -- Lote Catastral
+          cundcat character varying(25) NOT NULL, -- Unidad Catastral
+          dbloque character varying(25) NOT NULL, -- Bloque
+          dseccio character varying(25) NOT NULL, -- Seccion
+          dunidad character varying(25) NOT NULL, -- Unidad
+          mpoblad character(10) NOT NULL, -- Centro Poblado
+          vdirpre character varying(250) NOT NULL, -- Direccion del Predio
+          nestado character varying(2) NOT NULL, -- Estado
+          ccodpre character varying(20), -- Codigo de Predio Mostrar
+          ctippre character(10) NOT NULL, -- Tipo de Predio
+          idanexo character(10) NOT NULL, -- Anexo
+          ccodcuc character varying(25) NOT NULL, -- Codigo unico castastral new
+          vhostnm character varying(25) NOT NULL, -- Estacion
+          vusernm character varying(25) NOT NULL, -- Usuario
+          ddatetm timestamp without time zone NOT NULL, -- Fecha de Registro
+          nlatitu numeric(18,8), -- Latitud del predio
+          nlongit numeric(18,8), -- Longitud del predio
+          nzoom numeric(18,8), -- Zoom del mapa
+          */
+
+            $this->_helper->getHelper('ajaxContext')->initContext(); 
+        
+        if ($this->getRequest()->isXmlHttpRequest()) {
+            $this->_helper->layout->disableLayout();
+        
+            $ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+            $coduser = $ddatosuserlog->cidpers;
+            $vhostnm = $ddatosuserlog->vhostnm;
+                
+            $row =  $_POST["idsigma"].','.
+                    $_POST["mviadis"].','.
+                    $_POST["dnumero"].','.
+                    $_POST["dinteri"].','.
+                    $_POST["dletras"].','.              
+                    $_POST["ddepart"].','.
+                    $_POST["destaci"].','.
+                    $_POST["ddeposi"].','.
+                    $_POST["drefere"].','.
+                    $_POST["dmanzan"].','.
+                    $_POST["dnlotes"].','.
+                    $_POST["ccatast"].','.
+                    $_POST["cplanos"].','.
+                    $_POST["ctipmer"].','.
+                    $_POST["dnummer"].','.
+                    $_POST["cdiscat"].','.
+                    $_POST["czoncat"].','.
+                    $_POST["cmzacat"].','.                  
+                    $_POST["cseccat"].','.
+                    $_POST["cltecat"].','.                  
+                    $_POST["cundcat"].','.
+                    $_POST["dbloque"].','.
+                    $_POST["dseccio"].','.
+                    $_POST["dunidad"].','.
+                    $_POST["mpoblad"].','.
+                    $_POST["vdirpre"].','.
+                    $_POST["nestado"].','.
+                    $_POST["ccodpre"].','.
+                    $_POST["ctippre"].','.
+                    $_POST["idanexo"].','.
+                    $_POST["ccodcuc"].','. 
+                    $vhostnm.','.
+                    $coduser.','.
+                    date("y-m-d").','.
+                    $_POST["nlatitu"].','. 
+                    $_POST["nlongit"].','. 
+                    $_POST["nzoom"];
+                
+                
+            $parameters[] = $row;
+            $dataAdapter = new Model_DataAdapter();
+            $rows = $dataAdapter->executeSelect("pl_function.guardar_mpredio", $parameters);
+        
+            if($rows[0][0] == 1) {
+                //$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
+                    
+                $data['error'] = "";
+                //$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
+            } else {
+                $data['error'] = "Error al actualizar";
+                $data['data'] = "";
+            }
+
+
+        }
 		
-			$items[$i]=array($codigo, $conceptos[$i][4]." - " . $conceptos[$i][2]);
-		}
-		return $items;
-	}		
+    } 
+		
 }  
 
