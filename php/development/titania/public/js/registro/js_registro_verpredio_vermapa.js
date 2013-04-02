@@ -7,6 +7,7 @@
 	'</div>';
  */
 
+
 var map = null,
 	image = pathImage + '../img/casa.png',
 		markersArray = [],

@@ -1,5 +1,5 @@
 validar = function() {
-	/*isValid = true;
+	isValid = true;
 	
 	$("#formPiso").find("input").each(function() {
 		if($(this).val().length ==0) {
@@ -10,11 +10,12 @@ validar = function() {
 	
 	if(!isValid) {
 			openDialogWarning("Los campos deben estar llenos.", 380, 150);	
+			return false;
 	} else {
-		GuardarPiso();
-		//openDialogWarning("Los datos han sido guardados.", 380, 150);
+		//GuardarPiso();
+		openDialogWarning("Los datos han sido guardados.", 380, 150);
 		closeDialog('jqDialog1');
-	}*/
+	}
 
 // navPanelPiso()	
 	return true;
@@ -42,6 +43,14 @@ guardar = function() {
 			nporcom: $("#txt_pisoporcom").val(),
 			nestado: '1',
 			cperiod: $("#txtPeriodo").val(),
+			//Detalle Piso
+			nvaluni:$("#txt_pisovaluni").val(),
+			nincrem:$("#txt_pisoincrem").val(),
+			npordep:$("#txt_pisopordep").val(),
+			ndepred:$("#txt_pisodepred").val(),
+			nvalare:$("#txt_pisovalcom").val(),
+			nvalcom:$("#txt_pisoarecom").val(),
+			nvalpis:$("#txt_valpre").val(),
 	};
 
 	_post = $.post(path + "registro/guardarpiso", row);
@@ -77,8 +86,9 @@ click_closeDialog = function() {
 click_guardar = function() {
 	if(validar()) {
 		guardar();
+		click_closeDialog();
 	}
-	click_closeDialog();
+	
 };
 
 
