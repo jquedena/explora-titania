@@ -699,8 +699,12 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			//$this->_helper->viewRenderer->setNoRender ();
 			$this->_helper->layout->disableLayout ();
 			
-			$duserlogin = new Zend_Session_Namespace ( 'userlogin' );
-			$userlogin = $duserlogin->data;
+			#$duserlogin = new Zend_Session_Namespace ( 'userlogin' );
+			#$userlogin = $duserlogin->data;
+			
+			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+			$userlogin = $ddatosuserlog->userlogin;
+			
 			
 			$registros = $this->_request->getPost ( 'registros' );
 			$url = $this->_request->getPost ( 'url' );

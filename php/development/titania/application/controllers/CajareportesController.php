@@ -46,22 +46,25 @@ class CajareportesController extends Zend_Controller_Action {
                 $ind++;
             }
 
-//          $nombrestore = 'tesoreria.obtener_formaspago';
-//			$arraydatosfp [0] = '';
-//			$cn = new Model_DataAdapter ();
-//			$datoscbtipopago = $cn->ejec_store_procedura_sql ( $nombrestore, $arraydatosfp );
-            
-            $datoscbtipopago[] = array('', 'TODAS');
+          	/*$nombrestore = 'tesoreria.obtener_formaspago';
+			$arraydatosfp [0] = '';
+			$cn = new Model_DataAdapter ();
+			$datoscbtipopago = $cn->ejec_store_procedura_sql ( $nombrestore, $arraydatosfp );
+            */
+            //$datoscbtipopago[] = array('', 'TODAS');
+            $datoscbtipopago[]= Array ( '%','TODAS' );
 
             $val [0] = array("rptdia", $func->ContenidoCombo($dias, $dias [$defd] [0]), "html");
             $val [1] = array("rptmes", $func->ContenidoCombo($meses, $meses [$defm] [0]), "html");
             $val [2] = array("rptanio", $func->ContenidoCombo($anios, $anios [$defa] [0]), "html");
             $val [3] = array("txtcodcajero", $codcajero, "val");
-            $val [4] = array('cbtipopago', $func->ContenidoCombo($datoscbtipopago, ''), 'html');
+            $val [4] = array("txtuserimpre", $ddatosuserlog->userlogin, "val");
+            $val [5] = array('cbtipopago', $func->ContenidoCombo($datoscbtipopago, ''), 'html');
             $func->PintarValor($val);
 
             $evt [0] = array("genreport", "click", "GenerarRepoteCaja();");
             $func->PintarEvento($evt);
+            echo "<script>pathReport='".$this->view->util()->getPathReport()."'</script>";
         } else {
             $val[0] = array("showing", "No tienes privilegios de cajero para este modulo", "html");
             $func->PintarValor($val);

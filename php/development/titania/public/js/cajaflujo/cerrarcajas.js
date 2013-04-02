@@ -143,7 +143,22 @@ cerrardia = function(){
 		openDialogInfo("Seleccionar Fila", 300, 130);
 	}
 
-}
+};
+
+openreporteapertcierrecaja = function(tipo){
+	var id = $("#tblResultapertcaj").jqGrid('getGridParam','selrow');
+	if (id)	{
+		var row = jQuery("#tblResultapertcaj").jqGrid('getRowData',id);
+		if(row.idsigmaapert=='' || row.idsigmaapert==undefined || row.nestado=='0' || row.nestado=='1'){
+			openDialogInfo("La Caja debe de estar Habilitada", 300, 130);
+			return 
+		}
+		window.open(pathReport+"reporte=Apertura_Cierre_Caja&opt=P_CIDAPERTURACAJA^" + row.idsigmaapert + "|P_CTIPOPE^"+tipo, '_blank');	
+
+	} else { 
+		openDialogInfo("Seleccionar Fila", 300, 130);
+	}
+};
 $(function(){
     inicializarGrid("tblResultapertcaj", optionapertcaja);
     inicializarGrid("tblResultapertcajtotales", optioncajasagruplocal);
@@ -154,5 +169,9 @@ $(function(){
 	
 	$("#btncerrardia").on('click',function(event){
 		cerrardia();
+	});
+	
+	$("#btnreportcierre").on('click',function(event){
+		openreporteapertcierrecaja('2');
 	});
 });

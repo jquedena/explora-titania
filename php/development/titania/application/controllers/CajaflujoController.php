@@ -387,7 +387,7 @@ class CajaflujoController extends Zend_Controller_Action {
 		$func->FinScript();
 		
 		
-		
+		echo "<script>pathReport='".$this->view->util()->getPathReport()."'</script>";
 		$this->view->util()->registerScriptJSControllerAction($this->getRequest());
 	}
 	public function graficocajerosAction(){
@@ -447,8 +447,6 @@ class CajaflujoController extends Zend_Controller_Action {
 	/*Opcion : Aperturar de Cajas(tesorero) Vista La Accion de esta vista esta en Sencillera*/
 	public function cajasaperturadasAction() {
 
-		
-		
 		$nombrestore = '"public"."pxcobrowww"';
 		$arraydatos [0] = '2';
 		$arraydatos [1] = '';
@@ -472,7 +470,7 @@ class CajaflujoController extends Zend_Controller_Action {
 		echo "<script>pathReport='".$this->view->util()->getPathReport()."'</script>";
 	}
 
-	public function lstcajasapertAction() {
+	public function lstcajasapertAction(){
 		$this->_helper->viewRenderer->setNoRender();
 		$this->_helper->layout->disableLayout();
 		$this->_helper->getHelper('ajaxContext')->initContext();
