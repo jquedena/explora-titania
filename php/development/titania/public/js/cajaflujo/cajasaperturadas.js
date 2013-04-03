@@ -170,8 +170,13 @@ guardarsencillero = function(){
     vhdaccion = $('#hdaccion').val();
     _post = $.post(path + "sencillera/guardarsencillero/", frmtblmonedas+"&vhdid_apert="+vhdid_apert+"&vhdid_cajero="+vhdid_cajero+"&vtxtfech_proc="+vtxtfech_proc+"&vhdid_estado="+vhdid_estado+"&vhdaccion="+vhdaccion);
     _post.success(function(requestData){
-        openDialogInfo(requestData, 400, 150);
-        buscarapertcajxfecha($('#fechaorg').val());
+    	if (requestData=='Se guardo correctamente.'){
+    		buscarapertcajxfecha($('#fechaorg').val());
+    		closeDialog('jqDialog1');
+    	}else{
+    		openDialogInfo(requestData, 400, 150);
+    	}
+                
     //$('#result').html(requestData);
     });
 	
