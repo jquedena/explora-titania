@@ -97,14 +97,27 @@ class RegistroController extends Zend_Controller_Action {
     }
 
     public function declaracionAction() {
+    	 $this->view->util()->registerScriptJSControllerAction($this->getRequest());
+    	  
         $this->_helper->getHelper('ajaxContext')->initContext();
-
+		
+         $pintar= new Libreria_Pintar();
+         
         if ($this->getRequest()->isXmlHttpRequest()) {
             $this->_helper->layout->disableLayout();
             $this->view->mperson = $this->_request->getParam('mperson');
             $this->view->mhresum = $this->_request->getParam('mhresum');
             $this->view->cperiod = date("Y");
+            
+            
+           
+            
+            
+            
+            
+            
         }
+       // $pintar->EjecutarFuncion($fun);
     }
 
     public function condominioAction() {
