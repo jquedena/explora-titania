@@ -144,7 +144,7 @@ cerrardia = function(){
 	}
 
 };
-
+//Dave :)
 openreporteapertcierrecaja = function(tipo){
 	var id = $("#tblResultapertcaj").jqGrid('getGridParam','selrow');
 	if (id)	{
