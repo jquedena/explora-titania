@@ -1,12 +1,12 @@
 validar = function() {
 	isValid = true;
 	
-	$("#formPiso").find("input").each(function() {
+	/*$("#formPiso").find("input").each(function() {
 		if($(this).val().length ==0) {
 			isValid = false;
        		return;
    		}
-	});
+	});*/
 	
 	if(!isValid) {
 			openDialogWarning("Los campos deben estar llenos.", 380, 150);	
@@ -22,6 +22,7 @@ validar = function() {
 };
 
 guardar = function() {
+	//debugger;
 	row = {
 			idsigma: $("#txt_idsigma").val(),
 			cnitems: $("#txt_idsigma").val(),
