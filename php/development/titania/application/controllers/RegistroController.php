@@ -7,7 +7,7 @@ class RegistroController extends Zend_Controller_Action {
     public function init() {
     	$this->_helper->layout()->setLayout('layoutwithpanel');
     	$map = new Zend_Session_Namespace("map");
-    	$map->data = true;
+    	$map->data = false;
     }
 
     public function indexAction() {
@@ -318,6 +318,19 @@ class RegistroController extends Zend_Controller_Action {
     		$coduser = $ddatosuserlog->cidpers;
     		$vhostnm = $ddatosuserlog->vhostnm;
      
+    		/*
+    		 * 
+    		 * 	  idsigma,dpredio,cnitems::integer,cnumpis,
+	  cmescon,canocon,cmateri,cconser,cmurcol,
+	  ctechos,cmpisos,cpueven,crevest,cbanios,
+	  celectr, narecom::numeric(18,5),
+	  nporcom::numeric(18,5),nestado::integer,
+	  vhostnm,vusernm,
+	  now()::timestamp without time zone ddatetm,
+	  narecon::numeric(10,5)
+    		 * */
+    		print_r($_POST);
+    		
     		$row = $_POST['idsigma'].','
     				.$_POST['dpredio'].','
     				.$_POST['cnitems'].','
@@ -345,45 +358,10 @@ class RegistroController extends Zend_Controller_Action {
     		$dataAdapter = new Model_DataAdapter();
     		$rows = $dataAdapter->executeSelect("pl_function.guardar_mconstr", $parameters);
 
-    		//print_r($rows);
+    		 print($row);
     		
     		if($rows[0][0] == 1) {
-    			$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
-    			
-    			$parameters2[0] =  $_POST['dpredio'];  				
-    			$parameters2[1] =  $_POST['cnumpis'];
-    			$parameters2[2] =  $_POST['canocon'];
-    			$parameters2[3] =  $_POST['cmescon'];
-    		
-
-    			$dataAdapter2 = new Model_DataAdapter();
-    			$rows2 = $dataAdapter2->executeSelect("pl_function.idsigma_mconstr", $parameters2);
-				
-    			//print_r($parameters2);
-    			//print_r($rows2);
-    			 
-    			$row3 =	$_POST['idsigma'].','
-    					.$rows2[0][0].','
-    					.$_POST['canocon'].','
-		    			.$_POST['nvaluni'].','
-						.$_POST['nincrem'].','
-						.$_POST['npordep'].','
-						.$_POST['ndepred'].','
-						.$_POST['nvalare'].','
-						.$_POST['nvalcom'].','
-						.$_POST['nvalpis'].','
-    					.$_POST['nestado'].','
-    					.$vhostnm.','
-    					.$coduser.',,'
-    					.$_POST["cperiod"]; 
-    					
-    			echo  	$row3;	
-    					
-    			$parameters3[] = $row3;
-    			$dataAdapter3 = new Model_DataAdapter();
-    			$rows3 = $dataAdapter3->executeSelect("pl_function.guardar_dconstr", $parameters3);
-    				
-    					
+    			$parameters = array($_POST['dpredio'], $_POST["cperiod"]);	
     			
     			$data['error'] = "";
     			$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
