@@ -15,7 +15,7 @@
 
     $.widget( "ui.combobox", {
         _create: function() {
-            var input,
+            var input = null,
             self = this,
             select = this.element.hide(),
             selected = select.children( ":selected" ),
@@ -142,10 +142,12 @@ autocompletar = function(id, data, select) {
 		minLength: 0,
 		source: data,
 		select: select
+	}).on("focus", function() {
+		$(this).autocomplete("search", "");
 	}).data("autocomplete")._renderItem = function(ul, item) {
 		return $("<li></li>")
 			.data("item.autocomplete", item)
-			.append("<a><b>" + item.label + "</b><br>" + item.desc + "</a>")
+			.append("<a style='width: 250px;'><b>" + item.label + "</b><br>" + item.desc + "</a>")
 			.appendTo(ul);
 	};
 };
