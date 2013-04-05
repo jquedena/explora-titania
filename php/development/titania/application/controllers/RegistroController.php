@@ -338,7 +338,7 @@ class RegistroController extends Zend_Controller_Action {
     				.$_POST['cmescon'].','
     				.$_POST['canocon'].','
     				.$_POST['cmateri'].','
-    				.$_POST['cconser'].','
+    				.$_POST['cconser'].',' 
     				.$_POST['cmurcol'].','
     				.$_POST['ctechos'].','
     				.$_POST['cmpisos'].','
