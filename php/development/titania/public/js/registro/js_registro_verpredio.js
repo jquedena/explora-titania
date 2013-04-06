@@ -43,6 +43,45 @@ function habilitab(tipo ){
 	  
 }
 
+
+guardar = function() {
+	row = { 
+			idsigma: $("#_dpredio").val(),
+			mpredio: $("#_mpredio").val(),
+			ctippre: $("#cboTipoPredioUrbano").val(),
+			cclasif: $("#cboClasificacion").val(),
+			ccondic: $("#cboCondicion").val(),        			
+			cestado: $("#cboEstado").val(),
+			cusogen: $("#cboUso").val(),       
+			cusoesp: $("#cboUsoEspecifico").val(),
+			nporcen: $("#nporcen").val(),     
+			ntertot: $("#ntotter").val(),
+			nporter: $("#nporter").val(),    
+			nterren: $("#nareter").val(),
+			ncomtot: $("#ntotcom").val(),      
+			nporcom: $("#nporcom").val(),
+			narecom: $("#narecom").val(),		
+			nporafe: 0,      
+			dfecadq: "",
+			dfecdes: "",
+			dafecta: "", 
+			nfrente: $("#nfronti").val(),
+			ncanper: $("#nnrohab").val() ,
+			ctippar: $("#cboParque").val(),
+			vobserv:"",
+			nestado:'1',
+			mhresum:$("#_mhresum").val() 
+			 
+	};
+
+	_post = $.post(path + "registro/guardardetalle", row);
+    _post.success(function(data){
+    	//optionPiso = $.extend(optionPiso, {data: data.data});
+    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
+	});
+    _post.error(postError);	
+};
+
 cambioTipoPredio = function(event, ui) {
     if(ui.item) {
         bVisible = (ui.item.option.value == "1000000091");
@@ -151,6 +190,8 @@ loadVerDetalle = function(){
         icons: {primary:'ui-icon-search'},
         disabled: true
     }).bind("click", function(){
+    	guardar();
+    	
         openDialogData1("registro/condominio", {}, "725", "405", "Registro de Condomimantes");
     });
 
@@ -197,43 +238,6 @@ loadVerDetalle = function(){
         */
     	
 
-        guardar = function() {
-        	row = { 
-        			idsigma: $("#_dpredio").val(),
-        			mpredio: $("#_mpredio").val(),
-        			ctippre: $("#cboTipoPredioUrbano").val(),
-        			cclasif: $("#cboClasificacion").val(),
-        			ccondic: $("#cboCondicion").val(),        			
-        			cestado: $("#cboEstado").val(),
-        			cusogen: $("#cboUso").val(),       
-        			cusoesp: $("#cboUsoEspecifico").val(),
-        			nporcen: $("#nporcen").val(),     
-        			ntertot: $("#ntotter").val(),
-        			nporter: $("#nporter").val(),    
-        			nterren: $("#nareter").val(),
-        			ncomtot: $("#ntotcom").val(),      
-        			nporcom: $("#nporcom").val(),
-        			narecom: $("#narecom").val(),		
-        			nporafe: 0,      
-        			dfecadq: "",
-        			dfecdes: "",
-        			dafecta: "", 
-        			nfrente: $("#nfronti").val(),
-        			ncanper: $("#nnrohab").val() ,
-        			ctippar: $("#cboParque").val(),
-        			vobserv:"",
-        			nestado:'1',
-        			mhresum:$("#_mhresum").val() 
-        			 
-        	};
-
-        	_post = $.post(path + "registro/guardardetalle", row);
-            _post.success(function(data){
-            	//optionPiso = $.extend(optionPiso, {data: data.data});
-            	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
-        	});
-            _post.error(postError);	
-        };
         
         guardar();
         

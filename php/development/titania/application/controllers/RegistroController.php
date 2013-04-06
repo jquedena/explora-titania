@@ -414,40 +414,9 @@ class RegistroController extends Zend_Controller_Action {
 			$dataAdapter = new Model_DataAdapter();
 			$rows = $dataAdapter->executeSelect("pl_function.guardar_minstal", $parameters);
 	
-			if($rows[0][0] == 1) {
-				$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
-				
-				$parameters2[0] =  $_POST['dpredio'];  				
-    			$parameters2[1] =  $_POST['cnumpis'];
-    			$parameters2[2] =  $_POST['canocon'];
-    			$parameters2[3] =  '0000000001';
-    		
-
-    			$dataAdapter2 = new Model_DataAdapter();
-    			$rows2 = $dataAdapter2->executeSelect("pl_function.idsigma_minstal", $parameters2);
-				
-    			$row3 =	$_POST['idsigma'].','
-    					.$rows2[0][0].','
-    					.$_POST['canocon'].','
-		    			.'1'.',' //.$_POST['nvaluni'].','
-						.'1'.','//.$_POST['nincrem'].','
-						.'1'.','//.$_POST['npordep'].','
-						.'1'.','//.$_POST['ndepred'].','
-						.'1'.','//.$_POST['nvalare'].','
-						.'1'.','//.$_POST['nvalcom'].','
-						.'1'.','//.$_POST['nvalins'].','
-    					.'1'.','//.$_POST['nestado'].','
-    					.$vhostnm.','
-    					.$coduser.',,'
-    					.$_POST["cperiod"]; 
-    					
-    			echo  	$row3;	
-    					
-    			$parameters3[] = $row3;
-    			$dataAdapter3 = new Model_DataAdapter();
-    			$rows3 = $dataAdapter3->executeSelect("pl_function.guardar_dinstal", $parameters3);
-    			
-    			
+			if($rows[0][0] == 1) {		
+    			$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
+    									
 				$data['error'] = "";
 				$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_instalacion", $parameters);
 			} else {
