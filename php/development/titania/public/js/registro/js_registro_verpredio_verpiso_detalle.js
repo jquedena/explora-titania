@@ -25,7 +25,7 @@ guardar = function() {
 	//debugger;
 	row = {
 			idsigma: $("#txt_idsigma").val(),
-			cnitems: $("#txt_idsigma").val(),
+			cnitems: 0,
 			dpredio: $("#_dpredio").val(),
 			cnumpis: $("#txt_pisonivel").val(),
 			canocon: $("#txt_pisoanocon").val(),
@@ -51,7 +51,7 @@ guardar = function() {
 			ndepred:$("#txt_pisodepred").val(),
 			nvalare:$("#txt_pisovalcom").val(),
 			nvalcom:$("#txt_pisoarecom").val(),
-			nvalpis:$("#txt_valpre").val(),
+			nvalpis:$("#txt_valpre").val()
 	};
 
 	_post = $.post(path + "registro/guardarpiso", row);
@@ -59,6 +59,7 @@ guardar = function() {
     	optionPiso = $.extend(optionPiso, {data: data.data});
     	procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
 	});
+       
     _post.error(postError);	
 };
 
