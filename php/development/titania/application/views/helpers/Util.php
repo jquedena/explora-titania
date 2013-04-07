@@ -219,6 +219,17 @@ class Zend_View_Helper_Util extends Zend_View_Helper_Abstract {
         
         return $html;
     }
+
+    public function getComboContenedorOtro($idsigma, $selected, $procedure) {
+    	$parameters[0] = $idsigma;
+    	$dataAdapter = new Model_DataAdapter();
+    	$records = $dataAdapter->ejec_store_procedura_sql($procedure, $parameters);
+    
+    	$library = new Libreria_Pintar();
+    	$html = $library->ContenidoComboOtro($records, $selected);
+    
+    	return $html;
+    }    
     
     private function style($files) {
         $script = "\n";
