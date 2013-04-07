@@ -14,10 +14,10 @@
 								<input id="txt_instcnumpis"  maxlength="2" class="ui-text ui-text-numeric" style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/>
 							</td>
 						</tr>
-						<tr>
-							<td width="140">Antiguedad</td>
-							<td width="35"><input id="txt_instnantigu"  maxlength="3" class="ui-text ui-text-numeric"  style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/></td>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							<td width="140">Antiguedad</td> -->
+<!--							<td width="35"><input id="txt_instnantigu"  maxlength="3" class="ui-text ui-text-numeric"  style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/></td> -->
+<!-- 						</tr> -->
 						<tr>
 							<td width="140">A&ntilde;o Construcci&oacute;n</td>
 							<td width="35"><input id="txt_instcanocon"  class="ui-text"  maxlength="4" style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/></td>
@@ -26,6 +26,10 @@
 							<td width="140">Unidad de Medida</td>
 							<td width="35" ><select style="width: 150px;" id="cboinstctipint"><?php echo $this->util()->getComboContenedor('1000000439', null); ?></select></td>
 						</tr>
+						<tr>
+							<td width="140">Descripci&oacute;n</td>
+							<td width="35"><input id="txt_instvdesint" class="ui-text"  style="width:300px" value="" /></td>
+						</tr>						
 						<tr>
 							<td width="140">Ancho</td>
 							<td width="35"><input id="txt_instnvalanc" class="ui-text ui-text-numeric" style="width:50px;padding:2px; "/></td>
@@ -37,10 +41,6 @@
 						<tr>
 							<td width="140">Largo</td>
 							<td width="35"><input id="txt_instnvallar" class="ui-text ui-text-numeric"  style="width:50px; padding:2px" value="" /></td>
-						</tr>
-						<tr>
-							<td width="140">Descripci&oacute;n</td>
-							<td width="35"><input id="txt_instvdesint" class="ui-text"  style="width:300px" value="" /></td>
 						</tr>
 						<tr>
 							<td width="140">Val. Instalaci&oacute;n</td>

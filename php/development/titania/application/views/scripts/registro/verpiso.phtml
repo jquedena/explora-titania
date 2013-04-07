@@ -29,16 +29,11 @@
 					<table class="panel-detalle-construccion" style="margin: 3px; padding: 5px;">
 						<tr>
 							<td width="90">Nivel</td>
-							<!-- <td width="35"><select  id="txt_pisonivel" class="ui-combobox-input" >
-							                <option id="460"  >piso </option>
-							               <option id="461" >sotano </option>
-							               <option id="462">azotea</option>
-							               <option id="463">mesanines</option>
-							                 
-											</select> </td>  -->
-											
-						 <td><select style="width: 190px;" id="txt_pisonivel"><?php echo $this->util()->getComboContenedor('1000000460', $this->mpredio["cusoesp"]); ?></select></td>
-            
+							 <td>
+							 	<select style="width: 190px;" id="txt_pisonivel">
+							 		<?php echo $this->util()->getComboContenedorOtro('1000000460', "", "public.obtener_tabla_otro"); ?>
+							 	</select>
+						 	</td>
 							<td width="510">&nbsp;</td>
 						</tr>
 						<tr>

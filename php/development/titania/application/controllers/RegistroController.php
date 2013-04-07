@@ -329,7 +329,6 @@ class RegistroController extends Zend_Controller_Action {
 	  now()::timestamp without time zone ddatetm,
 	  narecon::numeric(10,5)
     		 * */
-    		print_r($_POST);
     		
     		$row = $_POST['idsigma'].','
     				.$_POST['dpredio'].','
@@ -346,8 +345,8 @@ class RegistroController extends Zend_Controller_Action {
     				.$_POST['crevest'].','
     				.$_POST['cbanios'].','
     				.$_POST['celectr'].','
-    				.$_POST['narecom'].','
-    				.$_POST['nporcom'].','
+    				.'0,' // $_POST['narecom']
+    				.'0,' // $_POST['nporcom']
     				.$_POST['nestado'].','
     				.$vhostnm.','
     				.$coduser.','
@@ -355,10 +354,11 @@ class RegistroController extends Zend_Controller_Action {
     				.$_POST['narecon'];
 
     		$parameters[] = $row;
+    		$parameters[] = $_POST["cclasif"];
+    		$parameters[] = $_POST["caracte"];
+    		$parameters[] = $_POST['cnumpis'];
     		$dataAdapter = new Model_DataAdapter();
     		$rows = $dataAdapter->executeSelect("pl_function.guardar_mconstr", $parameters);
-
-    		 print($row);
     		
     		if($rows[0][0] == 1) {
     			$parameters = array($_POST['dpredio'], $_POST["cperiod"]);	
@@ -408,8 +408,9 @@ class RegistroController extends Zend_Controller_Action {
 					.'1'.',' //nestado
 					.$vhostnm.','
 					.$coduser.','
-					.date("y-m-d"); //fecha
-			echo $row ;
+					.date("y-m-d").','
+					.$_POST['nvalins']; //fecha
+
 			$parameters[] = $row;
 			$dataAdapter = new Model_DataAdapter();
 			$rows = $dataAdapter->executeSelect("pl_function.guardar_minstal", $parameters);
