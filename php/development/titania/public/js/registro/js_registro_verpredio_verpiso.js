@@ -133,9 +133,9 @@ optionPiso = {
         {name: 'npordep', index: 'npordep', width: 50, formatter:'currency', align: 'right'}, // Porcentaje de depreciacion
         {name: 'ndepred', index: 'ndepred', width: 50, formatter:'currency', align: 'right'}, // Depreciacion
         {name: 'nvalare', index: 'nvalare', width: 80, formatter:'currency', align: 'right'}, // Valor unitario depreciado del area construida
-        {name: 'narecom', index: 'narecom', width: 80, formatter:'currency', align: 'right'}, // Area comun
-        {name: 'nporcom', index: 'nporcom', width: 80, formatter:'currency', align: 'right'}, // Porcentaje de area comun
-        {name: 'nvalcom', index: 'nvalcom', width: 80, formatter:'currency', align: 'right'}, // Valor del area comun
+        {name: 'narecom', index: 'narecom', width: 80, formatter:'currency', align: 'right', hidden: true}, // Area comun
+        {name: 'nporcom', index: 'nporcom', width: 80, formatter:'currency', align: 'right', hidden: true}, // Porcentaje de area comun
+        {name: 'nvalcom', index: 'nvalcom', width: 80, formatter:'currency', align: 'right', hidden: true}, // Valor del area comun
         {name: 'nvalpis', index: 'nvalpis', width: 80, formatter:'currency', align: 'right'}, // Valor total del piso
         {name: 'cmateri', index: 'cmateri', width: 30, hidden: true}, // Identificador de la construccion del predio
         {name: 'cconser', index: 'cconser', width: 30, hidden: true}, // Identificador del predio

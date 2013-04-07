@@ -88,9 +88,9 @@ cambioTipoPredio = function(event, ui) {
         visibility = (bVisible? "hidden": "visible");
         display = (bVisible? "inline": "none");
         $("#panelTerreno").css({"visibility" : visibility});
-        $("#tabPredioRustico").css({"display" : display});
+        //$("#tabPredioRustico").css({"display" : display});
         
-        contenidocomboContenedor("#cboTipoPredioUrbano", (bVisible ? "1000000209": "1000000202"));
+        // contenidocomboContenedor("#cboTipoPredioUrbano", (bVisible ? "1000000209": "1000000202"));
     } else {
         openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
     }
@@ -301,7 +301,7 @@ loadVerDetalle = function(){
         $("#tblLindero").jqGrid('navButtonAdd','#ptblLindero', btnEliminarColindante);
     });
     
-    actualizarGrid("tblRustico", optionRustico, null, function(){
+    /*actualizarGrid("tblRustico", optionRustico, null, function(){
         $("#tblRustico").jqGrid('navGrid', '#ptblRustico', {edit:false, add:false, del:false, search:false, refresh:false});
         $("#tblRustico").jqGrid('navButtonAdd', '#ptblRustico', btnInsertarRustico);
         $("#tblRustico").jqGrid('navSeparatorAdd','#ptblRustico');
@@ -309,10 +309,10 @@ loadVerDetalle = function(){
         $("#tblRustico").jqGrid('navSeparatorAdd','#ptblRustico');
         $("#tblRustico").jqGrid('navButtonAdd','#ptblRustico', btnEliminarRustico);
     });
+    
     actualizarGrid("tblDatosTributo", optionTributo, null,function(){
-        $("#tblDatosTributo").jqGrid('navGrid', '#ptblDatosTributo', {edit:false, add:false, del:false, search:false, refresh:false});
-       
-    });
+        $("#tblDatosTributo").jqGrid('navGrid', '#ptblDatosTributo', {edit:false, add:false, del:false, search:false, refresh:false});       
+    });*/
     
 };
 

@@ -4,7 +4,7 @@
 <input type="hidden" id="hdnIdDeclaracion" value="<?php echo $this->mhresum; ?>"/>
 <input type="hidden" id="hdnIdPersona" value="<?php echo $this->mperson; ?>"/>
 <input type="hidden" id="hdnAnioTermino" value="<?php echo $this->cperiod; ?>"/>
-<table class="ui-table-panelLayout">
+<table class="ui-table-panelLayout" width="850">
     <tr>
         <td colspan="2" style="text-align: right;font-weight: bold;">La modificaci&oacute;n de esta declaraci&oacute;n entra en vigencia a partir del a&ntilde;o:</td>
         <td><input class="ui-text" style="width: 80px; text-align: center;" id="dtpFechaVigencia"/></td>
@@ -44,34 +44,21 @@
 	         </div>  
 	      </td>
 	      <td id="dvBajalt">
-	     		<div><table border="0" width="100%">
-	    		<tr>
-		    		<td>
-				    
-				    			    <table id="list" width="100%">
-				    			    <tr><td/></tr>
-				    			    </table>
-			    					<div id="pager" ></div>
-	    				
-						
-	
-		    		</td>
-	    		</tr>
-	    		<tr>
-		    		<td>
-				    
-				    			    <table id="list2" width="100%">
-				    			    <tr><td/></tr>
-				    			    </table>
-			    					<div id="pager2" ></div>
-	    				
-						
-	
-		    		</td>
-	    		</tr>
-	    		
-	    		
-	    		</table>
+	     		<div>
+	     		<table border="0">
+				<tr>
+				<td>Predio: </td><td><input style="width:100%"/> </td> 
+				<td align="center" > <button id="btnVerPredios" style="line-height: 20px; height: 20px;" >Buscar</button> </td>
+				</tr>
+				<tr>
+				 		<td colspan="3">				    
+								<div id="panelResultmPredio">							
+								<table id="tblResultmPredio"></table>
+								<div id="ptblResultmPredio"></div>
+								</div>
+				   		</td>	
+				</tr>
+				</table>
 	    		</div>
 	      
 	      </td>
@@ -147,8 +134,32 @@
         $("#txtMotivo").bind("autocompleteselect", verificar);
         $("#txtMotivo").bind("autocompletechange", verificar);
 
-    	$("#dvBajalt").hide();		
-	      	
+    	$("#dvBajalt").hide();	
+
+
+        $("#btnVerPredios").button({
+            icons: {primary:'ui-icon-arrowreturnthick-1-w'}
+        }).bind("click", function(){
+
+        	openDialogData2("registro/busqpredio", {}, "600", "400", "Predios", function() {
+    	    	if(row != undefined) {
+    	    		$("#txt_idsigma").val(row.idsigma);
+    		        $("#txtnombre").val(row.nombre);
+    		  //	$("#txt_instcnitems").val(row.cnitems);
+    		        $("#txtdni").val(row.dni);
+    		  //	$("#txt_instctipdat").val(row.ctipdat);       
+    		  //	$("#txt_instvnrodoc").val(row.vnrodoc);
+    		   		
+    		 //		$("#txt_instdafecta").val(row.dafecta);     
+    	   }  else {
+    		   $("#txt_idsigma").val('-1');  
+    		   
+    	   		}
+    		});
+            
+        }); 
+
+        
         
     });
 </script>

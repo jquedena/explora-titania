@@ -1,3 +1,59 @@
+
+<div id="panelbusqueda" align="center" class="ui-widget ui-widget-content ui-corner-all "  style="width: 100%;margin: 3px;">
+    <div class="ui-widget ui-state-default ui-corner-top ui-title">
+        <label>Predios</label>
+    </div>
+    <div id="dvbusqueda">
+    <table border="0" width="100%">
+          <tr>
+              <td colspan="15" align="center">
+
+          </tr>
+          <tr>
+                            <td>&nbsp;</td>
+                            <td>C&oacute;digo Predial:</td>
+                            <td></td>
+                            <td>Centro Poblado:</td>
+                            <td>&nbsp;</td>
+                            <td>Via:</td>
+                            <td>&nbsp;</td>
+                            <td width="50">Nro:</td>
+                            <td width="10">&nbsp;</td>
+                            <td width="50">Mza:</td>
+                            <td width="10">&nbsp;</td>
+                            <td width="50">Lote:</td>
+                            <td>&nbsp;</td>
+                              <td rowspan="2" align="center">
+                            <button id="btnbuscar">Buscar</button>              
+                            </td>
+            </tr>
+            <tr id="panelPredio">
+                            <td>&nbsp;</td>
+                            <td><input class="ui-text" id="c_predial" maxlength="10" style="width:90px" /></td>
+                            <td></td>
+                            <td colspan="3"><input class="ui-text pnl" id="c_viacontrib" style="width:100%" /></td>
+                            <td>&nbsp;</td>
+                            <td width="50"><input class="ui-text pnl" id="c_nroviacontrib" style="width:100%" /></td>
+                            <td width="10">&nbsp;</td>
+                            <td width="50"><input class="ui-text pnl" id="c_mzacontrib" style="width:100%" /></td>
+                            <td width="10">&nbsp;</td>
+                            <td width="50"><input class="ui-text pnl" id="c_lotecontrib" style="width:100%" /></td>
+                            <td>&nbsp;</td>
+                            
+             </tr>
+		
+    </table>
+    </div>
+    <div id="dvaccion"></div>
+</div>
+<div id="panelResultmPredio">
+	<table id="tblResultmPredio"></table>
+	<div id="ptblResultmPredio"></div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        
 verPredio = function(rowid, iRow, iCol, e) {
 	if(rowid != undefined && rowid != null && rowid !== false ) {
 		row = $("#tblResultmPredio").jqGrid('getRowData', rowid);
@@ -67,7 +123,7 @@ buscarmpredio = function() {
  
 optionmpredio= {
     height: 300,
-    width: 1000,
+    width: 600,
     editurl: "mcajerosave",
     colNames: [              
 			   "C\u00F3digo",
@@ -206,11 +262,11 @@ optionmpredio= {
 
  navPanelPredio = function() {
         $("#tblResultmPredio").jqGrid('navGrid', '#ptblResultmPredio', {edit:false, add:false, del:false, search:false, refresh:false});
-        $("#tblResultmPredio").jqGrid('navButtonAdd', '#ptblResultmPredio', btnInsertarPredio);
-        $("#tblResultmPredio").jqGrid('navSeparatorAdd','#ptblResultmPredio');
-        $("#tblResultmPredio").jqGrid('navButtonAdd','#ptblResultmPredio', btnEditarPredio);
-        $("#tblResultmPredio").jqGrid('navSeparatorAdd','#ptblResultmPredio');
-        $("#tblResultmPredio").jqGrid('navButtonAdd','#ptblResultmPredio', btnEliminarPredio);
+//        $("#tblResultmPredio").jqGrid('navButtonAdd', '#ptblResultmPredio', btnInsertarPredio);
+//        $("#tblResultmPredio").jqGrid('navSeparatorAdd','#ptblResultmPredio');
+//        $("#tblResultmPredio").jqGrid('navButtonAdd','#ptblResultmPredio', btnEditarPredio);
+//        $("#tblResultmPredio").jqGrid('navSeparatorAdd','#ptblResultmPredio');
+//        $("#tblResultmPredio").jqGrid('navButtonAdd','#ptblResultmPredio', btnEliminarPredio);
     };
 
     inicializarGrid("tblResultmPredio", optionmpredio,null,navPanelPredio);
@@ -244,3 +300,8 @@ $(function(){
 //---
     
 });
+    });
+   
+</script>
+
+<!-- --------------------------------------------------------------------------------------------------------------------	 -->
