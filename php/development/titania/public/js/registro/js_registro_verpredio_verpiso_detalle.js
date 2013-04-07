@@ -44,7 +44,14 @@ guardar = function() {
 			nporcom: $("#txt_pisoporcom").val(),
 			nestado: '1',
 			cperiod: $("#txtPeriodo").val(),
-			cclasif: $("#cboClasificacion").val(),
+			cclasif: $("#cboClasificacion option:selected").val() + $("#txt_cmateri").val() + $("#txt_cconser").val(),
+			caracte: $("#txt_cmurcol").val()+        
+				     $("#txt_ctechos").val()+        
+				     $("#txt_cmpisos").val()+        
+				     $("#txt_cpueven").val()+        
+				     $("#txt_crevest").val()+        
+				     $("#txt_cbanios").val()+        
+				     $("#txt_celectr").val(),
 			//Detalle Piso
 			nvaluni:$("#txt_pisovaluni").val(),
 			nincrem:$("#txt_pisoincrem").val(),

@@ -49,7 +49,7 @@ guardar = function() {
 			idsigma: $("#_dpredio").val(),
 			mpredio: $("#_mpredio").val(),
 			ctippre: $("#cboTipoPredioUrbano").val(),
-			cclasif: $("#cboClasificacion").val(),
+			cclasif: $("#cboClasificacion option:selected").attr("data-idsigma"),
 			ccondic: $("#cboCondicion").val(),        			
 			cestado: $("#cboEstado").val(),
 			cusogen: $("#cboUso").val(),       
