@@ -48,7 +48,7 @@
                     </tr>
                     <tr>
                         <td style="padding-right: 4px;text-align: right;">Clasificaci&oacute;n:</td>
-                        <td><select style="width: 190px;" id="cboClasificacion"><?php echo $this->util()->getComboContenedor('1000000104', $this->mpredio["cclasif"]); ?></select></td>
+                        <td><select style="width: 190px;" id="cboClasificacion"><?php echo $this->util()->getComboContenedorOtro('1000000223', $this->mpredio["cclasif"], "public.obtener_tabla_otro"); ?></select></td>
                     </tr>
                     <tr>
                         <td style="padding-right: 4px;text-align: right;">Habitantes:</td>
