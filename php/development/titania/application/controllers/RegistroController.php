@@ -724,6 +724,20 @@ class RegistroController extends Zend_Controller_Action {
         }
 		
     } 
+    
+    public function busqpredioAction(){
+    	  $this->_helper->layout->disableLayout();
+    	
+    	
+    }
+   public function busqprediocontrAction(){
+     	$this->_helper->getHelper('ajaxContext')->initContext();
+    
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+    	}
+    	
+    }
 		
 }  
 

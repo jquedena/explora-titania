@@ -29,7 +29,16 @@
 					<table class="panel-detalle-construccion" style="margin: 3px; padding: 5px;">
 						<tr>
 							<td width="90">Nivel</td>
-							<td width="35"><input id="txt_pisonivel" maxlength="2" class="ui-text ui-text-numeric" message="No ha ingresado el nivel" /></td>
+							<!-- <td width="35"><select  id="txt_pisonivel" class="ui-combobox-input" >
+							                <option id="460"  >piso </option>
+							               <option id="461" >sotano </option>
+							               <option id="462">azotea</option>
+							               <option id="463">mesanines</option>
+							                 
+											</select> </td>  -->
+											
+						 <td><select style="width: 190px;" id="txt_pisonivel"><?php echo $this->util()->getComboContenedor('1000000460', $this->mpredio["cusoesp"]); ?></select></td>
+            
 							<td width="510">&nbsp;</td>
 						</tr>
 						<tr>
@@ -120,9 +129,9 @@
 							<td>Val. Unit. Depreciado</td>
 							<td><input id="txt_pisovalare" class="ui-text-disable ui-text-numeric"  /></td>
 						</tr>
-						<tr>
+						<!--  <tr>
 							<td>Area Com&uacute;n</td>
-							<td><input id="txt_pisoarecom" class="ui-text ui-text-numeric" /></td>
+							<td><input id="txt_pisoarecom" class="ui-text ui-text-numeric" value=0  /></td>
 						</tr>
 						<tr>
 							<td>% Area Com&uacute;n</td>
@@ -130,8 +139,9 @@
 						</tr>
 						<tr>
 							<td>Val. Area Com.</td>
-							<td><input id="txt_pisovalcom" class="ui-text-disable ui-text-numeric"  /></td>
+							<td><input id="txt_pisovalcom" class="ui-text-disable ui-text-numeric"  value=0 /></td>
 						</tr>
+						 -->
 						<tr>
 							<td>Val. del Predio</td>
 							<td><input id="txt_valpre" class="ui-text-disable ui-text-numeric"  />

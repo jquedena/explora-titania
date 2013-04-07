@@ -44,6 +44,7 @@ guardar = function() {
 			nporcom: $("#txt_pisoporcom").val(),
 			nestado: '1',
 			cperiod: $("#txtPeriodo").val(),
+			cclasif: $("#cboClasificacion").val(),
 			//Detalle Piso
 			nvaluni:$("#txt_pisovaluni").val(),
 			nincrem:$("#txt_pisoincrem").val(),
@@ -52,6 +53,7 @@ guardar = function() {
 			nvalare:$("#txt_pisovalcom").val(),
 			nvalcom:$("#txt_pisoarecom").val(),
 			nvalpis:$("#txt_valpre").val()
+			
 	};
 
 	_post = $.post(path + "registro/guardarpiso", row);
