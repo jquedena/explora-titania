@@ -56,7 +56,8 @@
                     </tr>
                     <tr>
                     	<td colspan="2" align="right">
-                    		<button id="btnEditarPredio">Editar</button>
+                    	    <button id="btnCancelarDescrpPredio">Cancelar</button>
+                    	    <button id="btnEditarPredio">Editar</button>
                 			<button id="btnGrabarPredio">Grabar</button>
                     	</td>
                     </tr>

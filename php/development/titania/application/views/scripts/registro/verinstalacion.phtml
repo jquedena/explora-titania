@@ -9,9 +9,12 @@
 					<input id="txt_idsigma" type="hidden" value="" />
 					<table style="margin: 3px;">
 						<tr>
-							<td width="140">Nro. Pisos</td>
+							<td width="140">Nro. Pisos</td>									 	
 							<td width="35">
-								<input id="txt_instcnumpis"  maxlength="2" class="ui-text ui-text-numeric" style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/>
+<!--								<input id="txt_instcnumpis"  maxlength="2" class="ui-text ui-text-numeric" style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/>-->
+									<select style="width: 190px;" id="txt_instcnumpis">
+							 		<?php echo $this->util()->getComboContenedorOtro('1000000460', "", "public.obtener_tabla_otro"); ?>
+							 		</select>
 							</td>
 						</tr>
 <!-- 						<tr> -->
@@ -22,25 +25,31 @@
 							<td width="140">A&ntilde;o Construcci&oacute;n</td>
 							<td width="35"><input id="txt_instcanocon"  class="ui-text"  maxlength="4" style="width:50px;padding:2px;text-align:center;" onkeypress="return validarnumeros(event);"/></td>
 						</tr>
+						
+						<tr>
+							<td width="140">Descripci&oacute;n</td>
+<!--						<td width="35"><input id="txt_instvdesint" class="ui-text"  style="width:300px" value="" /></td>-->
+							<td width="35">	<select style="width: 190px;" id="txt_instvdesint">
+							 				<?php echo $this->util()->getComboContenedor('1000000443', null ); ?>
+							 				</select>
+							 </td>
+						</tr>
 						<tr>
 							<td width="140">Unidad de Medida</td>
 							<td width="35" ><select style="width: 150px;" id="cboinstctipint"><?php echo $this->util()->getComboContenedor('1000000439', null); ?></select></td>
 						</tr>
-						<tr>
-							<td width="140">Descripci&oacute;n</td>
-							<td width="35"><input id="txt_instvdesint" class="ui-text"  style="width:300px" value="" /></td>
-						</tr>						
-						<tr>
+											
+						<tr id="trAncho">
 							<td width="140">Ancho</td>
-							<td width="35"><input id="txt_instnvalanc" class="ui-text ui-text-numeric" style="width:50px;padding:2px; "/></td>
+							<td width="35"><input id="txt_instnvalanc" class="ui-text ui-text-numeric" style="width:50px;padding:2px; " value="0"/></td>
 						</tr>
-						<tr>
+						<tr id="trAltura">
 							<td width="140">Altura</td>
-							<td width="35"><input id="txt_instnvalalt" class="ui-text ui-text-numeric"   style="width:50px; padding:2px" value="" /></td>
+							<td width="35"><input id="txt_instnvalalt" class="ui-text ui-text-numeric"   style="width:50px; padding:2px" value="0" /></td>
 						</tr>
-						<tr>
+						<tr id="trLargo">
 							<td width="140">Largo</td>
-							<td width="35"><input id="txt_instnvallar" class="ui-text ui-text-numeric"  style="width:50px; padding:2px" value="" /></td>
+							<td width="35"><input id="txt_instnvallar" class="ui-text ui-text-numeric"  style="width:50px; padding:2px" value="0" /></td>
 						</tr>
 						<tr>
 							<td width="140">Val. Instalaci&oacute;n</td>
@@ -64,6 +73,37 @@
  -->
  
 <script>
+
+	$("#trAncho").hide();
+	$("#trAltura").hide();
+	$("#trLargo").hide();
+
+	$("#cboinstctipint").change(function(){
+		//METRO CUADRADO
+		if ($("#cboinstctipint").val()=='1000000440'){
+			$("#trAncho").show();
+			$("#trAltura").show();
+		    $("#trLargo").hide();
+		}
+
+		//METRO CUBICO
+
+		if ($("#cboinstctipint").val()=='1000000442'){
+			$("#trAncho").show();
+			$("#trAltura").show();
+		    $("#trLargo").show();
+		}
+		
+
+		//METRO LINEAL
+
+		if ($("#cboinstctipint").val()=='1000000441'){
+			$("#trAncho").hide();
+			$("#trAltura").hide();
+		    $("#trLargo").show();
+		}
+		 
+	});
 
 
 	 $("#btnguardar").button({
@@ -121,9 +161,11 @@
 		    		nvalanc:$("#txt_instnvalanc").val(),  
 		    		nvalalt:$("#txt_instnvalalt").val(),   
 		    		nvallar:$("#txt_instnvallar").val(),  
-		    		ctipint:$("#cboinstctipint").val(),  
-		    		vdesint:$("#txt_instvdesint").val(),
-		    		nvalins:$("#txt_instnvalins").val()  
+		    		ctipint:$("#txt_instvdesint").val(),  
+		    		//vdesint:$("#txt_instvdesint").val(),
+		    		vdesint: $("#txt_instvdesint option:selected").text(), 
+		    		nvalins:$("#txt_instnvalins").val(),  
+		    		nestado: 1 
 		    	//	dafecta:''
 			});
 		console.log(row);

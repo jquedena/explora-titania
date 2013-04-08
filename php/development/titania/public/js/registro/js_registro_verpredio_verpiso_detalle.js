@@ -8,21 +8,93 @@ validar = function() {
    		}
 	});*/
 	
+	if ($("#txt_pisonivel").val()=='9999999999'){
+		alert("Ingrese el Nivel del Piso");
+		isValid = false;
+	}
+	
+	if ($("#txt_pisoanocon").val()==''){
+		alert("Ingrese el A\xf1o del Piso");
+		isValid = false;
+	}
+	
+	if ($("#txt_pisomescon").val()==''){
+		alert("Ingrese el Mes de la Construccion");
+		return false;
+	}
+	
+	if ($("#ctxt_cmateri").val()==''){
+		alert("Ingrese la materia Construccion");
+		isValid = false;	
+	}
+	
+	if ($("#ctxt_cconser").val()==''){
+		alert("Ingrese el estado de la Conservacion");
+		isValid = false;
+	}
+	
+	if ($("#ctxt_cmurcol").val()==''){
+		alert("Ingrese el estado de Muros y Columnas");
+		isValid = false;
+	}
+	
+	if ($("#ctxt_ctechos").val()==''){
+		alert("Ingrese el estado de Techo");
+		isValid = false;
+	}
+	
+	if ($("#ctxt_cmpisos").val()==''){
+		alert("Ingrese el estado de Piso");
+		isValid = false;
+	}
+	
+	if ($("#ctxt_crevest").val()==''){
+		alert("Ingrese el Revestimiento");
+		isValid = false;
+	}
+	
+	if ($("#ctxt_cpueven").val()==''){
+		alert("Ingrese el Revestimiento del Puertas y Ventanas");
+		isValid = false;
+	}
+	
+	
+	if ($("#ctxt_cbanios").val()==''){
+		alert("Ingrese el Ba\xf1os");
+		isValid = false;
+	}
+	
+	if ($("#ctxt_celectr").val()==''){
+		alert("Ingrese Instalaciones Electricas");
+		isValid = false;
+	}
+	
+	if ($("#txt_pisoarecon").val()==''){
+		alert("Ingrese Area Construccion");
+		isValid = false;
+	}
+	
+	
 	if(!isValid) {
 			openDialogWarning("Los campos deben estar llenos.", 380, 150);	
 			return false;
 	} else {
-		//GuardarPiso();
+		/*GuardarPiso();
 		openDialogWarning("Los datos han sido guardados.", 380, 150);
-		closeDialog('jqDialog1');
+		closeDialog('jqDialog1');*/
+		return true;
 	}
 
 // navPanelPiso()	
-	return true;
+	//return true;
 };
 
 guardar = function() {
 	//debugger;
+	
+	
+	
+	
 	row = {
 			idsigma: $("#txt_idsigma").val(),
 			cnitems: 0,
@@ -42,7 +114,7 @@ guardar = function() {
 			narecon: $("#txt_pisoarecon").val(),      
 			narecom: $("#txt_pisoarecom").val(),
 			nporcom: $("#txt_pisoporcom").val(),
-			nestado: '1',
+			nestado: 1,
 			cperiod: $("#txtPeriodo").val(),
 			cclasif: $("#cboClasificacion option:selected").val() + $("#txt_cmateri").val() + $("#txt_cconser").val(),
 			caracte: $("#txt_cmurcol").val()+        
