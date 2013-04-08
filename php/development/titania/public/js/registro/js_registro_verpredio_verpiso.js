@@ -197,12 +197,59 @@ btnEliminarPiso = {
         indexRow = $("#ctblPiso").val();
         if(gsr){
         	if(confirm("Seguro de eliminar")){
-        		if($("#tblPiso").jqGrid('delRowData', gsr)) {
-        			$("#ctblPiso").val(indexRow - 1);
+        	   //	if($("#tblPiso").jqGrid('delRowData', gsr)) {
+        		
+        		var row2 = $("#tblPiso").jqGrid('getRowData', gsr);
+        		
+
+        		row = {
+        				idsigma: row2.idsigma,
+        				cnitems: 0,
+        				dpredio: row2.dpredio ,
+        				cnumpis: row2.cnumpis,
+        				canocon: row2.canocon,
+        				cmescon: row2.cmescon,
+        				cmateri: row2.cmateri ,       
+        				cconser: row2.cconser,
+        				cmurcol: row2.cmurcol ,     
+        				ctechos: row2.ctechos,
+        				cmpisos: row2.cmpisos,    
+        				cpueven: row2.cpueven,
+        				crevest: row2.crevest,      
+        				cbanios: row2.cbanios,
+        				celectr: row2.celectr,		
+        				narecon: row2.narecon,      
+        				narecom: row2.narecom,
+        				nporcom: row2.nporcom,
+        				nestado: 0,
+        				cperiod: row2.cperiod,
+        				cclasif: $("#cboClasificacion option:selected").val() + row2.xmateri,
+        				caracte: row2.xconser,
+        				//Detalle Piso
+        				nvaluni: row2.nvaluni,
+        				nincrem: row2.nincrem,
+        				npordep: row2.npordep,
+        				ndepred: row2.ndepred,
+        				nvalare: row2.nvalare,
+        				nvalcom: row2.nvalcom,
+        				nvalpis: row2.nvalpis
+        				
+        		};
+
+        		_post = $.post(path + "registro/guardarpiso", row);
+        	    _post.success(function(data){
+        	    	optionPiso = $.extend(optionPiso, {data: data.data});
+        	    	procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
+        		});
+        	       
+        	    _post.error(postError);	
+        		
+        		
+        		$("#ctblPiso").val(indexRow - 1);
         		} else {
         			alert('Error no se pudo eliminar');
-        		}
-        	}
+        		} 
+        	//}
         } else { 
             openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
         } 

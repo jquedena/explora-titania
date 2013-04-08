@@ -3,7 +3,8 @@ habilitarComponenteDetalle = function(disabled){
     $(".ui-text, .ui-combobox-input").toggleClass("ui-text-disable");
     $(".ui-combobox a").button("option", "disabled", disabled);
     $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto").datepicker("option", "disabled", disabled);
-    $("#btnGrabarPredio").button("option", "disabled", disabled);
+   
+    //$("#btnGrabarPredio").button("option", "disabled", disabled);
     
     if($("#cboCondicion").val() == "1000000145"){
         $("#btnVerCondominante").button("option", "disabled", disabled);
@@ -16,19 +17,20 @@ habilitarComponenteDetalle = function(disabled){
         }
     }
     
-    $("#btnEditarPredio").button("option", "disabled", !disabled);
+    //$("#btnEditarPredio").button("option", "disabled", !disabled);
+   
     $("#txtPeriodo").toggleClass("ui-text-disable");
 
     if(disabled) {
         $("#linkPeriodo").button("option", "disabled", false);
         $("#txtPeriodo").attr("disabled", false);
         
-        var hEd = CKEDITOR.instances['txtObservacionInafectacion'];
+        /*var hEd = CKEDITOR.instances['txtObservacionInafectacion'];
         if (hEd) {
             CKEDITOR.remove(hEd);
-        }
+        }*/
     } else {
-        CKEDITOR.replace('txtObservacionInafectacion', config);
+        //CKEDITOR.replace('txtObservacionInafectacion', config);
     }
 };
 
@@ -201,20 +203,76 @@ loadVerDetalle = function(){
     }).bind("click", function(){
         openDialogData1("registro/direccion", {}, "710", "180", "Ubicaci&oacute;n del Predio");
     });
+    
+     $("#btnCancelarDescrpPredio").hide(); 
+    
+    $("#btnGrabarPredio").button("option", "disabled", true);
 
     $("#btnEditarPredio").button({
         icons: {primary:'ui-icon-pencil'}
     }).bind('click', function(){
     	
-    	    	
+    	$("#btnEditarPredio").hide();
     	
+    	$("#btnCancelarDescrpPredio").show();
     	
+    	//$("#btnEditarPredio").button("option", "disabled", false);
+    		
         habilitarComponenteDetalle(false);
+        
+        $("#btnGrabarPredio").button("option", "disabled", false);
         
         //$( "#tabsDetallePredio" ).tabs( "option", "disabled", [ 1,2,3,4,5 ] );
         
+        //$("#btnEditarPredio").html("Cancelar");
+        
         habilitab(0);
+        //$("#btnEditarPredio").text("Cancelar"); 
+        //$('#btnEditarPredio').unbind("click").click(function(){
+        	//$("#btnEditarPredio").text("Cancelar"); 
+        	/*$("#btnEditarPredio").button({
+                icons: {primary:'ui-icon-pencil'}
+            }).bind('click', function(){
+            	 
+            	
+            	  //habilitarComponenteDetalle(true);
+            	   $("#btnGrabarPredio").button("option", "disabled", true);
+            	   habilitab(0);
+        	});*/
+        	 // $("#btnGrabarPredio").button("option", "disabled", true);
+        	 // $("#btnGrabarPredio").button("option", "disabled", false);
+        //});
     });
+    
+ 
+    $("#btnCancelarDescrpPredio").button({
+        icons: {primary:'ui-icon-pencil'}
+    }).bind('click', function(){
+    	$("#btnGrabarPredio").button("option", "disabled", true);
+ 	   habilitab(0);
+ 	   
+    	$("#btnCancelarDescrpPredio").hide();
+    	$("#btnEditarPredio").show();
+    	
+    	$("#btnGrabarPredio").button("option", "disabled", true);
+    	
+    	habilitarComponenteDetalle(true);
+    	
+    	habilitab(1);
+    	
+    });
+
+    /*$("#btnEditarPredio").button({
+        icons: {primary:'ui-icon-pencil'}
+    }).bind('click', function(){
+    	//$("#btnEditarPredio").text("Editar");
+    	
+    	  habilitarComponenteDetalle(true);
+    	   $("#btnGrabarPredio").button("option", "disabled", true);
+    	   habilitab(1);
+	});*/
+    
+       
 
     $("#btnFinalizar").button({
     	icons: {primary:'ui-icon-stop'}
@@ -226,6 +284,9 @@ loadVerDetalle = function(){
         icons: {primary:'ui-icon-disk'},
         disabled: true
     }).bind('click', function(){
+    	
+    	$("#btnGrabarPredio").button("option", "disabled", true);
+    	
     	habilitarComponenteDetalle(true);
     	
     	habilitab(1);
@@ -240,6 +301,25 @@ loadVerDetalle = function(){
 
         
         guardar();
+        
+       // $('#btnEditarPredio').unbind("click").click(function(){
+        	
+        	 $("#btnEditarPredio").button({
+        	        icons: {primary:'ui-icon-pencil'}
+        	    }).bind('click', function(){
+        	      	$("#btnEditarPredio").button("option", "disabled", false);
+            		
+                    habilitarComponenteDetalle(false);
+                    
+                    $("#btnGrabarPredio").button("option", "disabled", false);
+                    
+                    //$( "#tabsDetallePredio" ).tabs( "option", "disabled", [ 1,2,3,4,5 ] );
+                    
+                    habilitab(0);
+        	    });
+       
+        	 $("#btnCancelarPredio").hide();	
+       // });
         
     });
 

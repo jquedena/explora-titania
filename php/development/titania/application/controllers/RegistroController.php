@@ -405,7 +405,7 @@ class RegistroController extends Zend_Controller_Action {
 					.'0'.',' //celectr
 					.'0'.',' //narecom
 					.'0'.',' //nporcom
-					.'1'.',' //nestado
+					.$_POST['nestado'].',' //nestado
 					.$vhostnm.','
 					.$coduser.','
 					.date("y-m-d").','
