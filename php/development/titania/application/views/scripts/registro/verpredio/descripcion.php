@@ -41,7 +41,7 @@
                             <table cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td style="padding-right: 2px;"><input class="ui-text ui-text-numeric" style="width: 75px" id="nporcen" value="<?php echo $this->mpredio["nporcen"]; ?>" /></td>
-                                    <td style="vertical-align: top;"><button id="btnVerCondominante" style="line-height: 20px; height: 20px;" title="Ver condominantes" /></td>
+                                    <td style="vertical-align: top;"><button id="btnVerCondominante" style="line-height: 20px; height: 20px;" title="Ver condominantes" ></button></td>
                                 </tr>
                             </table>
                         </td>
@@ -132,3 +132,33 @@
         </td>
     </tr>
 </table>
+
+
+
+<script type="text/javascript">
+    
+    $(function() {
+
+    	$("#btnCancelarDescrpPredio").click(function() {
+        	//alert("aa");
+    		$("#txtTipoPredio").val("<?php echo $this->mpredio['vtippre']; ?>");
+    		$("#txtUso").val ("<?php echo $this->mpredio['vusogen']; ?>");
+
+    	  //alert($("#cboTipoPredio").val());
+    		
+  		   if ( $("#cboTipoPredio").val()=="1000000090" ){
+  		  		   $("#panelTerreno").hide();  	  		   
+  		   }
+  		   else{
+    			 $("#panelTerreno").show();
+  		   }
+  	  		    
+    		
+    		
+    	});
+
+    	
+    });
+
+</script>
+    

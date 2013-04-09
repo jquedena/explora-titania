@@ -11,67 +11,92 @@ validar = function() {
 	if ($("#txt_pisonivel").val()=='9999999999'){
 		alert("Ingrese el Nivel del Piso");
 		isValid = false;
+		return false;
 	}
 	
 	if ($("#txt_pisoanocon").val()==''){
 		alert("Ingrese el A\xf1o del Piso");
 		isValid = false;
+		$("#txt_pisoanocon").focus();
+		return false;
 	}
 	
 	if ($("#txt_pisomescon").val()==''){
 		alert("Ingrese el Mes de la Construccion");
+		isValid = false;
+		$("#txt_pisomescon").focus();
 		return false;
 	}
 	
 	if ($("#ctxt_cmateri").val()==''){
 		alert("Ingrese la materia Construccion");
-		isValid = false;	
+		isValid = false;
+		$("#txt_cmateri").focus();
+		return false;
 	}
 	
 	if ($("#ctxt_cconser").val()==''){
 		alert("Ingrese el estado de la Conservacion");
 		isValid = false;
+		$("#txt_cconser").focus();
+		return false;
 	}
 	
 	if ($("#ctxt_cmurcol").val()==''){
 		alert("Ingrese el estado de Muros y Columnas");
 		isValid = false;
+		$("#txt_cmurcol").focus();
+		return false;
 	}
 	
 	if ($("#ctxt_ctechos").val()==''){
 		alert("Ingrese el estado de Techo");
 		isValid = false;
+		$("#txt_ctechos").focus();
+		return false;
 	}
 	
 	if ($("#ctxt_cmpisos").val()==''){
 		alert("Ingrese el estado de Piso");
 		isValid = false;
+		$("#txt_cmpisos").focus();
+		return false;
 	}
 	
 	if ($("#ctxt_crevest").val()==''){
 		alert("Ingrese el Revestimiento");
 		isValid = false;
+		$("#txt_crevest").focus();
+		return false;
 	}
 	
 	if ($("#ctxt_cpueven").val()==''){
 		alert("Ingrese el Revestimiento del Puertas y Ventanas");
 		isValid = false;
+		$("#txt_cpueven").focus();
+		return false;
 	}
 	
 	
 	if ($("#ctxt_cbanios").val()==''){
 		alert("Ingrese el Ba\xf1os");
 		isValid = false;
+		$("#txt_cbanios").focus();
+		return false;
 	}
 	
 	if ($("#ctxt_celectr").val()==''){
 		alert("Ingrese Instalaciones Electricas");
 		isValid = false;
+		$("#txt_celectr").focus();
+		return false;
 	}
 	
 	if ($("#txt_pisoarecon").val()==''){
 		alert("Ingrese Area Construccion");
 		isValid = false;
+		$("#txt_pisoarecon").focus();
+		return false;
 	}
 	
 	
