@@ -110,12 +110,6 @@ class RegistroController extends Zend_Controller_Action {
             $this->view->cperiod = date("Y");
             
             
-           
-            
-            
-            
-            
-            
         }
        // $pintar->EjecutarFuncion($fun);
     }

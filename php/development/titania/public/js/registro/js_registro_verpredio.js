@@ -46,11 +46,12 @@ function habilitab(tipo ){
 }
 
 
-guardar = function() {
+guardar = function() {	
+	
 	row = { 
 			idsigma: $("#_dpredio").val(),
 			mpredio: $("#_mpredio").val(),
-			ctippre: $("#cboTipoPredioUrbano").val(),
+			ctippre: $("#cboTipoPredio").val(),
 			cclasif: $("#cboClasificacion option:selected").attr("data-idsigma"),
 			ccondic: $("#cboCondicion").val(),        			
 			cestado: $("#cboEstado").val(),
@@ -63,16 +64,16 @@ guardar = function() {
 			ncomtot: $("#ntotcom").val(),      
 			nporcom: $("#nporcom").val(),
 			narecom: $("#narecom").val(),		
-			nporafe: 0,      
-			dfecadq: "",
-			dfecdes: "",
-			dafecta: "", 
+			nporafe: 100,      
+			dfecadq: $("#dtpFechaAdquisicion").val(),
+			dfecdes: new Date(),
+			dafecta: new Date(), 
 			nfrente: $("#nfronti").val(),
 			ncanper: $("#nnrohab").val() ,
 			ctippar: $("#cboParque").val(),
-			vobserv:"",
-			nestado:'1',
-			mhresum:$("#_mhresum").val() 
+			vobserv: "",
+			nestado: 1,
+			mhresum: $("#_mhresum").val() 
 			 
 	};
 
@@ -287,6 +288,8 @@ loadVerDetalle = function(){
     	
     	$("#btnGrabarPredio").button("option", "disabled", true);
     	
+    	 $("#btnEditarPredio").show();
+    	
     	habilitarComponenteDetalle(true);
     	
     	habilitab(1);
@@ -304,7 +307,7 @@ loadVerDetalle = function(){
         
        // $('#btnEditarPredio').unbind("click").click(function(){
         	
-        	 $("#btnEditarPredio").button({
+        	/* $("#btnEditarPredio").button({
         	        icons: {primary:'ui-icon-pencil'}
         	    }).bind('click', function(){
         	      	$("#btnEditarPredio").button("option", "disabled", false);
@@ -316,9 +319,9 @@ loadVerDetalle = function(){
                     //$( "#tabsDetallePredio" ).tabs( "option", "disabled", [ 1,2,3,4,5 ] );
                     
                     habilitab(0);
-        	    });
+        	    });*/
        
-        	 $("#btnCancelarPredio").hide();	
+        	 $("#btnCancelarDescrpPredio").hide();	
        // });
         
     });
