@@ -110,12 +110,113 @@
          icons: {primary:'ui-icon-disk'}
      }).bind('click', function(){
     	 isValid = true;
-    	 $("#forminstalacion").find("input").each(function(){
+
+    	 /*$("#forminstalacion").find("input").each(function(){
  			if($(this).val().length ==0){
  				isValid = false;
  	            return;
  	        }
- 		});
+ 		});*/
+
+  		if ($("#txt_instcnumpis").val()=='9999999999'){
+			alert("Seleccione el nivel.");
+			$("#txt_instcnumpis").focus();
+			isValid = false;
+			  return;	
+		}
+
+		if  ($("#txt_instcanocon").val()==''){
+			alert("Ingrese el a\xf1o de construccion");
+			$("#txt_instcanocon").focus();
+			isValid = false;
+			  return;
+	 	} 
+		
+		if ($("#txt_instvdesint").val()=='9999999999'){
+			alert("Ingrese la descripcion."); 
+			$("#txt_instvdesint").focus();
+			isValid = false;
+			  return;
+		}
+
+		if ($("#cboinstctipint").val()=='9999999999'){
+			alert("Seleccione la Unidad de Medida.");
+			$("#cboinstctipint").focus();
+			isValid = false;
+			  return;		
+		} 	 	
+
+
+		//METRO CUADRADO
+		if ($("#cboinstctipint").val()=='1000000440'){
+
+			if ($("#txt_instnvalanc").val()>0){
+				alert("Ingrese el ancho");
+				$("#txt_instnvalanc").focus();
+				isValid = false;
+				return;
+			}
+
+			if ($("#txt_instnvalalt").val()>0){
+				alert("Ingrese la altura");
+				$("#txt_instnvalalt").focus();
+				isValid = false;
+				return;
+			}
+		
+			//$("#trAltura").show();
+			
+			
+		}
+
+		//METRO CUBICO
+
+		if ($("#cboinstctipint").val()=='1000000442'){
+
+		
+			  if ($("#txt_instnvalanc").val()==0){
+					alert("Ingrese el ancho");
+					$("#txt_instnvalanc").focus();
+					isValid = false;
+					return;
+				}
+
+				if ($("#txt_instnvalalt").val()==0){
+					alert("Ingrese la altura");
+					$("#txt_instnvalalt").focus();
+					isValid = false;
+					return;
+				}
+
+				if ($("#txt_instnvallar").val()==0){
+					alert("Ingrese el largo");		
+			    	$("#txt_instnvallar").focus();
+			    	isValid = false;
+					return;
+				}
+			  
+		}
+		
+
+		//METRO LINEAL
+
+		if ($("#cboinstctipint").val()=='1000000441'){
+			alert("Ingrese el largo");		
+		    $("#txt_instnvallar").focus();
+		    isValid = false;
+			return;
+		}
+		
+		
+
+		if ($("#txt_instnvalins").val()==0){
+			alert("Ingrese el Valor de Instalacion");
+			$("#txt_instnvalins").focus();
+			isValid = false;
+			return;
+		} 
+  		
+   		
  		if(!isValid){
  		   openDialogWarning("Los campos deben estar llenos.", 380, 150);	
  		}else{
@@ -145,6 +246,9 @@
 		// var actual= new Date();
 	   //  var anyo= actual.getUTCFullYear();
 
+
+		
+	        
 	    row = $.extend(row, {
 					idsigma:$("#txt_idsigma").val(),
 					dpredio:$("#_dpredio").val(),

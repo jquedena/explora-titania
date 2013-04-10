@@ -17,7 +17,8 @@
                     </tr>
                     <tr>
                         <td style="padding-right: 4px;text-align: right;">Tipo:</td>
-                        <td><select style="width: 190px;" id="cboTipoPredioUrbano"><?php echo $this->util()->getComboContenedor(($this->mpredio["ctippre"]=='1000000091'? '1000000209': '1000000202'), null); ?></select></td>
+<!--                    <td><select style="width: 190px;" id="cboTipoPredioUrbano"><?php echo $this->util()->getComboContenedor(($this->mpredio["ctippre"]=='1000000091'? '1000000209': '1000000202'), null); ?></select></td>-->
+						<td><select style="width: 190px;" id="cboTipoPredioUrbano"><?php echo $this->util()->getComboContenedor(($this->mpredio["ctippre"]=='1000000091'? '1000000209': '1000000202'),$this->mpredio["csubtip"] ); ?></select></td>
                     </tr>
                     <tr>
                         <td style="padding-right: 4px;text-align: right;">Uso:</td>
@@ -132,7 +133,8 @@
         </td>
     </tr>
 </table>
-
+<div id="ajaxaca">
+</div>
 
 
 <script type="text/javascript">
@@ -140,20 +142,18 @@
     $(function() {
 
     	$("#btnCancelarDescrpPredio").click(function() {
-        	//alert("aa");
-    		$("#txtTipoPredio").val("<?php echo $this->mpredio['vtippre']; ?>");
-    		$("#txtUso").val ("<?php echo $this->mpredio['vusogen']; ?>");
+   
+    	 
+    		row = {     		
+    				mpredio: $("#_mpredio").val(),    				
+    				mhresum: $("#_mhresum").val(), 
+    				cperiod: $("#cboPeriodo").val()    				 
+    		};
 
-    	  //alert($("#cboTipoPredio").val());
-    		
-  		   if ( $("#cboTipoPredio").val()=="1000000090" ){
-  		  		   $("#panelTerreno").hide();  	  		   
-  		   }
-  		   else{
-    			 $("#panelTerreno").show();
-  		   }
-  	  		    
-    		
+    		_post = $.post(path + "registro/recargarpredio", row);
+    	    _post.success(function(data){
+        	    $("#ajaxaca").html(data);
+    	    }); 
     		
     	});
 

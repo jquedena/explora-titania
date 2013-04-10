@@ -246,8 +246,6 @@ btnEliminarPiso = {
         		
         		
         		$("#ctblPiso").val(indexRow - 1);
-        		} else {
-        			alert('Error no se pudo eliminar');
         		} 
         	//}
         } else { 
