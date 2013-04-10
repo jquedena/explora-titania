@@ -530,7 +530,10 @@ class RegistroController extends Zend_Controller_Action {
 			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
 			$coduser = $ddatosuserlog->cidpers;
 			$vhostnm = $ddatosuserlog->vhostnm;
-				
+
+	 //vhostnm, vusernm, ddatetm, dfectra, cnotari, ctiptra, cpartid, csubtip, cmotadq, mhresum
+			//print_r($_POST);
+			
 			$row =  $_POST["idsigma"].','.
 					$_POST["mpredio"].','.
 					$_POST["ctippre"].','.
@@ -547,9 +550,9 @@ class RegistroController extends Zend_Controller_Action {
 					$_POST["nporcom"].','.
 					$_POST["narecom"].','.
 					$_POST["nporafe"].','.
-					$_POST["dfecdes"].','.
-					$_POST["dfecadq"].','.					
-					$_POST["dafecta"].','.
+					date("d-m-y",strtotime($_POST["dfecadq"])).','. //$_POST["dfecdes"].','.
+					date("y-m-d",strtotime('2012-04-25')).','.					
+					date("y-m-d",strtotime('2012-04-01')).','.
 					$_POST["nfrente"].','.					
 					$_POST["ncanper"].','.
 					$_POST["ctippar"].','.
@@ -558,14 +561,17 @@ class RegistroController extends Zend_Controller_Action {
 					$vhostnm.','.
 				    $coduser.','.
 					date("y-m-d").','.
-					date("y-m-d").','.
-					"".','.
-					"".','.
-					"".','.
-					"".','.
-					"".','.
+					date("d-m-y",strtotime($_POST["dfectra"])).','.
+					$_POST["cnotari"].','.
+					$_POST["ctiptra"].','. 
+					$_POST["cpartid"].','. 
+					$_POST["csubtip"].','. 
+				 	$_POST["cmotadq"].','. 
 					$_POST["mhresum"];
-				
+
+			//echo 	date("d-m-y",strtotime($_POST["dfecadq"]));
+
+			//echo 	date("d-m-y",strtotime($_POST["dfectra"]));
 				
 			$parameters[] = $row;
 			$dataAdapter = new Model_DataAdapter();
@@ -733,6 +739,203 @@ class RegistroController extends Zend_Controller_Action {
     	}
     	
     }
+    
+    public function recargarpredioAction(){
+    
+      	$this->_helper->getHelper('ajaxContext')->initContext();
+    
+      	   $pintar = New Libreria_Pintar();
+      	   
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+    	  	
+    
+            $parameters[] = $this->_request->getPost('mpredio');
+            $parameters[] = $this->_request->getPost('mhresum'); 
+            $parameters[] = $this->_request->getPost('cperiod');
+            
+            $dataAdapter = new Model_DataAdapter();
+            $rows = $dataAdapter->executeAssocQuery("pl_function.ver_predio", $parameters);
+            
+           // print_r($rows );
+           
+               $fun[]=array(' 
+            // Destroy the combobox
+			$("#cboTipoPredio").combobox("destroy");
+			
+			// Unselect the currently selected option
+			$("#cboTipoPredio option:selected").removeAttr("selected");
+			
+			// Select the option you want to select
+			$("#cboTipoPredio option[value='.$rows[0]['ctippre'].']").attr("selected", "selected");
+			
+			// Create the combobox again
+			$("#cboTipoPredio").combobox();');
+			
+             $fun[]=array(' 
+            // Destroy the combobox
+			$("#cboTipoPredioUrbano").combobox("destroy");
+			
+			// Unselect the currently selected option
+			$("#cboTipoPredioUrbano option:selected").removeAttr("selected");
+			
+			// Select the option you want to select
+			$("#cboTipoPredioUrbano option[value='.$rows[0]['csubtip'].']").attr("selected", "selected");
+			
+			// Create the combobox again
+			$("#cboTipoPredioUrbano").combobox();');
+
+               $fun[]=array(' 
+            // Destroy the combobox
+			$("#cboUso").combobox("destroy");
+			
+			// Unselect the currently selected option
+			$("#cboUso option:selected").removeAttr("selected");
+			
+			// Select the option you want to select
+			$("#cboUso option[value='.$rows[0]['cusogen'].']").attr("selected", "selected");
+			
+			// Create the combobox again
+			$("#cboUso").combobox();');
+
+			$fun[]=array(' 
+            // Destroy the combobox
+			$("#cboUsoEspecifico").combobox("destroy");
+			
+			// Unselect the currently selected option
+			$("#cboUsoEspecifico option:selected").removeAttr("selected");
+			
+			// Select the option you want to select
+			$("#cboUsoEspecifico option[value='.$rows[0]['cusoesp'].']").attr("selected", "selected");
+			
+			// Create the combobox again
+			$("#cboUsoEspecifico").combobox();');               
+
+				$fun[]=array(' 
+            // Destroy the combobox
+			$("#cboEstado").combobox("destroy");
+			
+			// Unselect the currently selected option
+			$("#cboEstado option:selected").removeAttr("selected");
+			
+			// Select the option you want to select
+			$("#cboEstado option[value='.$rows[0]['cestado'].']").attr("selected", "selected");
+			
+			// Create the combobox again
+			$("#cboEstado").combobox();');   
+
+			$fun[]=array(' 
+            // Destroy the combobox
+			$("#cboCondicion").combobox("destroy");
+			
+			// Unselect the currently selected option
+			$("#cboCondicion option:selected").removeAttr("selected");
+			
+			// Select the option you want to select
+			$("#cboCondicion option[value='.$rows[0]['ccondic'].']").attr("selected", "selected");
+			
+			// Create the combobox again
+			$("#cboCondicion").combobox();');   
+
+			$val[]=array('nporcen',$rows[0]['nporcen'] ,'val');
+			
+			$fun[]=array(' 
+            // Destroy the combobox
+			$("#cboClasificacion").combobox("destroy");
+			
+			// Unselect the currently selected option
+			$("#cboClasificacion option:selected").removeAttr("selected");
+			
+			// Select the option you want to select
+			$("#cboClasificacion option[data-idsigma='.$rows[0]['cclasif'].']").attr("selected", "selected");
+			
+			// Create the combobox again
+			$("#cboClasificacion").combobox();');   
+			
+			
+			$val[]=array('nnrohab',$rows[0]['ncanper'] ,'val');
+			
+			
+			$fun[]=array(' 
+            // Destroy the combobox
+			$("#cboMotivo").combobox("destroy");
+			
+			// Unselect the currently selected option
+			$("#cboMotivo option:selected").removeAttr("selected");
+			
+			// Select the option you want to select
+			$("#cboMotivo option[value='.$rows[0]['cmotadq'].']").attr("selected", "selected");
+			
+			// Create the combobox again
+			$("#cboMotivo").combobox();');   
+			
+			$val[]=array('dtpFechaAdquisicion',$rows[0]['dfecadq'] ,'val');
+			
+			$val[]=array('dtpFechaTransferencia', $rows[0]['dfecadq'],'val'); 
+			
+			$val[]=array('txtNotaria', $rows[0]['cnotari'] ,'val');
+			
+			$val[]=array('txtTipoTransferencia', $rows[0]['ctiptra'],'val'); 
+			
+			$val[]=array('txtPartida',$rows[0]['cpartid'],'val');
+			
+			$fun[]=array(' 
+            // Destroy the combobox
+			$("#cboCondicion").combobox("destroy");
+			
+			// Unselect the currently selected option
+			$("#cboCondicion option:selected").removeAttr("selected");
+			
+			// Select the option you want to select
+			$("#cboCondicion option[value='.$rows[0]['ccondic'].']").attr("selected", "selected");
+			
+			// Create the combobox again
+			$("#cboCondicion").combobox();');   
+				
+            
+            
+         
+            //Terreno
+            $val[]=array('nareter',$rows[0]['ntertot'] ,'val');
+            $val[]=array('narecom',$rows[0]['ncomtot'] ,'val');
+            $val[]=array('nporter',$rows[0]['nporter'] ,'val');
+            $val[]=array('nporcom',$rows[0]['nporcom'] ,'val');
+            $val[]=array('ntotter',$rows[0]['nterren'] ,'val');
+            $val[]=array('ntotcom',$rows[0]['narecom'] ,'val');
+            $val[]=array('nfronti',$rows[0]['nfrente'] ,'val');
+            //$val[]=array('cboParque', $this-> getComboContenedor('1000000219', $rows[0]['ctippar']),'html' );
+            
+            $fun[]=array(' 
+            // Destroy the combobox
+			$("#cboParque").combobox("destroy");
+			
+			// Unselect the currently selected option
+			$("#cboParque option:selected").removeAttr("selected");
+			
+			// Select the option you want to select
+			$("#cboParque option[value='.$rows[0]['ctippar'].']").attr("selected", "selected");
+			
+			// Create the combobox again
+			$("#cboParque").combobox();
+			
+			 $(".ui-text, .ui-combobox-input").attr("disabled", true);
+    		 $(".ui-text, .ui-combobox-input").toggleClass("ui-text-disable");
+    		 $(".ui-combobox a").button("option", "disabled", true);
+						
+			');
+			            
+            
+//            $val[]=array('narecom',$rows[0]['ncomtot'] ,'val');
+//            $val[]=array('narecom',$rows[0]['ncomtot'] ,'val');
+//            $val[]=array('narecom',$rows[0]['ncomtot'] ,'val');
+//            $val[]=array('narecom',$rows[0]['ncomtot'] ,'val');
+//            $val[]=array('narecom',$rows[0]['ncomtot'] ,'val');
+            
+          
+    	}
+    	 $pintar->PintarValor($val); 
+    	 $pintar->EjecutarFuncion($fun);
+	}
 		
 }  
 

@@ -44,6 +44,7 @@
             .css({"width": select.css("width")})
             .autocomplete({
                 delay: 0,
+                autoFocus :true,
                 minLength: 0,
                 source: function( request, response ) {
                     var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
@@ -140,6 +141,7 @@
 autocompletar = function(id, data, select) {
 	$(id).autocomplete({
 		minLength: 0,
+		autoFocus: true,
 		source: data,
 		select: select
 	}).on("focus", function() {

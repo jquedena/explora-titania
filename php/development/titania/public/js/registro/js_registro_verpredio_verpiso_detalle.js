@@ -8,6 +8,13 @@ validar = function() {
    		}
 	});*/
 	
+	
+	if ($("#cboClasificacion").val()=='9999999999'){
+		openDialogWarning("Seleccione la Clasificacion.", 380, 150);	
+		isValid = false;
+		return false;
+	} 
+	
 	if ($("#txt_pisonivel").val()=='9999999999'){
 		alert("Ingrese el Nivel del Piso");
 		isValid = false;
