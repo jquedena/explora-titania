@@ -66,11 +66,14 @@ class PagosdiversosController extends Zend_Controller_Action {
 	
 	public function indexAction() {
 		$url = $this->view->util()->getPath();
-
+/*
 		$dcodcajero = new Zend_Session_Namespace('codcajero');
 		$codcajero  = $dcodcajero->data;
-		$codcajero = '99';
-
+*/	
+		$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+		$codcajero = $ddatosuserlog->codcajero;
+		//echo '<'.$codcajero.'>';
+		//$codcajero = '99';
 		$func = new Libreria_Pintar();
 
 		if($codcajero>0){
@@ -82,16 +85,32 @@ class PagosdiversosController extends Zend_Controller_Action {
 				$data = new Zend_Session_Namespace('arrayconceptos');
 				$data->data = '';
 					
+				#detalle de pago ventanita
+				$ddetallepago = new Zend_Session_Namespace ( 'detallepago' );
+				$ddetallepago->data = '';
+				
+				#pagos arbitrios predios
+				$dcadgrabacion = new Zend_Session_Namespace ('cadgrabacion');
+				$dcadgrabacion->data='';
+				
+				
 				list($cidpers, $nompers) = explode('|', $datospers);
 					
 				$ddatacontri = new Zend_Session_Namespace('contribuyente');
 				$ddatacontri->cidcontri = $cidpers ;
 				$ddatacontri->nomcontri = $nompers ;
 					
+				$cn = new Model_DataAdapter();
+				
+				$nombrestore0 = '"public"."obt_mconten"';
+				$arraydatos0[0]= '';
+				$arraydatos0[1]= '1000000492';
+				$datosAreas = $cn->ejec_store_procedura_sql($nombrestore0,$arraydatos0);
+				
+								
 				$nombrestore = '"tesoreria"."buscar_concepto"';
 				$arraydatos[0]= '';
 				$arraydatos[1]= '';
-				$cn = new Model_DataAdapter();
 				$datoscpd = $cn->ejec_store_procedura_sql($nombrestore,$arraydatos);
 				$jsondatoscpd = json_encode($datoscpd, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
 
@@ -107,20 +126,29 @@ class PagosdiversosController extends Zend_Controller_Action {
 				$val[2] = array("nompers",$nompers, "html");
 				$val[3] = array("cbconceptos",$func->ContenidoCombo($cbo, $cbo[0][0]), "html");
 				//$val[3] = array("cbconceptos",$func->ContenidoCombo($cbo, '9999999999'), "html");
-				$val[4] = array("busqxcodconcepto","","focus");
+				$val[4] = array('cbareas', $func->ContenidoCombo($datosAreas, $datosAreas[0][0]), 'html');
+				$val[5] = array("cbareas","","focus");
+				
+				
 				$func->PintarValor($val);
 				
 				$cadtempo = "BusqXCriterioConceptoPagosDiversos('1','".str_replace('"',"\'", $jsondatoscpd).'\')';
 				$cadtempo2 = "BusqXCriterioConceptoPagosDiversos('2','".str_replace('"',"\'", $jsondatoscpd).'\')';
+				
+				$cadtempxarea ="FiltrarConceptosxAreas('".str_replace('"',"\'", $jsondatoscpd).'\')';
 				$evt[0] = array("cbconceptos", "change","MostrarDetalleConceptoPagosDiversos();");
 				$evt[1] = array("cantidadconcepto", "keypress","return validarnumeros(event);");
 				$evt[2] = array("btnagregarconcepto", "click","AgregarDetalleConceptoPagosDiversos();");
 				$evt[3] = array("busqxcodconcepto", "keypress","return validarnumeros(event);");
-				$evt[4] = array("cobrar","click", "CobrarConceptoPagosDiversos();");
+				
+				//$evt[4] = array("cobrar","click", "CobrarConceptoPagosDiversos();");
+				$evt[4] = array("cobrar","click", "DetallePagoConceptoPagosDiversos();");
+				
 				$evt[5] = array("nuevorecibo", "click", "window.open('".$url."index.php/pagosdiversos?datospers=','_self');");
 				$evt[6] = array("busqxcodconcepto", "change", $cadtempo);
 				$evt[7] = array("busqxnomconcepto", "change",$cadtempo2);
 				$evt[8] = array('glosaconcepto','keypress','if(event.keyCode == 13){return false;}');
+				$evt[9] = array("cbareas", "change",$cadtempxarea);
 				
 				$fn[] = array("MostrarDetalleConceptoPagosDiversos();");
 				$func->PintarEvento($evt);
@@ -177,13 +205,18 @@ class PagosdiversosController extends Zend_Controller_Action {
 			$valor = strtoupper(trim($this->_request->getPost('valor')));
 			$criterio = $this->_request->getPost('criterio');
 			$datoscpd = $this->_request->getPost('datoscpd');
+			$area = $this->_request->getPost('area');
+			
 			$datoscpd = str_replace("'", "\"", $datoscpd);
 			$datoscpd = str_replace("^", "&", $datoscpd);
 
 			$datos = json_decode($datoscpd);
 
 			$cont = '';
-
+			if($criterio == '3'){
+				$valor = ($area=='9999999999'?'':$area);
+			}
+			
 			if($valor == '' || $valor == null || strlen($valor) == 0) {
 				for($i=0;$i<count($datos);$i++){
 					if(strlen($datos[$i][1])>90){
@@ -203,6 +236,8 @@ class PagosdiversosController extends Zend_Controller_Action {
 						$cadbusq = $datos[$i][0];
 					}if($criterio == '2'){
 						$cadbusq = strtoupper($datos[$i][1]);
+					}if($criterio == '3'){
+						$cadbusq = $datos[$i][4];
 					}
 					
 					//if(ereg($valor,$cadbusq)){
@@ -231,7 +266,6 @@ class PagosdiversosController extends Zend_Controller_Action {
 
 	public function agregarconceptopagodiversoAction() {
 		$url = $this->view->util()->getPath();
-
 		$this->_helper->getHelper('ajaxContext')->initContext();
 
 		if ($this->getRequest()->isXmlHttpRequest()) {
@@ -370,14 +404,36 @@ class PagosdiversosController extends Zend_Controller_Action {
 					}
 				}
 				$cad = substr($cad,0,strlen($cad)-1);
+				
+				
+				/*Armando Detalle de pago*/
+					$ddetallepago = new Zend_Session_Namespace ( 'detallepago' );
+					$detallepago = $ddetallepago->data;
 					
+					$xmldetallepago = '';
+					/*
+					 0 - ctippag=''0000007831''
+					1 - dnrodoc=''1234********5678''
+					2 - nnroope=''123456''
+					3 - nmontot=''300.00''
+					*/
+					for($i = 0; $i<count($detallepago) ; $i++){
+						//$xmldetallepago .= '<r tfp="'.$detallepago[$i][0].'" monto="'.number_format ($detallepago[$i][3], '2', '.', '' ).'" nrodoc="'.$detallepago[$i][1].'" nroope="'.$detallepago[$i][2].'"></r>';
+						$xmldetallepago .= $detallepago[$i][0].'^'.number_format ($detallepago[$i][3], '2', '.', '' ).'^'.$detallepago[$i][1].'^'.$detallepago[$i][2].'~';
+					}
+					
+					$xmldetallepago = substr ( $xmldetallepago, 0, strlen ( $xmldetallepago ) - 1 );
+					echo "<textarea>".$xmldetallepago."</textarea>";
+				/*Armando Detalle de pago*/
+				
 				$nombrestore = 'tesoreria.cobrar_pagosdiversos';
 				$arraydatos[0]= $cad;
-				$arraydatos[1]= '~';
-				$arraydatos[2]= '^';
-				$arraydatos[3]= $cidapertura;
+				$arraydatos[1]= $xmldetallepago;
+				$arraydatos[2]= '~';
+				$arraydatos[3]= '^';
+				$arraydatos[4]= $cidapertura;
 				$cn = new Model_DataAdapter();
-				$datos = $cn->ejec_store_procedura_sql($nombrestore,$arraydatos);
+				//$datos = $cn->ejec_store_procedura_sql($nombrestore,$arraydatos);
 					
 				$nrorecibo = str_pad($datos[0][0], 12, "0", STR_PAD_LEFT);
 								
