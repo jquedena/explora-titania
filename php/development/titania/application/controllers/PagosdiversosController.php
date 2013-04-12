@@ -423,7 +423,7 @@ class PagosdiversosController extends Zend_Controller_Action {
 					}
 					
 					$xmldetallepago = substr ( $xmldetallepago, 0, strlen ( $xmldetallepago ) - 1 );
-					echo "<textarea>".$xmldetallepago."</textarea>";
+					//echo "<textarea>".$xmldetallepago."</textarea>";
 				/*Armando Detalle de pago*/
 				
 				$nombrestore = 'tesoreria.cobrar_pagosdiversos';
@@ -433,7 +433,7 @@ class PagosdiversosController extends Zend_Controller_Action {
 				$arraydatos[3]= '^';
 				$arraydatos[4]= $cidapertura;
 				$cn = new Model_DataAdapter();
-				//$datos = $cn->ejec_store_procedura_sql($nombrestore,$arraydatos);
+				$datos = $cn->ejec_store_procedura_sql($nombrestore,$arraydatos);
 					
 				$nrorecibo = str_pad($datos[0][0], 12, "0", STR_PAD_LEFT);
 								

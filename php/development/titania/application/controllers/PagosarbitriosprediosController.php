@@ -946,7 +946,7 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			
 			$totalPD =0;
 			for($i=0;$i<count($arrayconceptos);$i++){
-				$totalPD=$arrayconceptos[$i][3];
+				$totalPD= $totalPD+$arrayconceptos[$i][3];
 			}
 			$nombrestore = '"public"."pxcobrowww"';
 			$arraydatos [0] = '1';
