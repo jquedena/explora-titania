@@ -179,6 +179,9 @@ function reseteardetallepago(txt) {
 }
 
 function aniadirdetallepago() {	
+	
+	var totalrestante = $('#hdsubtotal').val();
+	
 	var montototal = $('#montototal').html();
 	var codtipppago = $('#cbtipopago').val();
 	var desctipppago = $('#cbtipopago option:selected').html();
@@ -191,6 +194,11 @@ function aniadirdetallepago() {
 	if(codtipppago == '9999999999'){
 		error += 'Seleccionar Tipo de Pago.<br>';		
 	}
+	console.log(monto+" > "+totalrestante);
+	
+	/*if(monto > totalrestante){
+		error += 'El Monto ingresado supera al total restante.<br>';
+	}*/
 		if(codtipppago == '0000007832'){
 			//efectivo
 			nrodoc = '';

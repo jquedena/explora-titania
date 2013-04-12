@@ -279,6 +279,7 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 				$ddetallepago = new Zend_Session_Namespace ( 'detallepago' );
 				$ddetallepago->data = '';
 				
+				#cadena de conceptos de pagos arbitrios predios
 				$data = new Zend_Session_Namespace ( 'arrayconceptos' );
 				$data->data = '';
 				
@@ -919,15 +920,19 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 	public function ventanacobrarpagosarbitriosprediosAction() {
 		//$this->_helper->viewRenderer->setNoRender ();
 		$this->_helper->layout->disableLayout ();
+		
+		$tipopago = $this->_request->getParam ( 'tipopago', '' );
+		
 		//cadena de grabacion en la session xD!
-		$dcadgrabacion = new Zend_Session_Namespace ( 'cadgrabacion' );
+		$dcadgrabacion = new Zend_Session_Namespace ('cadgrabacion');
 		$cadgrabacion = $dcadgrabacion->data;
 		$cont = '';
 		
+
+		
 		$func = new Libreria_Pintar();
-				
-		if(strlen ( $cadgrabacion ) > 5) {
-			
+		
+		if($tipopago=='1'){
 			$nombrestore = '"public"."pxcobrowww"';
 			$arraydatos [0] = '1';
 			$arraydatos [1] = '';
@@ -935,16 +940,28 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			$cn = new Model_DataAdapter ();
 			$datosfecha = $cn->ejec_store_procedura_sql ( $nombrestore, $arraydatos );
 			$dfecha = explode ( " ", $datosfecha [0] [0] );
-			//echo $cadgrabacion;
-			$datos = explode ( "�", $cadgrabacion );
-		
 			
-			$val[0]= array("txttotalcobrar",number_format( $datos [1], '2', '.', '' ),"val");
-			$val[1]= array("txttotalpagar",number_format($datos [1],'2','.',''),"val");
+			$data = new Zend_Session_Namespace('arrayconceptos');
+			$arrayconceptos = $data->data;
+			
+			$totalPD =0;
+			for($i=0;$i<count($arrayconceptos);$i++){
+				$totalPD=$arrayconceptos[$i][3];
+			}
+			$nombrestore = '"public"."pxcobrowww"';
+			$arraydatos [0] = '1';
+			$arraydatos [1] = '';
+			$arraydatos [2] = '';
+			$cn = new Model_DataAdapter ();
+			$datosfecha = $cn->ejec_store_procedura_sql ( $nombrestore, $arraydatos );
+			$dfecha = explode ( " ", $datosfecha [0] [0] );
+			
+			$val[0]= array("txttotalcobrar",number_format( $totalPD, '2', '.', '' ),"val");
+			$val[1]= array("txttotalpagar",number_format($totalPD,'2','.',''),"val");
 			$val[2]= array("txtdevolucion","0.00","val");
-			$val[3]= array("hddata",$datos [0],"val");
+			$val[3]= array("hddata",'',"val");
 			$val[4]= array("fechrecibo",$dfecha [0],"val");
-			$val[5]= array("txtefectivo",number_format( $datos [1], '2', '.', '' ),"val");
+			$val[5]= array("txtefectivo",number_format( $totalPD, '2', '.', '' ),"val");
 			$val[6]= array("txtvuelto",number_format( 0, '2', '.', '' ),"val");
 			$func->PintarValor($val);
 			
@@ -954,13 +971,12 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			$func->CampoDinero($msk);
 			
 			$evt[0] = array("fechrecibo","click","displayCalendar(this,'dd/mm/yyyy',this)");
-			$evt[1] = array("btnaceptarcobro","click","cobrarpagosarbitriospredios();");
-			$evt[2] = array("btncancelarcobro","click","cerrarsubventpagosarbitriospredios();window.open('" . $datos [2] . "','_self');");
-			$evt[3] = array("txtefectivo","change", "text_min('txtefectivo',$('#txttotalpagar').val());restarmontospagosarbitriospredios();");
-			$evt[4] = array("rbtn_cobromanual","click", "activarpagomanualpagosarbitriospredios();");			
-			$evt[5] = array("txttotalpagar", "change", "min_max_text('txttotalpagar',1.00,".number_format( $datos [1], '2', '.', '' ).");nuevomontoefectivo();restarmontospagosarbitriospredios();reseteardetallepago('txttotalpagar');");
+			$evt[1] = array("btnaceptarcobro","click","CobrarConceptoPagosDiversos();");
+			$evt[2] = array("btncancelarcobro","click","closeDialog('jqDialog1');");
+			$evt[3] = array("txtefectivo","change", "/*text_min('txtefectivo',$('#txttotalpagar').val());*/restarmontospagosarbitriospredios();");
+			$evt[4] = array("rbtn_cobromanual","click", "activarpagomanualpagosarbitriospredios();");
+			$evt[5] = array("txttotalpagar", "change", "min_max_text('txttotalpagar',1.00,".number_format($totalPD, '2', '.', '' ).");nuevomontoefectivo();restarmontospagosarbitriospredios();reseteardetallepago('txttotalpagar');");
 			$evt[6] = array('btndetalle','click','ventanadetallepago();');
-			
 			$func->PintarEvento($evt);
 			
 			$hab[0] = array("nrorecibo",false);
@@ -969,40 +985,102 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			$func->HabilitarComponente($hab);
 			
 			
-			if ($datos[1] <= 0) {
+			if ($totalPD <= 0) {
 				$hab[0] = array("btnaceptar",false);
 				$func->HabilitarComponente($hab);
 			}
 			
 			$ddetallepago = new Zend_Session_Namespace ( 'detallepago' );
 			$detallepago = $ddetallepago->data;
-				if(count($detallepago) == 0 || $detallepago == '' || $detallepago == null){
-					$detallepago = null;	
-					$detallepago[0][0] = '0000007832';
-					$detallepago[0][1] = '';
-					$detallepago[0][2] = '';
-					$detallepago[0][3] = $datos [1];
-					$detallepago[0][4] = 'EFECTIVO';
+			if(count($detallepago) == 0 || $detallepago == '' || $detallepago == null){
+				$detallepago = null;
+				$detallepago[0][0] = '0000007832';
+				$detallepago[0][1] = '';
+				$detallepago[0][2] = '';
+				$detallepago[0][3] = $totalPD;
+				$detallepago[0][4] = 'EFECTIVO';
+			
+				$ddetallepago->data = $detallepago;
+			}
+			
+		}else{
+		
+			if(strlen ( $cadgrabacion ) > 5) {
 				
-					$ddetallepago->data = $detallepago;
-				}  
-
-		} else {
-			$detail = '<table  height="100%" width="100%"  border="0" cellspacing="1" cellpadding="0">';
-			$detail .= '<tr valign="center">';
-			$detail .= '<td align="center">';
-			$detail .= 'Seleccione registros a cancelar..<br><br>';
-			$detail .= '<input type="button" id="btncancelarcobro" name="btncancelarcobro"  value="Regresar"/>';
-			$detail .= '</td>';
-			$detail .= '</tr>';
-			$detail .= '</table>';
-
-			$val[0] = array("div_p",$detail,"html");
-			$func->PintarValor($val);
-			$evt[0] = array("btncancelarcobro","click","cerrarsubventpagosarbitriospredios();");
-			$func->PintarEvento($evt);
+				$nombrestore = '"public"."pxcobrowww"';
+				$arraydatos [0] = '1';
+				$arraydatos [1] = '';
+				$arraydatos [2] = '';
+				$cn = new Model_DataAdapter ();
+				$datosfecha = $cn->ejec_store_procedura_sql ( $nombrestore, $arraydatos );
+				$dfecha = explode ( " ", $datosfecha [0] [0] );
+				//echo $cadgrabacion;
+				$datos = explode ( "�", $cadgrabacion );
+			
+				
+				$val[0]= array("txttotalcobrar",number_format( $datos [1], '2', '.', '' ),"val");
+				$val[1]= array("txttotalpagar",number_format($datos [1],'2','.',''),"val");
+				$val[2]= array("txtdevolucion","0.00","val");
+				$val[3]= array("hddata",$datos [0],"val");
+				$val[4]= array("fechrecibo",$dfecha [0],"val");
+				$val[5]= array("txtefectivo",number_format( $datos [1], '2', '.', '' ),"val");
+				$val[6]= array("txtvuelto",number_format( 0, '2', '.', '' ),"val");
+				$func->PintarValor($val);
+				
+				$msk[0] = array("txttotalpagar");
+				$msk[1] = array("txtefectivo");
+				$msk[2] = array("txtvuelto");
+				$func->CampoDinero($msk);
+				
+				$evt[0] = array("fechrecibo","click","displayCalendar(this,'dd/mm/yyyy',this)");
+				$evt[1] = array("btnaceptarcobro","click","cobrarpagosarbitriospredios();");
+				$evt[2] = array("btncancelarcobro","click","cerrarsubventpagosarbitriospredios();window.open('" . $datos [2] . "','_self');");
+				$evt[3] = array("txtefectivo","change", "text_min('txtefectivo',$('#txttotalpagar').val());restarmontospagosarbitriospredios();");
+				$evt[4] = array("rbtn_cobromanual","click", "activarpagomanualpagosarbitriospredios();");			
+				$evt[5] = array("txttotalpagar", "change", "min_max_text('txttotalpagar',1.00,".number_format( $datos [1], '2', '.', '' ).");nuevomontoefectivo();restarmontospagosarbitriospredios();reseteardetallepago('txttotalpagar');");
+				$evt[6] = array('btndetalle','click','ventanadetallepago();');
+				$func->PintarEvento($evt);
+				
+				$hab[0] = array("nrorecibo",false);
+				$hab[1] = array("fechrecibo",false);
+				$hab[2] = array("rbtn_cobromanual",false);
+				$func->HabilitarComponente($hab);
+				
+				
+				if ($datos[1] <= 0) {
+					$hab[0] = array("btnaceptar",false);
+					$func->HabilitarComponente($hab);
+				}
+				
+				$ddetallepago = new Zend_Session_Namespace ( 'detallepago' );
+				$detallepago = $ddetallepago->data;
+					if(count($detallepago) == 0 || $detallepago == '' || $detallepago == null){
+						$detallepago = null;	
+						$detallepago[0][0] = '0000007832';
+						$detallepago[0][1] = '';
+						$detallepago[0][2] = '';
+						$detallepago[0][3] = $datos [1];
+						$detallepago[0][4] = 'EFECTIVO';
+					
+						$ddetallepago->data = $detallepago;
+					}  
+		
+				} else {
+					$detail = '<table  height="100%" width="100%"  border="0" cellspacing="1" cellpadding="0">';
+					$detail .= '<tr valign="center">';
+					$detail .= '<td align="center">';
+					$detail .= 'Seleccione registros a cancelar..<br><br>';
+					$detail .= '<input type="button" id="btncancelarcobro" name="btncancelarcobro"  value="Regresar"/>';
+					$detail .= '</td>';
+					$detail .= '</tr>';
+					$detail .= '</table>';
+		
+					$val[0] = array("div_p",$detail,"html");
+					$func->PintarValor($val);
+					$evt[0] = array("btncancelarcobro","click","cerrarsubventpagosarbitriospredios();");
+					$func->PintarEvento($evt);
+				}
 		}
-
 	}
 	
 	public function ventanadetallepagoAction() {
@@ -1071,9 +1149,9 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			$msk[0] = array("txtmontopago");
 			$func->CampoDinero($msk);
 			
-			$evt[0] = array("btnaceptardetalle","click","cerrarsubvent2();");
-			$evt[1] = array("txtmontopago", "change", "min_max_text('txtmontopago',1.00,'hdsubtotal');");
-			$evt[2] = array("btnagregar","click","aniadirdetallepago();");				
+			$evt[0] = array("btnaceptardetalle","click","closeDialog('jqDialog2');");
+			//$evt[1] = array("txtmontopago", "change", "min_max_text('txtmontopago',1.00,'hdsubtotal');");
+			$evt[1] = array("btnagregar","click","aniadirdetallepago();");				
 			$func->PintarEvento($evt);
 		
 			$sl[0] = array('hdsubtotal',true);
