@@ -9,6 +9,7 @@ verPredio = function(rowid, iRow, iCol, e) {
     	if(row != undefined) {
     		$("#txt_idsigma").val(row.idsigma);
 	        $("#txtnumero").val(row.dnumero);
+	        $("#txtviacentrpob").val(row.zona);
 	  //	$("#txt_instcnitems").val(row.cnitems);
 	        $("#txtinterior").val(row.dinteri);
 	  //	$("#txt_instctipdat").val(row.ctipdat);       
@@ -106,7 +107,8 @@ optionmpredio= {
 			   "Fecha de Registro",
 			   "Latitud del predio",
 			   "Longitud del predio",
-			   "Zoom del mapa"
+			   "Zoom del mapa",
+			   "Zona"
                ],
     colModel: [
         {name:'idsigma', index:'idsigma', width:80,editable: true, align: 'center', frozen: true,editoptions:{readonly:true,size:10}},
@@ -149,7 +151,8 @@ optionmpredio= {
 		 {name:'ddatetm', index:'ddatetm', width:90,hidden:true ,formatter:'date',formatoptions: { newformat: 'd-m-Y'}},  
 		 {name:'nlatitu', index:'nlatitu', width:90,hidden:true},  
 		 {name:'nlongit', index:'nlongit', width:90,hidden:true},  
-		 {name:'nzoom', index:'nzoom', width:90,hidden:true}         
+		 {name:'nzoom', index:'nzoom', width:90,hidden:true},
+		 {name:'zona', index:'zona', width:90,hidden:false}
         ],
     caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
     ondblClickRow: verPredio
@@ -217,25 +220,7 @@ optionmpredio= {
 
 
 $(function(){
-	//contenidocomboContenedorjqGrid(vlocales,'1000000346');
-	
-    //$("#txtlocal").attr("maxlength", 4);
-    
- 	/*$("#txtlocal").bind("autocompletechange", function(event, ui) {
-        if(ui.item) {
-        	buscarmcajero();
-        } else {
-        }
-    });
-    $("#txtestado").bind("autocompletechange", function(event, ui) {
-        if(ui.item) {
-        	buscarmcajero();
-        } else {
-        }
-    });*/
 
-
-    //actualizarGrid("tblResultmPredio", optionmpredio, null, navPanelPredio);
 
     buscarmpredio();
 

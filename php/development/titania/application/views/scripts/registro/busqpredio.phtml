@@ -1,4 +1,4 @@
-
+<input type="hidden"  id="txtMperson"> 
 <div id="panelbusqueda" align="center" class="ui-widget ui-widget-content ui-corner-all "  style="width: 100%;margin: 3px;">
     <div class="ui-widget ui-state-default ui-corner-top ui-title">
         <label>Predios</label>
@@ -27,7 +27,7 @@
                             <button id="btnbuscar">Buscar</button>              
                             </td>
             </tr>
-            <tr id="panelPredio">
+            <tr id="panelBusqPredio">
                             <td>&nbsp;</td>
                             <td><input class="ui-text" id="c_predial" maxlength="10" style="width:90px" /></td>
                             <td></td>
@@ -46,9 +46,9 @@
     </div>
     <div id="dvaccion"></div>
 </div>
-<div id="panelResultmPredio">
-	<table id="tblResultmPredio"></table>
-	<div id="ptblResultmPredio"></div>
+<div id="panelResultmBusqPredio">
+	<table id="tblResultmBusqPredio"></table>
+	<div id="ptblResultmBusqPredio"></div>
 </div>
 
 <script type="text/javascript">
@@ -56,40 +56,47 @@
         
 verPredio = function(rowid, iRow, iCol, e) {
 	if(rowid != undefined && rowid != null && rowid !== false ) {
-		row = $("#tblResultmPredio").jqGrid('getRowData', rowid);
+		row = $("#tblResultmBusqPredio").jqGrid('getRowData', rowid);
 	} else {
 		row = undefined;
 	}
-	
-    openDialogDataFunction1("registro/verprediomantt", {}, "900", "500", "Predio", function() {
-    	if(row != undefined) {
-    		$("#txt_idsigma").val(row.idsigma);
-	        $("#txtnumero").val(row.dnumero);
-	  //	$("#txt_instcnitems").val(row.cnitems);
-	        $("#txtinterior").val(row.dinteri);
-	  //	$("#txt_instctipdat").val(row.ctipdat);       
-	  //	$("#txt_instvnrodoc").val(row.vnrodoc);
-	   		$("#txtletra").val(row.dletras);       
-	  //	$("#txt_instcmotivo").val(row.cmotivo);
-	  //	$("#txt_instctipdoc").val(row.ctipdoc);     
-	   		$("#txtdepart").val(row.ddepart);
-	   		$("#txtmanzana").val(row.dmanzan);       
-	   		$("#txtlote").val(row.dnlotes);
-	   		$("#txtreferencia").val(row.drefere);   
-	   		$("#txtestacio").val(row.destaci);     
-	   		$("#txtdepart").val(row.ddepart);     
-	   		$("#txtbloque").val(row.dbloque);     
-	   		$("#txtseccion").val(row.dseccio);     
-	   		$("#txtunidinmob").val(row.dunidad);  
-	   		$("#txt_mviadis").val(row.mviadis);
-	   		$("#txt_mpoblad").val(row.mpoblad);
-	   		
-	 //		$("#txt_instdafecta").val(row.dafecta);     
+	  	if(row != undefined) {
+
+    		row2 = {
+    				idsigma: row.idsigma,
+    				vdirpre: row.vdirpre
+    		};
+
+
+    		parameters = {
+                	mperson: $("#txtMperson").val(),
+                	mhresum: "-1",
+                	idsigma: row.idsigma,
+                	vdirpre: row.vdirpre	
+                };
+
+    		closeDialog("jqDialog2");
+    		//closeDialog("jqDialog1");
+
+    		openDialogData1("registro/declaracion", parameters, "850", "600", "Declaraci&oacute;n Jurada");
+
+    		
+    		
+    		/*_post = $.post(path + "registro/pintarpredio", row2);
+    	    _post.success(function(data){
+    	    	
+				$("#panelResultmBusqPredio").html(data);
+				
+        	 });*/
+    		    
    }  else {
 	   $("#txt_idsigma").val('-1');  
 	   
-   		}
-});
+   		} 
+	  	
+	  	//closeDialog("jqDialog1");
+	  	
+//});
 
 };
 
@@ -103,7 +110,7 @@ buscarmpredio = function() {
     	
     }*/
     parameters = {
-        "name": "tblResultmPredio",
+        "name": "tblResultmBusqPredio",
         "procedure": "registro.mostrarpredios",
         "parameters": '{' +
         '"p_cperiod":"01"' +
@@ -111,10 +118,13 @@ buscarmpredio = function() {
     };
     
     proceso = function(requestData){
-        $("#panelResultmpredio").html(requestData);
-        records = $("#ctblResultmpredio").val();
-        //if(records > 1) {
-            actualizarGrid("tblResultmPredio", optionmpredio, bindkeysmpredio,navPanelPredio);
+        $("#panelResultmBusqPredio").html(requestData);
+        records = $("#ctblResultmBusqpredio").val();
+
+       // alert(records);
+       //if(records > 1) {
+            actualizarGrid("tblResultmBusqPredio", optionmpredio, bindkeysmpredio,navPanelPredio);
+       //}
     };
     
     procesarConsultaSubProceso('registrar', parameters, proceso);        
@@ -122,8 +132,8 @@ buscarmpredio = function() {
 };
  
 optionmpredio= {
-    height: 300,
-    width: 600,
+    height: 250,
+    width: 550,
     editurl: "mcajerosave",
     colNames: [              
 			   "C\u00F3digo",
@@ -213,91 +223,24 @@ optionmpredio= {
 
 };
 
-	btnInsertarPredio = {
-	    caption: "Agregar&nbsp;&nbsp;",
-	    title: "Agrega un nuevo nivel al predio",
-	    buttonicon: "ui-icon-plus",
-	    onClickButton:function(){
-	    	verPredio();
-	    } 
-	};
-
-	btnEditarPredio = {
-	    caption: "Editar&nbsp;&nbsp;",
-	    title: "Editar el nivel seleccionado",
-	    buttonicon: "ui-icon-pencil",
-	    onClickButton:function(){
-	        var gsr = $("#tblResultmPredio").jqGrid('getGridParam','selrow');
-	        if(gsr){
-	        	verPredio(gsr, -1, -1, null);
-	        } else { 
-	            openDialogWarning("Seleccione la fila a editar.", 380, 150);
-	        } 
-	    } 
-	};
-	    
-	btnEliminarPredio = {
-	    caption: "Eliminar",
-	    title: "Eliminar la construcci\u00F3n",
-	    buttonicon: "ui-icon-trash",
-	    onClickButton:function(){
-	        var gsr = $("#tblResultmPredio").jqGrid('getGridParam','selrow');
-	        indexRow = $("#ctblPredio").val();
-	        if(gsr){
-	        	if(confirm("Seguro de eliminar")){
-	        		if($("#tblResultmPredio").jqGrid('delRowData', gsr)) {
-	        			$("#ctblPredio").val(indexRow - 1);
-	        		} else {
-	        			alert('Error no se pudo eliminar');
-	        		}
-	        	}
-	            console.log(gsr);
-	            // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
-	        } else { 
-	            openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
-	        } 
-	    } 
-	};
+	
 
 
  navPanelPredio = function() {
-        $("#tblResultmPredio").jqGrid('navGrid', '#ptblResultmPredio', {edit:false, add:false, del:false, search:false, refresh:false});
-//        $("#tblResultmPredio").jqGrid('navButtonAdd', '#ptblResultmPredio', btnInsertarPredio);
-//        $("#tblResultmPredio").jqGrid('navSeparatorAdd','#ptblResultmPredio');
-//        $("#tblResultmPredio").jqGrid('navButtonAdd','#ptblResultmPredio', btnEditarPredio);
-//        $("#tblResultmPredio").jqGrid('navSeparatorAdd','#ptblResultmPredio');
-//        $("#tblResultmPredio").jqGrid('navButtonAdd','#ptblResultmPredio', btnEliminarPredio);
+        $("#tblResultmBusqPredio").jqGrid('navGrid', '#ptblResultmBusqPredio', {edit:false, add:false, del:false, search:false, refresh:false});
+
     };
 
-    inicializarGrid("tblResultmPredio", optionmpredio,null,navPanelPredio);
+    inicializarGrid("tblResultmBusqPredio", optionmpredio,null,navPanelPredio);
 
 
 $(function(){
-	//contenidocomboContenedorjqGrid(vlocales,'1000000346');
-	
-    //$("#txtlocal").attr("maxlength", 4);
-    
- 	/*$("#txtlocal").bind("autocompletechange", function(event, ui) {
-        if(ui.item) {
-        	buscarmcajero();
-        } else {
-        }
-    });
-    $("#txtestado").bind("autocompletechange", function(event, ui) {
-        if(ui.item) {
-        	buscarmcajero();
-        } else {
-        }
-    });*/
 
-
-    //actualizarGrid("tblResultmPredio", optionmpredio, null, navPanelPredio);
 
     buscarmpredio();
 
     themeTextBox();
     themeComboBox();
-//---
     
 });
     });
