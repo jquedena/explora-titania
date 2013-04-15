@@ -107,6 +107,7 @@ class PagosdiversosController extends Zend_Controller_Action {
 				$arraydatos0[1]= '1000000492';
 				$datosAreas = $cn->ejec_store_procedura_sql($nombrestore0,$arraydatos0);
 				
+				
 								
 				$nombrestore = '"tesoreria"."buscar_concepto"';
 				$arraydatos[0]= '';
@@ -114,6 +115,9 @@ class PagosdiversosController extends Zend_Controller_Action {
 				$datoscpd = $cn->ejec_store_procedura_sql($nombrestore,$arraydatos);
 				$jsondatoscpd = json_encode($datoscpd, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
 
+				$datosConceptos = $cn->executeRowsToJSON($nombrestore,$arraydatos);
+				echo '<script type="text/javascript"> var _conceptos ='.$datosConceptos.'</script>';
+				
 				$content = '';
 				if($cidpers=='_________1'){
 					$content .= '<b>Venta Libre</b>';
