@@ -103,15 +103,37 @@ class RegistroController extends Zend_Controller_Action {
 		
          $pintar= new Libreria_Pintar();
          
+      
+         	$codpre=$this->_request->getParam('idsigma','');
+            $vdirpre=$this->_request->getParam('vdirpre','');
+            
         if ($this->getRequest()->isXmlHttpRequest()) {
             $this->_helper->layout->disableLayout();
             $this->view->mperson = $this->_request->getParam('mperson');
             $this->view->mhresum = $this->_request->getParam('mhresum');
-            $this->view->cperiod = date("Y");
-            
+            $this->view->cperiod = date("Y");            
             
         }
-       // $pintar->EjecutarFuncion($fun);
+        
+        //echo $codpre;
+        //echo $vdirpre;
+        
+        if ( strlen($codpre)>2 &&  strlen($vdirpre)>2){
+           $val[]=array('hdnIdPersona', $this->_request->getParam('mperson'),'val' );	
+           $val[]=array('txtMpredio',$codpre,'val');
+           $val[]=array('txtDirecpred',$vdirpre,'val');
+             
+        //print_r($val);
+        
+         $fun[]=array('$("#dvBajalt").show();');	
+           
+        $pintar->PintarValor($val);
+        $pintar->EjecutarFuncion($fun);
+        	
+        }
+        
+		
+          
     }
 
     public function condominioAction() {
@@ -423,7 +445,7 @@ class RegistroController extends Zend_Controller_Action {
 		}
 	}
 	
-	public function guardarDeclaracion() {
+	public function guardardeclaracionAction() {
 		/*
 		idsigma character varying(10) NOT NULL,
 		ctipdat character(10) NOT NULL,
@@ -450,6 +472,8 @@ class RegistroController extends Zend_Controller_Action {
 			$coduser = $ddatosuserlog->cidpers;
 			$vhostnm = $ddatosuserlog->vhostnm;
 			
+			
+			
 			$row = $_POST["idsigma"].','.
 				   $_POST["ctipdat"].','.
 				   $_POST["vnrodoc"].','.
@@ -460,8 +484,9 @@ class RegistroController extends Zend_Controller_Action {
 				   $_POST["vobserv"].','.
 				   $_POST["nestado"].','.
 				   $vhostnm.','.
-				   $coduser.',,'.
-				   $_POST["cperini"].','.
+				   $coduser.','.
+				   date("y-m-d").','. 
+				   date("Y", strtotime($_POST["cperini"])).','.//$_POST["cperini"].','.
 				   $_POST["cperfin"].','.
 				   $_POST["mperson"];
 			
@@ -469,18 +494,168 @@ class RegistroController extends Zend_Controller_Action {
 			$dataAdapter = new Model_DataAdapter();
 			$rows = $dataAdapter->executeSelect("pl_function.guardar_mhresum", $parameters);
 			
-					
-			if($rows[0][0] == 1) {
-				$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
+			echo (String) $rows[0][0]; 
 			
-				$data['error'] = "";
-				$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
+			//print_r($rows) ;
+					
+			if($rows[0][0] >0 ) {
+				echo "entro";
+				//$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
+			
+				//$data['error'] = "";
+				//$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
+				/*
+				idsigma,
+			  	mperson,
+			  	mpredio,
+			  	nporcen,
+			  	nestado,
+			  	ctippro,
+			  	vhostnm,
+			  	vusernm,
+			  	ddatetm,
+			  	mhresum
+			  	  
+				 */
+				
+				$row2 = $_POST["idsigma"].','.				  
+				   $_POST["mperson"].','.
+				   $_POST["mpredio"].','.
+				   0 .','.
+				   1 .','.
+				   '1000000450' .','.				   			
+				   $vhostnm.','.
+				   $coduser.','.
+				   date("y-m-d").','.
+				   $rows[0][0];
+
+				   $parameters2[] = $row2;
+				   $dataAdapter2 = new Model_DataAdapter();
+				   $rows2 = $dataAdapter2->executeSelect("pl_function.guardar_mpropie", $parameters2);
+				   
+				
+				   //1000000008 --Compra
+    			   //1000000009 --Venta   
+				
+				if (($_POST["cmotivo"]='1000000008') or ($_POST["cmotivo"]=='1000000009')){
+									
+				/*
+				 idsigma,
+			 	 mpredio,
+			  	ctippre,
+			  	cclasif,
+			  	ccondic,
+			  	cestado,
+			  	cusogen,
+			  	cusoesp,
+			  	nporcen,
+			  	ntertot,
+			  	nporter,
+			  	nterren,	
+			  	ncomtot,
+			  	nporcom,
+			  	narecom,
+			  	nporafe,
+			  	dfecadq,
+			  	dfecdes,
+			  	dafecta,
+			  	nfrente,
+			  	ncanper,
+			  	ctippar,
+			  	vobserv,
+			  	nestado,
+			  	vhostnm,
+			  	vusernm,
+			  	ddatetm,
+			  	dfectra,
+			  	cnotari,
+			  	ctiptra,
+			  	cpartid,
+			  	csubtip,
+			  	cmotadq,
+			  	mhresum				 
+				  
+				 */
+				
+				$row3 = $_POST["idsigma"].','.
+				 $_POST["mpredio"].','.
+				 ''.','.
+				 ''.','.
+				 ''.','.
+				 ''.','.
+				 ''.','.
+				 ''.','.
+				 '0'.','.
+				 '0'.','.
+				 '0'.','.
+				 '0'.','.
+				 '0'.','.
+				 '0'.','.
+				 '0'.','.
+				 '0'.','.
+				 date("y-m-d").','.
+				 date("y-m-d").','.
+				 date("y-m-d").','.
+				 '0'.','.
+				 '0'.','.
+				 ''.','.
+				 ''.','.
+				 '1'.','.    
+				$vhostnm.','.
+				$coduser.','.
+				date("y-m-d").',,,,,,,'. 
+				$rows[0][0]; 				
+				
+				$parameters3[] = $row3;
+				$dataAdapter3 = new Model_DataAdapter();
+				$rows3 = $dataAdapter3->executeSelect("pl_function.guardar_dpredio", $parameters3);
+				
+				/*
+				 idsigma,
+			 	 dpredio,
+			  	cperiod,
+			  	narance,
+			  	nvalpis,
+			  	nvalins,
+			  	nvalter,
+			  	nvalpre,
+			  	nporafe,
+			  	nvalafe,
+			  	nestado,
+			  	vhostnm,
+			  	vusernm,
+			  	ddatetm
+				 */
+				
+				$row4 = $_POST["idsigma"].','.
+					  $rows3[0][0].','.	
+					  date("Y", strtotime($_POST["cperini"])).','.
+				      '0'.','.
+					  '0'.','.
+					  '0'.','.
+					  '0'.','.
+					  '0'.','.
+					  '0'.','.
+					  '0'.','.	
+					  '1'.','.
+					  $vhostnm.','.
+					$coduser.','.
+					date("y-m-d"); 	
+				
+				$parameters4[] = $row4;
+				$dataAdapter4 = new Model_DataAdapter();
+				$rows4 = $dataAdapter4->executeSelect("pl_function.guardar_vpredio", $parameters4);
+	
+				
+				}
+				
+				
 			} else {
 				$data['error'] = "Error al actualizar";
 				$data['data'] = "";
 			}
 			
-			$this->_helper->json($data);
+			//$this->_helper->json($data);
 		}
 	}
 		 
@@ -612,9 +787,9 @@ class RegistroController extends Zend_Controller_Action {
 
             $dataAdapter = new Model_DataAdapter();
             $rows = $dataAdapter->executeAssocQuery("pl_function.listar_vias", $parameters);
-            $this->view->mviascp = $rows;            
-        
-
+            $this->view->mviascp = $rows;           
+        	
+           
      }
     }
 
@@ -710,10 +885,11 @@ class RegistroController extends Zend_Controller_Action {
             $parameters[] = $row;
             $dataAdapter = new Model_DataAdapter();
             $rows = $dataAdapter->executeSelect("pl_function.guardar_mpredio", $parameters);
+            
+            print_r($rows);
         
             if($rows[0][0] == 1) {
-                //$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
-                    
+                                  
                 $data['error'] = "";
                 //$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
             } else {
@@ -728,7 +904,14 @@ class RegistroController extends Zend_Controller_Action {
     
     public function busqpredioAction(){
     	  $this->_helper->layout->disableLayout();
-    	
+    	  
+    	  $pintar=new Libreria_Pintar();
+    	  
+    	  $mperson=$this->_request->getPost('mperson');
+    	  
+    	  $val[]=array('txtMperson',$mperson,'val');
+    	  
+    	  $pintar->PintarValor($val);
     	
     }
    public function busqprediocontrAction(){
@@ -936,6 +1119,38 @@ class RegistroController extends Zend_Controller_Action {
     	 $pintar->PintarValor($val); 
     	 $pintar->EjecutarFuncion($fun);
 	}
+
+	public function editarpredioAction(){
+				$this->_helper->getHelper('ajaxContext')->initContext();
+	
+		if ($this->getRequest()->isXmlHttpRequest()) {
+			$this->_helper->layout->disableLayout();			
+			
+		}
 		
+	}
+	
+	public function pintarpredioAction(){
+		 $this->_helper->getHelper('ajaxContext')->initContext();
+    
+      	 $pintar = New Libreria_Pintar();
+      	   
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();	
+    		
+    		$codpre=$this->_request->getPost('idsigma','');
+            $vdirpre=$this->_request->getPost('vdirepre','');
+          
+             //if (isset($codpre) &&  isset($vdirpre)){
+           $val[]=array('txtMpredio',$codpre,'val');
+           $val[]=array('txtDirecpred',$vdirpre,'val');
+             
+        //print_r($val);      
+    	}
+		    
+    	$pintar->EjecutarFuncion($val);          
+          
+	}
+	
 }  
 

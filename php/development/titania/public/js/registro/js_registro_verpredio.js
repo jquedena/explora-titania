@@ -208,7 +208,8 @@ loadVerDetalle = function(){
         text: false,
         icons: {primary:'ui-icon-search'}
     }).bind("click", function(){
-        openDialogData1("registro/direccion", {}, "710", "180", "Ubicaci&oacute;n del Predio");
+       // openDialogData1("registro/direccion", {}, "710", "180", "Ubicaci&oacute;n del Predio");
+    	openDialogData1("registro/editarpredio", {}, "800", "500", "Ubicaci&oacute;n del Predio");
     });
     
      $("#btnCancelarDescrpPredio").hide(); 
