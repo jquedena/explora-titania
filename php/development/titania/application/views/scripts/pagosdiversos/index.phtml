@@ -33,11 +33,6 @@
 							<tr>
 								<td >
 									<select id="cbareas" name="cbareas" class="notcombobox" size="7" style="width: 465px; border: 0px; padding-left: 3px;">
-										<option value="0000000001">REGISTRO CIVIL</option>
-										<option value="0000000002">REGISTRO CIVIL</option>
-										<option value="0000000003">REGISTRO CIVIL</option>
-										<option value="0000000004">REGISTRO CIVIL</option>
-										<option value="0000000005">REGISTRO CIVIL</option>
 									</select>
 								</td>
 							</tr>
@@ -102,28 +97,45 @@
 			<div id="div_erroragregarconcepto"></div>
 		</div>
 		<div style="height: 3px;"></div>
-		<div style="width: 99%; padding: 1px;" class="ui-widget-content ui-widget ui-corner-all">
-			<table id="tblDetalle" style="width: 100%; padding: 2px;" cellspacing="0" cellpadding="0">
-			<thead class="ui-widget ui-widget-header ui-title2">
-				<tr>
-                    <th style="width: 85px;">C&oacute;digo</th>
-                    <th>Descripci&oacute;n</th>
-                    <th style="width: 50px;">Cant.</th>
-                    <th style="width: 70px;">Val. Unt.</th>
-                    <th style="width: 70px;">Val. Tot.</th>
-                    <th style="width: 30px;">&nbsp;</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="4" style="text-align: right;"><b>Total</b></td>	                    
-					<td style="text-align: right; padding-right: 5px;"><div id="rowTotal">0.00</div></td>
-					<td>&nbsp;</td>
-				</tr>
-			</tfoot>
-			</table>
+		<div style="width: 99%;height:150px; padding: 1px;" class="ui-widget-content ui-widget ui-corner-all">
+		<table border='0'>
+		<tr>
+			<td style="height: 100px" 	valign=top > 
+				<table id="tblDetalle" style="width: 100%; padding: 2px;" cellspacing="0" cellpadding="0" border="0">
+				<thead class="ui-widget ui-widget-header ui-title2">
+					<tr>
+	                    <th style="width: 85px;">C&oacute;digo</th>
+	                    <th>Descripci&oacute;n</th>
+	                    <th style="width: 50px;">Cant.</th>
+	                    <th style="width: 70px;">Val. Unt.</th>
+	                    <th style="width: 70px;">Val. Tot.</th>
+	                    <th style="width: 30px;">&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+				<!-- <tfoot>
+					<tr>
+						<td colspan="4" style="text-align: right;"><b>Total</b></td>	                    
+						<td style="text-align: right; padding-right: 5px;"><div id="rowTotal">0.00</div></td>
+						<td>&nbsp;</td>
+					</tr>
+				</tfoot>-->
+				</table>			
+			</td>	
+		</tr>
+			<tr>	
+				<td>
+					<table style="width: 100%; padding: 2px;" cellspacing="0" cellpadding="0" border="0">
+						<tr>
+							<td  style="text-align: right;width: 885px;" ><b>Total</b></td>	                    
+							<td style="text-align: right; padding-right: 5px;width: 62px;"><div id="rowTotal">0.00</div></td>
+							<td>&nbsp;</td>
+						</tr>
+					</table>
+				</td>	
+			</tr>	
+		</table>
 			<div id="div_resultpagosdiversos" align="center"></div>
 		</div>
 		<div id="divdetallepagodiverso" style="display: none;"></div>

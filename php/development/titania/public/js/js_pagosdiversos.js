@@ -47,6 +47,10 @@ function MostrarDetalleConceptoPagosDiversos() {
 
 function BusqXCriterioConceptoPagosDiversos(crit, datos,varea) {
 	if(varea == undefined) varea='';
+ 
+	 
+	 
+	 
 	 
 	datos = replaceAll(datos, "&", "^");
 	var cadrequest = '';
@@ -62,7 +66,11 @@ function BusqXCriterioConceptoPagosDiversos(crit, datos,varea) {
 	}
 
 	var parameters = {datoscpd: datos, criterio: criterio, valor: val , area : varea};
-	console.log(parameters);
+	
+	FsFiltroConceptos(parameters);
+	
+	
+	/*
 	var _post = $.post(path + "pagosdiversos/busqxcriterioconceptopagosdiversos/", parameters);
 	
 	_post.success(function(requestData){
@@ -72,6 +80,71 @@ function BusqXCriterioConceptoPagosDiversos(crit, datos,varea) {
 	});
 	
 	_post.error(postError);
+	*/
+}
+function FsFiltroConceptos(par){
+	$('#cbconceptos').html('');
+	console.log(par);
+	//console.log(_conceptos[0][1]);
+	var valor = par.valor;
+	var cont='';
+	var criterio=par.criterio ;
+	var cadbusq='';
+	if(par.criterio == '3'){
+		valor = (par.area=='9999999999'?'':par.area);
+	}
+	if(valor == '' || valor == null || valor.length == 0) {
+		for(var i=0;i<_conceptos.length;i++){
+			if(_conceptos[i][1].length>90){
+				descrip = _conceptos[i][1].substr(0,89)+'...';
+			}else{
+				descrip = _conceptos[i][1];
+			}
+			ncodcon = (_conceptos[i][0]+'****************').substr(0,10);
+			caddescrip = ncodcon+"   "+descrip;
+			cont =cont+'<option value="'+_conceptos[i][0]+'|'+_conceptos[i][1]+'|'+_conceptos[i][2]+'|'+_conceptos[i][3]+'">'+caddescrip+'</option>';
+		}
+	}else{
+		b = 0;
+		for(var i=0;i<_conceptos.length;i++){
+			valorbusq = '';
+			if(criterio == '1'){
+				cadbusq = _conceptos[i][0];
+			}if(criterio == '2'){
+				cadbusq = _conceptos[i][1].toUpperCase();
+				valor=valor.toUpperCase();
+			}if(criterio == '3'){
+				cadbusq = _conceptos[i][4];
+			}
+			
+			//if(ereg($valor,$cadbusq)){
+			//if(preg_match('/'+valor+'/', cadbusq)){
+				
+			console.log(cadbusq);
+			console.log(valor);
+			if (cadbusq.indexOf(valor) != -1){
+				
+			//preg_match('/'.$patron.'/', $cadena_texto);
+				b++;
+				if(_conceptos[i][1].length>90){
+					descrip = _conceptos[i][1].substr(0,89)+'...';
+				}else{
+					descrip = _conceptos[i][1];
+				}
+				
+				ncodcon = (_conceptos[i][0]+'****************').substr(0,10);
+				caddescrip = ncodcon+"   "+descrip;
+				if(b == 1){
+					cont +='<option value="'+_conceptos[i][0]+'|'+_conceptos[i][1]+'|'+_conceptos[i][2]+'|'+_conceptos[i][3]+'" selected="selected">'+caddescrip+'</option>';
+				}else{
+					cont +='<option value="'+_conceptos[i][0]+'|'+_conceptos[i][1]+'|'+_conceptos[i][2]+'|'+_conceptos[i][3]+'">'+caddescrip+'</option>';
+				}
+			}
+		}
+	}
+	
+	//console.log(cont);
+	$('#cbconceptos').html(cont);
 }
 
 function AgregarDetalleConceptoPagosDiversos() {
