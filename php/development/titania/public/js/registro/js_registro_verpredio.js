@@ -6,6 +6,24 @@ habilitarComponenteDetalle = function(disabled){
    
     //$("#btnGrabarPredio").button("option", "disabled", disabled);
     
+    $("#cboMotivo").attr("disabled", true);
+    $("#dtpFechaAdquisicion").attr("disabled", true);
+    $("#dtpFechaTransferencia").attr("disabled", true);
+    $("#txtNotaria").attr("disabled", true);
+    $("#txtTipoTransferencia").attr("disabled", true);
+    $("#txtPartida").attr("disabled",true);
+    
+    $("#cboMotivo").toggleClass("ui-text-disable");
+    $("#dtpFechaAdquisicion").toggleClass("ui-text-disable");
+    $("#dtpFechaTransferencia").toggleClass("ui-text-disable");
+    $("#txtNotaria").toggleClass("ui-text-disable");
+    $("#txtTipoTransferencia").toggleClass("ui-text-disable");
+    $("#txtPartida").toggleClass("ui-text-disable");
+    
+    $("#cboMotivo").combobox('disable');
+     
+   // alert($("#cboCondicion").val());
+    
     if($("#cboCondicion").val() == "1000000145"){
         $("#btnVerCondominante").button("option", "disabled", disabled);
         $("#nporcen").attr("disabled", disabled);
@@ -112,7 +130,7 @@ cambioTipoUso = function(event, ui) {
     }
 };
 
-cambioCondicion = function(event, ui) {
+/*cambioCondicion = function(event, ui) {
     if(ui.item) {
         disable = !(ui.item.option.value == "1000000145");
         $("#btnVerCondominante").button("option", "disabled", disable);
@@ -121,7 +139,7 @@ cambioCondicion = function(event, ui) {
     } else {
         openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
     }
-};
+};*/
 
 var periodoSel = ''; 
 
@@ -179,15 +197,42 @@ loadVerDetalle = function(){
     $("#txtUso").bind("autocompleteselect", cambioTipoUso);
     $("#txtUso").bind("autocompletechange", cambioTipoUso);
 
+    cambioCondicion= function(){
+    		
+    		//  alert($("#cboCondicion").val());
+    		
+    		   if($("#cboCondicion").val() == "1000000145"){
+    		        $("#btnVerCondominante").button("option", "disabled", false);
+    		   }
+    		   else{
+    			   $("#btnVerCondominante").button("option", "disabled", true);
+    		   }
+    	 	
+    };
+    
     $("#txtCondicion").bind("autocompleteselect", cambioCondicion);
     $("#txtCondicion").bind("autocompletechange", cambioCondicion);
+    
 
+    $("#cboCondicion").change(function(){
+    	 //alert($("#cboCondicion").val());
+    	 
+		  if ( $("#cboCondicion").val()=='1000000145'){
+			  
+			  $("#btnVerCondominante").button("option", "disabled", false);
+			  
+			}else{
+				
+			 $("#btnVerCondominante").button("option", "disabled", true);
+		 	}
+	 });
+    
     $("#txtPeriodo").attr("maxlength", 4);
     $("#txtPeriodo").bind("autocompleteselect", cambioPeriodo);
     $("#txtPeriodo").bind("autocompletechange", cambioPeriodo);
     periodoSel = $("#txtPeriodo").val();
     
-    $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto, #txt_inicioinafecto, #txt_fininafecto").datepicker({
+    $("#dptFechaResolucionInafecto, #txt_inicioinafecto, #txt_fininafecto").datepicker({
         dateFormat: "dd/mm/yy",
         showOn: "button",
         buttonImage: pathImage + "calendar.gif",
@@ -208,8 +253,14 @@ loadVerDetalle = function(){
         text: false,
         icons: {primary:'ui-icon-search'}
     }).bind("click", function(){
-       // openDialogData1("registro/direccion", {}, "710", "180", "Ubicaci&oacute;n del Predio");
-    	openDialogData1("registro/editarpredio", {}, "800", "500", "Ubicaci&oacute;n del Predio");
+   	
+    	row = {
+    			mhresum: $("#_mhresum").val(),
+    			mpredio: $("#_mpredio").val()
+    			
+    	 };
+    	
+    	openDialogData1("registro/editarpredio", row, "800", "500", "Ubicaci&oacute;n del Predio");
     });
     
      $("#btnCancelarDescrpPredio").hide(); 
@@ -223,65 +274,57 @@ loadVerDetalle = function(){
     	$("#btnEditarPredio").hide();
     	
     	$("#btnCancelarDescrpPredio").show();
-    	
-    	//$("#btnEditarPredio").button("option", "disabled", false);
     		
         habilitarComponenteDetalle(false);
         
         $("#btnGrabarPredio").button("option", "disabled", false);
-        
-        //$( "#tabsDetallePredio" ).tabs( "option", "disabled", [ 1,2,3,4,5 ] );
-        
-        //$("#btnEditarPredio").html("Cancelar");
-        
+         
         habilitab(0);
-        //$("#btnEditarPredio").text("Cancelar"); 
-        //$('#btnEditarPredio').unbind("click").click(function(){
-        	//$("#btnEditarPredio").text("Cancelar"); 
-        	/*$("#btnEditarPredio").button({
-                icons: {primary:'ui-icon-pencil'}
-            }).bind('click', function(){
-            	 
-            	
-            	  //habilitarComponenteDetalle(true);
-            	   $("#btnGrabarPredio").button("option", "disabled", true);
-            	   habilitab(0);
-        	});*/
-        	 // $("#btnGrabarPredio").button("option", "disabled", true);
-        	 // $("#btnGrabarPredio").button("option", "disabled", false);
-        //});
+        
+      	$("#cboMotivo").attr("disabled", true);
+        $("#cboMotivo").toggleClass("ui-text-disable");
+        $("#cboMotivo").button("option", "disabled", true);
+        
     });
     
  
     $("#btnCancelarDescrpPredio").button({
-        icons: {primary:'ui-icon-pencil'}
-    }).bind('click', function(){
-    	$("#btnGrabarPredio").button("option", "disabled", true);
- 	   habilitab(0);
- 	   
-    	$("#btnCancelarDescrpPredio").hide();
-    	$("#btnEditarPredio").show();
-    	
-    	$("#btnGrabarPredio").button("option", "disabled", true);
-    	
-    	habilitarComponenteDetalle(true);
-    	
-    	habilitab(1);
+	        icons: {primary:'ui-icon-pencil'}
+	    }).bind('click', function(){
+	    	
+	    	$("#btnGrabarPredio").button("option", "disabled", true);
+	 	   	 	   
+	    	$("#btnCancelarDescrpPredio").hide();
+	    	$("#btnEditarPredio").show();
+	    	
+	    	$("#btnGrabarPredio").button("option", "disabled", true);
+	    	
+	    	habilitarComponenteDetalle(true);
+	    	
+	       $("#btnVerCondominante").button("option", "disabled", true);
+	    	
+	    	habilitab(1);
+	    	
+	    	$("#cboMotivo").attr("disabled", true);
+	        $("#dtpFechaAdquisicion").attr("disabled", true);
+	        $("#dtpFechaTransferencia").attr("disabled", true);
+	        $("#txtNotaria").attr("disabled", true);
+	        $("#txtTipoTransferencia").attr("disabled", true);
+	        $("#txtPartida").attr("disabled",true);
+	        
+	        $("#cboMotivo").toggleClass("ui-text-disable");
+	        $("#dtpFechaAdquisicion").toggleClass("ui-text-disable");
+	        $("#dtpFechaTransferencia").toggleClass("ui-text-disable");
+	        $("#txtNotaria").toggleClass("ui-text-disable");
+	        $("#txtTipoTransferencia").toggleClass("ui-text-disable");
+	        $("#txtPartida").toggleClass("ui-text-disable");
+	        
+	        $("#cboMotivo").button("option", "disabled", true);
+        
     	
     });
 
-    /*$("#btnEditarPredio").button({
-        icons: {primary:'ui-icon-pencil'}
-    }).bind('click', function(){
-    	//$("#btnEditarPredio").text("Editar");
-    	
-    	  habilitarComponenteDetalle(true);
-    	   $("#btnGrabarPredio").button("option", "disabled", true);
-    	   habilitab(1);
-	});*/
-    
-       
-
+  
     $("#btnFinalizar").button({
     	icons: {primary:'ui-icon-stop'}
     }).bind('click', function(){
@@ -300,36 +343,12 @@ loadVerDetalle = function(){
     	habilitarComponenteDetalle(true);
     	
     	habilitab(1);
-    	/*
-    	parameters = {
-    		mperson: $("#lblCodigo").text(),
-    		mhresum: $("#_mhresum").val()
-    	};
-        openDialogData1("registro/declaracion", parameters, "700", "510", "Declaraci&oacute;n Jurada");
-        */
-    	
 
         
         guardar();
-        
-       // $('#btnEditarPredio').unbind("click").click(function(){
-        	
-        	/* $("#btnEditarPredio").button({
-        	        icons: {primary:'ui-icon-pencil'}
-        	    }).bind('click', function(){
-        	      	$("#btnEditarPredio").button("option", "disabled", false);
-            		
-                    habilitarComponenteDetalle(false);
-                    
-                    $("#btnGrabarPredio").button("option", "disabled", false);
-                    
-                    //$( "#tabsDetallePredio" ).tabs( "option", "disabled", [ 1,2,3,4,5 ] );
-                    
-                    habilitab(0);
-        	    });*/
-       
+               
         	 $("#btnCancelarDescrpPredio").hide();	
-       // });
+
         
     });
 

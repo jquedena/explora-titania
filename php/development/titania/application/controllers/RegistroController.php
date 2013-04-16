@@ -13,8 +13,8 @@ class RegistroController extends Zend_Controller_Action {
     public function indexAction() {
         $this->view->util()->registerScriptJSControllerAction($this->getRequest());
 
-        // TODO: Para pruebas
-        $parameters[] = date("Y") -1;
+        // TODO: Implementar la validacion de vias por año 
+        $parameters[] = date("Y");
         $dataAdapter = new Model_DataAdapter();
         $rows = $dataAdapter->executeAssocQuery("pl_function.listar_vias", $parameters);
         $this->view->mviascp = $rows;
@@ -1076,7 +1076,6 @@ class RegistroController extends Zend_Controller_Action {
 			$("#cboCondicion").combobox();');   
 				
             
-            
          
             //Terreno
             $val[]=array('nareter',$rows[0]['ntertot'] ,'val');
@@ -1126,6 +1125,21 @@ class RegistroController extends Zend_Controller_Action {
 		if ($this->getRequest()->isXmlHttpRequest()) {
 			$this->_helper->layout->disableLayout();			
 			
+			$codpre=$this->_request->getParam('mhresum','');
+			$mpredio=$this->_request->getParam('mpredio','');
+			
+			$pintar = new Libreria_Pintar();
+            $parameters[] = date("Y") -1;
+
+            $dataAdapter = new Model_DataAdapter();
+            $rows = $dataAdapter->executeAssocQuery("pl_function.listar_vias", $parameters);
+            $this->view->mviascp = $rows;  
+            
+            $parameters2[]=array('');
+            
+            $dataAdapter2 = new Model_DataAdapter();
+            $rows = $dataAdapter->executeAssocQuery("pl_function.buscar_predio", $parameters2);
+            
 		}
 		
 	}
