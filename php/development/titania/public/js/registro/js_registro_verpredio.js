@@ -260,7 +260,7 @@ loadVerDetalle = function(){
     			
     	 };
     	
-    	openDialogData1("registro/editarpredio", row, "800", "500", "Ubicaci&oacute;n del Predio");
+    	openDialogData1("registro/editarpredio", row, "650", "420", "Ubicaci&oacute;n del Predio");
     });
     
      $("#btnCancelarDescrpPredio").hide(); 
@@ -284,6 +284,7 @@ loadVerDetalle = function(){
       	$("#cboMotivo").attr("disabled", true);
         $("#cboMotivo").toggleClass("ui-text-disable");
         $("#cboMotivo").button("option", "disabled", true);
+        
         
     });
     
@@ -320,8 +321,11 @@ loadVerDetalle = function(){
 	        $("#txtPartida").toggleClass("ui-text-disable");
 	        
 	        $("#cboMotivo").button("option", "disabled", true);
-        
-    	
+	        
+            $("#cboPeriodo").combobox('enable');
+        	$("#cboMotivo").attr("disabled", false);
+        	$("#cboMotivo").button("option", "disabled", true);
+	    
     });
 
   
