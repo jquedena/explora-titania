@@ -138,7 +138,15 @@
     		}else{
     			$("#dvBajalt").hide();		
     		}
-	  }		 
+	  }	
+
+	  $("#cboMotivo").change(function(){
+		  if ( $("#cboMotivo").val()=='1000000008' ||  $("#cboMotivo").val()=='1000000009' ){
+				$("#dvBajalt").show();			  		
+			}else{
+				$("#dvBajalt").hide();		
+		 	}
+	   	  });	 
 
         $("#txtMotivo").bind("autocompleteselect", verificar);
         $("#txtMotivo").bind("autocompletechange", verificar);

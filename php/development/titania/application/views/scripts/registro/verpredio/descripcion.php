@@ -67,7 +67,7 @@
         </td>
         <td valign="top" style="padding-left: 5px">
             <div id="panelTransferencia" align="center" class="ui-widget ui-widget-content ui-corner-top" style="width: 100%;">
-                <div class="ui-widget ui-state-default ui-corner-top ui-title">
+                <div class="ui-widget ui-state-default ui-corner-top ui-title" contentEditable='false' unselectable='true' style="disabled:true"  >
                     <label>Sobre la Transferencia</label>
                 </div>
                 <table class="ui-table-panelLayout">
@@ -106,7 +106,7 @@
                         <td style="padding-right: 4px;text-align: right;">Area de Terreno:</td>
                         <td><input class="ui-text ui-text-numeric" style="width: 75px" id="nareter" value="<?php echo $this->mpredio["ntertot"]; ?>" /></td>
                         <td style="padding-right: 4px;text-align: right;">Area de Com&uacute;n:</td>
-                        <td><input class="ui-text ui-text-numeric" style="width: 75px" id="narecom" value="<?php echo $this->mpredio["ncomtot"]; ?>" /></td>
+                        <td><input class="ui-text ui-text-numeric" style="width: 75px" id="narecom" value="<?php echo $this->mpredio["narecom"]; ?>" /></td>
                     </tr>
                     <tr>
                         <td style="padding-right: 4px;text-align: right;">Porcentaje de Terreno:</td>
@@ -118,7 +118,7 @@
                         <td style="padding-right: 4px;text-align: right;">Total de Terreno:</td>
                         <td><input class="ui-text ui-text-numeric" style="width: 75px" id="ntotter" value="<?php echo $this->mpredio["nterren"]; ?>" /></td>
                         <td style="padding-right: 4px;text-align: right;">Total de Com&uacute;n:</td>
-                        <td><input class="ui-text ui-text-numeric" style="width: 75px" id="ntotcom" value="<?php echo $this->mpredio["narecom"]; ?>" /></td>
+                        <td><input class="ui-text ui-text-numeric" style="width: 75px" id="ntotcom" value="<?php echo $this->mpredio["ncomtot"]; ?>" /></td>
                     </tr>
                     <tr>
                         <td style="padding-right: 4px;text-align: right;">Frontis:</td>

@@ -36,7 +36,8 @@
             .appendTo( tr )
             .css({"verticalAlign": "top"});
 
-            input = $( "<input>" )
+             // TODO:  input = $( "<input>" )
+            input = this.input = $("<input>") 
             .appendTo( td_1 )
             .val( value )
             .addClass( "ui-combobox-input" )
@@ -99,7 +100,8 @@
                 .appendTo( ul );
             };
 
-            $( "<a>" )
+            //$( "<a>" )
+            a = this.a = $("<a>") 
             .attr("id", select.attr("id").replace("cbo", "link"))
             .attr( "tabIndex", -1 )
             .attr( "title", "Desplegar lista" )
@@ -134,7 +136,18 @@
             this.wrapper.remove();
             this.element.show();
             $.Widget.prototype.destroy.call( this );
-        }
+        },
+        
+        disable: function() {
+            this.input.prop('disabled',true);
+            this.input.autocomplete("disable");
+            this.a.button("disable");
+        },
+        enable: function() {
+            this.input.prop('disabled',false);
+            this.input.autocomplete("enable");
+            this.a.button("enable");
+        } 
     });
 })( jQuery );
 
