@@ -83,7 +83,7 @@
                     </tr>
                     <tr>
                         <td style="padding-right: 4px;text-align: right;">Notaria:</td>
-                        <td colspan="3"><input class="ui-text" style="width: 100%; text-align: center;" id="txtNotaria" value="<?php echo $this->mpredio["cnotari"]; ?>" /></td>
+                        <td colspan="3"><input class="ui-text" style="width: 100%; text-align: right;" id="txtNotaria" value="<?php echo $this->mpredio["cnotari"]; ?>" /></td>
                     </tr>
                     <tr>
                         <td style="padding-right: 4px;text-align: right;">Tipo Doc.:</td>

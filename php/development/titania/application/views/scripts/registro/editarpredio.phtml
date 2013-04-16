@@ -123,7 +123,7 @@
       $("#btncancelar").button({
         icons: {primary:'ui-icon-arrowreturnthick-1-w'}
     }).bind('click', function(){
-        location.href = path + "registro/prediomanten";
+    	closeDialog('jqDialog1'); 
     });
 
 </script>
@@ -265,7 +265,7 @@
 <div id="formPredioMantt">
 	<table border="0">
 		 <tr align="center">
-			<td width="310">
+			<td width="100%">
 				<div class="ui-widget ui-state-default ui-corner-top ui-title">
 					<label>Predio</label>
 				</div>
@@ -318,9 +318,7 @@
 						  <td >Referencia :</td><td colspan="3"><input id="txtreferencia" class="ui-text" style="width:100%" />  </td>
 						
 						</tr>
-
-						
-						
+								
 						<tr>
 							<td></td>
 							<td> <input id="txt_idsigma" type="hidden" class="ui-text" style="width:250px;padding:2px;"/>
@@ -334,17 +332,17 @@
 						<tr>
 							<td colspan="4" align="right"><button id="btnguardar" name="btnguardar">Aceptar</button>&nbsp;&nbsp;<button id="btncancelar">Cancelar</button></td>
 						</tr>
-						<tr>
-						<td colspan="4" style="visibility:hidden;" ><div id="map_canvas" style="width:700px; "></div>
-						  <div id="infoPanel">
-						    <b>Marker status:</b>
-						    <div id="markerStatus"><i>Click and drag the marker.</i></div>
-						    <b>Current position:</b>
-						    <div id="info"></div>
-						    <b>Closest matching address:</b>
-						    <div id="address"></div>
-						  </div></td>
-						</tr>
+<!--						<tr>-->
+<!--						<td colspan="4" style="visibility:hidden;" ><div id="map_canvas" style="width:700px; "></div>-->
+<!--						  <div id="infoPanel">-->
+<!--						    <b>Marker status:</b>-->
+<!--						    <div id="markerStatus"><i>Click and drag the marker.</i></div>-->
+<!--						    <b>Current position:</b>-->
+<!--						    <div id="info"></div>-->
+<!--						    <b>Closest matching address:</b>-->
+<!--						    <div id="address"></div>-->
+<!--						  </div></td>-->
+<!--						</tr>-->
 					</table>
 				</div>
 			</td>

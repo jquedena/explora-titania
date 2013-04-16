@@ -77,6 +77,7 @@ class RegistroController extends Zend_Controller_Action {
             
             $dataAdapter = new Model_DataAdapter();
             $rows = $dataAdapter->executeAssocQuery("pl_function.ver_predio", $parameters);
+            
             if(is_array($rows) && count($rows) > 0) {
 	            $this->view->mpredio = $rows[0];
 	            $parameters = array($rows[0]["dpredio"], $rows[0]["cperiod"]);
@@ -86,6 +87,11 @@ class RegistroController extends Zend_Controller_Action {
 	            $dataAdapter->saveQuery("tblRustico", "pl_function.listar_caracteristica_rustico", $parameters);
             }
         }
+        
+        	$pintar=new Libreria_Pintar();        
+            $val[]=array('ccodpre',$rows [0]['ccodpre'],'val');
+            $pintar->PintarValor($val);
+        
     }
 
     public function direccionAction() {
@@ -1073,10 +1079,9 @@ class RegistroController extends Zend_Controller_Action {
 			$("#cboCondicion option[value='.$rows[0]['ccondic'].']").attr("selected", "selected");
 			
 			// Create the combobox again
-			$("#cboCondicion").combobox();');   
+			$("#cboCondicion").combobox();');  
 				
             
-         
             //Terreno
             $val[]=array('nareter',$rows[0]['ntertot'] ,'val');
             $val[]=array('narecom',$rows[0]['ncomtot'] ,'val');
@@ -1122,25 +1127,49 @@ class RegistroController extends Zend_Controller_Action {
 	public function editarpredioAction(){
 				$this->_helper->getHelper('ajaxContext')->initContext();
 	
+				$pintar = new Libreria_Pintar();
+				
 		if ($this->getRequest()->isXmlHttpRequest()) {
 			$this->_helper->layout->disableLayout();			
 			
 			$codpre=$this->_request->getParam('mhresum','');
 			$mpredio=$this->_request->getParam('mpredio','');
+			//$ccodpre=$this->_request->getParam('ccodpre','');
 			
-			$pintar = new Libreria_Pintar();
+			
+			
+			
             $parameters[] = date("Y") -1;
 
             $dataAdapter = new Model_DataAdapter();
             $rows = $dataAdapter->executeAssocQuery("pl_function.listar_vias", $parameters);
-            $this->view->mviascp = $rows;  
+           // $this->view->mviascp = $rows;  
             
-            $parameters2[]=array('');
+            $parameters2[]= $mpredio;
+            $parameters2[]= '' ;
+            $parameters2[]= '' ;
+            $parameters2[]= '' ;
+            $parameters2[]= '' ;
             
             $dataAdapter2 = new Model_DataAdapter();
-            $rows = $dataAdapter->executeAssocQuery("pl_function.buscar_predio", $parameters2);
+            $rows2 = $dataAdapter2->executeAssocQuery("pl_function.buscar_mpredio", $parameters2);
             
+            //echo count($rows2 );            
+                        
+            $val[]=array( 'txtcodpre' ,$rows2[0]['ccodpre'] ,'val');            
+            $val[]=array( 'txt_idsigma' ,$rows2[0]['idsigma'] ,'val');
+            $val[]=array( 'txt_mviadis' , $rows2[0]['mviadis'] ,'val');
+            $val[]=array( 'txt_mpoblad' , $rows2[0]['mpoblad'] ,'val');
+            
+            $val[]=array( 'txtviacentrpob' ,$rows2[0]['tnomvia'] .' - ' . $rows2[0]['tnompob']  ,'val');         
+            $val[]=array( 'txtnumero' ,$rows2[0]['dnumero']  ,'val');
+            $val[]=array( 'txtdepart' ,$rows2[0]['ddepart']  ,'val');
+            $val[]=array( 'txtmanzana' ,$rows2[0]['dmanzan']  ,'val');
+            $val[]=array( 'txtlote' ,$rows2[0]['dnlotes']  ,'val');
+                                 
 		}
+		
+		$pintar->PintarValor($val);
 		
 	}
 	
