@@ -301,6 +301,7 @@ loadVerDetalle = function(){
         $("#cboMotivo .ui-combobox-input").toggleClass("ui-text-disable");
         $("#txtMotivo").toggleClass("ui-text-disable");
     	$("#cboMotivo .ui-combobox-input").button("option", "disabled", true);
+    	$("#linkMotivo").button("option", "disabled", true);
         
         
     });
