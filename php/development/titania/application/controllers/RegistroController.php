@@ -1119,6 +1119,17 @@ class RegistroController extends Zend_Controller_Action {
 	        $(".ui-combobox-input").toggleClass("ui-text-disable");
 	        $("#txtMotivo").toggleClass("ui-text-disable");
         	$("ui-combobox-input a").button("option", "disabled", true);
+        	$("#linkMotivo").button("option", "disabled", true);
+        	
+        	$("#linkTipoPredio").button("option", "disabled", true);
+        	$("#linkTipoPredioUrbano").button("option", "disabled", true);
+        	$("#linkUso").button("option", "disabled", true);
+        	$("#linkUsoEspecifico").button("option", "disabled", true);
+        	$("#linkEstado").button("option", "disabled", true);
+        	$("#linkCondicion").button("option", "disabled", true);
+        	$("#linkClasificacion").button("option", "disabled", true);
+        	$("#linkParque").button("option", "disabled", true);
+        	
         	
         	$("#cboPeriodo").combobox("destroy");
     		$("#cboPeriodo").combobox();
