@@ -6,21 +6,22 @@ habilitarComponenteDetalle = function(disabled){
    
     //$("#btnGrabarPredio").button("option", "disabled", disabled);
     
-    $("#cboMotivo").attr("disabled", true);
-    $("#dtpFechaAdquisicion").attr("disabled", true);
+    //$("#cboMotivo").attr("disabled", true);
+    /*$("#dtpFechaAdquisicion").attr("disabled", true);
     $("#dtpFechaTransferencia").attr("disabled", true);
     $("#txtNotaria").attr("disabled", true);
     $("#txtTipoTransferencia").attr("disabled", true);
-    $("#txtPartida").attr("disabled",true);
+    $("#txtPartida").attr("disabled",true);*/
     
-    $("#cboMotivo").toggleClass("ui-text-disable");
-    $("#dtpFechaAdquisicion").toggleClass("ui-text-disable");
+    //$("#cboMotivo").toggleClass("ui-text-disable");
+    /*$("#dtpFechaAdquisicion").toggleClass("ui-text-disable");
     $("#dtpFechaTransferencia").toggleClass("ui-text-disable");
     $("#txtNotaria").toggleClass("ui-text-disable");
     $("#txtTipoTransferencia").toggleClass("ui-text-disable");
-    $("#txtPartida").toggleClass("ui-text-disable");
+    $("#txtPartida").toggleClass("ui-text-disable");*/
     
-    $("#cboMotivo").combobox('disable');
+  
+    //$("cboMotivo").button("option", "disabled", true);
      
    // alert($("#cboCondicion").val());
     
@@ -281,9 +282,25 @@ loadVerDetalle = function(){
          
         habilitab(0);
         
-      	$("#cboMotivo").attr("disabled", true);
-        $("#cboMotivo").toggleClass("ui-text-disable");
-        $("#cboMotivo").button("option", "disabled", true);
+         $("#dtpFechaAdquisicion").attr("disabled", true);
+        $("#dtpFechaTransferencia").attr("disabled", true);
+        $("#txtNotaria").attr("disabled", true);
+        $("#txtTipoTransferencia").attr("disabled", true);
+        $("#txtPartida").attr("disabled",true);
+        
+      
+        $("#dtpFechaAdquisicion").toggleClass("ui-text-disable");
+        $("#dtpFechaTransferencia").toggleClass("ui-text-disable");
+        $("#txtNotaria").toggleClass("ui-text-disable");
+        $("#txtTipoTransferencia").toggleClass("ui-text-disable");
+        $("#txtPartida").toggleClass("ui-text-disable");
+  
+        
+        $("#cboMotivo .ui-combobox-input").attr("disabled", true);
+        $("#txtMotivo").attr("disabled", true);
+        $("#cboMotivo .ui-combobox-input").toggleClass("ui-text-disable");
+        $("#txtMotivo").toggleClass("ui-text-disable");
+    	$("#cboMotivo .ui-combobox-input").button("option", "disabled", true);
         
         
     });
@@ -294,18 +311,15 @@ loadVerDetalle = function(){
 	    }).bind('click', function(){
 	    	
 	    	$("#btnGrabarPredio").button("option", "disabled", true);
+	    	$("#btnVerCondominante").button("option", "disabled", true);
 	 	   	 	   
 	    	$("#btnCancelarDescrpPredio").hide();
 	    	$("#btnEditarPredio").show();
 	    	
-	    	$("#btnGrabarPredio").button("option", "disabled", true);
-	    	
 	    	habilitarComponenteDetalle(true);
-	    	
-	       $("#btnVerCondominante").button("option", "disabled", true);
-	    	
+	    	   	
 	    	habilitab(1);
-	    	
+	    		    	
 	    	$("#cboMotivo").attr("disabled", true);
 	        $("#dtpFechaAdquisicion").attr("disabled", true);
 	        $("#dtpFechaTransferencia").attr("disabled", true);
@@ -313,18 +327,23 @@ loadVerDetalle = function(){
 	        $("#txtTipoTransferencia").attr("disabled", true);
 	        $("#txtPartida").attr("disabled",true);
 	        
-	        $("#cboMotivo").toggleClass("ui-text-disable");
+	      
 	        $("#dtpFechaAdquisicion").toggleClass("ui-text-disable");
 	        $("#dtpFechaTransferencia").toggleClass("ui-text-disable");
 	        $("#txtNotaria").toggleClass("ui-text-disable");
 	        $("#txtTipoTransferencia").toggleClass("ui-text-disable");
 	        $("#txtPartida").toggleClass("ui-text-disable");
 	        
-	        $("#cboMotivo").button("option", "disabled", true);
 	        
-            $("#cboPeriodo").combobox('enable');
-        	$("#cboMotivo").attr("disabled", false);
-        	$("#cboMotivo").button("option", "disabled", true);
+	    	
+	     /*   $("#cboMotivo .ui-combobox-input").attr("disabled", true);
+	        $("#txtMotivo").attr("disabled", true);
+	        $("#cboMotivo .ui-combobox-input").toggleClass("ui-text-disable");
+	        $("#txtMotivo").toggleClass("ui-text-disable");
+        	$("#cboMotivo .ui-combobox-input").button("option", "disabled", true);*/
+	    	
+	    		    	   
+	    	$("#cboPeriodo").combobox('enable');
 	    
     });
 

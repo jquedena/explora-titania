@@ -1,64 +1,18 @@
 /**
  * 
  */
+
 $(function(){
 
-	verPredio = function(rowid, iRow, iCol, e) {
-		if(rowid != undefined && rowid != null && rowid !== false ) {
-			row = $("#tblResultmPredio").jqGrid('getRowData', rowid);
-		} else {
-			row = undefined;
-		}
-		
-		
-	};
-
-	bindkeysmpredio = {"onEnter": verPredio};
-
-	buscarmpredio = function() {
-		/*if(_periodo == undefined || _periodo == null) {
-			 $("#txtPeriodo").val('');
-			 _periodo ='%'
-	    }else{
-	    	
-	    }*/
-	    parameters = {
-	        "name": "tblResultmPredio",
-	        "procedure": "registro.mostrarpredios",
-	        "parameters": '{' +
-	        '"p_cperiod":"01"' +
-	        '}'
-	    };
-	    
-	    proceso = function(requestData){
-	        $("#panelResultmpredio").html(requestData);
-	        records = $("#ctblResultmpredio").val();
-	        //if(records > 1) {
-	            actualizarGrid("tblResultmPredio", optionmpredio, bindkeysmpredio,navPanelPredio);
-	    };
-	    
-	    procesarConsultaSubProceso('registrar', parameters, proceso);        
-	 
-	};
-	 
-	optionmpredio= {
-	    height: 200,
-	    width: 400,
-	    editurl: "",
-	    colNames: [              
-				   "C\u00F3digo",
-				   "Nombre",
-				   "dni"
-	               ],
-	    colModel: [
-	        {name:'codigo', index:'codigo', width:80,editable: true, align: 'center', frozen: true,editoptions:{readonly:true,size:10}},
-	        {name:'nombre', index:'nombre', width:90,editable: true, align: 'center'},
-	        {name:'dni', index:'dni', width:90,editable: true }
-	        ],
-	    caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
-	    ondblClickRow: verPredio
-	    	
-
+	optionPerson = {
+		    height: 270,
+		    width: 400,
+		    colNames: ["C\u00F3digo", "crazsoc", "Direcci\u00F3n Fiscal"],
+		    colModel: [
+		        {name:'id_person', index:'cidpers', width:80, align: 'center', frozen: true},
+		        {name:'crazsoc', index:'crazsoc', width:150},
+		        {name:'direccf', index:'direccf', width:90} ],
+		    caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda"
 	};
 
 		btnInsertarPersona = {
@@ -74,7 +28,7 @@ $(function(){
 		    
 		btnEliminarPersona = {
 		    caption: "Eliminar",
-		    title: "Eliminar la construcci\u00F3n",
+		    title: "Eliminar la Persona",
 		    buttonicon: "ui-icon-trash",
 		    onClickButton:function(){
 		        var gsr = $("#tblResultmPredio").jqGrid('getGridParam','selrow');
@@ -105,14 +59,11 @@ $(function(){
 	        $("#tblResultmPredio").jqGrid('navButtonAdd','#ptblResultmPredio', btnEliminarPersona);
 	    };
 
-	    inicializarGrid("tblResultmPredio", optionmpredio,null,navPanelPersona);
+	    inicializarGrid("tblResultmPredio", optionPerson,null,navPanelPersona);
 
 
 	$(function(){
-		//contenidocomboContenedorjqGrid(vlocales,'1000000346');    
-
-	   // buscarmpredio();
-
+	
 	    themeTextBox();
 	    themeComboBox();
 	//---

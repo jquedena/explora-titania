@@ -64,7 +64,7 @@ verPredio = function(rowid, iRow, iCol, e) {
 
     		row2 = {
     				idsigma: row.idsigma,
-    				vdirpre: row.vdirpre
+    				vdirpre: row.tnumero
     		};
 
 
@@ -76,146 +76,48 @@ verPredio = function(rowid, iRow, iCol, e) {
                 };
 
     		closeDialog("jqDialog2");
-    		//closeDialog("jqDialog1");
 
-    		openDialogData1("registro/declaracion", parameters, "850", "600", "Declaraci&oacute;n Jurada");
-
-    		
-    		
-    		/*_post = $.post(path + "registro/pintarpredio", row2);
-    	    _post.success(function(data){
-    	    	
-				$("#panelResultmBusqPredio").html(data);
-				
-        	 });*/
-    		    
+        	openDialogData1("registro/declaracion", parameters, "850", "600", "Declaraci&oacute;n Jurada");
+    	    		    
    }  else {
 	   $("#txt_idsigma").val('-1');  
 	   
    		} 
-	  	
-	  	//closeDialog("jqDialog1");
-	  	
-//});
-
+   		
 };
 
 bindkeysmpredio = {"onEnter": verPredio};
 
-buscarmpredio = function() {
-	/*if(_periodo == undefined || _periodo == null) {
-		 $("#txtPeriodo").val('');
-		 _periodo ='%'
-    }else{
-    	
-    }*/
-    parameters = {
-        "name": "tblResultmBusqPredio",
-        "procedure": "registro.mostrarpredios",
-        "parameters": '{' +
-        '"p_cperiod":"01"' +
-        '}'
-    };
-    
-    proceso = function(requestData){
-        $("#panelResultmBusqPredio").html(requestData);
-        records = $("#ctblResultmBusqpredio").val();
 
-       // alert(records);
-       //if(records > 1) {
-            actualizarGrid("tblResultmBusqPredio", optionmpredio, bindkeysmpredio,navPanelPredio);
-       //}
-    };
-    
-    procesarConsultaSubProceso('registrar', parameters, proceso);        
- 
-};
- 
-optionmpredio= {
+optionmpredio = {
     height: 250,
     width: 550,
     editurl: "mcajerosave",
     colNames: [              
 			   "C\u00F3digo",
-			   "C\u00F3digo de la via",
-			   "Numero",
-			   "Interior",
-			   "Letra",
-			   "Departamento", 
-			   "Estacionamiento", 
-			   "Deposito",
-			   "Referencia",
-			   "Manzana",
-			   "Lote",
-			   "C\u00F3digo Catastral",
-			   "Ubicacion en el plano",
-			   "Tipo de Mercado",
-			   "Nro de puesto dentro del mercado",
-			   "Distrito Catastral",
-			   "Zona Catastral",
-			   "Manzana Catastral",
-			   "Sector Catastral",
-			   "Lote Catastral",
-			   "Unidad Catastral",
-			   "Bloque",
-			   "Seccion",
-			   "Unidad",
-			   "C\u00F3digo Centro Poblado",
-			   "Direccion del Predio",
-			   "Estado",
 			   "Codigo de Predio Mostrar",
-			   "Tipo de Predio",
-			   "Anexo",
-			   "C\u00F3digounico castastral new",
-			   "Estacion",
-			   "Usuario",
-			   "Fecha de Registro",
-			   "Latitud del predio",
-			   "Longitud del predio",
-			   "Zoom del mapa"
+			   "Direccion del Predio",
+			   "C\u00F3digo Centro Poblado",
+			   "Centro Poblado",
+			   "C\u00F3digo de la via",
+			   "Via",
+			   "Numero",
+			   "Departamento", 
+			   "Manzana",
+			   "Lote"
                ],
     colModel: [
-        {name:'idsigma', index:'idsigma', width:80,editable: true, align: 'center', frozen: true,editoptions:{readonly:true,size:10}},
-        {name:'mviadis', index:'mviadis', width:90,editable: true, align: 'center',hidden:true},
-        {name:'dnumero', index:'dnumero', width:90,editable: true },
-        {name:'dinteri', index:'dinteri', width:90,editable: true },
-        {name:'dletras', index:'dletras', width:90,editable: true, align: 'left'},
-        
-        {name:'ddepart', index:'ddepart', width:90,editable: true },
-        {name:'destaci', index:'destaci', width:90,editable: true, align: 'center'},
-        {name:'ddeposi', index:'ddeposi', width:80,editable: true, align: 'center'},
-        {name:'drefere', index:'drefere', width:90,editable: true, align: 'left'},
-        
-        {name:'dmanzan', index:'dmanzan', width:90,editable: true, align: 'center'},
-        {name:'dnlotes', index:'dnlotes', width:90,editable: true, align: 'center'},
-        {name:'ccatast', index:'ccatast', width:90,editable: true, align: 'center'},
-        
-        
-        {name:'cplanos', index:'cplanos', width:90,editable: true,align:"center",hidden:true},
-        {name:'ctipmer', index:'ctipmer', width:90,editable: true,align:"right",hidden:true},
-        {name:'dnummer', index:'dnummer', width:90 },
-        {name:'cdiscat', index:'cdiscat', width:90 },
-        {name:'czoncat', index:'czoncat', width:90 },
-         {name:'cmzacat', index:'cmzacat', width:90 },
-          {name:'cseccat', index:'cseccat', width:90 },  
-          {name:'cltecat', index:'cltecat', width:90 },
-         {name:'cundcat', index:'cundcat', width:90 }, 
-         {name:'dbloque', index:'dbloque', width:90 },  
-         {name:'dseccio', index:'dseccio', width:90 },  
-         {name:'dunidad', index:'dunidad', width:90 },  
-		 {name:'mpoblad', index:'mpoblad', width:90,hidden:true},  
-		 {name:'vdirpre', index:'vdirpre', width:90 },  
-		 {name:'nestado', index:'nestado', width:90,hidden:true ,edittype:"checkbox",editoptions:{value:"1:0",defaultValue:"1"},formatter:'checkbox' },  
-		 {name:'ccodpre', index:'ccodpre', width:90,hidden:true},  
-		 {name:'ctippre', index:'ctippre', width:90,hidden:true},  
-		 {name:'idanexo', index:'idanexo', width:90,hidden:true},  
-		 {name:'ccodcuc', index:'ccodcuc', width:90,hidden:true},  
-		 {name:'vhostnm', index:'vhostnm', width:90,hidden:true},  
-		 {name:'vusernm', index:'vusernm', width:90,hidden:true},  
-		 {name:'ddatetm', index:'ddatetm', width:90,hidden:true ,formatter:'date',formatoptions: { newformat: 'd-m-Y'}},  
-		 {name:'nlatitu', index:'nlatitu', width:90,hidden:true},  
-		 {name:'nlongit', index:'nlongit', width:90,hidden:true},  
-		 {name:'nzoom', index:'nzoom', width:90,hidden:true}         
+        {name:'idsigma', index:'idsigma', width:80,editable: true, align: 'center',editoptions:{readonly:true,size:10}},
+        {name:'ccodpre', index:'ccodpre', width:90,hidden:true},  
+      	 {name:'tnumero', index:'tnumero', width:90 },  
+		 {name:'mpoblad', index:'mpoblad', width:90,hidden:true},
+		 {name:'tnompoblad', index:'tnompoblad', width:90,hidden:true},  
+		 {name:'mviadis', index:'mviadis', width:90,hidden:true},  
+		 {name:'tnomvia', index:'tnomvia', width:90,hidden:true},  
+		 {name:'dnumero', index:'dnumero', width:90,hidden:true},
+		 {name:'ddepart', index:'ddepart', width:90,editable: true },
+	     {name:'dmanzan', index:'dmanzan', width:90,editable: true, align: 'center'},
+	     {name:'dnlotes', index:'dnlotes', width:90,editable: true, align: 'center'}        
         ],
     caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
     ondblClickRow: verPredio
@@ -224,20 +126,105 @@ optionmpredio= {
 };
 
 	
-
-
  navPanelPredio = function() {
         $("#tblResultmBusqPredio").jqGrid('navGrid', '#ptblResultmBusqPredio', {edit:false, add:false, del:false, search:false, refresh:false});
-
     };
 
-    inicializarGrid("tblResultmBusqPredio", optionmpredio,null,navPanelPredio);
+  
+
+buscarmpredio = function() {
+	/*if(_periodo == undefined || _periodo == null) {
+		 $("#txtPeriodo").val('');
+		 _periodo ='%'
+    }else{
+    	
+    }*/
+
+	c_predial= $("#c_predial");
+	
+	viacontrib=$("#c_viacontrib");
+	
+	nroviacontrib=$("#c_nroviacontrib");
+	
+	mzacontrib=$("#c_mzacontrib");
+	
+	lotecontrib=$("#c_lotecontrib");
+	
+
+	  if(trim(c_predial.val()).length > 0){
+		  c_predial.val(LPad(c_predial.val(), 10, '0'));
+	    }
+    
+   /* parameters = {
+        "name": "tblResultmBusqPredio",
+        "procedure": "pl_function.buscar_mpredio",
+        "print": "true",
+        "parameters": '{' +
+        //'"p_ccodpre":"'+ c_predial.val().toUpperCase() +'",' +
+        '"p_ccodpre":"'+ "0000000327" +'",' +
+        '"p_ccodvia":"'+ viacontrib.val().toUpperCase() + '",' +
+        '"p_cnrovia":"'+ nroviacontrib.val().toUpperCase() + '",' +
+        '"p_cmanzan":"'+ mzacontrib.val().toUpperCase() + '",' +
+        '"p_cnrlote":"'+ lotecontrib.val().toUpperCase() + '"' +
+        '}' 
+    };
+
+    console.log(parameters);
+    
+    proceso = function(requestData){
+        $("#panelResultmBusqPredio").html(requestData);
+
+        console.log(requestData);
+        
+        records = $("#ctblResultmBusqpredio").val();
+
+       // alert(records);
+       //if(records > 1) {
+       actualizarGrid("tblResultmBusqPredio", optionmpredio, bindkeysmpredio);
+       // inicializarGrid("tblResultmBusqPredio", optionmpredio);
+       //}
+
+      
+    };
+	    procesarConsultaSubProceso('registrar', parameters, proceso);        
+	  
+	    */ 
+
+	    parameters = {
+	            "name": "tblResultmBusqPredio",
+	            "procedure": "registro.mostrarpredios",
+	            "parameters": '{' +
+	            '"p_cperiod":"01"' +
+	            '}'
+	        };
+	        
+	        proceso = function(requestData){
+	            $("#panelResultmBusqPredio").html(requestData);
+	            records = $("#ctblResultmBusqpredio").val();
+
+	           // alert(records);
+	           //if(records > 1) {
+	                actualizarGrid("tblResultmBusqPredio", optionmpredio, bindkeysmpredio,navPanelPredio);
+	           //}
+	        };
+	        
+	        procesarConsultaSubProceso('registrar', parameters, proceso);   
+    
+
+};
+ 
 
 
 $(function(){
 
 
     buscarmpredio();
+
+	$("#btnbuscar").click(function(){
+		buscarmpredio();
+	});
+
+	//inicializarGrid("tblResultmBusqPredio", optionmpredio);
 
     themeTextBox();
     themeComboBox();

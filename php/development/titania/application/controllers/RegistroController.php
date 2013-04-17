@@ -909,12 +909,19 @@ class RegistroController extends Zend_Controller_Action {
     } 
     
     public function busqpredioAction(){
-    	  $this->_helper->layout->disableLayout();
-    	  
-    	  $pintar=new Libreria_Pintar();
-    	  
-    	  $mperson=$this->_request->getPost('mperson');
-    	  
+    	 // $this->_helper->layout->disableLayout();
+
+    	       $this->_helper->getHelper('ajaxContext')->initContext();
+    	       
+    	       $pintar=new Libreria_Pintar();
+    	       
+
+        if ($this->getRequest()->isXmlHttpRequest()) {
+            $this->_helper->layout->disableLayout();
+
+              $mperson=$this->_request->getPost('mperson');
+              
+        }  
     	  $val[]=array('txtMperson',$mperson,'val');
     	  
     	  $pintar->PintarValor($val);
@@ -1104,11 +1111,19 @@ class RegistroController extends Zend_Controller_Action {
 			
 			// Create the combobox again
 			$("#cboParque").combobox();
-			
-			 $(".ui-text, .ui-combobox-input").attr("disabled", true);
-    		 $(".ui-text, .ui-combobox-input").toggleClass("ui-text-disable");
-    		 $(".ui-combobox a").button("option", "disabled", true);
-						
+    		   
+    		  	
+    		  	
+    		$(" .ui-combobox-input").attr("disabled", true);
+	        $("#txtMotivo").attr("disabled", true);
+	        $(".ui-combobox-input").toggleClass("ui-text-disable");
+	        $("#txtMotivo").toggleClass("ui-text-disable");
+        	$("ui-combobox-input a").button("option", "disabled", true);
+        	
+        	$("#cboPeriodo").combobox("destroy");
+    		$("#cboPeriodo").combobox();
+    		  	
+									
 			');
 			            
             
