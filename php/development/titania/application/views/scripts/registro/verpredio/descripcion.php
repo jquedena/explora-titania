@@ -142,8 +142,7 @@
     $(function() {
 
     	$("#btnCancelarDescrpPredio").click(function() {
-   
-    	 
+    
     		row = {     		
     				mpredio: $("#_mpredio").val(),    				
     				mhresum: $("#_mhresum").val(), 
