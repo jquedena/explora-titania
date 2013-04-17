@@ -1143,7 +1143,7 @@ class RegistroController extends Zend_Controller_Action {
 
             $dataAdapter = new Model_DataAdapter();
             $rows = $dataAdapter->executeAssocQuery("pl_function.listar_vias", $parameters);
-           // $this->view->mviascp = $rows;  
+            $this->view->mviascp = $rows;  
             
             $parameters2[]= $mpredio;
             $parameters2[]= '' ;
