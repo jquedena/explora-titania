@@ -242,7 +242,23 @@ btnEliminarPiso = {
         	    	procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
         		});
         	       
-        	    _post.error(postError);	
+        	    _post.error(postError);
+        	    
+        		row2 = { 
+        				
+        				p_mhresum  : $("#_mhresum").val(),
+        				p_cperiod : $("#cboPeriodo").val(),			
+        				p_dpredio  : $("#_dpredio").val()
+        				 
+        		};
+        	    
+        	    
+        		_post = $.post(path + "registro/recargarvalorpredio", row2);
+        	    _post.success(function(data){
+        	    	$("#ajaxaca").html(data);
+        	    	//optionPiso = $.extend(optionPiso, {data: data.data});
+        	    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
+        		});
         		
         		
         		$("#ctblPiso").val(indexRow - 1);

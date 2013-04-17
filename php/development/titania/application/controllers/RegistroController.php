@@ -1221,5 +1221,41 @@ class RegistroController extends Zend_Controller_Action {
           
 	}
 	
+	public function  recargarvalorpredioAction(){
+  		$this->_helper->getHelper('ajaxContext')->initContext();
+		$pintar= New Libreria_Pintar();
+		
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+	    		
+    		$p_mhresum =$this->_request->getPost('p_mhresum','');
+            $p_cperiod =$this->_request->getPost('p_cperiod','');
+            $p_dpredio =$this->_request->getPost('p_dpredio','');   
+            
+    		
+            $parameters2[]= $p_mhresum ;
+            $parameters2[]= $p_cperiod ;
+            $parameters2[]= $p_dpredio ;
+            
+            $dataAdapter2 = new Model_DataAdapter();
+            $rows2 = $dataAdapter2->executeAssocQuery("pl_function.ver_valor_predio", $parameters2);
+    		
+            print_r($rows2);    		
+    	}    	
+    	
+    	$val[]=array('lblArancel',$rows2[0]['narance'],'html');
+    	
+    	$val[]=array('lblValorTerreno',$rows2[0]['nvalter'],'html');
+    	
+    	$val[]=array('lblValorConstruccion',$rows2[0]['nvalpis'],'html');
+    	
+    	$val[]=array('lblValorInstalacion',$rows2[0]['nvalins'],'html');
+    	
+    	$val[]=array('lblAutovaluo', $rows2[0]['nvalpre'] ,'html');
+    	    	
+    	$pintar->PintarValor($val);
+		
+	}
+	
 }  
 
