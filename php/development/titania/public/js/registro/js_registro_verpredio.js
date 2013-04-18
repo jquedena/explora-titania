@@ -1,30 +1,10 @@
 habilitarComponenteDetalle = function(disabled){
+		
     $(".ui-text, .ui-combobox-input").attr("disabled", disabled);
     $(".ui-text, .ui-combobox-input").toggleClass("ui-text-disable");
     $(".ui-combobox a").button("option", "disabled", disabled);
     $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto").datepicker("option", "disabled", disabled);
-   
-    //$("#btnGrabarPredio").button("option", "disabled", disabled);
-    
-    //$("#cboMotivo").attr("disabled", true);
-    /*$("#dtpFechaAdquisicion").attr("disabled", true);
-    $("#dtpFechaTransferencia").attr("disabled", true);
-    $("#txtNotaria").attr("disabled", true);
-    $("#txtTipoTransferencia").attr("disabled", true);
-    $("#txtPartida").attr("disabled",true);*/
-    
-    //$("#cboMotivo").toggleClass("ui-text-disable");
-    /*$("#dtpFechaAdquisicion").toggleClass("ui-text-disable");
-    $("#dtpFechaTransferencia").toggleClass("ui-text-disable");
-    $("#txtNotaria").toggleClass("ui-text-disable");
-    $("#txtTipoTransferencia").toggleClass("ui-text-disable");
-    $("#txtPartida").toggleClass("ui-text-disable");*/
-    
   
-    //$("cboMotivo").button("option", "disabled", true);
-     
-   // alert($("#cboCondicion").val());
-    
     if($("#cboCondicion").val() == "1000000145"){
         $("#btnVerCondominante").button("option", "disabled", disabled);
         $("#nporcen").attr("disabled", disabled);
@@ -388,8 +368,23 @@ loadVerDetalle = function(){
 
         
         guardar();
-               
-        	 $("#btnCancelarDescrpPredio").hide();	
+         
+                
+        $("#btnCancelarDescrpPredio").hide();
+        
+    	$("#cboMotivo").attr("disabled", true);
+        $("#dtpFechaAdquisicion").attr("disabled", true);
+        $("#dtpFechaTransferencia").attr("disabled", true);
+        $("#txtNotaria").attr("disabled", true);
+        $("#txtTipoTransferencia").attr("disabled", true);
+        $("#txtPartida").attr("disabled",true);
+        
+      
+        $("#dtpFechaAdquisicion").toggleClass("ui-text-disable");
+        $("#dtpFechaTransferencia").toggleClass("ui-text-disable");
+        $("#txtNotaria").toggleClass("ui-text-disable");
+        $("#txtTipoTransferencia").toggleClass("ui-text-disable");
+        $("#txtPartida").toggleClass("ui-text-disable");
 
         
     });
