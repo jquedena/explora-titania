@@ -62,17 +62,22 @@ verPredio = function(rowid, iRow, iCol, e) {
 	}
 	  	if(row != undefined) {
 
-    		row2 = {
+    	/*	row2 = {
     				idsigma: row.idsigma,
     				vdirpre: row.tnumero
     		};
-
+		*/
 
     		parameters = {
                 	mperson: $("#txtMperson").val(),
                 	mhresum: "-1",
                 	idsigma: row.idsigma,
-                	vdirpre: row.vdirpre	
+                	vdirpre: row.tnumero,
+                	fechvig: $("#dtpFechaVigencia").val(),
+                	nrodecla: $("#txtNroDeclaracion").val(),
+                	fechdecl: $("#dtpFechaDeclaracion").val(),
+                	motivo:	  $("#cboMotivo").val(),
+                	observa:  $("#txtObservacion").text()		
                 };
 
     		closeDialog("jqDialog2");
