@@ -214,8 +214,7 @@ optionInstalacion = {height: 200,
 	        	    	optionInstalacion = $.extend(optionInstalacion, {data: data.data});
 	        	    	procesarJSON("panelInstalacion", "tblInstalacion", optionInstalacion, null, navPanelInstalacion);
 	        		});
-	        	    _post.error(postError);	
-	        	    
+	        	   	        	    
 	        		row2 = { 
 	        				
 	        				p_mhresum  : $("#_mhresum").val(),
