@@ -21,21 +21,24 @@
 	<script type="text/javascript" src="<%=request.getContextPath()%>/pages/objetivos/objetivosDistribucion.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/script.js"></script>
 	<script type="text/javascript">
+	var codPerfil="<c:out value="${sessionScope.gestor.codigoPerfil}"/>";
 	var session_error="<c:out value="${requestScope.ERROR_SDO}"/>";
 	<c:set var="requestScope.ERROR_SDO" value=""/>
 	$(function() {
 		// La meta debe ser mayor o igual a lo asignado por el Gerente Territorial o JPN
-		$(".GOF").blur(function() {
-			var disabled = false;
-			
-			if(Math.abs(parseFloat($(this).val())) < Math.abs(parseFloat($(this).attr('valueOld')))) {
-				disabled = true;
-				alert('La meta debe ser mayor o igual a lo asignado por el Gerente Territorial o JPN');
-				$(this).val($(this).attr('valueOld'));
-				$(this).change();
-				$(this).focus();
-			}
-		});
+		if(codPerfil == "GOF") {
+			$(".GOF").blur(function() {
+				var disabled = false;
+				
+				if(Math.abs(parseFloat($(this).val())) < Math.abs(parseFloat($(this).attr('valueOld')))) {
+					disabled = true;
+					alert('La meta debe ser mayor o igual a lo asignado por el Gerente Territorial o JPN');
+					$(this).val($(this).attr('valueOld'));
+					$(this).change();
+					$(this).focus();
+				}
+			});
+		}
 	
 		test = new Boolean(session_error);
 		if(test) {
@@ -100,7 +103,7 @@
 				s+=parseFloat($(this).val().length == 0 ? '0' : $(this).val());
 			});
 			
-			if(s <= $("input[name=restoOficina]").val()){
+			if(Math.abs(s) <= Math.abs(parseFloat($("input[name=restoOficina]").val()))){
 				$("#trMensaje").css({"display":"none"});
 			} else {
 				$("#trMensaje").css({"display":"block"});
@@ -347,7 +350,7 @@
 	  			</c:if>
 
 				<c:if test="${fact == '0'}">
-					<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textCeleste" name=<c:out value="${objBean.codigoGestor}"/> size="10"  size="10" 
+					<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textCeleste" name=<c:out value="${objBean.codigoGestor}"/> size="10"  maxlength="13" 
 						codigo ="<c:out value='${objBean.codigoGestor}'/>"
 						nombre="<c:out value='${objBean.nombreGestor}'/>"
 						codperfil="<c:out value='${objBean.perfilMostrar}'/>"
@@ -356,7 +359,7 @@
 				</c:if>
 				
 				<c:if test="${fact == '1'}">
-					<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textCeleste" name=<c:out value="${objBean.codigoGestor}"/> size="10"  size="10"
+					<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textCeleste" name=<c:out value="${objBean.codigoGestor}"/> size="10"  maxlength="13"
 						codigo ="<c:out value='${objBean.codigoGestor}'/>"
 						nombre="<c:out value='${objBean.nombreGestor}'/>"
 						codperfil="<c:out value='${objBean.perfilMostrar}'/>"
@@ -366,7 +369,7 @@
 			</c:if>
 
 			<c:if test="${porc == '1'}">
-					<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textAzul" name=<c:out value="${objBean.codigoGestor}"/> size="10"  size="10"
+					<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textAzul" name=<c:out value="${objBean.codigoGestor}"/> size="10"  maxlength="13"
 						codigo ="<c:out value='${objBean.codigoGestor}'/>"
 						nombre="<c:out value='${objBean.nombreGestor}'/>"
 						codperfil="<c:out value='${objBean.perfilMostrar}'/>"
@@ -377,7 +380,7 @@
 		
 		<c:if test="${objBean.codigoPerfil != 'GOF'}">
 			<c:if test="${objBean.porcAsignado != 0 }">
-				<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textAzul" name=<c:out value="${objBean.codigoGestor}"/> size="10"
+				<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textAzul" name=<c:out value="${objBean.codigoGestor}"/> size="10" maxlength="13"
 					codigo ="<c:out value='${objBean.codigoGestor}'/>"
 					nombre="<c:out value='${objBean.nombreGestor}'/>"
 					codperfil="<c:out value='${objBean.perfilMostrar}'/>"
@@ -385,7 +388,7 @@
 					value=<c:out value="${objBean.metaGestor.porcAsignado}"/> onblur="setearCero();" onkeypress="return validKey(INT_PATTERN_NEGATIVO);"/>
 			</c:if>
 			<c:if test="${objBean.porcAsignado == 0 }">
-				<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textCeleste" name=<c:out value="${objBean.codigoGestor}"/> size="10"
+				<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textCeleste" name=<c:out value="${objBean.codigoGestor}"/> size="10" maxlength="13"
 					codigo ="<c:out value='${objBean.codigoGestor}'/>"
 					nombre="<c:out value='${objBean.nombreGestor}'/>"
 					codperfil="<c:out value='${objBean.perfilMostrar}'/>"

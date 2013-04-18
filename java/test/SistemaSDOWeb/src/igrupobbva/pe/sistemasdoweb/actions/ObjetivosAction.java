@@ -335,6 +335,7 @@ public class ObjetivosAction extends DispatchAction{
 			log.info("[ObjetivosAction :: actualizarObjetivo] Objetivo  Nro. de gestores:");
 			log.info("[ObjetivosAction :: actualizarObjetivo] " + listaPorcentajes != null ? String.valueOf(listaPorcentajes.length) : "0");
 			
+			boolean status = true;
 			MetasGestor metasGestor  = null;
 			for(int i = 0; i < listaPorcentajes.length; i++){
 				
@@ -362,7 +363,7 @@ public class ObjetivosAction extends DispatchAction{
 					sesion.setAttribute("tipo", tipo);
 					
 					metasGestor.setUsuario(gestor.getCodigoGestor());
-					conexion.updateMetasGestor(metasGestor);
+					status = status && conexion.updateMetasGestor(metasGestor);
 					
 					// TODO: Actualizar de estado gestores eliminados y distribuidos del LDAP
 					conexion.actualizarGestoresDistribuidosLDAP(codEpigrafe, anho, codOficina, mes, gestor.getCodigoGestor());
@@ -372,7 +373,7 @@ public class ObjetivosAction extends DispatchAction{
 				}else{
 					metasGestor.setCodMetaGestor(conexion.getCorrelativo("TIIDO_METAS_GESTOR","COD_META_GESTOR","8"));
 					
-					conexion.createMetasGestor(metasGestor);
+					status = status && conexion.createMetasGestor(metasGestor);
 					log.info("[ObjetivosAction :: actualizarObjetivo] "  +
 							"Inserci" + (char) 243 + "n Objetivo Gestor " + (i + 1)  + ":" + listaGestores[i].toString() + "-" + listaNomGestores[i].toString());					
 					mensaje= ConstantesUtil.MENSAJE_EXITO;
@@ -399,7 +400,11 @@ public class ObjetivosAction extends DispatchAction{
 			}
 			
 			log.info("[ObjetivosAction :: actualizarObjetivo] Fin");
-			request.setAttribute("ERROR_SDO", "Ok");
+			if(status) {
+				request.setAttribute("ERROR_SDO", "Ok");
+			} else {
+				request.setAttribute("ERROR_SDO", ConstantesUtil.MENSAJE_ERROR);
+			}
 		} catch (Exception e) {
 			request.setAttribute("ERROR_SDO", ConstantesUtil.MENSAJE_ERROR);
 			log.error("[ObjetivosAction :: actualizarObjetivo] ");
