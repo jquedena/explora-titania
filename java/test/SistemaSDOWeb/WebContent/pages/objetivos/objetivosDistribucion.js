@@ -39,7 +39,7 @@ function mostrarFelicitacion(){
 	  document.getElementById('montoTotal').value = montoCompara;
 	}
 	
-	 if(montoCompara <= monto){
+	 if(Math.abs(montoCompara) <= Math.abs(monto)){
 	 	var mens = document.getElementById('trMensaje');
 	 	
 	 	if(mens != null) {
@@ -47,25 +47,26 @@ function mostrarFelicitacion(){
 	    }
 	  }else{
 	    document.getElementById('trMensaje').style.display = 'block';
-		
 	  }
 }
 
-/*function verificarMonto(){
- var monto = document.getElementById('restoOficina').value;
-  var indice = 0;
-  var montoCompara = 0;                 
-  for (i = 7; i < (document.forms[0].elements.length - 3); i++){
-    if(document.forms[0].elements[i].type == "text" ){
-      montoCompara = parseFloat(montoCompara) + parseFloat(document.forms[0].elements[i].value);
-    }
-  }
-  if(monto < montoCompara ){
-  alert('La suma de las metas no debe sobrepasar el Resto de Oficinas.');
-  return false;
-  }
-  return true;
-}*/
+/**
+ * function verificarMonto(){
+ *  var monto = document.getElementById('restoOficina').value;
+ *  var indice = 0;
+ *  var montoCompara = 0;                 
+ *   for (i = 7; i < (document.forms[0].elements.length - 3); i++){
+ *     if(document.forms[0].elements[i].type == "text" ){
+ *       montoCompara = parseFloat(montoCompara) + parseFloat(document.forms[0].elements[i].value);
+ *     }
+ *   }
+ *   if(Math.abs(monto) < Math.abs(montoCompara)){
+ *   alert('La suma de las metas no debe sobrepasar el Resto de Oficinas.');
+ *   return false;
+ *   }
+ *   return true;
+ * }
+ **/
 
 function verificarMonto(){
 	// Valida Montos
@@ -110,7 +111,7 @@ function verificarMonto(){
 		return false;
 	} */
 	
-	if(gestores < total) {
+	if(Math.abs(gestores) < Math.abs(total)) {
 		alert('La suma de las metas debe ser mayor o igual al Ajuste Territorial.');
 		return false;
 	} 

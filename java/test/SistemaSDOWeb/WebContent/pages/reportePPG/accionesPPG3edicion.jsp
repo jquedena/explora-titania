@@ -36,6 +36,7 @@ int compromisoGestor= 0;
 
 %>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.2.6.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/script.js"></script>
 <script language="javascript">
 /**
 * Agregar validacion si se ingresa un numero positivo en la caja de texto "Compromiso Gestor (Monto en Miles / Numero)"€ para el epigrafe "€œCartera Atrasada" (Monto o Ratio) emitir el siguiente mensaje de alerta "€œEl compromiso de cartera atrasada debe ser negativo"€ y no permitir grabar. 
