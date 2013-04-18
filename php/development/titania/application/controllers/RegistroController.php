@@ -109,12 +109,18 @@ class RegistroController extends Zend_Controller_Action {
 		
          $pintar= new Libreria_Pintar();
          
-      
-         	$codpre=$this->_request->getParam('idsigma','');
-            $vdirpre=$this->_request->getParam('vdirpre','');
             
         if ($this->getRequest()->isXmlHttpRequest()) {
             $this->_helper->layout->disableLayout();
+            
+            $codpre=$this->_request->getParam('idsigma','');
+            $vdirpre=$this->_request->getParam('vdirpre','');
+            $fechvig=$this->_request->getParam('fechvig','');
+            $nrodecla=$this->_request->getParam('nrodecla','');
+            $fechdecl=$this->_request->getParam('fechdecl','');
+            $motivo=$this->_request->getParam('motivo','');
+            $observa=$this->_request->getParam('observa','');		
+            
             $this->view->mperson = $this->_request->getParam('mperson');
             $this->view->mhresum = $this->_request->getParam('mhresum');
             $this->view->cperiod = date("Y");            
@@ -128,6 +134,26 @@ class RegistroController extends Zend_Controller_Action {
            $val[]=array('hdnIdPersona', $this->_request->getParam('mperson'),'val' );	
            $val[]=array('txtMpredio',$codpre,'val');
            $val[]=array('txtDirecpred',$vdirpre,'val');
+           $val[]=array('dtpFechaVigencia',$fechvig,'val');
+           $val[]=array('txtNroDeclaracion',$nrodecla,'val');
+           $val[]=array('dtpFechaDeclaracion',$fechdecl,'val');
+           
+           $fun[]=array(' 
+            // Destroy the combobox
+			$("#cboMotivo").combobox("destroy");
+			
+			// Unselect the currently selected option
+			$("#cboMotivo option:selected").removeAttr("selected");
+			
+			// Select the option you want to select
+			$("#cboMotivo option[value='.$motivo.']").attr("selected", "selected");
+			
+			// Create the combobox again
+			$("#cboMotivo").combobox();');
+                      
+                      
+           //$val[]=array('cboMotivo', $motivo,'val');
+           $val[]=array('txtObservacion', $observa,'html');
              
         //print_r($val);
         
