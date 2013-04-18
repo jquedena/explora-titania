@@ -114,7 +114,7 @@ optionmpredio = {
     colModel: [
         {name:'idsigma', index:'idsigma', width:80,editable: true, align: 'center',editoptions:{readonly:true,size:10}},
         {name:'ccodpre', index:'ccodpre', width:90,hidden:true},  
-      	 {name:'tnumero', index:'tnumero', width:90 },  
+      	 {name:'tnumero', index:'tnumero', width:200 },  
 		 {name:'mpoblad', index:'mpoblad', width:90,hidden:true},
 		 {name:'tnompoblad', index:'tnompoblad', width:90,hidden:true},  
 		 {name:'mviadis', index:'mviadis', width:90,hidden:true},  
@@ -135,6 +135,67 @@ optionmpredio = {
         $("#tblResultmBusqPredio").jqGrid('navGrid', '#ptblResultmBusqPredio', {edit:false, add:false, del:false, search:false, refresh:false});
     };
 
+
+
+
+    buscarmpredio2 = function() {
+    	/*if(_periodo == undefined || _periodo == null) {
+    		 $("#txtPeriodo").val('');
+    		 _periodo ='%'
+        }else{
+        	
+        }*/
+
+    	c_predial= $("#c_predial");
+    	
+    	viacontrib=$("#c_viacontrib");
+    	
+    	nroviacontrib=$("#c_nroviacontrib");
+    	
+    	mzacontrib=$("#c_mzacontrib");
+    	
+    	lotecontrib=$("#c_lotecontrib");
+    	
+
+    	  if(trim(c_predial.val()).length > 0){
+    		  c_predial.val(LPad(c_predial.val(), 10, '0'));
+    	    }
+        
+        parameters = {
+            "name": "tblResultmBusqPredio",
+            "procedure": "pl_function.buscar_mpredio",
+            "print": "true",
+            "parameters": '{' +
+            '"p_ccodpre":"'+ c_predial.val().toUpperCase() +'",' +
+            //'"p_ccodpre":"'+ "0000000327" +'",' +
+            '"p_ccodvia":"'+ viacontrib.val().toUpperCase() + '",' +
+            '"p_cnrovia":"'+ nroviacontrib.val().toUpperCase() + '",' +
+            '"p_cmanzan":"'+ mzacontrib.val().toUpperCase() + '",' +
+            '"p_cnrlote":"'+ lotecontrib.val().toUpperCase() + '"' +
+            '}' 
+        };
+
+        console.log(parameters);
+        
+        proceso = function(requestData){
+            $("#panelResultmBusqPredio").html(requestData);
+
+            console.log(requestData);
+            
+            records = $("#ctblResultmBusqpredio").val();
+
+           // alert(records);
+           //if(records > 1) {
+           //actualizarGrid("tblResultmBusqPredio", optionmpredio, bindkeysmpredio);
+           // inicializarGrid("tblResultmBusqPredio", optionmpredio);
+           //}
+	    	procesarJSON("panelResultmBusqPredio", "tblResultmBusqPredio", optionmpredio, null, navPanelPredio);
+              
+          
+        };
+
+    	 //procesarConsultaSubProceso('registrar', parameters, proceso);
+    };    
   
 
 buscarmpredio = function() {
@@ -210,6 +271,10 @@ buscarmpredio = function() {
 	           // alert(records);
 	           //if(records > 1) {
 	                actualizarGrid("tblResultmBusqPredio", optionmpredio, bindkeysmpredio,navPanelPredio);
+
+	                //optionmpredio = $.extend(optionmpredio, {data: data.data});
+        	    	//procesarJSON("panelResultmBusqPredio", "tblResultmBusqPredio", optionmpredio, null, navPanelPredio);
+	                
 	           //}
 	        };
 	        
@@ -226,7 +291,7 @@ $(function(){
     buscarmpredio();
 
 	$("#btnbuscar").click(function(){
-		buscarmpredio();
+		buscarmpredio2();
 	});
 
 	//inicializarGrid("tblResultmBusqPredio", optionmpredio);
