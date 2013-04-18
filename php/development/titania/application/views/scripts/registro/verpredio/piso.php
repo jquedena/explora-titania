@@ -3,4 +3,4 @@
     <div id="ptblPiso"></div>
 </div>
 
-<div  id="ajaxaca" style="visibility:hidden;" ></div>
+<div  id="ajaxaca2" style="visibility:hidden;" ></div>

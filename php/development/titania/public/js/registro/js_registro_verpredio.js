@@ -4,8 +4,6 @@ habilitarComponenteDetalle = function(disabled){
     $(".ui-text, .ui-combobox-input").toggleClass("ui-text-disable");
     $(".ui-combobox a").button("option", "disabled", disabled);
     $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto").datepicker("option", "disabled", disabled);
-  
-    
        
     //$("#btnEditarPredio").button("option", "disabled", !disabled);
    
@@ -42,12 +40,12 @@ function habilitab(tipo ){
 		 $( "#tabsDetallePredio" ).tabs( "option", "disabled", false );
 		 // $( "#tabsDetallePredio" ).tabs( "enable");
 		 $("#btnImprimir").button("option", "disabled", false);
-		  $("#btnFinalizar").button("option", "disabled", false);
-		  $("#btnCancelarPredio").button("option", "disabled", false);
-		  $("#btnBuscarDireccion").button("option", "disabled", false);
+		 $("#btnFinalizar").button("option", "disabled", false);
+		 $("#btnCancelarPredio").button("option", "disabled", false);
+		 $("#btnBuscarDireccion").button("option", "disabled", false);
 		  
-		  $("#txtPeriodo").toggleClass("ui-text");
-		  $("#linkPeriodo").button("option", "disabled", false);
+		 $("#txtPeriodo").toggleClass("ui-text");
+		 $("#linkPeriodo").button("option", "disabled", false);
 	  }
 	  
 }

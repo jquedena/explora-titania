@@ -91,7 +91,7 @@ guardar = function() {
 	_post = $.post(path + "registro/recargarvalorpredio", row2);
     _post.success(function(data){
     	
-    	$("#ajaxaca").html(data);
+    	$("#ajaxaca2").html(data);
     	//optionPiso = $.extend(optionPiso, {data: data.data});
     	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
 	});
@@ -226,7 +226,7 @@ optionInstalacion = {height: 200,
 	        		_post = $.post(path + "registro/recargarvalorpredio", row2);
 	        	    _post.success(function(data){
 	        	    	
-	        	    	$("#ajaxaca").html(data);
+	        	    	$("#ajaxaca2").html(data);
 	        	    	//optionPiso = $.extend(optionPiso, {data: data.data});
 	        	    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
 	        		});
