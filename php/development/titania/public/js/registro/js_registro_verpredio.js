@@ -77,6 +77,10 @@ function habilitatran(){
  	 $("#nporcen").toggleClass("ui-text-disable");
  	 
      $("#btnVerCondominante").button("option", "disabled", true);
+     
+     $("#narecom").toggleClass("ui-text-disable");
+     $("#nporcom").toggleClass("ui-text-disable");
+     $("#ntotcom").toggleClass("ui-text-disable");
 }
 
 
