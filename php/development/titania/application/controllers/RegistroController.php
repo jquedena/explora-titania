@@ -1141,10 +1141,12 @@ class RegistroController extends Zend_Controller_Action {
     		  	
     		  	
     		$(" .ui-combobox-input").attr("disabled", true);
-	        $("#txtMotivo").attr("disabled", true);
-	        $(".ui-combobox-input").toggleClass("ui-text-disable");
-	        $("#txtMotivo").toggleClass("ui-text-disable");
-        	$("ui-combobox-input a").button("option", "disabled", true);
+    		$(" .ui-combobox-input").toggleClass("ui-text-disable");
+    		$(" ui-combobox-input a").button("option", "disabled", true);
+    		
+	        //$("#txtMotivo").attr("disabled", true);	        
+	        //$("#txtMotivo").toggleClass("ui-text-disable");
+        	
         	$("#linkMotivo").button("option", "disabled", true);
         	
         	$("#linkTipoPredio").button("option", "disabled", true);
@@ -1157,11 +1159,14 @@ class RegistroController extends Zend_Controller_Action {
         	$("#linkParque").button("option", "disabled", true);
         	
         	
-        	$("#cboPeriodo").combobox("destroy");
-    		$("#cboPeriodo").combobox();
-    		  	
+        	//$("#cboPeriodo").combobox("destroy");
+    		//$("#cboPeriodo").combobox();
+    		
+    		//alert("despues");
 									
 			');
+            
+            
 			            
             
 //            $val[]=array('narecom',$rows[0]['ncomtot'] ,'val');
