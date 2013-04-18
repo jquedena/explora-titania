@@ -5,17 +5,8 @@ habilitarComponenteDetalle = function(disabled){
     $(".ui-combobox a").button("option", "disabled", disabled);
     $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto").datepicker("option", "disabled", disabled);
   
-    if($("#cboCondicion").val() == "1000000145"){
-        $("#btnVerCondominante").button("option", "disabled", disabled);
-        $("#nporcen").attr("disabled", disabled);
-        $("#nporcen").toggleClass("ui-text-disable");
-    } else {
-        if(!disabled) {
-            $("#nporcen").attr("disabled", true);
-            $("#nporcen").toggleClass("ui-text-disable"); 
-        }
-    }
     
+       
     //$("#btnEditarPredio").button("option", "disabled", !disabled);
    
     $("#txtPeriodo").toggleClass("ui-text-disable");
@@ -36,12 +27,56 @@ habilitarComponenteDetalle = function(disabled){
 function habilitab(tipo ){
 	  if (tipo==0){
 		  $( "#tabsDetallePredio" ).tabs( "option", "disabled", [ 1,2,3,4,5 ] );  
+		  
+		  $("#btnImprimir").button("option", "disabled", true);
+		  $("#btnFinalizar").button("option", "disabled", true);
+		  $("#btnCancelarPredio").button("option", "disabled", true);
+		  $("#btnBuscarDireccion").button("option", "disabled", true);
+		  
+		  $("#txtPeriodo").toggleClass("ui-text-disable");
+		  $("#linkPeriodo").button("option", "disabled", true);
+		  
+		  
 	  }else{
 		 //$( "#tabsDetallePredio" ).tabs( "option", "enable", [ 1,2,3,4,5 ] );	
 		 $( "#tabsDetallePredio" ).tabs( "option", "disabled", false );
 		 // $( "#tabsDetallePredio" ).tabs( "enable");
+		 $("#btnImprimir").button("option", "disabled", false);
+		  $("#btnFinalizar").button("option", "disabled", false);
+		  $("#btnCancelarPredio").button("option", "disabled", false);
+		  $("#btnBuscarDireccion").button("option", "disabled", false);
+		  
+		  $("#txtPeriodo").toggleClass("ui-text");
+		  $("#linkPeriodo").button("option", "disabled", false);
 	  }
 	  
+}
+
+function habilitatran(){
+
+   	$("#dtpFechaAdquisicion").attr("disabled", true);
+    $("#dtpFechaTransferencia").attr("disabled", true);
+    $("#txtNotaria").attr("disabled", true);
+    $("#txtTipoTransferencia").attr("disabled", true);
+    $("#txtPartida").attr("disabled",true);
+    
+  
+    $("#dtpFechaAdquisicion").toggleClass("ui-text-disable");
+    $("#dtpFechaTransferencia").toggleClass("ui-text-disable");
+    $("#txtNotaria").toggleClass("ui-text-disable");
+    $("#txtTipoTransferencia").toggleClass("ui-text-disable");
+    $("#txtPartida").toggleClass("ui-text-disable");
+    
+    //$("#cboMotivo .ui-combobox-input").attr("disabled", true);
+    //  $("#txtMotivo").attr("disabled", true);
+     //$("#cboMotivo .ui-combobox-input").toggleClass("ui-text-disable");
+      $("#txtMotivo").toggleClass("ui-text-disable");
+ 	//$("#cboMotivo .ui-combobox-input").button("option", "disabled", true);
+ 	$("#linkMotivo").button("option", "disabled", true);
+	
+ 	 $("#nporcen").toggleClass("ui-text-disable");
+ 	 
+     $("#btnVerCondominante").button("option", "disabled", true);
 }
 
 
@@ -213,18 +248,14 @@ loadVerDetalle = function(){
     $("#txtCondicion").bind("autocompletechange", cambioCondicion);
     
 
-    $("#cboCondicion").change(function(){
-    	 //alert($("#cboCondicion").val());
-    	 
-		  if ( $("#cboCondicion").val()=='1000000145'){
-			  
-			  $("#btnVerCondominante").button("option", "disabled", false);
-			  
-			}else{
-				
-			 $("#btnVerCondominante").button("option", "disabled", true);
-		 	}
-	 });
+     
+    if ( $("#txtCondicion").val()=="CONDOMINIO"  ){
+    	  $("#btnVerCondominante").button("option", "disabled", true);
+		  
+	}else{
+		
+	 $("#btnVerCondominante").button("option", "disabled", false);
+    } 
     
     $("#txtPeriodo").attr("maxlength", 4);
     $("#txtPeriodo").bind("autocompleteselect", cambioPeriodo);
@@ -280,28 +311,12 @@ loadVerDetalle = function(){
          
         habilitab(0);
         
-         $("#dtpFechaAdquisicion").attr("disabled", true);
-        $("#dtpFechaTransferencia").attr("disabled", true);
-        $("#txtNotaria").attr("disabled", true);
-        $("#txtTipoTransferencia").attr("disabled", true);
-        $("#txtPartida").attr("disabled",true);
-        
-      
-        $("#dtpFechaAdquisicion").toggleClass("ui-text-disable");
-        $("#dtpFechaTransferencia").toggleClass("ui-text-disable");
-        $("#txtNotaria").toggleClass("ui-text-disable");
-        $("#txtTipoTransferencia").toggleClass("ui-text-disable");
-        $("#txtPartida").toggleClass("ui-text-disable");
-  
-        
-        $("#cboMotivo .ui-combobox-input").attr("disabled", true);
-        $("#txtMotivo").attr("disabled", true);
-        $("#cboMotivo .ui-combobox-input").toggleClass("ui-text-disable");
-        $("#txtMotivo").toggleClass("ui-text-disable");
-    	$("#cboMotivo .ui-combobox-input").button("option", "disabled", true);
-    	$("#linkMotivo").button("option", "disabled", true);
+        habilitatran();
         
         
+        if($("#cboCondicion").val() == "1000000145"){
+            $("#btnVerCondominante").button("option", "disabled", false);
+        }  
     });
     
  
@@ -318,32 +333,12 @@ loadVerDetalle = function(){
 	    	habilitarComponenteDetalle(true);
 	    	   	
 	    	habilitab(1);
-	    		    	
-	    	$("#cboMotivo").attr("disabled", true);
-	        $("#dtpFechaAdquisicion").attr("disabled", true);
-	        $("#dtpFechaTransferencia").attr("disabled", true);
-	        $("#txtNotaria").attr("disabled", true);
-	        $("#txtTipoTransferencia").attr("disabled", true);
-	        $("#txtPartida").attr("disabled",true);
-	        
-	      
-	        $("#dtpFechaAdquisicion").toggleClass("ui-text-disable");
-	        $("#dtpFechaTransferencia").toggleClass("ui-text-disable");
-	        $("#txtNotaria").toggleClass("ui-text-disable");
-	        $("#txtTipoTransferencia").toggleClass("ui-text-disable");
-	        $("#txtPartida").toggleClass("ui-text-disable");
-	        
-	        
 	    	
-	     /*   $("#cboMotivo .ui-combobox-input").attr("disabled", true);
-	        $("#txtMotivo").attr("disabled", true);
-	        $("#cboMotivo .ui-combobox-input").toggleClass("ui-text-disable");
-	        $("#txtMotivo").toggleClass("ui-text-disable");
-        	$("#cboMotivo .ui-combobox-input").button("option", "disabled", true);*/
-	    	
+	    	habilitatran();
 	    		    	   
 	    	$("#cboPeriodo").combobox('enable');
-	    
+	    	
+	    		    
     });
 
   
@@ -372,19 +367,7 @@ loadVerDetalle = function(){
                 
         $("#btnCancelarDescrpPredio").hide();
         
-    	$("#cboMotivo").attr("disabled", true);
-        $("#dtpFechaAdquisicion").attr("disabled", true);
-        $("#dtpFechaTransferencia").attr("disabled", true);
-        $("#txtNotaria").attr("disabled", true);
-        $("#txtTipoTransferencia").attr("disabled", true);
-        $("#txtPartida").attr("disabled",true);
-        
-      
-        $("#dtpFechaAdquisicion").toggleClass("ui-text-disable");
-        $("#dtpFechaTransferencia").toggleClass("ui-text-disable");
-        $("#txtNotaria").toggleClass("ui-text-disable");
-        $("#txtTipoTransferencia").toggleClass("ui-text-disable");
-        $("#txtPartida").toggleClass("ui-text-disable");
+        habilitatran();
 
         
     });
