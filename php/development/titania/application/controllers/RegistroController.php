@@ -1274,15 +1274,15 @@ class RegistroController extends Zend_Controller_Action {
             print_r($rows2);    		
     	}    	
     	
-    	$val[]=array('lblArancel',round($rows2[0]['narance'],2),'html');
+    	$val[]=array('lblArancel',number_format(round($rows2[0]['narance'],2)),'html');
     	
-    	$val[]=array('lblValorTerreno',round($rows2[0]['nvalter'],2),'html');
+    	$val[]=array('lblValorTerreno',number_format(round($rows2[0]['nvalter'],2)),'html');
     	
-    	$val[]=array('lblValorConstruccion',round($rows2[0]['nvalpis'],2),'html');
+    	$val[]=array('lblValorConstruccion',number_format(round($rows2[0]['nvalpis'],2)),'html');
     	
-    	$val[]=array('lblValorInstalacion',round($rows2[0]['nvalins'],2),'html');
+    	$val[]=array('lblValorInstalacion',number_format(round($rows2[0]['nvalins'],2)),'html');
     	
-    	$val[]=array('lblAutovaluo', round($rows2[0]['nvalpre'],2) ,'html');
+    	$val[]=array('lblAutovaluo',number_format( round($rows2[0]['nvalpre'],2)) ,'html');
     	
     	//$fun[]=array(' $("#lblArancel").numeric(decimal:2);  ');
     	    	
