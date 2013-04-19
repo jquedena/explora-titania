@@ -96,6 +96,22 @@ guardar = function() {
     	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
 	});
     
+    row3 = { 
+			
+			p_mhresum  : $("#_mhresum").val(),
+			p_cperiod : $("#cboPeriodo").val(),			
+			p_mpredio  : $("#_mpredio").val()
+			 
+	};
+    
+    _post = $.post(path + "registro/recargarauditpredio", row3);
+    _post.success(function(data){
+    	
+    	$("#ajaxaca").html(data);
+    	//optionPiso = $.extend(optionPiso, {data: data.data});
+    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
+	});
+    
     _post.error(postError);
 };
 
@@ -224,14 +240,34 @@ optionInstalacion = {height: 200,
 	        	    
 	        	    
 	        		_post = $.post(path + "registro/recargarvalorpredio", row2);
-	        	    _post.success(function(data){
+	        	    _post.success(function(data){	        	    	
+	        	    	
 	        	    	
 	        	    	$("#ajaxaca2").html(data);
 	        	    	//optionPiso = $.extend(optionPiso, {data: data.data});
 	        	    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
 	        		});
 	        	    
-	        	    _post.error(postError);
+	        	    
+	        	    
+	        	    row3 = { 
+	        				
+	        				p_mhresum  : $("#_mhresum").val(),
+	        				p_cperiod : $("#cboPeriodo").val(),			
+	        				p_mpredio  : $("#_mpredio").val()
+	        				 
+	        		};
+	        	    
+	        	    _post = $.post(path + "registro/recargarauditpredio", row3);
+	        	    _post.success(function(data){
+	        	    	
+	        	    	$("#ajaxaca").html(data);
+	        	    	//optionPiso = $.extend(optionPiso, {data: data.data});
+	        	    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
+	        		});
+	        	    
+	        	    
+	        	   // _post.error(postError);
 	        			
 	        			$("#ctblInstalacion").val(indexRow - 1);
 	        		} else {

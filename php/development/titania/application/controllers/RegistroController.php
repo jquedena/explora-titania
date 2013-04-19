@@ -1271,7 +1271,7 @@ class RegistroController extends Zend_Controller_Action {
             $dataAdapter2 = new Model_DataAdapter();
             $rows2 = $dataAdapter2->executeAssocQuery("pl_function.ver_valor_predio", $parameters2);
     		
-            print_r($rows2);    		
+            //print_r($rows2);    		
     	}    	
     	
     	$val[]=array('lblArancel',number_format(round($rows2[0]['narance'],2)),'html');
@@ -1284,6 +1284,42 @@ class RegistroController extends Zend_Controller_Action {
     	
     	$val[]=array('lblAutovaluo',number_format( round($rows2[0]['nvalpre'],2)) ,'html');
     	
+    	//$fun[]=array(' $("#lblArancel").numeric(decimal:2);  ');
+    	    	
+    	$pintar->PintarValor($val);
+    	//$pintar->EjecutarFuncion($fun);
+		
+	}
+	
+	public function  recargarauditpredioAction(){
+  		$this->_helper->getHelper('ajaxContext')->initContext();
+		$pintar= New Libreria_Pintar();
+		
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+	    		
+    		$p_mhresum =$this->_request->getPost('p_mhresum','');
+            $p_cperiod =$this->_request->getPost('p_cperiod','');
+            $p_mpredio =$this->_request->getPost('p_mpredio','');   
+            
+    		$parameters2[]= $p_mpredio ;
+            $parameters2[]= $p_mhresum ;
+            $parameters2[]= $p_cperiod ;
+          
+            
+            $dataAdapter2 = new Model_DataAdapter();
+            $rows2 = $dataAdapter2->executeAssocQuery("pl_function.ver_predio", $parameters2);
+    		
+            //print_r($rows2);    		
+    	}    	
+    	
+    	$val[]=array('lblUsuario',$rows2[0]['vusernm'],'html');
+    	
+    	$val[]=array('lblFechaModificacion',$rows2[0]['ddatetm'],'html');
+    	
+    	$val[]=array('lblFechaProceso',$rows2[0]['dfectra'],'html');
+    	
+   	
     	//$fun[]=array(' $("#lblArancel").numeric(decimal:2);  ');
     	    	
     	$pintar->PintarValor($val);

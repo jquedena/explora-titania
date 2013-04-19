@@ -182,14 +182,23 @@ guardar = function() {
 			p_dpredio  : $("#_dpredio").val()			 
 	};
     
+	  row3 = { 
+				
+				p_mhresum  : $("#_mhresum").val(),
+				p_cperiod : $("#cboPeriodo").val(),			
+				p_mpredio  : $("#_mpredio").val()
+				 
+		};
     
-	_post = $.post(path + "registro/recargarvalorpredio", row2);
+	_post = $.post(path + "registro/recargarauditpredio", row3);
     _post.success(function(data){
     	
     	$("#ajaxaca").html(data);
     	//optionPiso = $.extend(optionPiso, {data: data.data});
     	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
 	});
+    
+    
     
     _post.error(postError);
 };
