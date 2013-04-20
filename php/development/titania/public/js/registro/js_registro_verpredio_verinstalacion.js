@@ -23,8 +23,7 @@ verInstalacion = function(rowid, iRow, iCol, e) {
             
             console.log(row);
             
-            //METRO CUBICO
-        	
+            //METRO CUBICO        	
         	if ( row.nvalanc>0 &&  row.nvalalt>0 && row.nvallar>0 ){
 	   			$("#cboinstctipint").val('1000000442');
 	   		}
@@ -38,7 +37,6 @@ verInstalacion = function(rowid, iRow, iCol, e) {
     		   			$("#cboinstctipint").val('1000000441');
     		   		}
     	   		}
-    	   		
         	}
             
            // alert(row.cnumpis);

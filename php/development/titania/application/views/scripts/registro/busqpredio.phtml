@@ -27,7 +27,7 @@
                             <button id="btnbuscar">Buscar</button>              
                             </td>
             </tr>
-            <tr id="panelBusqPredio">
+            <tr id="panelBusqpredio">
                             <td>&nbsp;</td>
                             <td><input class="ui-text" id="c_predial" maxlength="10" style="width:90px" /></td>
                             <td></td>
@@ -46,9 +46,9 @@
     </div>
     <div id="dvaccion"></div>
 </div>
-<div id="panelResultmBusqPredio">
-	<table id="tblResultmBusqPredio"></table>
-	<div id="ptblResultmBusqPredio"></div>
+<div id="panelResultmBusqpredio">
+	<table id="tblResultmBusqpredio"></table>
+	<div id="ptblResultmBusqpredio"></div>
 </div>
 
 <script type="text/javascript">
@@ -56,7 +56,7 @@
         
 verPredio = function(rowid, iRow, iCol, e) {
 	if(rowid != undefined && rowid != null && rowid !== false ) {
-		row = $("#tblResultmBusqPredio").jqGrid('getRowData', rowid);
+		row = $("#tblResultmBusqpredio").jqGrid('getRowData', rowid);
 	} else {
 		row = undefined;
 	}
@@ -114,15 +114,15 @@ optionmpredio = {
     colModel: [
         {name:'idsigma', index:'idsigma', width:80,editable: true, align: 'center',editoptions:{readonly:true,size:10}},
         {name:'ccodpre', index:'ccodpre', width:90,hidden:true},  
-      	 {name:'tnumero', index:'tnumero', width:200 },  
+      	 {name:'tnumero', index:'tnumero', width:500 },  
 		 {name:'mpoblad', index:'mpoblad', width:90,hidden:true},
 		 {name:'tnompoblad', index:'tnompoblad', width:90,hidden:true},  
 		 {name:'mviadis', index:'mviadis', width:90,hidden:true},  
 		 {name:'tnomvia', index:'tnomvia', width:90,hidden:true},  
 		 {name:'dnumero', index:'dnumero', width:90,hidden:true},
-		 {name:'ddepart', index:'ddepart', width:90,editable: true },
-	     {name:'dmanzan', index:'dmanzan', width:90,editable: true, align: 'center'},
-	     {name:'dnlotes', index:'dnlotes', width:90,editable: true, align: 'center'}        
+		 {name:'ddepart', index:'ddepart', width:90,editable: true,hidden:true },
+	     {name:'dmanzan', index:'dmanzan', width:90,editable: true, align: 'center',hidden:true},
+	     {name:'dnlotes', index:'dnlotes', width:90,editable: true, align: 'center',hidden:true}        
         ],
     caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
     ondblClickRow: verPredio
@@ -131,8 +131,8 @@ optionmpredio = {
 };
 
 	
- navPanelPredio = function() {
-        $("#tblResultmBusqPredio").jqGrid('navGrid', '#ptblResultmBusqPredio', {edit:false, add:false, del:false, search:false, refresh:false});
+ navPanelpredio = function() {
+        $("#tblResultmBusqpredio").jqGrid('navGrid', '#ptblResultmBusqpredio', {edit:false, add:false, del:false, search:false, refresh:false});
     };
 
 
@@ -162,9 +162,8 @@ optionmpredio = {
     	    }
         
         parameters = {
-            "name": "tblResultmBusqPredio",
+            "name": "tblResultmBusqpredio",
             "procedure": "pl_function.buscar_mpredio",
-            "print": "true",
             "parameters": '{' +
             '"p_ccodpre":"'+ c_predial.val().toUpperCase() +'",' +
             //'"p_ccodpre":"'+ "0000000327" +'",' +
@@ -178,23 +177,29 @@ optionmpredio = {
         console.log(parameters);
         
         proceso = function(requestData){
-            $("#panelResultmBusqPredio").html(requestData);
-
+            $("#panelResultmBusqpredio").html(requestData);
+  
+            console.log("busqueda");
             console.log(requestData);
+
+			
             
             records = $("#ctblResultmBusqpredio").val();
 
+            console.log(records);
+
+            //alert(records); 
            // alert(records);
            //if(records > 1) {
-           //actualizarGrid("tblResultmBusqPredio", optionmpredio, bindkeysmpredio);
+           actualizarGrid("tblResultmBusqpredio", optionmpredio, bindkeysmpredio);
            // inicializarGrid("tblResultmBusqPredio", optionmpredio);
            //}
-	    	procesarJSON("panelResultmBusqPredio", "tblResultmBusqPredio", optionmpredio, null, navPanelPredio);
+	    	//procesarJSON("panelResultmBusqpredio", "tblResultmBusqpredio", optionmpredio, null, navPanelPredio);
               
           
         };
 
-    	 //procesarConsultaSubProceso('registrar', parameters, proceso);
+    	 procesarConsultaSubProceso('registrar', parameters, proceso);
     };    
   
 
@@ -257,7 +262,7 @@ buscarmpredio = function() {
 	    */ 
 
 	    parameters = {
-	            "name": "tblResultmBusqPredio",
+	            "name": "tblResultmBusqpredio",
 	            "procedure": "registro.mostrarpredios",
 	            "parameters": '{' +
 	            '"p_cperiod":"01"' +
@@ -265,12 +270,12 @@ buscarmpredio = function() {
 	        };
 	        
 	        proceso = function(requestData){
-	            $("#panelResultmBusqPredio").html(requestData);
+	            $("#panelResultmBusqpredio").html(requestData);
 	            records = $("#ctblResultmBusqpredio").val();
 
 	           // alert(records);
 	           //if(records > 1) {
-	                actualizarGrid("tblResultmBusqPredio", optionmpredio, bindkeysmpredio,navPanelPredio);
+	                actualizarGrid("tblResultmBusqpredio", optionmpredio, bindkeysmpredio,navPanelpredio);
 
 	                //optionmpredio = $.extend(optionmpredio, {data: data.data});
         	    	//procesarJSON("panelResultmBusqPredio", "tblResultmBusqPredio", optionmpredio, null, navPanelPredio);
@@ -288,13 +293,13 @@ buscarmpredio = function() {
 $(function(){
 
 
-    buscarmpredio();
+    //buscarmpredio();
 
 	$("#btnbuscar").click(function(){
 		buscarmpredio2();
 	});
 
-	//inicializarGrid("tblResultmBusqPredio", optionmpredio);
+	inicializarGrid("tblResultmBusqpredio", optionmpredio);
 
     themeTextBox();
     themeComboBox();
