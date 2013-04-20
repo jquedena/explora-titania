@@ -19,7 +19,30 @@ verInstalacion = function(rowid, iRow, iCol, e) {
             if (row.nvallar>0){
             	  $("#trLargo").show();
             }   
-	   			
+            
+            
+            console.log(row);
+            
+            //METRO CUBICO
+        	
+        	if ( row.nvalanc>0 &&  row.nvalalt>0 && row.nvallar>0 ){
+	   			$("#cboinstctipint").val('1000000442');
+	   		}
+        	else{
+        		//METRO CUADRADO
+    	   		if ( row.nvalanc>0 &&  row.nvalalt>0 ){
+    	   			$("#cboinstctipint").val('1000000440');
+    	   		}else{
+    	   		//METRO LINEAL
+    	        	if ( row.nvallar>0 ){
+    		   			$("#cboinstctipint").val('1000000441');
+    		   		}
+    	   		}
+    	   		
+        	}
+            
+           // alert(row.cnumpis);
+            
     		$("#txt_idsigma").val(row.idsigma);
 	        $("#txt_instdpredio").val(row.dpredio);
 	  //	$("#txt_instcnitems").val(row.cnitems);
@@ -29,16 +52,20 @@ verInstalacion = function(rowid, iRow, iCol, e) {
 	   		$("#txt_instdfecdoc").val(row.dfecdoc);       
 	  //	$("#txt_instcmotivo").val(row.cmotivo);
 	  //	$("#txt_instctipdoc").val(row.ctipdoc);     
-	   		$("#txt_instcnumpis").val(row.cnumpis);
+	   		//$("#txt_instcnumpis").val(row.cnumpis);
+	   		$("#txt_instcnumpis option[value="+row.cnumpis+"]").attr("selected",true);
+
 	   		$("#txt_instnantigu").val(row.nantigu);       
 	   		$("#txt_instcanocon").val(row.canocon);
 	   		$("#txt_instnvalanc").val(row.nvalanc);   
 	   		$("#txt_instnvalalt").val(row.nvalalt);     
 	   		$("#txt_instnvallar").val(row.nvallar);     
-	   		$("#txt_instctipint").val(row.ctipint);     
+	   		//$("#txt_instctipint").val(row.ctipint);     
 	   		$("#txt_instvdesint").val(row.vdesint);     
 	   		$("#txt_instnvalins").val(row.nvalins);  
-	   		$("#cb_tipoinstalacion").val(row.ctipint);
+	   		//$("#cb_tipoinstalacion").val(row.ctipint);
+	   		$("#txt_instvdesint option[value="+row.ctipint+"]").attr("selected",true);
+
 	   		
 	 //		$("#txt_instdafecta").val(row.dafecta);     
    }  else {
