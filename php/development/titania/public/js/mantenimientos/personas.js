@@ -1,6 +1,6 @@
 xsavemanteperson = function(){
 	datos=$('#divdatos :input,select').serialize();
-	console.log(datos);
+	//console.log(datos);
 	//alert(datos);
 	_post = $.post(path + "mantenimientos/personasave", datos);
 	_post.success(function(request){
@@ -8,7 +8,7 @@ xsavemanteperson = function(){
 	});
 	
 	_post.error(postError);
-}
+};
 
 
 xmantepersonnew=function(){
@@ -20,14 +20,15 @@ xmantepersonnew=function(){
 	row.action='insert';
 	//console.log(row);
 	
-	view(row)
-}
+	view(row);
+};
 xmantepersonupdate = function(numberrow,_row){
 	
 	if(numberrow == undefined || numberrow == null) {
-		row = _row
-		
+		row = _row;
+		//console.log('if');
 	}else{
+		//console.log('else');
 		row = $(this).getRowData(numberrow);
 		cidpers = row.id_person;
 		crazsoc = row.crazsoc;
@@ -41,24 +42,26 @@ xmantepersonupdate = function(numberrow,_row){
 	//}
 	 
 	row.action='update';
+	console.log(row);
 	view(row);
-}
+};
 
 view= function(_parameters){
 	
 	_post = $.post(path + "mantenimientos/personaview", _parameters);
 	 _post.success(function(request){
+		 $('#panelPersons').html('');
 		 $("#panelPersons").html(request);
-		 themeTextBox();
-		 themeComboBox();
-		 $('#btnguardar').button({ icons: {primary:'ui-icon-disk'} })
+		
+		 
+		 $('#btnguardar').button({ icons: {primary:'ui-icon-disk'} });
 		 $('#btnguardar').click(function(event){
 			 xsavemanteperson();
 		 });
 		 $('#btnregresar').button({ icons: {primary:'ui-icon-arrowreturnthick-1-w'} })
 		 	.click(
 		 			function(){
-		 				location.reload()
+		 				location.reload();
 	 				}
 		 			);
 		 $("#fecnace").datepicker({
@@ -96,11 +99,13 @@ view= function(_parameters){
 			 $("#txtbuscar").hide();
 			 $('#ds_buscar').hide();
 		 }
-	    
+		 themeTextBox();
+		 themeComboBox();
 	});
 	
 	_post.error(postError);
-}
+	
+};
 
 optionPerson = {
     height: 270,
@@ -116,7 +121,7 @@ optionPerson = {
         console.log(row);
     },*/
     ondblClickRow: xmantepersonupdate
-}
+};
 bindkeysPerson = {"onEnter": xmantepersonupdate};
 buscarPerson = function() {
     valid = false;

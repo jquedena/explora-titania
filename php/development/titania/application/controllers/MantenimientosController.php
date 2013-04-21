@@ -450,7 +450,7 @@ class MantenimientosController extends Zend_Controller_Action {
 				$val[] = array('ref', str_replace('"', '', str_replace('บ', '', $vreferen)), 'val');
 				// echo str_replace('Nยบ','Nro',$vreferen);
 
-				echo "<textarea>" . $vreferen . "</textarea>";
+				//echo "<textarea>" . $vreferen . "</textarea>";
 				$val[] = array("ds_observacion", $vobserv, 'html');
 			}
 			$val[] = array('cbotipdoc', $func->ContenidoCombo($arrtipodoc, $ctipdoc), 'html');
@@ -458,12 +458,94 @@ class MantenimientosController extends Zend_Controller_Action {
 			$val[] = array('cboestcivil', $func->ContenidoCombo($arrestcivil, $cestciv), 'html');
 			$val[] = array('distrito', $func->ContenidoCombo($arrcodpostal, $cubigeo), 'html');
 
-			$func->IniciaScript();
+			//$func->IniciaScript();
 			$func->PintarValor($val);
-			$func->FinScript();
+			//$func->FinScript();
+			
 		}
 	}
-
+	public function personasaveAction(){
+		$this->_helper->layout->disableLayout ();
+		$this->_helper->viewRenderer->setNoRender ();
+		$this->_helper->getHelper ( 'ajaxContext' )->initContext ();
+		if ($this->getRequest ()->isXmlHttpRequest ()) {
+			//$cbotipingreso = $this->_request->getPost ( 'cbotipingreso' );
+			$codperson = $this->_request->getPost ( 'txtcodigo' );
+			$st_estado = $this->_request->getPost ( 'st_estado' );
+			$cbotipdoc = $this->_request->getPost ( 'cbotipdoc' );
+			$nrodoc = $this->_request->getPost ( 'nrodoc' );
+			$cbotipper = $this->_request->getPost ( 'cbotipper' );
+			$apatern = $this->_request->getPost ( 'apatern' );
+			$amatern = $this->_request->getPost ( 'amatern' );
+			$nombre = $this->_request->getPost ( 'nombre' );
+			$cbosexo = $this->_request->getPost ( 'cbosexo' );
+			$cboestcivil = $this->_request->getPost ( 'cboestcivil' );
+			$fecnace = $this->_request->getPost ( 'fecnace' );
+			$nrotef = $this->_request->getPost ( 'nrotef' );
+			$nromovil = $this->_request->getPost ( 'nromovil' );
+			$mail = $this->_request->getPost ( 'mail' );
+			$distrito = $this->_request->getPost ( 'distrito' );
+			$denominacion = $this->_request->getPost ( 'denominacion' );
+			$direccion= $this->_request->getPost ( 'direccion' );
+			$direcnumero = $this->_request->getPost ( 'direcnumero' );
+			$departamen = $this->_request->getPost ( 'departamen' );
+			$manzana = $this->_request->getPost ( 'manzana' );
+			$lote = $this->_request->getPost ( 'lote' );
+			$ref = $this->_request->getPost ( 'ref' );
+			$ds_observacion = $this->_request->getPost ( 'ds_observacion' );//22
+	
+			$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+			$userlogin = $ddatosuserlog->userlogin;
+			$cad = '';
+			$corr = 1;
+	
+			$cad .= $corr.'^'; //1
+			$cad .= $codperson.'^'; //2
+			$cad .= $st_estado.'^'; //3
+			$cad .= $cbotipdoc.'^'; //4
+			$cad .= $nrodoc.'^'; //5
+			$cad .= $cbotipper.'^'; //6
+			$cad .= $apatern.'^'; //7
+			$cad .= $amatern.'^'; //8
+			$cad .= $nombre.'^'; //9
+			$cad .= $cbosexo.'^'; //10
+			$cad .= $cboestcivil.'^'; //11
+			$cad .= $fecnace.'^'; //12
+			$cad .= $nrotef.'^'; //13
+			$cad .= $nromovil.'^'; //14
+			$cad .= $mail.'^'; //15
+			$cad .= $distrito.'^'; //16
+			$cad .= $denominacion.'^'; //17
+			$cad .= $direccion.'^'; //18
+			$cad .= $direcnumero.'^'; //19
+			$cad .= $departamen.'^'; //20
+			$cad .= $manzana.'^'; //21
+			$cad .= $lote.'^'; //22
+			$cad .= $ref.'^'; //23
+			$cad .= $ds_observacion.'^'; //24
+			$cad .= $userlogin.'^'; //user 25
+			$cad .= $this->view->util()->getHost(); //host 26
+	
+	
+			$cn = new Model_DataAdapter ();
+			$nombrestore = '"public".guardarpersona';
+			$parametros [0] = $cad ;
+			$parametros [1] = '~' ;
+			$parametros [2] = '^';
+			$datos = $cn->ejec_store_procedura_sql ( $nombrestore, $parametros );
+	
+			//echo "<textarea>".$cad."</textarea>";
+			if($datos[0][0] == '1'){
+				$codperson=$datos[0][1];
+				echo ($codperson==''?"Guardado":"Actualizado")." Correctamente <script language=\"JavaScript\">$('#panelPersons').html('');row = new Object();row.id_person = '$codperson';xmantepersonupdate(null,row);</script>";#
+				//echo "<textarea>'<script language=\"JavaScript\">row = new Object();row.id_person = '$codperson';xmantepersonupdate(null,row);</script>';</textarea>";
+			}else{
+				echo 'Error en el guardado...';
+			}
+	
+	
+	}
+	}
 	public function contenedorAction() {
 	}
 

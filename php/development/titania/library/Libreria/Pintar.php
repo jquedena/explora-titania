@@ -145,11 +145,11 @@ class Libreria_Pintar {
      * @param Object $valor_defecto Valor por defecto a seleccionar
      * return
      */
-    public function ContenidoCombo($opciones, $valor_defecto) {
+    public function ContenidoCombo($opciones, $valor_defecto,$help='1') {
         $html = "";
         if (is_array($opciones)) {
             $opciones = array_values($opciones);
-            $html .= "<option value=\"9999999999\">SELECCIONE</option>";
+           if($help=='1')$html .= "<option value=\"9999999999\">SELECCIONE</option>";
             for ($i = 0; $i < count($opciones); $i++) {
                 if ($opciones[$i][0] == $valor_defecto) {
                     $html .= "<option value=\"" . $opciones[$i][0] . "\" selected=\"selected\">" . $opciones[$i][1] . "</option>";
