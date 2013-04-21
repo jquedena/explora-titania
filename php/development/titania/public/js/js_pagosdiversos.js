@@ -12,7 +12,6 @@ function MostrarBuscarConceptosPagosDiversos(conceptos) {
 		
 		var parameters = {datoscpd: conceptos};
 		var _post = $.post(path + "pagosdiversos/busqconceptopagodiverso/", parameters);
-		
 		_post.success(function(requestData){
 			$("#div_buscarconcepto").html(requestData);
 		});
@@ -84,7 +83,7 @@ function BusqXCriterioConceptoPagosDiversos(crit, datos,varea) {
 }
 function FsFiltroConceptos(par){
 	$('#cbconceptos').html('');
-	console.log(par);
+	//console.log(par);
 	//console.log(_conceptos[0][1]);
 	var valor = par.valor;
 	var cont='';
@@ -106,6 +105,7 @@ function FsFiltroConceptos(par){
 		}
 	}else{
 		b = 0;
+		group='';
 		for(var i=0;i<_conceptos.length;i++){
 			valorbusq = '';
 			if(criterio == '1'){
@@ -120,8 +120,8 @@ function FsFiltroConceptos(par){
 			//if(ereg($valor,$cadbusq)){
 			//if(preg_match('/'+valor+'/', cadbusq)){
 				
-			console.log(cadbusq);
-			console.log(valor);
+			//console.log(cadbusq);
+			//console.log(valor);
 			if (cadbusq.indexOf(valor) != -1){
 				
 			//preg_match('/'.$patron.'/', $cadena_texto);
@@ -133,17 +133,29 @@ function FsFiltroConceptos(par){
 				}
 				
 				ncodcon = (_conceptos[i][0]+'****************').substr(0,10);
-				caddescrip = ncodcon+"   "+descrip;
-				if(b == 1){
-					cont +='<option value="'+_conceptos[i][0]+'|'+_conceptos[i][1]+'|'+_conceptos[i][2]+'|'+_conceptos[i][3]+'" selected="selected">'+caddescrip+'</option>';
+				caddescrip = ncodcon+" "+descrip;
+				
+				if (group==_conceptos[i][6]){
+					if(b == 1){
+						cont +='<option value="'+_conceptos[i][0]+'|'+_conceptos[i][1]+'|'+_conceptos[i][2]+'|'+_conceptos[i][3]+'" selected="selected"> '+caddescrip+'</option>';
+					}else{
+						cont +='<option value="'+_conceptos[i][0]+'|'+_conceptos[i][1]+'|'+_conceptos[i][2]+'|'+_conceptos[i][3]+'"> '+caddescrip+'</option>';
+					}
 				}else{
-					cont +='<option value="'+_conceptos[i][0]+'|'+_conceptos[i][1]+'|'+_conceptos[i][2]+'|'+_conceptos[i][3]+'">'+caddescrip+'</option>';
+					
+					group=_conceptos[i][6];
+					if(b != 1)cont +='</optgroup>';
+					cont +='<optgroup label="'+_conceptos[i][7]+'">';
+					cont +='<option value="'+_conceptos[i][0]+'|'+_conceptos[i][1]+'|'+_conceptos[i][2]+'|'+_conceptos[i][3]+'"> '+caddescrip+'</option>';
+					
 				}
+				
+				
 			}
 		}
 	}
 	
-	//console.log(cont);
+	console.log(cont);
 	$('#cbconceptos').html(cont);
 }
 
@@ -238,7 +250,7 @@ function aniadirdetallepago() {
 	if(codtipppago == '9999999999'){
 		error += 'Seleccionar Tipo de Pago.<br>';		
 	}
-	console.log(monto+" > "+totalrestante);
+	//console.log(monto+" > "+totalrestante);
 	
 	/*if(monto > totalrestante){
 		error += 'El Monto ingresado supera al total restante.<br>';

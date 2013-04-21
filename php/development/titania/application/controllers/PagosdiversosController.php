@@ -128,10 +128,10 @@ class PagosdiversosController extends Zend_Controller_Action {
 				$val[0] = array("div_title",$content, "html");
 				$val[1] = array("cidpers",$cidpers, "html");
 				$val[2] = array("nompers",$nompers, "html");
-				$val[3] = array("cbconceptos",$func->ContenidoCombo($cbo, $cbo[0][0]), "html");
+				//$val[3] = array("cbconceptos",$func->ContenidoCombo($cbo, $cbo[0][0]), "html");
 				//$val[3] = array("cbconceptos",$func->ContenidoCombo($cbo, '9999999999'), "html");
-				$val[4] = array('cbareas', $func->ContenidoCombo($datosAreas, $datosAreas[0][0]), 'html');
-				$val[5] = array("cbareas","","focus");
+				$val[3] = array('cbareas', $func->ContenidoCombo($datosAreas, $datosAreas[0][0],'0'), 'html');
+				$val[4] = array("cbareas","","focus");
 				
 				
 				$func->PintarValor($val);
@@ -154,6 +154,7 @@ class PagosdiversosController extends Zend_Controller_Action {
 				$evt[8] = array('glosaconcepto','keypress','if(event.keyCode == 13){return false;}');
 				$evt[9] = array("cbareas", "change",$cadtempxarea);
 				
+				$fn[] = array($cadtempxarea);
 				$fn[] = array("MostrarDetalleConceptoPagosDiversos();");
 				$func->PintarEvento($evt);
 				
