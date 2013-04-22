@@ -102,9 +102,9 @@ class PagosdiversosController extends Zend_Controller_Action {
 					
 				$cn = new Model_DataAdapter();
 				
-				$nombrestore0 = '"public"."obt_mconten"';
-				$arraydatos0[0]= '';
-				$arraydatos0[1]= '1000000492';
+				$nombrestore0 = '"public"."obt_mconten2"';
+				$arraydatos0[0]= '1000000492';
+				$arraydatos0[1]= '1';
 				$datosAreas = $cn->ejec_store_procedura_sql($nombrestore0,$arraydatos0);
 				
 				
