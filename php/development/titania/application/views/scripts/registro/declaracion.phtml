@@ -26,7 +26,7 @@
 			    </tr>
 			    <tr>
 			        <td style="text-align: right">Motivo:</td>
-			        <td id="cellMotivo"><select style="width: 240px;" id="cboMotivo"><?php echo $this->util()->getComboContenedor('1000000004', null); ?></select></td>
+			        <td id="cellMotivo"><select style="width: 240px;" id="cboMotivo"><?php echo $this->util()->getComboContenedorOtro('1000000004', null,'public.obtener_tabla_otro'); ?></select></td>
 			        <td>&nbsp;</td>
 			    </tr>
 			    <tr>
@@ -105,8 +105,9 @@
 	        	ctipdat: "1000000002", /* Registro Tributario */
 	        	vnrodoc: 0,  //$("#hdnId").val(),
 	        	dfecdoc: $("#dtpFechaDeclaracion").val(),
-	        	cmotivo: $("#cboMotivo").val() ,
-	        	ctipdoc: "1000000021", /* Declaracion Jurada */
+	        	cmotivo: $("#cboMotivo").val(), 
+	        	dataidsigma: $("#cboMotivo option:selected").attr("data-idsigma"),  
+	        	ctipdoc: "1000000021", /* Declaracion Jurada */ 
 	        	vnrodjj: $("#txtNroDeclaracion").text(),
 	        	vobserv: $("#txtObservacion").val(),
 	        	nestado: "1",

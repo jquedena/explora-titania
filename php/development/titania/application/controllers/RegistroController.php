@@ -119,6 +119,7 @@ class RegistroController extends Zend_Controller_Action {
             $nrodecla=$this->_request->getParam('nrodecla','');
             $fechdecl=$this->_request->getParam('fechdecl','');
             $motivo=$this->_request->getParam('motivo','');
+            $dataidsigma=$this->_request->getParam('dataidsigma','');
             $observa =$this->_request->getParam('observa','');		
             $ccodpre =$this->_request->getParam('ccodpre','');
             $tnomvia =$this->_request->getParam('tnomvia','');
@@ -157,7 +158,7 @@ class RegistroController extends Zend_Controller_Action {
 			$("#cboMotivo option:selected").removeAttr("selected");
 			
 			// Select the option you want to select
-			$("#cboMotivo option[value='.$motivo.']").attr("selected", "selected");
+			$("#cboMotivo option[data-idsigma='.$dataidsigma.']").attr("selected", "selected");
 			
 			// Create the combobox again
 			$("#cboMotivo").combobox();');
@@ -521,7 +522,8 @@ class RegistroController extends Zend_Controller_Action {
 				   $_POST["ctipdat"].','.
 				   $_POST["vnrodoc"].','.
 				   $_POST["dfecdoc"].','.
-				   $_POST["cmotivo"].','.
+				   //$_POST["cmotivo"].','.
+				   $_POST['dataidsigma'].','.
 				   $_POST["ctipdoc"].','.
 				   $_POST["vnrodjj"].','.
 				   $_POST["vobserv"].','.
@@ -532,15 +534,18 @@ class RegistroController extends Zend_Controller_Action {
 				   date("Y", strtotime($_POST["cperini"])).','.//$_POST["cperini"].','.
 				   $_POST["cperfin"].','.
 				   $_POST["mperson"];
+				   
+				  
 			
 			$parameters[] =  $row;
 			$parameters[] =  $_POST["mpredio"];
-			$parameters[] =  "";
+			$parameters[] =  $_POST["cmotivo"];
 			
 			$dataAdapter = new Model_DataAdapter();
+			//print_r($parameters);
 			$rows = $dataAdapter->executeSelect("pl_function.guardar_mhresum", $parameters);
 			
-			echo (String) $rows[0][0]; 
+			//echo (String) $rows[0][0]; 
 			
 // 			create or replace function pl_function.copiar_declaracion(
 // 			p_mhresum character(10),
