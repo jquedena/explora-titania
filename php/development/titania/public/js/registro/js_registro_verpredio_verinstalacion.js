@@ -140,7 +140,8 @@ guardar = function() {
     _post.error(postError);
 };
 
-optionInstalacion = {height: 200,
+optionInstalacion = {
+	height: 200,
     width: 990,
     rowNum: 10,
     colNames: [
