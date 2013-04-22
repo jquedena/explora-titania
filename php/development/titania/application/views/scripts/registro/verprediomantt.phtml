@@ -159,107 +159,140 @@
 ?>
 
 
-<!--<script type="text/javascript">-->
-<!---->
-<!--  $(document).ready(function() {-->
-<!---->
-<!--	var geocoder = new google.maps.Geocoder();-->
-<!---->
-<!--	function geocodePosition(pos) {-->
-<!--	  geocoder.geocode({-->
-<!--		latLng: pos-->
-<!--	  }, function(responses) {-->
-<!--		if (responses && responses.length > 0) {-->
-<!--		  updateMarkerAddress(responses[0].formatted_address);-->
-<!--		} else {-->
-<!--		  updateMarkerAddress('Cannot determine address at this location.');-->
-<!--		}-->
-<!--	  });-->
-<!--	}-->
-<!---->
-<!--	function updateMarkerStatus(str) {-->
-<!--	  document.getElementById('markerStatus').innerHTML = str;-->
-<!--	}-->
-<!---->
-<!--	function updateMarkerPosition(latLng) {-->
-<!--	  document.getElementById('info').innerHTML = [-->
-<!--		latLng.lat(),-->
-<!--		latLng.lng()-->
-<!--	  ].join(', ');-->
-<!--	}-->
-<!---->
-<!--	function updateMarkerAddress(str) {-->
-<!--	  document.getElementById('address').innerHTML = str;-->
-<!--	}-->
-<!---->
-<!--   function cargar_mapa()-->
-<!--    {-->
-<!--		$("#txt_nlatitu").val(<?php echo $latitud;?>);-->
-<!--		$("#txt_nlongit").val(<?php echo $longitud;?>);-->
-<!--		-->
-<!--		-->
-<!--		 var latLng = new google.maps.LatLng(<?php echo $latitud;?>, <?php echo $longitud;?>);-->
-<!--		 -->
-<!--        var myOptions = {-->
-<!--          scaleControl: true,-->
-<!--          center: new google.maps.LatLng(<?php echo $latitud;?>, <?php echo $longitud;?>),-->
-<!--          zoom: 15,-->
-<!--          mapTypeId: google.maps.MapTypeId.ROADMAP-->
-<!--        };-->
-<!---->
-<!--        var map = new google.maps.Map(document.getElementById('map_canvas'),-->
-<!--            myOptions);-->
-<!---->
-<!--        var marker = new google.maps.Marker({-->
-<!--          map: map,-->
-<!--		  title: "<?php echo $direccion;?>",-->
-<!--		  draggable: true,-->
-<!--          position: map.getCenter()-->
-<!--        });-->
-<!--        var infowindow = new google.maps.InfoWindow();-->
-<!--        infowindow.setContent('<b>Mapa</b>');-->
-<!--        google.maps.event.addListener(marker, 'click', function() {-->
-<!--            infowindow.open(map, marker);-->
-<!--        });-->
-<!--		-->
-<!--		  // Update current position info.-->
-<!--		  updateMarkerPosition(latLng);-->
-<!--		  geocodePosition(latLng);-->
-<!--		  -->
-<!--		  // Add dragging event listeners.-->
-<!--		  google.maps.event.addListener(marker, 'dragstart', function() {-->
-<!--			updateMarkerAddress('Dragging...');-->
-<!--		  });-->
-<!--		  -->
-<!--		  google.maps.event.addListener(marker, 'drag', function() {-->
-<!--			updateMarkerStatus('Dragging...');-->
-<!--			updateMarkerPosition(marker.getPosition());-->
-<!--		  });-->
-<!--		  -->
-<!--		  google.maps.event.addListener(marker, 'dragend', function() {-->
-<!--			updateMarkerStatus('Drag ended');-->
-<!--			geocodePosition(marker.getPosition());-->
-<!--		  });-->
-<!--   -->
-<!--		   -->
-<!---->
-<!--		  google.maps.event.addListener(map, 'zoom_changed', function() {-->
-<!--			    var zoomLevel = map.getZoom();-->
-<!--			    -->
-<!--			    //infowindow.setContent('Zoom: ' + zoomLevel);-->
-<!---->
-<!--			    $("#txt_nzoom").val(zoomLevel);-->
-<!---->
-<!--			    //alert(zoomLevel);-->
-<!--			    -->
-<!--		  });-->
-<!--      }-->
-<!---->
-<!--      google.maps.event.addDomListener(window, 'load', cargar_mapa);-->
-<!---->
-<!--  });-->
-<!---->
-<!--</script>-->
+<script type="text/javascript">
+
+  $(document).ready(function() {
+	
+	  var map = null,
+		image = pathImage + '../img/casa.png',
+			markersArray = [],
+			mapOptions = null,
+			geocoder = null, latitud, longitud ;
+
+		if ($("#txt_nlatitu").val()=='' && $("#txt_nlongit").val()=='') {
+			latitud= <?php echo $latitud;?>; 
+			longitud= <?php echo $longitud;?>;
+		}
+		else {
+			latitud = $("#txt_nlatitu").val();
+			longitud= $("#txt_nlongit").val(); 
+		}
+
+		 		
+	  var latLng = new google.maps.LatLng(latitud, longitud);
+ 
+		var geocoder = new google.maps.Geocoder();
+	  
+	  	function geocodePosition(pos) {
+	  	  geocoder.geocode({
+	  		latLng: pos
+	  	  }, function(responses) {
+	  		if (responses && responses.length > 0) {
+	  		  updateMarkerAddress(responses[0].formatted_address);
+	  		} else {
+	  		  updateMarkerAddress('Cannot determine address at this location.');
+	  		}
+	  	  });
+	  	}
+	
+	  
+		function updateMarkerStatus(str) {
+	  document.getElementById('markerStatus').innerHTML = str;
+	}
+
+	function updateMarkerPosition(latLng) {
+	  document.getElementById('info').innerHTML = [
+		latLng.lat(),
+		latLng.lng()
+	  ].join(', ');
+
+	 $("#txt_nlatitu").val(latLng.lat());
+	 $("#txt_nlongit").val(latLng.lng());
+	
+	}
+
+	function updateMarkerAddress(str) {
+	  document.getElementById('address').innerHTML = str;
+	}
+
+	var zoom = parseInt($("#txt_nzoom").val());
+	  
+	mapOptions = {
+				scaleControl: true,
+	        	zoom: zoom ,
+	        	mapTypeId: google.maps.MapTypeId.ROADMAP,
+	    		center: new google.maps.LatLng(latitud, longitud)
+	    	};
+
+    	
+	  		initMap = function(){
+			//clearOverlays();
+			map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+
+//			var marker = new google.maps.Marker({
+//				map: map,
+//				draggable: true,
+//				animation: google.maps.Animation.DROP,
+//				icon: image,
+//				title: "Municipalidad de Puente Piedra",
+//				position: new google.maps.LatLng(latitud, longitud)
+//			});
+ 
+			var marker = new google.maps.Marker({
+		          map: map,
+				  title: "<?php echo $direccion;?>",
+				  draggable: true,
+		          position: map.getCenter()
+		        }); 
+
+		        var infowindow = new google.maps.InfoWindow();
+		        infowindow.setContent('<b>Mapa</b>');
+		        google.maps.event.addListener(marker, 'click', function() {
+		            infowindow.open(map, marker);
+		        });
+
+
+				  // Update current position info.
+				  updateMarkerPosition(latLng);
+				  geocodePosition(latLng);
+				  
+				  // Add dragging event listeners.
+				  google.maps.event.addListener(marker, 'dragstart', function() {
+					updateMarkerAddress('Dragging...');
+				  });
+				  
+				  google.maps.event.addListener(marker, 'drag', function() {
+					updateMarkerStatus('Dragging...');
+					updateMarkerPosition(marker.getPosition());
+				  });
+				  
+				  google.maps.event.addListener(marker, 'dragend', function() {
+					updateMarkerStatus('Drag ended');
+					geocodePosition(marker.getPosition());
+				  });
+  
+				   
+//
+				  google.maps.event.addListener(map, 'zoom_changed', function() {
+					    var zoomLevel = map.getZoom();
+					    
+					    //infowindow.setContent('Zoom: ' + zoomLevel);
+//
+					    $("#txt_nzoom").val(zoomLevel);
+//
+					    //alert(zoomLevel);
+					    
+				  });
+				
+		};
+
+	
+    	
+		initMap(); 
+		
+  });
+
+</script>
 
 
 
@@ -329,20 +362,20 @@
 								<input id="txt_mpoblad" type="hidden" class="ui-text" style="width:250px;padding:2px;"/>
 								 <input id="txt_nlatitu" type="hidden" class="ui-text" style="width:250px;padding:2px;" value='1'/>
 								 <input id="txt_nlongit" type="hidden" class="ui-text" style="width:250px;padding:2px;" value='1'/>
-								 <input id="txt_nzoom" type="hidden" class="ui-text" style="width:250px;padding:2px;" value='1' />							
+								 <input id="txt_nzoom" type="hidden" class="ui-text" style="width:250px;padding:2px;" value=15 />							
 							</td>
 						</tr> 
 						<tr>
 							<td colspan="4" align="right"><button id="btnguardar" name="btnguardar">Aceptar</button>&nbsp;&nbsp;<button id="btncancelar">Cancelar</button></td>
 						</tr>
 						<tr>
-						<td colspan="4"><div id="map_canvas" style="width:800px; height:500px;"></div>
+						<td colspan="4"><div id="map_canvas" style="width:800px; height: 400px;"></div>
 						  <div id="infoPanel">
-						    <b>Marker status:</b>
-						    <div id="markerStatus"><i>Click and drag the marker.</i></div>
-						    <b>Current position:</b>
-						    <div id="info"></div>
-						    <b>Closest matching address:</b>
+<!--						    <b>Marker status:</b>-->
+						    <div id="markerStatus" style="visibility:hidden;"><i>Click and drag the marker.</i></div>
+<!--						    <b>Current position:</b>-->
+						    <div id="info" style="visibility:hidden;"></div>
+						    <b>Direcci&oacute;n Actual:</b>
 						    <div id="address"></div>
 						  </div></td>
 						</tr>

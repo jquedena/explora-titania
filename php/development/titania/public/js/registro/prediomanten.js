@@ -28,7 +28,10 @@ verPredio = function(rowid, iRow, iCol, e) {
 	   		$("#txtunidinmob").val(row.dunidad);  
 	   		$("#txt_mviadis").val(row.mviadis);
 	   		$("#txt_mpoblad").val(row.mpoblad);
-	   		
+	   	    $("#txt_nlatitu").val(row.nlatitu);
+		    $("#txt_nlongit").val(row.nlongit);
+		    $("#txt_nzoom").val(row.nzoom);							
+
 	 //		$("#txt_instdafecta").val(row.dafecta);     
    }  else {
 	   $("#txt_idsigma").val('-1');  
@@ -149,9 +152,9 @@ optionmpredio= {
 		 {name:'vhostnm', index:'vhostnm', width:90,hidden:true},  
 		 {name:'vusernm', index:'vusernm', width:90,hidden:true},  
 		 {name:'ddatetm', index:'ddatetm', width:90,hidden:true ,formatter:'date',formatoptions: { newformat: 'd-m-Y'}},  
-		 {name:'nlatitu', index:'nlatitu', width:90,hidden:true},  
-		 {name:'nlongit', index:'nlongit', width:90,hidden:true},  
-		 {name:'nzoom', index:'nzoom', width:90,hidden:true},
+		 {name:'nlatitu', index:'nlatitu', width:90,hidden:false},  
+		 {name:'nlongit', index:'nlongit', width:90,hidden:false},  
+		 {name:'nzoom', index:'nzoom', width:90,hidden:false},
 		 {name:'zona', index:'zona', width:90,hidden:false}
         ],
     caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
@@ -218,12 +221,87 @@ optionmpredio= {
 
     inicializarGrid("tblResultmPredio", optionmpredio,null,navPanelPredio);
 
+    buscarmpredio2 = function() {
+    	/*if(_periodo == undefined || _periodo == null) {
+    		 $("#txtPeriodo").val('');
+    		 _periodo ='%'
+        }else{
+        	
+        }*/
+
+    	c_predial= $("#c_predial");
+    	
+    	//viacontrib=$("#c_viacontrib");
+    	viacontrib=$("#txtCodmvia");
+    	
+    	nroviacontrib=$("#c_nroviacontrib");
+    	
+    	mzacontrib=$("#c_mzacontrib");
+    	
+    	lotecontrib=$("#c_lotecontrib");
+    	
+
+    	  if(trim(c_predial.val()).length > 0){
+    		  c_predial.val(LPad(c_predial.val(), 10, '0'));
+    	    }
+        
+        parameters = {
+            "name": "tblResultmPredio",
+            "procedure": "pl_function.buscar_predio",
+            "parameters": '{' +
+            '"p_ccodpre":"'+ c_predial.val() +'",' +
+            //'"p_ccodpre":"'+ "0000000327" +'",' +
+            '"p_ccodvia":"'+ viacontrib.val()+ '",' +
+            '"p_cnrovia":"'+ nroviacontrib.val()+ '",' +
+            '"p_cmanzan":"'+ mzacontrib.val()+ '",' +
+            '"p_cnrlote":"'+ lotecontrib.val()+ '"' +
+            '}' 
+        };
+
+        console.log(parameters);
+        
+        proceso = function(requestData){
+            $("#panelResultmPredio").html(requestData);
+  
+            console.log("busqueda");
+            console.log(requestData);
+
+			
+            
+            records = $("#ctblResultmPredio").val();
+
+            console.log(records);
+
+            //alert(records); 
+           // alert(records);
+           if(records > 1) {
+           actualizarGrid("tblResultmPredio", optionmpredio, bindkeysmpredio);
+           // inicializarGrid("tblResultmBusqPredio", optionmpredio);
+           }else{
+        	   inicializarGrid("tblResultmPredio", optionmpredio);
+        	     
+               openDialogWarning("No hay predios registrados.", 380, 150);
+
+    			
+           }
+            
+          
+        };
+
+    	 procesarConsultaSubProceso('registrar', parameters, proceso);
+    }; 
 
 $(function(){
+	
+	
 
 
     buscarmpredio();
-
+    
+    $("#btnbuscar").click(function(){
+    	buscarmpredio2();
+    });
+    
     themeTextBox();
     themeComboBox();
 //---

@@ -5,14 +5,14 @@
 $(function(){
 
 	optionPerson = {
-		    height: 270,
+		    height: 150,
 		    width: 400,
-		    colNames: ["C\u00F3digo", "crazsoc", "Direcci\u00F3n Fiscal"],
+		    colNames: ["C\u00F3digo", "Nombre", "Direcci\u00F3n Fiscal"],
 		    colModel: [
 		        {name:'id_person', index:'cidpers', width:80, align: 'center', frozen: true},
 		        {name:'crazsoc', index:'crazsoc', width:150},
 		        {name:'direccf', index:'direccf', width:90} ],
-		    caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda"
+		    caption: "&nbsp;&nbsp;&nbsp;Personas Participantes"
 	};
 
 		btnInsertarPersona = {
@@ -23,7 +23,6 @@ $(function(){
 		    	openDialog2("registro/busqprediocontr",  "300", "150", "Persona"	);
 		    } 
 		};
-
 	
 		    
 		btnEliminarPersona = {
