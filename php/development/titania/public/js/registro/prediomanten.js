@@ -361,7 +361,7 @@ optionmpredio= {
 
             //alert(records); 
            // alert(records);
-           if(records > 1) {
+           if(records > 0) {
            actualizarGrid("tblResultmPredio", optionmpredio, bindkeysmpredio,navPanelPredio);
            // inicializarGrid("tblResultmBusqPredio", optionmpredio);
            }else{
