@@ -1,4 +1,5 @@
-<input type="hidden"  id="txtMperson"> 
+<input type="hidden"  id="txtMperson">
+<input type="hidden"  id="txtCodmvia"> 
 <div id="panelbusqueda" align="center" class="ui-widget ui-widget-content ui-corner-all "  style="width: 100%;margin: 3px;">
     <div class="ui-widget ui-state-default ui-corner-top ui-title">
         <label>Predios</label>
@@ -77,7 +78,10 @@ verPredio = function(rowid, iRow, iCol, e) {
                 	nrodecla: $("#txtNroDeclaracion").val(),
                 	fechdecl: $("#dtpFechaDeclaracion").val(),
                 	motivo:	  $("#cboMotivo").val(),
-                	observa:  $("#txtObservacion").text()		
+                	observa:  $("#txtObservacion").text(),
+                	ccodpre: row.ccodpre,
+                	tnomvia: row.tnomvia,
+                	tnompob: row.tnompob 		
                 };
 
     		closeDialog("jqDialog2");
@@ -116,7 +120,7 @@ optionmpredio = {
         {name:'ccodpre', index:'ccodpre', width:90,hidden:true},  
       	 {name:'tnumero', index:'tnumero', width:500 },  
 		 {name:'mpoblad', index:'mpoblad', width:90,hidden:true},
-		 {name:'tnompoblad', index:'tnompoblad', width:90,hidden:true},  
+		 {name:'tnompob', index:'tnompob', width:90,hidden:true},  
 		 {name:'mviadis', index:'mviadis', width:90,hidden:true},  
 		 {name:'tnomvia', index:'tnomvia', width:90,hidden:true},  
 		 {name:'dnumero', index:'dnumero', width:90,hidden:true},
@@ -148,7 +152,8 @@ optionmpredio = {
 
     	c_predial= $("#c_predial");
     	
-    	viacontrib=$("#c_viacontrib");
+    	//viacontrib=$("#c_viacontrib");
+    	viacontrib=$("#txtCodmvia");
     	
     	nroviacontrib=$("#c_nroviacontrib");
     	
@@ -190,12 +195,17 @@ optionmpredio = {
 
             //alert(records); 
            // alert(records);
-           //if(records > 1) {
+           if(records > 1) {
            actualizarGrid("tblResultmBusqpredio", optionmpredio, bindkeysmpredio);
            // inicializarGrid("tblResultmBusqPredio", optionmpredio);
-           //}
-	    	//procesarJSON("panelResultmBusqpredio", "tblResultmBusqpredio", optionmpredio, null, navPanelPredio);
-              
+           }else{
+        	   inicializarGrid("tblResultmBusqpredio", optionmpredio);
+        	     
+               openDialogWarning("No hay predios registrados.", 380, 150);
+
+    			
+           }
+            
           
         };
 
@@ -292,10 +302,39 @@ buscarmpredio = function() {
 
 $(function(){
 
+	var jsonVias = <?php echo json_encode($this->mviascp); ?>,
+	        ccodvia = '';
+	        cpoblad = '';
+
+	    $("#c_viacontrib").autocompleteCategory({
+	        delay: 0,
+	        source: jsonVias,
+	        minLength: 4,
+	        select: function(event, ui) {
+	            ccodvia = ui.item.ccodvia;
+	            //cpoblad = ui.item.mpoblad;
+
+	            $("#txtCodmvia").val(ccodvia);
+	            //$("#txt_mpoblad").val(cpoblad);
+	        },
+	        change: function(event, ui) {
+	            if(ui.item) {
+	                ccodvia = ui.item.ccodvia;
+	            } else {
+	                if($(this).val().length > 0) {
+	                    openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
+	                }
+	            }
+	        }
+	    });
+		
 
     //buscarmpredio();
 
-	$("#btnbuscar").click(function(){
+	$("#btnbuscar").button({
+        icons: {primary:'ui-icon-search'}
+    }).bind("click", function(){
+        
 		buscarmpredio2();
 	});
 

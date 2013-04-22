@@ -119,14 +119,22 @@ class RegistroController extends Zend_Controller_Action {
             $nrodecla=$this->_request->getParam('nrodecla','');
             $fechdecl=$this->_request->getParam('fechdecl','');
             $motivo=$this->_request->getParam('motivo','');
-            $observa=$this->_request->getParam('observa','');		
-            
+            $observa =$this->_request->getParam('observa','');		
+            $ccodpre =$this->_request->getParam('ccodpre','');
+            $tnomvia =$this->_request->getParam('tnomvia','');
+            $tnompob =$this->_request->getParam('tnompob','');
+                        
             $this->view->mperson = $this->_request->getParam('mperson');
             $this->view->mhresum = $this->_request->getParam('mhresum');
             $this->view->cperiod = date("Y");            
             
         }
         
+        $val[]=array('dtpFechaDeclaracion',date('d/m/Y'),'val');
+        
+        
+            
+        $pintar->PintarValor($val);
         //echo $codpre;
         //echo $vdirpre;
         
@@ -137,6 +145,9 @@ class RegistroController extends Zend_Controller_Action {
            $val[]=array('dtpFechaVigencia',$fechvig,'val');
            $val[]=array('txtNroDeclaracion',$nrodecla,'val');
            $val[]=array('dtpFechaDeclaracion',$fechdecl,'val');
+           $val[]=array('txtCodPre',$ccodpre,'val' );
+           $val[]=array('dvtnomvia',$tnomvia,'html' );
+           $val[]=array('dvtnompob',$tnompob,'html' );
            
            $fun[]=array(' 
             // Destroy the combobox
@@ -803,7 +814,13 @@ class RegistroController extends Zend_Controller_Action {
 	public function prediomantenAction(){
 
 	    $this->view->util()->registerScriptJSControllerAction($this->getRequest());
-				        
+
+	    $pintar = new Libreria_Pintar();
+        $parameters[] = date("Y") -1;
+
+        $dataAdapter = new Model_DataAdapter();
+        $rows = $dataAdapter->executeAssocQuery("pl_function.listar_vias", $parameters);
+        $this->view->mviascp = $rows;       
     
 		
 	}
@@ -947,6 +964,13 @@ class RegistroController extends Zend_Controller_Action {
               $mperson=$this->_request->getPost('mperson');
               
         }  
+        
+        $parameters[] = date("Y") ;
+                    
+        $dataAdapter = new Model_DataAdapter();
+        $rows = $dataAdapter->executeAssocQuery("pl_function.listar_vias", $parameters);
+        $this->view->mviascp = $rows;
+        
     	  $val[]=array('txtMperson',$mperson,'val');
     	  
     	  $pintar->PintarValor($val);
