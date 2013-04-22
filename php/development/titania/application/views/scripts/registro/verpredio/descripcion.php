@@ -157,6 +157,18 @@
     		
     	});
 
+    	$("#nareter").blur(function(){
+        	
+   		 $("#ntotter").val($("#nareter").val());
+   		     		 
+        	});
+
+    	$("#nareter").keyup(function(){
+        	
+     		 $("#ntotter").val($("#nareter").val());
+     		     		 
+          	});
+
     	
     });
 
