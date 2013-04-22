@@ -13,7 +13,7 @@ class RegistroController extends Zend_Controller_Action {
     public function indexAction() {
         $this->view->util()->registerScriptJSControllerAction($this->getRequest());
 
-        // TODO: Implementar la validacion de vias por año 
+        // TODO: Implementar la validacion de vias por aï¿½o 
         $parameters[] = date("Y");
         $dataAdapter = new Model_DataAdapter();
         $rows = $dataAdapter->executeAssocQuery("pl_function.listar_vias", $parameters);
@@ -533,34 +533,52 @@ class RegistroController extends Zend_Controller_Action {
 				   $_POST["cperfin"].','.
 				   $_POST["mperson"];
 			
-			$parameters[] = $row;
+			$parameters[] =  $row;
+			$parameters[] =  $_POST["mpredio"];
+			$parameters[] =  "";
+			
 			$dataAdapter = new Model_DataAdapter();
 			$rows = $dataAdapter->executeSelect("pl_function.guardar_mhresum", $parameters);
 			
 			echo (String) $rows[0][0]; 
 			
+// 			create or replace function pl_function.copiar_declaracion(
+// 			p_mhresum character(10),
+// 			p_nhresum_old character(10),
+// 			p_dpredio character(10),
+// 			p_tipoacc integer,
+// 			p_cperini integer,
+// 			p_cperfin integer);
+			
+// 			1 -> Copia de Declaracion
+// 			2 -> Agrega Predio
+// 			3 -> Elimina Predio
+
+			//1000000008 --Compra
+			//1000000009 --Venta
+						
+			
+			
 			//print_r($rows) ;
 					
-			if($rows[0][0] >0 ) {
+/*			if($rows[0][0] >0 ) {
 				echo "entro";
 				//$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
 			
 				//$data['error'] = "";
 				//$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
-				/*
-				idsigma,
-			  	mperson,
-			  	mpredio,
-			  	nporcen,
-			  	nestado,
-			  	ctippro,
-			  	vhostnm,
-			  	vusernm,
-			  	ddatetm,
-			  	mhresum
-			  	  
-				 */
-				
+				//
+				//idsigma,
+			  	//mperson,
+			  	//mpredio,
+			  	//nporcen,
+			  	//nestado,
+			  	//ctippro,
+			  	//vhostnm,
+			  	//vusernm,
+			  	//ddatetm,
+			  	//mhresum
+			  					
 				$row2 = $_POST["idsigma"].','.				  
 				   $_POST["mperson"].','.
 				   $_POST["mpredio"].','.
@@ -582,43 +600,43 @@ class RegistroController extends Zend_Controller_Action {
 				
 				if (($_POST["cmotivo"]='1000000008') or ($_POST["cmotivo"]=='1000000009')){
 									
-				/*
-				 idsigma,
-			 	 mpredio,
-			  	ctippre,
-			  	cclasif,
-			  	ccondic,
-			  	cestado,
-			  	cusogen,
-			  	cusoesp,
-			  	nporcen,
-			  	ntertot,
-			  	nporter,
-			  	nterren,	
-			  	ncomtot,
-			  	nporcom,
-			  	narecom,
-			  	nporafe,
-			  	dfecadq,
-			  	dfecdes,
-			  	dafecta,
-			  	nfrente,
-			  	ncanper,
-			  	ctippar,
-			  	vobserv,
-			  	nestado,
-			  	vhostnm,
-			  	vusernm,
-			  	ddatetm,
-			  	dfectra,
-			  	cnotari,
-			  	ctiptra,
-			  	cpartid,
-			  	csubtip,
-			  	cmotadq,
-			  	mhresum				 
+				
+				// idsigma,
+			 	// mpredio,
+			  	// ctippre,
+			  	// cclasif,
+			  	// ccondic,
+			  	// cestado,
+			  	// cusogen,
+			  	// cusoesp,
+			  	// nporcen,
+// 			  	ntertot,
+// 			  	nporter,
+// 			  	nterren,	
+// 			  	ncomtot,
+// 			  	nporcom,
+// 			  	narecom,
+// 			  	nporafe,
+// 			  	dfecadq,
+// 			  	dfecdes,
+// 			  	dafecta,
+// 			  	nfrente,
+// 			  	ncanper,
+// 			  	ctippar,
+// 			  	vobserv,
+// 			  	nestado,
+// 			  	vhostnm,
+// 			  	vusernm,
+// 			  	ddatetm,
+// 			  	dfectra,
+// 			  	cnotari,
+// 			  	ctiptra,
+// 			  	cpartid,
+// 			  	csubtip,
+// 			  	cmotadq,
+// 			  	mhresum				 
 				  
-				 */
+				 
 				
 				$row3 = $_POST["idsigma"].','.
 				 $_POST["mpredio"].','.
@@ -653,22 +671,22 @@ class RegistroController extends Zend_Controller_Action {
 				$dataAdapter3 = new Model_DataAdapter();
 				$rows3 = $dataAdapter3->executeSelect("pl_function.guardar_dpredio", $parameters3);
 				
-				/*
-				 idsigma,
-			 	 dpredio,
-			  	cperiod,
-			  	narance,
-			  	nvalpis,
-			  	nvalins,
-			  	nvalter,
-			  	nvalpre,
-			  	nporafe,
-			  	nvalafe,
-			  	nestado,
-			  	vhostnm,
-			  	vusernm,
-			  	ddatetm
-				 */
+				
+// 				 idsigma,
+// 			 	 dpredio,
+// 			  	cperiod,
+// 			  	narance,
+// 			  	nvalpis,
+// 			  	nvalins,
+// 			  	nvalter,
+// 			  	nvalpre,
+// 			  	nporafe,
+// 			  	nvalafe,
+// 			  	nestado,
+// 			  	vhostnm,
+// 			  	vusernm,
+// 			  	ddatetm
+				
 				
 				$row4 = $_POST["idsigma"].','.
 					  $rows3[0][0].','.	
@@ -698,6 +716,7 @@ class RegistroController extends Zend_Controller_Action {
 				$data['data'] = "";
 			}
 			
+			*/
 			//$this->_helper->json($data);
 		}
 	}
