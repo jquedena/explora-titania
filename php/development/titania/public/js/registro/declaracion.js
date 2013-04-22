@@ -6,7 +6,7 @@ $(function(){
 
 	optionPerson = {
 		    height: 150,
-		    width: 400,
+		    width: 450,
 		    colNames: ["C\u00F3digo", "Nombre", "Direcci\u00F3n Fiscal"],
 		    colModel: [
 		        {name:'id_person', index:'cidpers', width:80, align: 'center', frozen: true},
