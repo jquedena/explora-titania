@@ -266,14 +266,17 @@ optionInstalacion = {
 	        	    
 	        	    
 	        		_post = $.post(path + "registro/recargarvalorpredio", row2);
+
+
 	        	    _post.success(function(data){	        	    	
 	        	    	
-	        	    	
+    	
 	        	    	$("#ajaxaca2").html(data);
 	        	    	//optionPiso = $.extend(optionPiso, {data: data.data});
 	        	    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
 	        		});
 	        	    
+	        	   // _post.error(postError);
 	        	    
 	        	    
 	        	    row3 = { 
@@ -309,5 +312,5 @@ optionInstalacion = {
 	    } 
 	};
 
-
+  
 

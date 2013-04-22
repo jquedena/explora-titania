@@ -11,12 +11,19 @@ verPredio = function(rowid, iRow, iCol, e) {
 	        $("#txtnumero").val(row.dnumero);
 	        $("#txtviacentrpob").val(row.zona);
 	  //	$("#txt_instcnitems").val(row.cnitems);
+	        $("#txtczoncat").val(row.czoncat);      
+			$("#txtcmzacat").val(row.cmzacat);
+			$("#txtcseccat").val(row.cseccat);
+			$("#txtcltecat").val(row.cltecat); 
+			$("#txtcundcat").val(row.cundcat);
+			
 	        $("#txtinterior").val(row.dinteri);
 	  //	$("#txt_instctipdat").val(row.ctipdat);       
 	  //	$("#txt_instvnrodoc").val(row.vnrodoc);
 	   		$("#txtletra").val(row.dletras);       
 	  //	$("#txt_instcmotivo").val(row.cmotivo);
-	  //	$("#txt_instctipdoc").val(row.ctipdoc);     
+	  //	$("#txt_instctipdoc").val(row.ctipdoc);  
+	   		$("#txtcodpre").val(row.ccodpre);
 	   		$("#txtdepart").val(row.ddepart);
 	   		$("#txtmanzana").val(row.dmanzan);       
 	   		$("#txtlote").val(row.dnlotes);
@@ -145,7 +152,7 @@ optionmpredio= {
 		 {name:'mpoblad', index:'mpoblad', width:90,hidden:true},  
 		 {name:'vdirpre', index:'vdirpre', width:90 },  
 		 {name:'nestado', index:'nestado', width:90,hidden:true ,edittype:"checkbox",editoptions:{value:"1:0",defaultValue:"1"},formatter:'checkbox' },  
-		 {name:'ccodpre', index:'ccodpre', width:90,hidden:true},  
+		 {name:'ccodpre', index:'ccodpre', width:90 },  
 		 {name:'ctippre', index:'ctippre', width:90,hidden:true},  
 		 {name:'idanexo', index:'idanexo', width:90,hidden:true},  
 		 {name:'ccodcuc', index:'ccodcuc', width:90,hidden:true},  
@@ -188,18 +195,73 @@ optionmpredio= {
 	    
 	btnEliminarPredio = {
 	    caption: "Eliminar",
-	    title: "Eliminar la construcci\u00F3n",
+	    title: "Eliminar Predio",
 	    buttonicon: "ui-icon-trash",
 	    onClickButton:function(){
 	        var gsr = $("#tblResultmPredio").jqGrid('getGridParam','selrow');
 	        indexRow = $("#ctblPredio").val();
 	        if(gsr){
 	        	if(confirm("Seguro de eliminar")){
-	        		if($("#tblResultmPredio").jqGrid('delRowData', gsr)) {
+	        	//	if($("#tblResultmPredio").jqGrid('delRowData', gsr)) {
+	        			
+	        	 	var row2 = $("#tblResultmPredio").jqGrid('getRowData', gsr);
+	        		
+	        	 	
+	        			row = {
+	        			idsigma: row2.idsigma,
+	        			dnumero: row2.dnumero,	        			
+	        			zona: row2.zona,
+	        			ccatast: row2.ccatast,
+	        			cplanos: row2.cplanos,  
+	        	        czoncat: row2.czoncat,      
+	        			cmzacat: row2.cmzacat,
+	        			cseccat: row2.cseccat,
+	        			cltecat: row2.cltecat, 
+	        			cundcat: row2.cundcat,	        			
+	        	  //	$("#txt_instcnitems").val(row.cnitems);
+	        			dinteri: row2.dinteri,
+	        	  //	$("#txt_instctipdat").val(row.ctipdat);       
+	        	  //	$("#txt_instvnrodoc").val(row.vnrodoc);
+	        			dletras: row2.dletras,       
+	        	  //	$("#txt_instcmotivo").val(row.cmotivo);
+	        	  //	$("#txt_instctipdoc").val(row.ctipdoc);
+	        			ctipmer: row2.ctipmer,	        	 	
+	        			dnummer: row2.dnummer, 
+	        			cdiscat: row2.cdiscat,  
+	        			vdirpre: row2.vdirpre, 
+	        			ctippre: row2.ctippre, 
+	        			idanexo: row2.idanexo, 
+	        			ccodcuc: row2.ccodcuc, 
+	        			ccodpre: row2.ccodpre,
+	        			ddepart: row2.ddepart,
+	        			dmanzan: row2.dmanzan,      
+	        			dnlotes: row2.dnlotes,
+	        	   		drefere: row2.drefere,   
+	        	   		destaci: row2.destaci,    
+	        	   		ddeposi: row2.ddeposi,  	        	   	   
+	        	   		dbloque: row2.dbloque,     
+	        	   		dseccio: row2.dseccio,    
+	        	   		dunidad: row2.dunidad,  
+	        	   		mviadis: row2.mviadis,
+	        	   		mpoblad: row2.mpoblad,
+	        	   		nlatitu: row2.nlatitu,
+	        	   	    nlongit: row2.nlongit,
+	        		    nzoom: row2.nzoom,
+	        		    nestado: "0"	        			
+	        			};
+
+	        		_post = $.post(path + "registro/guardarmpredio", row);
+	        	    _post.success(function(data){
+	        	    	
+	        	    	//location.reload();
+	        		});
+	        			
+	        			
+	        			
 	        			$("#ctblPredio").val(indexRow - 1);
-	        		} else {
-	        			alert('Error no se pudo eliminar');
-	        		}
+//	        		} else {
+//	        			alert('Error no se pudo eliminar');
+//	        		}
 	        	}
 	            console.log(gsr);
 	            // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
@@ -244,19 +306,44 @@ optionmpredio= {
     	  if(trim(c_predial.val()).length > 0){
     		  c_predial.val(LPad(c_predial.val(), 10, '0'));
     	    }
+    	  
+    	 // alert(nroviacontrib.val());
         
-        parameters = {
-            "name": "tblResultmPredio",
-            "procedure": "pl_function.buscar_predio",
-            "parameters": '{' +
-            '"p_ccodpre":"'+ c_predial.val() +'",' +
-            //'"p_ccodpre":"'+ "0000000327" +'",' +
-            '"p_ccodvia":"'+ viacontrib.val()+ '",' +
-            '"p_cnrovia":"'+ nroviacontrib.val()+ '",' +
-            '"p_cmanzan":"'+ mzacontrib.val()+ '",' +
-            '"p_cnrlote":"'+ lotecontrib.val()+ '"' +
-            '}' 
-        };
+    	  if (nroviacontrib.val()=='0'){
+    		 // alert("entro aca");
+    		  
+    	        parameters = {
+    	                "name": "tblResultmPredio",
+    	                "procedure": "pl_function.buscar_predio",
+    	                "parameters": '{' +
+    	                '"p_ccodpre":"'+ c_predial.val() +'",' +
+    	                //'"p_ccodpre":"'+ "0000000327" +'",' +
+    	                '"p_ccodvia":"'+viacontrib.val()+'",' +
+    	                //'"p_cnrovia":"'+   	nroviacontrib.val()=='0'? '' : nroviacontrib.val() + '",' +
+    	                '"p_cnrovia":"",' +
+    	                '"p_cmanzan":"'+ mzacontrib.val()+ '",' +
+    	                '"p_cnrlote":"'+ lotecontrib.val()+ '"' +
+    	                '}' 
+    	            };
+    		  
+    	  }
+    	  else{
+    	        parameters = {
+    	                "name": "tblResultmPredio",
+    	                "procedure": "pl_function.buscar_predio",
+    	                "parameters": '{' +
+    	                '"p_ccodpre":"'+ c_predial.val() +'",' +
+    	                //'"p_ccodpre":"'+ "0000000327" +'",' +
+    	                '"p_ccodvia":"'+ viacontrib.val()+ '",' +
+    	                //'"p_cnrovia":"'+   	nroviacontrib.val()=='0'? '' : nroviacontrib.val() + '",' +
+    	                '"p_cnrovia":"'+  nroviacontrib.val() + '",' +
+    	                '"p_cmanzan":"'+ mzacontrib.val()+ '",' +
+    	                '"p_cnrlote":"'+ lotecontrib.val()+ '"' +
+    	                '}' 
+    	            };
+    		  
+    	  }
+
 
         console.log(parameters);
         
@@ -275,13 +362,11 @@ optionmpredio= {
             //alert(records); 
            // alert(records);
            if(records > 1) {
-           actualizarGrid("tblResultmPredio", optionmpredio, bindkeysmpredio);
+           actualizarGrid("tblResultmPredio", optionmpredio, bindkeysmpredio,navPanelPredio);
            // inicializarGrid("tblResultmBusqPredio", optionmpredio);
            }else{
-        	   inicializarGrid("tblResultmPredio", optionmpredio);
-        	     
+        	   inicializarGrid("tblResultmPredio", optionmpredio);        	     
                openDialogWarning("No hay predios registrados.", 380, 150);
-
     			
            }
             

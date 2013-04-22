@@ -7,7 +7,7 @@ class RegistroController extends Zend_Controller_Action {
     public function init() {
     	$this->_helper->layout()->setLayout('layoutwithpanel');
     	$map = new Zend_Session_Namespace("map");
-    	$map->data = false;
+    	$map->data = true;
     }
 
     public function indexAction() {

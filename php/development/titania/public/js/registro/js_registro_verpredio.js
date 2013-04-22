@@ -79,6 +79,8 @@ function habilitatran(){
      $("#narecom").toggleClass("ui-text-disable");
      $("#nporcom").toggleClass("ui-text-disable");
      $("#ntotcom").toggleClass("ui-text-disable");
+     $("#nporter").toggleClass("ui-text-disable");
+     $("#ntotter").toggleClass("ui-text-disable");
 }
 
 
@@ -363,6 +365,10 @@ loadVerDetalle = function(){
     $("#btnFinalizar").button({
     	icons: {primary:'ui-icon-stop'}
     }).bind('click', function(){
+    	
+    	if (confirm('Advertencia se dar por finalizada la declaracion.')){
+    		alert("Se Procedera a Dar por cerrado");
+    	}
     	
     });
     

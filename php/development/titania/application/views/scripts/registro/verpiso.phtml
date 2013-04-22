@@ -9,6 +9,7 @@
 	}
 	.panel-detalle-construccion div.detalle {
 		font-size: 9px;
+	 	valign: left;
 	}
 	.panel-detalle-construccion input.ui-text {
 		width: 30px;
@@ -19,27 +20,27 @@
 	}
 </style>
 <div id="formPiso">
-	<table>
+	<table border="0">
 		<tr>
 			<td width="650px" align="center" valign='top'>
 				<div class="ui-widget ui-state-default ui-corner-top ui-title">
 					<label>Caracter&iacute;sticas</label>
 				</div>
 				<div class="ui-widget-content ui-corner-bottom">
-					<table class="panel-detalle-construccion" style="margin: 3px; padding: 5px;">
+					<table class="panel-detalle-construccion" style="margin: 3px; padding: 5px;" border="0" width="100%" >
 						<tr>
 							<td width="90">Nivel</td>
-							 <td>
+							 <td colspan="2">
 							 	<select style="width: 190px;" id="txt_pisonivel">
 							 		<?php echo $this->util()->getComboContenedorOtro('1000000460', "", "public.obtener_tabla_otro"); ?>
 							 	</select>
 						 	</td>
-							<td width="510">&nbsp;</td>
+							
 						</tr>
 						<tr>
 							<td>A&ntilde;os de Construcci&oacute;n</td>
-							<td><input id="txt_pisoanocon" maxlength="4" class="ui-text ui-text-numeric" /></td>
-							<td><div id="dtxt_pisoano" class="detalle"></div></td>
+							<td width="60"><input id="txt_pisoanocon" maxlength="4" class="ui-text ui-text-numeric" /></td>
+							<td><div id="dtxt_pisoano" class="detalle" ></div></td>
 						</tr>
 						<tr>
 							<td>Mes</td>

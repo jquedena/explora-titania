@@ -64,7 +64,7 @@
     	<label>Morosidad</label>
 	</div>
 	<div>
-		<table class="ui-table-panelLayout" style="width: 90%; height: 100%; font-size: 90%;">
+		<table class="ui-table-panelLayout" style="width: 90%; height: 100%; font-size: 90%;" border="0">
 			<tr>
 				<td rowspan="7" align="center" valign="top">
 					<img style="" src="<?php echo $this->util()->getImage($this->msaldos['vindica']); ?>">
@@ -89,6 +89,9 @@
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
+				<tr>
+				<td align="center" colspan="2"><button id="btnimprrimirestctacte"> Imprimir Estado Cuenta </button></td>
+				</tr>
 		</table>
 	</div>
 </div>
@@ -100,5 +103,16 @@ $(function(){
 	}).bind("click", function(){
 	    openDialogData1("registro/listardeclaracion", {cidpers: "<?php echo $this->mperson['cidpers'] ?>"}, "750", "496", "Declaraciones Juradas");
 	});
+
+	$("#btnimprrimirestctacte").button({
+	    text: true,
+	    icons: {primary:'ui-icon-calculator'}
+	}).bind("click", function(){
+
+    	window.open(pathReport+"reporte=rptEstCtaDetallado&opt=CIDPERS^"+<?php echo $this->mperson['cidpers'] ?> + "|CEJERCI^2012|NESTADO^0|VUSERNM^DEMO", '_blank');
+
+		
+	});
+	
 });
 </script>
