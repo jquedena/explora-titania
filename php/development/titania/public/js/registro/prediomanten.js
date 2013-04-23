@@ -86,6 +86,7 @@ optionmpredio= {
     editurl: "mcajerosave",
     colNames: [              
 			   "C\u00F3digo",
+			   "Codigo de Predio Mostrar",
 			   "C\u00F3digo de la via",
 			   "Numero",
 			   "Interior",
@@ -112,7 +113,7 @@ optionmpredio= {
 			   "C\u00F3digo Centro Poblado",
 			   "Direccion del Predio",
 			   "Estado",
-			   "Codigo de Predio Mostrar",
+			
 			   "Tipo de Predio",
 			   "Anexo",
 			   "C\u00F3digounico castastral new",
@@ -125,7 +126,8 @@ optionmpredio= {
 			   "Zona"
                ],
     colModel: [
-        {name:'idsigma', index:'idsigma', width:80,editable: true, align: 'center', frozen: true,editoptions:{readonly:true,size:10}},
+        {name:'idsigma', index:'idsigma', width:80,editable: true, align: 'center', frozen: true,editoptions:{readonly:true,size:10},hidden:true},
+        {name:'ccodpre', index:'ccodpre', width:90 },  
         {name:'mviadis', index:'mviadis', width:90,editable: true, align: 'center',hidden:true},
         {name:'dnumero', index:'dnumero', width:90,editable: true },
         {name:'dinteri', index:'dinteri', width:90,editable: true },
@@ -156,7 +158,7 @@ optionmpredio= {
 		 {name:'mpoblad', index:'mpoblad', width:90,hidden:true},  
 		 {name:'vdirpre', index:'vdirpre', width:90 },  
 		 {name:'nestado', index:'nestado', width:90,hidden:true ,edittype:"checkbox",editoptions:{value:"1:0",defaultValue:"1"},formatter:'checkbox' },  
-		 {name:'ccodpre', index:'ccodpre', width:90 },  
+		
 		 {name:'ctippre', index:'ctippre', width:90,hidden:true},  
 		 {name:'idanexo', index:'idanexo', width:90,hidden:true},  
 		 {name:'ccodcuc', index:'ccodcuc', width:90,hidden:true},  
