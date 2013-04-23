@@ -421,6 +421,8 @@ loadVerDetalle = function(){
     }).bind('click', function(){
         // location.href = path + "registro";
     	// window.open(pathReport+"reporte=Report_Completo&opt=p_mhresum^" + $("#_mhresum").val() + "|p_cperiod^-1|p_ccodpre^-1|p_mperson^" + $("#lblCodigo").html(), '_blank');
+        openDialogData1("registro/galeriafotos", {}, "725", "405", "Galeria Fotos");
+
     });
     
     navPanelPiso = function() {

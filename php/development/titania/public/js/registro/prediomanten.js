@@ -86,17 +86,18 @@ optionmpredio= {
     editurl: "mcajerosave",
     colNames: [              
 			   "C\u00F3digo",
-			   "Codigo de Predio Mostrar",
+			   "Codigo Predio",
+			   "Direccion",
 			   "C\u00F3digo de la via",
 			   "Numero",
-			   "Interior",
-			   "Letra",
-			   "Departamento", 
-			   "Estacionamiento", 
-			   "Deposito",
-			   "Referencia",
 			   "Manzana",
 			   "Lote",
+			   "Departamento", 
+			   "Interior",
+			   "Referencia",
+			   "Letra",			   
+			   "Estacionamiento", 
+			   "Deposito",
 			   "C\u00F3digo Catastral",
 			   "Ubicacion en el plano",
 			   "Tipo de Mercado",
@@ -110,8 +111,7 @@ optionmpredio= {
 			   "Bloque",
 			   "Seccion",
 			   "Unidad",
-			   "C\u00F3digo Centro Poblado",
-			   "Direccion del Predio",
+			   "C\u00F3digo Centro Poblado",			   
 			   "Estado",
 			
 			   "Tipo de Predio",
@@ -128,21 +128,18 @@ optionmpredio= {
     colModel: [
         {name:'idsigma', index:'idsigma', width:80,editable: true, align: 'center', frozen: true,editoptions:{readonly:true,size:10},hidden:true},
         {name:'ccodpre', index:'ccodpre', width:90 },  
+        {name:'vdirpre', index:'vdirpre', width:290 },  
         {name:'mviadis', index:'mviadis', width:90,editable: true, align: 'center',hidden:true},
         {name:'dnumero', index:'dnumero', width:90,editable: true },
-        {name:'dinteri', index:'dinteri', width:90,editable: true },
-        {name:'dletras', index:'dletras', width:90,editable: true, align: 'left'},
-        
-        {name:'ddepart', index:'ddepart', width:90,editable: true },
-        {name:'destaci', index:'destaci', width:90,editable: true, align: 'center'},
-        {name:'ddeposi', index:'ddeposi', width:80,editable: true, align: 'center'},
-        {name:'drefere', index:'drefere', width:90,editable: true, align: 'left'},
-        
         {name:'dmanzan', index:'dmanzan', width:90,editable: true, align: 'center'},
         {name:'dnlotes', index:'dnlotes', width:90,editable: true, align: 'center'},
+        {name:'ddepart', index:'ddepart', width:90,editable: true },
+        {name:'dinteri', index:'dinteri', width:90,editable: true },
+        {name:'drefere', index:'drefere', width:90,editable: true, align: 'left'},
+        {name:'dletras', index:'dletras', width:90,editable: true, align: 'left'},
+        {name:'destaci', index:'destaci', width:90,editable: true, align: 'center'},
+        {name:'ddeposi', index:'ddeposi', width:80,editable: true, align: 'center'},
         {name:'ccatast', index:'ccatast', width:90,editable: true, align: 'center'},
-        
-        
         {name:'cplanos', index:'cplanos', width:90,editable: true,align:"center",hidden:true},
         {name:'ctipmer', index:'ctipmer', width:90,editable: true,align:"right",hidden:true},
         {name:'dnummer', index:'dnummer', width:90 },
@@ -156,7 +153,7 @@ optionmpredio= {
          {name:'dseccio', index:'dseccio', width:90 },  
          {name:'dunidad', index:'dunidad', width:90 },  
 		 {name:'mpoblad', index:'mpoblad', width:90,hidden:true},  
-		 {name:'vdirpre', index:'vdirpre', width:90 },  
+		
 		 {name:'nestado', index:'nestado', width:90,hidden:true ,edittype:"checkbox",editoptions:{value:"1:0",defaultValue:"1"},formatter:'checkbox' },  
 		
 		 {name:'ctippre', index:'ctippre', width:90,hidden:true},  
@@ -168,7 +165,7 @@ optionmpredio= {
 		 {name:'nlatitu', index:'nlatitu', width:90,hidden:false},  
 		 {name:'nlongit', index:'nlongit', width:90,hidden:false},  
 		 {name:'nzoom', index:'nzoom', width:90,hidden:false},
-		 {name:'zona', index:'zona', width:90,hidden:false}
+		 {name:'zona', index:'zona', width:90,hidden:true}
         ],
     caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
     ondblClickRow: verPredio
