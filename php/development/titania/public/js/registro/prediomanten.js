@@ -5,7 +5,7 @@ verPredio = function(rowid, iRow, iCol, e) {
 		row = undefined;
 	}
 	
-    openDialogDataFunction1("registro/verprediomantt", {}, "900", "500", "Predio", function() {
+    openDialogDataFunction1("registro/verprediomantt", {}, "900", "800", "Predio", function() {
     	if(row != undefined) {
     		$("#txt_idsigma").val(row.idsigma);
 	        $("#txtnumero").val(row.dnumero);
@@ -29,7 +29,8 @@ verPredio = function(rowid, iRow, iCol, e) {
 	   		$("#txtlote").val(row.dnlotes);
 	   		$("#txtreferencia").val(row.drefere);   
 	   		$("#txtestacio").val(row.destaci);     
-	   		$("#txtdepart").val(row.ddepart);     
+	   		$("#txtdepart").val(row.ddepart);  
+	   		$("#txtdeposito").val(row.ddeposi);
 	   		$("#txtbloque").val(row.dbloque);     
 	   		$("#txtseccion").val(row.dseccio);     
 	   		$("#txtunidinmob").val(row.dunidad);  
@@ -40,6 +41,9 @@ verPredio = function(rowid, iRow, iCol, e) {
 		    $("#txt_nzoom").val(row.nzoom);							
 
 	 //		$("#txt_instdafecta").val(row.dafecta);     
+		    
+		    
+		    
    }  else {
 	   $("#txt_idsigma").val('-1');  
 	   
@@ -376,6 +380,8 @@ optionmpredio= {
     	 procesarConsultaSubProceso('registrar', parameters, proceso);
     }; 
 
+    
+    
 $(function(){
 	
 	
