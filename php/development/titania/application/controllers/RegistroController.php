@@ -545,184 +545,12 @@ class RegistroController extends Zend_Controller_Action {
 			//print_r($parameters);
 			$rows = $dataAdapter->executeSelect("pl_function.guardar_mhresum", $parameters);
 			
-			//echo (String) $rows[0][0]; 
+			$pintar=new Libreria_Pintar();
 			
-// 			create or replace function pl_function.copiar_declaracion(
-// 			p_mhresum character(10),
-// 			p_nhresum_old character(10),
-// 			p_dpredio character(10),
-// 			p_tipoacc integer,
-// 			p_cperini integer,
-// 			p_cperfin integer);
-			
-// 			1 -> Copia de Declaracion
-// 			2 -> Agrega Predio
-// 			3 -> Elimina Predio
+			$val[]=array('txtNroDeclaracion',$rows[0][0],'html'); 
+			 
+			$pintar->PintarValor($val);
 
-			//1000000008 --Compra
-			//1000000009 --Venta
-						
-			
-			
-			//print_r($rows) ;
-					
-/*			if($rows[0][0] >0 ) {
-				echo "entro";
-				//$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
-			
-				//$data['error'] = "";
-				//$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
-				//
-				//idsigma,
-			  	//mperson,
-			  	//mpredio,
-			  	//nporcen,
-			  	//nestado,
-			  	//ctippro,
-			  	//vhostnm,
-			  	//vusernm,
-			  	//ddatetm,
-			  	//mhresum
-			  					
-				$row2 = $_POST["idsigma"].','.				  
-				   $_POST["mperson"].','.
-				   $_POST["mpredio"].','.
-				   0 .','.
-				   1 .','.
-				   '1000000450' .','.				   			
-				   $vhostnm.','.
-				   $coduser.','.
-				   date("y-m-d").','.
-				   $rows[0][0];
-
-				   $parameters2[] = $row2;
-				   $dataAdapter2 = new Model_DataAdapter();
-				   $rows2 = $dataAdapter2->executeSelect("pl_function.guardar_mpropie", $parameters2);
-				   
-				
-				   //1000000008 --Compra
-    			   //1000000009 --Venta   
-				
-				if (($_POST["cmotivo"]='1000000008') or ($_POST["cmotivo"]=='1000000009')){
-									
-				
-				// idsigma,
-			 	// mpredio,
-			  	// ctippre,
-			  	// cclasif,
-			  	// ccondic,
-			  	// cestado,
-			  	// cusogen,
-			  	// cusoesp,
-			  	// nporcen,
-// 			  	ntertot,
-// 			  	nporter,
-// 			  	nterren,	
-// 			  	ncomtot,
-// 			  	nporcom,
-// 			  	narecom,
-// 			  	nporafe,
-// 			  	dfecadq,
-// 			  	dfecdes,
-// 			  	dafecta,
-// 			  	nfrente,
-// 			  	ncanper,
-// 			  	ctippar,
-// 			  	vobserv,
-// 			  	nestado,
-// 			  	vhostnm,
-// 			  	vusernm,
-// 			  	ddatetm,
-// 			  	dfectra,
-// 			  	cnotari,
-// 			  	ctiptra,
-// 			  	cpartid,
-// 			  	csubtip,
-// 			  	cmotadq,
-// 			  	mhresum				 
-				  
-				 
-				
-				$row3 = $_POST["idsigma"].','.
-				 $_POST["mpredio"].','.
-				 ''.','.
-				 ''.','.
-				 ''.','.
-				 ''.','.
-				 ''.','.
-				 ''.','.
-				 '0'.','.
-				 '0'.','.
-				 '0'.','.
-				 '0'.','.
-				 '0'.','.
-				 '0'.','.
-				 '0'.','.
-				 '0'.','.
-				 date("y-m-d").','.
-				 date("y-m-d").','.
-				 date("y-m-d").','.
-				 '0'.','.
-				 '0'.','.
-				 ''.','.
-				 ''.','.
-				 '1'.','.    
-				$vhostnm.','.
-				$coduser.','.
-				date("y-m-d").',,,,,,,'. 
-				$rows[0][0]; 				
-				
-				$parameters3[] = $row3;
-				$dataAdapter3 = new Model_DataAdapter();
-				$rows3 = $dataAdapter3->executeSelect("pl_function.guardar_dpredio", $parameters3);
-				
-				
-// 				 idsigma,
-// 			 	 dpredio,
-// 			  	cperiod,
-// 			  	narance,
-// 			  	nvalpis,
-// 			  	nvalins,
-// 			  	nvalter,
-// 			  	nvalpre,
-// 			  	nporafe,
-// 			  	nvalafe,
-// 			  	nestado,
-// 			  	vhostnm,
-// 			  	vusernm,
-// 			  	ddatetm
-				
-				
-				$row4 = $_POST["idsigma"].','.
-					  $rows3[0][0].','.	
-					  date("Y", strtotime($_POST["cperini"])).','.
-				      '0'.','.
-					  '0'.','.
-					  '0'.','.
-					  '0'.','.
-					  '0'.','.
-					  '0'.','.
-					  '0'.','.	
-					  '1'.','.
-					  $vhostnm.','.
-					$coduser.','.
-					date("y-m-d"); 	
-				
-				$parameters4[] = $row4;
-				$dataAdapter4 = new Model_DataAdapter();
-				$rows4 = $dataAdapter4->executeSelect("pl_function.guardar_vpredio", $parameters4);
-	
-				
-				}
-				
-				
-			} else {
-				$data['error'] = "Error al actualizar";
-				$data['data'] = "";
-			}
-			
-			*/
-			//$this->_helper->json($data);
 		}
 	}
 		 
@@ -836,8 +664,6 @@ class RegistroController extends Zend_Controller_Action {
 	}
 	
 	public function prediomantenAction(){
-
-	    $this->view->util()->registerScriptJSControllerAction($this->getRequest());
 
 	    $pintar = new Libreria_Pintar();
         $parameters[] = date("Y") -1;
@@ -1316,12 +1142,12 @@ class RegistroController extends Zend_Controller_Action {
             $parameters2[]= $p_dpredio ;
             
             $dataAdapter2 = new Model_DataAdapter();
-            $rows2 = $dataAdapter2->executeAssocQuery("pl_function.ver_valor_predio", $parameters2);
-    		
+            $rows2 = $dataAdapter2->executeAssocQuery("pl_function.ver_valor_predio", $parameters2);    		
             //print_r($rows2);    		
-    	}    	
-    	
-    	$val[]=array('lblArancel',$rows2[0]['narance'],'html');
+    	}
+
+    	if 	(count($rows2)>0){
+    		$val[]=array('lblArancel',$rows2[0]['narance'],'html');
     	
     	$val[]=array('lblValorTerreno',$rows2[0]['nvalter'],'html');
     	
@@ -1331,10 +1157,15 @@ class RegistroController extends Zend_Controller_Action {
     	
     	$val[]=array('lblAutovaluo',$rows2[0]['nvalpre'],'html');
     	  
-    	//$fun[]=array(' $("#lblArancel").numeric(decimal:2);  ');
-    	    	
+        	    	
     	$pintar->PintarValor($val);
-    	//$pintar->EjecutarFuncion($fun);
+ 
+    		
+    	}
+    	
+    	
+    	
+    	
 		
 	}
 	
@@ -1360,17 +1191,31 @@ class RegistroController extends Zend_Controller_Action {
             //print_r($rows2);    		
     	}    	
     	
+    	if (count($rows2)>0){
+    	
     	$val[]=array('lblUsuario',$rows2[0]['vusernm'],'html');
     	
     	$val[]=array('lblFechaModificacion',$rows2[0]['ddatetm'],'html');
     	
     	$val[]=array('lblFechaProceso',$rows2[0]['dfectra'],'html');
-    	
-   	
-    	//$fun[]=array(' $("#lblArancel").numeric(decimal:2);  ');
-    	    	
+    	    	    	
     	$pintar->PintarValor($val);
-    	//$pintar->EjecutarFuncion($fun);
+    		
+    	}
+		
+	}
+	
+	public function galeriafotosAction(){
+			$this->_helper->layout->disableLayout();
+	}
+	
+	public function presubirfotoAction(){
+		$this->_helper->layout->disableLayout();
+		
+	}
+	
+		public function subirfotoAction(){
+		$this->_helper->layout->disableLayout();
 		
 	}
 	

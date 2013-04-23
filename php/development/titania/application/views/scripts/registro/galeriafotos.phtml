@@ -1,0 +1,20 @@
+<button id="btnNuevaFoto">Nuevo </button>
+<br/>
+<div id="dvfotos" > 
+
+</div>
+
+<script type="text/javascript">
+
+
+$("#btnNuevaFoto").button({
+    icons: {primary:'ui-icon-search'}
+}).bind('click', function(){
+	
+    	openDialogData2("registro/presubirfoto", {}, "300", "200", "Subir Foto");
+    	
+
+});
+
+
+</script>
