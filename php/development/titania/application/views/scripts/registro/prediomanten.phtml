@@ -4,16 +4,16 @@
         <label>Predios</label>
     </div>
     <div id="dvbusqueda">
-    <table border="0" width="650px">
+    <table border="0" width="80%">
           <tr>
               <td colspan="15" align="center">
 
           </tr>
           <tr>
                             <td>&nbsp;</td>
-                            <td>C&oacute;digo Predial:</td>
-                            <td></td>
-                            <td>Centro Poblado:</td>
+                            <td width="90">C&oacute;digo Predial:</td>
+                         
+                            <td width="250">Centro Poblado:</td>
                             <td>&nbsp;</td>
                             <td>Via:</td>
                             <td>&nbsp;</td>
@@ -23,14 +23,13 @@
                             <td width="10">&nbsp;</td>
                             <td width="50">Lote:</td>
                             <td>&nbsp;</td>
-                              <td rowspan="2" align="center">
+                              <td rowspan="2" align="center" valign="bottom">
                             <button id="btnbuscar">Buscar</button>              
                             </td>
             </tr>
             <tr id="panelPredio">
                             <td>&nbsp;</td>
                             <td><input class="ui-text" id="c_predial" maxlength="10" style="width:90px" /></td>
-                            <td></td>
                             <td colspan="3"><input class="ui-text pnl" id="c_viacontrib" style="width:100%" /></td>
                             <td>&nbsp;</td>
                             <td width="50"><select class="ui-text pnl" id="c_nroviacontrib" ><?php echo $this->util()->getComboContenedorOtro('1000000530', '1000000564','public.obtener_tabla_otro' ); ?>  </select> </td>
