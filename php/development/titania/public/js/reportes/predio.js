@@ -277,11 +277,7 @@ optionmpredio= {
 
  navPanelPredio = function() {
         $("#tblResultmPredio").jqGrid('navGrid', '#ptblResultmPredio', {edit:false, add:false, del:false, search:false, refresh:false});
-        $("#tblResultmPredio").jqGrid('navButtonAdd', '#ptblResultmPredio', btnInsertarPredio);
-        $("#tblResultmPredio").jqGrid('navSeparatorAdd','#ptblResultmPredio');
-        $("#tblResultmPredio").jqGrid('navButtonAdd','#ptblResultmPredio', btnEditarPredio);
-        $("#tblResultmPredio").jqGrid('navSeparatorAdd','#ptblResultmPredio');
-        $("#tblResultmPredio").jqGrid('navButtonAdd','#ptblResultmPredio', btnEliminarPredio);
+     
     };
 
     inicializarGrid("tblResultmPredio", optionmpredio,null,navPanelPredio);
@@ -370,7 +366,6 @@ optionmpredio= {
            }else{
         	   inicializarGrid("tblResultmPredio", optionmpredio);        	     
                openDialogWarning("No hay predios registrados.", 380, 150);
-               
     			
            }
             

@@ -79,8 +79,10 @@ class RegistroController extends Zend_Controller_Action {
             $rows = $dataAdapter->executeAssocQuery("pl_function.ver_predio", $parameters);
             
             if(is_array($rows) && count($rows) > 0) {
-	            $this->view->mpredio = $rows[0];
+	            $this->view->mpredio = $rows[0];	      
+	            
 	            $parameters = array($rows[0]["dpredio"], $rows[0]["cperiod"]);
+	            
 	            $dataAdapter->saveQuery("tblPiso", "pl_function.listar_construccion", $parameters);
 	            $dataAdapter->saveQuery("tblInstalacion", "pl_function.listar_instalacion", $parameters);
 	            $dataAdapter->saveQuery("tblLindero", "pl_function.listar_lindero", $parameters);
@@ -1147,16 +1149,24 @@ class RegistroController extends Zend_Controller_Action {
     	}
 
     	if 	(count($rows2)>0){
-    		$val[]=array('lblArancel',$rows2[0]['narance'],'html');
-    	
-    	$val[]=array('lblValorTerreno',$rows2[0]['nvalter'],'html');
-    	
-    	$val[]=array('lblValorConstruccion',$rows2[0]['nvalpis'],'html');
-    	
-    	$val[]=array('lblValorInstalacion',$rows2[0]['nvalins'],'html');
-    	
-    	$val[]=array('lblAutovaluo',$rows2[0]['nvalpre'],'html');
+	    	$val[]=array('lblArancel',$rows2[0]['narance'],'html');
+	    	
+	    	$val[]=array('lblValorTerreno',$rows2[0]['nvalter'],'html');
+	    	
+	    	$val[]=array('lblValorConstruccion',$rows2[0]['nvalpis'],'html');
+	    	
+	    	$val[]=array('lblValorInstalacion',$rows2[0]['nvalins'],'html');
+	    	
+	    	$val[]=array('lblAutovaluo',$rows2[0]['nvalpre'],'html');
     	  
+	        $val[]=array('lblMontoBarrido',$rows2[0]['nbarrid'],'html');
+            
+	        $val[]=array('lblMontoParque',$rows2[0]['nparque'],'html');
+            
+	        $val[]=array('lblMontoRecoleccion',$rows2[0]['nrecole'],'html');
+            
+	        $val[]=array('lblMontoSerenazgo',$rows2[0]['nserena'],'html');
+	    	
         	    	
     	$pintar->PintarValor($val);
  
@@ -1211,24 +1221,50 @@ class RegistroController extends Zend_Controller_Action {
 	}
 	
 	public function presubirfotoAction(){
-		$this->_helper->layout->disableLayout();
+				
+	  $this->_helper->getHelper('ajaxContext')->initContext();
+	  $this->_helper->layout->disableLayout();
+
+	  $dpredio=$this->_request->getParam('dpredio','');
+	  
+        if ($this->getRequest()->isXmlHttpRequest()) {
+        	
+           
 		
+		
+	
+
+		
+        }
+        	echo $dpredio;
+        $pintar= new Libreria_Pintar();
+		
+		$val[]=array('dpredio', $dpredio ,'val');
+		
+		$pintar->PintarValor($val);
 		
 	}
 	
-		public function subirfotoAction(){
-			$this->_helper->getHelper('ajaxContext')->initContext();
-		$pintar= New Libreria_Pintar();
+	public function subirfotoAction(){
+		$this->_helper->getHelper('ajaxContext')->initContext();
+
+		    $pintar= New Libreria_Pintar();
 		
-    	if ($this->getRequest()->isXmlHttpRequest()) {
-    		$this->_helper->layout->disableLayout();
-    	}
-    	
-		
+    		if ($this->getRequest()->isXmlHttpRequest()) {
+    			$this->_helper->layout->disableLayout();
+    		
+    			$p_dpredio =$this->_request->getPost('p_dpredio','');
+    			$p_foto =$this->_request->getPost('p_foto','');
+    		}
+
+    		echo $p_dpredio ;
+    		echo "</br>".$p_foto; 
 	}
 	
-	public function uploadAction(){
+	public function uploadAction(){		
 		
+		$name =$this->_request->getPost('name','');
+		echo $name; 
 		
 	}
 	
