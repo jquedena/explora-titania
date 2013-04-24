@@ -1,3 +1,4 @@
+<script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/app/ui/01_jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/app/plupload/plupload.js"></script>
 <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/app/plupload/plupload.gears.js"></script>
 <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/app/plupload/plupload.silverlight.js"></script>
@@ -5,6 +6,10 @@
 <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/app/plupload/plupload.browserplus.js"></script>
 <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/app/plupload/plupload.html4.js"></script>
 <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/app/plupload/plupload.html5.js"></script>
+
+<input type="hidden"  id="dpredio"/>
+<input type="hidden"  id="textfotos"/>
+<div id="ajaxaca"></div>
 
 <center>
 <h1 style="font-size:16px;color:navy;" >Subir Fotos</h1>
@@ -49,8 +54,13 @@ uploader.bind('Init', function(up, params) {
 uploader.init();
 
 uploader.bind('FilesAdded', function(up, files) {
+	var foto="";
 	for (var i in files) {
 		$('filelist').innerHTML += '<div id="' + files[i].id + '">' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <b></b></div>';
+
+		//foto= document.getElementById('textfotos').getAttribute('value');
+		//$("#textfotos").val(foto+"*"+files[i].name);
+		//alert(foto);
 	}
 });
 
@@ -60,6 +70,9 @@ uploader.bind('UploadProgress', function(up, file) {
 
 $('uploadfiles').onclick = function() {
 	uploader.start();
+
+	
+
 	return false;
 };
 

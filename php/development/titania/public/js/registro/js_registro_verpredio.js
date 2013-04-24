@@ -422,8 +422,8 @@ loadVerDetalle = function(){
         // location.href = path + "registro";
     	// window.open(pathReport+"reporte=Report_Completo&opt=p_mhresum^" + $("#_mhresum").val() + "|p_cperiod^-1|p_ccodpre^-1|p_mperson^" + $("#lblCodigo").html(), '_blank');
     	//openDialog1("registro/galeriafotos", "725", "405", "Galeria Fotos");
-    	//openDialog1("registro/presubirfoto", "725", "405", "Galeria Fotos");
-        window.open( path + "registro/presubirfoto",'Subir Foto','width=200,height=200'); 
+    	//openDialogData1("registro/presubirfoto",{}, "725", "405", "Galeria Fotos");
+        window.open( path + "registro/presubirfoto?dpredio="+$("#_dpredio").val(),'Subir Foto','width=200,height=200'); 
     });
     
     $("#btnGaleria").button({
