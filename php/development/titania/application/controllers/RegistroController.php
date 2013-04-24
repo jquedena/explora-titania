@@ -1207,15 +1207,28 @@ class RegistroController extends Zend_Controller_Action {
 	
 	public function galeriafotosAction(){
 			$this->_helper->layout->disableLayout();
+		
 	}
 	
 	public function presubirfotoAction(){
 		$this->_helper->layout->disableLayout();
 		
+		
 	}
 	
 		public function subirfotoAction(){
-		$this->_helper->layout->disableLayout();
+			$this->_helper->getHelper('ajaxContext')->initContext();
+		$pintar= New Libreria_Pintar();
+		
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+    	}
+    	
+		
+	}
+	
+	public function uploadAction(){
+		
 		
 	}
 	

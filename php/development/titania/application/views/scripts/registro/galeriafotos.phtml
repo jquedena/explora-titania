@@ -1,20 +1,10 @@
-<button id="btnNuevaFoto">Nuevo </button>
-<br/>
+
 <div id="dvfotos" > 
 
 </div>
+<?php 
+	$foto="Desert.jpg";
 
-<script type="text/javascript">
-
-
-$("#btnNuevaFoto").button({
-    icons: {primary:'ui-icon-search'}
-}).bind('click', function(){
+	echo "<img src=\"".$this->util()->getPath()."uploads/".$foto. "\" /> <br /><br />";
 	
-    	openDialogData2("registro/presubirfoto", {}, "300", "200", "Subir Foto");
-    	
-
-});
-
-
-</script>
+	?>
