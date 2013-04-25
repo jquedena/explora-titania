@@ -1,6 +1,6 @@
 <table class="ui-table-panelLayout">
     <tr>
-        <td style="text-align:right">Inafectaci&oacute;n y Exoneraci&oacute;n:</td><td><select id="cb_tipoinafecto" style="width:190px;padding:2px"><?php echo $this->util()->getComboContenedor('1000000531', null); ?></select></td>
+        <td style="text-align:right">Inafectaci&oacute;n y Exoneraci&oacute;n:</td><td><select id="cb_tipoinafecto" style="width:190px;padding:2px"><?php echo $this->util()->getComboContenedor('1000001849', '1000001850'); ?></select></td>
         <td>Observaci&oacute;n:</td>
     </tr>
     <tr>
@@ -56,60 +56,96 @@ optionTributo= {
   	caption: "Descripcion de Tributos"
 };
 
-/*
-row = { 
-		idsigma: $("#_dpredio").val(),
-		mpredio: $("#_mpredio").val(),
-		ctippre: $("#cboTipoPredio").val(),
-		cclasif: $("#cboClasificacion option:selected").attr("data-idsigma"),
-		ccondic: $("#cboCondicion").val(),        			
-		cestado: $("#cboEstado").val(),
-		cusogen: $("#cboUso").val(),       
-		cusoesp: $("#cboUsoEspecifico").val(),
-		nporcen: $("#nporcen").val(),     
-		ntertot: $("#nareter").val(),
-		nporter: $("#nporter").val(),    
-		nterren: $("#ntotter").val(),
-		ncomtot: $("#ntotcom").val(),      
-		nporcom: $("#nporcom").val(),
-		narecom: $("#narecom").val(),		
-		nporafe: 100,      
-		dfecadq: $("#dtpFechaAdquisicion").val(),
-		dfecdes: '',
-		dafecta: '', 
-		nfrente: $("#nfronti").val(),
-		ncanper: $("#nnrohab").val() ,
-		ctippar: $("#cboParque").val(),
-		vobserv: "",
-		nestado: 1,
-		mhresum: $("#_mhresum").val() 
 
-		  idsigma:,
-		  mperson:,
-		  mpredio:,
-		  ctipina:,
-		  vbasleg:,
-		  vnumexp:,
-		  vnumres:,
-		  dfecres:,
-		  ctiping:,
-		  nporafe:,
-		  dfecini:,
-		  dfecfin:,
-		  nestado: 1,
-		  //vhostnm,
-		  //vusernm,
-		  //ddatetm ,
-		  mhresum: $("#_mhresum").val() 
-		 
+grabarinafe= function(){
+ 	   Hab=true;
+      
+	  if ($("#cb_tipoinafecto").val()=='9999999999'){
+		  alert("Seleccione el tipo de inafecto");
+		  $("#cb_tipoinafecto").focus();
+		  Hab=false;
+		  return false;
+	  }
+	   
+	  if ($("#txt_baselegalinafecto").val()==''){
+		  alert("Ingrese la base legal.");
+		  $("#txt_baselegalinafecto").focus();
+		  Hab=false; 
+		  return false;
+	  }
+	   
+	  if ($("#txt_expedienteinafecto").val()==''){
+		  alert("Ingrese el expediente");
+		  $("#txt_expedienteinafecto").focus();
+		  Hab=false;
+		  return false;
+	  }
+	   
+	  if ($("#txt_resolucioninafecto").val()==''){
+		  alert("Ingrese la resolucion");
+		  $("#txt_resolucioninafecto").focus();
+		  Hab=false;
+		  return false;
+		  
+	  }
+	    
+	  if ($("#dptFechaResolucionInafecto").val()==''){
+		  alert("Ingrese la fecha resolucion");
+		  $("#dptFechaResolucionInafecto").focus();
+		  Hab=false;
+		  return false;
+		  
+	  }
+	   	  
+	  if ($("#txt_inicioinafecto").val()==''){
+		  alert("Ingrese el inicio de afectacion");
+		  $("#txt_inicioinafecto").focus();
+		  Hab=false;
+		  return false;
+		  
+	  }
+	   
+	  if ($("#txt_fininafecto").val()==''){
+		  alert("Ingrese el fin de afectacion");
+		  $("#txt_fininafecto").focus();
+		  Hab=false;
+		  return false;		  
+	  }
+	
+
+	row = { 
+			  idsigma: '-1',
+			  mperson: $("#lblCodigo").Html,
+			  mpredio: $("#_mpredio").val() ,
+			  ctipina: $("#cb_tipoinafecto").val(),
+			  vbasleg: $("#txt_baselegalinafecto").val(),
+			  vnumexp: $("#txt_expedienteinafecto").val(),
+			  vnumres: $("#txt_resolucioninafecto").val(), 
+			  dfecres: $("#dptFechaResolucionInafecto").val(),
+			  ctiping: '01',
+			  nporafe: '100',
+			  dfecini: $("#txt_inicioinafecto").val(),
+			  dfecfin: $("#txt_fininafecto").val(),
+			  nestado: 1,
+			  //vhostnm,
+			  //vusernm,
+			  //ddatetm ,
+			  mhresum: $("#_mhresum").val() ,
+			  vobserv: $("#txtObservacionInafectacion").val() 
+	}; 
+
+	if (Hab==true){
+				
+	_post = $.post(path + "registro/guardarinafecta", row);
+	_post.success(function(data){
+		//optionPiso = $.extend(optionPiso, {data: data.data});
+		//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
+	});
+
+	}
 };
 
-_post = $.post(path + "registro/guardardetalle", row);
-_post.success(function(data){
-	//optionPiso = $.extend(optionPiso, {data: data.data});
-	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
-});
-*/
+
 
 
 </script>
