@@ -1,6 +1,6 @@
 <table class="ui-table-panelLayout">
     <tr>
-        <td style="text-align:right">Inafectaci&oacute;n y Exoneraci&oacute;n:</td><td><select id="cb_tipoinafecto" style="width:190px;padding:2px"><?php echo $this->util()->getComboContenedor('1000000424', null); ?></select></td>
+        <td style="text-align:right">Inafectaci&oacute;n y Exoneraci&oacute;n:</td><td><select id="cb_tipoinafecto" style="width:190px;padding:2px"><?php echo $this->util()->getComboContenedor('1000000531', null); ?></select></td>
         <td>Observaci&oacute;n:</td>
     </tr>
     <tr>
@@ -56,6 +56,7 @@ optionTributo= {
   	caption: "Descripcion de Tributos"
 };
 
+/*
 row = { 
 		idsigma: $("#_dpredio").val(),
 		mpredio: $("#_mpredio").val(),
@@ -82,6 +83,24 @@ row = {
 		vobserv: "",
 		nestado: 1,
 		mhresum: $("#_mhresum").val() 
+
+		  idsigma:,
+		  mperson:,
+		  mpredio:,
+		  ctipina:,
+		  vbasleg:,
+		  vnumexp:,
+		  vnumres:,
+		  dfecres:,
+		  ctiping:,
+		  nporafe:,
+		  dfecini:,
+		  dfecfin:,
+		  nestado: 1,
+		  //vhostnm,
+		  //vusernm,
+		  //ddatetm ,
+		  mhresum: $("#_mhresum").val() 
 		 
 };
 
@@ -90,7 +109,7 @@ _post.success(function(data){
 	//optionPiso = $.extend(optionPiso, {data: data.data});
 	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
 });
-
+*/
 
 
 </script>
