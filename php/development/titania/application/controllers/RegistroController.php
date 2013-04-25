@@ -91,7 +91,7 @@ class RegistroController extends Zend_Controller_Action {
         }
         
         	$pintar=new Libreria_Pintar();        
-            $val[]=array('ccodpre',$rows [0]['ccodpre'],'val');
+            $val[]=array('ccodpre',$rows [0]['ccodpre2'],'val');
             $pintar->PintarValor($val);
         
     }
