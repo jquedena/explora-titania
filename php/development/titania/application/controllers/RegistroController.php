@@ -1227,22 +1227,13 @@ class RegistroController extends Zend_Controller_Action {
 
 	  $dpredio=$this->_request->getParam('dpredio','');
 	  
-        if ($this->getRequest()->isXmlHttpRequest()) {
-        	
-           
-		
-		
-	
-
+        if ($this->getRequest()->isXmlHttpRequest()) {        	
 		
         }
-        	echo $dpredio;
-        $pintar= new Libreria_Pintar();
-		
-		$val[]=array('dpredio', $dpredio ,'val');
-		
-		$pintar->PintarValor($val);
-		
+        
+        $fotos = new Zend_Session_Namespace('fotos');
+    	$foto ->dpredio =$dpredio;
+    	
 	}
 	
 	public function subirfotoAction(){
@@ -1263,8 +1254,24 @@ class RegistroController extends Zend_Controller_Action {
 	
 	public function uploadAction(){		
 		
-		$name =$this->_request->getPost('name','');
-		echo $name; 
+		$a = new Zend_Session_Namespace('fotos');
+
+		echo "dpredio:".$a->dpredio;
+		
+		echo $_REQUEST["name"];
+		
+	}
+	
+	public function guardarinafectaAction(){
+		$this->_helper->getHelper('ajaxContext')->initContext();
+    
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+
+    		
+
+    		
+    	}
 		
 	}
 	
