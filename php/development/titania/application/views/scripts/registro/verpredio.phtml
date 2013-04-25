@@ -4,20 +4,26 @@
 <input type="hidden" id="ccodpre" />
 <div  id="ajaxaca" style="visibility:hidden;" ></div>
 <div  id="ajaxaca2" style="visibility:hidden;" ></div>
-<table style="width: 1000px; margin: 3px;">
+<table style="width: 1000px; margin: 3px;" border="0">
     <tr>
         <td colspan="3">
             <div id="panelContribuyente" align="center" class="ui-widget ui-widget-content ui-corner-top" style="width: 100%;">
                 <div class="ui-widget ui-state-default ui-corner-top ui-title">
                     <label>Registro de Declaraci&oacute;n Jurada</label>
                 </div>
-                <table class="ui-table-panelLayout">
+                <table class="ui-table-panelLayout" border="0">
                     <tr>
                         <td style="width: 40px;">C&oacute;digo:</td>
                         <td style="width: 75px;font-weight: bold;"><div id="lblCodigo"><?php echo $this->mperson; ?></div></td>
                         <td style="width: 60px; text-align: right; padding-right: 4px;">Nombre:</td>
                         <td style="font-weight: bold;" colspan="2"><div id="lblNombre"><?php echo $this->vnombre; ?></div></td>
-                        <td style="width: 110px;" align="right" rowspan="3">
+                        
+                        <td rowspan="3">Modificado por <b><span id="lblUsuario"><?php echo $this->mpredio["vusernm"]; ?></span></b> <br/> &nbsp; el <b><span id="lblFechaModificacion"><?php echo $this->mpredio["ddatetm"]; ?></span></b>
+                         <br/><br/>Ultimo recalculo el <br/> <b><span id="lblFechaProceso"><?php echo $this->mpredio["dafecta"]; ?></span></b>
+                        </td>
+                        
+                     
+                       <td style="width: 110px;" align="right" rowspan="3">
                         	<div class="ui-widget" style="text-align: center;">
                         		Declaraci&oacute;n Nro.
                         		<br/>
@@ -33,7 +39,7 @@
                         <td>Predio:</td>
                         <td style="font-weight: bold;"><div id="lblPredio"><div id="lblPredio"><?php echo $this->mpredio["ccodpre"]; ?></div></div></td>
                         <td style="text-align: right; padding-right: 4px;">Direcci&oacute;n:</td>
-                        <td style="font-weight: bold;"><div id="lblDireccion"><?php echo $this->mpredio["vdirpre"]; ?></div></td>
+                        <td colspan="1" style="font-weight: bold;"><div id="lblDireccion"><?php echo $this->mpredio["vdirpre"]; ?></div></td>
                         <td style="width: 30px;"> 
                         		<button id="btnBuscarDireccion" style="line-height: 25px;height: 25px;" title="Buscar predio" ></button>
                         </td>
@@ -60,15 +66,15 @@
                         <td style="font-weight: bold; text-align: center;"><div id="lblValorTerreno"><?php echo $this->mpredio["nvalter"]; ?></div></td>
                         <td style="font-weight: bold; text-align: center;"><div id="lblValorConstruccion"><?php echo $this->mpredio["nvalpis"]; ?></div></td>
                         <td style="font-weight: bold; text-align: center;"><div id="lblValorInstalacion"><?php echo $this->mpredio["nvalins"]; ?></div></td>
-                        <td style="font-weight: bold; text-align: center;"><div id="lblAutovaluo"><?php echo $this->mpredio["nvalafe"]; ?></div></td>
+                        <td style="font-weight: bold; text-align: center;"><div id="lblAutovaluo"><?php echo (String) $this->mpredio["nvalafe"]; ?></div></td>
                     </tr>
                 </table>
             </div>
         </td>
         
-        <td style="padding-top: 3px;padding-right: 3px;">
+        <td style="padding-top: 3px;padding-right: 0 px;">
             <div id="panelValor" align="center" class="ui-widget ui-widget-content" style="width: 100%;height: 100%;">
-                <table align="center" class="ui-table-panelLayout" style="width: 350px;height:58px">
+                <table align="center" class="ui-table-panelLayout" style="width:300;height:58px">
                     <tr>
                         <td style="width: 85 px; text-align: center;">Monto Barrido</td>
                         <td style="width: 85 px; text-align: center;">Monto Parq.Jard.</td>
@@ -85,23 +91,9 @@
                 </table>
             </div>
         </td>
-        
-        
-        <td style="padding-top: 3px;padding-left: 2px;">
-            <div id="panelUsuario" align="center" class="ui-widget ui-widget-content" style="width: 100%;height: 100%;">
-                <table align="center"  class="ui-table-panelLayout" style="width: 240px;height:58px">
-                    <tr>
-                        <td>Modificado por <b><span id="lblUsuario"><?php echo $this->mpredio["vusernm"]; ?></span></b> <br/> &nbsp; el <b><span id="lblFechaModificacion"><?php echo $this->mpredio["ddatetm"]; ?></span></b></td>
-                    </tr>
-                    <tr>
-                        <td>Ultimo recalculo el <b><span id="lblFechaProceso"><?php echo $this->mpredio["dafecta"]; ?></span></b></td>
-                    </tr>
-                </table>
-            </div>
-        </td>
-    </tr>
+
     <tr>
-        <td colspan="3" style="padding-top: 3px;">
+        <td colspan="3" style="padding-top: 3px;padding-right: 3px;">
             <div id="panelControl" align="right" class="ui-widget ui-widget-content ui-corner-bottom" style="width: 100%;">
             	<button id="btnValorPredio" style="display: none">Valores del predio</button>
             	<button id="btnImprimir">Imprimir</button>
@@ -113,7 +105,7 @@
     </tr>
 </table>
 <div id="panelDetallePredio">
-    <div id="tabsDetallePredio" style="width: 99%; margin: 3px;">
+    <div id="tabsDetallePredio" style="width: 96%; margin: 3px;">
         <ul>
             
             <li id="tabPredioDescripcion"><a href="#predioDescripcion">Descripci&oacute;n</a></li>
@@ -121,7 +113,7 @@
 <!--            <li id="tabPredioRustico"<?php echo ($this->mpredio["ctippre"]!='1000000091'? ' style="display:none;"': '')?>><a href="#predioRustico">Rustico</a></li>-->
             <li id="tabPredioPiso"><a href="#predioPiso">Pisos</a></li>
             <li id="tabPredioInstalacion"><a href="#predioInstalacion">Instalaci&oacute;n</a></li>    
-<!--            <li id="tabPredioInafectacion"><a href="#predioInafectacion">Inafectaci&oacute;n y Exoneraci&oacute;n</a></li>-->
+            <li id="tabPredioInafectacion"><a href="#predioInafectacion">Inafectaci&oacute;n y Exoneraci&oacute;n</a></li>
             <li id="tabPredioUbicacion"><a href="#predioUbicacion">Ubicaci&oacute;n</a></li>
         </ul>
         <div style="overflow-y: auto; overflow-x: hidden; height:310px; padding: 2px;" id="predioUbicacion">
@@ -172,9 +164,9 @@
         <div style="overflow-y: auto; overflow-x: hidden; height:300px; padding: 2px;" id="predioInstalacion">
             <?php echo $this->render("registro/verpredio/instalacion.php"); ?>
         </div>
-        <!--   <div style="overflow-y: hidden; overflow-x: hidden; height:300px; padding: 2px;" id="predioInafectacion">
+        <div style="overflow-y: hidden; overflow-x: hidden; height:300px; padding: 2px;" id="predioInafectacion">
             <?php echo $this->render("registro/verpredio/inafectacion.php"); ?>
-        </div>-->
+        </div>
     </div>
 </div>
 

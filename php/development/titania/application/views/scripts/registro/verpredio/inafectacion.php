@@ -55,6 +55,44 @@ optionTributo= {
    	pager: '#pager',
   	caption: "Descripcion de Tributos"
 };
+
+row = { 
+		idsigma: $("#_dpredio").val(),
+		mpredio: $("#_mpredio").val(),
+		ctippre: $("#cboTipoPredio").val(),
+		cclasif: $("#cboClasificacion option:selected").attr("data-idsigma"),
+		ccondic: $("#cboCondicion").val(),        			
+		cestado: $("#cboEstado").val(),
+		cusogen: $("#cboUso").val(),       
+		cusoesp: $("#cboUsoEspecifico").val(),
+		nporcen: $("#nporcen").val(),     
+		ntertot: $("#nareter").val(),
+		nporter: $("#nporter").val(),    
+		nterren: $("#ntotter").val(),
+		ncomtot: $("#ntotcom").val(),      
+		nporcom: $("#nporcom").val(),
+		narecom: $("#narecom").val(),		
+		nporafe: 100,      
+		dfecadq: $("#dtpFechaAdquisicion").val(),
+		dfecdes: '',
+		dafecta: '', 
+		nfrente: $("#nfronti").val(),
+		ncanper: $("#nnrohab").val() ,
+		ctippar: $("#cboParque").val(),
+		vobserv: "",
+		nestado: 1,
+		mhresum: $("#_mhresum").val() 
+		 
+};
+
+_post = $.post(path + "registro/guardardetalle", row);
+_post.success(function(data){
+	//optionPiso = $.extend(optionPiso, {data: data.data});
+	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
+});
+
+
+
 </script>
 
 
