@@ -133,6 +133,7 @@ class RegistroController extends Zend_Controller_Action {
             
         }
         
+        $val[]=array('dtpFechaVigencia',date('d/m/Y'),'val');
         $val[]=array('dtpFechaDeclaracion',date('d/m/Y'),'val');
         
         
@@ -1057,20 +1058,17 @@ class RegistroController extends Zend_Controller_Action {
 	}
 
 	public function editarpredioAction(){
-				$this->_helper->getHelper('ajaxContext')->initContext();
+				$this->_helper->layout->disableLayout();		
 	
-				$pintar = new Libreria_Pintar();
-				
-		if ($this->getRequest()->isXmlHttpRequest()) {
-			$this->_helper->layout->disableLayout();			
-			
 			$codpre=$this->_request->getParam('mhresum','');
 			$mpredio=$this->_request->getParam('mpredio','');
+			
+			
+			$pintar = new Libreria_Pintar();
+				
+			
 			//$ccodpre=$this->_request->getParam('ccodpre','');
-			
-			
-			
-			
+						
             $parameters[] = date("Y") -1;
 
             $dataAdapter = new Model_DataAdapter();
@@ -1086,7 +1084,9 @@ class RegistroController extends Zend_Controller_Action {
             $dataAdapter2 = new Model_DataAdapter();
             $rows2 = $dataAdapter2->executeAssocQuery("pl_function.buscar_mpredio", $parameters2);
             
-            //echo count($rows2 );            
+            //echo count($rows2 );
+
+            if (count($rows2)>0){
                         
             $val[]=array( 'txtcodpre' ,$rows2[0]['ccodpre'] ,'val');            
             $val[]=array( 'txt_idsigma' ,$rows2[0]['idsigma'] ,'val');
@@ -1099,9 +1099,9 @@ class RegistroController extends Zend_Controller_Action {
             $val[]=array( 'txtmanzana' ,$rows2[0]['dmanzan']  ,'val');
             $val[]=array( 'txtlote' ,$rows2[0]['dnlotes']  ,'val');
                                  
-		}
-		
-		$pintar->PintarValor($val);
+			
+			$pintar->PintarValor($val);
+            }
 		
 	}
 	
@@ -1268,7 +1268,33 @@ class RegistroController extends Zend_Controller_Action {
     	if ($this->getRequest()->isXmlHttpRequest()) {
     		$this->_helper->layout->disableLayout();
 
+    		$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+    		$coduser = $ddatosuserlog->cidpers;
+    		$vhostnm = $ddatosuserlog->vhostnm;
     		
+    		
+    		 $row = $_POST['idsigma'].','
+			  		.$_POST['mperson'].','
+			  		.$_POST['mpredio'].','
+			  		.$_POST['ctipina'].','
+			  		.$_POST['vbasleg'].','
+			  		.$_POST['vnumexp'].','
+			  		.$_POST['vnumres '].','
+			  		.$_POST['dfecres'].','
+			  		.$_POST['ctiping'].','
+			  		.$_POST['nporafe'].','
+			  		.$_POST['dfecini'].','
+			  		.$_POST['dfecfin'].','
+			  		.$_POST['nestado'].','
+			  		.$vhostnm.','
+			  		.$coduser.','  
+			 		.date("y-m-d").','
+			  		.$_POST['mhresum'].','	
+			  		.$_POST['vobserv'];		  
+					
+			$parameters[] = $row;
+			$dataAdapter = new Model_DataAdapter();
+    		$rows = $dataAdapter->executeSelect("pl_function.guardar_minafec", $parameters);
 
     		
     	}

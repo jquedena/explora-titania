@@ -118,12 +118,25 @@
         	};
         	console.log(mhresum);
 
+			if ($("#dtpFechaDeclaracion").val()==''){
+				alert("Ingrese la fecha de declaracion ");
+				return false;
+			} 
+
+			if ($("#cboMotivo").val()=='9999999999'){
+				alert("Seleccione el motivo.");
+				$("#cboMotivo").focus();
+				return false; 
+			}
+
+					
+        	
         	_post = $.post(path + "registro/guardardeclaracion", mhresum);
             _post.success(function(data){
             	
         		openDialogWarning("Los datos han sido guardados.", 380, 150);
         		  
-        		//closeDialog('jqDialog1');
+        		closeDialog('jqDialog1');
         	});
             
         });
@@ -138,20 +151,25 @@
     		//1000000008 --Compra
     		//1000000009 --Venta
 	  		
-			if ( $("#txtMotivo").val()=='COMPRA' ||  $("#txtMotivo").val()=='VENTA' ){
+			/*if ( $("#txtMotivo").val()=='COMPRA' ||  $("#txtMotivo").val()=='VENTA' ){
 				$("#dvBajalt").show();			  		
     		}else{
     			$("#dvBajalt").hide();		
-    		}
-	  }	
-
-	  $("#cboMotivo").change(function(){
-		  if ( $("#cboMotivo").val()=='1000000008' ||  $("#cboMotivo").val()=='1000000009' ){
+    		}*/  
+		  if ( $("#cboMotivo").val()=='2' ||  $("#cboMotivo").val()=='3' ){
 				$("#dvBajalt").show();			  		
 			}else{
 				$("#dvBajalt").hide();		
 		 	}
-	   	  });	 
+	  }	
+
+	 /* $("#cboMotivo").change(function(){
+		  if ( $("#cboMotivo").val()=='2' ||  $("#cboMotivo").val()=='3' ){
+				$("#dvBajalt").show();			  		
+			}else{
+				$("#dvBajalt").hide();		
+		 	}
+	   	  });*/  	 
 
         $("#txtMotivo").bind("autocompleteselect", verificar);
         $("#txtMotivo").bind("autocompletechange", verificar);
