@@ -6,9 +6,10 @@ class Model_DataAdapter {
 
     private static $instance;
     // private static $driver = "host=192.168.2.2 port=5432 dbname=titania_test user=desarrollo password=perutest7";
-	private static $driver = "host=127.0.0.1 port=5432 dbname=titania_test_backup user=desarrollo password=perutest7";
+	// private static $driver = "host=127.0.0.1 port=5433 dbname=titania_test user=desarrollo password=perutest7";
+	// private static $driver = "host=172.31.32.1 port=5432 dbname=titania_test user=desarrollo password=perutest7";
     // private static $driver = "host=192.168.1.178 port=5432 dbname=titania_test user=desarrollo password=perutest7";
-    // private static $driver = "host=192.168.2.38 port=5432 dbname=titania_test user=desarrollo password=desarrollo";
+         private static $driver = "host=192.168.2.38 port=5432 dbname=titania_test user=desarrollo password=perutest7";
     // private static $driver = "host=190.81.63.199 port=5432 dbname=titania_test user=desarrollo password=perutest7";
     private $connection = null;
     private $logger = null;

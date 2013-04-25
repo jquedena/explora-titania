@@ -6,8 +6,41 @@ habilitarComponenteDetalle = function(disabled){
     $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto").datepicker("option", "disabled", disabled);
        
     //$("#btnEditarPredio").button("option", "disabled", !disabled);
-   
+    
     $("#txtPeriodo").toggleClass("ui-text-disable");
+    
+    $("#cb_tipoinafecto").combobox("destroy");
+    
+    //$("#cb_tipoinafecto").removeClass("ui-text-disable");
+    $("#txt_expedienteinafecto").removeClass("ui-text-disable");
+    $("#txt_resolucioninafecto").removeClass("ui-text-disable");
+    $("#txt_baselegalinafecto").removeClass("ui-text-disable");
+    $("#txtObservacionInafectacion").removeClass("ui-text-disable");
+    
+    $("#dptFechaResolucionInafecto").removeClass("ui-text-disable");
+    $("#txt_inicioinafecto").removeClass("ui-text-disable");
+    $("#txt_fininafecto").removeClass("ui-text-disable");
+    
+    
+     //$("#cb_tipoinafecto").attr("disabled", false);
+     $("#txt_expedienteinafecto").attr("disabled", false);
+     $("#txt_resolucioninafecto").attr("disabled", false);
+     $("#txt_baselegalinafecto").attr("disabled", false);
+     $("#txtObservacionInafectacion").attr("disabled", false);
+     $("#dptFechaResolucionInafecto").attr("disabled", false);
+     $("#txt_inicioinafecto").attr("disabled", false);
+     $("#txt_fininafecto").attr("disabled", false);
+     
+     
+     //$("#cb_tipoinafecto").toggleClass("ui-text");
+    $("#txt_expedienteinafecto").toggleClass("ui-text");
+    $("#txt_resolucioninafecto").toggleClass("ui-text");
+    $("#txt_baselegalinafecto").toggleClass("ui-text");
+    $("#txtObservacionInafectacion").toggleClass("ui-text");
+    $("#dptFechaResolucionInafecto").toggleClass("ui-text");
+    $("#txt_inicioinafecto").toggleClass("ui-text");
+    $("#txt_fininafecto").toggleClass("ui-text");
+    
 
     if(disabled) {
         $("#linkPeriodo").button("option", "disabled", false);
@@ -81,6 +114,8 @@ function habilitatran(){
      $("#ntotcom").toggleClass("ui-text-disable");
      $("#nporter").toggleClass("ui-text-disable");
      $("#ntotter").toggleClass("ui-text-disable");
+     
+    
 }
 
 
@@ -479,9 +514,11 @@ loadVerDetalle = function(){
         $("#tblRustico").jqGrid('navButtonAdd','#ptblRustico', btnEliminarRustico);
     });
     
+    */
+    
     actualizarGrid("tblDatosTributo", optionTributo, null,function(){
         $("#tblDatosTributo").jqGrid('navGrid', '#ptblDatosTributo', {edit:false, add:false, del:false, search:false, refresh:false});       
-    });*/
+    });
     
 };
 
