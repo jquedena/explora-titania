@@ -1,4 +1,4 @@
-
+<div id="ajaxeditpred"> </div>
 <style>
     .ui-autocomplete {
         max-height: 218px;
@@ -84,14 +84,21 @@
     	};
 
     	_post = $.post(path + "registro/guardarmpredio", row);
+    	
         _post.success(function(data){
-        	
+
+            $("#ajaxeditpred").html(data); 
+
+        	alert(data.mpredio2[0].tnumero); 
+        	 
+       	 	$("#lblDireccion").html(data.mpredio2[0].tnumero);
+       	 	
     		openDialogWarning("Los datos han sido guardados.", 380, 150);
     		  
-    		closeDialog('jqDialog1');
-    		
+    	
     	});
-        _post.error(postError);	
+
+    	closeDialog('jqDialog1'); 
     };
     
 
@@ -316,8 +323,7 @@
 						
 						</tr>
 								
-						<tr>
-							<td></td>
+						<tr>							
 							<td> <input id="txt_idsigma" type="hidden" class="ui-text" style="width:250px;padding:2px;"/>
 								<input id="txt_mviadis" type="hidden" class="ui-text" style="width:250px;padding:2px;"/>
 								<input id="txt_mpoblad" type="hidden" class="ui-text" style="width:250px;padding:2px;"/>
