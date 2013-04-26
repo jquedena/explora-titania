@@ -174,6 +174,8 @@
      		     		 
           	});
 
+		$("#nareter").autoNumeric();
+		$("#nfronti").autoNumeric(); 
     	
     });
 
