@@ -1,3 +1,5 @@
+<input type="hidden" id="hdnIdPersonaina" value="<?php echo $this->mperson; ?>"/>
+
 <table class="ui-table-panelLayout">
     <tr>
         <td style="text-align:right">Inafectaci&oacute;n y Exoneraci&oacute;n:</td><td><select id="cb_tipoinafecto" style="width:190px;padding:2px"><?php echo $this->util()->getComboContenedor('1000001849', '1000001850'); ?></select></td>
@@ -5,7 +7,9 @@
     </tr>
     <tr>
         <td style="text-align:right">Expediente:</td><td><input class="ui-text" style="width:90px;" id="txt_expedienteinafecto" value="" /></td>
-        <td rowspan="7" valign="top"><textarea class="ui-text jquery_ckeditor" cols="80" id="txtObservacionInafectacion" name="txtObservacionInafectacion" rows="10"></textarea></td>
+        <td rowspan="7" valign="top"><textarea class="ui-text jquery_ckeditor" cols="80" id="txtObservacionInafectacion" name="txtObservacionInafectacion" rows="10"></textarea>
+        <br/><button id="GrabarInafecta" onClick="grabarinafe();">Grabar </button>
+        </td>
     </tr>
     <tr>
         <td style="text-align:right">Resoluci&oacute;n:</td><td><input class="ui-text" style="width:90px;" id="txt_resolucioninafecto" value="" /></td>
@@ -115,7 +119,7 @@ grabarinafe= function(){
 
 	row = { 
 			  idsigma: '-1',
-			  mperson: $("#lblCodigo").Html,
+			  mperson: $("#hdnIdPersonaina").val(),
 			  mpredio: $("#_mpredio").val() ,
 			  ctipina: $("#cb_tipoinafecto").val(),
 			  vbasleg: $("#txt_baselegalinafecto").val(),

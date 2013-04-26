@@ -1161,6 +1161,8 @@ class RegistroController extends Zend_Controller_Action {
     	  
 	        $val[]=array('lblMontoBarrido',$rows2[0]['nbarrid'],'html');
             
+	        
+	        
 	        $val[]=array('lblMontoParque',$rows2[0]['nparque'],'html');
             
 	        $val[]=array('lblMontoRecoleccion',$rows2[0]['nrecole'],'html');
@@ -1279,7 +1281,7 @@ class RegistroController extends Zend_Controller_Action {
 			  		.$_POST['ctipina'].','
 			  		.$_POST['vbasleg'].','
 			  		.$_POST['vnumexp'].','
-			  		.$_POST['vnumres '].','
+			  		.$_POST['vnumres'].','
 			  		.$_POST['dfecres'].','
 			  		.$_POST['ctiping'].','
 			  		.$_POST['nporafe'].','
