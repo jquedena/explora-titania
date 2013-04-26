@@ -1161,6 +1161,13 @@ class RegistroController extends Zend_Controller_Action {
 	        $val[]=array('lblMontoRecoleccion',$rows2[0]['nrecole'],'html');
             
 	        $val[]=array('lblMontoSerenazgo',$rows2[0]['nserena'],'html');
+	        
+	        
+	        $val[]=array('lblUsuario',$rows2[0]['vusernm'],'html');
+    	
+    		$val[]=array('lblFechaModificacion',$rows2[0]['ddatetm'],'html');
+    	
+    		$val[]=array('lblFechaProceso',$rows2[0]['dfectra'],'html');
 	    	
         	    	
     	$pintar->PintarValor($val);
@@ -1174,42 +1181,7 @@ class RegistroController extends Zend_Controller_Action {
 		
 	}
 	
-	public function  recargarauditpredioAction(){
-  		$this->_helper->getHelper('ajaxContext')->initContext();
-		$pintar= New Libreria_Pintar();
 		
-    	if ($this->getRequest()->isXmlHttpRequest()) {
-    		$this->_helper->layout->disableLayout();
-	    		
-    		$p_mhresum =$this->_request->getPost('p_mhresum','');
-            $p_cperiod =$this->_request->getPost('p_cperiod','');
-            $p_mpredio =$this->_request->getPost('p_mpredio','');   
-            
-    		$parameters2[]= $p_mpredio ;
-            $parameters2[]= $p_mhresum ;
-            $parameters2[]= $p_cperiod ;
-          
-            
-            $dataAdapter2 = new Model_DataAdapter();
-            $rows2 = $dataAdapter2->executeAssocQuery("pl_function.ver_predio", $parameters2);
-    		
-            //print_r($rows2);    		
-    	}    	
-    	
-    	if (count($rows2)>0){
-    	
-    	$val[]=array('lblUsuario',$rows2[0]['vusernm'],'html');
-    	
-    	$val[]=array('lblFechaModificacion',$rows2[0]['ddatetm'],'html');
-    	
-    	$val[]=array('lblFechaProceso',$rows2[0]['dfectra'],'html');
-    	    	    	
-    	$pintar->PintarValor($val);
-    		
-    	}
-		
-	}
-	
 	public function galeriafotosAction(){
 			$this->_helper->layout->disableLayout();
 		

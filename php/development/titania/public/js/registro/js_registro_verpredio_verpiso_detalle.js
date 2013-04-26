@@ -16,69 +16,69 @@ validar = function() {
 	} 
 	
 	if ($("#txt_pisonivel").val()=='9999999999'){
-		alert("Ingrese el Nivel del Piso");
+		openDialogWarning("Ingrese el Nivel del Piso", 380, 150);
 		isValid = false;
 		return false;
 	}
 	
 	if ($("#txt_pisoanocon").val()==''){
-		alert("Ingrese el A\xf1o del Piso");
+		openDialogWarning("Ingrese el A\xf1o del Piso", 380, 150);
 		isValid = false;
 		$("#txt_pisoanocon").focus();
 		return false;
 	}
 	
 	if ($("#txt_pisomescon").val()==''){
-		alert("Ingrese el Mes de la Construccion");
+		openDialogWarning("Ingrese el Mes de la Construccion", 380, 150);
 		isValid = false;
 		$("#txt_pisomescon").focus();
 		return false;
 	}
 	
 	if ($("#ctxt_cmateri").val()==''){
-		alert("Ingrese la materia Construccion");
+		openDialogWarning("Ingrese la materia Construccion", 380, 150);
 		isValid = false;
 		$("#txt_cmateri").focus();
 		return false;
 	}
 	
 	if ($("#ctxt_cconser").val()==''){
-		alert("Ingrese el estado de la Conservacion");
+		openDialogWarning("Ingrese el estado de la Conservacion", 380, 150);
 		isValid = false;
 		$("#txt_cconser").focus();
 		return false;
 	}
 	
 	if ($("#ctxt_cmurcol").val()==''){
-		alert("Ingrese el estado de Muros y Columnas");
+		openDialogWarning("Ingrese el estado de Muros y Columnas", 380, 150);
 		isValid = false;
 		$("#txt_cmurcol").focus();
 		return false;
 	}
 	
 	if ($("#ctxt_ctechos").val()==''){
-		alert("Ingrese el estado de Techo");
+		openDialogWarning("Ingrese el estado de Techo", 380, 150);
 		isValid = false;
 		$("#txt_ctechos").focus();
 		return false;
 	}
 	
 	if ($("#ctxt_cmpisos").val()==''){
-		alert("Ingrese el estado de Piso");
+		openDialogWarning("Ingrese el estado de Piso", 380, 150);
 		isValid = false;
 		$("#txt_cmpisos").focus();
 		return false;
 	}
 	
 	if ($("#ctxt_crevest").val()==''){
-		alert("Ingrese el Revestimiento");
+		openDialogWarning("Ingrese el Revestimiento", 380, 150);
 		isValid = false;
 		$("#txt_crevest").focus();
 		return false;
 	}
 	
 	if ($("#ctxt_cpueven").val()==''){
-		alert("Ingrese el Revestimiento del Puertas y Ventanas");
+		openDialogWarning("Ingrese el Revestimiento del Puertas y Ventanas", 380, 150);
 		isValid = false;
 		$("#txt_cpueven").focus();
 		return false;
@@ -86,21 +86,21 @@ validar = function() {
 	
 	
 	if ($("#ctxt_cbanios").val()==''){
-		alert("Ingrese el Ba\xf1os");
+		openDialogWarning("Ingrese el Ba\xf1os", 380, 150);
 		isValid = false;
 		$("#txt_cbanios").focus();
 		return false;
 	}
 	
 	if ($("#ctxt_celectr").val()==''){
-		alert("Ingrese Instalaciones Electricas");
+		openDialogWarning("Ingrese Instalaciones Electricas", 380, 150);
 		isValid = false;
 		$("#txt_celectr").focus();
 		return false;
 	}
 	
 	if ($("#txt_pisoarecon").val()==''){
-		alert("Ingrese Area Construccion");
+		openDialogWarning("Ingrese Area Construccion", 380, 150);
 		isValid = false;
 		$("#txt_pisoarecon").focus();
 		return false;
@@ -190,26 +190,6 @@ guardar = function() {
 	    	//optionPiso = $.extend(optionPiso, {data: data.data});
 	    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
 		});
-    
-	    row3 = { 
-				
-				p_mhresum  : $("#_mhresum").val(),
-				p_cperiod : $("#cboPeriodo").val(),			
-				p_mpredio  : $("#_mpredio").val()
-				 
-		};
-	    
-	    _post = $.post(path + "registro/recargarauditpredio", row3);
-	    _post.success(function(data){
-	    	
-	    	$("#ajaxaca").html(data);
-	    	//optionPiso = $.extend(optionPiso, {data: data.data});
-	    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
-		});
-	    
-	    _post.error(postError);
-    
-    
     
     _post.error(postError);
 };

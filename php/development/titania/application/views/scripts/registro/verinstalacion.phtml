@@ -41,19 +41,19 @@
 											
 						<tr id="trAncho">
 							<td width="140">Ancho</td>
-							<td width="35"><input id="txt_instnvalanc" class="ui-text ui-text-numeric" style="width:50px;padding:2px;" /></td>
+							<td width="35"><input id="txt_instnvalanc" class="ui-text ui-text-numeric" style="width:80px;padding:2px;" /></td>
 						</tr>
 						<tr id="trAltura">
 							<td width="140">Altura</td>
-							<td width="35"><input id="txt_instnvalalt" class="ui-text ui-text-numeric"   style="width:50px; padding:2px"  /></td>
+							<td width="35"><input id="txt_instnvalalt" class="ui-text ui-text-numeric"   style="width:80px; padding:2px"  /></td>
 						</tr>
 						<tr id="trLargo">
 							<td width="140">Largo</td>
-							<td width="35"><input id="txt_instnvallar" class="ui-text ui-text-numeric"  style="width:50px; padding:2px"  /></td>
+							<td width="35"><input id="txt_instnvallar" class="ui-text ui-text-numeric"  style="width:80px; padding:2px"  /></td>
 						</tr>
 						<tr>
 							<td width="140">Val. Instalaci&oacute;n</td>
-							<td width="35"><input id="txt_instnvalins" class="ui-text ui-text-numeric"  style="width:50px" value="" /></td>
+							<td width="35"><input id="txt_instnvalins" class="ui-text ui-text-numeric"  style="width:80px" value="" /></td>
 						</tr>
 						<tr>
 							<td width="450" colspan="2" align="right">
@@ -76,6 +76,12 @@
 	$("#txt_instnvalanc").val(0);
 	$("#txt_instnvalalt").val(0);
 	$("#txt_instnvallar").val(0);
+
+	$("#txt_instnvalanc").autoNumeric();
+	$("#txt_instnvalalt").autoNumeric();
+	$("#txt_instnvallar").autoNumeric();
+
+	$("#txt_instnvalins").autoNumeric();
 
 	$("#trAncho").hide();
 	$("#trAltura").hide();
@@ -123,28 +129,28 @@
  		});*/
 
   		if ($("#txt_instcnumpis").val()=='9999999999'){
-			alert("Seleccione el nivel.");
+  			openDialogWarning("Seleccione el nivel.", 380, 150);
 			$("#txt_instcnumpis").focus();
 			isValid = false;
 			  return;	
 		}
 
 		if  ($("#txt_instcanocon").val()==''){
-			alert("Ingrese el a\xf1o de construccion");
+			openDialogWarning("Ingrese el a\xf1o de construccion", 380, 150);
 			$("#txt_instcanocon").focus();
 			isValid = false;
 			  return;
 	 	} 
 		
 		if ($("#txt_instvdesint").val()=='9999999999'){
-			alert("Ingrese la descripcion."); 
+			openDialogWarning("Ingrese la descripcion.", 380, 150); 
 			$("#txt_instvdesint").focus();
 			isValid = false;
 			  return;
 		}
 
 		if ($("#cboinstctipint").val()=='9999999999'){
-			alert("Seleccione la Unidad de Medida.");
+			openDialogWarning("Seleccione la Unidad de Medida.", 380, 150);
 			$("#cboinstctipint").focus();
 			isValid = false;
 			  return;		
@@ -156,14 +162,14 @@
 
 			
 			if ($("#txt_instnvalanc").val()==0){
-				alert("Ingrese el ancho");
+				openDialogWarning("Ingrese el ancho", 380, 150);
 				$("#txt_instnvalanc").focus();
 				isValid = false;
 				return;
 			}
 
 			if ($("#txt_instnvalalt").val()==0){
-				alert("Ingrese la altura");
+				openDialogWarning("Ingrese la altura", 380, 150);
 				$("#txt_instnvalalt").focus();
 				isValid = false;
 				return;
@@ -180,21 +186,21 @@
 
 		
 			  if ($("#txt_instnvalanc").val()==0){
-					alert("Ingrese el ancho");
+				  openDialogWarning("Ingrese el ancho", 380, 150);
 					$("#txt_instnvalanc").focus();
 					isValid = false;
 					return;
 				}
 
 				if ($("#txt_instnvalalt").val()==0){
-					alert("Ingrese la altura");
+					openDialogWarning("Ingrese la altura", 380, 150);	
 					$("#txt_instnvalalt").focus();
 					isValid = false;
 					return;
 				}
 
 				if ($("#txt_instnvallar").val()==0){
-					alert("Ingrese el largo");		
+					openDialogWarning("Ingrese el largo", 380, 150);		
 			    	$("#txt_instnvallar").focus();
 			    	isValid = false;
 					return;
@@ -208,7 +214,7 @@
 		if ($("#cboinstctipint").val()=='1000000441'){
 			
 			if ($("#txt_instnvallar").val()==0){
-				alert("Ingrese el largo");		
+				openDialogWarning("Ingrese el largo", 380, 150);		
 		    	$("#txt_instnvallar").focus();
 		    	isValid = false;
 				return;
@@ -218,7 +224,7 @@
 		
 
 		if ($("#txt_instnvalins").val()==0){
-			alert("Ingrese el Valor de Instalacion");
+			openDialogWarning("Ingrese el Valor de Instalacion", 380, 150);
 			$("#txt_instnvalins").focus();
 			isValid = false;
 			return;
@@ -311,23 +317,5 @@
 	    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
 		});
 
-	    row3 = { 
-				
-				p_mhresum  : $("#_mhresum").val(),
-				p_cperiod : $("#cboPeriodo").val(),			
-				p_mpredio  : $("#_mpredio").val()
-				 
-		};
-		
-	    _post = $.post(path + "registro/recargarauditpredio", row3);
-	    _post.success(function(data){
-	    	
-	    	$("#ajaxaca2").html(data);
-	    	//optionPiso = $.extend(optionPiso, {data: data.data});
-	    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
-		});
-
-		
-	    _post.error(postError);
 		};
 	</script>
