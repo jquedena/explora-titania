@@ -41,6 +41,7 @@ habilitarComponenteDetalle = function(disabled){
     $("#txt_inicioinafecto").toggleClass("ui-text");
     $("#txt_fininafecto").toggleClass("ui-text");
     
+    $("#GrabarInafecta").button("option", "disabled", false);
 
     if(disabled) {
         $("#linkPeriodo").button("option", "disabled", false);
@@ -115,6 +116,7 @@ function habilitatran(){
      $("#nporter").toggleClass("ui-text-disable");
      $("#ntotter").toggleClass("ui-text-disable");
      
+ 
     
 }
 

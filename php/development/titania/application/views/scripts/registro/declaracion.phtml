@@ -6,17 +6,18 @@
 <input type="hidden" id="hdnAnioTermino" value="<?php echo $this->cperiod; ?>"/>
 <table class="ui-table-panelLayout" border="0" width="100%">
     <tr>
+         <td colspan="2" style="text-align: left ;width: 130px; font-size:16px;color:navy;">Declaraci&oacute;n Jurada:
+         <div style="font-size:16px;color:navy;" style="width: 100px" id="txtNroDeclaracion" ></div></td>
         <td colspan="1" style="text-align: left ;font-weight: bold;">
-        	La modificaci&oacute;n de esta declaraci&oacute;n <br/> entra en vigencia a partir del a&ntilde;o:
+        	La modificaci&oacute;n de esta declaraci&oacute;n entra en vigencia a partir del a&ntilde;o:
          	<input class="ui-text" style="width: 80px; text-align: left;" id="dtpFechaVigencia"/></td>
-         <td  style="text-align: right;width: 130px; font-size:16px;color:navy;">Declaraci&oacute;n Jurada:</td>
-        <td colspan="2" width="410px"><div style="font-size:16px;color:navy;" style="width: 100px" id="txtNroDeclaracion" ></div></td>
+    
         
     </tr>
     <tr>
         <td colspan="4" style="padding: 2px;" width="100%"><hr/></td>
     </tr>
-    <tr>
+    <tr >
 	    <td colspan="1">
 	    	<div><table border="0" width="150">
 	    		<tr>
@@ -33,12 +34,7 @@
 			        <td style="text-align: right;vertical-align: top;">Observaci&oacute;n:</td>
 			        <td colspan="2"><textarea class="ui-text" class="jquery_ckeditor" cols="80" id="txtObservacion" name="txtObservacion" rows="10"></textarea></td>
 			    </tr>
-			    <tr>
-			        <td colspan="3" style="text-align: right;">
-			            <button id="btnAceptarDeclaracion">Aceptar</button>
-			            <button id="btnCancelarDeclaracion">Cancelar</button>
-			        </td>
-			        </tr>
+			    
 			        </table>
 	         </div>  
 	      </td>
@@ -46,7 +42,7 @@
 	     		<div>
 	     		<table border="0">
 				<tr>
-				<td height="180">Predio: </td>
+				<td height="100">Predio: </td>
 				<td height="120"><input id="txtMpredio" type="hidden" /><input id="txtDirecpred" type="hidden" style="width:100%"/>
 				    <input id="txtCodPre" class="ui-text-disable"/><br/>
 				    <div id="dvtnomvia" ></div><br/>
@@ -68,6 +64,12 @@
 	      </td>
         
     </tr>
+    <tr>
+			        <td colspan="3" style="text-align: right;">
+			            <button id="btnAceptarDeclaracion">Aceptar</button>
+			            <button id="btnCancelarDeclaracion">Cancelar</button>
+			        </td>
+	</tr>
 </table>
 <script type="text/javascript">
     $(function(){

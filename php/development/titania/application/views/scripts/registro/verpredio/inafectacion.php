@@ -1,6 +1,6 @@
 <input type="hidden" id="hdnIdPersonaina" value="<?php echo $this->mperson; ?>"/>
 
-<table class="ui-table-panelLayout">
+<table class="ui-table-panelLayout" border="0">
     <tr>
         <td style="text-align:right">Inafectaci&oacute;n y Exoneraci&oacute;n:</td><td><select id="cb_tipoinafecto" style="width:190px;padding:2px"><?php echo $this->util()->getComboContenedor('1000001849', '1000001850'); ?></select></td>
         <td>Observaci&oacute;n:</td>
@@ -8,8 +8,7 @@
     <tr>
         <td style="text-align:right">Expediente:</td><td><input class="ui-text" style="width:90px;" id="txt_expedienteinafecto" value="" /></td>
         <td rowspan="7" valign="top"><textarea class="ui-text jquery_ckeditor" cols="80" id="txtObservacionInafectacion" name="txtObservacionInafectacion" rows="10"></textarea>
-        <br/><button id="GrabarInafecta" onClick="grabarinafe();">Grabar </button>
-        </td>
+        </td>       
     </tr>
     <tr>
         <td style="text-align:right">Resoluci&oacute;n:</td><td><input class="ui-text" style="width:90px;" id="txt_resolucioninafecto" value="" /></td>
@@ -36,6 +35,9 @@
     				<div id="ptblDatosTributo"></div>
 			</div>
 		</td>
+		 <td align="center" valign="top">
+        <br/><button id="GrabarInafecta" >Grabar </button>
+        </td>
     </tr>
 </table>
 <script type="text/javascript">
@@ -60,6 +62,15 @@ optionTributo= {
   	caption: "Descripcion de Tributos"
 };
 
+
+$("#GrabarInafecta").button({
+    icons: {primary:'ui-icon-disk'},
+    disabled: true
+}).bind('click', function(){
+	grabarinafe();
+	
+});
+ 
 
 grabarinafe= function(){
  	   Hab=true;
