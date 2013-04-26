@@ -279,7 +279,21 @@ function themeComboBox(selector) {
         }); 
     });
 }
+_FsFiltrarCombo = function(_datos,_datbus,_indexbus,_indexcod,_indexdes){
 
+	_options='';
+	_datbus=_datbus.toUpperCase();
+	_cadena='';
+	for(var i=0;i<_datos.length;i++){
+		_cadena = _datos[i][_indexbus];
+		if (_datbus.indexOf(_cadena) != -1){
+			descrip = _datos[i][_indexdes];
+			ncodcon = _datos[i][_indexcod];
+			_options +='<option value="'+ncodcon+'"> '+descrip+'</option>';
+		}
+	}
+	return _options;
+};
 (function($) {
     $.fn.getCheckboxValues = function(){
         var values = [];

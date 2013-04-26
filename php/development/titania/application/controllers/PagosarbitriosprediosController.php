@@ -245,8 +245,8 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			echo '}
 				</script>
 				<input type="button" name="imprimir" id="imprimir" value="Imprimir recibo" onClick="ventanaSecundaria()" />
-				<br />
-				<br />';
+				<script>$("#imprimir").button();</script>	
+			';
 	}
 	
 	public function indexAction() {
@@ -994,7 +994,7 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			$detallepago = $ddetallepago->data;
 			if(count($detallepago) == 0 || $detallepago == '' || $detallepago == null){
 				$detallepago = null;
-				$detallepago[0][0] = '0000007832';
+				$detallepago[0][0] = '1000001825';#'0000007832';
 				$detallepago[0][1] = '';
 				$detallepago[0][2] = '';
 				$detallepago[0][3] = $totalPD;
@@ -1056,7 +1056,7 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 				$detallepago = $ddetallepago->data;
 					if(count($detallepago) == 0 || $detallepago == '' || $detallepago == null){
 						$detallepago = null;	
-						$detallepago[0][0] = '0000007832';
+						$detallepago[0][0] = '1000001825';#0000007832';
 						$detallepago[0][1] = '';
 						$detallepago[0][2] = '';
 						$detallepago[0][3] = $datos [1];
@@ -1079,8 +1079,26 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 					$func->PintarValor($val);
 					$evt[0] = array("btncancelarcobro","click","cerrarsubventpagosarbitriospredios();");
 					$func->PintarEvento($evt);
+					
 				}
 		}
+		echo "<script type='text/javascript'>
+					$('#btndetalle').button({
+						  label: 'Detalle',
+						  icons: {primary: 'ui-icon-calculator'}
+						});
+					$('#btnaceptarcobro').button({
+						  label: 'Aceptar',
+						  icons: {primary: 'ui-icon-disk'}
+						});
+					$('#btncancelarcobro').button({
+						  label: 'Regresar',
+						  icons: {primary: 'ui-icon-arrowreturnthick-1-w'}
+						});
+					themeTextBox();
+				</script>";
+		
+
 	}
 	
 	public function ventanadetallepagoAction() {
@@ -1104,13 +1122,24 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 		$nombrestore = 'tesoreria.obtener_formaspago';
 		$arraydatos [0] = '';
 		$cn = new Model_DataAdapter ();
-		$datoscb = $cn->ejec_store_procedura_sql ( $nombrestore, $arraydatos );
+		$datosc=$cn->ejec_store_procedura_sql ( $nombrestore, $arraydatos );
+		$jsondatoscb = json_encode($datosc, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
 		
-		$val[0] = array('cbtipopago',$func->ContenidoCombo($datoscb,''),'html');
-		$val[1] = array('montototal',$totpag,'html');
+		
+		
+		
+		
+		$nombrestore2 = '"public".obt_mconten2';
+		$parametros2 [0] = '0000007831';
+		$parametros2 [1] = '1';
+		$datosmconten2 = $cn->ejec_store_procedura_sql($nombrestore2, $parametros2);
+		
+		
+		$htmlcbotipopago=$func->ContenidoCombo($datosmconten2,'');
+		$val[] = array('montototal',$totpag,'val');
 		$montodif = 0.00;
 			if(count($detallepago) == 0 || $detallepago == '' || $detallepago == null){
-				$val[2] = array('hdsubtotal',$totpag,'val');
+				$val[] = array('hdsubtotal',$totpag,'val');
 				$hab[] = array('btnaceptardetalle',false);
 	          	$hab[] = array('btnagregar',true);  
 			}
@@ -1118,20 +1147,21 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 				for($i=0;$i<count($detallepago);$i++){
 					$montodif = $montodif + $detallepago[$i][3];
 				}				
-				$val[2] = array('hdsubtotal',$totpag-$montodif,'val');
+				$val[] = array('hdsubtotal',$totpag-$montodif,'val');
 				
-				$contdetalle= '<table width="290" border="0" cellspacing="0" cellpadding="0">';
+				$contdetalle= '<table id="pgdv_dtpago" width="365" border="0" cellspacing="0" cellpadding="0"><tbody class="ui-table-body">';
 					for($i=0;$i<count($detallepago);$i++){
 			            $contdetalle.= '<tr>';
-			            $contdetalle.= '<td width="55" >'.$detallepago[$i][4].'</td>';
+			            $contdetalle.= '<td width="115" >&nbsp;'.$detallepago[$i][4].'</td>';
 			            $contdetalle.= '<td width="100">'.$detallepago[$i][1].'</td>';
 			            $contdetalle.= '<td width="65" >'.$detallepago[$i][2].'</td>';
-			            $contdetalle.= '<td width="50" >'.$detallepago[$i][3].'</td>';
-			            $contdetalle.= '<td width="20"><img src="'.$url.'img/b_drop.png" width="16"  height="16" onclick="borrardetallepago(\''.$detallepago[$i][0].'\',\''.$detallepago[$i][1].'\');"  style="cursor:pointer" /></td>';
+			            $contdetalle.= '<td width="50" align="right">'. number_format($detallepago[$i][3], 2, '.', ',').'&nbsp;&nbsp;</td>';
+			            $contdetalle.= '<td width="20"><button class="pgborrardetalle" onclick="borrardetallepago(\''.$detallepago[$i][0].'\',\''.$detallepago[$i][1].'\');"></button></td>';
+			            #<img src="'.$url.'img/b_drop.png" width="16"  height="16" onclick="borrardetallepago(\''.$detallepago[$i][0].'\',\''.$detallepago[$i][1].'\');"  style="cursor:pointer" />
 			            $contdetalle.= '</tr>';
 					}
-	            $contdetalle.= '</table>';	
-				$val[3] = array('div_detallepago',$contdetalle,'html');
+	            $contdetalle.= '</body></table>';	
+				$val[] = array('div_detallepago',$contdetalle,'html');
 				
 				if($totpag-$montodif == 0.00){
 	            	$hab[] = array('btnaceptardetalle',true);
@@ -1149,13 +1179,45 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			$msk[0] = array("txtmontopago");
 			$func->CampoDinero($msk);
 			
-			$evt[0] = array("btnaceptardetalle","click","closeDialog('jqDialog2');");
+			$evt[] = array("btnaceptardetalle","click","closeDialog('jqDialog2');");
 			//$evt[1] = array("txtmontopago", "change", "min_max_text('txtmontopago',1.00,'hdsubtotal');");
-			$evt[1] = array("btnagregar","click","aniadirdetallepago();");				
+			$evt[] = array("btnagregar","click","aniadirdetallepago();");
 			$func->PintarEvento($evt);
 		
 			$sl[0] = array('hdsubtotal',true);
 			$func->ComponenteSoloLectura($sl);
+			
+			$jsoncadtempxarea ="Filtrodetallepago(ui,". $jsondatoscb.")";
+			
+		
+			
+			echo "<script type='text/javascript'>
+					themeTextBox();
+					themeComboBox();
+					$('#cbotipopago').combobox('destroy');
+					$('#cbotipopago').html('".$htmlcbotipopago."');
+					$('#cbotipopago').combobox();
+					$('#txttipopago').autocomplete({
+					     select:function (event, ui){
+					         ".$jsoncadtempxarea."
+					     }
+					});
+					$('#btnagregar').button({
+						  label: 'A&ntilde;adir',
+						  icons: {primary: 'ui-icon-plus'}
+					});
+					$('#btnaceptardetalle').button({
+						  label: 'Aceptar',
+						  icons: {primary: 'ui-icon-check'}
+					});
+					$( '.pgborrardetalle' ).button({
+					      icons: {
+					        primary: 'ui-icon-close'
+					      },
+					      text: false
+					    })
+					mouseHover('pgdv_dtpago');
+			</script>";
 		
 	}
 	
@@ -1173,7 +1235,7 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			
 			$monto = $this->_request->getPost ( 'monto' );
 				$detallepago = null;	
-				$detallepago[0][0] = '0000007832';
+				$detallepago[0][0] = '1000001825';#'0000007832';
 				$detallepago[0][1] = '';
 				$detallepago[0][2] = '';
 				$detallepago[0][3] = $monto;
@@ -1239,27 +1301,50 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			$ddetallepago->data = $detallepago;
 			
 			$sumrestante = 0;
-			$cont= '<table width="290" border="0" cellspacing="0" cellpadding="0">';
+			$cont= '<table id="pgdv_dtpago" width="365" border="0" cellspacing="0" cellpadding="0"><tbody class="ui-table-body">';
 			for($i=0;$i<count($detallepago);$i++){
 				$sumrestante = $sumrestante + $detallepago[$i][3];
 	            $cont.= '  <tr>
-	                        <td width="55" >'.$detallepago[$i][4].'</td>
+	                        <td width="115" >&nbsp;'.$detallepago[$i][4].'</td>
 	                        <td width="100">'.$detallepago[$i][1].'</td>
 	                        <td width="65" >'.$detallepago[$i][2].'</td>
-	                        <td width="50" >'.$detallepago[$i][3].'</td>
-	                        <td width="20"><img src="'.$url.'img/b_drop.png" width="16" title="Borrar" height="16"  onclick="borrardetallepago(\''.$detallepago[$i][0].'\',\''.$detallepago[$i][1].'\');" style="cursor:pointer" /></td>
+	                        <td width="50" align="right">'. number_format($detallepago[$i][3], 2, '.', ',').'&nbsp;&nbsp;</td>
+	                        <td width="20"><button class="pgborrardetalle" onclick="borrardetallepago(\''.$detallepago[$i][0].'\',\''.$detallepago[$i][1].'\');"></button></td>
 	                      </tr>';
 			}
-            $cont.= '</table>';
+            $cont.= '</body></table>';
 
+            
             $val[] = array('hdsubtotal',$montototal - $sumrestante,'val');
             $func->PintarValor($val);
-            
+            /*
             if($montototal - $sumrestante == 0.00){
             	$hab[] = array('btnaceptardetalle',true);
             	$hab[] = array('btnagregar',false);
             	$func->HabilitarComponente($hab);
-            }            
+            }*/
+            if($montototal - $sumrestante == 0.00){
+            	$funcion[]=array('$("#btnaceptardetalle").button("option", "disabled", false);');
+            	$funcion[]=array('$("#btnagregar").button("option", "disabled", true);');
+            	/*$hab[] = array('btnaceptardetalle',true);
+            	 $hab[] = array('btnagregar',false);
+            	$func->HabilitarComponente($hab);*/
+            }else{
+            	$funcion[]=array('$("#btnaceptardetalle").button("option", "disabled", true);');
+            	$funcion[]=array('$("#btnagregar").button("option", "disabled", false);');
+            	/*$hab[] = array('btnaceptardetalle',false);
+            	 $hab[] = array('btnagregar',true);
+            	$func->HabilitarComponente($hab);*/
+            
+            }
+            $funcion[]=array("$( '.pgborrardetalle' ).button({
+					      icons: {
+					        primary: 'ui-icon-close'
+					      },
+					      text: false
+					    })
+					mouseHover('pgdv_dtpago');");
+            $func->EjecutarFuncion($funcion);
             echo $cont;
 			
 		}
@@ -1296,32 +1381,54 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			$ddetallepago->data = $detallepago;
 			
 			$sumrestante = 0;
-			$cont= '<table width="290" border="0" cellspacing="0" cellpadding="0">';
+			$cont= '<table id="pgdv_dtpago" width="365" border="0" cellspacing="0" cellpadding="0"><tbody class="ui-table-body">';
 			for($i=0;$i<count($detallepago);$i++){
 				$sumrestante = $sumrestante + $detallepago[$i][3];
-	            $cont.= '  <tr>
-	                        <td width="55" >'.$detallepago[$i][4].'</td>
-	                        <td width="100">'.$detallepago[$i][1].'</td>
-	                        <td width="65" >'.$detallepago[$i][2].'</td>
-	                        <td width="50" >'.$detallepago[$i][3].'</td>
-	                        <td width="20"><img src="'.$url.'img/b_drop.png" width="16"  title="Borrar" height="16" onclick="borrardetallepago(\''.$detallepago[$i][0].'\',\''.$detallepago[$i][1].'\');" style="cursor:pointer" /></td>
-	                      </tr>';
+	           $cont.= '  <tr>
+	            	<td width="115" >&nbsp;'.$detallepago[$i][4].'</td>
+	            	<td width="100">'.$detallepago[$i][1].'</td>
+	            	<td width="65" >'.$detallepago[$i][2].'</td>
+	            	<td width="50" align="right">'. number_format($detallepago[$i][3], 2, '.', ',').'&nbsp;&nbsp;</td>
+	            	<td width="20"><button class="pgborrardetalle" onclick="borrardetallepago(\''.$detallepago[$i][0].'\',\''.$detallepago[$i][1].'\');"></button></td>
+	            	</tr>';
 			}
-            $cont.= '</table>';
+            $cont.= '</body></table>';
 
+            
             $val[] = array('hdsubtotal',$montototal - $sumrestante,'val');
             $func->PintarValor($val);
-            
+            /*
+            $funcion[]=array('
+            			$("#cbtipopago").combobox("destroy");
+            			$("#cbtipopago option[value=9999999999]").attr("selected", "selected");
+						$("#cbtipopago").combobox({
+						     change:function(){
+					        	 alert($(this).val());
+					     	}
+							});');
+            */
             if($montototal - $sumrestante == 0.00){
-            	$hab[] = array('btnaceptardetalle',true);
+            	$funcion[]=array('$("#btnaceptardetalle").button("option", "disabled", false);');
+            	$funcion[]=array('$("#btnagregar").button("option", "disabled", true);');
+            	/*$hab[] = array('btnaceptardetalle',true);
             	$hab[] = array('btnagregar',false);
-            	$func->HabilitarComponente($hab);
+            	$func->HabilitarComponente($hab);*/
             }else{
-            	$hab[] = array('btnaceptardetalle',false);
+            	$funcion[]=array('$("#btnaceptardetalle").button("option", "disabled", true);');
+            	$funcion[]=array('$("#btnagregar").button("option", "disabled", false);');
+            	/*$hab[] = array('btnaceptardetalle',false);
             	$hab[] = array('btnagregar',true);
-            	$func->HabilitarComponente($hab);
+            	$func->HabilitarComponente($hab);*/
             
-            }            
+            }      
+            $funcion[]=array("$( '.pgborrardetalle' ).button({
+            		icons: {
+            		primary: 'ui-icon-close'
+            },
+            		text: false
+            })
+            		mouseHover('pgdv_dtpago');");
+            $func->EjecutarFuncion($funcion);
             echo $cont;
 			
 		}
@@ -1498,7 +1605,7 @@ class PagosarbitriosprediosController extends Zend_Controller_Action {
 			$detallepago = $ddetallepago->data;
 				if(count($detallepago) == 0 || $detallepago == '' || $detallepago == null){
 					$detallepago = null;	
-					$detallepago[0][0] = '0000007832';
+					$detallepago[0][0] = '1000001825';#'0000007832';
 					$detallepago[0][1] = '';
 					$detallepago[0][2] = '';
 					$detallepago[0][3] = number_format( $datos [1], '2', '.', '' );

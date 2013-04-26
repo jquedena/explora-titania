@@ -1,8 +1,10 @@
 <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0"><tr valign="middle"><td align="center">
-    <div id="div_p">
-    	    <table width="250" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td width="30">&nbsp;</td>
+   <div style="width: 90%;height:99%; padding: 1px;" class="ui-widget-content ui-widget ui-corner-all">
+    <div id="div_p" style="position:absolute;top:18px;">
+    <div id="div_rptacobroarbitrospredios"></div>
+    	    <table width="250" border="0" cellspacing="0" cellpadding="0" style="top: 220px">
+                  <tr style="display:none;">
+                    <td width="25">&nbsp;</td>
                     <td width="113">
                     	<input type="hidden" id="hddata" name="hddata" value="" />
                     	<input type="hidden" id="fechrecibo" name="fechrecibo" value="" />
@@ -10,26 +12,27 @@
                     <td width="77">&nbsp;</td>
                     <td width="30">&nbsp;</td>
               </tr>
-                  <tr>
+                  <tr style="display:none;">
                     <td>&nbsp;</td>
-                    <td>Monto Selecionado:</td>
-                    <td><input type="text" id="txttotalcobrar" name="txttotalcobrar" value="" size="10" maxlength="10" readonly="readonly" /></td>
+                    <td> <!-- Monto Selecionado: --></td>
+                    <td><input type="text" id="txttotalcobrar" name="txttotalcobrar" value="" size="10" maxlength="10" style="display: none;" /></td>
                     <td>&nbsp;</td>
                   </tr>                  
-                  <tr>
+                  <tr style="display:none;">
                     <td colspan="4" height="10"></td>
                   </tr>
                   <tr>
                     <td>&nbsp;</td>
                     <td>Importe a Pagar:</td>
-                    <td><input type="text" id="txttotalpagar" name="txttotalpagar" value="" size="10"  /></td>
+                    <td><input type="text" id="txttotalpagar" name="txttotalpagar" value="" size="10"  class=" ui-text ui-text-numeric ui-text-disable" disabled="disabled"/></td>
                     <td>&nbsp;</td>
                   </tr>
                   <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>
-                    	<input type="button" id="btndetalle" name="btndetalle" value="Detalle" class="ui-button ui-widget ui-state-default ui-corner-all" role="button" aria-disabled="false">
+                    	<!-- <input type="button" id="btndetalle" name="btndetalle" value="Detalle" class="ui-button ui-widget ui-state-default ui-corner-all" role="button" aria-disabled="false"> -->
+                    	<button id="btndetalle"></button>
                     	<!-- <input type="button" id="btndetalle" name="btndetalle" value="Detalle" /> -->
                     </td>
                     <td><input type="hidden" id="hddetalle" name="hddetalle" value="" /></td>
@@ -40,7 +43,7 @@
                   <tr>
                     <td>&nbsp;</td>
                     <td>Efectivo:</td>
-                    <td><input type="text" id="txtefectivo" name="txtefectivo" value="" size="10"  /></td>
+                    <td><input type="text" id="txtefectivo" name="txtefectivo" class="ui-text ui-text-numeric" value="" size="10"  /></td>
                     <td>&nbsp;</td>
                   </tr>
                   <tr>
@@ -49,7 +52,7 @@
                   <tr>
                     <td>&nbsp;</td>
                     <td>Vuelto:</td>
-                    <td><input type="text" id="txtvuelto" name="txtvuelto" value="" size="10"  /></td>
+                    <td><input type="text" id="txtvuelto" name="txtvuelto" value="" size="10"   class=" ui-text ui-text-numeric ui-text-disable" disabled="disabled"/></td>
                     <td>&nbsp;</td>
                   </tr>
                   <tr>
@@ -57,22 +60,12 @@
                   </tr>
                   <tr>
                     <td>&nbsp;</td>
-                    <td colspan="2" align="center">
-                    	<input type="button" id="btnaceptarcobro" name="btnaceptarcobro" value="Aceptar" class="ui-button ui-widget ui-state-default ui-corner-all" role="button" aria-disabled="false">
-                    	<!-- <input type="button" id="btnaceptarcobro" name="btnaceptarcobro"   value="Aceptar" /> -->
-						<input type="button" id="btncancelarcobro" name="btncancelarcobro" value="Regresar" class="ui-button ui-widget ui-state-default ui-corner-all" role="button" aria-disabled="false">
-						<!-- <input type="button" id="btncancelarcobro" name="btncancelarcobro"   value="Regresar"  /></td> -->
-                    <td>&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td colspan="4"><div id="div_rptacobroarbitrospredios"></div></td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td colspan="2" align="center" valign="middle">
+                    	<button id="btnaceptarcobro"></button>
+						<button id="btncancelarcobro" > </button>
                     <td>&nbsp;</td>
                   </tr>
                 </table>
+    </div>
     </div>
 </td></tr></table>

@@ -32,11 +32,13 @@ function cobrarpagosarbitriospredios() {
 	 	url: jQuery.scriptPath + "index.php/pagosarbitriospredios/cobrarpagosarbitriospredios/", 
 	 	data: 	"registros="+registros+"&fecha="+fecha+"&efectivo="+efectivo,
 		beforeSend: function(data){ 
-	 	$("#btnaceptarcobro").attr('disabled','disabled'); 
+	 	//$("#btnaceptarcobro").attr('disabled','disabled'); 
 		$("#div_rptacobroarbitrospredios").html("Cargando...");
 		},
 		success: function(requestData){ 	
-		$("#div_rptacobroarbitrospredios").html(requestData);
+		//$("#div_rptacobroarbitrospredios").html(requestData);
+		$("#div_resultpago").append(requestData);
+		closeDialog('jqDialog1');
 		},		
 		error: function(requestData, strError, strTipoError){											
 		$("#div_rptacobroarbitrospredios").html("Error " + strTipoError +": " + strError);
@@ -119,7 +121,7 @@ function descargoregistrospagosarbitriospredios() {
 
 
 function cobrarregistrospagosarbitriospredios() {
-	openDialog1("pagosarbitriospredios/ventanacobrarpagosarbitriospredios/", 350, 270, "Generando Recibos");
+	openDialog1("pagosarbitriospredios/ventanacobrarpagosarbitriospredios/", 280, 210, "Generando Recibos");
 }
 
 function ventanarecibosxconribuyente(codper) {
@@ -128,7 +130,7 @@ function ventanarecibosxconribuyente(codper) {
 
 function ventanadetallepago() {
 	var totpag = $('#txttotalpagar').val();
-	openDialog2("pagosarbitriospredios/ventanadetallepago/?totpag="+totpag, 400, 370, "Generando Recibos");
+	openDialog2("pagosarbitriospredios/ventanadetallepago/?totpag="+totpag, 700, 240, "Generando Recibos");
 }
 
 function detallerecibosxconribuyente(cad) {	
@@ -181,34 +183,35 @@ function reseteardetallepago(txt) {
 function aniadirdetallepago() {	
 	
 	var totalrestante = $('#hdsubtotal').val();
-	
-	var montototal = $('#montototal').html();
-	var codtipppago = $('#cbtipopago').val();
-	var desctipppago = $('#cbtipopago option:selected').html();
+	console.log($('#cbotipopago').val());
+	Mcbotipopago=$('#cbotipopago').val();
+	var montototal = $('#montototal').val();
+	var codtipppago = $('#cbodetallepago').val();
+	var desctipppago = $('#cbodetallepago option:selected').html();
 	var monto = $('#txtmontopago').val();
 	var nrodoc = $('#txtnrodoc').val();
 	var nroope = $('#txtnroope').val();
 	
 	var error = '';
 	
-	if(codtipppago == '9999999999'){
+	if(Mcbotipopago == '9999999999'){
 		error += 'Seleccionar Tipo de Pago.<br>';		
 	}
-	console.log(monto+" > "+totalrestante);
+	//console.log(monto+" > "+totalrestante);
 	
 	/*if(monto > totalrestante){
 		error += 'El Monto ingresado supera al total restante.<br>';
 	}*/
-		if(codtipppago == '0000007832'){
+		if(Mcbotipopago == '1000001824'){
 			//efectivo
 			nrodoc = '';
 			nroope = '';		
-		}if(codtipppago == '0000007833'){
+		}if(Mcbotipopago == '1000001820'){
 			//cheque
 			if(trim(nrodoc) == ''){
 				error += 'Ingresar Nro de Cheque.<br>';	
 			}		
-		}if(codtipppago == '0000007834'){
+		}if(Mcbotipopago == '1000001812' || Mcbotipopago == '1000001816'){
 			//tarjeta
 			if(trim(nrodoc) == ''){
 				error += 'Ingresar Nro de Tarjeta.<br>';	
@@ -223,7 +226,7 @@ function aniadirdetallepago() {
 	
 	if(error.length > 0)
 	{
-		$("#div_mensajex").html(error);
+		openDialogWarning(error,300,150);
 	}else{	
 		$("#div_mensajex").html('');
 		$.ajax( 
@@ -237,7 +240,7 @@ function aniadirdetallepago() {
 		},
 		success: function(requestData){ 	
 		$("#div_detallepago").html(requestData);
-			jQuery('#cbtipopago').attr('value', '9999999999'); 
+			//jQuery('#cbtipopago').attr('value', '9999999999'); 
 			$('#txtmontopago').val('0.00');
 			$('#txtnrodoc').val('');
 			$('#txtnroope').val('');			
@@ -253,26 +256,41 @@ function aniadirdetallepago() {
 }
 
 function borrardetallepago(codtipppago,nrodoc) {	
-	var montototal = $('#montototal').html();
+	var montototal = $('#montototal').val();
 	$.ajax( 
 	{
-	dataType: "html",
-	type: "POST",
-	url: jQuery.scriptPath + "index.php/pagosarbitriospredios/borrardetallepago/", 
-	data: 	"montototal="+montototal+"&codtipppago="+codtipppago+"&nrodoc="+nrodoc,
-	beforeSend: function(data){ 
-	$("#div_detallepago").html('cargando...');
-	},
-	success: function(requestData){ 	
-	$("#div_detallepago").html(requestData);		
-	},		
-	error: function(requestData, strError, strTipoError){											
-	$("#div_detallepago").html("Error " + strTipoError +": " + strError);
-	},
-	complete: function(requestData, exito){ 
-	
-	}
+		dataType: "html",
+		type: "POST",
+		url: jQuery.scriptPath + "index.php/pagosarbitriospredios/borrardetallepago/", 
+		data: 	"montototal="+montototal+"&codtipppago="+codtipppago+"&nrodoc="+nrodoc,
+		beforeSend: function(data){ 
+		$("#div_detallepago").html('cargando...');
+		},
+		success: function(requestData){ 	
+		$("#div_detallepago").html(requestData);		
+		},		
+		error: function(requestData, strError, strTipoError){											
+		$("#div_detallepago").html("Error " + strTipoError +": " + strError);
+		},
+		complete: function(requestData, exito){ 
+		
+		}
 	});	
 }
 
  
+Filtrodetallepago = function(selectui,jsondetalletp){
+	//console.log($(selectui.item.option).val());
+	//console.log(selectui);
+	//console.log(jsondetalletp);
+	
+	$("#cbotipopag option[selected=selected]").attr("selected", "");
+	$("#cbotipopago option[value="+$(selectui.item.option).val()+"]").attr("selected", "selected");
+	
+	htmlCombo = _FsFiltrarCombo(jsondetalletp,$(selectui.item.option).val(),3,0,1);
+	$("#cbodetallepago").combobox("destroy");
+	$("#cbodetallepago").html(htmlCombo);
+	$("#cbodetallepago").combobox();
+	
+
+};

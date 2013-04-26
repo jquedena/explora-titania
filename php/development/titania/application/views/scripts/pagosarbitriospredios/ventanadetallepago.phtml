@@ -1,121 +1,87 @@
-<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0"><tr valign="middle"><td align="center">
-    <div id="div_p">
-<table width="350" border="0" cellspacing="0" cellpadding="0">
+<div id="div_mensajex" class="mensajeerror"></div>
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td colspan="4" height="10"></td>
+  	<th colspan="2" height="27px" valign="middle">
+		<b>Monto a cancelar: &nbsp;&nbsp;&nbsp;</b><input type="text" id="montototal" name="montototal" value="" size="15" class=" ui-text ui-text-numeric ui-text-disable" disabled="disabled">  	
+  	</th>
   </tr>
+  
   <tr>
-  	<td>&nbsp;</td>
-    <td colspan="3"><div id="div_mensajex" class="mensajeerror"></div></td>
+    <th  valign="top">
+    	<table>
+    		<tr>
+    			<td>
+    				<b>Tipo Pago :</b>
+    			</td>
+    			<td><select id="cbotipopago" style="width:140px" ></select></td>
+    		</tr>
+    		<tr>
+    			<td>
+    				<b>Detalle :</b>
+    			</td>
+    			<td><select id="cbodetallepago" style="width:140px"></select></td>
+    		</tr>
+    		<tr>
+    			<td>
+    				<b>Monto</b>
+    			</td>
+    			<td>
+					<input type="text" id="txtmontopago" name="txtmontopago" class="ui-text ui-text-numeric" value="" size="7" />&nbsp;&nbsp;/&nbsp;&nbsp;<input type="text" id="hdsubtotal" name="hdsubtotal" value="" size="6" class=" ui-text ui-text-numeric ui-text-disable" disabled="disabled">
+    			</td>
+    		</tr>
+    		<tr>
+    			<td>
+    				<b>Nro. de Documento:</b>
+    			</td>
+    			<td>
+					<input type="text" id="txtnrodoc" name="txtnrodoc" value="" size="20" maxlength="15" class="ui-text"/>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td>
+    				<b>Nro. Operaci&oacute;n :</b>
+    			</td>
+    			<td>
+					<input type="text" id="txtnroope" name="txtnroope" value="" size="20" maxlength="10"  class="ui-text"/>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td>
+    				<button id="btnagregar"></button>
+    			</td>
+    			<td>
+    				<button id="btnaceptardetalle" ></button>
+    			</td>
+    		</tr>
+    	</table>
+    	
+    </th>
+    <th valign="top">
+    	<div class="ui-widget-content ui-widget ui-corner-all" >
+			<table width="370" border="0" cellspacing="0" cellpadding="0" >
+				<thead  border="1"class="ui-widget ui-widget-header ui-title2"> 			
+					<tr>
+						<th width="115" >Tipo</th>
+						<th width="100">Nro. Doc.</th>
+						<th width="65" >Nro. Oper.</th>
+						<th width="50" >Monto</th>
+						<th width="20">&nbsp;</th>
+						<th width="20">&nbsp;</th>
+					</tr>
+				</thead>
+				<tr>
+					<td colspan="6" >
+						<div id="div_detallepago"  style="overflow-y:scroll;height: 135px;" >
+							
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</th>
   </tr>
-  <tr>
-    <td colspan="4" height="10"></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td><strong>Monto a cancelar:</strong></td>
-    <td id="montototal">&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td colspan="4" height="10"></td>
-    </tr>
-  <tr>
-    <td width="20">&nbsp;</td>
-    <td width="125"><strong>Tipo Pago :</strong></td>
-    <td width="185"><select id="cbtipopago" style="width:140px"></select></td>
-    <td width="20">&nbsp;</td>
-  </tr>
-  <tr>
-    <td colspan="4" height="10"></td>
-    </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td><strong>Monto</strong></td>
-    <td>
-    	<input type="text" id="txtmontopago" name="txtmontopago" value="" size="7" />
-    	&nbsp;&nbsp;/&nbsp;&nbsp;
-    	<input type="text" id="hdsubtotal" name="hdsubtotal" value="" size="6">
-    </td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td colspan="4" height="10"></td>
-    </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td><strong>Nro. de Documento:</strong></td>
-    <td><input type="text" id="txtnrodoc" name="txtnrodoc" value="" size="20" maxlength="15" /></td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td colspan="4" height="10"></td>
-    </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td><strong>Nro. Operaci&oacute;n :</strong></td>
-    <td><input type="text" id="txtnroope" name="txtnroope" value="" size="20" maxlength="10" /></td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td colspan="4" height="10"></td>
-  </tr>
-  <tr>
-    <td colspan="4" height="10" align="center">
-
-    	<input type="button" id="btnagregar" name="btnagregar" value="A&ntilde;adir" class="ui-button ui-widget ui-state-default ui-corner-all" role="button" aria-disabled="false">
-    	<!-- <input type="button" id="btnagregar" name="btnagregar" value="A&ntilde;adir" /> -->	
-    </td>
-  </tr>
-  <tr>
-    <td colspan="4" height="10"></td>
-    </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td colspan="2">
-    	<table width="310" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <th width="55" >Tipo</th>
-            <th width="100">Nro. Doc.</th>
-            <th width="65" >Nro. Oper.</th>
-            <th width="50" >Monto</th>
-            <th width="20">&nbsp;</th>
-            <th width="20">&nbsp;</th>
-          </tr>
-          <tr>
-            <td colspan="6">
-                <div id="div_detallepago" style="overflow-y:scroll">
-                    <table width="290" border="0" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td width="55" >&nbsp;</td>
-                        <td width="100">&nbsp;</td>
-                        <td width="65" >&nbsp;</td>
-                        <td width="50" >&nbsp;</td>
-                        <td width="20">&nbsp;</td>
-                      </tr>
-                    </table>
-                </div>
-              </td>
-            </tr>
-        </table>    </td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td colspan="4" height="10"></td>
-    </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td colspan="2" align="center">
-    	<input type="button" id="btnaceptardetalle" name="btnaceptardetalle" value="Aceptar" class="ui-button ui-widget ui-state-default ui-corner-all" role="button" aria-disabled="false">
-    	<!-- <input type="button" id="btnaceptardetalle" name="btnaceptardetalle" value="Aceptar" /> -->
-    	<!--<input type="button" id="btnregresar" name="btnregresar" value="&nbsp;&nbsp;&nbsp;Regresar&nbsp;&nbsp;&nbsp;" />-->    
-    </td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td colspan="4">&nbsp;</td>
-    </tr>
 </table>
 
-    </div>
-</td></tr></table>
+
+
+<!-- <tr valign="middle">-->
