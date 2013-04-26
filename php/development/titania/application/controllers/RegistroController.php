@@ -83,6 +83,8 @@ class RegistroController extends Zend_Controller_Action {
 	            
 	            $parameters = array($rows[0]["dpredio"], $rows[0]["cperiod"]);
 	            
+	            echo "Predio"."";
+	            
 	            $dataAdapter->saveQuery("tblPiso", "pl_function.listar_construccion", $parameters);
 	            $dataAdapter->saveQuery("tblInstalacion", "pl_function.listar_instalacion", $parameters);
 	            $dataAdapter->saveQuery("tblLindero", "pl_function.listar_lindero", $parameters);
