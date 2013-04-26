@@ -66,38 +66,8 @@
             </div>
         </td>
         <td valign="top" style="padding-left: 5px">
-            <div id="panelTransferencia" align="center" class="ui-widget ui-widget-content ui-corner-top" style="width: 100%;">
-                <div class="ui-widget ui-state-default ui-corner-top ui-title">
-                    <label>Sobre la Transferencia</label>
-                </div>
-                <table class="ui-table-panelLayout">
-                    <tr>
-                        <td style="padding-right: 4px;text-align: right;">Motivo de Adquisici&oacute;n:</td>
-                        <td colspan="3"><select style="width: 190px;" id="cboMotivo"><?php echo $this->util()->getComboContenedor('1000000334', $this->mpredio["cmotadq"]); ?></select></td>
-                    </tr>
-                    <tr>
-                        <td style="padding-right: 4px;text-align: right;">Fecha Adquisici&oacute;n:</td>
-                        <td><input class="ui-text" style="width: 80px; text-align: center;" id="dtpFechaAdquisicion" value="<?php echo $this->mpredio["dfecadq"]; ?>" /></td>
-                        <td style="padding-left: 10px; padding-right: 4px;text-align: right;">Fecha de Transferencia:</td>
-                        <td><input class="ui-text" style="width: 80px; text-align: center;" id="dtpFechaTransferencia" value="<?php echo $this->mpredio["dfectra"]; ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td style="padding-right: 4px;text-align: right;">Notaria:</td>
-                        <td colspan="3"><input class="ui-text" style="width: 100%; text-align: center;" id="txtNotaria" value="<?php echo $this->mpredio["cnotari"]; ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td style="padding-right: 4px;text-align: right;">Tipo Doc.:</td>
-                        <td><input class="ui-text" style="width: 80px; text-align: center;" id="txtTipoTransferencia" value="<?php echo $this->mpredio["ctiptra"]; ?>" /></td>
-                        <td style="padding-right: 4px;text-align: right;">Partida Nro.:</td>
-                        <td><input class="ui-text" style="width: 80px; text-align: center;" id="txtPartida" value="<?php echo $this->mpredio["cpartid"]; ?>" /></td>
-                    </tr>
-                </table>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td valign="top" style="padding-left: 5px;">
-            <div id="panelTerreno" align="center" class="ui-widget ui-widget-content ui-corner-top" style="width: 100%;">
+          
+             <div id="panelTerreno" align="center" class="ui-widget ui-widget-content ui-corner-top" style="width: 100%;">
                 <div class="ui-widget ui-state-default ui-corner-top ui-title">
                     <label>Sobre el Terreno</label>
                 </div>
@@ -127,6 +97,41 @@
                     <tr>
                         <td style="padding-right: 4px;text-align: right;">Ubicaci&oacute;n del Parque:</td>
                         <td colspan="3"><select style="width: 190px;" id="cboParque"><?php echo $this->util()->getComboContenedor('1000000219', $this->mpredio["ctippar"]); ?></select></td>
+                    </tr>
+                </table>
+            </div>
+            
+        </td>
+    </tr>
+    <tr>
+        <td valign="top" style="padding-left: 5px;">
+            
+         
+            
+              <div id="panelTransferencia" align="center" class="ui-widget ui-widget-content ui-corner-top" style="width: 100%;">
+                <div class="ui-widget ui-state-default ui-corner-top ui-title">
+                    <label>Sobre la Transferencia</label>
+                </div>
+                <table class="ui-table-panelLayout">
+                    <tr>
+                        <td style="padding-right: 4px;text-align: right;">Motivo de Adquisici&oacute;n:</td>
+                        <td colspan="3"><select style="width: 190px;" id="cboMotivo"><?php echo $this->util()->getComboContenedor('1000000334', $this->mpredio["cmotadq"]); ?></select></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 4px;text-align: right;">Fecha Adquisici&oacute;n:</td>
+                        <td><input class="ui-text" style="width: 80px; text-align: center;" id="dtpFechaAdquisicion" value="<?php echo $this->mpredio["dfecadq"]; ?>" /></td>
+                        <td style="padding-left: 10px; padding-right: 4px;text-align: right;">Fecha de Transferencia:</td>
+                        <td><input class="ui-text" style="width: 80px; text-align: center;" id="dtpFechaTransferencia" value="<?php echo $this->mpredio["dfectra"]; ?>" /></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 4px;text-align: right;">Notaria:</td>
+                        <td colspan="3"><input class="ui-text" style="width: 100%; text-align: center;" id="txtNotaria" value="<?php echo $this->mpredio["cnotari"]; ?>" /></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 4px;text-align: right;">Tipo Doc.:</td>
+                        <td><input class="ui-text" style="width: 80px; text-align: center;" id="txtTipoTransferencia" value="<?php echo $this->mpredio["ctiptra"]; ?>" /></td>
+                        <td style="padding-right: 4px;text-align: right;">Partida Nro.:</td>
+                        <td><input class="ui-text" style="width: 80px; text-align: center;" id="txtPartida" value="<?php echo $this->mpredio["cpartid"]; ?>" /></td>
                     </tr>
                 </table>
             </div>

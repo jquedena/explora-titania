@@ -18,7 +18,7 @@
                         <td style="width: 60px; text-align: right; padding-right: 4px;">Nombre:</td>
                         <td style="font-weight: bold;" colspan="2"><div id="lblNombre"><?php echo $this->vnombre; ?></div></td>
                         
-                        <td rowspan="3">Modificado por <b><span id="lblUsuario"><?php echo $this->mpredio["vusernm"]; ?></span></b> <br/> &nbsp; el <b><span id="lblFechaModificacion"><?php echo $this->mpredio["ddatetm"]; ?></span></b>
+                        <td rowspan="3" style="visibility:hidden;">Modificado por <b><span id="lblUsuario"><?php echo $this->mpredio["vusernm"]; ?></span></b> <br/> &nbsp; el <b><span id="lblFechaModificacion"><?php echo $this->mpredio["ddatetm"]; ?></span></b>
                          <br/><br/>Ultimo recalculo el <br/> <b><span id="lblFechaProceso"><?php echo $this->mpredio["dafecta"]; ?></span></b>
                         </td>
                         
@@ -39,9 +39,10 @@
                         <td>Predio:</td>
                         <td style="font-weight: bold;"><div id="lblPredio"><div id="lblPredio"><?php echo $this->mpredio["ccodpre"]; ?></div></div></td>
                         <td style="text-align: right; padding-right: 4px;">Direcci&oacute;n:</td>
-                        <td colspan="1" style="font-weight: bold;"><div id="lblDireccion"><?php echo $this->mpredio["vdirpre"]; ?></div></td>
-                        <td style="width: 30px;"> 
-                        		<button id="btnBuscarDireccion" style="line-height: 25px;height: 25px;" title="Buscar predio" ></button>
+                        <td colspan="1" style="font-weight: bold;"><div id="lblDireccion"><?php echo $this->mpredio["vdirpre"]; ?></div>&nbsp;                        	
+                        </td>
+                        <td style="width: 150px;"> 
+                          <button id="btnBuscarDireccion" style="line-height: 25px;height: 25px;" title="Buscar predio" ></button>
                         </td>
                     </tr>
                 </table>
@@ -109,10 +110,10 @@
         <ul>
             
             <li id="tabPredioDescripcion"><a href="#predioDescripcion">Descripci&oacute;n</a></li>
-            <li id="tabPredioLindero"><a href="#predioLindero">Lindero</a></li>
 <!--            <li id="tabPredioRustico"<?php echo ($this->mpredio["ctippre"]!='1000000091'? ' style="display:none;"': '')?>><a href="#predioRustico">Rustico</a></li>-->
             <li id="tabPredioPiso"><a href="#predioPiso">Pisos</a></li>
-            <li id="tabPredioInstalacion"><a href="#predioInstalacion">Instalaci&oacute;n</a></li>    
+            <li id="tabPredioInstalacion"><a href="#predioInstalacion">Instalaci&oacute;n</a></li> 
+            <li id="tabPredioLindero"><a href="#predioLindero">Lindero</a></li>               
             <li id="tabPredioInafectacion"><a href="#predioInafectacion">Inafectaci&oacute;n y Exoneraci&oacute;n</a></li>
             <li id="tabPredioUbicacion"><a href="#predioUbicacion">Ubicaci&oacute;n</a></li>
         </ul>
@@ -151,10 +152,7 @@
         </div>
         <div style="overflow-y: auto; overflow-x: hidden; height:310px; padding: 2px;" id="predioDescripcion">
             <?php echo $this->render("registro/verpredio/descripcion.php"); ?>
-        </div>
-        <div style="overflow-y: auto; overflow-x: hidden; height:300px; padding: 2px;" id="predioLindero">
-            <?php echo $this->render("registro/verpredio/lindero.php"); ?>
-        </div>
+        </div>     
          <!--   <div style="overflow-y: hidden; overflow-x: hidden; height:300px; padding: 2px;" id="predioRustico">
             <?php echo $this->render("registro/verpredio/rustico.php"); ?>
         </div> -->       
@@ -163,6 +161,9 @@
         </div>
         <div style="overflow-y: auto; overflow-x: hidden; height:300px; padding: 2px;" id="predioInstalacion">
             <?php echo $this->render("registro/verpredio/instalacion.php"); ?>
+        </div>
+           <div style="overflow-y: auto; overflow-x: hidden; height:300px; padding: 2px;" id="predioLindero">
+            <?php echo $this->render("registro/verpredio/lindero.php"); ?>
         </div>
         <div style="overflow-y: hidden; overflow-x: hidden; height:300px; padding: 2px;" id="predioInafectacion">
             <?php echo $this->render("registro/verpredio/inafectacion.php"); ?>
