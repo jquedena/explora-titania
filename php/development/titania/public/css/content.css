@@ -190,11 +190,13 @@ input.ui-text-disable {
 }
 .ui-text-highlight,
 input.ui-text-highlight {
-    background: #fbec88 url('../theme/blue_explora/images/ui-bg_glass_55_fbec88_1x400.png') 50% 50% repeat-x;
+    /*background: #fbec88 url('../theme/blue_explora/images/ui-bg_glass_55_fbec88_1x400.png') 50% 50% repeat-x;
     border: 1px solid #fcd113;
     color: #915608;
     -webkit-box-shadow: 0 0 5px #fcd113;
 	box-shadow: 0 0 5px #fcd113;
+	*/
+	color: navy;
 }
 .ui-text-disable,
 input.ui-text-disable {
@@ -241,7 +243,7 @@ table.ui-table-panelLayout tr td{
 }
 
 .ui-autocomplete {
-    max-height: 118px;
+    max-height: 110px;
     overflow-y: auto;
     /* prevent horizontal scrollbar */
     overflow-x: hidden;

@@ -785,12 +785,24 @@ class RegistroController extends Zend_Controller_Action {
         
             if($rows[0][0] == 1) {
                                   
-                $data['error'] = "";
-                //$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
+                //$data['error'] = "";
+           
+                $parameters2[]= $_POST["idsigma"];
+            	$parameters2[]= '' ;
+            	$parameters2[]= '' ;
+            	$parameters2[]= '' ;
+            	$parameters2[]= '' ;
+            
+            	$dataAdapter2 = new Model_DataAdapter();            
+    			$data['mpredio2'] = $dataAdapter2->executeAssocQuery("pl_function.buscar_mpredio", $parameters2);
+       		   
+                
             } else {
                 $data['error'] = "Error al actualizar";
-                $data['data'] = "";
+                $data['mpredio2'] = "";
             }
+            
+            $this->_helper->json($data);
 
 
         }
