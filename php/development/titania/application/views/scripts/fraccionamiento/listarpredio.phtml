@@ -1,0 +1,192 @@
+<div id="panelContribuyente" align="center" class="ui-widget ui-widget-content ui-corner-top" style="width: 1000px;margin: 3px;">
+    <div class="ui-widget ui-state-default ui-corner-top ui-title">
+        <label>Fraccionamiento</label>
+    </div>
+    <table class="ui-table-panelLayout">
+        <tr>
+            <td style="width: 55px;">C&oacute;digo:</td>
+            <td style="width: 75px;font-weight: bold;"><div id="lblCodigo"><?php echo $this->cidpers; ?></div></td>
+            <td style="width: 75px; text-align: right; padding-right: 9px;">Nombre:</td>
+            <td style="font-weight: bold;"><div id="lblNombre"><?php echo $this->vnombre; ?></div></td>
+            <td style="width: 110px;" align="right" rowspan="2">
+            	Declaraci&oacute;n Nro.<br/><div style="font-weight: bold;"><?php echo $this->vnrodoc; ?></div>
+            	<input type="hidden" name="lblIDResumen" id="lblIDResumen" value="<?php echo $this->mhresum; ?>" />
+            </td>
+        </tr><tr>
+            <td>Direcci&oacute;n:</td>
+            <td colspan="3" style="font-weight: bold;"><div id="lblDireccion"><?php echo $this->vdirecc; ?></div></td>
+        </tr>
+    </table>
+</div>
+
+<!--<div id="panelControl" align="right" class="ui-widget ui-widget-content ui-corner-bottom" style="width: 1000px;margin: 3px;">-->
+<!--    <button id="btnRegistrarPredio">Registrar</button>-->
+<!--    <button id="btnEditarPredio">Editar</button>-->
+<!--    <button id="btnCancelarPredio">Cancelar</button>-->
+<!--</div>-->
+
+<div id="panelDeudas" align="center" class="ui-widget ui-widget-content ui-corner-top" style="width: 1000px;margin: 3px;">
+    <div class="ui-widget ui-state-default ui-corner-top ui-title" >
+        <label>Deudas Contribuyente</label>
+    </div>
+    <div class="ui-table-panelLayout"  style="width:500;" >
+         <table width="500" >
+         <tr>
+         <td>Tributo</td>
+         <td>Cod.Predio</td>
+         <td>A&ntilde;o</td>
+         <td>Periodo</td>
+         <td>Insoluto</td>
+         <td>Mora</td>        
+         <td>Total</td>
+         <td>Estado</td>
+         <td><input type="checkbox" id="checkfracctodos"  onClick="checktodosfracci();" /></td>
+         </tr>
+    	 </table>
+    </div>           	
+    <div id="tabladeudas" class="ui-table-panelLayout" style="width:500;height:350px;overflow:scroll;z-index:50;">
+
+    </div>
+</div>
+
+<div> 
+<table width="80%" border="0" >
+	<tr>
+	 	<td width="100"><h2>Nro. Cuotas:</h2> </td><td><input id="txtnrocuotas"  value="12"  />   </td>	 
+	 	<td colspan="3">&nbsp;</td>
+	 	<td width="100"><h2>Deuda Total:</h2> </td><td> <input id="txtdeudatotal" ReadOnly />  </td>
+	 	 <td rowspan="2" align="center" ><button id="btnProcesar">Procesar </button>  </td>
+	</tr>
+	<tr>
+		<td width="100" ><h2>Cuota Inicial:</h2></td><td> <input id="txtcuotainicial" value="1" /> </td> 
+		<td colspan="3">&nbsp;</td>
+	 	<td width="100"><h2>Monto Total a Fraccionar:</h2></td><td> <input id="txtdeudatotalfracc"  ReadOnly />  </td>
+	</tr>	
+	
+	
+</table>
+</div>
+
+<div id="panelListaPredio" align="center" style="width: 99%;margin: 3px;">
+    <table id="tblListaPredio"></table>
+    <div id="tblListaPredio"></div>
+</div>
+<div id="container" style="display: none; min-width: 400px; height: 150px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+    verPredio = function(rowid, iRow, iCol, e) {
+        row = $("#tblListaPredio").jqGrid('getRowData', rowid);
+        parameters = {
+            "mperson": $("#lblCodigo").text(),
+            "vnombre": $("#lblNombre").text(),
+            "vdirecf": $("#lblDireccion").text(),
+            "mpredio": row.mpredio,
+            "mhresum": row.mhresum,
+            "cperiod": 'max'
+        };
+        _post = $.post(path + "registro/verpredio", parameters);
+        _post.error(postError);
+        _post.success(function(request){
+            $("#panelRegistro").html(request);
+        });
+    };
+    
+    optionPredio = {
+        width: 1000,
+        height: 350,
+        colNames: ['Predio',
+            'Direcci\u00F3n',
+            'Uso',
+            'Uso',
+            'Valor del Predio',
+            'Valor Afecto',
+            'Adquirido',
+            'Nro. de Doc.',
+            '%',
+            'mpredio',
+            'tnompob',
+            'tnomvia',
+            'dnumero',
+            'ddepart',
+            'dmanzan',
+            'dnlotes',
+            'mhresum'],
+        colModel: [{name: 'ccodpre', index:'ccodpre', width: 70, align:'center'},
+            {name: 'tnumero', index:'tnumero', width: 450},
+            {name: 'vusogen', index:'vusogen', width: 250, hidden: true},
+            {name: 'viconos', index:'viconos', width: 55, formatter:imageFormat, unformat:imageUnFormat, align:'center'},
+            {name: 'nvalpre', index:'nvalpre', width: 95, formatter:'currency', align: 'right'},
+            {name: 'nvalafe', index:'nvalafe', width: 95, formatter:'currency', align: 'right'},
+            {name: 'dfecadq', index:'dfecadq', width: 75, formatter:'date', formatoptions: {srcformat:"Y-m-d", newformat:"d/m/Y"}, align: 'center'},
+            {name: 'vnrodoc', index:'vnrodoc', width: 75, align: 'center'},
+            {name: 'nporcen', index:'nporcen', width: 45, align: 'right'},
+            {name: 'mpredio', index:'mpredio', width: 1, hidden: true},
+            {name: 'tnompob', index:'tnompob', width: 1, hidden: true},
+            {name: 'tnomvia', index:'tnomvia', width: 1, hidden: true},
+            {name: 'dnumero', index:'dnumero', width: 1, hidden: true},
+            {name: 'ddepart', index:'ddepart', width: 1, hidden: true},
+            {name: 'dmanzan', index:'dmanzan', width: 1, hidden: true},
+            {name: 'dnlotes', index:'dnlotes', width: 1, hidden: true},
+            {name: 'mhresum', index:'mhresum', width: 1, hidden: true}],
+        caption: "&nbsp;&nbsp;&nbsp;Predios Registrados",
+        ondblClickRow: verPredio,
+        onSelectRow: function(id) {
+            row = $(this).getRowData(id);
+        }
+    };
+
+    bindkeysPredio = {"onEnter": verPredio};
+    
+    buscarPredio = function() {         
+        parameters = {
+            "name": "tblListaPredio",
+            "procedure": "pl_function.listar_predios",
+            "print": "true",
+            "parameters": '{' +
+            '"p_mhresum":"' + $("#lblIDResumen").val() + '",' +
+            '"p_cidpers":"' + $("#lblCodigo").html() + '"' +
+            '}'
+        };
+
+        procesarProcedimientoJSON("panelListaPredio", "tblListaPredio", optionPredio, parameters, bindkeysPredio);
+    };
+    
+    $(function(){
+
+
+         $("#btnProcesar").button({
+            icons: {primary:'ui-icon-document'}
+        }).bind('click', function(){
+        	parameters = {
+            	mperson: $("#lblCodigo").text(),
+            	mhresum: "-1",
+                monto: monto,	
+                numcuotas : $("#txtnrocuotas").val(),	
+                cuotaini :  $("#txtcuotainicial").val()
+            }; 
+  
+        	if (monto==0){
+     		   openDialogWarning("NO SE PUEDE PROCESAR EL FRACCIONAMIENTO SI NO CUENTA CON UN MONTO EN LA CUOTA INICIAL, UN DETERMINADO NUMERO DE CUOTAS O UN MONTO A FRACCIONAR", 350, 200);
+        	}else{            
+			   openDialogData1("fraccionamiento/contratofracc", parameters, "700", "600", "Contrato Fraccionamiento");
+        	}
+		});
+ 
+  		/*
+        $("#btnEditarPredio").button({
+            icons: {primary:'ui-icon-pencil'}
+        }).bind('click', function(){
+            var rowId = $("#tblListaPredio").jqGrid('getGridParam','selrow');
+            verPredio(rowId);
+        });
+        
+        $("#btnCancelarPredio").button({
+            icons: {primary:'ui-icon-arrowreturnthick-1-w'}
+        }).bind('click', function(){
+            location.href = path + "registro";
+        }); */
+
+        panelPersona({cidpers: $("#lblCodigo").html()});
+       // buscarPredio();
+    }); 
+</script>
