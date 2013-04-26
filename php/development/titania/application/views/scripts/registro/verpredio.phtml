@@ -114,42 +114,44 @@
             <li id="tabPredioPiso"><a href="#predioPiso">Pisos</a></li>
             <li id="tabPredioInstalacion"><a href="#predioInstalacion">Instalaci&oacute;n</a></li> 
             <li id="tabPredioLindero"><a href="#predioLindero">Lindero</a></li>               
-            <li id="tabPredioInafectacion"><a href="#predioInafectacion">Inafectaci&oacute;n y Exoneraci&oacute;n</a></li>
-            <li id="tabPredioUbicacion"><a href="#predioUbicacion">Ubicaci&oacute;n</a></li>
+<!--            <li id="tabPredioInafectacion"><a href="#predioInafectacion">Inafectaci&oacute;n y Exoneraci&oacute;n</a></li>-->
+<!--            <li id="tabPredioUbicacion"><a href="#predioUbicacion">Ubicaci&oacute;n</a></li>-->
         </ul>
-        <div style="overflow-y: auto; overflow-x: hidden; height:310px; padding: 2px;" id="predioUbicacion">
-            <table style="width: 100%;">
-            	<tr>
-            		<td valign="top">
-            			<table style="width: 100%;">
-            				<!--
-            				<tr>
-            					<td>Direcci&oacute;n: </td>
-            					<td style="width: 85%;"><input class="ui-text" style="width: 100%;" id="direccionXY" type="text" value="" title="Ingrese la direcci&oacute;n para buscar" /></td>
-            				</tr>
-            				 -->
-            				<tr>
-            					<td colspan="2">
-            						<img src=""/>
-            						<input type="button" id="btnSubirFoto" value="Subir Foto">
-            						&nbsp;
-            						<input type="button" id="btnGaleria" value="Ver Galeria">
-            						
-            					<td>
-            					
-            					
-            				</tr>
-            			</table>
-            		</td>
-            		<td style="width: 420px;">
-            			<!-- Longitud --><input type="hidden" id="longitud" value="-11.866663">
-            			<!-- Latitud --><input type="hidden" id="latitud" value="-77.077125">
-            			<!-- Zoom --><input type="hidden" id="zoom" value="17" >
-						<div id="map" style="width:400px; height: 280px; margin-top: 10px; border: 1px solid #000;"></div>
-            		</td>
-            	</tr>
-            </table>
-        </div>
+        
+<!--        <div style="overflow-y: auto; overflow-x: hidden; height:310px; padding: 2px;" id="predioUbicacion">-->
+<!--            <table style="width: 100%;">-->
+<!--            	<tr>-->
+<!--            		<td valign="top">-->
+<!--            			<table style="width: 100%;">-->
+<!--            				-->
+<!--            				<tr>-->
+<!--            					<td>Direcci&oacute;n: </td>-->
+<!--            					<td style="width: 85%;"><input class="ui-text" style="width: 100%;" id="direccionXY" type="text" value="" title="Ingrese la direcci&oacute;n para buscar" /></td>-->
+<!--            				</tr>-->
+<!--            				 -->
+<!--            				<tr>-->
+<!--            					<td colspan="2">-->
+<!--            						<img src=""/>-->
+<!--            						<input type="button" id="btnSubirFoto" value="Subir Foto">-->
+<!--            						&nbsp;-->
+<!--            						<input type="button" id="btnGaleria" value="Ver Galeria">-->
+<!--            						-->
+<!--            					<td>-->
+<!--            					-->
+<!--            					-->
+<!--            				</tr>-->
+<!--            			</table>-->
+<!--            		</td>-->
+<!--            		<td style="width: 420px;">-->
+<!--            			 Longitud <input type="hidden" id="longitud" value="-11.866663">-->
+<!--            			 Latitud <input type="hidden" id="latitud" value="-77.077125">-->
+<!--            			 Zoom <input type="hidden" id="zoom" value="17" >-->
+<!--						<div id="map" style="width:400px; height: 280px; margin-top: 10px; border: 1px solid #000;"></div>-->
+<!--            		</td>-->
+<!--            	</tr>-->
+<!--            </table>-->
+<!--        </div>-->
+        
         <div style="overflow-y: auto; overflow-x: hidden; height:310px; padding: 2px;" id="predioDescripcion">
             <?php echo $this->render("registro/verpredio/descripcion.php"); ?>
         </div>     
@@ -165,10 +167,11 @@
            <div style="overflow-y: auto; overflow-x: hidden; height:300px; padding: 2px;" id="predioLindero">
             <?php echo $this->render("registro/verpredio/lindero.php"); ?>
         </div>
+        <!--
         <div style="overflow-y: hidden; overflow-x: hidden; height:300px; padding: 2px;" id="predioInafectacion">
             <?php echo $this->render("registro/verpredio/inafectacion.php"); ?>
         </div>
-    </div>
+       --></div>
 </div>
 
 <script type="text/javascript" src="<?php echo $this->util()->getPath(); ?>js/registro/js_registro_verpredio_verinstalacion.js"></script>
@@ -186,7 +189,7 @@
     
     $(document).ready(function() {
         
-    	$("#direccionXY").autocomplete({          
+    	/* $("#direccionXY").autocomplete({          
     		source: function(request, response) {
     			if (geocoder == null){
     				geocoder = new google.maps.Geocoder();
@@ -231,8 +234,9 @@
         	mapTypeId: google.maps.MapTypeId.ROADMAP,
     		center: new google.maps.LatLng($('#longitud').val(), $('#latitud').val())
     	};
-
+   
         initMap();
+        */
     });
    
 </script>

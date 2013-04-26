@@ -152,16 +152,11 @@ grabarinafe= function(){
 	if (Hab==true){
 				
 	_post = $.post(path + "registro/guardarinafecta", row);
-	_post.success(function(data){
-		//optionPiso = $.extend(optionPiso, {data: data.data});
-		//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
+	_post.success(function(data){	
 	});
 
 	}
 };
-
-
-
 
 </script>
 

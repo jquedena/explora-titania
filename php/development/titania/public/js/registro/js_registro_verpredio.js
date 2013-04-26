@@ -8,7 +8,7 @@ habilitarComponenteDetalle = function(disabled){
     //$("#btnEditarPredio").button("option", "disabled", !disabled);
     
     $("#txtPeriodo").toggleClass("ui-text-disable");
-    
+    /*
     $("#cb_tipoinafecto").combobox("destroy");
     
     //$("#cb_tipoinafecto").removeClass("ui-text-disable");
@@ -20,8 +20,7 @@ habilitarComponenteDetalle = function(disabled){
     $("#dptFechaResolucionInafecto").removeClass("ui-text-disable");
     $("#txt_inicioinafecto").removeClass("ui-text-disable");
     $("#txt_fininafecto").removeClass("ui-text-disable");
-    
-    
+        
      //$("#cb_tipoinafecto").attr("disabled", false);
      $("#txt_expedienteinafecto").attr("disabled", false);
      $("#txt_resolucioninafecto").attr("disabled", false);
@@ -30,8 +29,7 @@ habilitarComponenteDetalle = function(disabled){
      $("#dptFechaResolucionInafecto").attr("disabled", false);
      $("#txt_inicioinafecto").attr("disabled", false);
      $("#txt_fininafecto").attr("disabled", false);
-     
-     
+          
      //$("#cb_tipoinafecto").toggleClass("ui-text");
     $("#txt_expedienteinafecto").toggleClass("ui-text");
     $("#txt_resolucioninafecto").toggleClass("ui-text");
@@ -42,7 +40,7 @@ habilitarComponenteDetalle = function(disabled){
     $("#txt_fininafecto").toggleClass("ui-text");
     
     $("#GrabarInafecta").button("option", "disabled", false);
-
+    */
     if(disabled) {
         $("#linkPeriodo").button("option", "disabled", false);
         $("#txtPeriodo").attr("disabled", false);
@@ -116,8 +114,6 @@ function habilitatran(){
      $("#nporter").toggleClass("ui-text-disable");
      $("#ntotter").toggleClass("ui-text-disable");
      
- 
-    
 }
 
 
@@ -443,11 +439,7 @@ loadVerDetalle = function(){
     	// window.open(pathReport+"reporte=Report_Completo&opt=p_mhresum^" + $("#_mhresum").val() + "|p_cperiod^-1|p_ccodpre^-1|p_mperson^" + $("#lblCodigo").html(), '_blank');
     	//openDialog1("registro/galeriafotos", "725", "405", "Galeria Fotos");
     	openDialog1("registro/galeriafotos", "725", "405", "Galeria Fotos");        
-    });
-    
-    
-    
-    
+    });    
     
     navPanelPiso = function() {
         $("#tblPiso").jqGrid('navGrid', '#ptblPiso', {edit:false, add:false, del:false, search:false, refresh:false});
@@ -491,9 +483,9 @@ loadVerDetalle = function(){
     
     */
     
-    actualizarGrid("tblDatosTributo", optionTributo, null,function(){
-        $("#tblDatosTributo").jqGrid('navGrid', '#ptblDatosTributo', {edit:false, add:false, del:false, search:false, refresh:false});       
-    });
+//    actualizarGrid("tblDatosTributo", optionTributo, null,function(){
+//        $("#tblDatosTributo").jqGrid('navGrid', '#ptblDatosTributo', {edit:false, add:false, del:false, search:false, refresh:false});       
+//    });
     
 };
 

@@ -5,7 +5,7 @@ verInstalacion = function(rowid, iRow, iCol, e) {
 		row = undefined;
 	}
 	
-    openDialogDataFunction1("registro/verinstalacion", {}, "480", "400", "Detalle de la Instalacion", function() {
+    openDialogDataFunction1("registro/verinstalacion", {}, "480", "300", "Detalle de la Instalacion", function() {
     	if(row != undefined) {
     		
     		if (row.nvalanc>0){
@@ -278,26 +278,7 @@ optionInstalacion = {
 	        	    
 	        	   // _post.error(postError);
 	        	    
-	        	    
-	        	    row3 = { 
-	        				
-	        				p_mhresum  : $("#_mhresum").val(),
-	        				p_cperiod : $("#cboPeriodo").val(),			
-	        				p_mpredio  : $("#_mpredio").val()
-	        				 
-	        		};
-	        	    
-	        	    _post = $.post(path + "registro/recargarauditpredio", row3);
-	        	    _post.success(function(data){
-	        	    	
-	        	    	$("#ajaxaca").html(data);
-	        	    	//optionPiso = $.extend(optionPiso, {data: data.data});
-	        	    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
-	        		});
-	        	    
-	        	    
-	        	   // _post.error(postError);
-	        			
+	        		        			
 	        			$("#ctblInstalacion").val(indexRow - 1);
 	        		} else {
 	        			alert('Error no se pudo eliminar');
