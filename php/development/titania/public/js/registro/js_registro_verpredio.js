@@ -150,52 +150,26 @@ guardar = function() {
 			cnotari: $("#txtNotaria").val(),
 			ctiptra: $("#txtTipoTransferencia").val(),
 			cpartid: $("#txtPartida").val(),
-			csubtip: $("#cboTipoPredioUrbano").val(),
-			cmotadq: $("#cboMotivo").val(),
-			mhresum: $("#_mhresum").val() 
+			csubtip: $("#cboTipoPredioUrbano option:selected").val(),
+			cmotadq: $("#cboMotivo option:selected").val(),
+			mhresum: $("#_mhresum").val(),
+			cperiod: $("#cboPeriodo option:selected").val()
 			 
 	};
 
 	_post = $.post(path + "registro/guardardetalle", row);
-    _post.success(function(data){
-    	//optionPiso = $.extend(optionPiso, {data: data.data});
-    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
+	_post.error(postError);
+	_post.success(function(data){
+    	$("#lblArancel").html(data.valorPredio[0].narance);
+    	$("#lblValorTerreno").html(data.valorPredio[0].nvalter);
+    	$("#lblValorConstruccion").html(data.valorPredio[0].nvalpis);
+    	$("#lblValorInstalacion").html(data.valorPredio[0].nvalins);
+    	$("#lblAutovaluo").html(data.valorPredio[0].nvalpre);
+    	$("#lblMontoBarrido").html(data.valorPredio[0].nbarrid);
+        $("#lblMontoParque").html(data.valorPredio[0].nparque);
+        $("#lblMontoRecoleccion").html(data.valorPredio[0].nrecole);
+        $("#lblMontoSerenazgo").html(data.valorPredio[0].nserena);
 	});
-    
-	row2 = { 
-			
-			p_mhresum  : $("#_mhresum").val(),
-			p_cperiod : $("#cboPeriodo").val(),			
-			p_dpredio  : $("#_dpredio").val()
-			 
-	};
-    
-    
-	_post = $.post(path + "registro/recargarvalorpredio", row2);
-    _post.success(function(data){
-    	//alert(data);
-    	$("#ajaxaca").html(data);
-    	//optionPiso = $.extend(optionPiso, {data: data.data});
-    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
-	});
-    
-    row3 = { 
-			
-			p_mhresum  : $("#_mhresum").val(),
-			p_cperiod : $("#cboPeriodo").val(),			
-			p_mpredio  : $("#_mpredio").val()
-			 
-	};
-    
-    _post = $.post(path + "registro/recargarauditpredio", row3);
-    _post.success(function(data){
-    	
-    	$("#ajaxaca").html(data);
-    	//optionPiso = $.extend(optionPiso, {data: data.data});
-    	//procesarJSON("panelPiso", "tblPiso", optionPiso, null, navPanelPiso);
-	});
-    
-    _post.error(postError);    
 };
 
 cambioTipoPredio = function(event, ui) {
@@ -204,9 +178,8 @@ cambioTipoPredio = function(event, ui) {
         visibility = (bVisible? "hidden": "visible");
         display = (bVisible? "inline": "none");
         $("#panelTerreno").css({"visibility" : visibility});
-        //$("#tabPredioRustico").css({"display" : display});
-        
-        // contenidocomboContenedor("#cboTipoPredioUrbano", (bVisible ? "1000000209": "1000000202"));
+        // TODO: $("#tabPredioRustico").css({"display" : display}); // Por Rustico para habilitar
+        // TODO: contenidocomboContenedor("#cboTipoPredioUrbano", (bVisible ? "1000000209": "1000000202")); // Por Rustico para habilitar
     } else {
         openDialogWarning("El valor ingresado no esta en la lista de elementos.", 380, 150);
     }

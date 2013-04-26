@@ -604,9 +604,6 @@ class RegistroController extends Zend_Controller_Action {
 			$coduser = $ddatosuserlog->cidpers;
 			$vhostnm = $ddatosuserlog->vhostnm;
 
-	 //vhostnm, vusernm, ddatetm, dfectra, cnotari, ctiptra, cpartid, csubtip, cmotadq, mhresum
-			//print_r($_POST);
-			
 			$row =  $_POST["idsigma"].','.
 					$_POST["mpredio"].','.
 					$_POST["ctippre"].','.
@@ -624,8 +621,8 @@ class RegistroController extends Zend_Controller_Action {
 					$_POST["narecom"].','.
 					$_POST["nporafe"].','.
 					date("d-m-y",strtotime($_POST["dfecadq"])).','. //$_POST["dfecdes"].','.
-					date("y-m-d",strtotime('2012-04-25')).','.					
-					date("y-m-d",strtotime('2012-04-01')).','.
+					date("y-m-d",strtotime('1900-01-01')).','.					
+					date("y-m-d",strtotime('1900-01-01')).','.
 					$_POST["nfrente"].','.					
 					$_POST["ncanper"].','.
 					$_POST["ctippar"].','.
@@ -641,29 +638,25 @@ class RegistroController extends Zend_Controller_Action {
 					$_POST["csubtip"].','. 
 				 	$_POST["cmotadq"].','. 
 					$_POST["mhresum"];
-
-			//echo 	date("d-m-y",strtotime($_POST["dfecadq"]));
-
-			//echo 	date("d-m-y",strtotime($_POST["dfectra"]));
 				
 			$parameters[] = $row;
 			$dataAdapter = new Model_DataAdapter();
 			$rows = $dataAdapter->executeSelect("pl_function.guardar_dpredio", $parameters);
 		
-			if($rows[0][0] == 1) {
-				//$parameters = array($_POST['dpredio'], $_POST["cperiod"]);
-					
+			if($rows[0][0] != '-1') {
+				$params[] = $_POST["mhresum"];
+				$params[] = $_POST["cperiod"];
+				$params[] = $rows[0][0];
+				$rows = $dataAdapter->executeAssocQuery("pl_function.ver_valor_predio", $params);
+
+				$data['valorPredio'] = $rows;
 				$data['error'] = "";
-				//$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_construccion", $parameters);
 			} else {
 				$data['error'] = "Error al actualizar";
-				$data['data'] = "";
 			}
 				
 			$this->_helper->json($data);
-		}
-			
-		
+		}	
 	}
 	
 	public function prediomantenAction(){
