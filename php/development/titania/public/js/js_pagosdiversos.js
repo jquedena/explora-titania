@@ -237,7 +237,7 @@ function borrardetallepago(codtipppago,nrodoc) {
 function aniadirdetallepago() {	
 	
 	var totalrestante = $('#hdsubtotal').val();
-	console.log($('#cbotipopago').val());
+	
 	Mcbotipopago=$('#cbotipopago').val();
 	var montototal = $('#montototal').val();
 	var codtipppago = $('#cbodetallepago').val();
@@ -256,16 +256,16 @@ function aniadirdetallepago() {
 	/*if(monto > totalrestante){
 		error += 'El Monto ingresado supera al total restante.<br>';
 	}*/
-		if(Mcbotipopago == '1000001824'){
+		if(Mcbotipopago == '1000001863'){
 			//efectivo
 			nrodoc = '';
 			nroope = '';		
-		}if(Mcbotipopago == '1000001820'){
+		}if(Mcbotipopago == '1000001859'){
 			//cheque
 			if(trim(nrodoc) == ''){
 				error += 'Ingresar Nro de Cheque.<br>';	
 			}		
-		}if(Mcbotipopago == '1000001812' || Mcbotipopago == '1000001816'){
+		}if(Mcbotipopago == '1000001855' || Mcbotipopago == '1000001851'){
 			//tarjeta
 			if(trim(nrodoc) == ''){
 				error += 'Ingresar Nro de Tarjeta.<br>';	
