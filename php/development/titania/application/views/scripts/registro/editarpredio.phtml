@@ -139,11 +139,11 @@
 
 <?php
                           
-                          $doc=new DOMDocument();						
-                        $direccion="Puente Piedra, Lima, Peru";
-                        //$direccion=$datos[0]["direccion"]." "."puente piedra";
+                            $doc=new DOMDocument();						
+                            $direccion="Puente Piedra, Lima, Peru";
+                       		//$direccion=$datos[0]["direccion"]." "."puente piedra";
 							$xml="http://maps.googleapis.com/maps/api/geocode/xml?address=".$direccion."&sensor=true";
-    // echo $xml;
+   							// echo $xml;
                             $doc->load($xml);
 
 							$persona=$doc->getElementsByTagName("result");

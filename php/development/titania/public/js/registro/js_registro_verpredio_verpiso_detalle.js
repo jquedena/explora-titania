@@ -21,14 +21,17 @@ validar = function() {
 		return false;
 	}
 	
-	if ($("#txt_pisoanocon").val()==''){
-		openDialogWarning("Ingrese el A\xf1o del Piso", 380, 150);
-		isValid = false;
+	var f=new Date();
+	
+	
+	if (($("#txt_pisoanocon").length<4 && $("#txt_pisoanocon").val()<1901) || ($("#txt_pisoanocon").length<4 && $("#txt_pisoanocon").val()>f.getFullYear())){
+		openDialogWarning("Ingrese Correctamente el A\xf1o del Piso", 380, 150);
+		isValid = false; 
 		$("#txt_pisoanocon").focus();
 		return false;
 	}
 	
-	if ($("#txt_pisomescon").val()==''){
+	if ($("#txt_pisomescon").val()=='9999999999'){
 		openDialogWarning("Ingrese el Mes de la Construccion", 380, 150);
 		isValid = false;
 		$("#txt_pisomescon").focus();

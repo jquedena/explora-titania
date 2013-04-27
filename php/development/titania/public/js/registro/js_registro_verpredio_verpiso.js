@@ -7,9 +7,12 @@ verPiso = function(rowid, iRow, iCol, e) {
 	
     openDialogDataFunction1("registro/verpiso", {}, "780", "595", "Detalle del piso", function() {
         if(row != undefined) {
+        	
+        	console.log(row.cmescon); 
+        	
             $("#txt_pisonivel").val(row.cnumpis);
     		$("#txt_pisoanocon").val(row.canocon);
-            $("#txt_pisomescon").val(row.cmescon);
+            $("#txt_pisomescon option[value="+row.cmescon+"]").attr("selected",true);
             $("#txt_cmateri").val(row.vmateri); $("#ctxt_cmateri").val(row.cmateri); $("#dtxt_cmateri").html(row.dmateri);
     		$("#txt_cconser").val(row.vconser); $("#ctxt_cconser").val(row.cconser); $("#dtxt_cconser").html(row.dconser);
     		$("#txt_cmurcol").val(row.vmurcol); $("#ctxt_cmurcol").val(row.cmurcol); $("#dtxt_cmurcol").html(row.dmurcol);       
