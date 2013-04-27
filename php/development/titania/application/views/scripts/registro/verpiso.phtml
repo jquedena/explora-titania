@@ -44,7 +44,9 @@
 						</tr>
 						<tr>
 							<td>Mes</td>
-							<td><input id="txt_pisomescon" maxlength="2" class="ui-text ui-text-numeric" /></td>
+							<td><select id="txt_pisomescon" > 
+								<?php echo $this->util()->getComboContenedorOtro('1000001865', '1000001866', "public.obtener_tabla_otro" ); ?> 
+							    </select></td>
 							<td>&nbsp;</td>
 						</tr>
 						<tr>

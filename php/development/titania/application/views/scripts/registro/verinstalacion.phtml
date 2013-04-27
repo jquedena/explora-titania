@@ -135,8 +135,10 @@
 			  return;	
 		}
 
-		if  ($("#txt_instcanocon").val()==''){
-			openDialogWarning("Ingrese el a\xf1o de construccion", 380, 150);
+  		var f=new Date();
+  	  		
+  		if (($("#txt_instcanocon").length<4 && $("#txt_instcanocon").val()<1901) || ($("#txt_instcanocon").length<4 && $("#txt_instcanocon").val()>f.getFullYear())){
+        	openDialogWarning("Ingrese el a\xf1o de construccion", 380, 150);
 			$("#txt_instcanocon").focus();
 			isValid = false;
 			  return;
