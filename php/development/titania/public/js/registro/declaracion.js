@@ -4,7 +4,7 @@
 
 $(function(){
 
-	optionPerson = {
+	/*optionPerson = {
 		    height: 150,
 		    width: 450,
 		    colNames: ["C\u00F3digo", "Nombre", "Direcci\u00F3n Fiscal"],
@@ -59,7 +59,7 @@ $(function(){
 	    };
 
 	    inicializarGrid("tblResultmPredio", optionPerson,null,navPanelPersona);
-
+*/
 
 	$(function(){
 	

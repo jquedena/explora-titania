@@ -8,6 +8,8 @@ verPredio = function(rowid, iRow, iCol, e) {
     openDialogDataFunction1("registro/verprediomantt", {}, "900", "800", "Predio", function() {
     	if(row != undefined) {
     		$("#txt_idsigma").val(row.idsigma);
+    		//$("#cbotipopredio").val(row.ctippre);
+    		$("#cbotipopredio option[value="+row.ctippre+"]").attr("selected",true);
 	        $("#txtnumero").val(row.dnumero);
 	        $("#txtviacentrpob").val(row.zona);
 	  //	$("#txt_instcnitems").val(row.cnitems);
