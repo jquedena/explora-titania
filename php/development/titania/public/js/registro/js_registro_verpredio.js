@@ -113,7 +113,10 @@ function habilitatran(){
      $("#ntotcom").toggleClass("ui-text-disable");
      $("#nporter").toggleClass("ui-text-disable");
      $("#ntotter").toggleClass("ui-text-disable");
-     
+          
+     $("#txtTipoPredio").toggleClass("ui-text-disable");
+  	//$("#cboMotivo .ui-combobox-input").button("option", "disabled", true);
+  	$("#linkTipoPredio").button("option", "disabled", true);
 }
 
 
@@ -155,6 +158,7 @@ guardar = function() {
 			 
 	};
 
+	
 	_post = $.post(path + "registro/guardardetalle", row);
 	_post.error(postError);
 	_post.success(function(data){
