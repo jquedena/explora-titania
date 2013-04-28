@@ -44,17 +44,12 @@ verPredio = function(rowid, iRow, iCol, e) {
 	   	    $("#txt_nlatitu").val(row.nlatitu);
 		    $("#txt_nlongit").val(row.nlongit);
 		    $("#txt_nzoom").val(row.nzoom);							
-
-      	  mapa($("#txt_nlatitu").val(),$("#txt_nlongit").val(),$("#txt_nzoom").val()); 
-
-	 //		$("#txt_instdafecta").val(row.dafecta);     
-		    
-		    
 		    
    }  else {
 	   $("#txt_idsigma").val('-1');  
 	   
    		}
+    	 mapa($("#txt_nlatitu").val(),$("#txt_nlongit").val(),$("#txt_nzoom").val()); 
 });
 
 };
