@@ -112,7 +112,8 @@
         }).bind('click', function(){
         	parameters = {
             	mperson: $("#lblCodigo").text(),
-            	mhresum: "-1"
+            	mhresum: "-1", 
+                dperson: $("#lblNombre").text() 	
             };
 			openDialogData1("registro/declaracion", parameters, "1000", "600", "Declaraci&oacute;n Jurada");
 		});

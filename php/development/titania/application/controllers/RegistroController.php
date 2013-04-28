@@ -7,7 +7,7 @@ class RegistroController extends Zend_Controller_Action {
     public function init() {
     	$this->_helper->layout()->setLayout('layoutwithpanel');
     	$map = new Zend_Session_Namespace("map");
-    	$map->data = true;
+    	$map->data = false;
     }
 
     public function indexAction() {
@@ -131,6 +131,7 @@ class RegistroController extends Zend_Controller_Action {
                         
             $this->view->mperson = $this->_request->getParam('mperson');
             $this->view->mhresum = $this->_request->getParam('mhresum');
+            $this->view->dperson = $this->_request->getParam('dperson');
             $this->view->cperiod = date("Y");            
             
         }

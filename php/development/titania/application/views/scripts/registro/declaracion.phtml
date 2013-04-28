@@ -4,7 +4,7 @@
 <input type="hidden" id="hdnIdDeclaracion" value="<?php echo $this->mhresum; ?>"/>
 <input type="hidden" id="hdnIdPersona" value="<?php echo $this->mperson; ?>"/>
 <input type="hidden" id="hdnAnioTermino" value="<?php echo $this->cperiod; ?>"/>
-<table class="ui-table-panelLayout" border="0" width="100%">
+<table class="ui-table-panelLayout" border="1" width="100%">
     <tr>
          <td colspan="2" style="text-align: left ;width: 130px; font-size:16px;color:navy;">Declaraci&oacute;n Jurada:
          <div style="font-size:16px;color:navy;" style="width: 100px" id="txtNroDeclaracion" ></div></td>
@@ -38,10 +38,10 @@
 			        </table>
 	         </div>  
 	      </td>
-	      <td id="dvBajalt" colspan="3" width="350">
+	      <td id="dvBajalt" colspan="3" width="350" height="100%">
 	     		<div>
-	     		<table border="0">
-				<tr>
+	     		<table border="1" height="100%">
+	     		<!-- 				<tr>
 				<td height="100">Predio: </td>
 				<td height="120"><input id="txtMpredio" type="hidden" /><input id="txtDirecpred" type="hidden" style="width:100%"/>
 				    <input id="txtCodPre" class="ui-text-disable"/><br/>
@@ -50,10 +50,26 @@
 				 </td> 
 				<td height="120"  align="center" > <button id="btnVerPredios" style="line-height: 20px; height: 20px;" >Buscar</button> </td>
 				</tr>
+				-->
 				<tr>
-				 		<td colspan="3">				    
-								<div id="panelResultmPredio">							
-								<table id="tblResultmPredio"></table>
+				 		<td colspan="3" height="350">				    
+								<div id="panelResultmPredio">
+								<h1> Personas Participantes </h1>
+								<br/>
+								<button id="btnAgreParti">Agregar</button>							
+								<table id="tblResultmPredio" border="1">
+								<tr>
+									<td>Codigo</td>
+									<td>Nombre</td>
+									<td>Tipo Propietario</td>  
+								</tr>
+								<tr>
+								<tr>
+									<td><?php echo $this->mperson; ?></td>
+									<td><?php echo $this->dperson; ?></td>
+									<td ><input type="hidden" id="txt_tipprop1" /> </td>
+								</tr>
+								</table>
 								<div id="ptblResultmPredio"></div>
 								</div>
 				   		</td>	
@@ -98,6 +114,13 @@
         });
         
         themeComboBox("#cellMotivo select");
+
+		$("#btnAgreParti").click(function(){
+			openDialog2("registro/busqprediocontr",  "300", "150", "Persona");     
+		}); 
+    
+
+        
         
         $("#btnAceptarDeclaracion").button({
             icons: {primary:'ui-icon-check'}
@@ -152,31 +175,18 @@
     		//alert(""+$("#txtMotivo").val());
     		//1000000008 --Compra
     		//1000000009 --Venta
-	  		
-			/*if ( $("#txtMotivo").val()=='COMPRA' ||  $("#txtMotivo").val()=='VENTA' ){
-				$("#dvBajalt").show();			  		
-    		}else{
-    			$("#dvBajalt").hide();		
-    		}*/  
-		  if ( $("#cboMotivo").val()=='2' ||  $("#cboMotivo").val()=='3' ){
+	  		 
+		  /*if ( $("#cboMotivo").val()=='2' ||  $("#cboMotivo").val()=='3' ){
 				$("#dvBajalt").show();			  		
 			}else{
 				$("#dvBajalt").hide();		
-		 	}
-	  }	
-
-	 /* $("#cboMotivo").change(function(){
-		  if ( $("#cboMotivo").val()=='2' ||  $("#cboMotivo").val()=='3' ){
-				$("#dvBajalt").show();			  		
-			}else{
-				$("#dvBajalt").hide();		
-		 	}
-	   	  });*/  	 
+		 	}*/
+	  }	  	 
 
         $("#txtMotivo").bind("autocompleteselect", verificar);
         $("#txtMotivo").bind("autocompletechange", verificar);
 
-    	$("#dvBajalt").hide();	
+    	//$("#dvBajalt").hide();	
 
 
         $("#btnVerPredios").button({
