@@ -47,8 +47,9 @@ guardar = function() {
 			vdirpre: $("#txtviacentrpob").val()+' '+ $("#txtnumero").val()+' ' + $("#txtinterior").val()+' ' + $("#txtletra").val()+' '+ $("#txtdepart").val() +' '+  $("#txtestacio").val() +' '+  $("#txtdeposito").val() +' '+  $("#txtreferencia").val() +' '+  $("#txtmanzana").val() +' '+ $("#txtlote").val() , 
 			nestado: "1" ,
 			ccodpre: 0 ,
-			ctippre: '1000000090' ,
-			idanexo: 0 ,
+			//ctippre: '1000000090' ,
+			ctippre: $("#cbotipopredio").val(),
+			idanexo: 0 , 
 			ccodcuc: 0,
 			nlatitu: $("#txt_nlatitu").val() ,
 			nlongit: $("#txt_nlongit").val() ,
@@ -100,7 +101,9 @@ guardar = function() {
         
     }).bind('click', function(){
     	isValid = true;
-    	
+
+    	if ($("#cbotipopredio").val()==''){
+    	}
     	
     	if(($("#txt_mviadis").val().length ==0) && ($("#txt_mpoblad").val().length ==0)  ) {
 			openDialogWarning("Busque una Via y Centro Poblado.", 380, 150);	
@@ -108,7 +111,7 @@ guardar = function() {
        		return;
    		}
 
-		if(($("#txtnumero").val().length ==0) || ($("#txtmanzana").val().length ==0) && ($("#txtlote").val().length ==0)  ) {
+		if(($("#txtnumero").val().length ==0) && ($("#txtmanzana").val().length ==0) && ($("#txtlote").val().length ==0)  ) {
 			openDialogWarning("Ingrese el numero o la manzana y el lote.", 380, 150);	
 			isValid = false; 
        		return;
@@ -151,6 +154,9 @@ guardar = function() {
 				</div>
 				<div class="ui-widget-content ui-corner-bottom">
 					<table cellspacing="5" style="margin: 3px;" class="ui-table-panelLayout" border="0">
+					    <tr>
+					      <td colspan="1">Tipo Predio:</td><td colspan="3"><select id="cbotipopredio"><?php echo $this->util()->getComboContenedor('1000000089', null); ?></select> </td>
+					    </tr>
 						<tr> 
 						   <td colspan="4">Centro Poblado          y            Via: </td> 	
 						</tr>
@@ -232,36 +238,13 @@ guardar = function() {
 	</table>
 </div>
 <br/>
+ 
 
 
-<?php
-                          
-                          $doc=new DOMDocument();						
-                        $direccion="Puente Piedra, Lima, Peru";
-                        //$direccion=$datos[0]["direccion"]." "."puente piedra";
-							$xml="http://maps.googleapis.com/maps/api/geocode/xml?address=".$direccion."&sensor=true";
-    // echo $xml;
-                            $doc->load($xml);
-
-							$persona=$doc->getElementsByTagName("result");
-
-							foreach ($persona as $p)
-							{
-									$latitud=$p->getElementsByTagName("lat");
-									$latitud=$latitud->item(0)->nodeValue;
-									
-									$longitud=$p->getElementsByTagName("lng");
-									$longitud=$longitud->item(0)->nodeValue;
-									
-									//echo "latitud=".$latitud." - longitud=".$longitud."<br>";
-							}
-							
-?>
 
 <script type="text/javascript">
 
- 
-	
+/*
 	  var map = null,
 		  image = pathImage + '../img/casa.png',
 		  markersArray = [],
@@ -273,9 +256,9 @@ guardar = function() {
      	//alert($("#txt_nlongit").val());		    
 	     	
 		if ($("#txt_nlatitu").val()=='1' && $("#txt_nlongit").val()=='1') {
-			latitud  = <?php echo $latitud;?>; 
-			longitud = <?php echo $longitud;?>;
-		}
+			latitud  = "1"; 
+			longitud = "1";
+		} 
 		else {
 			latitud = $("#txt_nlatitu").val();
 			longitud= $("#txt_nlongit").val(); 
@@ -345,7 +328,7 @@ guardar = function() {
  
 			var marker = new google.maps.Marker({
 		          map: map,
-				  title: "<?php echo $direccion;?>",
+				  title: "Direccion",
 				  draggable: true,
 		          position: latLng
 		        }); 
@@ -376,23 +359,21 @@ guardar = function() {
 					geocodePosition(marker.getPosition());
 				  });
   
-				   
-//
 				  google.maps.event.addListener(map, 'zoom_changed', function() {
 					    var zoomLevel = map.getZoom();
 					    
 					    //infowindow.setContent('Zoom: ' + zoomLevel);
-//
+
 					    $("#txt_nzoom").val(zoomLevel);
-//
+
 					    //alert(zoomLevel);
 					    
 				  });
 				
 		};
-
+*/
       $(document).ready(function() {
-		initMap(); 
+		//initMap(); 
 
 		$("#txtnumero").numeric(
 				{ decimal : "," }
