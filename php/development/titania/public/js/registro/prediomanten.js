@@ -7,6 +7,9 @@ verPredio = function(rowid, iRow, iCol, e) {
 	
     openDialogDataFunction1("registro/verprediomantt", {}, "900", "800", "Predio", function() {
     	if(row != undefined) {
+    		
+    		console.log(row);
+    		
     		$("#txt_idsigma").val(row.idsigma);
     		//$("#cbotipopredio").val(row.ctippre);
     		$("#cbotipopredio option[value="+row.ctippre+"]").attr("selected",true);
@@ -41,6 +44,8 @@ verPredio = function(rowid, iRow, iCol, e) {
 	   	    $("#txt_nlatitu").val(row.nlatitu);
 		    $("#txt_nlongit").val(row.nlongit);
 		    $("#txt_nzoom").val(row.nzoom);							
+
+      	  mapa($("#txt_nlatitu").val(),$("#txt_nlongit").val(),$("#txt_nzoom").val()); 
 
 	 //		$("#txt_instdafecta").val(row.dafecta);     
 		    
@@ -192,6 +197,7 @@ optionmpredio= {
 	        var gsr = $("#tblResultmPredio").jqGrid('getGridParam','selrow');
 	        if(gsr){
 	        	verPredio(gsr, -1, -1, null);
+	  			
 	        } else { 
 	            openDialogWarning("Seleccione la fila a editar.", 380, 150);
 	        } 
@@ -383,6 +389,115 @@ optionmpredio= {
     }; 
 
     
+function mapa(latitud, longitud, zoom){     
+    var map = null,
+	  image = pathImage + '../img/casa.png',
+	  markersArray = [],
+	  mapOptions = null,
+	  geocoder = null;
+		
+		    		 		
+var latLng = new google.maps.LatLng(latitud, longitud);
+
+var geocoder = new google.maps.Geocoder();
+
+function geocodePosition(pos) {
+  geocoder.geocode({
+	latLng: pos
+  }, function(responses) {
+	if (responses && responses.length > 0) {
+	  updateMarkerAddress(responses[0].formatted_address);
+	} else {
+	  updateMarkerAddress('No se puede determinar la direccion actual.');
+	}
+  });
+}
+
+
+function updateMarkerStatus(str) {
+$('#markerStatus').innerHTML = str;
+}
+
+function updateMarkerPosition(latLng) {
+document.getElementById('info').innerHTML = [
+latLng.lat(),
+latLng.lng()
+].join(', ');
+
+$("#txt_nlatitu").val(latLng.lat());
+$("#txt_nlongit").val(latLng.lng());
+
+}
+
+
+function updateMarkerAddress(str) {
+	document.getElementById('address').innerHTML = str;
+}
+  
+
+ zoom = parseInt(zoom);
+
+mapOptions = {
+			scaleControl: true,
+      	zoom: zoom ,
+      	mapTypeId: google.maps.MapTypeId.ROADMAP,
+  		center: latLng
+  	};
+
+	
+		initMap = function(){
+		//clearOverlays();
+		map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+
+
+		var marker = new google.maps.Marker({
+	          map: map,
+			  //title: "Direccion",
+			  draggable: true,
+	          position: latLng
+	        }); 
+
+	        var infowindow = new google.maps.InfoWindow();
+	        infowindow.setContent('<b>Mapa</b>');
+	        google.maps.event.addListener(marker, 'click', function() {
+	            infowindow.open(map, marker);
+	        });
+
+
+			  // Update current position info.
+			  updateMarkerPosition(latLng);
+			  geocodePosition(latLng);
+			  
+			  // Add dragging event listeners.
+			  google.maps.event.addListener(marker, 'dragstart', function() {
+				updateMarkerAddress('Dragging...');
+			  });
+			  
+			  google.maps.event.addListener(marker, 'drag', function() {
+				updateMarkerStatus('Dragging...');
+				updateMarkerPosition(marker.getPosition());
+			  });
+			  
+			  google.maps.event.addListener(marker, 'dragend', function() {
+				updateMarkerStatus('Drag ended');
+				geocodePosition(marker.getPosition());
+			  });
+
+			  google.maps.event.addListener(map, 'zoom_changed', function() {
+				    var zoomLevel = map.getZoom();
+				    
+				    //infowindow.setContent('Zoom: ' + zoomLevel);
+
+				    $("#txt_nzoom").val(zoomLevel);
+
+				    //alert(zoomLevel);
+				    
+			  });
+			
+	};
+	
+	initMap();
+};    
     
 $(function(){
 	
