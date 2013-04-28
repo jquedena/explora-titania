@@ -17,6 +17,58 @@
 </style>
 <script type="text/javascript">
 
+guardar = function() {
+	row = { 
+			idsigma: $("#txt_idsigma").val(),
+			mviadis: $("#txt_mviadis").val(),
+			dnumero: $("#txtnumero").val(),
+			dinteri: $("#txtinterior").val(),
+			dletras: $("#txtletra").val(),        			
+			ddepart: $("#txtdepart").val(),
+			destaci: $("#txtestacio").val(),  
+			ddeposi: $("#txtdeposito").val(),     
+			drefere: $("#txtreferencia").val(),
+			dmanzan: $("#txtmanzana").val(),     
+			dnlotes: $("#txtlote").val(),
+			ccatast: 0,    
+			cplanos: 0,
+			ctipmer: "0",      
+			dnummer: "0",
+			cdiscat: "0",		
+			czoncat: $("#txtczoncat").val(),      
+			cmzacat: $("#txtcmzacat").val(),
+			cseccat: $("#txtcseccat").val(),
+			cltecat: $("#txtcltecat").val(), 
+			cundcat: $("#txtcundcat").val(),
+			dbloque: $("#txtbloque").val() ,
+			dseccio: $("#txtseccion").val(),
+			dunidad: $("#txtunidinmob").val(),
+			mpoblad: $("#txt_mpoblad").val(),
+			vdirpre: $("#txtviacentrpob").val()+' '+ $("#txtnumero").val()+' ' + $("#txtinterior").val()+' ' + $("#txtletra").val()+' '+ $("#txtdepart").val() +' '+  $("#txtestacio").val() +' '+  $("#txtdeposito").val() +' '+  $("#txtreferencia").val() +' '+  $("#txtmanzana").val() +' '+ $("#txtlote").val() , 
+			nestado: "1" ,
+			ccodpre: 0 ,
+			ctippre: '1000000090' ,
+			idanexo: 0 ,
+			ccodcuc: 0,
+			nlatitu: $("#txt_nlatitu").val() ,
+			nlongit: $("#txt_nlongit").val() ,
+			nzoom: $("#txt_nzoom").val()
+			 
+	};
+
+	_post = $.post(path + "registro/guardarmpredio", row);
+    _post.success(function(data){
+    	
+		openDialogWarning("Los datos han sido guardados.", 380, 150);
+		  
+		closeDialog('jqDialog1');
+		
+		location.reload();
+	});
+    //_post.error(postError);	
+};
+
+
     var jsonVias = <?php echo json_encode($this->mviascp); ?>,
         ccodvia = '';
         cpoblad = '';
@@ -50,72 +102,24 @@
     	isValid = true;
     	
     	
-		if(($("#txt_mviadis").val().length ==0) && ($("#txt_mpoblad").val().length ==0)  ) {
+    	if(($("#txt_mviadis").val().length ==0) && ($("#txt_mpoblad").val().length ==0)  ) {
+			openDialogWarning("Busque una Via y Centro Poblado.", 380, 150);	
 			isValid = false;
-       		//return;
+       		return;
    		}
 
+		if(($("#txtnumero").val().length ==0) || ($("#txtmanzana").val().length ==0) && ($("#txtlote").val().length ==0)  ) {
+			openDialogWarning("Ingrese el numero o la manzana y el lote.", 380, 150);	
+			isValid = false; 
+       		return;
+   		} 
+   
 	
 	if(!isValid) {
 			openDialogWarning("Los campos deben estar llenos.", 380, 150);	
 			return false;
 	} else {
-		//GuardarPiso();
-
-	     guardar = function() {
-	        	row = { 
-	        			idsigma: $("#txt_idsigma").val(),
-	        			mviadis: $("#txt_mviadis").val(),
-	        			dnumero: $("#txtnumero").val(),
-	        			dinteri: $("#txtinterior").val(),
-	        			dletras: $("#txtletra").val(),        			
-	        			ddepart: $("#txtdepart").val(),
-	        			destaci: $("#txtestacio").val(),  
-	        			ddeposi: $("#txtdeposito").val(),     
-	        			drefere: $("#txtreferencia").val(),
-	        			dmanzan: $("#txtmanzana").val(),     
-	        			dnlotes: $("#txtlote").val(),
-	        			ccatast: 0,    
-	        			cplanos: 0,
-	        			ctipmer: "0",      
-	        			dnummer: "0",
-	        			cdiscat: "0",		
-	        			czoncat: $("#txtczoncat").val(),      
-	        			cmzacat: $("#txtcmzacat").val(),
-	        			cseccat: $("#txtcseccat").val(),
-	        			cltecat: $("#txtcltecat").val(), 
-	        			cundcat: $("#txtcundcat").val(),
-	        			dbloque: $("#txtbloque").val() ,
-	        			dseccio: $("#txtseccion").val(),
-	        			dunidad: $("#txtunidinmob").val(),
-	        			mpoblad: $("#txt_mpoblad").val(),
-	        			vdirpre: $("#txtviacentrpob").val()+' '+ $("#txtnumero").val()+' ' + $("#txtinterior").val()+' ' + $("#txtletra").val()+' '+ $("#txtdepart").val() +' '+  $("#txtestacio").val() +' '+  $("#txtdeposito").val() +' '+  $("#txtreferencia").val() +' '+  $("#txtmanzana").val() +' '+ $("#txtlote").val() , 
-	        			nestado: "1" ,
-	        			ccodpre: 0 ,
-	        			ctippre: 0 ,
-	        			idanexo: 0 ,
-	        			ccodcuc: 0,
-	        			nlatitu: $("#txt_nlatitu").val() ,
-	        			nlongit: $("#txt_nlongit").val() ,
-	        			nzoom: $("#txt_nzoom").val()
-	        			 
-	        	};
-
-	        	_post = $.post(path + "registro/guardarmpredio", row);
-	            _post.success(function(data){
-	            	
-	        		openDialogWarning("Los datos han sido guardados.", 380, 150);
-	        		  
-	        		closeDialog('jqDialog1');
-	        		
-	        		location.reload();
-	        	});
-	            _post.error(postError);	
-	        };
-	        
 	         guardar();  
-	
-		
 	} 
 		
     });
@@ -123,7 +127,7 @@
       $("#btncancelar").button({
         icons: {primary:'ui-icon-arrowreturnthick-1-w'}
     }).bind('click', function(){
-        location.href = path + "registro/prediomanten";
+    	closeDialog('jqDialog1');
     });
 
 </script>
