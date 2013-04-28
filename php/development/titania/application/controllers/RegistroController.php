@@ -87,12 +87,14 @@ class RegistroController extends Zend_Controller_Action {
 	            $dataAdapter->saveQuery("tblInstalacion", "pl_function.listar_instalacion", $parameters);
 	            $dataAdapter->saveQuery("tblLindero", "pl_function.listar_lindero", $parameters);
 	            $dataAdapter->saveQuery("tblRustico", "pl_function.listar_caracteristica_rustico", $parameters);
+	            
+	            $pintar=new Libreria_Pintar();        
+           		 $val[]=array('ccodpre',$rows [0]['ccodpre2'],'val');
+           		 $pintar->PintarValor($val);
             }
         }
         
-        	$pintar=new Libreria_Pintar();        
-            $val[]=array('ccodpre',$rows [0]['ccodpre2'],'val');
-            $pintar->PintarValor($val);
+        	
         
     }
 
@@ -781,7 +783,7 @@ class RegistroController extends Zend_Controller_Action {
             $dataAdapter = new Model_DataAdapter();
             $rows = $dataAdapter->executeSelect("pl_function.guardar_mpredio", $parameters);
             
-            print_r($rows);
+            //print_r($rows);
         
             if($rows[0][0] == 1) {
                                   
@@ -1103,7 +1105,8 @@ class RegistroController extends Zend_Controller_Action {
             $val[]=array( 'txtdepart' ,$rows2[0]['ddepart']  ,'val');
             $val[]=array( 'txtmanzana' ,$rows2[0]['dmanzan']  ,'val');
             $val[]=array( 'txtlote' ,$rows2[0]['dnlotes']  ,'val');
-                                 
+			$val[]=array( 'txt_ctippre' ,$rows2[0]['ctippre']  ,'val');
+            
 			
 			$pintar->PintarValor($val);
             }

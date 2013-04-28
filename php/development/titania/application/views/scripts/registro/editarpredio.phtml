@@ -73,9 +73,9 @@
     			mpoblad: $("#txt_mpoblad").val(),
     			vdirpre: $("#txtviacentrpob").val()+' '+ $("#txtnumero").val()+' ' + $("#txtinterior").val()+' ' + $("#txtletra").val()+' '+ $("#txtdepart").val() +' '+  $("#txtestacio").val() +' '+  $("#txtdeposito").val() +' '+  $("#txtreferencia").val() +' '+  $("#txtmanzana").val() +' '+ $("#txtlote").val() , 
     			nestado: 1 ,
-    			ccodpre: 0 ,
-    			ctippre: 0 ,
-    			idanexo: 0 ,
+    			ccodpre: $("#txtcodpre").val() ,
+    			ctippre: $("#txt_ctippre").val() ,
+    			idanexo: 0 , 
     			ccodcuc: 0,
     			nlatitu: $("#txt_nlatitu").val() ,
     			nlongit: $("#txt_nlongit").val() ,
@@ -87,13 +87,17 @@
     	
         _post.success(function(data){
 
+ 			console.log(data);
+        	
+        	openDialogWarning("Los datos han sido guardados.", 380, 150);
+        	
             $("#ajaxeditpred").html(data); 
 
-        	alert(data.mpredio2[0].tnumero); 
+        	//alert(data.mpredio2[0].tnumero); 
         	 
        	 	$("#lblDireccion").html(data.mpredio2[0].tnumero);
        	 	
-    		openDialogWarning("Los datos han sido guardados.", 380, 150);
+    		
     		  
     	
     	});
@@ -102,7 +106,7 @@
     };
     
 
-      $("#btnguardar").button({
+      $("#btnguardardatpredio").button({
         icons: {primary:'ui-icon-disk'}
         
     }).bind('click', function(){
@@ -110,8 +114,15 @@
     	
     	
 		if(($("#txt_mviadis").val().length ==0) && ($("#txt_mpoblad").val().length ==0)  ) {
+			openDialogWarning("Busque una Via y Centro Poblado.", 380, 150);	
 			isValid = false;
-       		//return;
+       		return;
+   		}
+
+		if(($("#txtnumero").val().length ==0) && ($("#txtmanzana").val().length ==0) && ($("#txtlote").val().length ==0)  ) {
+			openDialogWarning("Ingrese el numero o la manzana y el lote.", 380, 150);	
+			isValid = false; 
+       		return;
    		}
 
 	
@@ -331,13 +342,14 @@
 							<td> <input id="txt_idsigma" type="hidden" class="ui-text" style="width:250px;padding:2px;"/>
 								<input id="txt_mviadis" type="hidden" class="ui-text" style="width:250px;padding:2px;"/>
 								<input id="txt_mpoblad" type="hidden" class="ui-text" style="width:250px;padding:2px;"/>
+								<input id="txt_ctippre" type="hidden" class="ui-text" style="width:250px;padding:2px;"/>
 								 <input id="txt_nlatitu" type="hidden" class="ui-text" style="width:250px;padding:2px;" value='1'/>
 								 <input id="txt_nlongit" type="hidden" class="ui-text" style="width:250px;padding:2px;" value='1'/>
 								 <input id="txt_nzoom" type="hidden" class="ui-text" style="width:250px;padding:2px;" value='1' />							
 							</td>
 						</tr> 
 						<tr>
-							<td colspan="4" align="right"><button id="btnguardar" name="btnguardar">Aceptar</button>&nbsp;&nbsp;<button id="btncancelar">Cancelar</button></td>
+							<td colspan="4" align="right"><button id="btnguardardatpredio" name="btnguardardatpredio">Aceptar</button>&nbsp;&nbsp;<button id="btncancelar">Cancelar</button></td>
 						</tr>
 <!--						<tr>-->
 <!--						<td colspan="4" style="visibility:hidden;" ><div id="map_canvas" style="width:700px; "></div>-->
