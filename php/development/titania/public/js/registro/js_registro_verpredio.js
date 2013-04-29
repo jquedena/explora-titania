@@ -423,7 +423,7 @@ loadVerDetalle = function(){
         icons: {primary:'ui-icon-calculator'}
     }).bind('click', function(){
         // location.href = path + "registro";
-    	window.open(pathReport+"reporte=Report_Completo&opt=p_mhresum^" + $("#_mhresum").val() + "|p_cperiod^"+$("#cboPeriodo option:selected").text()  +"|p_ccodpre^"+$("#lblPredio").html()+"|p_mperson^" + $("#lblCodigo").html(), '_blank');
+    	window.open(pathReport+"reporte=Report_Completo&opt=p_mhresum^" + $("#_mhresum").val() + "|p_cperiod^"+$("#cboPeriodo option:selected").text()  +"|p_ccodpre^"+$("#ccodpre").val()+"|p_mperson^" + $("#lblCodigo").html(), '_blank');
     });
 
     $("#btnSubirFoto").button({
