@@ -168,111 +168,9 @@ optionmpredio= {
 		 {name:'zona', index:'zona', width:90,hidden:true}
         ],
     caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
-    ondblClickRow: verPredio
-    	
+      	
 
 };
-
-	btnInsertarPredio = {
-	    caption: "Agregar&nbsp;&nbsp;",
-	    title: "Agrega un nuevo nivel al predio",
-	    buttonicon: "ui-icon-plus",
-	    onClickButton:function(){
-	    	verPredio();
-	    } 
-	};
-
-	btnEditarPredio = {
-	    caption: "Editar&nbsp;&nbsp;",
-	    title: "Editar el nivel seleccionado",
-	    buttonicon: "ui-icon-pencil",
-	    onClickButton:function(){
-	        var gsr = $("#tblResultmPredio").jqGrid('getGridParam','selrow');
-	        if(gsr){
-	        	verPredio(gsr, -1, -1, null);
-	        } else { 
-	            openDialogWarning("Seleccione la fila a editar.", 380, 150);
-	        } 
-	    } 
-	};
-	    
-	btnEliminarPredio = {
-	    caption: "Eliminar",
-	    title: "Eliminar Predio",
-	    buttonicon: "ui-icon-trash",
-	    onClickButton:function(){
-	        var gsr = $("#tblResultmPredio").jqGrid('getGridParam','selrow');
-	        indexRow = $("#ctblPredio").val();
-	        if(gsr){
-	        	if(confirm("Seguro de eliminar")){
-	        	//	if($("#tblResultmPredio").jqGrid('delRowData', gsr)) {
-	        			
-	        	 	var row2 = $("#tblResultmPredio").jqGrid('getRowData', gsr);
-	        		
-	        	 	
-	        			row = {
-	        			idsigma: row2.idsigma,
-	        			dnumero: row2.dnumero,	        			
-	        			zona: row2.zona,
-	        			ccatast: row2.ccatast,
-	        			cplanos: row2.cplanos,  
-	        	        czoncat: row2.czoncat,      
-	        			cmzacat: row2.cmzacat,
-	        			cseccat: row2.cseccat,
-	        			cltecat: row2.cltecat, 
-	        			cundcat: row2.cundcat,	        			
-	        	  //	$("#txt_instcnitems").val(row.cnitems);
-	        			dinteri: row2.dinteri,
-	        	  //	$("#txt_instctipdat").val(row.ctipdat);       
-	        	  //	$("#txt_instvnrodoc").val(row.vnrodoc);
-	        			dletras: row2.dletras,       
-	        	  //	$("#txt_instcmotivo").val(row.cmotivo);
-	        	  //	$("#txt_instctipdoc").val(row.ctipdoc);
-	        			ctipmer: row2.ctipmer,	        	 	
-	        			dnummer: row2.dnummer, 
-	        			cdiscat: row2.cdiscat,  
-	        			vdirpre: row2.vdirpre, 
-	        			ctippre: row2.ctippre, 
-	        			idanexo: row2.idanexo, 
-	        			ccodcuc: row2.ccodcuc, 
-	        			ccodpre: row2.ccodpre,
-	        			ddepart: row2.ddepart,
-	        			dmanzan: row2.dmanzan,      
-	        			dnlotes: row2.dnlotes,
-	        	   		drefere: row2.drefere,   
-	        	   		destaci: row2.destaci,    
-	        	   		ddeposi: row2.ddeposi,  	        	   	   
-	        	   		dbloque: row2.dbloque,     
-	        	   		dseccio: row2.dseccio,    
-	        	   		dunidad: row2.dunidad,  
-	        	   		mviadis: row2.mviadis,
-	        	   		mpoblad: row2.mpoblad,
-	        	   		nlatitu: row2.nlatitu,
-	        	   	    nlongit: row2.nlongit,
-	        		    nzoom: row2.nzoom,
-	        		    nestado: "0"	        			
-	        			};
-
-	        		_post = $.post(path + "registro/guardarmpredio", row);
-	        	    _post.success(function(data){
-	        	    	
-	        	    	//location.reload();
-	        		});
-	        			
-	        			
-	        			
-	        			$("#ctblPredio").val(indexRow - 1);
-//	        		} else {
-//	        			alert('Error no se pudo eliminar');
-//	        		}
-	        	}
-	            console.log(gsr);
-	            // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
-	        } else { 
-	            openDialogWarning("Seleccione la fila a eliminar.", 380, 150);
-	        } 
-	    } 
-	};
 
 
  navPanelPredio = function() {
@@ -379,8 +277,6 @@ optionmpredio= {
     
 $(function(){
 	
-	
-
 
     buscarmpredio();
     
@@ -388,6 +284,8 @@ $(function(){
     	buscarmpredio2();
     });
     
+    
+   
     themeTextBox();
     themeComboBox();
 //---

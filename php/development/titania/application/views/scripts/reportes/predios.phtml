@@ -57,8 +57,25 @@
 <script type="text/javascript">
 
 $(function(){
-   	
 
+
+	$("#c_predial").val('');
+	$("#c_viacontrib").val('');
+	$("#c_nroviacontrib").val('');
+	$("#c_mzacontrib").val('');
+	$("#c_lotecontrib").val('');
+	
+	var  pathReport="<?php echo $this->util()->getPathReport(); ?>"
+
+		$("#btnImprimir").button({
+		       icons: {primary:'ui-icon-calculator'}
+		   }).bind('click', function(){
+		       // location.href = path + "registro";
+		           
+		window.open(pathReport+"reporte=rptpredios&opt=p_ccodpre^" + $("#c_predial").val() + "|p_ccodvia^"+$("#c_viacontrib").val()+"|p_cnrovia^" + $("#c_nroviacontrib").val()+"|p_cmanzan^"+$("#c_mzacontrib").val()+ "|p_cnrlote^"+$("#c_lotecontrib").val()+'_blank');
+		   });
+	   
+			
 	var jsonVias = <?php echo json_encode($this->mviascp); ?>,
 	        ccodvia = '';
 	        cpoblad = '';
