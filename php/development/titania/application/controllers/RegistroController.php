@@ -1287,6 +1287,87 @@ class RegistroController extends Zend_Controller_Action {
     	}
 		
 	}
+  
+	public function guardarrusticoAction(){
+		
+			$this->_helper->getHelper('ajaxContext')->initContext();
+    
+    	if ($this->getRequest()->isXmlHttpRequest()) {
+    		$this->_helper->layout->disableLayout();
+
+    		$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+    		$coduser = $ddatosuserlog->cidpers;
+    		$vhostnm = $ddatosuserlog->vhostnm;
+   		
+			  		/*    cubinor  
+  						  cubisur 
+						  cubiest 
+						  cubioes 
+						  cpronor 
+						  cprosur 
+						  cproest 
+						  cprooes 
+						  cpculti 
+						  canagua 
+						  nestado
+					*/	  
+			  		
+			  		
+			  $row = $_POST['idsigma'].','
+			  		 .$_POST['dpredio'].','
+			  		 .''.','
+			  		 .''.','
+			  		 .''.','
+			  		 .''.','
+			  		 .''.','
+			  		 .''.','
+			  		 .''.','
+			  		 .''.','
+			  		 .''.','
+			  		 .''.','
+					 .$_POST['nestado'].','
+					 .$vhostnm.','
+			  		.$coduser.','  
+			 		.date("y-m-d");			  		 			  		 
+					
+			$parameters[] = $row;
+			$dataAdapter = new Model_DataAdapter();
+    		$rows = $dataAdapter->executeSelect("pl_function.guardar_mrustic", $parameters);
+   		    	   
+    		
+      		 $row2 =  $_POST['idsigma'].',' 
+					 .$rows[0][0].','
+			  		 .$_POST['cclasif'].','
+			  		 .$_POST['ccatego'].','
+			  		 .$_POST['narance'].','
+			  		 .$_POST['nhectar'].','
+			  		 .$_POST['nvalrus'].','
+			  		 .$_POST['nestado'].','
+			  		 .$vhostnm.','
+			  		 .$coduser.','  
+			 		 .date("y-m-d").','
+			 		 .$_POST['cperiod'];
+			  		  
+			$parameters2[] = $row2; 
+			$dataAdapter2 = new Model_DataAdapter();
+    		$rows2 = $dataAdapter->executeSelect("pl_function.guardar_drustic", $parameters2);
+    		
+    		if($rows> 0) {
+    			$parameters3 = array($_POST['dpredio'], $_POST["cperiod"]);
+
+    			$data['error'] = "";
+    			$data['data'] = $dataAdapter->executeAssocQuery("pl_function.listar_caracteristica_rustico", $parameters3);
+    		} else {
+    			$data['error'] = "Error al actualizar";
+    			$data['data'] = "";
+    		}
+    		
+    		$this->_helper->json($data); 		 
+      		     		
+    		}
+		
+		
+	}
 	
 }  
 

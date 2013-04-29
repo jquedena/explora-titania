@@ -483,8 +483,7 @@ loadVerDetalle = function(){
         $("#tblRustico").jqGrid('navButtonAdd','#ptblRustico', btnEditarRustico);
         $("#tblRustico").jqGrid('navSeparatorAdd','#ptblRustico');
         $("#tblRustico").jqGrid('navButtonAdd','#ptblRustico', btnEliminarRustico);
-    });
-    
+    });    
     
 //    actualizarGrid("tblDatosTributo", optionTributo, null,function(){
 //        $("#tblDatosTributo").jqGrid('navGrid', '#ptblDatosTributo', {edit:false, add:false, del:false, search:false, refresh:false});       

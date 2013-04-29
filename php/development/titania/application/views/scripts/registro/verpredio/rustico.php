@@ -93,12 +93,48 @@
     		        var gsr = $("#tblRustico").jqGrid('getGridParam','selrow');
     		        indexRow = $("#ctblRustico").val();
     		        if(gsr){
-    		        	if(confirm("Seguro de eliminar")){
-    		        		if($("#tblRustico").jqGrid('delRowData', gsr)) {
+    		        	if(confirm("Seguro de eliminar")){        		        	
+    		        		/*if($("#tblRustico").jqGrid('delRowData', gsr)) {
     		        			$("#ctblRustico").val(indexRow - 1);
     		        		} else {
     		        			alert('Error no se pudo eliminar');
-    		        		}
+    		        		}*/ 
+
+    	        			var row2 = $("#tblRustico").jqGrid('getRowData', gsr);
+
+    		        		row = $.extend(row, {
+    		        			
+    		        			vclasif: row2.vclasif,
+    		        			vcatego: row2.vcatego,
+    		        			narance: row2.narance,
+    		        			nhectar: row2.nhectar,
+    		              		nvalrus: row2.nvalrus,
+    		              		idsigma: row2.idsigma, //"0000000009"
+    		              		mrustic: row2.mrustic,
+    		              		cclasif: row2.cclasif,
+    		              		ccatego: row2.ccatego,
+    		              		dpredio: row2.dpredio,
+    		              		nestado: '0',
+    		              		cperiod: row2.cperiod
+    		        		});
+    		        		console.log(row);
+    		        		
+    		        		_post = $.post(path + "registro/guardarrustico", row);
+    		        	    _post.success(function(data){
+    		        	    	optionRustico = $.extend(optionRustico, {data: data.data});
+    		        	    	procesarJSON("panelRustico", "tblRustico", optionRustico, null, function(){
+    		        	            $("#tblRustico").jqGrid('navGrid', '#ptblRustico', {edit:false, add:false, del:false, search:false, refresh:false});
+    		        	            $("#tblRustico").jqGrid('navButtonAdd', '#ptblRustico', btnInsertarRustico);
+    		        	            $("#tblRustico").jqGrid('navSeparatorAdd','#ptblRustico');
+    		        	            $("#tblRustico").jqGrid('navButtonAdd','#ptblRustico', btnEditarRustico);
+    		        	            $("#tblRustico").jqGrid('navSeparatorAdd','#ptblRustico');
+    		        	            $("#tblRustico").jqGrid('navButtonAdd','#ptblRustico', btnEliminarRustico);
+    		        	        });
+    		        		});
+    		        	    _post.error(postError);
+    		        	    
+    		        		
+    		        		
     		        	}
     		            console.log(gsr);
     		            // $("#tblPiso").jqGrid('GridToForm',gsr,"#order"); 
