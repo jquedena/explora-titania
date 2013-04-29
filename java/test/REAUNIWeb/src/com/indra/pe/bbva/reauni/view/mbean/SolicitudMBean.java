@@ -836,12 +836,11 @@ public class SolicitudMBean extends GenericMBean {
 					showWarning("PARA RECHAZAR LA EVALUACION DEBE INGRESAR UN COMENTARIO");
 					this.status = Boolean.TRUE;
 				}else {
-					
-					/* (oficinaInvolucradoDto.getInvolucradoDto().getCargo().equals("CH1") 
-					 * || oficinaInvolucradoDto.getInvolucradoDto().getCargo().equals("CH6") 
-					 * || oficinaInvolucradoDto.getInvolucradoDto().getCargo().equals("OS8"))*/
-					
-					if (getMostrarDeclaracionJurada() && sessionMBean.getEsGerenteTerritorial() || this.dto.getResponsableSolicitante().equalsIgnoreCase(sessionMBean.getRegistro())) {
+					if(this.dto.getResponsableSolicitante().equalsIgnoreCase(sessionMBean.getRegistro()) && oficinaInvolucradoDto.getFechaVoto() == null) {
+						showWarning("PARA GUARDAR SU EVALUACIÓN, ES NECESARIO QUE INGRESE LA FECHA DE RECEPCIÓN.");
+						this.status = Boolean.TRUE;
+						continuar = false;	
+					} else if (getMostrarDeclaracionJurada() && sessionMBean.getEsGerenteTerritorial() || this.dto.getResponsableSolicitante().equalsIgnoreCase(sessionMBean.getRegistro())) {
 						if (oficinaInvolucradoDto.getOficinaSolicitudDto() != null
 							&& oficinaInvolucradoDto.getOficinaSolicitudDto().getEstadoAprobacionAjuBonDto() != null 
 							&& Long.valueOf(1034).equals(oficinaInvolucradoDto.getOficinaSolicitudDto().getEstadoAprobacionAjuBonDto().getId())
@@ -908,12 +907,12 @@ public class SolicitudMBean extends GenericMBean {
 					}
 				}
 				
-			}else {
+			} else {
 				this.status = Boolean.TRUE;
 				showWarning("PARA GRABAR LA EVALUACIÓN DEBE SELECCIONAR UN ESTADO DIFERENTE A PENDIENTE");
 			}
 			
-			return null;// retroceder();
+			return null; // retroceder();
 		} catch (Exception ex) {
 			logger.error("", ex);
 			showError("HUBO UN ERROR AL GUARDAR LA EVALUACIÓN");
@@ -1751,6 +1750,10 @@ public class SolicitudMBean extends GenericMBean {
 		this.dtoFiltro.setOficinaCedente(null);
 	}
 
+	public void listenerAsignarFechaVoto(DateSelectEvent event) {
+		this.oficinaInvolucradoDto.setFechaVoto(event.getDate());
+	}
+	
 	public void listenerAsignarFechaInicio(DateSelectEvent event) {
         this.dtoFiltro.setFechaInicio(event.getDate());
     }

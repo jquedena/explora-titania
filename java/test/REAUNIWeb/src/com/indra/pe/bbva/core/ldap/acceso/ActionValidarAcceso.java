@@ -52,6 +52,7 @@ public class ActionValidarAcceso extends HttpServlet implements Servlet {
 		ServiciosSeguridadBbva objSeguridad = null;
 		String reg = "";
 		String msg = "Usted no tiene acceso al sistema. ";
+		
 		try {
 
 			objSeguridad = new ServiciosSeguridadBbva(request);
@@ -61,7 +62,6 @@ public class ActionValidarAcceso extends HttpServlet implements Servlet {
 				iildPeUsuario = IILDPeUsuario.recuperarUsuario(reg);
 			} catch(Exception ex) {
 				logger.error("LDAP2", ex);
-				// iildPeUsuario = IIWXPeUsuario.recuperarUsuario(reg);
 			}
 			
 			if (iildPeUsuario != null) {
@@ -81,7 +81,8 @@ public class ActionValidarAcceso extends HttpServlet implements Servlet {
 					sessionMBean.setCodCargo(iildPeUsuario.getCargo().getCodigo());
 					sessionMBean.setDesCargo(iildPeUsuario.getCargo().getDescripcion());
 					sessionMBean.setPerfilDto(permisoPerfilDto.getPerfil());
-					sessionMBean.setCodOficina(iildPeUsuario.getBancoOficina().getCodigo());
+					// sessionMBean.setCodOficina(iildPeUsuario.getBancoOficina().getCodigo());
+					sessionMBean.setCodOficina("0" + iildPeUsuario.getBancoOficina().getCodigo().substring(1,4));
 					sessionMBean.setDesOficina(iildPeUsuario.getBancoOficina().getDescripcion());
 					sessionMBean.setEmail(iildPeUsuario.getEmail());
 
