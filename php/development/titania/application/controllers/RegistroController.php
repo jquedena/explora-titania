@@ -1108,6 +1108,10 @@ class RegistroController extends Zend_Controller_Action {
             $val[]=array( 'txtlote' ,$rows2[0]['dnlotes']  ,'val');
 			$val[]=array( 'txt_ctippre' ,$rows2[0]['ctippre']  ,'val');
             
+			$val[]=array( 'txt_nlatitu' ,$rows2[0]['nlatitu']  ,'val');
+    		$val[]=array( 'txt_nlongit' ,$rows2[0]['nlongit']  ,'val');
+    		$val[]=array( 'txt_nzoom' ,$rows2[0]['nzoom']  ,'val'); 
+    			
 			
 			$pintar->PintarValor($val);
             }
