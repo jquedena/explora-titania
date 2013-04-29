@@ -68,10 +68,10 @@
 			<p:dataTable value="#{oficinaSolicitudDto.listaInvolucrados}"
 				rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"
 				var="solicitudInvolucradoDto">
-				<p:column headerText="CARGO">#{solicitudInvolucradoDto.involucradoDto.descripcionCargo}</p:column>
-				<p:column headerText="REGISTRO">#{solicitudInvolucradoDto.involucradoDto.registro}</p:column>
-				<p:column headerText="NOMBRES Y APELLIDOS">#{solicitudInvolucradoDto.involucradoDto.nombres} #{solicitudInvolucradoDto.involucradoDto.apellidoPaterno} #{solicitudInvolucradoDto.involucradoDto.apellidoMaterno}</p:column>
-				<p:column headerText="APROBACION">
+				<p:column headerText="CARGO" style="width: 90px;">#{solicitudInvolucradoDto.involucradoDto.descripcionCargo}</p:column>
+				<p:column headerText="REGISTRO" style="width: 60px;">#{solicitudInvolucradoDto.involucradoDto.registro}</p:column>
+				<p:column headerText="NOMBRES Y APELLIDOS" style="width: 200px;">#{solicitudInvolucradoDto.involucradoDto.nombres} #{solicitudInvolucradoDto.involucradoDto.apellidoPaterno} #{solicitudInvolucradoDto.involucradoDto.apellidoMaterno}</p:column>
+				<p:column headerText="APROBACION" style="width: 100px;">
 					<h:selectOneMenu style="border-width: 0px;"
 						disabled="#{(solicitudMBean.status &amp;&amp; (solicitudInvolucradoDto.estadoDto.id == 1034 || (sessionMBean.registro==solicitudMBean.dto.responsableSolicitante &amp;&amp; solicitudInvolucradoDto.estadoDtoBkp.id!=1034)))
 						|| (sessionMBean.registro==solicitudMBean.dto.responsableSolicitante &amp;&amp; solicitudInvolucradoDto.estadoDtoBkp.id!=1034)
@@ -91,6 +91,26 @@
 							update="msgs msg_alert :frmPrincipal:idTabView:pgEvaluacionesSolicitud" />  
 					</h:selectOneMenu>
 				</p:column>
+
+				<p:column headerText="FECHA" rendered="#{sessionMBean.registro==solicitudMBean.dto.responsableSolicitante}">
+					<p:calendar id="fechaVoto"
+						value="#{solicitudInvolucradoDto.fechaVoto}"
+						pattern="#{aplicacionMBean.formatoFecha}"
+						locale="es_PE"
+						label="Fecha Recepción"
+						style="width: 50px"
+						showOn="button"
+						disabled="#{(solicitudMBean.status &amp;&amp; (solicitudInvolucradoDto.estadoDto.id == 1034 || (sessionMBean.registro==solicitudMBean.dto.responsableSolicitante &amp;&amp; solicitudInvolucradoDto.estadoDtoBkp.id!=1034)))
+						|| (sessionMBean.registro==solicitudMBean.dto.responsableSolicitante &amp;&amp; solicitudInvolucradoDto.estadoDtoBkp.id!=1034)  
+						|| solicitudMBean.bloquearControles 
+						|| oficinaSolicitudDto.realizoVotoTerritorial
+						|| ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}">
+						<p:ajax event="dateSelect" listener="#{solicitudMBean.listenerAsignarFechaVoto}">
+							<f:setPropertyActionListener value="#{solicitudInvolucradoDto}" target="#{solicitudMBean.oficinaInvolucradoDto}" />
+						</p:ajax>
+					</p:calendar>
+				</p:column>
+
 				<p:column headerText="COMENTARIO">
 					<p:inputText value="#{solicitudInvolucradoDto.comentario}"
 						label="COMENTARIO"
@@ -119,8 +139,7 @@
 						style="float: rigth" action="#{solicitudMBean.grabarEvaluacion}">
 							<f:setPropertyActionListener value="#{solicitudInvolucradoDto}" target="#{solicitudMBean.oficinaInvolucradoDto}" />
 							<f:setPropertyActionListener value="#{oficinaSolicitudDto}" target="#{solicitudMBean.oficinaSolicitudDto}" />
-					</p:commandButton>
-					<!-- oficinaSolicitudDto.tipoOficinaDto.id!=1033 &amp;&amp; -->					
+					</p:commandButton>					
 				</p:column>
 			</p:dataTable>
 			<h:outputText value="#{solicitudMBean.br}" escape="false" rendered="#{oficinaSolicitudDto.tipoOficinaDto.id != 1033}"/>

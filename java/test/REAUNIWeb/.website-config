@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><website version="700">
+    <structure>
+        <description/>
+        <author/>
+        <page id="1" nid="1" servleturl="/REAUNIWeb/pages/principal.faces" src="/WebContent/pages/principal.xhtml">
+            <title>principal</title>
+            <page id="9" nid="9" servleturl="/REAUNIWeb/pages/administracion/parametro/listaCatalogosParametro.faces" src="/WebContent/pages/administracion/parametro/listaCatalogosParametro.xhtml">
+                <title>listaCatalogosParametro</title>
+                <page id="10" nid="10" servleturl="/REAUNIWeb/pages/administracion/parametro/catalogoParametro.faces" src="/WebContent/pages/administracion/parametro/catalogoParametro.xhtml">
+                    <title>catalogoParametro</title>
+                    <page id="11" nid="11" servleturl="/REAUNIWeb/pages/administracion/parametro/parametro.faces" src="/WebContent/pages/administracion/parametro/parametro.xhtml">
+                        <title>parametro</title>
+                    </page>
+                </page>
+            </page>
+            <page id="7" nid="7" servleturl="/REAUNIWeb/pages/administracion/usuarios/listaUsuario.faces" src="/WebContent/pages/administracion/usuarios/listaUsuario.xhtml">
+                <title>listaUsuario</title>
+                <page id="8" nid="8" servleturl="/REAUNIWeb/pages/administracion/usuarios/usuario.faces" src="/WebContent/pages/administracion/usuarios/usuario.xhtml">
+                    <title>usuario</title>
+                </page>
+            </page>
+            <page id="6" nid="6" servleturl="/REAUNIWeb/pages/gestion/solicitud/listaSolicitudes.faces" src="/WebContent/pages/gestion/solicitud/listaSolicitudes.xhtml">
+                <title>listaSolicitudes</title>
+                <page id="2" nid="2" servleturl="/REAUNIWeb/pages/gestion/solicitud/solicitud.faces" src="/WebContent/pages/gestion/solicitud/solicitud.xhtml">
+                    <title>solicitud</title>
+                </page>
+            </page>
+            <page id="5" nid="5" servleturl="/REAUNIWeb/pages/consulta/listaContratos.faces" src="/WebContent/pages/consulta/listaContratos.xhtml">
+                <title>listaContratos</title>
+            </page>
+            <page id="4" nid="4" servleturl="/REAUNIWeb/pages/consulta/listaContratosProcesados.faces" src="/WebContent/pages/consulta/listaContratosProcesados.xhtml">
+                <title>listaContratosProcesados</title>
+            </page>
+            <page id="3" nid="3" servleturl="/REAUNIWeb/pages/consulta/listaContratosFile.faces" src="/WebContent/pages/consulta/listaContratosFile.xhtml">
+                <title>listaContratosFile</title>
+            </page>
+        </page>
+    </structure>
+</website>

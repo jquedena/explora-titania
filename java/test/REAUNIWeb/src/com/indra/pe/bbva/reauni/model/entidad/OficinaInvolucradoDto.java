@@ -65,6 +65,10 @@ public class OficinaInvolucradoDto implements Serializable, Comparable<Object> {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
 
+    @Column(name = "FECHA_VOTO")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaVoto;
+    
     public OficinaInvolucradoDto() {
     }
 
@@ -211,5 +215,13 @@ public class OficinaInvolucradoDto implements Serializable, Comparable<Object> {
 		}
 	
 		return compare;
+	}
+
+	public Date getFechaVoto() {
+		return fechaVoto;
+	}
+
+	public void setFechaVoto(Date fechaVoto) {
+		this.fechaVoto = fechaVoto;
 	}
 }

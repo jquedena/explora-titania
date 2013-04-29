@@ -146,7 +146,7 @@ public class InvolucradoDto implements Serializable {
 
 	public CargoDto getCargoDto() {
 		List<CargoDto> listaCargoDto = null;
-		CargoDto cargoDto = null;
+		cargoDto = null;
 		@SuppressWarnings("unchecked")
 		DAOGenerico<CargoDto> cargoDAO = (DAOGenerico<CargoDto>) WebServletContextListener.getApplicationContext().getBean("daoGenerico");
 		try {

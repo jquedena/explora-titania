@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.3/Umlnotation">
+  <umlnotation:UMLDiagram xmi:id="_qbvTYLBPEeKNh-iqAG33xQ" type="Sequence" element="_qbliYrBPEeKNh-iqAG33xQ" name="sequencediagram.dnx" measurementUnit="Himetric">
+    <children xmi:type="umlnotation:UMLShape" xmi:id="_qbvTYbBPEeKNh-iqAG33xQ" element="_qbliYrBPEeKNh-iqAG33xQ" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
+      <children xmi:type="umlnotation:UMLShapeCompartment" xmi:id="_qbvTYrBPEeKNh-iqAG33xQ" type="interaction_compartment">
+        <children xmi:type="umlnotation:UMLShape" xmi:id="_uFr1kLBPEeKNh-iqAG33xQ" element="_uEfiwLBPEeKNh-iqAG33xQ" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
+          <eAnnotations xmi:id="_uF1mkLBPEeKNh-iqAG33xQ" source="com.ibm.xtools.uml.ui.diagram.internal.styles">
+            <details xmi:id="_uF1mkbBPEeKNh-iqAG33xQ" key="LifelineLabelStyle" value="Represents Name Only"/>
+          </eAnnotations>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_uF1mkrBPEeKNh-iqAG33xQ" type="Stereotype"/>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_uF1mk7BPEeKNh-iqAG33xQ" type="Name"/>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_uF1mlLBPEeKNh-iqAG33xQ" type="Parent"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uFr1kbBPEeKNh-iqAG33xQ" x="185" y="132" width="3252" height="11853"/>
+        </children>
+        <children xmi:type="umlnotation:UMLShape" xmi:id="_nZnwwLBQEeKNh-iqAG33xQ" element="_nZd_wLBQEeKNh-iqAG33xQ" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
+          <eAnnotations xmi:id="_nZnwwrBQEeKNh-iqAG33xQ" source="com.ibm.xtools.uml.ui.diagram.internal.styles">
+            <details xmi:id="_nZnww7BQEeKNh-iqAG33xQ" key="LifelineLabelStyle" value="Represents Name Only"/>
+          </eAnnotations>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_nZnwxLBQEeKNh-iqAG33xQ" type="Stereotype"/>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_nZnwxbBQEeKNh-iqAG33xQ" type="Name"/>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_nZnwxrBQEeKNh-iqAG33xQ" type="Parent"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nZnwwbBQEeKNh-iqAG33xQ" x="476" y="132" width="3940" height="11853"/>
+        </children>
+        <children xmi:type="umlnotation:UMLShape" xmi:id="_BejSQrBREeKNh-iqAG33xQ" element="_BejSQLBREeKNh-iqAG33xQ" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
+          <eAnnotations xmi:id="_BejSRLBREeKNh-iqAG33xQ" source="com.ibm.xtools.uml.ui.diagram.internal.styles">
+            <details xmi:id="_BejSRbBREeKNh-iqAG33xQ" key="LifelineLabelStyle" value="Represents Name Only"/>
+          </eAnnotations>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_BejSRrBREeKNh-iqAG33xQ" type="Stereotype"/>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_BejSR7BREeKNh-iqAG33xQ" type="Name"/>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_BejSSLBREeKNh-iqAG33xQ" type="Parent"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BejSQ7BREeKNh-iqAG33xQ" x="185" y="132" width="4309" height="10424"/>
+        </children>
+        <children xmi:type="umlnotation:UMLShape" xmi:id="_df1pwLC0EeK09qHJDrXJdg" element="_dddEILC0EeK09qHJDrXJdg" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
+          <eAnnotations xmi:id="_df1pwrC0EeK09qHJDrXJdg" source="com.ibm.xtools.uml.ui.diagram.internal.styles">
+            <details xmi:id="_df1pw7C0EeK09qHJDrXJdg" key="LifelineLabelStyle" value="Represents Name Only"/>
+          </eAnnotations>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_df_awLC0EeK09qHJDrXJdg" type="Stereotype"/>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_dgJLwLC0EeK09qHJDrXJdg" type="Name"/>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_dgJLwbC0EeK09qHJDrXJdg" type="Parent"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_df1pwbC0EeK09qHJDrXJdg" x="268" y="132" width="3409" height="9525"/>
+        </children>
+        <children xmi:type="umlnotation:UMLShape" xmi:id="_e64rcLC0EeK09qHJDrXJdg" element="_e6vhgLC0EeK09qHJDrXJdg" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
+          <eAnnotations xmi:id="_e64rcrC0EeK09qHJDrXJdg" source="com.ibm.xtools.uml.ui.diagram.internal.styles">
+            <details xmi:id="_e64rc7C0EeK09qHJDrXJdg" key="LifelineLabelStyle" value="Represents Name Only"/>
+          </eAnnotations>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_e64rdLC0EeK09qHJDrXJdg" type="Stereotype"/>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_e64rdbC0EeK09qHJDrXJdg" type="Name"/>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_e64rdrC0EeK09qHJDrXJdg" type="Parent"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_e64rcbC0EeK09qHJDrXJdg" x="185" y="132" width="3513" height="9525"/>
+        </children>
+        <children xmi:type="umlnotation:UMLShape" xmi:id="_i_9DYLC0EeK09qHJDrXJdg" element="_i_z5cLC0EeK09qHJDrXJdg" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
+          <eAnnotations xmi:id="_i_9DYrC0EeK09qHJDrXJdg" source="com.ibm.xtools.uml.ui.diagram.internal.styles">
+            <details xmi:id="_i_9DY7C0EeK09qHJDrXJdg" key="LifelineLabelStyle" value="Represents Name Only"/>
+          </eAnnotations>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_i_9DZLC0EeK09qHJDrXJdg" type="Stereotype"/>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_i_9DZbC0EeK09qHJDrXJdg" type="Name"/>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_i_9DZrC0EeK09qHJDrXJdg" type="Parent"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_i_9DYbC0EeK09qHJDrXJdg" x="185" y="132" width="3252" height="9525"/>
+        </children>
+      </children>
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_qbvTY7BPEeKNh-iqAG33xQ" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qbvTZLBPEeKNh-iqAG33xQ" x="793" y="793"/>
+    </children>
+  </umlnotation:UMLDiagram>
+  <uml:Package xmi:id="_qbliYLBPEeKNh-iqAG33xQ">
+    <packagedElement xmi:type="uml:Collaboration" xmi:id="_qbliYbBPEeKNh-iqAG33xQ">
+      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_qbliYrBPEeKNh-iqAG33xQ">
+        <ownedConnector xmi:id="_HJ0BZbBQEeKNh-iqAG33xQ">
+          <end xmi:id="_HJ0BZrBQEeKNh-iqAG33xQ" role="_F9qXUbBQEeKNh-iqAG33xQ"/>
+          <end xmi:id="_HJ0BZ7BQEeKNh-iqAG33xQ" role="_uEfiwbBPEeKNh-iqAG33xQ"/>
+        </ownedConnector>
+        <ownedConnector xmi:id="_pePT5rBQEeKNh-iqAG33xQ">
+          <end xmi:id="_pePT57BQEeKNh-iqAG33xQ" role="_uEfiwbBPEeKNh-iqAG33xQ"/>
+          <end xmi:id="_pePT6LBQEeKNh-iqAG33xQ" role="_nZd_wbBQEeKNh-iqAG33xQ"/>
+        </ownedConnector>
+        <ownedConnector xmi:id="_DPDml7BREeKNh-iqAG33xQ">
+          <end xmi:id="_DPDmmLBREeKNh-iqAG33xQ" role="_BejSQbBREeKNh-iqAG33xQ"/>
+          <end xmi:id="_DPDmmbBREeKNh-iqAG33xQ" role="_uEfiwbBPEeKNh-iqAG33xQ"/>
+        </ownedConnector>
+        <ownedConnector xmi:id="_GRhSAbBREeKNh-iqAG33xQ">
+          <end xmi:id="_GRhSArBREeKNh-iqAG33xQ" role="_F9qXUbBQEeKNh-iqAG33xQ"/>
+          <end xmi:id="_GRhSA7BREeKNh-iqAG33xQ" role="_BejSQbBREeKNh-iqAG33xQ"/>
+        </ownedConnector>
+        <ownedConnector xmi:id="_lNq4ILC0EeK09qHJDrXJdg">
+          <end xmi:id="_lNq4IbC0EeK09qHJDrXJdg" role="_i_z5cbC0EeK09qHJDrXJdg"/>
+          <end xmi:id="_lNq4IrC0EeK09qHJDrXJdg" role="_uEfiwbBPEeKNh-iqAG33xQ"/>
+        </ownedConnector>
+        <ownedConnector xmi:id="_oQkodLC0EeK09qHJDrXJdg">
+          <end xmi:id="_oQkodbC0EeK09qHJDrXJdg" role="_ddwmILC0EeK09qHJDrXJdg"/>
+          <end xmi:id="_oQkodrC0EeK09qHJDrXJdg" role="_uEfiwbBPEeKNh-iqAG33xQ"/>
+        </ownedConnector>
+        <ownedConnector xmi:id="_xvpK97C0EeK09qHJDrXJdg">
+          <end xmi:id="_xvpK-LC0EeK09qHJDrXJdg" role="_e6vhgbC0EeK09qHJDrXJdg"/>
+          <end xmi:id="_xvpK-bC0EeK09qHJDrXJdg" role="_uEfiwbBPEeKNh-iqAG33xQ"/>
+        </ownedConnector>
+        <lifeline xmi:id="_nZd_wLBQEeKNh-iqAG33xQ" name="Property2" represents="_nZd_wbBQEeKNh-iqAG33xQ"/>
+        <lifeline xmi:id="_uEfiwLBPEeKNh-iqAG33xQ" name="Property" represents="_uEfiwbBPEeKNh-iqAG33xQ"/>
+        <lifeline xmi:id="_BejSQLBREeKNh-iqAG33xQ" name="Property3" represents="_BejSQbBREeKNh-iqAG33xQ"/>
+        <lifeline xmi:id="_i_z5cLC0EeK09qHJDrXJdg" name="Property10" represents="_i_z5cbC0EeK09qHJDrXJdg"/>
+        <lifeline xmi:id="_dddEILC0EeK09qHJDrXJdg" name="Property4" represents="_ddwmILC0EeK09qHJDrXJdg"/>
+        <lifeline xmi:id="_e6vhgLC0EeK09qHJDrXJdg" name="Property5" represents="_e6vhgbC0EeK09qHJDrXJdg"/>
+      </ownedBehavior>
+      <ownedAttribute xmi:id="_uEfiwbBPEeKNh-iqAG33xQ" name="SolicitudMBean">
+        <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=SolicitudMBean%5Bjcu%5Ename=SolicitudMBean.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.view.mbean%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D$uml.Class"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_x1z4QbBPEeKNh-iqAG33xQ" name="Property2">
+        <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=InvolucradoDto%5Bjcu%5Ename=InvolucradoDto.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.model.entidad%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D$uml.Class"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ywFIIbBPEeKNh-iqAG33xQ" name="Property3">
+        <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=OficinaInvolucradoDto%5Bjcu%5Ename=OficinaInvolucradoDto.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.model.entidad%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D$uml.Class"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_89SjAbBPEeKNh-iqAG33xQ" name="Property4">
+        <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=OficinaSolicitudDto%5Bjcu%5Ename=OficinaSolicitudDto.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.model.entidad%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D$uml.Class"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_F9qXUbBQEeKNh-iqAG33xQ" name="Property5">
+        <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=SolicitudDto%5Bjcu%5Ename=SolicitudDto.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.model.entidad%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D$uml.Class"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nZd_wbBQEeKNh-iqAG33xQ" name="listaSolicitudes.xhtml">
+        <type xmi:type="uml:Artifact" href="mmi:///#file%5Eid=listaSolicitudes.xhtml%5Bfolder%5Eid=solicitud%5Bfolder%5Eid=gestion%5Bfolder%5Eid=pages%5Bfolder%5Eid=WebContent%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Artifact"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_BejSQbBREeKNh-iqAG33xQ" name="DAOSolicitudImple">
+        <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=DAOSolicitudImple%5Bjcu%5Ename=DAOSolicitudImple.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.dao.impl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D$uml.Class"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ddwmILC0EeK09qHJDrXJdg" name="ApplicationHelper">
+        <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=ApplicationHelper%5Bjcu%5Ename=ApplicationHelper.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.view.helper%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D$uml.Class"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_e6vhgbC0EeK09qHJDrXJdg" name="AplicacionMBean">
+        <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=AplicacionMBean%5Bjcu%5Ename=AplicacionMBean.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.view.mbean%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D$uml.Class"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_i_z5cbC0EeK09qHJDrXJdg" name="SolicitudDto">
+        <type xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=SolicitudDto%5Bjcu%5Ename=SolicitudDto.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.model.entidad%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D$uml.Class"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SendOperationEvent" xmi:id="_I_Fg8LBQEeKNh-iqAG33xQ" name="SendOperationEvent1">
+      <operation href="mmi:///#jmethod%5Ename=getListaOficinasSolicitud%5Esign=()QList%3CQOficinaSolicitudDto;%3E;%5Bjsrctype%5Ename=SolicitudDto%5Bjcu%5Ename=SolicitudDto.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.model.entidad%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:ReceiveOperationEvent" xmi:id="_I_Fg8bBQEeKNh-iqAG33xQ" name="ReceiveOperationEvent1">
+      <operation href="mmi:///#jmethod%5Ename=getListaOficinasSolicitud%5Esign=()QList%3CQOficinaSolicitudDto;%3E;%5Bjsrctype%5Ename=SolicitudDto%5Bjcu%5Ename=SolicitudDto.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.model.entidad%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SendOperationEvent" xmi:id="_rYk5oLBQEeKNh-iqAG33xQ" name="SendOperationEvent2">
+      <operation href="mmi:///#jmethod%5Ename=iniciar%5Esign=()QString;%5Bjsrctype%5Ename=SolicitudMBean%5Bjcu%5Ename=SolicitudMBean.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.view.mbean%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:ReceiveOperationEvent" xmi:id="_rYk5obBQEeKNh-iqAG33xQ" name="ReceiveOperationEvent2">
+      <operation href="mmi:///#jmethod%5Ename=iniciar%5Esign=()QString;%5Bjsrctype%5Ename=SolicitudMBean%5Bjcu%5Ename=SolicitudMBean.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.view.mbean%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SendOperationEvent" xmi:id="_Ep83QLBREeKNh-iqAG33xQ" name="SendOperationEvent3">
+      <operation href="mmi:///#jmethod%5Ename=listaSolicitudes%5Esign=(QSolicitudDto;QSessionMBean;)QList%3CQSolicitudDto;%3E;%5Bjsrctype%5Ename=DAOSolicitudImple%5Bjcu%5Ename=DAOSolicitudImple.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.dao.impl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:ReceiveOperationEvent" xmi:id="_Ep83QbBREeKNh-iqAG33xQ" name="ReceiveOperationEvent3">
+      <operation href="mmi:///#jmethod%5Ename=listaSolicitudes%5Esign=(QSolicitudDto;QSessionMBean;)QList%3CQSolicitudDto;%3E;%5Bjsrctype%5Ename=DAOSolicitudImple%5Bjcu%5Ename=DAOSolicitudImple.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.dao.impl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SendOperationEvent" xmi:id="_HhPNcLBREeKNh-iqAG33xQ" name="SendOperationEvent4">
+      <operation href="mmi:///#jmethod%5Ename=SolicitudDto%5Esign=()V%5Bjsrctype%5Ename=SolicitudDto%5Bjcu%5Ename=SolicitudDto.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.model.entidad%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:ReceiveOperationEvent" xmi:id="_HhPNcbBREeKNh-iqAG33xQ" name="ReceiveOperationEvent4">
+      <operation href="mmi:///#jmethod%5Ename=SolicitudDto%5Esign=()V%5Bjsrctype%5Ename=SolicitudDto%5Bjcu%5Ename=SolicitudDto.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.model.entidad%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SendOperationEvent" xmi:id="_pUhYwLC0EeK09qHJDrXJdg" name="SendOperationEvent5">
+      <operation href="mmi:///#jmethod%5Ename=obtenerCatalogoPorId%5Esign=(QLong;)QCatalogoParametroDto;%5Bjsrctype%5Ename=ApplicationHelper%5Bjcu%5Ename=ApplicationHelper.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.view.helper%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:ReceiveOperationEvent" xmi:id="_pUhYwbC0EeK09qHJDrXJdg" name="ReceiveOperationEvent5">
+      <operation href="mmi:///#jmethod%5Ename=obtenerCatalogoPorId%5Esign=(QLong;)QCatalogoParametroDto;%5Bjsrctype%5Ename=ApplicationHelper%5Bjcu%5Ename=ApplicationHelper.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.view.helper%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SendOperationEvent" xmi:id="_sDwmMLC0EeK09qHJDrXJdg" name="SendOperationEvent6">
+      <operation href="mmi:///#jmethod%5Ename=obtenerParametroPorId%5Esign=(QLong;)QParametroDto;%5Bjsrctype%5Ename=ApplicationHelper%5Bjcu%5Ename=ApplicationHelper.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.view.helper%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:ReceiveOperationEvent" xmi:id="_sDwmMbC0EeK09qHJDrXJdg" name="ReceiveOperationEvent6">
+      <operation href="mmi:///#jmethod%5Ename=obtenerParametroPorId%5Esign=(QLong;)QParametroDto;%5Bjsrctype%5Ename=ApplicationHelper%5Bjcu%5Ename=ApplicationHelper.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.view.helper%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SendOperationEvent" xmi:id="_yXSZwLC0EeK09qHJDrXJdg" name="SendOperationEvent7">
+      <operation href="mmi:///#jmethod%5Ename=setListaOficinas%5Esign=(QList%3CQOficinaDto;%3E;)V%5Bjsrctype%5Ename=AplicacionMBean%5Bjcu%5Ename=AplicacionMBean.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.view.mbean%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:ReceiveOperationEvent" xmi:id="_yXSZwbC0EeK09qHJDrXJdg" name="ReceiveOperationEvent7">
+      <operation href="mmi:///#jmethod%5Ename=setListaOficinas%5Esign=(QList%3CQOficinaDto;%3E;)V%5Bjsrctype%5Ename=AplicacionMBean%5Bjcu%5Ename=AplicacionMBean.java%5Bjpack%5Ename=com.indra.pe.bbva.reauni.view.mbean%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=REAUNIWeb%5D%5D%5D%5D%5D$uml.Operation"/>
+    </packagedElement>
+    <profileApplication xmi:id="_qcL_ULBPEeKNh-iqAG33xQ">
+      <eAnnotations xmi:id="_qcL_UbBPEeKNh-iqAG33xQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_qcL_UrBPEeKNh-iqAG33xQ">
+      <eAnnotations xmi:id="_qcL_U7BPEeKNh-iqAG33xQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML2_MSL_PROFILES/Default.epx#_fNwoAAqoEd6-N_NOT9vsCA?Default/Default?"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML2_MSL_PROFILES/Default.epx#_a_S3wNWLEdiy4IqP8whjFA?Default?"/>
+    </profileApplication>
+    <profileApplication xmi:id="_qcL_VLBPEeKNh-iqAG33xQ">
+      <eAnnotations xmi:id="_qcL_VbBPEeKNh-iqAG33xQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML2_MSL_PROFILES/Deployment.epx#_IrdAUMmBEdqBcN1R6EvWUw?Deployment/Deployment?"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML2_MSL_PROFILES/Deployment.epx#_vjbuwOvHEdiDX5bji0iVSA?Deployment?"/>
+    </profileApplication>
+  </uml:Package>
+</xmi:XMI>
