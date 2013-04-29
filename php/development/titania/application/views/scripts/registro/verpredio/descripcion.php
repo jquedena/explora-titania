@@ -65,9 +65,8 @@
                 </table>
             </div>
         </td>
-        <td valign="top" style="padding-left: 5px">
-          
-             <div id="panelTerreno" align="center" class="ui-widget ui-widget-content ui-corner-top" style="width: 100%;">
+        <td valign="top" id="<?php echo ($this->mpredio["ctippre"])?>"  <?php echo ($this->mpredio["ctippre"]='1000000091'? ' style="display:none;"': '')?>>
+                <div id="panelTerreno" align="center" class="ui-widget ui-widget-content ui-corner-top" style="width: 100%; ">
                 <div class="ui-widget ui-state-default ui-corner-top ui-title">
                     <label>Sobre el Terreno</label>
                 </div>
