@@ -22,15 +22,15 @@
 						</tr>
 						<tr>
 							<td>Arancel</td>
-							<td><input id="txtArancel" class="ui-text" style="width:70px;" value="" /></td>
+							<td><input id="txtArancel" class="ui-text ui-text-numeric" style="width:70px;" value="0" /></td>
 						</tr>
 						<tr>
 							<td>Hectareas</td>
-							<td><input id="txt_Hectareas" class="ui-text" style="width:70px;"/></td>
+							<td><input id="txt_Hectareas" class="ui-text ui-text-numeric" style="width:70px;" value="0"/></td>
 						</tr>
 						<tr>
 							<td>Total</td>
-							<td><input id="txt_Total" class="ui-text"  style="width:70px;" value="" /></td>
+							<td><input id="txt_Total" class="ui-text-disable ui-text-numeric"  style="width:70px;" value="0"  ReadOnly /></td>
 							<td>&nbsp;</td>
 						</tr>	
 						<tr>
@@ -49,6 +49,21 @@
 </div>
 <script type="text/javascript">
 
+	$("#txtArancel").autoNumeric();
+	$("#txt_Hectareas").autoNumeric();
+	$("#txt_Total").autoNumeric();
+
+	$("#txtArancel").keyup(function(){
+ 
+		$("#txt_Total").val( ($("#txtArancel").val()) * ($("#txt_Hectareas").val()) );
+	});
+
+	$("#txt_Hectareas").keyup(function(){
+		 
+		$("#txt_Total").val( ($("#txtArancel").val()) * ($("#txt_Hectareas").val()) );
+	});        
+  
+	
 	$("#btnguardar").button({
 		icons: {primary:'ui-icon-disk'}
 	}).bind('click', function(){
@@ -74,7 +89,7 @@
 		closeDialog('jqDialog1');
 	});
 
-	GuardaRustico= function() {
+	/*GuardaRustico= function() {
 		indexRow = $("#ctblRustico").val();
 	//	debugger
 		row = {
@@ -98,8 +113,8 @@
 		} else {
 			alert('Error no se pudo agregar');
 		}
-	};
-/*
+	};*/
+
 	GuardaRustico= function() {
 		indexRow = $("#ctblRustico").val();
 		row = {};
@@ -111,6 +126,7 @@
 		}
 				
 		row = $.extend(row, {
+			
 			vclasif: $('#cboClasificacionRustico option:selected').text(),
 			vcatego: $('#cboCategoria option:selected').text(),
 			narance: $("#txtArancel").val(),
@@ -139,7 +155,7 @@
 	        });
 		});
 	    _post.error(postError);
-	};*/
+	};
 
 
 	
