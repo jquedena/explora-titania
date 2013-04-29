@@ -18,7 +18,13 @@ class ReportesController extends Zend_Controller_Action {
 	}
 	
 	public function prediosAction(){
-		
+		    $this->_helper->getHelper('ajaxContext')->initContext();
+
+        if ($this->getRequest()->isXmlHttpRequest()) {
+            $this->_helper->layout->disableLayout();
+            
+        
+        }
 	}
 
 }
