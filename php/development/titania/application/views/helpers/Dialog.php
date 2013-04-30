@@ -36,8 +36,10 @@ class Zend_View_Helper_Dialog extends Zend_View_Helper_Abstract{
         $script .= "\n\tvar options_".$id." = {};";
         $script .= "\n\toptions_".$id.".title = \"".$title."\";";
         $script .= "\n\toptions_".$id.".buttons = ".$buttons.";";
-        $script .= "\n\toptions_".$id.".height = ".$height.";";
+        // $script .= "\n\toptions_".$id.".height = ".$height.";";
+        $script .= "\n\toptions_".$id.".minHeight = 'auto';";
         $script .= "\n\toptions_".$id.".width = ".$width.";";
+        $script .= "\n\toptions_".$id.".position = ['center', 'center'];";
         if(strlen($dialogClass) > 0) $script .= "\n\toptions_".$id.".dialogClass = \"".$dialogClass."\";";
         $script .= "\n\toptions_".$id.".resizable = ".$resizable.";";
         $script .= "\n\toptions_".$id.".autoOpen = ".$autoOpen.";";
@@ -46,7 +48,6 @@ class Zend_View_Helper_Dialog extends Zend_View_Helper_Abstract{
         $script .= "\n\toptions_".$id.".jqueryaction = \"dialog\";";
         $script .= "\n\toptions_".$id.".id = \"".$id."\";";
         $script .= "\n\toptions_".$id.".href = \"".$href."\";";
-        // $script .= "\n\tjQuery.struts2_jquery.bind(jQuery('#".$id."'),options_".$id.");";
         $script .= "\n\t$('#".$id."').dialog(options_".$id.");";
         $script .= "\n\t});";  
         $script .= "\n\t</script>";
