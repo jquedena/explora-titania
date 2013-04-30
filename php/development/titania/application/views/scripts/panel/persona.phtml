@@ -1,3 +1,9 @@
+<style>
+	table.ui-table-panelLayout tr td {
+		padding-top: 1px !important;
+		padding-bottom: 2px !important;
+	}
+</style>
 <input type="hidden" id="mperson" value="<?php echo $this->mperson['cidpers'] ?>" >
 <div class="ui-widget ui-widget-content ui-corner-all" style="width: 95%;margin: 3px;">
 	<div align="center" class="ui-widget ui-state-default ui-corner-top ui-title">
@@ -14,7 +20,7 @@
 					<input id="vnrodoc" name="vnrodoc" type="hidden" value="<?php echo $this->mperson['vnrodoc'] ?>" />
 				</td>
 				<td rowspan="7" align="center" valign="top">
-					<img style="width: 95px; height: 115px; border: 1px solid #000;" src="<?php echo $this->util()->getPhoto($this->mperson['cidpers']); ?>" />
+					<img style="width: 85px; height: 105px; border: 1px solid #000;" src="<?php echo $this->util()->getPhoto($this->mperson['cidpers']); ?>" />
 				</td>
 			</tr>
 			<tr>
@@ -65,7 +71,7 @@
     	<label>Morosidad</label>
 	</div>
 	<div>
-		<table class="ui-table-panelLayout" style="width: 90%; height: 100%; font-size: 90%;" border="0">
+		<table class="ui-table-panelLayout" style="width: 90%; font-size: 90%;">
 			<tr>
 				<td rowspan="7" align="center" valign="top">
 					<img style="" src="<?php echo $this->util()->getImage($this->msaldos['vindica']); ?>">
@@ -88,11 +94,8 @@
 				<td>Porcentaje:&nbsp;<b><?php echo $this->msaldos['nporcen']?>%</b></td>
 			</tr>
 			<tr>
-				<td>&nbsp;</td>
+				<td align="center" colspan="2"><button id="btnimprrimirestctacte">Estado Cuenta</button></td>
 			</tr>
-				<tr>
-				<td align="center" colspan="2"><button id="btnimprrimirestctacte"> Imprimir Estado Cuenta </button></td>
-				</tr>
 		</table>
 	</div>
 </div>
@@ -109,9 +112,7 @@ $(function(){
 	    text: true,
 	    icons: {primary:'ui-icon-calculator'}
 	}).bind("click", function(){
-
     	window.open(pathReport+"reporte=rptEstCtaDetallado&opt=CIDPERS^"+$("#mperson").val()+"|CEJERCI^12|NESTADO^0|VUSERNM^DEMO",'_blank');
-		
 	});
 	
 });
