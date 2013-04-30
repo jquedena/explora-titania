@@ -16,7 +16,7 @@
 	$.PaginationCalculator = function(maxentries, opts) {
 		this.maxentries = maxentries;
 		this.opts = opts;
-	}
+	};
 	
 	$.extend($.PaginationCalculator.prototype, {
 		/**
@@ -43,7 +43,7 @@
 	});
 	
 	// Initialize jQuery object container for pagination renderers
-	$.PaginationRenderers = {}
+	$.PaginationRenderers = {};
 	
 	/**
 	 * @class Default renderer for rendering pagination links
@@ -52,7 +52,8 @@
 		this.maxentries = maxentries;
 		this.opts = opts;
 		this.pc = new $.PaginationCalculator(maxentries, opts);
-	}
+	};
+	
 	$.extend($.PaginationRenderers.defaultRenderer.prototype, {
 		/**
 		 * Helper function for generating a single link (or a span tag if it's the current page)

@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 
 $(function(){
 
@@ -60,15 +58,8 @@ $(function(){
 
 	    inicializarGrid("tblResultmPredio", optionPerson,null,navPanelPersona);
 */
-
 	$(function(){
-	
 	    themeTextBox();
-	    themeComboBox();
-	//---
-	    
+	    // themeComboBox();   
 	});
-			
-
-    
 });
