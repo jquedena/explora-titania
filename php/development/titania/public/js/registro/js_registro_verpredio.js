@@ -6,6 +6,17 @@ habilitarComponenteDetalle = function(disabled){
     $("#dtpFechaAdquisicion, #dtpFechaTransferencia, #dptFechaResolucionInafecto").datepicker("option", "disabled", disabled);
        
     //$("#btnEditarPredio").button("option", "disabled", !disabled);
+    /*
+    alert($("#cboTipoPredioUrbano option:selected").val()); 
+    
+    if ($("#cboTipoPredioUrbano option:selected").val()=='1000000091'){
+    	$("#panelTerreno").css({"display" : "none"});
+       	 
+    }else{    	
+    	$("#panelTerreno").css({"display" : "inline"});
+    } */ 
+    
+    
     
     $("#txtPeriodo").toggleClass("ui-text-disable");
     /*
