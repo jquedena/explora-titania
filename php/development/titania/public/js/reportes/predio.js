@@ -167,7 +167,7 @@ optionmpredio= {
 		 {name:'nzoom', index:'nzoom', width:90,hidden:false},
 		 {name:'zona', index:'zona', width:90,hidden:true}
         ],
-    caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda",
+    caption: "&nbsp;&nbsp;&nbsp;Resultados de la busqueda"
       	
 
 };
