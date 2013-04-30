@@ -64,8 +64,7 @@
                     </tr>
                 </table>
             </div>
-        </td>
-              
+        </td>              
         <td valign="top" style="display: <?php echo ($this->mpredio["ctippre"]=='1000000091'? 'none': 'inline') ?>;">
                 <div id="panelTerreno" align="center" class="ui-widget ui-widget-content ui-corner-top" style="width: 100%; ">
                 <div class="ui-widget ui-state-default ui-corner-top ui-title">
@@ -135,7 +134,7 @@
                     </tr>
                 </table>
             </div>
-        </td>
+        </td> 
     </tr>
 </table>
 <div id="ajaxaca">
