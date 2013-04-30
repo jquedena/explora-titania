@@ -5,7 +5,7 @@
 
 <table class="ui-table-panelLayout" style="width: 100%">
     <tr>
-		<td style="width: 130px;">
+		<td style="width: 350px;">
 			<table>
 				<tr>
 					<td>Nro. :</td>
@@ -13,7 +13,7 @@
 				</tr>
 			</table>
 		</td>
-        <td>
+        <td style="text-align: right;">
         	La modificaci&oacute;n de esta declaraci&oacute;n entra en vigencia a partir del a&ntilde;o:
         	<input class="ui-text" style="width: 80px; text-align: left;" id="dtpFechaVigencia"/>
         </td>
@@ -45,7 +45,7 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<textarea class="ui-text" class="jquery_ckeditor" cols="80" id="txtObservacion" name="txtObservacion" rows="10">
+						<textarea style="width: 340px; height: 350px;" class="ui-text jquery_ckeditor" cols="80" id="txtObservacion" name="txtObservacion" rows="10">
 						</textarea>
 					</td>
 				</tr>
@@ -103,7 +103,7 @@
         if (hEd) {
             CKEDITOR.remove(hEd);
         }
-        // CKEDITOR.replace('txtObservacion', config);
+        CKEDITOR.replace('txtObservacion', config);
         
         $("#dtpFechaDeclaracion, #dtpFechaVigencia").datepicker({
             dateFormat: "dd/mm/yy",
