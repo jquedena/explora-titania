@@ -36,7 +36,11 @@
     text-transform: uppercase;
 }
 .ui-combobox-input-highlight {
+	/*
     background: #fbec88 url('../theme/blue_explora/images/ui-bg_glass_55_fbec88_1x400.png') 50% 50% repeat-x;
+    */
     border: 1px solid #fcd113;
+    -webkit-box-shadow: 0 0 5px #fcd113;
+	box-shadow: 0 0 5px #fcd113;
     color: #915608;
 }

@@ -172,7 +172,6 @@ openDialogData = function(url, data, width, height, title, id, fnc, buttons) {
             }
             
             if(width != undefined) $(id).dialog('option', 'width', width);
-            if(height != undefined) $(id).dialog('option', 'height', height);
             if(title != undefined) $(id).dialog('option', 'title', title);
             if(buttons != undefined) $(id).dialog('option', 'buttons', buttons);
             $(id).dialog('open');
@@ -205,35 +204,30 @@ function openDialog2(url, width, height, title) {
 function openDialogConfirm1(contenido, width, height) {
     $('#jqConfirmacion1').html(contenido);
     if(width != undefined) $('#jqDialogConfirmacion1').dialog('option', 'width', width);
-    if(height != undefined) $('#jqDialogConfirmacion1').dialog('option', 'height', height);
     $('#jqDialogConfirmacion1').dialog('open');
 }
 
 function openDialogConfirm2(contenido, width, height) {
     $('#jqConfirmacion2').html(contenido);
     if(width != undefined) $('#jqDialogConfirmacion2').dialog('option', 'width', width);
-    if(height != undefined) $('#jqDialogConfirmacion2').dialog('option', 'height', height);
     $('#jqDialogConfirmacion2').dialog('open');
 }
 
 function openDialogError(contenido, width, height) {
     $('#jqError').html(contenido);
     if(width != undefined) $('#jqDialogError').dialog('option', 'width', width);
-    if(height != undefined) $('#jqDialogError').dialog('option', 'height', height);
     $('#jqDialogError').dialog('open');
 }
 
 function openDialogWarning(contenido, width, height) {
     $('#jqWarning').html(contenido);
     if(width != undefined) $('#jqDialogWarning').dialog('option', 'width', width);
-    if(height != undefined) $('#jqDialogWarning').dialog('option', 'height', height);
     $('#jqDialogWarning').dialog('open');
 }
 
 function openDialogInfo(contenido, width, height, buttons, close) {
     $('#jqInfo').html(contenido);
     if(width != undefined) $('#jqDialogInfo').dialog('option', 'width', width);
-    if(height != undefined) $('#jqDialogInfo').dialog('option', 'height', height);
     if(buttons != undefined) $('#jqDialogInfo').dialog('option', 'buttons', buttons);
     if(close != undefined) $('#jqDialogInfo').dialog('option', 'close', close);
     $('#jqDialogInfo').dialog('open');
@@ -262,6 +256,7 @@ function themeTextBox(selector) {
         $(this).toggleClass("ui-text-highlight");
     });
 }
+
 function themeComboBox(selector) {
     if(selector == undefined || selector == null) {
     	selector = 'select:not(".notcombobox")';
@@ -279,6 +274,7 @@ function themeComboBox(selector) {
         }); 
     });
 }
+
 _FsFiltrarCombo = function(_datos,_datbus,_indexbus,_indexcod,_indexdes){
 
 	_options='';
@@ -294,12 +290,13 @@ _FsFiltrarCombo = function(_datos,_datbus,_indexbus,_indexcod,_indexdes){
 	}
 	return _options;
 };
+
 (function($) {
     $.fn.getCheckboxValues = function(){
         var values = [];
         var i = 0;
         this.each(function (){
-            values[i++] = $( this).val();
+            values[i++] = $(this).val();
         });
         return values;
     };
