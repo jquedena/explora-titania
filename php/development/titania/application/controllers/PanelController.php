@@ -63,6 +63,11 @@ class PanelController extends Zend_Controller_Action {
 
     		$this->view->mperson = $result["mperson"];
     		$this->view->msaldos = $result["msaldos"];
+    		
+    		$ddatosuserlog = new Zend_Session_Namespace('datosuserlog');
+    		
+    		$this->view->usuario = $ddatosuserlog->nompers; 
+    		
     	}
     }
     
