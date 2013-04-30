@@ -89,7 +89,7 @@ class RegistroController extends Zend_Controller_Action {
 	            $dataAdapter->saveQuery("tblRustico", "pl_function.listar_caracteristica_rustico", $parameters);
 	            
 	            $pintar=new Libreria_Pintar();        
-           		 $val[]=array('ccodpre',$rows [0]['ccodpre2'],'val');
+           		 $val[]=array('ccodpre',$rows [0]['ccodpre'],'val');
            		 $pintar->PintarValor($val);
             }
         }
