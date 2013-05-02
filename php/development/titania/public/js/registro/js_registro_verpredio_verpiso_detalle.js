@@ -134,7 +134,7 @@ guardar = function() {
 			idsigma: $("#txt_idsigma").val(),
 			cnitems: 0,
 			dpredio: $("#_dpredio").val(),
-			cnumpis: $("#txt_pisonivel").val(),
+			cnumpis: $("#txt_npisonivel").val()+ $("#txt_pisonivel").val(),
 			canocon: $("#txt_pisoanocon").val(),
 			cmescon: $("#txt_pisomescon").val(),
 			cmateri: $("#ctxt_cmateri").val(),       
