@@ -17,6 +17,7 @@
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/js/calendar2/calendar-system.css"/>
 <script type="text/javascript" language="javascript" src="${pageContext.request.contextPath}/js/calendar2/calendar.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/calendar2/calendar-es.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/validaTecla.js"></script>
 
 <script language="javascript">
 	var FEC_PATTERN=/\d{0,2}\/?\d{0,2}\/?\d{0,4}/;
@@ -308,19 +309,6 @@
 		}
 	}
 	
-	function validKey(format){
-		el = event.srcElement;
-		str1 = el.value;
-		rango1 = document.selection.createRange().duplicate();
-		while(rango1.expand("character"));
-
-		var text = str1.substr(0,str1.length-rango1.text.length)
-			+ String.fromCharCode(event.keyCode) + rango1.text ;
-		var arr = format.exec(text);
-
-		return (arr!=null && text==arr[0]);
-	}
-	
 	function isDate(text){
 		var arDate = text.split("/");
 		var blnRet;
@@ -450,7 +438,7 @@
 			    	<td >Fecha Seguimiento 1:</td>
 			    	<td align="right">Inicio:</td>
 				    <td >
-				    	<html:text property="seg1Ini" size="10" maxlength="10" styleClass="cajatexto" onkeypress="return validKey(FEC_PATTERN);" value="${requestScope.progSeguimiento.seg1Ini}"> </html:text> 							     
+				    	<html:text property="seg1Ini" size="10" maxlength="10" styleClass="cajatexto" onkeypress="return validKey(event, FEC_PATTERN);" value="${requestScope.progSeguimiento.seg1Ini}"> </html:text> 							     
 						<img align="top" style="cursor:hand" src="${pageContext.request.contextPath}/js/calendar2/calendar.gif"
 											id="fechaSeg1Ini"  alt="Calendar" title="Calendar"/>
 
@@ -469,7 +457,7 @@
 					<td>&nbsp;</td>
 					<td align="right">Fin:</td>
 					<td >
-						<html:text property="seg1Fin" size="10" maxlength="10" styleClass="cajatexto" onkeypress="return validKey(FEC_PATTERN);" tabindex="4" value="${requestScope.progSeguimiento.seg1Fin}"> </html:text>
+						<html:text property="seg1Fin" size="10" maxlength="10" styleClass="cajatexto" onkeypress="return validKey(event, FEC_PATTERN);" tabindex="4" value="${requestScope.progSeguimiento.seg1Fin}"> </html:text>
 
  							 <img align="top" style="cursor:hand" src="${pageContext.request.contextPath}/js/calendar2/calendar.gif"
 											id="fechaSeg1Fin"  alt="Calendar" title="Calendar"/>
@@ -492,7 +480,7 @@
 			    	<td>Fecha cierre de mes:</td>
 			    	<td align="right">Inicio:</td>
 				    <td>
-						<html:text property="seg2Ini" size="10" maxlength="10" styleClass="cajatexto" onkeypress="return validKey(FEC_PATTERN);"value="${requestScope.progSeguimiento.seg2Ini}"> </html:text> 							 
+						<html:text property="seg2Ini" size="10" maxlength="10" styleClass="cajatexto" onkeypress="return validKey(event, FEC_PATTERN);"value="${requestScope.progSeguimiento.seg2Ini}"> </html:text> 							 
 						 <img align="top" style="cursor:hand" src="${pageContext.request.contextPath}/js/calendar2/calendar.gif"
 											id="fechaSeg2Ini"  alt="Calendar" title="Calendar"/>
 
@@ -511,7 +499,7 @@
 					<td>&nbsp;</td>
 					<td align="right">Fin:</td>
 					<td>
-						<html:text property="seg2Fin" size="10" maxlength="10" styleClass="cajatexto" onkeypress="return validKey(FEC_PATTERN);" tabindex="5" value="${requestScope.progSeguimiento.seg2Fin}"> </html:text>
+						<html:text property="seg2Fin" size="10" maxlength="10" styleClass="cajatexto" onkeypress="return validKey(event, FEC_PATTERN);" tabindex="5" value="${requestScope.progSeguimiento.seg2Fin}"> </html:text>
 
  							 <img align="top" style="cursor:hand" src="${pageContext.request.contextPath}/js/calendar2/calendar.gif"
 											id="fechaSeg2Fin"  alt="Calendar" title="Calendar"/>

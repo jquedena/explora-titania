@@ -16,6 +16,7 @@
 <script type="text/javascript"	src="<%=request.getContextPath()%>/js/script.js"></script>
 <TITLE></TITLE>
 </HEAD>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/validaTecla.js"></script>
 <script type="text/javascript">
 
 
@@ -97,11 +98,11 @@ function validar(){
 				</tr>
 				<tr align="center" >
 					<td class="colorfila1"  >Porcentaje Máximo:</td>
-					<td class="colorfila1" ><html:text property="intPorcMax" maxlength="3" onkeypress="return validKey(INT_PATTERN);"></html:text>%</td>
+					<td class="colorfila1" ><html:text property="intPorcMax" maxlength="3" onkeypress="return validKey(event, INT_PATTERN);"></html:text>%</td>
 				</tr>
 				<tr align="center" >
 					<td class="colorfila2"  >Porcentaje Mínimo:</td>
-					<td class="colorfila2" ><html:text property="intPorcMin" maxlength="3" onkeypress="return validKey(INT_PATTERN);"></html:text>%</td>
+					<td class="colorfila2" ><html:text property="intPorcMin" maxlength="3" onkeypress="return validKey(event, INT_PATTERN);"></html:text>%</td>
 				</tr>
 				<tr><td colspan="2" ><hr></td> </tr>
 				<tr><td colspan="2" align="center"  ><html:submit value="Grabar" styleClass="botonnew" ></html:submit>&nbsp;&nbsp;<html:button property="" value="Cancelar" styleId="id_cancelar"  styleClass="botonnew" onclick="javascript:window.history.back();" ></html:button> </td> </tr>				
