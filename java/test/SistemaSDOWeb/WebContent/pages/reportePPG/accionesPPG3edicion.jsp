@@ -37,6 +37,7 @@ int compromisoGestor= 0;
 %>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.2.6.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/script.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/validaTecla.js"></script>
 <script language="javascript">
 /**
 * Agregar validacion si se ingresa un numero positivo en la caja de texto "Compromiso Gestor (Monto en Miles / Numero)"€ para el epigrafe "€œCartera Atrasada" (Monto o Ratio) emitir el siguiente mensaje de alerta "€œEl compromiso de cartera atrasada debe ser negativo"€ y no permitir grabar. 
@@ -296,10 +297,10 @@ function volver(codOficinaCompleto, codGestor, codAnho, codMes, nomEpigrafe, pri
 		</TR>
 		<TR>
 			<TD class="FondoAzul8">N&deg; de Clientes</TD>
-			<TD><input type="text" name="numeroClientes" size=10 maxlength="4" value="<%=dtoAccion.getNumeroCliente() %>" onKeyPress="return validKey(INT_PATTERN);" class="cajatexto"></TD>
+			<TD><input type="text" name="numeroClientes" size=10 maxlength="4" value="<%=dtoAccion.getNumeroCliente() %>" onKeyPress="return validKey(event, INT_PATTERN);" class="cajatexto"></TD>
 
 			<TD class="FondoAzul8" width="200">Compromiso Gestor<br>&nbsp;(Monto en Miles) &nbsp;/&nbsp;N&uacute;mero</TD>
-			<TD colspan=2><input type="text" name="compGestor" size=10 maxlength="10" value="<%=dtoAccion.getCompGestor() %>" onKeyPress="return validKey(INT_PATTERN_NEGATIVO);" class="cajatexto"></TD>
+			<TD colspan=2><input type="text" name="compGestor" size=10 maxlength="10" value="<%=dtoAccion.getCompGestor() %>" onKeyPress="return validKey(event, INT_PATTERN_NEGATIVO);" class="cajatexto"></TD>
 		</TR>
 	</TABLE>
 	<TABLE align="center">
