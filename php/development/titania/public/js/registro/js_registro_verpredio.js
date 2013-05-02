@@ -65,6 +65,12 @@ habilitarComponenteDetalle = function(disabled){
     }
 };
 
+//var vv = [ 2 ];  
+ 
+function deshabilitab( vv ){	  
+		  $( "#tabsDetallePredio" ).tabs( "option", "disabled", vv );	 
+}
+
 function habilitab(tipo ){
 	  if (tipo==0){
 		  $( "#tabsDetallePredio" ).tabs( "option", "disabled", [ 1,2,3,4,5 ] );  
