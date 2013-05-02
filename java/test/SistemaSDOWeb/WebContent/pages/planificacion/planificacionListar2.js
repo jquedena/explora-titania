@@ -71,8 +71,6 @@ function oNumero(numero) {
 }
 
 function onlynumber(DnEvents) {
-	//window.event.srcElement.value = 12345
-	// alert(window.event.srcElement.name);
 	k = (isNN) ? DnEvents.which : window.event.keyCode;
 	a = (isNN) ? DnEvents.target.name : window.event.srcElement.name;
 	if (a != null) {
@@ -86,31 +84,6 @@ function onlynumber(DnEvents) {
 				event.returnValue = false;
 		}
 	}
-}
-
-var INT_PATTERN = /\d{0,}/;
-function validKey(format) {
-	el = event.srcElement;
-
-	tecla = (document.all) ? event.keyCode : event.which;
-
-	if (tecla >= 97 && tecla <= 122) {
-		event.keyCode -= 32;
-	}
-
-	if (tecla == 241) {
-		event.keyCode = 209;
-	}
-
-	str1 = el.value;
-	rango1 = document.selection.createRange().duplicate();
-	while (rango1.expand("character"))
-		;
-
-	var text = str1.substr(0, str1.length - rango1.text.length)
-			+ String.fromCharCode(event.keyCode) + rango1.text;
-	var arr = format.exec(text);
-	return (arr != null && text == arr[0]);
 }
 
 function elegirGestor() {
