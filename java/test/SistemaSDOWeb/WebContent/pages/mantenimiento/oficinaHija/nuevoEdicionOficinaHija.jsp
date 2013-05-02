@@ -14,9 +14,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <TITLE>Mantenimiento Oficinas Hijas</TITLE>
 
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/validaTecla.js"></script>
 <script type="text/javascript">
-	var ALFA_PATTERN=/[\ñ\Ñ\w\s\.\-]*/;
-
 	function limpiar(){
 		var form = document.forms[0];
 		
@@ -112,27 +111,8 @@
 		form.descripcion.focus();
 	}
 	
-	function validKey(format){	
-		el = event.srcElement;	
-		str1 = el.value;
-		rango1 = document.selection.createRange().duplicate();
-		while(rango1.expand("character"));
+	var mensaje_error = '<%=request.getAttribute("mensajeExito")%>';
 
-		var text = str1.substr(0,str1.length-rango1.text.length)
-			+ String.fromCharCode(event.keyCode) + rango1.text ;
-		var arr = format.exec(text);
-
-		return (arr!=null && text==arr[0]);
-	}
-	
-var mensaje_error = '<%=request.getAttribute("mensajeExito")%>';
-/*
-window.onload=function(){
-	// mensaje_error = document.getElementById("text_error").innerText;
-	if (mensaje_error != 'null') {
-		alert(mensaje_error);
-	}
-}*/
 </script>
 </HEAD>
 
@@ -186,7 +166,7 @@ window.onload=function(){
 			    		<SPAN style="font-size: 12">C&oacute;digo Oficina Hija:</SPAN>
 			    	</td>
 				    <td >
-				    	<html:text property="codigoOficinaHija" size="3" tabindex="1" maxlength="4" styleClass="cajatexto" readonly="readonly" value="${requestScope.oficinaHija.codigoOficinaHija}" onkeypress="return validKey(ALFA_PATTERN);"> </html:text> 							     
+				    	<html:text property="codigoOficinaHija" size="3" tabindex="1" maxlength="4" styleClass="cajatexto" readonly="readonly" value="${requestScope.oficinaHija.codigoOficinaHija}" onkeypress="return validKey(event, ALFA_PATTERN);"> </html:text> 							     
 					</td>
 					<td colspan = "3">&nbsp;</td>					
 				</tr>	
@@ -194,7 +174,7 @@ window.onload=function(){
 			    	<td></td>
 			    	<td align="right"><SPAN style="font-size: 12">Nombre Oficina Hija:</SPAN></td>
 				    <td >
-				    	<html:text property="descripcion" size="20" maxlength="80" tabindex="2" styleClass="cajatexto" readonly="readonly" value="${requestScope.oficinaHija.nombreOficinaHija}" onkeypress="return validKey(ALFA_PATTERN);"> </html:text> 							     
+				    	<html:text property="descripcion" size="20" maxlength="80" tabindex="2" styleClass="cajatexto" readonly="readonly" value="${requestScope.oficinaHija.nombreOficinaHija}" onkeypress="return validKey(event, ALFA_PATTERN);"> </html:text> 							     
 					</td>
 					<td colspan = "3">&nbsp;</td>					
 				</tr>	
