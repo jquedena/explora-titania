@@ -51,8 +51,11 @@ verInstalacion = function(rowid, iRow, iCol, e) {
 	  //	$("#txt_instcmotivo").val(row.cmotivo);
 	  //	$("#txt_instctipdoc").val(row.ctipdoc);     
 	   		//$("#txt_instcnumpis").val(row.cnumpis);
-	   		$("#txt_instcnumpis option[value="+row.cnumpis+"]").attr("selected",true);
-
+	   		//$("#txt_instcnumpis option[value="+row.cnumpis+"]").attr("selected",true);
+	   	    console.log(row.cnumpis);
+	   		$("#txt_npisonivel option[value="+row.cnumpis.substring(0,2)+"]").attr("selected",true);                          
+            $("#txt_pisonivel option[value="+row.cnumpis.substring(2,5)+"]").attr("selected",true);   
+          
 	   		$("#txt_instnantigu").val(row.nantigu);       
 	   		$("#txt_instcanocon").val(row.canocon);
 	   		$("#txt_instnvalanc").val(row.nvalanc);   
