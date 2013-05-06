@@ -166,7 +166,7 @@
 			    		<SPAN style="font-size: 12">C&oacute;digo Oficina Hija:</SPAN>
 			    	</td>
 				    <td >
-				    	<html:text property="codigoOficinaHija" size="3" tabindex="1" maxlength="4" styleClass="cajatexto" readonly="readonly" value="${requestScope.oficinaHija.codigoOficinaHija}" onkeypress="return validKey(event, ALFA_PATTERN);"> </html:text> 							     
+				    	<html:text property="codigoOficinaHija" size="3" tabindex="1" maxlength="4" styleClass="cajatexto" readonly="readonly" value="${requestScope.oficinaHija.codigoOficinaHija}" onkeypress="return validKey(this, event, ALFA_PATTERN);"> </html:text> 							     
 					</td>
 					<td colspan = "3">&nbsp;</td>					
 				</tr>	
@@ -174,7 +174,7 @@
 			    	<td></td>
 			    	<td align="right"><SPAN style="font-size: 12">Nombre Oficina Hija:</SPAN></td>
 				    <td >
-				    	<html:text property="descripcion" size="20" maxlength="80" tabindex="2" styleClass="cajatexto" readonly="readonly" value="${requestScope.oficinaHija.nombreOficinaHija}" onkeypress="return validKey(event, ALFA_PATTERN);"> </html:text> 							     
+				    	<html:text property="descripcion" size="20" maxlength="80" tabindex="2" styleClass="cajatexto" readonly="readonly" value="${requestScope.oficinaHija.nombreOficinaHija}" onkeypress="return validKey(this, event, ALFA_PATTERN);"> </html:text> 							     
 					</td>
 					<td colspan = "3">&nbsp;</td>					
 				</tr>	

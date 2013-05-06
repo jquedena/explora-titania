@@ -190,8 +190,6 @@
 	    	}    
 		}
 	}
-	
-	var INT_PATTERN_NEGATIVO=/\-{0,1}\d{0,}/;
 	</script>
 	<title></title>
 </head>
@@ -314,7 +312,7 @@
 							<tr>
 								<td align="center"><html:text property="prioridad" styleId="prioridad" readonly="true" size="10"/></td>
 								<td align="center"><html:text property="epigrafe" styleId="epigrafe" readonly="true" size="30"/></td>
-								<td align="center"><html:text property="restoOficina" styleId="restoOficina" readonly="true" size="10"  onkeypress="return validKey(event, INT_PATTERN_NEGATIVO);" /></td>
+								<td align="center"><html:text property="restoOficina" styleId="restoOficina" readonly="true" size="10"  onkeypress="return validKey(this, event, INT_PATTERN_NEGATIVO);" /></td>
 							</tr>
 						</table>
 						</c:if>
@@ -356,7 +354,7 @@
 						nombre="<c:out value='${objBean.nombreGestor}'/>"
 						codperfil="<c:out value='${objBean.perfilMostrar}'/>"
 						valueOld="${requestScope.planes.factAjusGereOfic}"
-						value="0" onblur="setearCero();" onkeypress="return validKey(event, INT_PATTERN_NEGATIVO);"/>
+						value="0" onblur="setearCero();" onkeypress="return validKey(this, event, INT_PATTERN_NEGATIVO);"/>
 				</c:if>
 				
 				<c:if test="${fact == '1'}">
@@ -365,7 +363,7 @@
 						nombre="<c:out value='${objBean.nombreGestor}'/>"
 						codperfil="<c:out value='${objBean.perfilMostrar}'/>"
 						valueOld="${requestScope.planes.factAjusGereOfic}"
-						value="${requestScope.planes.factAjusGereOfic}" onblur="setearCero();" onkeypress="return validKey(event, INT_PATTERN_NEGATIVO);"/>
+						value="${requestScope.planes.factAjusGereOfic}" onblur="setearCero();" onkeypress="return validKey(this, event, INT_PATTERN_NEGATIVO);"/>
 				</c:if>
 			</c:if>
 
@@ -375,7 +373,7 @@
 						nombre="<c:out value='${objBean.nombreGestor}'/>"
 						codperfil="<c:out value='${objBean.perfilMostrar}'/>"
 						valueOld="${objBean.porcAsignado}"
-						value="${objBean.porcAsignado}" onblur="setearCero();" onkeypress="return validKey(event, INT_PATTERN_NEGATIVO);"/>
+						value="${objBean.porcAsignado}" onblur="setearCero();" onkeypress="return validKey(this, event, INT_PATTERN_NEGATIVO);"/>
 			</c:if>
 		</c:if>
 		
@@ -386,7 +384,7 @@
 					nombre="<c:out value='${objBean.nombreGestor}'/>"
 					codperfil="<c:out value='${objBean.perfilMostrar}'/>"
 					valueOld="${objBean.porcAsignado}"
-					value=<c:out value="${objBean.metaGestor.porcAsignado}"/> onblur="setearCero();" onkeypress="return validKey(event, INT_PATTERN_NEGATIVO);"/>
+					value=<c:out value="${objBean.metaGestor.porcAsignado}"/> onblur="setearCero();" onkeypress="return validKey(this, event, INT_PATTERN_NEGATIVO);"/>
 			</c:if>
 			<c:if test="${objBean.porcAsignado == 0 }">
 				<input type="text" class="Text <c:out value="${objBean.codigoPerfil}"/> textCeleste" name=<c:out value="${objBean.codigoGestor}"/> size="10" maxlength="13"
@@ -394,7 +392,7 @@
 					nombre="<c:out value='${objBean.nombreGestor}'/>"
 					codperfil="<c:out value='${objBean.perfilMostrar}'/>"
 					valueOld="${objBean.porcAsignado}"
-					value=0 onblur="setearCero();" onkeypress="return validKey(event, INT_PATTERN_NEGATIVO);"/>
+					value=0 onblur="setearCero();" onkeypress="return validKey(this, event, INT_PATTERN_NEGATIVO);"/>
 			</c:if>	
 		</c:if>
 	</td><!-- mostrarFelicitacion() -->
@@ -420,7 +418,7 @@
 		<html:text property="montoTotal" styleClass="textCeleste"  styleId="montoTotal"
 			size="10" 
 			value="0"
-			onkeypress="return validKey(event, INT_PATTERN_NEGATIVO);"
+			onkeypress="return validKey(this, event, INT_PATTERN_NEGATIVO);"
 			readonly="true"/>
 	</td>
 </tr>

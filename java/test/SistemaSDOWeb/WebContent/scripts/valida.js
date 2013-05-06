@@ -118,26 +118,6 @@ function pegarDecimales()
 	}
 }
 
-
-   /*
-   @author      : Orlando Pihue Montoya
-   Descripcion	:	Permite el ingreso de unicamente de Letras y Espacios.
-   */
-function SoloLetras()
-{   if(window.event.keyCode!=13)
-   {
-      var Tecla;
-      Tecla = String.fromCharCode(window.event.keyCode);
-      if ( !( (Tecla>="A" && Tecla<="Z")||(Tecla>="a" && Tecla<="z") || 
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla==" ") || (Tecla=="?") || (Tecla=="?") ) )
-     {
-         window.event.keyCode = 0;
-      }
-   }	
-   
-}
    /*
    @author      : Orlando Pihue Montoya
    Descripcion	: Permite verificar si las fechas estan dentro del rango
@@ -170,11 +150,6 @@ function validarFechas(sFecha1,sFecha2,sFecha3,sFecha4,sFecha5,sFecha6){
 		return false;
 }
 
-
-
-
-
-  
 function sacpEsEntero(Cadena)
 {  var i;
 
@@ -186,25 +161,6 @@ function sacpEsEntero(Cadena)
         if (((c < "0") || (c > "9"))) return false;
     }
     return true;
-}
-
-
-
-function SoloNumeros()
-{
-/*
-Descripcion	:	Permite el ingreso unicamente de Numeros.
-*/
-
-if(window.event.keyCode!=13)
-	{
-	var Tecla;
-	Tecla = String.fromCharCode(window.event.keyCode);
-	if ( !(Tecla>="0"&&Tecla<="9") )
-		{
-		window.event.keyCode = 0;
-		}
-	}
 }
 
 function obtenerCheckValues(nameCheck,separador)

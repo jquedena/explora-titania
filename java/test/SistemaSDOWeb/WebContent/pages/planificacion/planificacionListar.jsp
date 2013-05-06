@@ -275,16 +275,16 @@
 	
 	<td pattern="" type="NUMBER" style="text-align: right;">
 		<c:if test="${objBean.nroMesesFalt == 0 && objBean.indAfecta == 'S'}">
-			<input type="text" name="nroMesesFalt" class="Text" onkeypress="return validKey(event, INT_PATTERN);" value='<c:out value="${objBean.nroMesesFalt}"/>' size="3" maxlength="2" />
+			<input type="text" name="nroMesesFalt" class="Text" onkeypress="return validKey(this, event, INT_PATTERN);" value='<c:out value="${objBean.nroMesesFalt}"/>' size="3" maxlength="2" />
 		</c:if>
 		<c:if test="${objBean.nroMesesFalt == 0 && objBean.indAfecta == 'N'}">
-			<input type="text" name="nroMesesFalt" style="width:20px;" onkeypress="return validKey(event, INT_PATTERN);" value='<c:out value="${objBean.nroMesesFalt}"/>' readonly="readonly" size="3" maxlength="2" />
+			<input type="text" name="nroMesesFalt" style="width:20px;" onkeypress="return validKey(this, event, INT_PATTERN);" value='<c:out value="${objBean.nroMesesFalt}"/>' readonly="readonly" size="3" maxlength="2" />
 		</c:if>
 		<c:if test="${objBean.nroMesesFalt == 0 && objBean.indAfecta == null}">
-			<input type="text" name="nroMesesFalt" style="width:20px;" onkeypress="return validKey(event, INT_PATTERN);" value='<c:out value="${objBean.nroMesesFalt}"/>' readonly="readonly" size="3" maxlength="2" />
+			<input type="text" name="nroMesesFalt" style="width:20px;" onkeypress="return validKey(this, event, INT_PATTERN);" value='<c:out value="${objBean.nroMesesFalt}"/>' readonly="readonly" size="3" maxlength="2" />
 		</c:if>
 		<c:if test="${objBean.nroMesesFalt != 0}">
-			<input type="text" name="nroMesesFalt" class="Text" style="width:35px;" onkeypress="return validKey(event, INT_PATTERN);" value='<c:out value="${objBean.nroMesesFalt}"/>' size="3" maxlength="2" />
+			<input type="text" name="nroMesesFalt" class="Text" style="width:35px;" onkeypress="return validKey(this, event, INT_PATTERN);" value='<c:out value="${objBean.nroMesesFalt}"/>' size="3" maxlength="2" />
 		</c:if>
 	</td>
 	
@@ -343,14 +343,14 @@
 	</td>
 	<td pattern="" type="NUMBER" style="text-align: right;">
 		<c:if test="${objBean.indAfecta == 'N'}">
-			<input type="text" style="width: 40px;visibility:hidden;" name="prioridad" onkeypress="return validKey(event, INT_PATTERN);" value="" size="2" maxlength="2" />
+			<input type="text" style="width: 40px;visibility:hidden;" name="prioridad" onkeypress="return validKey(this, event, INT_PATTERN);" value="" size="2" maxlength="2" />
 		</c:if>
 		<c:if test="${objBean.indAfecta != 'N'}">
 			<c:if test="${objBean.prioridad !=99}">
-				<input type="text" class="Text" style="width: 40px;" name="prioridad" onkeypress="return validKey(event, INT_PATTERN);" value='<c:out value="${objBean.prioridad}"/>' size="2" maxlength="2" />
+				<input type="text" class="Text" style="width: 40px;" name="prioridad" onkeypress="return validKey(this, event, INT_PATTERN);" value='<c:out value="${objBean.prioridad}"/>' size="2" maxlength="2" />
 			</c:if>
 			<c:if test="${objBean.prioridad == 99}">
-				<input type="text" class="Text" style="width: 40px;" name="prioridad" onkeypress="return validKey(event, INT_PATTERN);" value="" size="2" maxlength="2" />
+				<input type="text" class="Text" style="width: 40px;" name="prioridad" onkeypress="return validKey(this, event, INT_PATTERN);" value="" size="2" maxlength="2" />
 			</c:if>
 		</c:if>
 	</td>

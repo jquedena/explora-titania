@@ -76,34 +76,6 @@ $(function(){
 	});	
 });
 
-/* Descripcion	:	Permite el ingreso unicamente de Numeros. */
-function SoloNumeros(){
-if(window.event.keyCode!=13)
-	{
-	var Tecla;
-	Tecla = String.fromCharCode(window.event.keyCode);
-	if ( !( (Tecla>="0"&&Tecla<="9") || (Tecla='-') ) ) {
-		window.event.keyCode = 0;
-		}
-	}
-}
-
-function SoloLetras(){
-   if(window.event.keyCode!=13)
-   {
-      var Tecla;
-      Tecla = String.fromCharCode(window.event.keyCode);
-      if ( !( (Tecla>="A" && Tecla<="Z")||(Tecla>="a" && Tecla<="z") || (Tecla>="0" && Tecla<="9") ||
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla==" ") || (Tecla=="?") || (Tecla=="?") ) )
-     {
-         window.event.keyCode = 0;
-      }
-   }	
-   
-}
-
 function grabar(codOficinaCompleto, codGestor, codAnho, codMes, nomEpigrafe, prioridad, restoOficina, metaGestor, codEpigrafe){
 	var codOficinaCompleto=codOficinaCompleto;
 	var codGestor=codGestor;
@@ -297,10 +269,10 @@ function volver(codOficinaCompleto, codGestor, codAnho, codMes, nomEpigrafe, pri
 		</TR>
 		<TR>
 			<TD class="FondoAzul8">N&deg; de Clientes</TD>
-			<TD><input type="text" name="numeroClientes" size=10 maxlength="4" value="<%=dtoAccion.getNumeroCliente() %>" onKeyPress="return validKey(event, INT_PATTERN);" class="cajatexto"></TD>
+			<TD><input type="text" name="numeroClientes" size=10 maxlength="4" value="<%=dtoAccion.getNumeroCliente() %>" onKeyPress="return validKey(this, event, INT_PATTERN);" class="cajatexto"></TD>
 
 			<TD class="FondoAzul8" width="200">Compromiso Gestor<br>&nbsp;(Monto en Miles) &nbsp;/&nbsp;N&uacute;mero</TD>
-			<TD colspan=2><input type="text" name="compGestor" size=10 maxlength="10" value="<%=dtoAccion.getCompGestor() %>" onKeyPress="return validKey(event, INT_PATTERN_NEGATIVO);" class="cajatexto"></TD>
+			<TD colspan=2><input type="text" name="compGestor" size=10 maxlength="10" value="<%=dtoAccion.getCompGestor() %>" onKeyPress="return validKey(this, event, INT_PATTERN_NEGATIVO);" class="cajatexto"></TD>
 		</TR>
 	</TABLE>
 	<TABLE align="center">

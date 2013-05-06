@@ -34,17 +34,6 @@ int compromisoGestor= 0;
 %>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/validaTecla.js"></script>
 <script language="javascript">
-function SoloLetras()
-{   if(window.event.keyCode!=13)
-   {
-      var Tecla;
-      Tecla = String.fromCharCode(window.event.keyCode);
-      if (!((Tecla>="A" && Tecla<="Z")||(Tecla>="a" && Tecla<="z") || (Tecla>="0" && Tecla<="9") || (Tecla==" "))) {
-         window.event.keyCode = 0;
-      }
-   }	
-   
-}
 
 	function grabar(codOficinaCompleto, codOficina, codGestor, codAnho, codMes, codCamp, descCampania){
 		var descAccion = document.forms.nombreAccion.value;
@@ -181,10 +170,10 @@ else if(codMes.equals("10")){ %>OCTUBRE<%}else if(codMes.equals("11")){ %>NOVIEM
 		</TR>
 		<TR>
 			<TD class="FondoAzul8">N° de Clientes</TD>
-			<TD><input type="text" name="numeroClientes" size=10 maxlength="4" value="<%=dtoCampaniaDetalle.getNumeroCliente() %>" onKeyPress="return validKey(event, INT_PATTERN);" class="cajatexto"></TD>
+			<TD><input type="text" name="numeroClientes" size=10 maxlength="4" value="<%=dtoCampaniaDetalle.getNumeroCliente() %>" onKeyPress="return validKey(this, event, INT_PATTERN);" class="cajatexto"></TD>
 
 			<TD class="FondoAzul8" width="200">Compromiso Gestor<br>&nbsp;(Monto en Miles) &nbsp;/&nbsp;Número</TD>
-			<TD colspan=2><input type="text" name="compGestor" size=10 maxlength="10" value="<%=dtoCampaniaDetalle.getCompGestor() %>" onKeyPress="return validKey(event, INT_PATTERN_NEGATIVO);" class="cajatexto"></TD>
+			<TD colspan=2><input type="text" name="compGestor" size=10 maxlength="10" value="<%=dtoCampaniaDetalle.getCompGestor() %>" onKeyPress="return validKey(this, event, INT_PATTERN_NEGATIVO);" class="cajatexto"></TD>
 		</TR>
 	</TABLE>
 	<TABLE align="center">
