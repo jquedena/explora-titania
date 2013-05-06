@@ -38,21 +38,6 @@ if(d != null && d.size() > 0) {
 </script>
 
 <script language="javascript">
-function SoloLetras()
-{   if(window.event.keyCode!=13)
-   {
-      var Tecla;
-      Tecla = String.fromCharCode(window.event.keyCode);
-      if ( !( (Tecla>="A" && Tecla<="Z")||(Tecla>="a" && Tecla<="z") || (Tecla>="0" && Tecla<="9") ||
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla==" ") || (Tecla=="?") || (Tecla=="?") ) )
-     {
-         window.event.keyCode = 0;
-      }
-   }	   
-}
-
 tinyMCE.init({
 		// General options
 		mode : "textareas",

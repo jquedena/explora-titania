@@ -14,96 +14,79 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet"	href="<%=request.getContextPath()%>/css/style.css"	type="text/css">
 	<TITLE></TITLE>
-</HEAD>
-
-<script type="text/javascript" language="javascript">
-
-function grabar(){
-	var form = document.forms[0];
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/validaTecla.js"></script>
+	<script type="text/javascript" language="javascript">
 	
-	if(validar()) {		
-		form.action="permisoPerfilAction.do?method=modificarPermisoPerfil&origCodPerfil=${requestScope.permisoPerfil.codPerfil}&origTipoAcceso=${requestScope.permisoPerfil.tipoAcceso}&origValorRCP=${requestScope.permisoPerfil.valorRCP}";
+	function grabar(){
+		var form = document.forms[0];
+		
+		if(validar()) {		
+			form.action="permisoPerfilAction.do?method=modificarPermisoPerfil&origCodPerfil=${requestScope.permisoPerfil.codPerfil}&origTipoAcceso=${requestScope.permisoPerfil.tipoAcceso}&origValorRCP=${requestScope.permisoPerfil.valorRCP}";
+			form.submit();
+		}
+	}
+	
+	function validar() {
+		var form = document.forms[0];
+		var mensaje = "";
+		var valido = true;
+		var tipoAcceso = form.elements["tipoAcceso"].value;
+		
+		if(form.elements["codPerfil"].value==""){
+			mensaje += "- Seleccione Perfil\n";
+			valido = false;
+		}
+		
+		if(tipoAcceso==""){
+			mensaje += "- Seleccione Tipo de Acceso \n";
+			valido = false;
+		}
+		
+		if(form.elements["valorRCP"].value==""){
+			mensaje += "- Ingrese valor RCP \n";
+			valido = false;
+		}
+		
+		if(valido) {
+			return true;			
+		} else {
+			alert(mensaje);
+			
+			return false;	
+		}
+	}
+	
+	function cambiarTipoAcceso() {
+		var form = document.forms[0];
+		var tipoAcceso = form.elements["tipoAcceso"].value;
+		
+		if(tipoAcceso == "" || tipoAcceso == "1") {
+			form.elements["usuario"].disabled = true;
+			form.elements["usuario"].value = "";
+		} else {
+			form.elements["usuario"].disabled = false;
+		}
+	}
+	
+	function cambiarTipoAccesoInicio() {
+		var form = document.forms[0];
+		var tipoAcceso = form.elements["tipoAcceso"].value;
+		
+		if(tipoAcceso == "" || tipoAcceso == "1") {
+			form.elements["usuario"].disabled = true;
+		} else {
+			form.elements["usuario"].disabled = false;
+		}
+	}
+	
+	function cancelar(){
+		var form = document.forms[0];
+	
+		form.action="permisoPerfilAction.do?method=inicioPermisoPerfil";
 		form.submit();
 	}
-}
-
-function validar() {
-	var form = document.forms[0];
-	var mensaje = "";
-	var valido = true;
-	var tipoAcceso = form.elements["tipoAcceso"].value;
-	
-	if(form.elements["codPerfil"].value==""){
-		mensaje += "- Seleccione Perfil\n";
-		valido = false;
-	}
-	
-	if(tipoAcceso==""){
-		mensaje += "- Seleccione Tipo de Acceso \n";
-		valido = false;
-	}
-	
-	if(form.elements["valorRCP"].value==""){
-		mensaje += "- Ingrese valor RCP \n";
-		valido = false;
-	}
-	
-	if(valido) {
-		return true;			
-	} else {
-		alert(mensaje);
-		
-		return false;	
-	}
-}
-
-function cambiarTipoAcceso() {
-	var form = document.forms[0];
-	var tipoAcceso = form.elements["tipoAcceso"].value;
-	
-	if(tipoAcceso == "" || tipoAcceso == "1") {
-		form.elements["usuario"].disabled = true;
-		form.elements["usuario"].value = "";
-	} else {
-		form.elements["usuario"].disabled = false;
-	}
-}
-
-function cambiarTipoAccesoInicio() {
-	var form = document.forms[0];
-	var tipoAcceso = form.elements["tipoAcceso"].value;
-	
-	if(tipoAcceso == "" || tipoAcceso == "1") {
-		form.elements["usuario"].disabled = true;
-	} else {
-		form.elements["usuario"].disabled = false;
-	}
-}
-
-function cancelar(){
-	var form = document.forms[0];
-
-	form.action="permisoPerfilAction.do?method=inicioPermisoPerfil";
-	form.submit();
-}
-
-function SoloLetras()
-{   if(window.event.keyCode!=13)
-   {
-      var Tecla;
-      Tecla = String.fromCharCode(window.event.keyCode);
-      if ( !( (Tecla>="A" && Tecla<="Z")||(Tecla>="a" && Tecla<="z") || (Tecla>="0" && Tecla<="9") ||
-              (Tecla=="-") || (Tecla=="_") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla==" ") || (Tecla=="?") || (Tecla=="?") ) )
-     {
-         window.event.keyCode = 0;
-      }
-   }	   
-}
-
-</script>
-
+	</script>
+</HEAD>
 <BODY onload="javascript:cambiarTipoAccesoInicio();">
 <html:form action="/permisoPerfilAction">
 <table align="center" width="100%" height="%" cellspacing="0" cellpadding="0">

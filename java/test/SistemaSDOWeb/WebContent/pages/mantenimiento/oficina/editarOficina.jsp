@@ -24,32 +24,17 @@ String codTerritorioACT=(String)request.getAttribute("codTerritorio");
 ListabusAllTerritorio bean = null;
 %>
 <script language="javascript">
-function SoloLetras()
-{   if(window.event.keyCode!=13)
-   {
-      var Tecla;
-      Tecla = String.fromCharCode(window.event.keyCode);
-      if ( !( (Tecla>="A" && Tecla<="Z")||(Tecla>="a" && Tecla<="z") || (Tecla>="0" && Tecla<="9") ||
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla==" ") || (Tecla=="?") || (Tecla=="?") ) )
-     {
-         window.event.keyCode = 0;
-      }
-   }	
-   
-}
 function enviar(codTerritorioActual){
-var ValorCod = document.oficinaForm.txtCodOficina.value;
-var ValorNom = document.oficinaForm.txtNomOficina.value;
-var codTerritorio = document.oficinaForm.codterritorio.value;
-var codTerritorioACT = codTerritorioActual;
-document.oficinaForm.codOficina.value=ValorCod;
-document.oficinaForm.nomOficina.value=ValorNom;
-document.oficinaForm.codTerritorioNUE.value=codTerritorio;
-document.oficinaForm.codTerritorioACT.value=codTerritorioACT;
-document.oficinaForm.action="mantenimientoOficinaAction.do?method=editar";
-document.oficinaForm.submit();
+	var ValorCod = document.oficinaForm.txtCodOficina.value;
+	var ValorNom = document.oficinaForm.txtNomOficina.value;
+	var codTerritorio = document.oficinaForm.codterritorio.value;
+	var codTerritorioACT = codTerritorioActual;
+	document.oficinaForm.codOficina.value=ValorCod;
+	document.oficinaForm.nomOficina.value=ValorNom;
+	document.oficinaForm.codTerritorioNUE.value=codTerritorio;
+	document.oficinaForm.codTerritorioACT.value=codTerritorioACT;
+	document.oficinaForm.action="mantenimientoOficinaAction.do?method=editar";
+	document.oficinaForm.submit();
 }
 
 function desHabilitar() {

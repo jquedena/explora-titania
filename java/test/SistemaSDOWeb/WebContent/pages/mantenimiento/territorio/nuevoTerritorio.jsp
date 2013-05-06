@@ -29,37 +29,8 @@ String codTerritorio = (String)request.getAttribute("codTerritorio");
 String nomTerritorio = (String)request.getAttribute("nomTerritorio");
 String mensaje = (String)request.getAttribute("mensaje");
 %>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/validaTecla.js"></script>
 <script language="javascript">
-function SoloNumeros()
-{
-/*
-Descripcion	:	Permite el ingreso unicamente de Numeros.
-*/
-
-if(window.event.keyCode!=13)
-	{
-	var Tecla;
-	Tecla = String.fromCharCode(window.event.keyCode);
-	if ( !(Tecla>="0"&&Tecla<="9") )
-		{
-		window.event.keyCode = 0;
-		}
-	}
-}
-function SoloLetras()
-{   if(window.event.keyCode!=13)
-   {
-      var Tecla;
-      Tecla = String.fromCharCode(window.event.keyCode);
-      if ( !( (Tecla>="A" && Tecla<="Z")||(Tecla>="a" && Tecla<="z") || (Tecla>="0" && Tecla<="9") ||
-              (Tecla=="-") || (Tecla=="_") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla==" ") || (Tecla=="?") || (Tecla=="?") ) )
-     {
-         window.event.keyCode = 0;
-      }
-   }	   
-}
 
 tinyMCE.init({
 		// General options
@@ -197,7 +168,7 @@ function limpiarTextoHTML(texto){
 <table cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td class="colorfila1" width="60">Codigo:</td>
-    <td class="colorfila1" align="left"><input name="cod" type="text" value="<%=codTerritorio %>" maxlength="4" class="cajatexto" onkeypress="return SoloNumeros()"/> </td>
+    <td class="colorfila1" align="left"><input name="cod" type="text" value="<%=codTerritorio %>" maxlength="4" class="cajatexto" onkeypress="return validKey(this, event, INT_PATTERN);"/> </td>
   </tr>
   <tr>
     <td class="colorfila2">Nombre:</td>

@@ -29,6 +29,7 @@ Vector listaEpigrafe = (Vector) request.getAttribute("listaEpigrafes");
 Campanias bean = null;
 %>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.2.6.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/validaTecla.js"></script>
 <script language="javascript">
 $(function(){
 	$("select[name=codEpigrafe]").find('option').each(function(){
@@ -38,36 +39,6 @@ $(function(){
 	});
 });
 
-function SoloNumeros()
-{
-/*
-Descripcion	:	Permite el ingreso unicamente de Numeros.
-*/
-
-if(window.event.keyCode!=13)
-	{
-	var Tecla;
-	Tecla = String.fromCharCode(window.event.keyCode);
-	if ( !(Tecla>="0"&&Tecla<="9") )
-		{
-		window.event.keyCode = 0;
-		}
-	}
-}
-function SoloLetras()
-{   if(window.event.keyCode!=13)
-   {
-      var Tecla;
-      Tecla = String.fromCharCode(window.event.keyCode);
-      if ( !( (Tecla>="A" && Tecla<="Z")||(Tecla>="a" && Tecla<="z") || (Tecla>="0" && Tecla<="9") || 
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla==" ") || (Tecla=="?") || (Tecla=="?") ) )
-     {
-         window.event.keyCode = 0;
-      }
-   }
-}
 function enviar(anho, mes, codCamp, codGestor, codOficinaCompleto){
 
 var ValorCodCamp=codCamp;
@@ -194,7 +165,7 @@ else if(codMes.equals("10")){ %>OCTUBRE<%}else if(codMes.equals("11")){ %>NOVIEM
 		</tr>
 		<TR >
 			<TD width=150 height=6px>PRIORIDAD</TD>			
-			<TD ><input name="codOrden" type="text" value="<%=bean.getOrden() %>" maxlength="2" size=10 onKeyPress="return SoloNumeros()" /></td>
+			<TD ><input name="codOrden" type="text" value="<%=bean.getOrden() %>" maxlength="2" size=10 onKeyPress="return validKey(this, event, INT_PATTERN);" /></td>
 		</TR>		
 	</TABLE>
 	

@@ -71,34 +71,6 @@ $(function(){
 	});	
 });
 
-function SoloNumeros(){
-	var tecla = (document.all) ? event.keyCode : event.which;
-
-	if(tecla!=13){
-		key = String.fromCharCode(tecla);
-		alert(key);
-		if ( !( (key>="0"&&key<="9") || (key='-') ) ){
-			event.keyCode = 0;
-			return false;
-		}
-	}
-	return true;
-}
-function SoloLetras()
-{   if(window.event.keyCode!=13)
-   {
-      var Tecla;
-      Tecla = String.fromCharCode(window.event.keyCode);
-      if ( !( (Tecla>="A" && Tecla<="Z")||(Tecla>="a" && Tecla<="z") || (Tecla>="0" && Tecla<="9") ||
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") || (Tecla=="?") ||
-              (Tecla==" ") || (Tecla=="?") || (Tecla=="?") ) )
-     {
-         window.event.keyCode = 0;
-      }
-   }	
-   
-}
 function grabar(codOficinaCompleto, codOficina, codGestor, codAnho, codMes, nomEpigrafe, prioridad, restoOficina, metaGestor, codEpigrafe){
 
 	var codOficinaCompleto=codOficinaCompleto;
@@ -299,10 +271,10 @@ document.forms.submit();
 		</TR>
 		<TR>
 			<TD class="FondoAzul8">N&deg; de Clientes</TD>
-			<TD><input type="text" name="numeroClientes" size=10 maxlength="4" value="<%=numeroCliente %>" onKeyPress="return validKey(event, INT_PATTERN);" class="cajatexto"></TD>
+			<TD><input type="text" name="numeroClientes" size=10 maxlength="4" value="<%=numeroCliente %>" onKeyPress="return validKey(this, event, INT_PATTERN);" class="cajatexto"></TD>
 
 			<TD class="FondoAzul8" width="200">Compromiso Gestor<br>&nbsp;(Monto en Miles) &nbsp;/&nbsp;N&uacute;mero</TD>
-			<TD colspan=2><input type="text" name="compGestor" size=10 maxlength="10" value="<%=compromisoGestor %>" onKeyPress="return validKey(event, INT_PATTERN_NEGATIVO);" class="cajatexto"></TD>
+			<TD colspan=2><input type="text" name="compGestor" size=10 maxlength="10" value="<%=compromisoGestor %>" onKeyPress="return validKey(this, event, INT_PATTERN_NEGATIVO);" class="cajatexto"></TD>
 		</TR>
 	</TABLE>
 	<TABLE align="center">
