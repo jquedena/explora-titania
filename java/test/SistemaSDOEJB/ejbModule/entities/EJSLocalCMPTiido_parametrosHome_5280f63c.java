@@ -165,7 +165,7 @@ public class EJSLocalCMPTiido_parametrosHome_5280f63c extends EJSLocalWrapper im
 	/**
 	 * remove
 	 */
-	public void remove(java.lang.Object primaryKey) throws javax.ejb.RemoveException, javax.ejb.EJBException {
+	public void remove(java.lang.Object arg0) throws javax.ejb.RemoveException, javax.ejb.EJBException {
 		EJSDeployedSupport _EJS_s = container.getEJSDeployedSupport(this);
 		Object[] _jacc_parms = null;
 		
@@ -173,10 +173,10 @@ public class EJSLocalCMPTiido_parametrosHome_5280f63c extends EJSLocalWrapper im
 			if ( container.doesJaccNeedsEJBArguments(this) )
 			{
 				_jacc_parms = new Object[1];
-				_jacc_parms[0] = primaryKey;
+				_jacc_parms[0] = arg0;
 			}
 	entities.EJSCMPTiido_parametrosHomeBean_5280f63c _EJS_beanRef = (entities.EJSCMPTiido_parametrosHomeBean_5280f63c)container.preInvoke(this, 4, _EJS_s, _jacc_parms);
-			_EJS_beanRef.remove(primaryKey);
+			_EJS_beanRef.remove(arg0);
 		}
 		catch (javax.ejb.RemoveException ex) {
 			_EJS_s.setCheckedException(ex);
