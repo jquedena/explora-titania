@@ -96,10 +96,9 @@
 					<p:calendar id="fechaVoto"
 						value="#{solicitudInvolucradoDto.fechaVoto}"
 						pattern="#{aplicacionMBean.formatoFecha}"
-						locale="es_PE"
+						locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;"
 						label="Fecha Recepción"
 						style="width: 50px"
-						showOn="button"
 						disabled="#{(solicitudMBean.status &amp;&amp; (solicitudInvolucradoDto.estadoDto.id == 1034 || (sessionMBean.registro==solicitudMBean.dto.responsableSolicitante &amp;&amp; solicitudInvolucradoDto.estadoDtoBkp.id!=1034)))
 						|| (sessionMBean.registro==solicitudMBean.dto.responsableSolicitante &amp;&amp; solicitudInvolucradoDto.estadoDtoBkp.id!=1034)  
 						|| solicitudMBean.bloquearControles 
@@ -109,6 +108,7 @@
 							<f:setPropertyActionListener value="#{solicitudInvolucradoDto}" target="#{solicitudMBean.oficinaInvolucradoDto}" />
 						</p:ajax>
 					</p:calendar>
+					<!-- showOn="button" -->
 				</p:column>
 
 				<p:column headerText="COMENTARIO">

@@ -25,13 +25,15 @@
                     </p:inputText>	
 
                     <h:outputLabel id="lblFechaInicio" for="fecFechaInicio" value="#{message['fechaCorte.label.fechaInicio']}" styleClass="label"/>
-                    <p:calendar id="fecFechaInicio" label="#{message['fechaCorte.label.fechaInicio']}" value="#{fechaCorteModel.dto.fechaInicio}" showOn="button"  pattern="#{aplicacionMBean.formatoFecha}" 
-                    			readonly="#{sessionMBean.accion == 3}" maxdate="#{fechaCorteModel.dtoFiltro.fechaFin}" required="true" disabled="#{sessionMBean.accion == 3}">
+                    <p:calendar id="fecFechaInicio" label="#{message['fechaCorte.label.fechaInicio']}" value="#{fechaCorteModel.dto.fechaInicio}" pattern="#{aplicacionMBean.formatoFecha}" 
+                    			readonly="#{sessionMBean.accion == 3}" maxdate="#{fechaCorteModel.dtoFiltro.fechaFin}" required="true" disabled="#{sessionMBean.accion == 3}"
+                    			locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;">
                     </p:calendar> 
  
                     <h:outputLabel id="lblFechaFin" for="fecFechaFin" value="#{message['fechaCorte.label.fechaFin']}" styleClass="label"/>
-                   	<p:calendar id="fecFechaFin" label="#{message['fechaCorte.label.fechaFin']}" value="#{fechaCorteModel.dto.fechaFin}" showOn="button"  pattern="#{aplicacionMBean.formatoFecha}" 
-                   				readonly="#{sessionMBean.accion == 3}" mindate="#{fechaCorteModel.dtoFiltro.fechaFin}" required="true" disabled="#{sessionMBean.accion == 3}" >
+                   	<p:calendar id="fecFechaFin" label="#{message['fechaCorte.label.fechaFin']}" value="#{fechaCorteModel.dto.fechaFin}" pattern="#{aplicacionMBean.formatoFecha}" 
+                   				readonly="#{sessionMBean.accion == 3}" mindate="#{fechaCorteModel.dtoFiltro.fechaFin}" required="true" disabled="#{sessionMBean.accion == 3}" 
+                   				locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;">
                     </p:calendar> 
                     
                     <h:outputLabel id="lblEstadoCorte" for="cbxEstadoCorte" value="#{message['fechaCorte.label.estadoCorte']}" styleClass="label"/>

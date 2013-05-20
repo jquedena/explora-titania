@@ -69,9 +69,8 @@
 				<h:outputLabel for="fechaInicio" value="#{message['solicitud.fecha.inicio']}" styleClass="label"/>
 				<p:calendar id="fechaInicio"
 					value="#{solicitudMBean.dtoFiltro.fechaInicio}"
-					showOn="button"
 					pattern="#{aplicacionMBean.formatoFecha}"
-					locale="es_PE" 
+					locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;"
 					label="#{message['solicitud.fecha.inicio']}">
 					<p:ajax event="dateSelect" listener="#{solicitudMBean.listenerAsignarFechaInicio}" />
 				</p:calendar>
@@ -81,9 +80,8 @@
 				<h:outputLabel for="fechaHasta" value="#{message['solicitud.fecha.hasta']}" styleClass="label"/>
 				<p:calendar id="fechaHasta"
 					value="#{solicitudMBean.dtoFiltro.fechaHasta}"
-					showOn="button"
 					pattern="#{aplicacionMBean.formatoFecha}"
-					locale="es_PE"
+					locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;"
 					label="#{message['solicitud.fecha.hasta']}">
 					<p:ajax event="dateSelect" listener="#{solicitudMBean.listenerAsignarFechaHasta}" />
 				</p:calendar>

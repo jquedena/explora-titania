@@ -67,17 +67,36 @@ public class LdapServiceImpl implements LdapService {
 	}
 
 	@Override
-	public List<LdapDto> obtenerDtosInvolucrados(String codOficina,
-			String...codCargos) throws ServiceException {
+	public List<LdapDto> obtenerDtosInvolucrados(String codOficina, List<String> codCargos) throws ServiceException {
 		List<LdapDto> lista = null;
+		String[] cargos = new String[codCargos.size()];
+		int i = 0;
+		for(String c : codCargos) {
+			cargos[i] = c;
+			i++;
+		}
 		try {
-			lista = ldapDAO.obtenerDtosInvolucrados(LdapDto.class,codOficina,codCargos);			
+			lista = ldapDAO.obtenerDtosInvolucrados(LdapDto.class, codOficina, cargos);			
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
 		return lista;
-		
 	}
 	
-
+	@Override
+	public List<LdapDto> obtenerDtosInvolucradosGT(String codOficina, List<String> codCargos) throws ServiceException {
+		List<LdapDto> lista = null;
+		String[] cargos = new String[codCargos.size()];
+		int i = 0;
+		for(String c : codCargos) {
+			cargos[i] = c;
+			i++;
+		}
+		try {
+			lista = ldapDAO.obtenerDtosInvolucradosGT(LdapDto.class, codOficina, cargos);			
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+		return lista;
+	}
 }

@@ -20,7 +20,6 @@
 				<h:outputLabel for="fechaInicio" value="#{message['solicitud.fecha.inicio']}" styleClass="label"/>
 				<p:calendar id="fechaInicio"
 					value="#{consultaContratosProcesadosMBean.fechaInicio}"
-					showOn="button"
 					pattern="#{aplicacionMBean.formatoFecha}"
 					locale="es"
 					label="#{message['solicitud.fecha.inicio']}">
@@ -31,7 +30,6 @@
 				<h:outputLabel for="fechaHasta" value="#{message['solicitud.fecha.hasta']}" styleClass="label"/>
 				<p:calendar id="fechaHasta"
 					value="#{consultaContratosProcesadosMBean.fechaFin}"
-					showOn="button"
 					pattern="#{aplicacionMBean.formatoFecha}"
 					locale="es"
 					label="#{message['solicitud.fecha.hasta']}">

@@ -84,7 +84,7 @@ public class GestionCorreo {
 	public Correo obtenerCorreoEvaluacion(SolicitudDto s) {
 		Correo beanCorreo = new Correo();
 		beanCorreo.setAsunto("EVALUAR SOLICITUD DE " + s.getTipoDto().getDescripcion() + " " + s.getCodigoSolicitud());
-		beanCorreo.setMensaje(" Se pone en conocimiento la solicitud de " + s.getTipoDto().getDescripcion().toLowerCase() + " N° " + s.getCodigoSolicitud() + " para su respectiva evaluación.<br><br>CC: GT/JPN Involucrados.");
+		beanCorreo.setMensaje(" Se pone en conocimiento la solicitud de " + s.getTipoDto().getDescripcion().toLowerCase() + " N&#176; " + s.getCodigoSolicitud() + " para su respectiva evaluaci&oacute;n.<br><br>CC: GT/JPN Involucrados.");
 		beanCorreo.setFrom(s.getResponsableSolicitanteDesc());
 		beanCorreo.setEmailFrom(s.getEmailSolicitante());
 		beanCorreo.setListaTo(obtenerToEmailPorSolicitud(s));
@@ -104,7 +104,7 @@ public class GestionCorreo {
 		beanCorreo.setListaTo(email);
 		beanCorreo.setAsunto(" Gestión de Files – Solicitud N° " + s.getCodigoSolicitud() + " Anulada ");
 		beanCorreo.setMensaje(" Estimados,<br>"
-		+ " La solicitud N° " + s.getCodigoSolicitud() + " fue anulada el " + getFechaAnulacion(s)
+		+ " La solicitud N&#176; " + s.getCodigoSolicitud() + " fue anulada el " + getFechaAnulacion(s)
 		+ " por el solicitante, por lo cual se les pide cancelar el traslado de file.<br>"
 		+ " Saludos Cordiales,<br> " + " DESARROLLO COMERCIAL");
 		
@@ -138,8 +138,8 @@ public class GestionCorreo {
 		Correo beanCorreo = new Correo();
 		beanCorreo.setAsunto(" Gestión de Files – Solicitud N° " + s.getCodigoSolicitud() + " Aprobada ");
 		beanCorreo.setMensaje(" Estimados,<br>"
-		+ " La solicitud N° " + s.getCodigoSolicitud() + " fue aprobada el " + getFechaAprobacionRechazo(s)
-		+ " por los involucrados, por lo cual se les adjunta  todos los contratos de la misma para gestionar la recepción de files con el gestor " 
+		+ " La solicitud N&#176; " + s.getCodigoSolicitud() + " fue aprobada el " + getFechaAprobacionRechazo(s)
+		+ " por los involucrados, por lo cual se les adjunta  todos los contratos de la misma para gestionar la recepci&oacute;n de files con el gestor " 
 		+ s.getGestorReceptorDto().getNomGestor() + " o en su defecto con el GOF "
 		+ _GOF
 		+ " de la oficina receptora.<br>"
@@ -167,8 +167,8 @@ public class GestionCorreo {
 		Correo beanCorreo = new Correo();
 		beanCorreo.setAsunto(" Files Pendientes de Recepción ");
 		beanCorreo.setMensaje(" Estimados,<br>"
-		+ " Se les adjunta el reporte de todos los files de contratos que están pendientes"
-		+ " de recepción por más de " + dias + " días.<br>"
+		+ " Se les adjunta el reporte de todos los files de contratos que est&aacute;n pendientes"
+		+ " de recepci&oacute;n por m&aacute;s de " + dias + " d&iacute;as.<br>"
 		+ " Saludos Cordiales,<br> " + " DESARROLLO COMERCIAL");
 
 		if(SessionHelper.getModoDebug()) {
@@ -196,9 +196,9 @@ public class GestionCorreo {
 		Correo beanCorreo = new Correo();
 		beanCorreo.setAsunto("Contratos Procesados de " + dia + " ");
 		beanCorreo.setMensaje("Estimados Sres,<br>"
-					+ " Se adjunta los reportes de la segmentación de "
+					+ " Se adjunta los reportes de la segmentaci&oacute;n de "
 					+ dia
-					+ ".<br>Ahí se detallan todos los contratos procesados con sus respectivos "
+					+ ".<br>Ah&iacute; se detallan todos los contratos procesados con sus respectivos "
 					+ " datos para los fines que crean pertinentes.<br>"
 					+ " Saludos Cordiales,<br>" + " DESARROLLO COMERCIAL ");
 
@@ -240,9 +240,9 @@ public class GestionCorreo {
 		Correo beanCorreo = new Correo();
 		beanCorreo.setAsunto("Contratos Procesados del " + dia + " ");
 		beanCorreo.setMensaje("Estimados Sres,<br>"
-					+ " Se adjunta los reportes de la segmentación realizada del "
+					+ " Se adjunta los reportes de la segmentaci&oacute;n realizada del "
 					+ dia
-					+ ". Ahí se detallan todos los contratos procesados con sus respectivos "
+					+ ". Ah&iacute; se detallan todos los contratos procesados con sus respectivos "
 					+ "datos para los fines que crean pertinentes.<br>"
 					+ "Saludos Cordiales,<br><b>OPERACIONES CENTRALIZADAS</b>");
 		
@@ -471,10 +471,10 @@ public class GestionCorreo {
 		beanCorreo.setAsunto(" Silencio Administrativo en Evaluación de Solicitud N° "
 						+ solicitudDto.getCodigoSolicitud());
 		beanCorreo.setMensaje(" Nuevamente se les hace presente la siguiente solicitud para su respectiva "
-						+ " evaluación debido a que se encuentra en  evaluación desde "
+						+ " evaluaci&oacute;n debido a que se encuentra en  evaluaci&oacute;n desde "
 						+ fecha_inicio
-						+ " Caso contrario se procederá a aplicar automáticamente El Silencio "
-						+ " Administrativo el día " + fecha_fin);
+						+ " Caso contrario se proceder&aacute; a aplicar autom&aacute;ticamente El Silencio "
+						+ " Administrativo el d&iacute;a " + fecha_fin);
 		beanCorreo.setMensajeAdjunto(FormatoMensajeCorreo.formatoCorreoSilencioAdm(solicitudDto));
 		beanCorreo.setFileName(GestionCorreo.SILENCIO_ADMINISTRATIVO);
 		beanCorreo.setListaTo(obtenerToEmailPorSolicitud(solicitudDto));
@@ -506,8 +506,8 @@ public class GestionCorreo {
 	
 	public Correo obtenerCorreoSilencioAdministrativoBatch(SolicitudDto s) {		
 		Correo beanCorreo = new Correo();
-		beanCorreo.setAsunto("SOLICITUD APROBADA POR SILENCIO ADMINISTRATIVO N° " + s.getCodigoSolicitud());
-		beanCorreo.setMensaje("Estimados,<br/>La solicitud N° " + s.getCodigoSolicitud()+ " fue aprobada el " + getFechaAprobacionRechazo(s) + " por Silencio Administrativo. ");
+		beanCorreo.setAsunto("SOLICITUD APROBADA POR SILENCIO ADMINISTRATIVO N°" + s.getCodigoSolicitud());
+		beanCorreo.setMensaje("Estimados,<br/>La solicitud N&#176; " + s.getCodigoSolicitud()+ " fue aprobada el " + getFechaAprobacionRechazo(s) + " por Silencio Administrativo. ");
 		beanCorreo.setMensajeAdjunto(FormatoMensajeCorreo.formatoCorreoSilencioAdm(s));
 		beanCorreo.setListaTo(obtenerToEmailPorSolicitud(s));
 		beanCorreo.setListaCc(s.getEmailSolicitante(true));
@@ -515,10 +515,10 @@ public class GestionCorreo {
 	}
 
 	/**
-	 * Permitirá informar al solicitante que su contrato no pudo ser procesado.
-	 * Esto se dará en casos excepcionales cuando el usuario no pudo procesar el
+	 * Permitir&aacute; informar al solicitante que su contrato no pudo ser procesado.
+	 * Esto se dar&aacute; en casos excepcionales cuando el usuario no pudo procesar el
 	 * contrato y lo ha actualizado como observado en el sistema. En este
-	 * momento el sistema enviará automáticamente un correo según lo siguiente
+	 * momento el sistema enviar&aacute; autom&aacute;ticamente un correo seg&uacute;n lo siguiente
 	 * 
 	 * @param solicitudDto
 	 * @param contratoDto

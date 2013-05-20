@@ -9,5 +9,6 @@ public interface DAOGenericoLDAP<Dto> {
 	
 	public List<Dto> obtenerDtosConFiltros(Class c,String columna,Object valor) throws DAOException;
 	public List<Dto> obtenerDtosInvolucrados(Class c, String codOficina,String...codCargos) throws DAOException;
+	public List<Dto> obtenerDtosInvolucradosGT(Class c, String codOficina,String...codCargos) throws DAOException;
 	public String obtenerDtosInvolucrados(String codOfi) throws DAOException;	
 }
