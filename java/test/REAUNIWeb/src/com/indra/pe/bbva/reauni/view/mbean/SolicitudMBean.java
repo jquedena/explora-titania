@@ -851,7 +851,7 @@ public class SolicitudMBean extends GenericMBean {
 							showWarning("PARA GUARDAR SU EVALUACIÓN, ES NECESARIO QUE EVALÚE LA DECLARACIÓN JURADA.");
 							this.status = Boolean.TRUE;
 							continuar = false;		
-						}	
+						}
 					}
 					
 					Date now = Utilitarios.Fecha.obtenerFechaActualDate();
@@ -908,7 +908,7 @@ public class SolicitudMBean extends GenericMBean {
 				}
 				
 			} else {
-				this.status = Boolean.TRUE;
+				this.status = Boolean.FALSE;
 				showWarning("PARA GRABAR LA EVALUACIÓN DEBE SELECCIONAR UN ESTADO DIFERENTE A PENDIENTE");
 			}
 			
@@ -1083,14 +1083,20 @@ public class SolicitudMBean extends GenericMBean {
 
 						// Obtenemos los cargos
 						List<ParametroDto> listaCargos = SelectOneMenuHelper.obtenerParametrosActivosPorCatalogo(1017L);
-						String[] cargos = new String[listaCargos.size()];
+						List<String> cargos = new ArrayList<String>();
+						List<String> cargosGT = new ArrayList<String>();
+						
 						for (int i = 0; i < listaCargos.size(); i++) {
 							ParametroDto p = listaCargos.get(i);
-							cargos[i] = p.getValorCadena();
+							if(p.getValorBoolean().booleanValue()) {
+								cargosGT.add(p.getValorCadena());
+							} else {
+								cargos.add(p.getValorCadena());
+							}
 						}
-
+						
 						List<LdapDto> lista = this.ldapService.obtenerDtosInvolucrados(osx.getOficinaDto().getCodOficina(), cargos);
-						lista.addAll(this.ldapService.obtenerDtosInvolucrados(osx.getOficinaDto().getTerritorioDto().getCodTerritorio(), cargos));
+						lista.addAll(this.ldapService.obtenerDtosInvolucradosGT(osx.getOficinaDto().getTerritorioDto().getCodTerritorio(), cargosGT));
 						for (LdapDto l1 : lista) {
 							// CREANDO LOS INVOLUCRADOS
 							InvolucradoDto d1 = new InvolucradoDto();

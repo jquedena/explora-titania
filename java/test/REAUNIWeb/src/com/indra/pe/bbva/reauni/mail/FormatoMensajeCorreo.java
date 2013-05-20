@@ -199,32 +199,32 @@ public class FormatoMensajeCorreo {
 		String ajusteBonificacionDesc = "";
 		
 		if (s.getTipoDto().getId().equals(1006L)) { //unificacion / bonificacion
-			ajusteBonificacion = "Bonificación";
+			ajusteBonificacion = "Bonificaci&oacute;n";
 			if (s.getBonificacionNoExcede7Dias()) {
-				ajusteBonificacionDesc += ApplicationHelper.obtenerParametroPorId(1048L).getValorCadena().toUpperCase()+ "<br/>";
+				ajusteBonificacionDesc += ApplicationHelper.obtenerParametroPorId(1048L).getValorCadena().toUpperCase().replaceAll("Ó", "&Oacute;")+ "<br/>";
 			}
 			if (s.getBonificacion2()) {
-				ajusteBonificacionDesc += ApplicationHelper.obtenerParametroPorId(1076L).getValorCadena().toUpperCase()+ "<br/>";
+				ajusteBonificacionDesc += ApplicationHelper.obtenerParametroPorId(1076L).getValorCadena().toUpperCase().replaceAll("Ó", "&Oacute;") + "<br/>";
 			}
 			if (s.getBonificacionOtros()){
 				ajusteBonificacionDesc += "OTROS :" +s.getBonificacionComentarios();
 			}
 			if(!s.getMostrarDeclaracionJurada()) {
-				ajusteBonificacionDesc += "NO SE SELECCIONÓ.";
+				ajusteBonificacionDesc += "NO SE SELECCION&Oacute;.";
 			}
 		}else if (s.getTipoDto().getId().equals(1007L)){ //reunificacion / ajustes
 			ajusteBonificacion = "Ajustes";
 			if (s.getAjusteFormaGrupo()) {
-				ajusteBonificacionDesc += ApplicationHelper.obtenerParametroPorId(1050L).getValorCadena().toUpperCase() + "<br/>";
+				ajusteBonificacionDesc += ApplicationHelper.obtenerParametroPorId(1050L).getValorCadena().toUpperCase().replaceAll("Ó", "&Oacute;") + "<br/>";
 			}
 			if (s.getAjusteVentaUltimo()){
-				ajusteBonificacionDesc += ApplicationHelper.obtenerParametroPorId(1073L).getValorCadena().toUpperCase() + "<br/>";
+				ajusteBonificacionDesc += ApplicationHelper.obtenerParametroPorId(1073L).getValorCadena().toUpperCase() .replaceAll("Ó", "&Oacute;")+ "<br/>";
 			}
 			if (s.getAjusteOtros()){
 				ajusteBonificacionDesc += "OTROS : "+s.getAjusteComentarios();
 			}
 			if(!s.getMostrarDeclaracionJurada()) {
-				ajusteBonificacionDesc += "NO SE SELECCIONÓ.";
+				ajusteBonificacionDesc += "NO SE SELECCION&Oacute;.";
 			}
 		}
 		
@@ -272,7 +272,7 @@ public class FormatoMensajeCorreo {
 		mensaje.append("		}");
 		mensaje.append("	</style>");
 		mensaje.append("</head>");
-		mensaje.append("<body>");
+		mensaje.append("<body style='{font-size: 0.7em;overflow: auto;padding: 4px;margin: 4px;}'>");
 		mensaje.append("<hr/>");
 		mensaje.append("<b style='font-size: 115%;'><center>SOLICITUD DE ");
 		mensaje.append(s.getTipoDto().getDescripcion().toUpperCase());
@@ -350,20 +350,19 @@ public class FormatoMensajeCorreo {
 		mensaje.append("<table class='dataTable' cellpadding=0 cellspacing=0>");
 		mensaje.append("	<tr>");
 		if(gestionFile) {
-			mensaje.append("		<th>EST. SEG.</th>");
+			mensaje.append("		<th style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>EST. SEG.</th>");
 			mensaje.append("		<th>EST. FILE</th>");
 		}
-		// mensaje.append("		<th>OF.PROP.</th>");
-		mensaje.append("		<th>OF.CEDE.</th>");
-		mensaje.append("		<th>OF.RECE.</th>");
-		mensaje.append("		<th>GES.RECE</th>");
-		mensaje.append("		<th>C.PROD.</th>");
-		mensaje.append("		<th>CONTRATO</th>");
-		mensaje.append("		<th>F.APER.</th>");
-		mensaje.append("		<th>TOTAL ACTIVO</th>");
-		mensaje.append("		<th>TOTAL PASIVO</th>");
-		mensaje.append("		<th>TIP. PRESTAMO</th> ");
-		mensaje.append("		<th class='last'>DET. SITUACION</th> ");
+		mensaje.append("		<th style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>OF.CEDE.</th>");
+		mensaje.append("		<th style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>OF.RECE.</th>");
+		mensaje.append("		<th style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>GES.RECE</th>");
+		mensaje.append("		<th style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>C.PROD.</th>");
+		mensaje.append("		<th style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>CONTRATO</th>");
+		mensaje.append("		<th style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>F.APER.</th>");
+		mensaje.append("		<th style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>TOTAL ACTIVO</th>");
+		mensaje.append("		<th style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>TOTAL PASIVO</th>");
+		mensaje.append("		<th style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>TIP. PRESTAMO</th> ");
+		mensaje.append("		<th class='last' style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;border-right:1px solid #000;'>DET. SITUACION</th> ");
 		mensaje.append("	</tr>");
 		
 		BigDecimal totalActivo = BigDecimal.ZERO;
@@ -374,38 +373,35 @@ public class FormatoMensajeCorreo {
 				for (ContratoDto col : row.getListaContratos()) {
 					mensaje.append("<tr>");
 					if(gestionFile) {
-						mensaje.append("<td>" + col.getEstadoDto().getDescripcion() + "</td>");
-						mensaje.append("<td>" + (col.getEstadoFile() ? "PROCESADO" : "PENDIENTE") + "</td>");
+						mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>" + col.getEstadoDto().getDescripcion() + "</td>");
+						mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>" + (col.getEstadoFile() ? "PROCESADO" : "PENDIENTE") + "</td>");
 					}
-					// mensaje.append("<td>" + s.getOficinaPrincipalCliente() + "-" + s.getOficinaPrincipalClienteDesc() + "</td>");
-					mensaje.append("<td>" + row.getOficinaDto().getCodOficina() + " " + row.getOficinaDto().getDesOficina() + "</td>");
-					mensaje.append("<td>" + s.getOficinaReceptorDto().getCodOficina() + "-" + s.getOficinaReceptorDto().getDesOficina() + "</td>");
-					mensaje.append("<td>" + s.getGestorReceptorDto().getCodGestor() + "-" + s.getGestorReceptorDto().getNomGestor() + "</td>");
-					mensaje.append("<td>" + col.getProductoDto().getCodProd() + "-" + col.getProductoDto().getDescProd() + "</td>");
-					mensaje.append("<td>" + col.getCodigoContrato() + "</td>");
-					mensaje.append("<td align='center'>" + FormatoMensajeCorreo.formatoFecha.format(col.getFechaSolicitud()) + "</td>");
-					mensaje.append("<td align='right'>S/." + FormatoMensajeCorreo.formatoNumero.format(col.getTotalActivo()) + "</td>");
-					mensaje.append("<td align='right'>S/." + FormatoMensajeCorreo.formatoNumero.format(col.getTotalPasivo()) + "</td>");
-					mensaje.append("<td>&nbsp;" + col.getTipoPrestamoDto().getDescripcion() + "</td>");
-					mensaje.append("<td class='last'>" + col.getDescripcionSituacion() + "</td>");
+					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>" + row.getOficinaDto().getCodOficina() + " " + row.getOficinaDto().getDesOficina() + "</td>");
+					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>" + s.getOficinaReceptorDto().getCodOficina() + "-" + s.getOficinaReceptorDto().getDesOficina() + "</td>");
+					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>" + s.getGestorReceptorDto().getCodGestor() + "-" + s.getGestorReceptorDto().getNomGestor() + "</td>");
+					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>" + col.getProductoDto().getCodProd() + "-" + col.getProductoDto().getDescProd() + "</td>");
+					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>" + col.getCodigoContrato() + "</td>");
+					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;' align='center'>" + FormatoMensajeCorreo.formatoFecha.format(col.getFechaSolicitud()) + "</td>");
+					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;' align='right'>S/." + FormatoMensajeCorreo.formatoNumero.format(col.getTotalActivo()) + "</td>");
+					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;' align='right'>S/." + FormatoMensajeCorreo.formatoNumero.format(col.getTotalPasivo()) + "</td>");
+					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>&nbsp;" + col.getTipoPrestamoDto().getDescripcion() + "</td>");
+					mensaje.append("<td class='last' style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;border-right:1px solid #000;'>" + col.getDescripcionSituacion() + "</td>");
 					mensaje.append("</tr>");
 					totalActivo=totalActivo.add(col.getTotalActivo());
 					totalPasivo=totalPasivo.add(col.getTotalPasivo());
 				}
 			}
 		}
-		
-		// mensaje.append("<tr><td colspan='13' style='border-left: 0px;'>&nbsp;</td></tr>");
 		mensaje.append("<tr>");
 		if(gestionFile) {
-			mensaje.append("<td style='border-left: 0px;'>&nbsp;</td>");
-			mensaje.append("<td style='border-left: 0px;'>&nbsp;</td>");
+			mensaje.append("<td style='border-left: 0px;border-top:1px solid #000;padding:2px;margin:2px;'>&nbsp;</td>");
+			mensaje.append("<td style='border-left: 0px;border-top:1px solid #000;padding:2px;margin:2px;'>&nbsp;</td>");
 		}
-		mensaje.append("<td style='border-left: 0px;' colspan=5>&nbsp;</td>");
-		mensaje.append("<td style='border-bottom:1px solid #000;'><b>Total</b></td>");
-		mensaje.append("<td style='border-bottom:1px solid #000;' align='right'><b>S/." + FormatoMensajeCorreo.formatoNumero.format(totalActivo) + "</b></td>");
-		mensaje.append("<td style='border-bottom:1px solid #000;' align='right'><b>S/." + FormatoMensajeCorreo.formatoNumero.format(totalPasivo) + "</b></td>");
-		mensaje.append("<td colspan=2>&nbsp;</td>");
+		mensaje.append("<td style='border-left: 0px;border-top:1px solid #000;padding:2px;margin:2px;' colspan=5>&nbsp;</td>");
+		mensaje.append("<td style='border-bottom:1px solid #000;border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'><b>Total</b></td>");
+		mensaje.append("<td style='border-bottom:1px solid #000;border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;' align='right'><b>S/." + FormatoMensajeCorreo.formatoNumero.format(totalActivo) + "</b></td>");
+		mensaje.append("<td style='border-bottom:1px solid #000;border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;' align='right'><b>S/." + FormatoMensajeCorreo.formatoNumero.format(totalPasivo) + "</b></td>");
+		mensaje.append("<td colspan=2 style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>&nbsp;</td>");
 		mensaje.append("</tr>");
 		
 		mensaje.append("</table>");

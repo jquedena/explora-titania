@@ -10,6 +10,7 @@ public interface LdapService {
 	public LdapDto obtenerInformacionPorRegistro(String codRegistro)throws ServiceException;
 	public Boolean validarExistenciaLdap(String columna,String valor) throws ServiceException;
 	public String validarExistenciaLdapPorColumna(String columna,String valor) throws ServiceException;
-	public List<LdapDto> obtenerDtosInvolucrados (String codOficina, String...codCargos) throws ServiceException;
+	public List<LdapDto> obtenerDtosInvolucrados (String codOficina, List<String> codCargos) throws ServiceException;
+	public List<LdapDto> obtenerDtosInvolucradosGT (String codOficina, List<String> codCargos) throws ServiceException;
 	
 }

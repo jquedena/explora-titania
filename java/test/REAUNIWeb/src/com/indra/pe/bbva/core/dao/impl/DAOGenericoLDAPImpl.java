@@ -65,6 +65,24 @@ public class DAOGenericoLDAPImpl<Dto> extends HibernateDaoSupport implements DAO
 		return list;
 	}
 	
+	@Override
+	public List<Dto> obtenerDtosInvolucradosGT(Class c, String codOficina,String...codCargos) throws DAOException {
+		List<Dto> list = null;
+		String criterio = " ";
+		String query = "from " + c.getSimpleName() + " ";
+		criterio = " where " + " upper(codofi) like '%" + codOficina.toString().toUpperCase().substring(1, 4) + "' and codCargo in (";
+		
+		for (String cargo : codCargos) {
+			criterio +=  "'" + cargo +"',";
+		}
+		
+		criterio = criterio.substring(0, criterio.length() - 1);
+		criterio += ")";
+		
+		list = super.getHibernateTemplate().find(query + (criterio == null ? "" : criterio));
+		
+		return list;
+	}
 	
 	@Override
 	public String obtenerDtosInvolucrados(String codOfi) throws DAOException {

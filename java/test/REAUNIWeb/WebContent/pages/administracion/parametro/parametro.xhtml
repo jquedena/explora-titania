@@ -68,7 +68,8 @@
 
 				<h:outputLabel value="#{message['parametro.label.valor.fecha']}" />
 				<p:calendar value="#{parametroMBean.parametroDto.valorFecha}" disabled="#{parametroMBean.accionParametro == 3}"
-					pattern="MM/dd/yyyy HH:mm" >
+					pattern="MM/dd/yyyy HH:mm" 
+					locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;">
 					<f:ajax />
 				</p:calendar>
 

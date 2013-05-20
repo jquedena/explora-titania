@@ -51,9 +51,9 @@
 					<td style="label">FECHA INICIO</td>
 					<td>
 						<p:calendar id="fechaInicio"
-							value="#{consultaMBean.dtoFiltro.fechaInicio}" showOn="button"
+							value="#{consultaMBean.dtoFiltro.fechaInicio}"
 							pattern="#{aplicacionMBean.formatoFecha}"
-							locale="es_PE"
+							locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;"
 							label="#{message['solicitud.fecha.inicio']}">
 							<p:ajax event="dateSelect" listener="#{consultaMBean.listenerAsignarFechaInicio}" />
 						</p:calendar>
@@ -63,9 +63,9 @@
 					<td style="label">FECHA HASTA</td>
 					<td>
 						<p:calendar id="fechaHasta"
-							value="#{consultaMBean.dtoFiltro.fechaHasta}" showOn="button"
+							value="#{consultaMBean.dtoFiltro.fechaHasta}"
 							pattern="#{aplicacionMBean.formatoFecha}"
-							locale="es_PE"
+							locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;"
 							label="#{message['solicitud.fecha.hasta']}">
 							<p:ajax event="dateSelect" listener="#{consultaMBean.listenerAsignarFechaHasta}" />
 						</p:calendar>

@@ -22,14 +22,16 @@
 			                    </p:inputText>
 			
 			                    <h:outputLabel id="lblBusqFechaIni" for="fecBusqFechaIni" value="#{message['fechaCorte.label.fechaInicio']}" styleClass="label"/>
-			                    <p:calendar id="fecBusqFechaIni" value="#{fechaCorteModel.dtoFiltro.fechaInicio}" showOn="button"  pattern="#{aplicacionMBean.formatoFecha}"
-			                    			label="#{message['fechaCorte.label.fechaInicio']}" maxdate="#{fechaCorteModel.dtoFiltro.fechaFin}">
+			                    <p:calendar id="fecBusqFechaIni" value="#{fechaCorteModel.dtoFiltro.fechaInicio}" pattern="#{aplicacionMBean.formatoFecha}"
+			                    			label="#{message['fechaCorte.label.fechaInicio']}" maxdate="#{fechaCorteModel.dtoFiltro.fechaFin}"
+			                    			locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;">
 			                    	
                     			</p:calendar>  
 			
 			                    <h:outputLabel id="lblBusqFechaFin" for="fecBusqFechaFin" value="#{message['fechaCorte.label.fechaFin']}" styleClass="label"/>
-			                    <p:calendar id="fecBusqFechaFin" value="#{fechaCorteModel.dtoFiltro.fechaFin}"  showOn="button" pattern="#{aplicacionMBean.formatoFecha}" 
-			                    			label="#{message['fechaCorte.label.fechaFin']}"  mindate="#{fechaCorteModel.dtoFiltro.fechaInicio}">
+			                    <p:calendar id="fecBusqFechaFin" value="#{fechaCorteModel.dtoFiltro.fechaFin}" pattern="#{aplicacionMBean.formatoFecha}" 
+			                    			label="#{message['fechaCorte.label.fechaFin']}"  mindate="#{fechaCorteModel.dtoFiltro.fechaInicio}"
+			                    			locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;">
                     			</p:calendar> 
     						
     							<h:outputLabel id="lblBusqEstadoCorte" for="cbxBusqEstadoCorte" value="#{message['fechaCorte.label.estadoCorte']}" styleClass="label"/>
@@ -38,8 +40,9 @@
 			                    </h:selectOneMenu>
     							
     							<h:outputLabel id="lblBusqFechaCreacion" for="fecBusqFechaCreacion" value="#{message['fechaCorte.label.fechaCreacion']}" styleClass="label"/>
-			                    <p:calendar id="fecBusqFechaCreacion" value="#{fechaCorteModel.dtoFiltro.fechaCreacion}" showOn="button" pattern="#{aplicacionMBean.formatoFecha}"
-			                    			label="#{message['fechaCorte.label.fechaCreacion']}">
+			                    <p:calendar id="fecBusqFechaCreacion" value="#{fechaCorteModel.dtoFiltro.fechaCreacion}" pattern="#{aplicacionMBean.formatoFecha}"
+			                    			label="#{message['fechaCorte.label.fechaCreacion']}"
+			                    			locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;">
                     			</p:calendar> 
 		                </h:panelGrid>
    			 			<h:panelGrid columns="1" cellpadding="6">

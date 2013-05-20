@@ -36,11 +36,13 @@
 			                    </p:inputText>
 			
 			                    <h:outputLabel id="lblBusqFechaIni" for="fecBusqFechaIni" value="#{message['fechaCorte.label.fechaInicio']}" styleClass="label"/>
-			                    <p:calendar id="fecBusqFechaIni" value="#{buscarFechaCorteMBean.dtoFiltro.fechaInicio}"  pattern="#{aplicacionMBean.formatoFecha}">
+			                    <p:calendar id="fecBusqFechaIni" value="#{buscarFechaCorteMBean.dtoFiltro.fechaInicio}"  pattern="#{aplicacionMBean.formatoFecha}"
+			                    	locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;">
                     			</p:calendar>  
 			
 			                    <h:outputLabel id="lblBusqFechaFin" for="fecBusqFechaFin" value="#{message['fechaCorte.label.fechaFin']}" styleClass="label"/>
-			                    <p:calendar id="fecBusqFechaFin" value="#{buscarFechaCorteMBean.dtoFiltro.fechaFin}"  pattern="#{aplicacionMBean.formatoFecha}">
+			                    <p:calendar id="fecBusqFechaFin" value="#{buscarFechaCorteMBean.dtoFiltro.fechaFin}"  pattern="#{aplicacionMBean.formatoFecha}"
+			                    	locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;">
                     			</p:calendar> 
     						
     							<h:outputLabel id="lblBusqEstadoCorte" for="cbxBusqEstadoCorte" value="#{message['fechaCorte.label.estadoCorte']}" styleClass="label"/>
@@ -49,7 +51,8 @@
 			                    </h:selectOneMenu>
 			                    
     							<h:outputLabel id="lblBusqFechaCreacion" for="fecBusqFechaCreacion" value="#{message['fechaCorte.label.fechaCreacion']}" styleClass="label"/>
-			                    <p:calendar id="fecBusqFechaCreacion" value="#{buscarFechaCorteMBean.dtoFiltro.fechaCreacion}"  pattern="#{aplicacionMBean.formatoFecha}">
+			                    <p:calendar id="fecBusqFechaCreacion" value="#{buscarFechaCorteMBean.dtoFiltro.fechaCreacion}"  pattern="#{aplicacionMBean.formatoFecha}"
+			                    	locale="es_PE" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;">
                     			</p:calendar> 
     					
 			                    <p:commandButton image="ui-icon ui-icon-search" title="#{message['general.button.buscar.filtro.tip']}" update="tblBuscarFechaCorte"  
