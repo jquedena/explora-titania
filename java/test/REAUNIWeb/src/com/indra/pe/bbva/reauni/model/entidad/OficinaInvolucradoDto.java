@@ -58,7 +58,7 @@ public class OficinaInvolucradoDto implements Serializable, Comparable<Object> {
     @Transient
     private ParametroDto estadoDtoBkp; 
    
-    @Column(name = "COMENTARIO")
+    @Column(name = "COMENTARIO", length = 100)
     private String comentario;
     
     @Column(name = "FECHA")

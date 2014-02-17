@@ -457,8 +457,6 @@ public class SolicitudMBean extends GenericMBean {
 				
 				if (host != null) {
 					if (host.getData() != null 
-							&& host.getData().getPaterno() != null
-							&& !host.getData().getPaterno().equals("")
 							&& host.getData().getNombres() != null
 							&& !host.getData().getNombres().equals("")
 							&& host.getData().getCodigoSegmento() != null
@@ -467,7 +465,7 @@ public class SolicitudMBean extends GenericMBean {
 							&& !host.getData().getCodigoOficina().equals("")) {
 						
 						this.dto.setCodigoSolicitud(autogenerarCodigoSolicitud());
-						this.dto.setNombreCliente(host.getData().getNombres() + " " + host.getData().getPaterno() + " " + host.getData().getMaterno());
+						this.dto.setNombreCliente(host.getData().getNombres() + " " + (host.getData().getPaterno()!=null?host.getData().getPaterno():"") + " " + (host.getData().getMaterno()!=null?host.getData().getMaterno():""));
 						
 						this.dto.setSegmentoCliente(host.getData().getCodigoSegmento());	
 						this.dto.setSegmentoClienteDesc(host.getData().getDescripcionSegmento());

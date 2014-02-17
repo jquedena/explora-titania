@@ -381,7 +381,7 @@ public class FormatoMensajeCorreo {
 					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>" + s.getGestorReceptorDto().getCodGestor() + "-" + s.getGestorReceptorDto().getNomGestor() + "</td>");
 					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>" + col.getProductoDto().getCodProd() + "-" + col.getProductoDto().getDescProd() + "</td>");
 					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>" + col.getCodigoContrato() + "</td>");
-					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;' align='center'>" + FormatoMensajeCorreo.formatoFecha.format(col.getFechaSolicitud()) + "</td>");
+					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;' align='center'>" + col.getFechaApertura() + "</td>");
 					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;' align='right'>S/." + FormatoMensajeCorreo.formatoNumero.format(col.getTotalActivo()) + "</td>");
 					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;' align='right'>S/." + FormatoMensajeCorreo.formatoNumero.format(col.getTotalPasivo()) + "</td>");
 					mensaje.append("<td style='border-left:1px solid #000;border-top:1px solid #000;padding:2px;margin:2px;'>&nbsp;" + col.getTipoPrestamoDto().getDescripcion() + "</td>");

@@ -119,7 +119,8 @@
 						|| solicitudMBean.bloquearControles 
 						|| oficinaSolicitudDto.realizoVotoTerritorial 
 						|| ((oficinaSolicitudDto.silencioAdministrativo || solicitudInvolucradoDto.estadoDtoBkp.id!=1034 || sessionMBean.registro!=solicitudInvolucradoDto.involucradoDto.registro) &amp;&amp; sessionMBean.registro!=solicitudMBean.dto.responsableSolicitante)}"
-						size="60">
+						size="60"
+						maxlength="100">
 						<f:ajax />
 					</p:inputText>
 					<p:commandButton title="GUARDAR EVALUACION"
