@@ -83,6 +83,8 @@ public class OperacionesCentralizadasMBean extends GenericMBean implements Seria
 					if(this.sessionMBean.getAccion() == Constantes.Formulario.NUEVO){
 						boolean noSeRepiteCombinacion = operacionesCentralesBO.noSeRepiteCombinacion(getOperacionesCentralizadasModel().getDto());
 						if (noSeRepiteCombinacion) {
+						getOperacionesCentralizadasModel().getDto().setProducto(getOperacionesCentralizadasModel().getDto().getProducto().toUpperCase());
+						getOperacionesCentralizadasModel().getDto().setRegistro(getOperacionesCentralizadasModel().getDto().getRegistro().toUpperCase());
 						getOperacionesCentralizadasModel().getDto().setUsuarioCreacion(sessionMBean.getRegistro());
 						getOperacionesCentralizadasModel().getDto().setFechaCreacion(Utilitarios.Fecha
 								.obtenerFechaActualDate());

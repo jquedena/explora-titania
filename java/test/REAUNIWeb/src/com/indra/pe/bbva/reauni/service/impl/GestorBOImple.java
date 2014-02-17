@@ -55,7 +55,7 @@ public class GestorBOImple implements GestorBO {
 				Map<String,Object> o =  new HashMap<String,Object>();
 				o.put("codTerritorio", s.getTerritorioReceptorDto().getCodTerritorio());
 				o.put("codOficina", s.getOficinaReceptorDto().getCodOficina());
-				o.put("regGestor", s.getGestorReceptor());
+				o.put("codGestor", s.getCarteraReceptor());
 				
 				try {
 					gestores = dao.obtenerDtosConFiltros(GestorDto.class, o);

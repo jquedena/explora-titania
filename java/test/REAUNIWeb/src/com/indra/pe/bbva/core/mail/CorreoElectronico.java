@@ -121,7 +121,7 @@ public class CorreoElectronico {
 			
 			MimeMessage message = new MimeMessage(session);
 			if(beanCorreo.getEmailFrom() == null) {
-				message.setFrom(new InternetAddress(emailFrom,"REASIGNACIÓN Y UNIFICACIÓN ONLINE"));
+				message.setFrom(new InternetAddress(emailFrom,"REASIGNACION Y UNIFICACION ONLINE"));
 			} else {
 				message.setFrom(new InternetAddress(beanCorreo.getEmailFrom(), beanCorreo.getFrom()));
 			}

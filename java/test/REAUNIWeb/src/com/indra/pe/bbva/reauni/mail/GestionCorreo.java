@@ -102,7 +102,7 @@ public class GestionCorreo {
 				
 		Correo beanCorreo = new Correo();
 		beanCorreo.setListaTo(email);
-		beanCorreo.setAsunto(" Gestión de Files – Solicitud N° " + s.getCodigoSolicitud() + " Anulada ");
+		beanCorreo.setAsunto(" GESTION DE FILES SOLICITUD " + s.getCodigoSolicitud() + " ANULADA ");
 		beanCorreo.setMensaje(" Estimados,<br>"
 		+ " La solicitud N&#176; " + s.getCodigoSolicitud() + " fue anulada el " + getFechaAnulacion(s)
 		+ " por el solicitante, por lo cual se les pide cancelar el traslado de file.<br>"
@@ -136,7 +136,7 @@ public class GestionCorreo {
 		}
 		
 		Correo beanCorreo = new Correo();
-		beanCorreo.setAsunto(" Gestión de Files – Solicitud N° " + s.getCodigoSolicitud() + " Aprobada ");
+		beanCorreo.setAsunto(" GESTION DE FILES SOLICITUD " + s.getCodigoSolicitud() + " APROBADA ");
 		beanCorreo.setMensaje(" Estimados,<br>"
 		+ " La solicitud N&#176; " + s.getCodigoSolicitud() + " fue aprobada el " + getFechaAprobacionRechazo(s)
 		+ " por los involucrados, por lo cual se les adjunta  todos los contratos de la misma para gestionar la recepci&oacute;n de files con el gestor " 
@@ -165,7 +165,7 @@ public class GestionCorreo {
 	
 	public Correo obtenerCorreoNoRecepcionFile(List<Object[]> contratos, Long dias, String email) {
 		Correo beanCorreo = new Correo();
-		beanCorreo.setAsunto(" Files Pendientes de Recepción ");
+		beanCorreo.setAsunto(" FILES PENDIENTES DE RECEPCION ");
 		beanCorreo.setMensaje(" Estimados,<br>"
 		+ " Se les adjunta el reporte de todos los files de contratos que est&aacute;n pendientes"
 		+ " de recepci&oacute;n por m&aacute;s de " + dias + " d&iacute;as.<br>"
@@ -194,7 +194,7 @@ public class GestionCorreo {
 			, List lista_unificacion
 			, List lista_reasignacion) {
 		Correo beanCorreo = new Correo();
-		beanCorreo.setAsunto("Contratos Procesados de " + dia + " ");
+		beanCorreo.setAsunto("CONTRATOS PROCESADOS DE " + dia + " ");
 		beanCorreo.setMensaje("Estimados Sres,<br>"
 					+ " Se adjunta los reportes de la segmentaci&oacute;n de "
 					+ dia
@@ -238,7 +238,7 @@ public class GestionCorreo {
 			, List lista_unificacion
 			, List lista_reasignacion) {
 		Correo beanCorreo = new Correo();
-		beanCorreo.setAsunto("Contratos Procesados del " + dia + " ");
+		beanCorreo.setAsunto("CONTRATOS PROCESADOS DEL " + dia + " ");
 		beanCorreo.setMensaje("Estimados Sres,<br>"
 					+ " Se adjunta los reportes de la segmentaci&oacute;n realizada del "
 					+ dia
@@ -279,7 +279,7 @@ public class GestionCorreo {
 	
 	public Correo obtenerCorreoRecepcionFile(List<Object[]> contratos, String mes, String email) {
 		Correo beanCorreo = new Correo();
-		beanCorreo.setAsunto(" Recepción de Files por Oficina");
+		beanCorreo.setAsunto(" RECEPCION DE FILES POR OFICINA");
 		beanCorreo.setMensaje(" Estimados,<br> "
 		+ " Se les adjunta el reporte de files de contratos recepcionados durante el mes de "
 		+ Utilitarios.Fecha.obtenerDescripcionMes(Integer.parseInt(mes)) + ".<br>" + " Saludos Cordiales,<br>"
@@ -448,9 +448,9 @@ public class GestionCorreo {
 		
 		
 		Correo beanCorreo = new Correo();
-		beanCorreo.setAsunto(" " + solicitudDto.getTramiteSolicitudDto().getDescripcionCorta() + " DE SOLICITUD N° " + solicitudDto.getCodigoSolicitud());
+		beanCorreo.setAsunto(" " + solicitudDto.getTramiteSolicitudDto().getDescripcionCorta() + " DE SOLICITUD " + solicitudDto.getCodigoSolicitud());
 		beanCorreo.setMensaje(" Estimados Sres,<br>"
-				+ " La solicitud N &#176; "
+				+ " La solicitud N&#176; "
 				+ solicitudDto.getCodigoSolicitud()
 				+ " fue "
 				+ solicitudDto.getTramiteSolicitudDto().getDescripcion().toLowerCase()
@@ -468,7 +468,7 @@ public class GestionCorreo {
 	public Correo obtenerCorreoSilencioAdministrativo(
 			SolicitudDto solicitudDto, String fecha_inicio, String fecha_fin) {
 		Correo beanCorreo = new Correo();
-		beanCorreo.setAsunto(" Silencio Administrativo en Evaluación de Solicitud N° "
+		beanCorreo.setAsunto(" SILENCIO ADMINISTRATIVO EN EVALUACION DE SOLICITUD "
 						+ solicitudDto.getCodigoSolicitud());
 		beanCorreo.setMensaje(" Nuevamente se les hace presente la siguiente solicitud para su respectiva "
 						+ " evaluaci&oacute;n debido a que se encuentra en  evaluaci&oacute;n desde "
@@ -506,7 +506,7 @@ public class GestionCorreo {
 	
 	public Correo obtenerCorreoSilencioAdministrativoBatch(SolicitudDto s) {		
 		Correo beanCorreo = new Correo();
-		beanCorreo.setAsunto("SOLICITUD APROBADA POR SILENCIO ADMINISTRATIVO N°" + s.getCodigoSolicitud());
+		beanCorreo.setAsunto("SOLICITUD APROBADA POR SILENCIO ADMINISTRATIVO " + s.getCodigoSolicitud());
 		beanCorreo.setMensaje("Estimados,<br/>La solicitud N&#176; " + s.getCodigoSolicitud()+ " fue aprobada el " + getFechaAprobacionRechazo(s) + " por Silencio Administrativo. ");
 		beanCorreo.setMensajeAdjunto(FormatoMensajeCorreo.formatoCorreoSilencioAdm(s));
 		beanCorreo.setListaTo(obtenerToEmailPorSolicitud(s));
@@ -528,7 +528,7 @@ public class GestionCorreo {
 			ContratoDto contratoDto) {
 		SessionMBean sessionMBean = (SessionMBean) WebServletContextListener.getApplicationContext().getBean("sessionMBean");
 		Correo beanCorreo = new Correo();
-		beanCorreo.setAsunto(" Contrato Observado "
+		beanCorreo.setAsunto(" CONTRATO OBSERVADO "
 				+ contratoDto.getCodigoContrato() + " ("
 				+ solicitudDto.getCodigoSolicitud());
 		beanCorreo.setMensaje(" Estimado Sr/Sra, <br> El contrato de la referencia no pudo ser procesado por el siguiente motivo : "

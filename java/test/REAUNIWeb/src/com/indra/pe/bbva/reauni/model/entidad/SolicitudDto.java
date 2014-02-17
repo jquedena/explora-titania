@@ -83,6 +83,9 @@ public class SolicitudDto implements Serializable {
 	@Column(name = "GESTOR_RECEPTOR")
 	private String gestorReceptor;
 
+	@Column(name = "CARTERA_RECEPTOR")
+	private String carteraReceptor;
+	
 	@JoinColumn(name = "OFICINA_RECEPTOR", referencedColumnName = "COD_OFICINA", nullable = true)
 	@ManyToOne
 	private OficinaDto oficinaReceptorDto;
@@ -352,8 +355,10 @@ public class SolicitudDto implements Serializable {
 	public void setGestorReceptorDto(GestorDto gestorReceptorDto) {
 		if(gestorReceptorDto != null) {
 			this.gestorReceptor = gestorReceptorDto.getRegGestor();
+			this.carteraReceptor = gestorReceptorDto.getCodGestor();
 		} else {
 			this.gestorReceptor = "";
+			this.carteraReceptor = "";
 		}
 	}
 	
@@ -768,6 +773,14 @@ public class SolicitudDto implements Serializable {
 		}
 
 		return tipo;
+	}
+
+	public String getCarteraReceptor() {
+		return carteraReceptor;
+	}
+
+	public void setCarteraReceptor(String carteraReceptor) {
+		this.carteraReceptor = carteraReceptor;
 	}
 
 }

@@ -204,7 +204,7 @@ public class ExportarContratoServlet extends HttpServlet  {
 					doc.setContentValue(indexRow, 6, c.getOficinaSolicitudDto().getSolicitudDto().getOficinaPrincipalCliente() + "-" + c.getOficinaSolicitudDto().getSolicitudDto().getOficinaPrincipalClienteDesc());
 					doc.setContentValue(indexRow, 7, c.getOficinaSolicitudDto().getSolicitudDto().getGestorPrincipalCliente() + "-" + c.getOficinaSolicitudDto().getSolicitudDto().getGestorPrincipalClienteDesc());
 					doc.setContentValue(indexRow, 8, c.getOficinaSolicitudDto().getSolicitudDto().getOficinaReceptorDto().getCodOficina() + "-" + c.getOficinaSolicitudDto().getSolicitudDto().getOficinaReceptorDto().getDesOficina());
-					doc.setContentValue(indexRow, 9, c.getOficinaSolicitudDto().getSolicitudDto().getGestorReceptorDto().getRegGestor() + "-" + c.getOficinaSolicitudDto().getSolicitudDto().getGestorReceptorDto().getNomGestor());
+					doc.setContentValue(indexRow, 9, c.getOficinaSolicitudDto().getSolicitudDto().getCarteraReceptor() + "-" + c.getOficinaSolicitudDto().getSolicitudDto().getGestorReceptorDto().getNomGestor());
 					doc.setContentValue(indexRow, 10, c.getProductoDto().getCodProd() + "-" + c.getProductoDto().getDescProd());
 					doc.setContentValue(indexRow, 11, c.getTipoPrestamoDto().getDescripcion());
 					doc.setContentValue(indexRow, 12, c.getTotalPasivo());
@@ -254,7 +254,7 @@ public class ExportarContratoServlet extends HttpServlet  {
 					doc.setContentValue(indexRow, 4, c.getOficinaSolicitudDto().getOficinaDto().getTerritorioDto().getCodTerritorio() + "-" + c.getOficinaSolicitudDto().getOficinaDto().getTerritorioDto().getDesTerritorio());
 					doc.setContentValue(indexRow, 5, c.getOficinaSolicitudDto().getOficinaDto().getCodOficina() + "-" + c.getOficinaSolicitudDto().getOficinaDto().getDesOficina());
 					doc.setContentValue(indexRow, 6, c.getOficinaSolicitudDto().getSolicitudDto().getOficinaReceptorDto().getCodOficina() + "-" + c.getOficinaSolicitudDto().getSolicitudDto().getOficinaReceptorDto().getDesOficina());
-					doc.setContentValue(indexRow, 7, c.getOficinaSolicitudDto().getSolicitudDto().getGestorReceptorDto().getRegGestor() + "-" + c.getOficinaSolicitudDto().getSolicitudDto().getGestorReceptorDto().getNomGestor());
+					doc.setContentValue(indexRow, 7, c.getOficinaSolicitudDto().getSolicitudDto().getCarteraReceptor() + "-" + c.getOficinaSolicitudDto().getSolicitudDto().getGestorReceptorDto().getNomGestor());
 					doc.setContentValue(indexRow, 8, c.getProductoDto().getCodProd() + "-" + c.getProductoDto().getDescProd());
 					doc.setContentValue(indexRow, 9, c.getTotalPasivo());
 					doc.setContentValue(indexRow, 10, c.getTotalActivo());
