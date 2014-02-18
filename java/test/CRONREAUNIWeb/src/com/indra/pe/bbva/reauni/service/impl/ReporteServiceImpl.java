@@ -24,8 +24,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.everis.pe.bbva.core.transactional.AppReauniTxReadOnly;
+import com.everis.pe.bbva.core.transactional.LdapTxReanOnly;
 import com.indra.pe.bbva.core.dao.DAOGenericoLDAP;
 import com.indra.pe.bbva.core.dao.ReporteDAO;
+import com.indra.pe.bbva.core.exception.DAOException;
 import com.indra.pe.bbva.core.util.Constantes;
 import com.indra.pe.bbva.reauni.service.ReporteService;
 import com.indra.pe.bbva.reauni.view.helper.ApplicationHelper;
@@ -41,6 +44,7 @@ public class ReporteServiceImpl implements ReporteService{
 	@Autowired
 	private DAOGenericoLDAP daoGenericoLdap; 
 	
+	@AppReauniTxReadOnly
 	public void guardarReporteRepositorio(){
 		try {
 			
@@ -70,6 +74,11 @@ public class ReporteServiceImpl implements ReporteService{
 			logger.error("archivoNuevo", e);
 		}
 		return res;
+	}
+	
+	@LdapTxReanOnly
+	private String obtenerTerritorio (String o) throws DAOException {
+		return daoGenericoLdap.obtenerTerritorio(o);
 	}
 	
 	public void cargaListaRepositorio(String cabecera, List lista, String tipo){
@@ -132,7 +141,7 @@ public class ReporteServiceImpl implements ReporteService{
 						
 						if(Constantes.TIPO_TERRITORIO.equalsIgnoreCase(tipo) && columnas_registro == 1 && valor.equalsIgnoreCase("***")) {
 							try {
-								temp2 = daoGenericoLdap.obtenerTerritorio(temp1);
+								temp2 = this.obtenerTerritorio(temp1);
 								if(temp2 != null) {
 									valor = temp2;
 								}
@@ -143,7 +152,7 @@ public class ReporteServiceImpl implements ReporteService{
 						
 						if(Constantes.TIPO_OFICINA.equalsIgnoreCase(tipo) && columnas_registro == 1 && valor.equalsIgnoreCase("***")) {
 							try {
-								temp2 = daoGenericoLdap.obtenerTerritorio(temp1);
+								temp2 = this.obtenerTerritorio(temp1);
 								if(temp2 != null) {
 									valor = temp2;
 								}
@@ -154,7 +163,7 @@ public class ReporteServiceImpl implements ReporteService{
 						
 						if(Constantes.TIPO_TRAMITE.equalsIgnoreCase(tipo) && columnas_registro == 1 && valor.equalsIgnoreCase("***")) {
 							try {
-								temp2 = daoGenericoLdap.obtenerTerritorio(temp1);
+								temp2 = this.obtenerTerritorio(temp1);
 								if(temp2 != null) {
 									valor = temp2;
 								}

@@ -15,7 +15,9 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class EjecucionProcesoDtoPK implements Serializable {
-    @Basic(optional = false)
+
+	private static final long serialVersionUID = 1L;
+	@Basic(optional = false)
     @Column(name = "PROCESO")
     private String proceso;
     @Basic(optional = false)

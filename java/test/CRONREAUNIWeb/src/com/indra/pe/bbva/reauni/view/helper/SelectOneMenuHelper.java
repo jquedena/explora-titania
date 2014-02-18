@@ -18,18 +18,11 @@ public class SelectOneMenuHelper {
 	private static Logger logger = Logger.getLogger(SelectOneMenuHelper.class);	
 	
 	public SelectOneMenuHelper() {
-		
 	}
 
 	public static List<SelectItem> generarLista(List<Object> listaObjeto){
-		List<SelectItem> lista = new ArrayList<SelectItem>();
-		SelectItem item = null;
-		for (Object objeto : listaObjeto) {
-
-		}
 		return null;
 	}
-	
 	
 	public static SelectItem[] listaParametro(List<ParametroDto> listaParametro){
 		SelectItem[] lista = new SelectItem[listaParametro.size()];
@@ -59,16 +52,6 @@ public class SelectOneMenuHelper {
      * @return Lista
      */
 	public static List<ParametroDto> obtenerParametrosActivosPorCatalogo(Long catalogo) {
-//		AplicacionMBean aplicacionMBean = (AplicacionMBean)WebServletContextListener.getApplicationContext().getBean("aplicacionMBean");
-//		
-//        List<ParametroDto> lista = new ArrayList<ParametroDto>();
-//        for (ParametroDto p : aplicacionMBean.getListaParametros()) {
-//            if (p.getCatalogoParametroDto().getId().equals(catalogo) && p.getEstado().equals(Boolean.TRUE)) {
-//                lista.add(p);
-//            }
-//        }
-//        Utilitarios.General.ordena(lista, "descripcion");
-//        return lista;
 		ParametroBO parametroBO = (ParametroBO) WebServletContextListener.getApplicationContext().getBean("parametroBO");
     	ParametroDto filtro = new ParametroDto();
     	filtro.setCatalogoParametroDto(new CatalogoParametroDto());
@@ -80,7 +63,7 @@ public class SelectOneMenuHelper {
 			lista = parametroBO.obtenerParametrosActivos(filtro);			
 		} catch (ServiceException e) {
 			lista = new ArrayList<ParametroDto>();
-			logger.error(e);
+			logger.error("obtenerParametrosActivosPorCatalogo", e);
 		}
         return lista;
     }
@@ -104,17 +87,8 @@ public class SelectOneMenuHelper {
 			lista = parametroBO.obtenerParametrosActivos(filtro);
 		} catch (ServiceException e) {
 			lista = new ArrayList<ParametroDto>();
-			logger.error(e);
+			logger.error("obtenerParametrosActivosPorCatalogo", e);
 		}
-    	
-//    	AplicacionMBean aplicacionMBean = (AplicacionMBean)WebServletContextListener.getApplicationContext().getBean("aplicacionMBean");
-//        List<ParametroDto> lista = new ArrayList<ParametroDto>();
-//        for (ParametroDto p : aplicacionMBean.getListaParametros()) {
-//            if (p.getCatalogoParametroDto().getId().equals(catalogo) && p.getEstado().equals(Boolean.TRUE) && p.getParametroPadreDto() != null && p.getParametroPadreDto().getId().equals(padre)) {
-//                lista.add(p);
-//            }
-//        }
-//        Utilitarios.General.ordena(lista, "descripcion");
         return lista;
     }   
     
@@ -125,18 +99,7 @@ public class SelectOneMenuHelper {
      * @param padre Id Parametro Padre
      * @return Lista
      */
-	public static List<ParametroDto> obtenerParametrosActivosPorCatalogoAdicional(Long catalogo, Long padre) {
-//    	AplicacionMBean aplicacionMBean = (AplicacionMBean)WebServletContextListener.getApplicationContext().getBean("aplicacionMBean");
-//        List<ParametroDto> lista = new ArrayList<ParametroDto>();
-//        for (ParametroDto p : aplicacionMBean.getListaParametros()) {
-//            if (p.getCatalogoParametroDto().getId().equals(catalogo) && p.getEstado().equals(Boolean.TRUE) && p.getParametroPadreDto() != null && p.getParametroPadreDto().getId().equals(padre)) {
-//                lista.add(p);
-//            }
-//        }
-//        lista.add(ApplicationHelper.obtenerParametroPorId(1004L));
-//        lista.add(ApplicationHelper.obtenerParametroPorId(1005L));
-//        Utilitarios.General.ordena(lista, "descripcion");
-    	
+	public static List<ParametroDto> obtenerParametrosActivosPorCatalogoAdicional(Long catalogo, Long padre) { 	
     	ParametroBO parametroBO = (ParametroBO) WebServletContextListener.getApplicationContext().getBean("parametroBO");
     	ParametroDto filtro = new ParametroDto();
     	filtro.setCatalogoParametroDto(new CatalogoParametroDto());
@@ -151,7 +114,7 @@ public class SelectOneMenuHelper {
 	        lista.add(ApplicationHelper.obtenerParametroPorId(1005L));
 		} catch (ServiceException e) {
 			lista = new ArrayList<ParametroDto>();
-			logger.error(e);
+			logger.error("obtenerParametrosActivosPorCatalogoAdicional", e);
 		}
         return lista;
     }
@@ -162,16 +125,6 @@ public class SelectOneMenuHelper {
      * @return Lista
      */
     public static List<ParametroDto> obtenerParametrosActivosPorCatalogoAdicional(Long catalogo) {
-//    	AplicacionMBean aplicacionMBean = (AplicacionMBean)WebServletContextListener.getApplicationContext().getBean("aplicacionMBean");
-//        List<ParametroDto> lista = new ArrayList<ParametroDto>();
-//        for (ParametroDto p : aplicacionMBean.getListaParametros()) {
-//            if (p.getCatalogoParametroDto().getId().equals(catalogo) && p.getEstado().equals(Boolean.TRUE) && p.getParametroPadreDto() != null) {
-//                lista.add(p);
-//            }
-//        }
-//        lista.add(ApplicationHelper.obtenerParametroPorId(1004L));
-//        lista.add(ApplicationHelper.obtenerParametroPorId(1003L));
-//        Utilitarios.General.ordena(lista, "descripcion");
     	ParametroBO parametroBO = (ParametroBO) WebServletContextListener.getApplicationContext().getBean("parametroBO");
     	ParametroDto filtro = new ParametroDto();
     	filtro.setCatalogoParametroDto(new CatalogoParametroDto());
@@ -185,10 +138,9 @@ public class SelectOneMenuHelper {
 	        lista.add(ApplicationHelper.obtenerParametroPorId(1003L));
 		} catch (ServiceException e) {
 			lista = new ArrayList<ParametroDto>();
-			logger.error(e);
+			logger.error("obtenerParametrosActivosPorCatalogoAdicional", e);
 		}
 		
         return lista;
     }
-	
 }

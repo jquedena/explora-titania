@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.everis.pe.bbva.core.transactional.AppReauniTxReadOnly;
 import com.indra.pe.bbva.core.dao.DAOGenerico;
 import com.indra.pe.bbva.core.exception.DAOException;
 import com.indra.pe.bbva.core.exception.ServiceException;
@@ -22,6 +23,7 @@ public class PerfilBOImpl implements PerfilBO {
 	private DAOGenerico<PerfilDto> perfilDAO;
 	
 	@Override
+	@AppReauniTxReadOnly
 	public List<PerfilDto> obtenerListaPerfiles(PerfilDto perfilDto)
 			throws ServiceException {
 		List<PerfilDto> listaPerfilDto =  new ArrayList<PerfilDto>();
@@ -49,6 +51,7 @@ public class PerfilBOImpl implements PerfilBO {
 	}
 
 	@Override
+	@AppReauniTxReadOnly
 	public PerfilDto obtenerPerfilPorId(Long id) throws ServiceException {
 		PerfilDto PerfilDto =  null;
 		try {

@@ -20,17 +20,26 @@
           http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
      <context:annotation-config/>
-         
      <context:component-scan base-package="com.indra.pe.bbva"/>
-     
      <task:annotation-driven/>    
      
      <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="jdbc/APP_REAUNI" />
+		<property name="jndiName" value="jdbc/APP_REAUNI2" />
 		<property name="lookupOnStartup" value="false"/>
 		<property name="cache" 	value="true"/>
 		<property name="proxyInterface" value="javax.sql.DataSource"/>
-     </bean>  
+     </bean>
+     
+     <bean id="sessionFactoryReauni" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration"/>
+        <property name="configLocation" value="classpath:com/indra/pe/bbva/reauni/model/hibernate/hibernate.cfg.xml" />            
+     </bean>
+
+     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactoryReauni" />
+        <property name="dataSource" ref="dataSource" />
+     </bean>    
      
      <bean id="dataSourceLDAP" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName" value="jdbc/ORA_Biiwx001"/>
@@ -39,21 +48,10 @@
 	    <property name="proxyInterface" value="javax.sql.DataSource"/>
      </bean>
      
-     <bean id="sessionFactoryReauni" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration"/>
-        <property name="configLocation" value="classpath:com/indra/pe/bbva/reauni/model/hibernate/hibernate.cfg.xml" />            
-     </bean>
-     
      <bean id="sessionFactoryLdap" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSourceLDAP" />
         <property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration"/>
         <property name="configLocation" value="classpath:com/indra/pe/bbva/reauni/model/hibernate/hibernateLdap.cfg.xml" />            
-     </bean>
-
-     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactoryReauni" />
-        <property name="dataSource" ref="dataSource" />
      </bean>
      
      <bean id="transactionManagerLdap" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
@@ -61,16 +59,14 @@
         <property name="dataSource" ref="dataSourceLDAP" />
      </bean>
      
+     <tx:annotation-driven />
      
-     <bean id="gestionadorTareas" class="com.indra.pe.bbva.reauni.task.laucher.GestionadorTareas">
-	
-     </bean>
+     <bean id="gestionadorTareas" class="com.indra.pe.bbva.reauni.task.laucher.GestionadorTareas" />
     
-     <bean id="schedulerTask" 
-		  class="org.springframework.scheduling.timer.MethodInvokingTimerTaskFactoryBean">
-			<property name="targetObject" ref="gestionadorTareas" />
-			<property name="targetMethod" value="configuracion" />
-	 </bean>	
+     <bean id="schedulerTask" class="org.springframework.scheduling.timer.MethodInvokingTimerTaskFactoryBean">
+		<property name="targetObject" ref="gestionadorTareas" />
+		<property name="targetMethod" value="configuracion" />
+	 </bean>
 
 	 <bean id="timerTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
 		<property name="timerTask" ref="schedulerTask" />
@@ -85,5 +81,4 @@
 			</list>
 		</property>
 	 </bean>			
-
 </beans>

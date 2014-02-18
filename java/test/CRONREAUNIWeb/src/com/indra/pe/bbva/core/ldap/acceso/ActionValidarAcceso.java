@@ -9,27 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.grupobbva.bc.per.tele.ldap.directorio.IILDPeUsuario;
 import com.grupobbva.bc.per.tele.seguridad.ServiciosSeguridadBbva;
 import com.indra.pe.bbva.core.configuracion.WebServletContextListener;
-import com.indra.pe.bbva.reauni.service.ParametroBO;
 import com.indra.pe.bbva.reauni.view.mbean.SessionMBean;
- 
-@SuppressWarnings("unused")
+
 public class ActionValidarAcceso extends HttpServlet implements Servlet{
  
 	private static final long serialVersionUID = 2692392374210259330L;
-	
 	private static Logger logger = Logger.getLogger(ActionValidarAcceso.class);
-	
-	@Autowired
-	private ParametroBO parametroBo;
-
 
     public ActionValidarAcceso() {
-        
     }
 
     @Override
@@ -43,8 +34,8 @@ public class ActionValidarAcceso extends HttpServlet implements Servlet{
     }
     
     private void processRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-	logger.info("Sistema CRON Reasignacion-Unificacion - Validando Ingreso");
-	response.setCharacterEncoding("ISO-8859-1");
+    	logger.info("Sistema CRON Reasignacion-Unificacion - Validando Ingreso");
+    	response.setCharacterEncoding("ISO-8859-1");
         IILDPeUsuario iildPeUsuario = null;
         ServiciosSeguridadBbva objSeguridad = null;
         String reg = "";
@@ -55,7 +46,7 @@ public class ActionValidarAcceso extends HttpServlet implements Servlet{
             objSeguridad.obtener_ID();
             reg = objSeguridad.getUsuario().toUpperCase();
             iildPeUsuario = IILDPeUsuario.recuperarUsuario(reg);
-            if(iildPeUsuario != null){
+            if(iildPeUsuario != null) {
             	
             	SessionMBean sessionMBean = (SessionMBean)WebServletContextListener.getApplicationContext().getBean("sessionMBean");
             	sessionMBean.setNombresApellidos(iildPeUsuario.getApellido1() + " " + iildPeUsuario.getApellido2() + " " + iildPeUsuario.getNombre());
@@ -64,8 +55,7 @@ public class ActionValidarAcceso extends HttpServlet implements Servlet{
             	sessionMBean.setDesCargo(iildPeUsuario.getCargo().getDescripcion());
             	response.sendRedirect("/CRONREAUNIWeb/faces/levanta.jsp");
             	
-            	
-            }else{
+            } else {
         		request.getSession(true).setAttribute("strMensaje",msg);
                 response.sendRedirect("/CRONREAUNIWeb/faces/sinAcceso.xhtml");    
             }
@@ -75,8 +65,6 @@ public class ActionValidarAcceso extends HttpServlet implements Servlet{
             //logger.error(Utilitarios.Log.error(e,msg), e);        	
             request.getSession(true).setAttribute("strMensaje",msg);
             response.sendRedirect("/CRONREAUNIWeb/faces/sinAcceso.xhtml");
-        }
-        
+        } 
     }
- 
 }

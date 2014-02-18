@@ -9,6 +9,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.everis.pe.bbva.core.transactional.AppReauniTx;
+import com.everis.pe.bbva.core.transactional.AppReauniTxReadOnly;
 import com.indra.pe.bbva.core.dao.DAOGenerico;
 import com.indra.pe.bbva.core.exception.DAOException;
 import com.indra.pe.bbva.core.exception.ServiceException;
@@ -22,6 +24,7 @@ public class PermisoPerfilBOImpl implements PermisoPerfilBO {
 	private DAOGenerico<PermisoPerfilDto> permisoPerfilDAO;
 	
 	@Override
+	@AppReauniTx
 	public void insertarPermisoPerfil(PermisoPerfilDto permisoPerfilDto)throws ServiceException {
 		try {
 			permisoPerfilDAO.save(permisoPerfilDto);
@@ -31,6 +34,7 @@ public class PermisoPerfilBOImpl implements PermisoPerfilBO {
 	}
 
 	@Override
+	@AppReauniTx
 	public void actualizarPermisoPerfil(PermisoPerfilDto permisoPerfilDto) throws ServiceException {
 		try {
 			permisoPerfilDAO.saveOrUpdate(permisoPerfilDto);
@@ -40,6 +44,7 @@ public class PermisoPerfilBOImpl implements PermisoPerfilBO {
 	}
 
 	@Override
+	@AppReauniTx
 	public void eliminarPermisoPerfil(Long id) throws ServiceException {
 		PermisoPerfilDto permisoPerfilDto =  new PermisoPerfilDto();
 		permisoPerfilDto.setId(id);
@@ -51,6 +56,7 @@ public class PermisoPerfilBOImpl implements PermisoPerfilBO {
 	}
 
 	@Override
+	@AppReauniTxReadOnly
 	public List<PermisoPerfilDto> obtenerListaPermisoPerfil(PermisoPerfilDto permisoPerfilDto) throws ServiceException {
 		List<PermisoPerfilDto> listaPermisoPerfilDto =  new ArrayList<PermisoPerfilDto>();
 		Map<String,Object> parametro =  new HashMap<String,Object>();
@@ -80,6 +86,7 @@ public class PermisoPerfilBOImpl implements PermisoPerfilBO {
 	}
 
 	@Override
+	@AppReauniTxReadOnly
 	public PermisoPerfilDto obtenerPermisoPerfilPorId(Long id)throws ServiceException {
 		PermisoPerfilDto permisoPerfilDto =  null;
 		try {
@@ -91,6 +98,7 @@ public class PermisoPerfilBOImpl implements PermisoPerfilBO {
 	}
 
 	@Override
+	@AppReauniTxReadOnly
 	public PermisoPerfilDto obtenerPerfilSegunRegistroOCargo(String registro, String codCargo) throws ServiceException {
 		PermisoPerfilDto permisoPerfilDto =  null;
 		List<PermisoPerfilDto> listaPermisoPerfil  = null;

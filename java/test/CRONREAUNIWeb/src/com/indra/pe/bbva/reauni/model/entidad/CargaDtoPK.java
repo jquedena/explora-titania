@@ -18,7 +18,9 @@ import javax.persistence.TemporalType;
  */
 @Embeddable
 public class CargaDtoPK implements Serializable {
-    @Basic(optional = false)
+
+	private static final long serialVersionUID = 1L;
+	@Basic(optional = false)
     @Column(name = "PROCESO")
     private String proceso;
     @Basic(optional = false)
