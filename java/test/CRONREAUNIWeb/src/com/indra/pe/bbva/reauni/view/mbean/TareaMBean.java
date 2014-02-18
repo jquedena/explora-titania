@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.faces.event.ActionEvent;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,6 @@ import com.indra.pe.bbva.reauni.service.TareaBO;
 @Controller("tareaMBean")
 @Scope("session")
 public class TareaMBean extends GenericMBean {
-	private static Logger logger = Logger.getLogger(TareaMBean.class);
 
 	private TareaDto dto;
 	private TareaDto dtoFiltro;
@@ -64,7 +62,6 @@ public class TareaMBean extends GenericMBean {
 
 	public String guardar() {
 		String to = null;
-		String mensajeTrx = "";		
 
 		if (SessionMBean.ACCION == Constantes.Form.NUEVO) {
 			try {
@@ -125,11 +122,4 @@ public class TareaMBean extends GenericMBean {
 	public void setBo(TareaBO bo) {
 		this.bo = bo;
 	}
-
-	
-	
-
-	
-	
-	
 }

@@ -5,9 +5,13 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.everis.pe.bbva.core.transactional.AppReauniTxReadOnly;
 import com.indra.pe.bbva.core.configuracion.WebServletContextListener;
 import com.indra.pe.bbva.core.dao.DAOGenerico;
 import com.indra.pe.bbva.core.exception.DAOException;
+import com.indra.pe.bbva.core.exception.ServiceException;
+import com.indra.pe.bbva.core.mail.CorreoElectronico;
+import com.indra.pe.bbva.reauni.mail.Correo;
 import com.indra.pe.bbva.reauni.model.entidad.EjecucionProcesoDto;
 import com.indra.pe.bbva.reauni.model.entidad.SolicitudDto;
 import com.indra.pe.bbva.reauni.service.EjecucionProcesoBO;
@@ -15,6 +19,7 @@ import com.indra.pe.bbva.reauni.task.thread.CargaDiaria;
 import com.indra.pe.bbva.reauni.task.thread.EvaluaContratosObservados;
 import com.indra.pe.bbva.reauni.task.thread.GeneracionReporte;
 import com.indra.pe.bbva.reauni.view.helper.ApplicationHelper;
+import com.indra.pe.bbva.reauni.view.helper.SessionHelper;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class GestionadorTareas {
@@ -38,7 +43,50 @@ public class GestionadorTareas {
 		EjecucionProcesoBO ejecucionProcesoBO = (EjecucionProcesoBO) WebServletContextListener.getApplicationContext().getBean("ejecucionProcesoBO");
 		ejecucionProcesoBO.insertar(ejecucionProcesoDto);
 	}
+	
+	private static String mostrarMensajeHTML(Exception e) {
+		StackTraceElement[] stackTraceElement = null;
+		StringBuilder trace = new StringBuilder();
 
+		try {
+			trace.append("Error: <b>");
+			trace.append(e.getMessage());
+			trace.append("</b><br/>Traza:<br/>");
+			stackTraceElement = e.getStackTrace();
+
+			if (stackTraceElement != null && stackTraceElement.length > 0) {
+				for (StackTraceElement elem : stackTraceElement) {
+					trace.append(elem);
+					trace.append("<br/>");
+				}
+			}
+		} catch (Exception ex) {
+			trace = new StringBuilder(e.getMessage());
+			logger.error(e);
+		}
+
+		return trace.toString();
+	}
+
+	public static void enviarCorreo(String asunto, Exception e) {
+		Correo c = new Correo();
+		
+		if(SessionHelper.getModoDebug()) {
+			c.setListaTo(SessionHelper.getEmailDebug());
+		} else {
+			c.setListaTo(ApplicationHelper.obtenerParametroPorId(1083L).getValorCadena());
+		}
+		
+		c.setAsunto("Error durante: " + asunto);
+		c.setMensaje(mostrarMensajeHTML(e)); 
+		CorreoElectronico correoElectronico =  new CorreoElectronico();
+		try {
+			correoElectronico.enviar(c);
+		} catch (ServiceException ex) {
+			logger.error("ERROR AL ENVIAR EL CORREO :: ", ex);
+		}
+	}
+	
 	public void configuracion() {
 		Calendar calendario = Calendar.getInstance();
 		int hora = calendario.get(Calendar.HOUR_OF_DAY);
@@ -85,6 +133,7 @@ public class GestionadorTareas {
 					}
 				} catch (Exception e) {
 					logger.error("ERROR AL LANZAR EL PROCESO CargaDiaria :: ", e);
+					GestionadorTareas.enviarCorreo("TRX_CARGA_DIARIA_ARCHIVOS_MIS", e);
 				}
 			}
 		} else {
@@ -109,6 +158,7 @@ public class GestionadorTareas {
 						
 					} catch (Exception e) {
 						logger.error("ERROR AL LANZAR EL PROCESO EvaluaContratosObservados :: ", e);
+						GestionadorTareas.enviarCorreo("TRX_EVALUACION_CONTRATOS_OBS", e);
 					}
 				}
 			} else {
@@ -134,6 +184,7 @@ public class GestionadorTareas {
 							
 						} catch (Exception e) {
 							logger.error("ERROR AL LANZAR EL PROCESO GeneracionReporte :: ", e);
+							GestionadorTareas.enviarCorreo("TRX_GENERACION_REPORTES", e);
 						}
 					}
 				}
@@ -143,6 +194,7 @@ public class GestionadorTareas {
 		}
 	}
 	
+	@AppReauniTxReadOnly
 	public String obtenerPrimerDiaHabil (String mes, String anio) {
 		DAOGenerico<SolicitudDto> daoTarea = (DAOGenerico<SolicitudDto>) WebServletContextListener.getApplicationContext().getBean("daoGenerico");
 		String sql = "SELECT TO_CHAR(REAUNI.FC_PRIMER_DIA_UTIL('"+mes+"','"+anio+"'), 'DD') FROM DUAL";
@@ -158,6 +210,5 @@ public class GestionadorTareas {
 		}	
 		
 		return resultado;
-		
 	}
 }

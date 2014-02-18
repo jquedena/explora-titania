@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.everis.pe.bbva.core.transactional.AppReauniTxReadOnly;
 import com.indra.pe.bbva.core.dao.DAOGenerico;
 import com.indra.pe.bbva.core.exception.DAOException;
 import com.indra.pe.bbva.core.exception.ServiceException;
@@ -22,6 +23,7 @@ public class MenuBOImpl implements MenuBO {
 	private DAOGenerico<PerfilOpcionMenuDto> perfilOpcionMenuDAO;
 	
 	@Override
+	@AppReauniTxReadOnly
 	public List<OpcionMenuDto> obtenerListaOpcionesMenu(Long codPerfil)
 			throws ServiceException {
 		List<OpcionMenuDto> listaOpcionesMenu = new ArrayList<OpcionMenuDto>();

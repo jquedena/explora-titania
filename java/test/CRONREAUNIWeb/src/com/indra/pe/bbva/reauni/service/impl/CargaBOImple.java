@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.everis.pe.bbva.core.transactional.AppReauniTxReadOnly;
 import com.indra.pe.bbva.core.dao.DAOGenerico;
 import com.indra.pe.bbva.core.exception.DAOException;
 import com.indra.pe.bbva.core.util.Utilitarios;
@@ -21,6 +22,7 @@ public class CargaBOImple implements CargaBO {
 	private DAOGenerico<CargaDto> dao;
 
 	@Override
+	@AppReauniTxReadOnly
 	public List<CargaDto> obtenerCargasPorFecha(Date fecha) {
 		Date inicio = fecha;
 		Date fin = Utilitarios.Fecha.agregarDiasFechaDate(fecha, +1);		
@@ -28,7 +30,7 @@ public class CargaBOImple implements CargaBO {
 		try {
 			return dao.obtenerDtosPorQuery(hsql, inicio,fin);
 		} catch (DAOException e) {
-			logger.error("Error " + e.getMessage());
+			logger.error("CargaBOImple:obtenerCargasPorFecha", e);
 			return null;
 		}
 	}

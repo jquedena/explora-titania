@@ -6,6 +6,8 @@ package com.indra.pe.bbva.reauni.model.entidad;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -25,31 +27,50 @@ import com.indra.pe.bbva.core.util.Utilitarios;
 @Entity
 @Table(name = "TREAUNI_CARGAS",schema="REAUNI")
 public class CargaDto implements Serializable {
-    private static final long serialVersionUID = 1L;
+    
+	private static final long serialVersionUID = 1L;
+    private static Date FECHA_NULL;   
+    
+    static {
+    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+    	try {
+			FECHA_NULL = sdf.parse("01/01/1900 00:00:00");
+		} catch (ParseException e) {
+		}
+    }
+    
     @EmbeddedId
     protected CargaDtoPK cargaDtoPK;
-    @Column(name = "FECHA_INICIO")
+    
+    @Column(name = "FECHA_INICIO", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInicio;
-    @Column(name = "FEC_INI_TEMP")
+    
+    @Column(name = "FEC_INI_TEMP", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecIniTemp;
-    @Column(name = "FEC_FIN_TEMP")
+    
+    @Column(name = "FEC_FIN_TEMP", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecFinTemp;
-    @Column(name = "FEC_INI_VAL")
+    
+    @Column(name = "FEC_INI_VAL", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecIniVal;
-    @Column(name = "FEC_FIN_VAL")
+    
+    @Column(name = "FEC_FIN_VAL", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecFinVal;
-    @Column(name = "TOT_VAL_OK")
+    
+    @Column(name = "TOT_VAL_OK", nullable = true)
     private BigInteger totValOk;
-    @Column(name = "TOT_VAL")
+    
+    @Column(name = "TOT_VAL", nullable = true)
     private BigInteger totVal;    
     
     @Transient
     private int tiempoEjecucion;
+    
     @Transient    
     private BigInteger errores;
     
@@ -73,6 +94,9 @@ public class CargaDto implements Serializable {
     }
 
     public Date getFechaInicio() {
+    	if(fechaInicio == null) {
+    		fechaInicio = CargaDto.FECHA_NULL;
+    	}
         return fechaInicio;
     }
 
@@ -81,6 +105,9 @@ public class CargaDto implements Serializable {
     }
 
     public Date getFecIniTemp() {
+    	if(fecIniTemp == null) {
+    		fecIniTemp = CargaDto.FECHA_NULL;
+    	}
         return fecIniTemp;
     }
 
@@ -89,6 +116,9 @@ public class CargaDto implements Serializable {
     }
 
     public Date getFecFinTemp() {
+    	if(fecFinTemp == null) {
+    		fecFinTemp = CargaDto.FECHA_NULL;
+    	}
         return fecFinTemp;
     }
 
@@ -97,6 +127,9 @@ public class CargaDto implements Serializable {
     }
 
     public Date getFecIniVal() {
+    	if(fecIniVal == null) {
+    		fecIniVal = CargaDto.FECHA_NULL;
+    	}
         return fecIniVal;
     }
 
@@ -105,6 +138,9 @@ public class CargaDto implements Serializable {
     }
 
     public Date getFecFinVal() {
+    	if(fecFinVal == null) {
+    		fecFinVal = CargaDto.FECHA_NULL;
+    	}
         return fecFinVal;
     }
 
@@ -170,7 +206,5 @@ public class CargaDto implements Serializable {
 	public void setErrores(BigInteger errores) {
 		this.errores = errores;
 	}
-    
-    
-    
+
 }

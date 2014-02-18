@@ -5,7 +5,6 @@ import java.util.List;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -22,19 +21,16 @@ import com.indra.pe.bbva.reauni.view.mbean.SessionMBean;
 @Controller("parametroModel")
 @Scope("session")
 public class ParametroModel extends GenericMBean {
-	private static Logger logger = Logger.getLogger(ParametroModel.class);
-
+	
 	private CatalogoParametroDto dto;
 	private CatalogoParametroDto dtoFiltro;
 	private List<CatalogoParametroDto> lista;
-
 	private ParametroDto parametroDto;
 	private int accionParametro;
 	private SelectItem[] siTipos;	
+	@SuppressWarnings("unused")
 	private List<ParametroDto> listaParametrosPadre;
-	
-	
-	
+
 	@Autowired
 	private ParametroBO bo;
 
@@ -48,7 +44,6 @@ public class ParametroModel extends GenericMBean {
 
 	public String guardar() {
 		String to = null;
-		String mensajeTrx = "";		
 
 		if (SessionMBean.ACCION == Constantes.Form.NUEVO) {
 			try {
@@ -187,16 +182,10 @@ public class ParametroModel extends GenericMBean {
 
 	public List<ParametroDto> getListaParametrosPadre() {
 		return SelectOneMenuHelper.obtenerParametrosActivosPorCatalogo(this.parametroDto.getCatalogoParametroPadreDto().getId());
-		
 	}
 
 	public void setListaParametrosPadre(List<ParametroDto> listaParametrosPadre) {
 		this.listaParametrosPadre = listaParametrosPadre;
 	}
 
-	
-
-	
-	
-	
 }

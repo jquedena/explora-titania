@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.everis.pe.bbva.core.transactional.AppReauniTx;
+import com.everis.pe.bbva.core.transactional.AppReauniTxReadOnly;
 import com.indra.pe.bbva.core.dao.DAOGenerico;
 import com.indra.pe.bbva.core.exception.DAOException;
 import com.indra.pe.bbva.core.exception.ServiceException;
@@ -20,6 +22,7 @@ import com.indra.pe.bbva.reauni.service.ParametroBO;
 @Service("parametroBO")
 public class ParametroBOImple implements ParametroBO {
 	private static Logger logger = Logger.getLogger(ParametroBOImple.class);
+	
 	@Autowired
 	@Qualifier("daoGenerico")
 	private DAOGenerico<CatalogoParametroDto> dao;
@@ -29,36 +32,39 @@ public class ParametroBOImple implements ParametroBO {
 	private DAOGenerico<ParametroDto> daoParametro;
 
 	@Override
+	@AppReauniTx
 	public void insertar(CatalogoParametroDto catalogoParametro) {
 		try {
 			dao.save(catalogoParametro);
 		} catch (DAOException e) {
-			logger.error("Error en utilitario " + e.getMessage());
+			logger.error("Error en utilitario ", e);
 		}
 	}
 	
 	@Override
+	@AppReauniTx
 	public void editar(CatalogoParametroDto catalogoParametro) {
 		try {
 			dao.saveOrUpdate(catalogoParametro);
 		} catch (DAOException e) {
-			logger.error("Error en utilitario " + e.getMessage());
+			logger.error("Error en utilitario ", e);
 		}
 	}
 
 	@Override
+	@AppReauniTxReadOnly
 	public CatalogoParametroDto obtenerCatalogoParametro(Long id) {
 		try {
 			return dao.obtenerDtoPorId(CatalogoParametroDto.class, id);
 		} catch (DAOException e) {
-			logger.error("Error en utilitario " + e.getMessage());
+			logger.error("Error en utilitario ", e);
 			return null;
 		}		
 	}
 
 	@Override
-	public List<CatalogoParametroDto> obtenerCatalogosParametro(
-			CatalogoParametroDto catalogoParametro) {
+	@AppReauniTxReadOnly
+	public List<CatalogoParametroDto> obtenerCatalogosParametro(CatalogoParametroDto catalogoParametro) {
 		
 		Map<String,Object> m = new HashMap<String, Object>();
 		if (catalogoParametro.getId()!=null && !catalogoParametro.getId().equals(0L))
@@ -72,45 +78,44 @@ public class ParametroBOImple implements ParametroBO {
 		try {
 			return dao.obtenerDtosConFiltrosConOrden(CatalogoParametroDto.class, m, f);
 		} catch (DAOException e) {		
-			logger.error("Error en utilitario " + e.getMessage());
+			logger.error("Error en utilitario ", e);
 			return null;
 		}
 	}
 
- 
 	@Override
+	@AppReauniTxReadOnly
 	public List<ParametroDto> obtenerTodosParametros() {
 		Map<String,Object> m = new HashMap<String, Object>();		
-		
 		Map<String,String> f = new HashMap<String, String>();
 		f.put("descripcion", "asc");
 		
 		try {
 			return daoParametro.obtenerDtosConFiltrosConOrden(ParametroDto.class, m, f);
 		} catch (DAOException e) {		
-			logger.error("Error en utilitario " + e.getMessage());
+			logger.error("Error en utilitario ", e);
 			return null;
 		}
 	}
 
 	@Override
+	@AppReauniTxReadOnly
 	public List<CatalogoParametroDto> obtenerTodosCatalogosParametros() {
 		Map<String,Object> m = new HashMap<String, Object>();		
-		
 		Map<String,String> f = new HashMap<String, String>();
 		f.put("descripcion", "asc");
 		
 		try {
 			return dao.obtenerDtosConFiltrosConOrden(CatalogoParametroDto.class, m, f);
 		} catch (DAOException e) {		
-			logger.error("Error en utilitario " + e.getMessage());
+			logger.error("Error en utilitario ", e);
 			return null;
 		}
 	}
 	
 	@Override
-	public List<ParametroDto> obtenerListaParametros(ParametroDto parametroDto)
-			throws ServiceException {
+	@AppReauniTxReadOnly
+	public List<ParametroDto> obtenerListaParametros(ParametroDto parametroDto) throws ServiceException {
 		List<ParametroDto> listaParametroDto =  new ArrayList<ParametroDto>();
 		Map<String,Object> parametro =  new HashMap<String,Object>();
 		if(parametroDto.getId()!=null){
@@ -131,8 +136,8 @@ public class ParametroBOImple implements ParametroBO {
 	}
 	
     @Override
-    public ParametroDto obtenerParametro(ParametroDto parametroDto)
-    		throws ServiceException {
+    @AppReauniTxReadOnly
+    public ParametroDto obtenerParametro(ParametroDto parametroDto) throws ServiceException {
     	ParametroDto objParametroDto = null;
     	Map<String,Object> parametro =  new HashMap<String,Object>();
     	try {
@@ -152,6 +157,7 @@ public class ParametroBOImple implements ParametroBO {
     }
 
 	@Override
+	@AppReauniTxReadOnly
 	public ParametroDto obtenerParametro(Long id) throws ServiceException {
 		try {
 			return daoParametro.obtenerDtoPorId(ParametroDto.class, id);
@@ -161,8 +167,8 @@ public class ParametroBOImple implements ParametroBO {
 	}
 
 	@Override
-	public List<ParametroDto> obtenerParametrosActivos(ParametroDto parametroDto)
-			throws ServiceException {
+	@AppReauniTxReadOnly
+	public List<ParametroDto> obtenerParametrosActivos(ParametroDto parametroDto) throws ServiceException {
 		List<ParametroDto> listaParametroDto =  new ArrayList<ParametroDto>();
 		
 		Map<String,Object> filtro =  new HashMap<String,Object>();
