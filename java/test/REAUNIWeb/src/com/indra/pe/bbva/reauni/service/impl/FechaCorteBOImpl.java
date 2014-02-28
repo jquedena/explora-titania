@@ -31,7 +31,6 @@ public class FechaCorteBOImpl implements FechaCorteBO {
 		} catch (DAOException e) {
 			throw new ServiceException(e); 
 		}
-		
 	}
 
 	@Override
@@ -134,8 +133,5 @@ public class FechaCorteBOImpl implements FechaCorteBO {
         }else {
         	return null;
         }
-        
-			
 	}
-
 }

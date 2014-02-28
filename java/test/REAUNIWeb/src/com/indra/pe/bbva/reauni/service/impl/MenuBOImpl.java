@@ -3,13 +3,9 @@ package com.indra.pe.bbva.reauni.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.indra.pe.bbva.core.dao.DAOGenerico;
 import com.indra.pe.bbva.core.exception.DAOException;
@@ -18,8 +14,6 @@ import com.indra.pe.bbva.reauni.model.entidad.OpcionMenuDto;
 import com.indra.pe.bbva.reauni.service.MenuBO;
 
 @Service("menuBO")
-@Transactional
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class MenuBOImpl implements MenuBO {
  
 	@Autowired
@@ -40,5 +34,4 @@ public class MenuBOImpl implements MenuBO {
 		} 
 		return listaOpcionesMenu;
 	}
-	
 }

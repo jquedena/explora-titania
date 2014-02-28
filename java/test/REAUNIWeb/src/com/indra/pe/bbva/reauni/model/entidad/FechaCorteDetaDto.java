@@ -57,16 +57,12 @@ public class FechaCorteDetaDto implements Serializable {
     @LazyToOne(LazyToOneOption.FALSE)
     private FechaCorteDto fechaCorteDto;
 
-
- 
-    
     @Column(name = "FECHA_CREACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
     
     @Column(name = "PERFIL")    
     private Long perfil;
-    
     
     @Column(name = "USUARIO_CREACION")
     private String usuarioCreacion;
@@ -193,7 +189,4 @@ public class FechaCorteDetaDto implements Serializable {
 	public void setPerfil(Long perfil) {
 		this.perfil = perfil;
 	}
-    
-    
-    
 }

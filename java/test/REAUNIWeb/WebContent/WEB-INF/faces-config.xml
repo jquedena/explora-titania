@@ -16,5 +16,9 @@
             <default-locale>es</default-locale>
         </locale-config>        
         <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>  
-    </application>   
+    </application>
+    
+<!--     <lifecycle> -->
+<!--         <phase-listener>com.everis.pe.bbva.core.jsf.listener.OpenSessionInViewPhaseListener</phase-listener> -->
+<!--     </lifecycle> -->
 </faces-config>

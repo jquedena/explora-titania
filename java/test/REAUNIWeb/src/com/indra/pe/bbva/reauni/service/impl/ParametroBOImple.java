@@ -5,14 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.indra.pe.bbva.core.dao.DAOGenerico;
 import com.indra.pe.bbva.core.exception.DAOException;
@@ -22,10 +18,9 @@ import com.indra.pe.bbva.reauni.model.entidad.ParametroDto;
 import com.indra.pe.bbva.reauni.service.ParametroBO;
 
 @Service("parametroBO")
-@Transactional
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class ParametroBOImple implements ParametroBO {
 	private static Logger logger = Logger.getLogger(ParametroBOImple.class);
+	
 	@Autowired
 	@Qualifier("daoGenerico")
 	private DAOGenerico<CatalogoParametroDto> dao;
@@ -94,7 +89,7 @@ public class ParametroBOImple implements ParametroBO {
 		try {
 			return daoParametro.obtenerDtosConFiltrosConOrden(ParametroDto.class, m, f);
 		} catch (DAOException e) {		
-			logger.error("Error en utilitario " + e.getMessage());
+			logger.error("Error en utilitario ", e);
 			return null;
 		}
 	}
@@ -109,7 +104,7 @@ public class ParametroBOImple implements ParametroBO {
 		try {
 			return dao.obtenerDtosConFiltrosConOrden(CatalogoParametroDto.class, m, f);
 		} catch (DAOException e) {		
-			logger.error("Error en utilitario " + e.getMessage());
+			logger.error("Error en utilitario ", e);
 			return null;
 		}
 	}

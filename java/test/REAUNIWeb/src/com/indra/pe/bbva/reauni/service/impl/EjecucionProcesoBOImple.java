@@ -15,7 +15,6 @@ import com.indra.pe.bbva.reauni.service.EjecucionProcesoBO;
 @Service("ejecucionProcesoBO")
 public class EjecucionProcesoBOImple implements EjecucionProcesoBO {
 	private static Logger logger = Logger.getLogger(EjecucionProcesoBOImple.class);	
-
 	
 	@Autowired
 	@Qualifier("daoGenerico")
@@ -27,10 +26,9 @@ public class EjecucionProcesoBOImple implements EjecucionProcesoBO {
 		try {
 			return dao.obtenerDtosPorQuery(hsql, nombreProceso,fechaEjecucion);
 		} catch (DAOException e) {
-			logger.error("Error en EjecucionProcesoBOImple.obtenerEjecuciones" + e.getMessage());
+			logger.error("Error en EjecucionProcesoBOImple.obtenerEjecuciones", e);
 			return null;
 		}
-		
 	}
 	
 	@Override
@@ -39,10 +37,9 @@ public class EjecucionProcesoBOImple implements EjecucionProcesoBO {
 		try {
 			return dao.obtenerDtosPorQuery(hsql, nombreProceso,fechaEjecucion,horaEjecucion);
 		} catch (DAOException e) {
-			logger.error("Error en EjecucionProcesoBOImple.obtenerEjecuciones" + e.getMessage());
+			logger.error("Error en EjecucionProcesoBOImple.obtenerEjecuciones", e);
 			return null;
 		}
-		
 	}
 	
 	@Override
@@ -50,9 +47,8 @@ public class EjecucionProcesoBOImple implements EjecucionProcesoBO {
 		try {
 			dao.save(ejecucionProcesoDto);
 		} catch (DAOException e) {
-			logger.error("Error " + e.getMessage());
+			logger.error("Error ", e);
 		}
-		
 	}
 
 	@Override
@@ -60,9 +56,7 @@ public class EjecucionProcesoBOImple implements EjecucionProcesoBO {
 		try {
 			dao.saveOrUpdate(ejecucionProcesoDto);
 		} catch (DAOException e) {
-			logger.error("Error " + e.getMessage());
+			logger.error("Error ", e);
 		}
-		
 	}
-	
 }

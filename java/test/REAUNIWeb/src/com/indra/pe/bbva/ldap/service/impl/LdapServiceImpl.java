@@ -2,12 +2,8 @@ package com.indra.pe.bbva.ldap.service.impl;
 
 import java.util.List;
 
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.indra.pe.bbva.core.dao.DAOGenericoLDAP;
 import com.indra.pe.bbva.core.exception.DAOException;
@@ -17,8 +13,6 @@ import com.indra.pe.bbva.ldap.service.LdapService;
 import com.indra.pe.bbva.ldap.util.Constantes;
 
 @Service("ldapService")
-@Transactional
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class LdapServiceImpl implements LdapService {
 	
 	@Autowired

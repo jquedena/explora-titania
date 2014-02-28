@@ -23,7 +23,7 @@ public class DAOGenericoLDAPImpl<Dto> extends HibernateDaoSupport implements DAO
 	private static Logger logger = Logger.getLogger(DAOGenericoLDAPImpl.class);
 	
 	@Autowired
-	public DAOGenericoLDAPImpl(@Qualifier("sessionFactoryLdap") SessionFactory sessionFactory) {
+	public DAOGenericoLDAPImpl(@Qualifier("sessionFactoryReauni") SessionFactory sessionFactory) {
 		super.setSessionFactory(sessionFactory);
 	}
 	

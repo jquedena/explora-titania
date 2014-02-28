@@ -46,6 +46,9 @@ public class SituacionesMBean extends GenericMBean implements Serializable{
 		if(getSituacionModel()!=null){
 			getSituacionModel().setLista(new ArrayList());
 		}
+		getSituacionModel().getDtoFiltro().setCodigoAplicativo("");
+		getSituacionModel().getDtoFiltro().setCodigoSituacion("");
+		getSituacionModel().getDtoFiltro().setDescripcion("");
 		
 		return Constantes.UrlNavegacion.URL_LISTA_SITUACIONES;
 	}

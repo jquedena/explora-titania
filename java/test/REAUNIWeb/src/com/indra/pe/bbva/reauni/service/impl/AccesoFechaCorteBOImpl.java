@@ -109,6 +109,7 @@ public class AccesoFechaCorteBOImpl implements AccesoFechaCorteBO {
 			throw new ServiceException(e);
 		}		
 	}
+	
 	@Override
 	public boolean existeRegistroFechaCorte(String registro, FechaCorteDto fechaCorte, Long id) throws ServiceException {
 		try {
