@@ -8,9 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(schema="IIWX",name = "LDAPPERU2")
+@Table(schema="REAUNI",name = "VREAUNI_LDAPPERU2")
 public class LdapDto implements Serializable{
 	 
 		private static final long serialVersionUID = 2422609718522455615L;

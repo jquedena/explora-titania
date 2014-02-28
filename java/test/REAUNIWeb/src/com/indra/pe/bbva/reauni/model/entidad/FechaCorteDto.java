@@ -78,8 +78,8 @@ public class FechaCorteDto implements Serializable {
     @Column(name = "USUARIO_MODIFICACION")
     private String usuarioModificacion;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fechaCorteDto", fetch = FetchType.LAZY)
-    private List<FechaCorteDetaDto> FechaCorteDtoDetaList;
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "fechaCorteDto", fetch = FetchType.LAZY)
+    //private List<FechaCorteDetaDto> FechaCorteDtoDetaList;
 
     public FechaCorteDto() {
     }
@@ -168,14 +168,14 @@ public class FechaCorteDto implements Serializable {
         this.usuarioModificacion = usuarioModificacion;
     }
 
-    @XmlTransient
-    public List<FechaCorteDetaDto> getFechaCorteDtoDetaList() {
-        return FechaCorteDtoDetaList;
-    }
-
-    public void setFechaCorteDtoDetaList(List<FechaCorteDetaDto> FechaCorteDtoDetaList) {
-        this.FechaCorteDtoDetaList = FechaCorteDtoDetaList;
-    }
+//    @XmlTransient
+//    public List<FechaCorteDetaDto> getFechaCorteDtoDetaList() {
+//        return FechaCorteDtoDetaList;
+//    }
+//
+//    public void setFechaCorteDtoDetaList(List<FechaCorteDetaDto> FechaCorteDtoDetaList) {
+//        this.FechaCorteDtoDetaList = FechaCorteDtoDetaList;
+//    }
 
     @Override
     public int hashCode() {

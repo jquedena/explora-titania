@@ -61,7 +61,7 @@ import javax.mail.internet.MimeMultipart;
 
 import org.apache.log4j.Logger;
 
-import sun.misc.BASE64Encoder;
+// import sun.misc.BASE64Encoder;
 
 @SuppressWarnings({"rawtypes", "unchecked", "unused"})
 public class Utilitarios {
@@ -671,69 +671,69 @@ public class Utilitarios {
         private static final int ITERATION_COUNT = 19;
         private static String sKeyPhrase = "abcdEFGH";
 
-        public static String encriptarTexto(String textoDesencriptado) {
-            Cipher oECipher = null;
-            Cipher oDCipher = null;
-            String sStringValue = textoDesencriptado;
-            try {
-                // Crear la key
-                KeySpec oKeySpec = new PBEKeySpec(sKeyPhrase.toCharArray(), SALT_BYTES, ITERATION_COUNT);
-                SecretKey oKey = SecretKeyFactory.getInstance("PBEWithMD5AndDES").generateSecret(oKeySpec);
-                oECipher = Cipher.getInstance(oKey.getAlgorithm());
-                oDCipher = Cipher.getInstance(oKey.getAlgorithm());
+//        public static String encriptarTexto(String textoDesencriptado) {
+//            Cipher oECipher = null;
+//            Cipher oDCipher = null;
+//            String sStringValue = textoDesencriptado;
+//            try {
+//                // Crear la key
+//                KeySpec oKeySpec = new PBEKeySpec(sKeyPhrase.toCharArray(), SALT_BYTES, ITERATION_COUNT);
+//                SecretKey oKey = SecretKeyFactory.getInstance("PBEWithMD5AndDES").generateSecret(oKeySpec);
+//                oECipher = Cipher.getInstance(oKey.getAlgorithm());
+//                oDCipher = Cipher.getInstance(oKey.getAlgorithm());
+//
+//                // Preparar los parametros para los ciphers
+//                AlgorithmParameterSpec oaramSpec = new PBEParameterSpec(SALT_BYTES, ITERATION_COUNT);
+//
+//                // Crear los ciphers
+//                oECipher.init(Cipher.ENCRYPT_MODE, oKey, oaramSpec);
+//                oDCipher.init(Cipher.DECRYPT_MODE, oKey, oaramSpec);
+//
+//                // Encodear la cadena a bytes usando UTF-8
+//                byte[] oUTF8 = sStringValue.getBytes("UTF8");
+//
+//                // Encriptar
+//                byte[] oEnc = oECipher.doFinal(oUTF8);
+//
+//                // Encodear bytes a base64 para obtener cadena
+//                return new BASE64Encoder().encode(oEnc);
+//            } catch (Exception oE1) {
+//            	logger.error("Error en utilitario " + oE1.getMessage());
+//            }
+//            return null;
+//        }
 
-                // Preparar los parametros para los ciphers
-                AlgorithmParameterSpec oaramSpec = new PBEParameterSpec(SALT_BYTES, ITERATION_COUNT);
-
-                // Crear los ciphers
-                oECipher.init(Cipher.ENCRYPT_MODE, oKey, oaramSpec);
-                oDCipher.init(Cipher.DECRYPT_MODE, oKey, oaramSpec);
-
-                // Encodear la cadena a bytes usando UTF-8
-                byte[] oUTF8 = sStringValue.getBytes("UTF8");
-
-                // Encriptar
-                byte[] oEnc = oECipher.doFinal(oUTF8);
-
-                // Encodear bytes a base64 para obtener cadena
-                return new BASE64Encoder().encode(oEnc);
-            } catch (Exception oE1) {
-            	logger.error("Error en utilitario " + oE1.getMessage());
-            }
-            return null;
-        }
-
-        public static String desencriptarTexto(String textoEncriptado) {
-            Cipher oECipher = null;
-            Cipher oDCipher = null;
-            String sStringValue = textoEncriptado;
-            try {
-                // Crear la key
-                KeySpec oKeySpec = new PBEKeySpec(sKeyPhrase.toCharArray(), SALT_BYTES, ITERATION_COUNT);
-                SecretKey oKey = SecretKeyFactory.getInstance("PBEWithMD5AndDES").generateSecret(oKeySpec);
-                oECipher = Cipher.getInstance(oKey.getAlgorithm());
-                oDCipher = Cipher.getInstance(oKey.getAlgorithm());
-
-                // Preparar los parametros para los ciphers
-                AlgorithmParameterSpec oParamSpec = new PBEParameterSpec(SALT_BYTES, ITERATION_COUNT);
-
-                // Crear los ciphers
-                oECipher.init(Cipher.ENCRYPT_MODE, oKey, oParamSpec);
-                oDCipher.init(Cipher.DECRYPT_MODE, oKey, oParamSpec);
-
-                // Decodear base64 y obtener bytes
-                byte[] oDec = new sun.misc.BASE64Decoder().decodeBuffer(sStringValue);
-
-                // Desencriptar
-                byte[] oUTF8 = oDCipher.doFinal(oDec);
-
-                // Decodear usando UTF-8
-                return new String(oUTF8, "UTF8");
-            } catch (Exception oE1) {
-            	logger.error("Error en utilitario " + oE1.getMessage());
-            }
-            return null;
-        }
+//        public static String desencriptarTexto(String textoEncriptado) {
+//            Cipher oECipher = null;
+//            Cipher oDCipher = null;
+//            String sStringValue = textoEncriptado;
+//            try {
+//                // Crear la key
+//                KeySpec oKeySpec = new PBEKeySpec(sKeyPhrase.toCharArray(), SALT_BYTES, ITERATION_COUNT);
+//                SecretKey oKey = SecretKeyFactory.getInstance("PBEWithMD5AndDES").generateSecret(oKeySpec);
+//                oECipher = Cipher.getInstance(oKey.getAlgorithm());
+//                oDCipher = Cipher.getInstance(oKey.getAlgorithm());
+//
+//                // Preparar los parametros para los ciphers
+//                AlgorithmParameterSpec oParamSpec = new PBEParameterSpec(SALT_BYTES, ITERATION_COUNT);
+//
+//                // Crear los ciphers
+//                oECipher.init(Cipher.ENCRYPT_MODE, oKey, oParamSpec);
+//                oDCipher.init(Cipher.DECRYPT_MODE, oKey, oParamSpec);
+//
+//                // Decodear base64 y obtener bytes
+//                byte[] oDec = new sun.misc.BASE64Decoder().decodeBuffer(sStringValue);
+//
+//                // Desencriptar
+//                byte[] oUTF8 = oDCipher.doFinal(oDec);
+//
+//                // Decodear usando UTF-8
+//                return new String(oUTF8, "UTF8");
+//            } catch (Exception oE1) {
+//            	logger.error("Error en utilitario " + oE1.getMessage());
+//            }
+//            return null;
+//        }
     }
 
     public static class Archivo {

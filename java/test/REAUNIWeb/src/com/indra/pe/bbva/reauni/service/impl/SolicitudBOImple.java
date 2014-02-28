@@ -4,14 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.indra.pe.bbva.core.dao.DAOGenerico;
 import com.indra.pe.bbva.core.exception.DAOException;
@@ -29,8 +26,6 @@ import com.indra.pe.bbva.reauni.view.mbean.SessionMBean;
 
 @SuppressWarnings("rawtypes")
 @Service("solicitudBO")
-@Transactional
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class SolicitudBOImple implements SolicitudBO {
 	private static Logger logger = Logger.getLogger(SolicitudBOImple.class);
 	
@@ -65,13 +60,11 @@ public class SolicitudBOImple implements SolicitudBO {
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
-
 	}
 
 	@Override
 	public void editar(SolicitudDto solicitudDto) throws ServiceException {
 		try {
-			// dao.update(solicitudDto);
 			dao.merge(solicitudDto);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
@@ -110,7 +103,6 @@ public class SolicitudBOImple implements SolicitudBO {
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
-
 	}
 
 	@Override
@@ -172,7 +164,6 @@ public class SolicitudBOImple implements SolicitudBO {
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
-
 	}
 
 	@Override
@@ -182,7 +173,6 @@ public class SolicitudBOImple implements SolicitudBO {
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
-
 	}
 
 	@Override
@@ -193,7 +183,6 @@ public class SolicitudBOImple implements SolicitudBO {
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
-
 	}
 
 	@Override
@@ -218,7 +207,6 @@ public class SolicitudBOImple implements SolicitudBO {
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
-
 	}
 
 	@Override
@@ -230,7 +218,6 @@ public class SolicitudBOImple implements SolicitudBO {
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
-
 	}
 
 	@Override
@@ -264,7 +251,6 @@ public class SolicitudBOImple implements SolicitudBO {
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
-
 	}
 
 	@Override
@@ -275,19 +261,16 @@ public class SolicitudBOImple implements SolicitudBO {
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
-
 	}
 
 	@Override
 	public void editarOficinaInvolucrado(OficinaInvolucradoDto oi)
 			throws ServiceException {
 		try {
-			// daoOficinaInvolucrado.update(oi);
 			daoOficinaInvolucrado.merge(oi);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
-
 	}
 
 	@Override
@@ -299,8 +282,7 @@ public class SolicitudBOImple implements SolicitudBO {
 				a = 1;
 			else
 				a = 0;
-			daoOficinaSolicitud
-					.ejecutarSQL("UPDATE REAUNI.TREAUNI_OFICINA_SOLICITUD SET ESTADO="
+			daoOficinaSolicitud.ejecutarSQL("UPDATE REAUNI.TREAUNI_OFICINA_SOLICITUD SET ESTADO="
 							+ a + " WHERE ID=" + idOficinaSolicitud);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
